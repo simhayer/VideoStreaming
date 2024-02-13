@@ -5,6 +5,8 @@ import axios from 'axios';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import commonStyles from '../Resources/styles';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../Redux/Features/AuthSlice';
 
 
 const Login = () => {
@@ -15,6 +17,11 @@ const Login = () => {
     const [token, setToken] =  useState("")
     const navigation = useNavigation()
 
+    //hooks
+    const dispatch = useDispatch()
+    const {userData, isLoading} = useSelector(state => state.auth);
+
+    
 
     const onLoginClick = async (email, password) => {
         if (email.length === 0) {
@@ -26,30 +33,36 @@ const Login = () => {
         Alert.alert('Login', 'Please provide your password');
         return;
         }
-    
-        try {
-        const loginParams = { email, password };
-    
-        const response = await axios.post(baseURL + apiEndpoints.login, loginParams);
+        //const loginParams = { email, password };
+        const loginParams  = {
+          email: email,
+          password: password,
+        }
 
-      if (response.data.msg === 'Success Login') {
-        setIsAuthenticated(true);
-        setToken(response.data.user.token);
-        // await AsyncStorage.setItem('token', response.data.user.token); // Store token securely
-        setToken(response.data.user.token)
-        console.log(response.data.user.token);
-        if(response.data.user.token != ""){
-            navigation.navigate('Home');
-        }
-        // Navigate to another screen or perform actions upon successful login
-      } else {
-        Alert.alert('Login', 'Invalid credentials');
-      }
-        // Handle the response or navigate to another screen upon successful login
-        } catch (error) {
-        console.error('Login error:', error);
-        // Handle the error, such as displaying an error message to the user
-        }
+        dispatch(login(loginParams))
+    
+      //   try {
+    
+      //   const response = await axios.post(baseURL + apiEndpoints.login, loginParams);
+
+      // if (response.data.msg === 'Success Login') {
+      //   setIsAuthenticated(true);
+      //   setToken(response.data.user.token);
+      //   // await AsyncStorage.setItem('token', response.data.user.token); // Store token securely
+      //   setToken(response.data.user.token)
+      //   console.log(response.data.user.token);
+      //   if(response.data.user.token != ""){
+      //       navigation.navigate('Home');
+      //   }
+      //   // Navigate to another screen or perform actions upon successful login
+      // } else {
+      //   Alert.alert('Login', 'Invalid credentials');
+      // }
+      //   // Handle the response or navigate to another screen upon successful login
+      //   } catch (error) {
+      //   console.error('Login error:', error);
+      //   // Handle the error, such as displaying an error message to the user
+      //   }
     
     };
 
@@ -70,7 +83,7 @@ return (
             style={commonStyles.input}
             secureTextEntry={true}
             />
-            <TouchableOpacity onPress={() => onLoginClick(email, password)}  style = {{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
+            <TouchableOpacity isloading= {isLoading} onPress={() => onLoginClick(email, password)}  style = {{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
                 <Text style={{ color: 'white', textAlign: 'center' }}>
                     Login
                 </Text>

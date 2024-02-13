@@ -2721,3 +2721,74 @@ MONGODB | localhost:27017 req:33 | usmanage_be_development.update | SUCCEEDED | 
 Completed 200 OK in 244ms (Views: 0.1ms | MongoDB: 31.6ms | Allocations: 1496)
 
 
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-11 16:51:43 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Simrat", "password"=>"[FILTERED]", "auth"=>{"email"=>"Simrat", "password"=>"[FILTERED]"}}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x9980 type=uuid data=0x62d8cd8595604622...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.014s
+Completed 422 Unprocessable Entity in 413ms (Views: 1.8ms | MongoDB: 14.1ms | Allocations: 13849)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-11 16:52:17 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Simrat", "password"=>"[FILTERED]", "auth"=>{"email"=>"Simrat", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:10 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x9980 type=uuid data=0x62d8cd8595604622...>}}
+MONGODB | localhost:27017 req:10 | usmanage_be_development.find | SUCCEEDED | 0.015s
+Completed 422 Unprocessable Entity in 196ms (Views: 0.2ms | MongoDB: 15.4ms | Allocations: 748)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-11 16:56:47 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Simrat", "password"=>"[FILTERED]", "auth"=>{"email"=>"Simrat", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:38 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x9980 type=uuid data=0x62d8cd8595604622...>}}
+MONGODB | localhost:27017 req:38 | usmanage_be_development.find | SUCCEEDED | 0.022s
+Completed 422 Unprocessable Entity in 235ms (Views: 0.2ms | MongoDB: 21.9ms | Allocations: 740)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-11 17:01:42 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Simrat", "password"=>"[FILTERED]", "auth"=>{"email"=>"Simrat", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:68 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x9980 type=uuid data=0x62d8cd8595604622...>}}
+MONGODB | localhost:27017 req:68 | usmanage_be_development.find | SUCCEEDED | 0.018s
+Completed 422 Unprocessable Entity in 240ms (Views: 0.2ms | MongoDB: 17.6ms | Allocations: 740)
+
+
+Started POST "/api/v1/add_user" for 127.0.0.1 at 2024-02-11 17:02:06 -0500
+Processing by Api::V1::UsersController#addUser as HTML
+  Parameters: {"fullname"=>"Hehar", "email"=>"Hehar", "password"=>"[FILTERED]", "user"=>{"fullname"=>"Hehar", "email"=>"Hehar"}}
+[31mUnpermitted parameter: :user. Context: { controller: Api::V1::UsersController, action: addUser, request: #<ActionDispatch::Request:0x0000017b01419a60>, params: {"fullname"=>"Hehar", "email"=>"Hehar", "password"=>"[FILTERED]", "controller"=>"api/v1/users", "action"=>"addUser", "user"=>{"fullname"=>"Hehar", "email"=>"Hehar"}} }[0m
+MONGODB | localhost:27017 req:72 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hehar"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x9980 type=uuid data=0x62d8cd8595604622...>}}
+MONGODB | localhost:27017 req:72 | usmanage_be_development.find | SUCCEEDED | 0.022s
+MONGODB | localhost:27017 req:73 conn:1:1 sconn:2 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65c943df3042544034bfc489'), "fullname"=>"Hehar", "email"=>"Hehar", "password_digest"=>"$2a$12$OHTQ8N/rNX283DNJX.iNlOZptvUEc2jLYDHDks8KTUNVhQfwDoj7.", "type"=>2, "updated_at"=>2...
+MONGODB | localhost:27017 req:73 | usmanage_be_development.insert | SUCCEEDED | 0.032s
+Completed 200 OK in 380ms (Views: 1.0ms | MongoDB: 53.8ms | Allocations: 4113)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-11 17:02:14 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Hehar", "password"=>"[FILTERED]", "auth"=>{"email"=>"Hehar", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:74 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hehar"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x9980 type=uuid data=0x62d8cd8595604622...>}}
+MONGODB | localhost:27017 req:74 | usmanage_be_development.find | SUCCEEDED | 0.012s
+MONGODB | localhost:27017 req:75 conn:1:1 sconn:2 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65c943df3042544034bfc489')}, "u"=>{"$set"=>{"token"=>"116A9E8798B207505523B09E7FB7CF28CCF3F0E0DCFC282D65C313E29B53ECCE.4369C2B7DB05301897E2F5BD6156F86D.CF722517FD0D34DE2B3C...
+MONGODB | localhost:27017 req:75 | usmanage_be_development.update | SUCCEEDED | 0.027s
+Completed 200 OK in 263ms (Views: 0.1ms | MongoDB: 38.7ms | Allocations: 1732)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-11 17:22:39 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Hehar", "password"=>"[FILTERED]", "auth"=>{"email"=>"Hehar", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:199 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hehar"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x9980 type=uuid data=0x62d8cd8595604622...>}}
+MONGODB | localhost:27017 req:199 | usmanage_be_development.find | SUCCEEDED | 0.025s
+MONGODB | localhost:27017 req:200 conn:1:1 sconn:2 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65c943df3042544034bfc489')}, "u"=>{"$set"=>{"token"=>"116A9E8798B207505523B09E7FB7CF28CCF3F0E0DCFC282D65C313E29B53ECCE.4369C2B7DB05301897E2F5BD6156F86D.CF722517FD0D34DE2B3C...
+MONGODB | localhost:27017 req:200 | usmanage_be_development.update | SUCCEEDED | 0.015s
+Completed 200 OK in 344ms (Views: 0.3ms | MongoDB: 39.8ms | Allocations: 1506)
+
+
