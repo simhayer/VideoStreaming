@@ -2792,3 +2792,1860 @@ MONGODB | localhost:27017 req:200 | usmanage_be_development.update | SUCCEEDED |
 Completed 200 OK in 344ms (Views: 0.3ms | MongoDB: 39.8ms | Allocations: 1506)
 
 
+Started POST "/api/auth/login" for ::1 at 2024-02-13 11:01:34 -0500
+Processing by Api::Auth::AuthController#login as */*
+  Parameters: {"username"=>"kate", "password"=>"[FILTERED]"}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>nil}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x910a171e50154bcb...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.044s
+Completed 422 Unprocessable Entity in 310ms (Views: 0.7ms | MongoDB: 44.2ms | Allocations: 13634)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/logout" for ::1 at 2024-02-13 11:02:23 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/api/auth/logout"):
+  
+Started POST "/api/auth/logout" for ::1 at 2024-02-13 11:03:24 -0500
+Processing by Api::Auth::AuthController#logout as */*
+  Parameters: {"username"=>"kate", "password"=>"[FILTERED]"}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>nil}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.014s
+Completed 422 Unprocessable Entity in 114ms (Views: 0.2ms | MongoDB: 14.1ms | Allocations: 13632)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/logout" for ::1 at 2024-02-13 11:03:42 -0500
+Processing by Api::Auth::AuthController#logout as */*
+  Parameters: {"username"=>"kate", "password"=>"[FILTERED]"}
+MONGODB | localhost:27017 req:8 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>nil}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:8 | usmanage_be_development.find | SUCCEEDED | 0.025s
+Completed 422 Unprocessable Entity in 29ms (Views: 0.2ms | MongoDB: 25.5ms | Allocations: 662)
+
+
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 11:05:11 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Hehar", "auth"=>{"email"=>"Hehar"}}
+MONGODB | localhost:27017 req:18 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hehar"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:18 | usmanage_be_development.find | SUCCEEDED | 0.001s
+MONGODB | localhost:27017 req:19 conn:1:1 sconn:6 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65c943df3042544034bfc489')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}...
+MONGODB | localhost:27017 req:19 | usmanage_be_development.update | SUCCEEDED | 0.039s
+Completed 200 OK in 50ms (Views: 0.2ms | MongoDB: 39.2ms | Allocations: 2040)
+
+
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 11:06:13 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Hehar", "auth"=>{"email"=>"Hehar"}}
+MONGODB | localhost:27017 req:26 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hehar"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:26 | usmanage_be_development.find | SUCCEEDED | 0.019s
+MONGODB | localhost:27017 req:27 conn:1:1 sconn:6 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65c943df3042544034bfc489')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}...
+MONGODB | localhost:27017 req:27 | usmanage_be_development.update | SUCCEEDED | 0.012s
+Completed 200 OK in 39ms (Views: 0.2ms | MongoDB: 30.8ms | Allocations: 1377)
+
+
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 11:09:30 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Hehar", "auth"=>{"email"=>"Hehar"}}
+MONGODB | localhost:27017 req:48 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hehar"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:48 | usmanage_be_development.find | SUCCEEDED | 0.016s
+MONGODB | localhost:27017 req:49 conn:1:1 sconn:6 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65c943df3042544034bfc489')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}...
+MONGODB | localhost:27017 req:49 | usmanage_be_development.update | SUCCEEDED | 0.014s
+Completed 200 OK in 36ms (Views: 0.2ms | MongoDB: 29.3ms | Allocations: 1375)
+
+
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 11:10:10 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Hehar", "auth"=>{"email"=>"Hehar"}}
+MONGODB | localhost:27017 req:54 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hehar"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:54 | usmanage_be_development.find | SUCCEEDED | 0.016s
+MONGODB | localhost:27017 req:55 conn:1:1 sconn:6 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65c943df3042544034bfc489')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}...
+MONGODB | localhost:27017 req:55 | usmanage_be_development.update | SUCCEEDED | 0.013s
+Completed 200 OK in 36ms (Views: 0.2ms | MongoDB: 29.3ms | Allocations: 1378)
+
+
+Started POST "/api/v1/add_user" for 127.0.0.1 at 2024-02-13 11:13:00 -0500
+Processing by Api::V1::UsersController#addUser as HTML
+  Parameters: {"fullname"=>"NewTest", "email"=>"NewTest", "password"=>"[FILTERED]", "user"=>{"fullname"=>"NewTest", "email"=>"NewTest"}}
+[31mUnpermitted parameter: :user. Context: { controller: Api::V1::UsersController, action: addUser, request: #<ActionDispatch::Request:0x000001caaeb99388>, params: {"fullname"=>"NewTest", "email"=>"NewTest", "password"=>"[FILTERED]", "controller"=>"api/v1/users", "action"=>"addUser", "user"=>{"fullname"=>"NewTest", "email"=>"NewTest"}} }[0m
+MONGODB | localhost:27017 req:73 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"NewTest"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:73 | usmanage_be_development.find | SUCCEEDED | 0.016s
+MONGODB | localhost:27017 req:74 conn:1:1 sconn:6 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65cb950d304254593ce29619'), "fullname"=>"NewTest", "email"=>"NewTest", "password_digest"=>"$2a$12$VH.tvrNpusAquzRi0GrmkuwSOdVg.fSNhrtGI7j7e.oirLGAH2BwW", "type"=>2, "updated_at...
+MONGODB | localhost:27017 req:74 | usmanage_be_development.insert | SUCCEEDED | 0.021s
+Completed 200 OK in 350ms (Views: 0.9ms | MongoDB: 37.2ms | Allocations: 3804)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 11:13:08 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"NewTest", "password"=>"[FILTERED]", "auth"=>{"email"=>"NewTest", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:76 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"NewTest"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:76 | usmanage_be_development.find | SUCCEEDED | 0.017s
+MONGODB | localhost:27017 req:77 conn:1:1 sconn:6 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cb950d304254593ce29619')}, "u"=>{"$set"=>{"token"=>"F5AC265D9066B95363B8B6D1E6115E41B91B81320BE48AF96D22BFAB76E24D98.FF64655BEE81BA8CC64296307DC91843.CF722517FD0D34DE2B3C...
+MONGODB | localhost:27017 req:77 | usmanage_be_development.update | SUCCEEDED | 0.025s
+Completed 200 OK in 300ms (Views: 0.1ms | MongoDB: 41.2ms | Allocations: 1539)
+
+
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 11:13:10 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"NewTest", "auth"=>{"email"=>"NewTest"}}
+MONGODB | localhost:27017 req:78 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"NewTest"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}
+MONGODB | localhost:27017 req:78 | usmanage_be_development.find | SUCCEEDED | 0.024s
+MONGODB | localhost:27017 req:79 conn:1:1 sconn:6 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cb950d304254593ce29619')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x0d398aae60d742e7...>}}...
+MONGODB | localhost:27017 req:79 | usmanage_be_development.update | SUCCEEDED | 0.014s
+Completed 200 OK in 43ms (Views: 0.1ms | MongoDB: 37.9ms | Allocations: 1380)
+
+
+Started POST "/api/v1/add_user" for 127.0.0.1 at 2024-02-13 13:57:25 -0500
+Processing by Api::V1::UsersController#addUser as HTML
+  Parameters: {"fullname"=>"Farhan", "email"=>"Farhan", "password"=>"[FILTERED]", "user"=>{"fullname"=>"Farhan", "email"=>"Farhan"}}
+[31mUnpermitted parameter: :user. Context: { controller: Api::V1::UsersController, action: addUser, request: #<ActionDispatch::Request:0x000001cab00acef0>, params: {"fullname"=>"Farhan", "email"=>"Farhan", "password"=>"[FILTERED]", "controller"=>"api/v1/users", "action"=>"addUser", "user"=>{"fullname"=>"Farhan", "email"=>"Farhan"}} }[0m
+MONGODB | localhost:27017 req:859 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x44360 type=uuid data=0x1083ff5c3a174d92...>}}
+MONGODB | localhost:27017 req:859 | usmanage_be_development.find | SUCCEEDED | 0.058s
+Completed 200 OK in 754ms (Views: 277.1ms | MongoDB: 58.0ms | Allocations: 3011)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 13:57:36 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:861 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x44360 type=uuid data=0x1083ff5c3a174d92...>}}
+MONGODB | localhost:27017 req:861 | usmanage_be_development.find | SUCCEEDED | 0.008s
+Completed 422 Unprocessable Entity in 316ms (Views: 0.3ms | MongoDB: 8.1ms | Allocations: 739)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 13:57:40 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:862 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x44360 type=uuid data=0x1083ff5c3a174d92...>}}
+MONGODB | localhost:27017 req:862 | usmanage_be_development.find | SUCCEEDED | 0.001s
+Completed 422 Unprocessable Entity in 305ms (Views: 0.5ms | MongoDB: 1.5ms | Allocations: 737)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 13:57:46 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:864 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x44360 type=uuid data=0x1083ff5c3a174d92...>}}
+MONGODB | localhost:27017 req:864 | usmanage_be_development.find | SUCCEEDED | 0.001s
+Completed 422 Unprocessable Entity in 308ms (Views: 0.3ms | MongoDB: 1.3ms | Allocations: 738)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 13:57:51 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:865 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x44360 type=uuid data=0x1083ff5c3a174d92...>}}
+MONGODB | localhost:27017 req:865 | usmanage_be_development.find | SUCCEEDED | 0.002s
+Completed 422 Unprocessable Entity in 279ms (Views: 0.3ms | MongoDB: 1.9ms | Allocations: 737)
+
+
+Started POST "/api/v1/add_user" for 127.0.0.1 at 2024-02-13 13:58:00 -0500
+Processing by Api::V1::UsersController#addUser as HTML
+  Parameters: {"fullname"=>"Farhan", "email"=>"Farhan1", "password"=>"[FILTERED]", "user"=>{"fullname"=>"Farhan", "email"=>"Farhan1"}}
+[31mUnpermitted parameter: :user. Context: { controller: Api::V1::UsersController, action: addUser, request: #<ActionDispatch::Request:0x000001caaffab2e0>, params: {"fullname"=>"Farhan", "email"=>"Farhan1", "password"=>"[FILTERED]", "controller"=>"api/v1/users", "action"=>"addUser", "user"=>{"fullname"=>"Farhan", "email"=>"Farhan1"}} }[0m
+MONGODB | localhost:27017 req:867 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan1"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x44360 type=uuid data=0x1083ff5c3a174d92...>}}
+MONGODB | localhost:27017 req:867 | usmanage_be_development.find | SUCCEEDED | 0.002s
+Completed 200 OK in 360ms (Views: 0.7ms | MongoDB: 2.4ms | Allocations: 1335)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 13:58:08 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan1", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan1", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:869 conn:1:1 sconn:6 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan1"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x44360 type=uuid data=0x1083ff5c3a174d92...>}}
+MONGODB | localhost:27017 req:869 | usmanage_be_development.find | SUCCEEDED | 0.014s
+Completed 422 Unprocessable Entity in 380ms (Views: 0.4ms | MongoDB: 13.8ms | Allocations: 737)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 14:00:36 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan1", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan1", "password"=>"[FILTERED]"}}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan1"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.003s
+Completed 422 Unprocessable Entity in 553ms (Views: 1.6ms | MongoDB: 2.8ms | Allocations: 13825)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone' [awaited].
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 14:03:32 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan1", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan1", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:24 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan1"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:24 | usmanage_be_development.find | SUCCEEDED | 0.017s
+Completed 422 Unprocessable Entity in 331ms (Views: 0.2ms | MongoDB: 17.1ms | Allocations: 748)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 14:05:08 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan1", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan1", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:34 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan1"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:34 | usmanage_be_development.find | SUCCEEDED | 0.025s
+Completed 422 Unprocessable Entity in 446ms (Views: 0.4ms | MongoDB: 24.6ms | Allocations: 7249)
+
+
+Started POST "/api/v1/add_user" for 127.0.0.1 at 2024-02-13 14:06:58 -0500
+Processing by Api::V1::UsersController#addUser as HTML
+  Parameters: {"fullname"=>"Simrat23", "email"=>"Simrat23", "password"=>"[FILTERED]", "user"=>{"fullname"=>"Simrat23", "email"=>"Simrat23"}}
+[31mUnpermitted parameter: :user. Context: { controller: Api::V1::UsersController, action: addUser, request: #<ActionDispatch::Request:0x000002115b4be740>, params: {"fullname"=>"Simrat23", "email"=>"Simrat23", "password"=>"[FILTERED]", "controller"=>"api/v1/users", "action"=>"addUser", "user"=>{"fullname"=>"Simrat23", "email"=>"Simrat23"}} }[0m
+MONGODB | localhost:27017 req:47 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat23"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:47 | usmanage_be_development.find | SUCCEEDED | 0.016s
+MONGODB | localhost:27017 req:48 conn:1:1 sconn:8 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65cbbdd3304254541c30dabf'), "fullname"=>"Simrat23", "email"=>"Simrat23", "password_digest"=>"$2a$12$TFE.wzaOTkZDLiNOZ3DbP.NVtEZGGrONSHUE9Attwxs/7rjyAwmWy", "type"=>2, "updated_...
+MONGODB | localhost:27017 req:48 | usmanage_be_development.insert | SUCCEEDED | 0.019s
+Completed 200 OK in 495ms (Views: 4.3ms | MongoDB: 35.4ms | Allocations: 4447)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 14:07:07 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Simrat23", "password"=>"[FILTERED]", "auth"=>{"email"=>"Simrat23", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:49 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat23"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:49 | usmanage_be_development.find | SUCCEEDED | 0.016s
+MONGODB | localhost:27017 req:50 conn:1:1 sconn:8 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cbbdd3304254541c30dabf')}, "u"=>{"$set"=>{"token"=>"9E97082C2C439BFCAC08C5EB8B415D95AB90250DE1F5565DAA1B72E7D1998CF4.F4C612C78FB198642C2C760705AA1D80.CF722517FD0D34DE2B3C...
+MONGODB | localhost:27017 req:50 | usmanage_be_development.update | SUCCEEDED | 0.022s
+Completed 200 OK in 424ms (Views: 0.4ms | MongoDB: 38.5ms | Allocations: 1816)
+
+
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 14:07:10 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Simrat23", "auth"=>{"email"=>"Simrat23"}}
+MONGODB | localhost:27017 req:52 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat23"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:52 | usmanage_be_development.find | SUCCEEDED | 0.025s
+MONGODB | localhost:27017 req:53 conn:1:1 sconn:8 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cbbdd3304254541c30dabf')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}...
+MONGODB | localhost:27017 req:53 | usmanage_be_development.update | SUCCEEDED | 0.026s
+Completed 200 OK in 58ms (Views: 0.3ms | MongoDB: 50.8ms | Allocations: 1390)
+
+
+Started POST "/api/v1/add_user" for 127.0.0.1 at 2024-02-13 14:07:21 -0500
+Processing by Api::V1::UsersController#addUser as HTML
+  Parameters: {"fullname"=>"Farhan2", "email"=>"Farhan2", "password"=>"[FILTERED]", "user"=>{"fullname"=>"Farhan2", "email"=>"Farhan2"}}
+[31mUnpermitted parameter: :user. Context: { controller: Api::V1::UsersController, action: addUser, request: #<ActionDispatch::Request:0x000002115c1d2b20>, params: {"fullname"=>"Farhan2", "email"=>"Farhan2", "password"=>"[FILTERED]", "controller"=>"api/v1/users", "action"=>"addUser", "user"=>{"fullname"=>"Farhan2", "email"=>"Farhan2"}} }[0m
+MONGODB | localhost:27017 req:55 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan2"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:55 | usmanage_be_development.find | SUCCEEDED | 0.022s
+MONGODB | localhost:27017 req:56 conn:1:1 sconn:8 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65cbbde9304254541c30dac0'), "fullname"=>"Farhan2", "email"=>"Farhan2", "password_digest"=>"$2a$12$gtrnzbT5s/yDdH9vNXk3W.fWNEwbjansgbPBmFxA.wcKbXdaGtiOW", "type"=>2, "updated_at...
+MONGODB | localhost:27017 req:56 | usmanage_be_development.insert | SUCCEEDED | 0.032s
+Completed 200 OK in 418ms (Views: 1.0ms | MongoDB: 53.7ms | Allocations: 1960)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 14:07:29 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan2", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan2", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:57 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan2"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:57 | usmanage_be_development.find | SUCCEEDED | 0.015s
+MONGODB | localhost:27017 req:59 conn:1:1 sconn:8 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cbbde9304254541c30dac0')}, "u"=>{"$set"=>{"token"=>"CA2B6FBDD677989E668C717EEF51F5C171E09FA286E89BFB41E80854425F1D7E.EF570EA7AF11742308D2F4B3537BAFD4.CF722517FD0D34DE2B3C...
+MONGODB | localhost:27017 req:59 | usmanage_be_development.update | SUCCEEDED | 0.027s
+Completed 200 OK in 411ms (Views: 0.3ms | MongoDB: 42.1ms | Allocations: 1720)
+
+
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 14:07:37 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Farhan2", "auth"=>{"email"=>"Farhan2"}}
+MONGODB | localhost:27017 req:60 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan2"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:60 | usmanage_be_development.find | SUCCEEDED | 0.002s
+MONGODB | localhost:27017 req:61 conn:1:1 sconn:8 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cbbde9304254541c30dac0')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}...
+MONGODB | localhost:27017 req:61 | usmanage_be_development.update | SUCCEEDED | 0.013s
+Completed 200 OK in 29ms (Views: 0.3ms | MongoDB: 14.7ms | Allocations: 1380)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 14:07:47 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Farhan2", "password"=>"[FILTERED]", "auth"=>{"email"=>"Farhan2", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:63 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan2"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:63 | usmanage_be_development.find | SUCCEEDED | 0.021s
+MONGODB | localhost:27017 req:64 conn:1:1 sconn:8 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cbbde9304254541c30dac0')}, "u"=>{"$set"=>{"token"=>"CA2B6FBDD677989E668C717EEF51F5C171E09FA286E89BFB41E80854425F1D7E.EF570EA7AF11742308D2F4B3537BAFD4.CF722517FD0D34DE2B3C...
+MONGODB | localhost:27017 req:64 | usmanage_be_development.update | SUCCEEDED | 0.032s
+Completed 200 OK in 408ms (Views: 3.2ms | MongoDB: 52.8ms | Allocations: 1504)
+
+
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 14:07:52 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Farhan2", "auth"=>{"email"=>"Farhan2"}}
+MONGODB | localhost:27017 req:66 conn:1:1 sconn:8 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Farhan2"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}
+MONGODB | localhost:27017 req:66 | usmanage_be_development.find | SUCCEEDED | 0.029s
+MONGODB | localhost:27017 req:67 conn:1:1 sconn:8 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cbbde9304254541c30dac0')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10120 type=uuid data=0x332172d6573d4137...>}}...
+MONGODB | localhost:27017 req:67 | usmanage_be_development.update | SUCCEEDED | 0.022s
+Completed 200 OK in 60ms (Views: 0.3ms | MongoDB: 51.9ms | Allocations: 1380)
+
+
+MONGODB | Error running awaited hello on localhost:27017: Mongo::Error::SocketTimeoutError: Errno::ETIMEDOUT: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. - Took more than 20 seconds to receive data (select call timed out) (for 127.0.0.1:27017 (no TLS)) (on localhost:27017)
+Started POST "/api/v1/add_user" for 127.0.0.1 at 2024-02-13 22:44:36 -0500
+Processing by Api::V1::UsersController#addUser as HTML
+  Parameters: {"fullname"=>"Simrat99", "email"=>"Simrat99", "password"=>"[FILTERED]", "user"=>{"fullname"=>"Simrat99", "email"=>"Simrat99"}}
+[31mUnpermitted parameter: :user. Context: { controller: Api::V1::UsersController, action: addUser, request: #<ActionDispatch::Request:0x000002bf13f69260>, params: {"fullname"=>"Simrat99", "email"=>"Simrat99", "password"=>"[FILTERED]", "controller"=>"api/v1/users", "action"=>"addUser", "user"=>{"fullname"=>"Simrat99", "email"=>"Simrat99"}} }[0m
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:11 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat99"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10160 type=uuid data=0xd106bd9988f34627...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.011s
+MONGODB | localhost:27017 req:7 conn:1:1 sconn:11 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65cc3727304254220883f15e'), "fullname"=>"Simrat99", "email"=>"Simrat99", "password_digest"=>"$2a$12$LKe43K/DNbR66QShbI4XBeA0YW/Ma.TveSXLluCs.svN4HimPcBsG", "type"=>2, "updated_...
+MONGODB | localhost:27017 req:7 | usmanage_be_development.insert | SUCCEEDED | 0.026s
+Completed 200 OK in 999ms (Views: 2.0ms | MongoDB: 37.1ms | Allocations: 10531)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 22:44:48 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Simrat99", "password"=>"[FILTERED]", "auth"=>{"email"=>"Simrat99", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:8 conn:1:1 sconn:11 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat99"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10160 type=uuid data=0xd106bd9988f34627...>}}
+MONGODB | localhost:27017 req:8 | usmanage_be_development.find | SUCCEEDED | 0.002s
+MONGODB | localhost:27017 req:9 conn:1:1 sconn:11 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cc3727304254220883f15e')}, "u"=>{"$set"=>{"token"=>"C8CB282C6B43C1C4E3B85F8C59A40D0541E2C542A6946772C0AA063B23E6B373.3756581CE108C8A2919CC594355E0A61.CF722517FD0D34DE2B3C...
+MONGODB | localhost:27017 req:9 | usmanage_be_development.update | SUCCEEDED | 0.024s
+Completed 200 OK in 710ms (Views: 0.4ms | MongoDB: 25.6ms | Allocations: 1890)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-13 22:45:11 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Simrat99", "auth"=>{"email"=>"Simrat99"}}
+MONGODB | localhost:27017 req:13 conn:1:1 sconn:11 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat99"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10160 type=uuid data=0xd106bd9988f34627...>}}
+MONGODB | localhost:27017 req:13 | usmanage_be_development.find | SUCCEEDED | 0.001s
+MONGODB | localhost:27017 req:14 conn:1:1 sconn:11 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cc3727304254220883f15e')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10160 type=uuid data=0xd106bd9988f34627...>}}...
+MONGODB | localhost:27017 req:14 | usmanage_be_development.update | SUCCEEDED | 0.001s
+Completed 200 OK in 40ms (Views: 0.2ms | MongoDB: 2.3ms | Allocations: 1384)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-13 22:45:23 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Simrat99", "password"=>"[FILTERED]", "auth"=>{"email"=>"Simrat99", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:16 conn:1:1 sconn:11 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat99"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10160 type=uuid data=0xd106bd9988f34627...>}}
+MONGODB | localhost:27017 req:16 | usmanage_be_development.find | SUCCEEDED | 0.037s
+MONGODB | localhost:27017 req:17 conn:1:1 sconn:11 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cc3727304254220883f15e')}, "u"=>{"$set"=>{"token"=>"C8CB282C6B43C1C4E3B85F8C59A40D0541E2C542A6946772C0AA063B23E6B373.3756581CE108C8A2919CC594355E0A61.CF722517FD0D34DE2B3C...
+MONGODB | localhost:27017 req:17 | usmanage_be_development.update | SUCCEEDED | 0.030s
+Completed 200 OK in 386ms (Views: 0.3ms | MongoDB: 67.0ms | Allocations: 1510)
+
+
+Started GET "/login" for ::1 at 2024-02-13 22:48:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/favicon.ico" for ::1 at 2024-02-13 22:48:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/login" for ::1 at 2024-02-13 22:49:36 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/login" for ::1 at 2024-02-13 22:49:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-14 01:28:38 -0500
+Started POST "/api/auth/logout" for 127.0.0.1 at 2024-02-14 01:28:38 -0500
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Simrat99", "auth"=>{"email"=>"Simrat99"}}
+Processing by Api::Auth::AuthController#logout as HTML
+  Parameters: {"email"=>"Simrat99", "auth"=>{"email"=>"Simrat99"}}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:7 conn:1:1 sconn:14 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat99"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10200 type=uuid data=0xb5a1ba8009d34ee0...>}}
+MONGODB | localhost:27017 req:8 conn:1:2 sconn:16 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Simrat99"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10260 type=uuid data=0x8f640c97c94d4522...>}}
+MONGODB | localhost:27017 req:7 | usmanage_be_development.find | SUCCEEDED | 0.023s
+MONGODB | localhost:27017 req:9 conn:1:1 sconn:14 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cc3727304254220883f15e')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10200 type=uuid data=0xb5a1ba8009d34ee0...>}}...
+MONGODB | localhost:27017 req:8 | usmanage_be_development.find | SUCCEEDED | 0.006s
+MONGODB | localhost:27017 req:10 conn:1:2 sconn:16 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65cc3727304254220883f15e')}, "u"=>{"$set"=>{"token"=>nil}}}], "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10260 type=uuid data=0x8f640c97c94d4522...>}}...
+MONGODB | localhost:27017 req:9 | usmanage_be_development.update | SUCCEEDED | 0.022s
+Completed 200 OK in 294ms (Views: 1.1ms | MongoDB: 44.5ms | Allocations: 16478)
+
+
+MONGODB | localhost:27017 req:10 | usmanage_be_development.update | SUCCEEDED | 0.022s
+Completed 200 OK in 268ms (Views: 0.2ms | MongoDB: 27.6ms | Allocations: 17087)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone' [awaited].
+MONGODB | There was a change in the members of the 'Single' topology.
+Started GET "/rails/mailers/forget_mailer/new_code" for ::1 at 2024-02-14 18:51:16 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 2.2ms | Allocations: 224)
+  Rendered layout layouts/mailer.html.erb (Duration: 6.8ms | Allocations: 487)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 1.0ms | Allocations: 115)
+  Rendered layout layouts/mailer.text.erb (Duration: 3.1ms | Allocations: 305)
+ForgetMailer#new_code: processed outbound mail in 854.7ms
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.1.3/lib/rails/templates/rails/mailers/email.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.1.3/lib/rails/templates/rails/mailers/email.html.erb (Duration: 10.1ms | Allocations: 2988)
+Completed 200 OK in 3269ms (Views: 220.8ms | MongoDB: 0.0ms | Allocations: 121049)
+
+
+Started GET "/rails/mailers/forget_mailer/new_code?part=text%2Fhtml" for ::1 at 2024-02-14 18:51:20 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"part"=>"text/html", "path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.2ms | Allocations: 8)
+  Rendered layout layouts/mailer.html.erb (Duration: 5.4ms | Allocations: 101)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.2ms | Allocations: 7)
+  Rendered layout layouts/mailer.text.erb (Duration: 2.8ms | Allocations: 100)
+ForgetMailer#new_code: processed outbound mail in 110.3ms
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 3)
+Completed 200 OK in 169ms (Views: 50.8ms | MongoDB: 0.0ms | Allocations: 3329)
+
+
+Started GET "/favicon.ico" for ::1 at 2024-02-14 18:51:20 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/rails/mailers/forget_mailer/new_code?part=text%2Fplain" for ::1 at 2024-02-14 18:51:26 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"part"=>"text/plain", "path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.4ms | Allocations: 101)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/mailer.text.erb (Duration: 1.5ms | Allocations: 100)
+ForgetMailer#new_code: processed outbound mail in 9.9ms
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 1)
+Completed 200 OK in 15ms (Views: 2.0ms | MongoDB: 0.0ms | Allocations: 3074)
+
+
+Started GET "/rails/mailers/forget_mailer/new_code.txt" for ::1 at 2024-02-14 18:51:45 -0500
+Processing by Rails::MailersController#preview as TEXT
+  Parameters: {"path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.4ms | Allocations: 117)
+  Rendered layout layouts/mailer.html.erb (Duration: 3.9ms | Allocations: 330)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 31.4ms | Allocations: 662)
+  Rendered layout layouts/mailer.text.erb (Duration: 32.9ms | Allocations: 755)
+ForgetMailer#new_code: processed outbound mail in 70.6ms
+Completed 500 Internal Server Error in 266ms (MongoDB: 0.0ms | Allocations: 6821)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check Forget#new_code
+
+<%= @greeting %>, find me in app/views/forget_mailer/new_code.text.erb
+
+<% = link_to "See post here",  Post.first %>
+):
+1:    Forget#new_code
+2:    
+3:    <%= @greeting %>, find me in app/views/forget_mailer/new_code.text.erb
+4:    
+5:    <% = link_to "See post here",  Post.first %>
+  
+app/views/forget_mailer/new_code.text.erb:5: syntax error, unexpected '='
+app/mailers/forget_mailer.rb:11:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code.txt" for ::1 at 2024-02-14 18:53:22 -0500
+Processing by Rails::MailersController#preview as TEXT
+  Parameters: {"path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.3ms | Allocations: 121)
+  Rendered layout layouts/mailer.html.erb (Duration: 4.0ms | Allocations: 334)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 1.7ms | Allocations: 275)
+  Rendered layout layouts/mailer.text.erb (Duration: 3.4ms | Allocations: 360)
+ForgetMailer#new_code: processed outbound mail in 32.4ms
+Completed 500 Internal Server Error in 148ms (MongoDB: 0.0ms | Allocations: 6344)
+
+
+  
+ActionView::Template::Error (uninitialized constant #<Class:0x000001fe25dbed98>::Post):
+    2: 
+    3: <%= @greeting %>, find me in app/views/forget_mailer/new_code.text.erb
+    4: 
+    5: <%= link_to "See post here",  Post.first %>
+  
+app/views/forget_mailer/new_code.text.erb:5
+app/mailers/forget_mailer.rb:11:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code.txt" for ::1 at 2024-02-14 18:53:46 -0500
+Processing by Rails::MailersController#preview as TEXT
+  Parameters: {"path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.0ms | Allocations: 121)
+  Rendered layout layouts/mailer.html.erb (Duration: 2.6ms | Allocations: 334)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.7ms | Allocations: 269)
+  Rendered layout layouts/mailer.text.erb (Duration: 1.2ms | Allocations: 354)
+ForgetMailer#new_code: processed outbound mail in 22.8ms
+Completed 500 Internal Server Error in 32ms (MongoDB: 0.0ms | Allocations: 3098)
+
+
+  
+ActionView::Template::Error (uninitialized constant #<Class:0x000001fe28f7c3a8>::Post):
+    2: 
+    3: <%= @greeting %>, find me in app/views/forget_mailer/new_code.text.erb
+    4: 
+    5: <%= link_to "See post here", Post.first %>
+  
+app/views/forget_mailer/new_code.text.erb:5
+app/mailers/forget_mailer.rb:11:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code.txt" for ::1 at 2024-02-14 18:54:11 -0500
+Processing by Rails::MailersController#preview as TEXT
+  Parameters: {"path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.4ms | Allocations: 121)
+  Rendered layout layouts/mailer.html.erb (Duration: 5.3ms | Allocations: 334)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 4.2ms | Allocations: 540)
+  Rendered layout layouts/mailer.text.erb (Duration: 6.4ms | Allocations: 625)
+ForgetMailer#new_code: processed outbound mail in 40.4ms
+Completed 500 Internal Server Error in 160ms (MongoDB: 0.0ms | Allocations: 6604)
+
+
+  
+ActionView::Template::Error (No route matches {}):
+    2: 
+    3: <%= @greeting %>, find me in app/views/forget_mailer/new_code.text.erb
+    4: 
+    5: <%= link_to "See post here"%>
+  
+app/views/forget_mailer/new_code.text.erb:5
+app/mailers/forget_mailer.rb:11:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code.txt" for ::1 at 2024-02-14 18:54:46 -0500
+Processing by Rails::MailersController#preview as TEXT
+  Parameters: {"path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.0ms | Allocations: 121)
+  Rendered layout layouts/mailer.html.erb (Duration: 2.7ms | Allocations: 334)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 1.5ms | Allocations: 130)
+  Rendered layout layouts/mailer.text.erb (Duration: 3.4ms | Allocations: 319)
+ForgetMailer#new_code: processed outbound mail in 28.8ms
+  Rendering C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.1.3/lib/rails/templates/rails/mailers/email.html.erb
+  Rendered C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/railties-7.1.3/lib/rails/templates/rails/mailers/email.html.erb (Duration: 9.1ms | Allocations: 2607)
+Completed 200 OK in 240ms (Views: 24.9ms | MongoDB: 0.0ms | Allocations: 11126)
+
+
+Started GET "/rails/mailers/forget_mailer/new_code.txt?part=text%2Fplain" for ::1 at 2024-02-14 18:54:47 -0500
+Processing by Rails::MailersController#preview as TEXT
+  Parameters: {"part"=>"text/plain", "path"=>"forget_mailer/new_code"}
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.6ms | Allocations: 101)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.text.erb (Duration: 1.1ms | Allocations: 101)
+ForgetMailer#new_code: processed outbound mail in 7.7ms
+  Rendering text template
+  Rendered text template (Duration: 0.1ms | Allocations: 1)
+Completed 200 OK in 12ms (Views: 2.0ms | MongoDB: 0.0ms | Allocations: 3064)
+
+
+Started GET "/rails/mailers/forget_mailer/new_code" for ::1 at 2024-02-15 12:07:17 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"path"=>"forget_mailer/new_code"}
+Completed 500 Internal Server Error in 5002ms (MongoDB: 0.0ms | Allocations: 31322)
+
+
+  
+SyntaxError (C:/Users/hayer/Documents/Native_Project/AweP2/TClone/Backend2/usmanage_be/app/mailers/forget_mailer.rb:13: syntax error, unexpected local variable or method, expecting ')'
+      to: User.email,
+      ^~
+):
+  
+app/mailers/forget_mailer.rb:13: syntax error, unexpected local variable or method, expecting ')'
+test/mailers/previews/forget_mailer_preview.rb:6:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code" for ::1 at 2024-02-15 12:08:36 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"path"=>"forget_mailer/new_code"}
+Completed 500 Internal Server Error in 237ms (MongoDB: 0.0ms | Allocations: 3835)
+
+
+  
+SyntaxError (C:/Users/hayer/Documents/Native_Project/AweP2/TClone/Backend2/usmanage_be/app/mailers/forget_mailer.rb:13: syntax error, unexpected local variable or method, expecting ')'
+      to: @User.email,
+      ^~
+):
+  
+app/mailers/forget_mailer.rb:13: syntax error, unexpected local variable or method, expecting ')'
+test/mailers/previews/forget_mailer_preview.rb:6:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code" for ::1 at 2024-02-15 12:08:39 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"path"=>"forget_mailer/new_code"}
+Completed 500 Internal Server Error in 9ms (MongoDB: 0.0ms | Allocations: 496)
+
+
+  
+SyntaxError (C:/Users/hayer/Documents/Native_Project/AweP2/TClone/Backend2/usmanage_be/app/mailers/forget_mailer.rb:13: syntax error, unexpected local variable or method, expecting ')'
+      to: @User.email,
+      ^~
+):
+  
+app/mailers/forget_mailer.rb:13: syntax error, unexpected local variable or method, expecting ')'
+test/mailers/previews/forget_mailer_preview.rb:6:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code" for ::1 at 2024-02-15 12:09:08 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"path"=>"forget_mailer/new_code"}
+ForgetMailer#new_code: processed outbound mail in 80.6ms
+Completed 500 Internal Server Error in 358ms (MongoDB: 0.0ms | Allocations: 11451)
+
+
+  
+NoMethodError (undefined method `email' for User:Class):
+  
+app/mailers/forget_mailer.rb:13:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code" for ::1 at 2024-02-15 12:10:02 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"path"=>"forget_mailer/new_code"}
+ForgetMailer#new_code: processed outbound mail in 0.5ms
+Completed 500 Internal Server Error in 240ms (MongoDB: 0.0ms | Allocations: 4512)
+
+
+  
+NoMethodError (undefined method `User' for #<ForgetMailer:0x000000000089a8>):
+  
+app/mailers/forget_mailer.rb:13:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code" for ::1 at 2024-02-15 12:12:04 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"path"=>"forget_mailer/new_code"}
+ForgetMailer#new_code: processed outbound mail in 0.6ms
+Completed 500 Internal Server Error in 255ms (MongoDB: 0.0ms | Allocations: 4493)
+
+
+  
+NoMethodError (undefined method `email' for nil:NilClass):
+  
+app/mailers/forget_mailer.rb:13:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code" for ::1 at 2024-02-15 12:16:31 -0500
+Processing by Rails::MailersController#preview as HTML
+  Parameters: {"path"=>"forget_mailer/new_code"}
+ForgetMailer#new_code: processed outbound mail in 0.6ms
+Completed 500 Internal Server Error in 292ms (MongoDB: 0.0ms | Allocations: 4489)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/mailers/forget_mailer.rb:8:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code?email=hello@gmail.com" for ::1 at 2024-02-15 13:19:29 -0500
+Processing by Rails::MailersController#preview as */*
+  Parameters: {"email"=>"hello@gmail.com", "path"=>"forget_mailer/new_code"}
+ForgetMailer#new_code: processed outbound mail in 0.4ms
+Completed 500 Internal Server Error in 2ms (MongoDB: 0.0ms | Allocations: 461)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/mailers/forget_mailer.rb:8:in `new_code'
+Started GET "/rails/mailers/forget_mailer/new_code?email=hello@gmail.com" for ::1 at 2024-02-15 13:31:28 -0500
+Processing by Rails::MailersController#preview as */*
+  Parameters: {"email"=>"hello@gmail.com", "path"=>"forget_mailer/new_code"}
+ForgetMailer#new_code: processed outbound mail in 0.2ms
+Completed 500 Internal Server Error in 9ms (MongoDB: 0.0ms | Allocations: 1173)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/mailers/forget_mailer.rb:8:in `new_code'
+Started POST "/rails/mailers/forget_mailer/new_code?email=hello@gmail.com" for ::1 at 2024-02-15 13:31:50 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/rails/mailers/forget_mailer/new_code"):
+  
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:32:22 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"username"=>"kate"}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>nil}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.012s
+Completed 422 Unprocessable Entity in 93ms (Views: 0.3ms | MongoDB: 11.9ms | Allocations: 10806)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started GET "/api/v1/get_users" for ::1 at 2024-02-15 13:32:42 -0500
+Processing by Api::V1::UsersController#getUsers as */*
+MONGODB | localhost:27017 req:8 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:8 | usmanage_be_development.find | SUCCEEDED | 0.019s
+Completed 200 OK in 43ms (Views: 23.4ms | MongoDB: 19.0ms | Allocations: 6222)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:32:53 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"kate1@gmail.com"}
+MONGODB | localhost:27017 req:11 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"kate1@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:11 | usmanage_be_development.find | SUCCEEDED | 0.025s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.5ms | Allocations: 125)
+  Rendered layout layouts/mailer.html.erb (Duration: 4.0ms | Allocations: 352)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 2.1ms | Allocations: 136)
+  Rendered layout layouts/mailer.text.erb (Duration: 5.5ms | Allocations: 326)
+ForgetMailer#new_code: processed outbound mail in 422.6ms
+Delivered mail 65ce58d684a3c_75441cd4871b3@Lenovo7i.mail (4189.9ms)
+Date: Thu, 15 Feb 2024 13:32:54 -0500
+From: from@example.com
+To: kate1@gmail.com
+Message-ID: <65ce58d684a3c_75441cd4871b3@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce58d67be6e_75441cd487070";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce58d67be6e_75441cd487070
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce58d67be6e_75441cd487070
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce58d67be6e_75441cd487070--
+
+Completed 204 No Content in 4647ms (MongoDB: 25.5ms | Allocations: 18759)
+
+
+Started POST "/api/v1/add_user" for ::1 at 2024-02-15 13:33:49 -0500
+Processing by Api::V1::UsersController#addUser as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com", "password"=>"[FILTERED]"}
+MONGODB | localhost:27017 req:17 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:17 | usmanage_be_development.find | SUCCEEDED | 0.023s
+Completed 200 OK in 360ms (Views: 2.6ms | MongoDB: 22.7ms | Allocations: 6351)
+
+
+Started POST "/api/v1/add_user" for ::1 at 2024-02-15 13:34:03 -0500
+Processing by Api::V1::UsersController#addUser as */*
+  Parameters: {"fullname"=>"Simrat", "email"=>"hayersimrat23@gmail.com", "password"=>"[FILTERED]"}
+MONGODB | localhost:27017 req:20 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:20 | usmanage_be_development.find | SUCCEEDED | 0.024s
+MONGODB | localhost:27017 req:21 conn:1:1 sconn:18 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65ce591b304254754450cbe0'), "fullname"=>"Simrat", "email"=>"hayersimrat23@gmail.com", "password_digest"=>"$2a$12$BoED5H5ICOz4JuDCw7pn..XXCG8ye9YA5MXDTPY/WEy6vF5yhkeiK", "type"=...
+MONGODB | localhost:27017 req:21 | usmanage_be_development.insert | SUCCEEDED | 0.026s
+Completed 200 OK in 279ms (Views: 0.6ms | MongoDB: 49.5ms | Allocations: 2220)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:34:13 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | localhost:27017 req:23 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:23 | usmanage_be_development.find | SUCCEEDED | 0.017s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.5ms | Allocations: 101)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.text.erb (Duration: 2.1ms | Allocations: 101)
+ForgetMailer#new_code: processed outbound mail in 15.4ms
+Delivered mail 65ce592616994_75441ce887316@Lenovo7i.mail (4071.9ms)
+Date: Thu, 15 Feb 2024 13:34:14 -0500
+From: from@example.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce592616994_75441ce887316@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce592614d25_75441ce8872b2";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce592614d25_75441ce8872b2
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce592614d25_75441ce8872b2
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce592614d25_75441ce8872b2--
+
+Completed 204 No Content in 4119ms (MongoDB: 17.1ms | Allocations: 4310)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:35:50 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | localhost:27017 req:33 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:33 | usmanage_be_development.find | SUCCEEDED | 0.018s
+Completed 500 Internal Server Error in 56ms (MongoDB: 18.5ms | Allocations: 7191)
+
+
+  
+SyntaxError (C:/Users/hayer/Documents/Native_Project/AweP2/TClone/Backend2/usmanage_be/app/mailers/forget_mailer.rb:14: syntax error, unexpected local variable or method, expecting ')'
+      to: @user_email,
+      ^~
+):
+  
+app/mailers/forget_mailer.rb:14: syntax error, unexpected local variable or method, expecting ')'
+app/controllers/api/auth/auth_controller.rb:61:in `forgetCode'
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:35:59 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | localhost:27017 req:35 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:35 | usmanage_be_development.find | SUCCEEDED | 0.016s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.8ms | Allocations: 122)
+  Rendered layout layouts/mailer.html.erb (Duration: 4.5ms | Allocations: 335)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 1.4ms | Allocations: 130)
+  Rendered layout layouts/mailer.text.erb (Duration: 3.8ms | Allocations: 319)
+ForgetMailer#new_code: processed outbound mail in 23.3ms
+Delivered mail 65ce598fdc053_75441cc08758b@Lenovo7i.mail (4098.7ms)
+Date: Thu, 15 Feb 2024 13:35:59 -0500
+From: videostreamer60@gmail.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce598fdc053_75441cc08758b@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce598fdb640_75441cc0874d9";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce598fdb640_75441cc0874d9
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce598fdb640_75441cc0874d9
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce598fdb640_75441cc0874d9--
+
+Completed 204 No Content in 4201ms (MongoDB: 16.2ms | Allocations: 12947)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:43:36 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | localhost:27017 req:82 conn:1:1 sconn:18 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x25660 type=uuid data=0xb20b3622657741fb...>}}
+MONGODB | localhost:27017 req:82 | usmanage_be_development.find | SUCCEEDED | 0.017s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.html.erb (Duration: 2.1ms | Allocations: 101)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.text.erb (Duration: 2.9ms | Allocations: 101)
+ForgetMailer#new_code: processed outbound mail in 13.4ms
+Delivered mail 65ce5b585a0a5_75441ce887731@Lenovo7i.mail (4085.9ms)
+Date: Thu, 15 Feb 2024 13:43:36 -0500
+From: videostreamer60@gmail.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce5b585a0a5_75441ce887731@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce5b585911f_75441ce88767c";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce5b585911f_75441ce88767c
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce5b585911f_75441ce88767c
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce5b585911f_75441ce88767c--
+
+Completed 204 No Content in 4134ms (MongoDB: 17.4ms | Allocations: 4314)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:51:19 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:22 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0xc8b1f9e72ea7417f...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.013s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.6ms | Allocations: 222)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.8ms | Allocations: 485)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.4ms | Allocations: 136)
+  Rendered layout layouts/mailer.text.erb (Duration: 1.1ms | Allocations: 326)
+ForgetMailer#new_code: processed outbound mail in 56.1ms
+Delivered mail 65ce5d281f953_96c1cd4234f5@Lenovo7i.mail (4163.6ms)
+Date: Thu, 15 Feb 2024 13:51:20 -0500
+From: videostreamer60@gmail.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce5d281f953_96c1cd4234f5@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce5d281cbe2_96c1cd42333d";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce5d281cbe2_96c1cd42333d
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce5d281cbe2_96c1cd42333d
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce5d281cbe2_96c1cd42333d--
+
+Completed 204 No Content in 4654ms (MongoDB: 12.7ms | Allocations: 54836)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:55:06 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | localhost:27017 req:29 conn:1:1 sconn:22 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0xc8b1f9e72ea7417f...>}}
+MONGODB | localhost:27017 req:29 | usmanage_be_development.find | SUCCEEDED | 0.016s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.7ms | Allocations: 101)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.text.erb (Duration: 1.5ms | Allocations: 101)
+ForgetMailer#new_code: processed outbound mail in 11.7ms
+Delivered mail 65ce5e0a42b8e_96c1cfc23638@Lenovo7i.mail (4090.7ms)
+Date: Thu, 15 Feb 2024 13:55:06 -0500
+From: videostreamer60@gmail.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce5e0a42b8e_96c1cfc23638@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce5e0a41c51_96c1cfc235fb";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce5e0a41c51_96c1cfc235fb
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce5e0a41c51_96c1cfc235fb
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce5e0a41c51_96c1cfc235fb--
+
+Completed 204 No Content in 4142ms (MongoDB: 16.3ms | Allocations: 4733)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:57:06 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | localhost:27017 req:42 conn:1:1 sconn:22 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0xc8b1f9e72ea7417f...>}}
+MONGODB | localhost:27017 req:42 | usmanage_be_development.find | SUCCEEDED | 0.019s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.html.erb (Duration: 0.5ms | Allocations: 101)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.text.erb (Duration: 0.9ms | Allocations: 101)
+ForgetMailer#new_code: processed outbound mail in 5.7ms
+Delivered mail 65ce5e82be4b2_96c1cc023857@Lenovo7i.mail (4081.2ms)
+Date: Thu, 15 Feb 2024 13:57:06 -0500
+From: videostreamer60@gmail.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce5e82be4b2_96c1cc023857@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce5e82bdd67_96c1cc02375c";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce5e82bdd67_96c1cc02375c
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce5e82bdd67_96c1cc02375c
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce5e82bdd67_96c1cc02375c--
+
+Completed 204 No Content in 4115ms (MongoDB: 18.7ms | Allocations: 4709)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 13:58:08 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | localhost:27017 req:49 conn:1:1 sconn:22 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0xc8b1f9e72ea7417f...>}}
+MONGODB | localhost:27017 req:49 | usmanage_be_development.find | SUCCEEDED | 0.012s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+  Rendered layout layouts/mailer.html.erb (Duration: 1.1ms | Allocations: 101)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.2ms | Allocations: 8)
+  Rendered layout layouts/mailer.text.erb (Duration: 2.4ms | Allocations: 101)
+ForgetMailer#new_code: processed outbound mail in 7.9ms
+Delivered mail 65ce5ec0115e9_96c1ce824083@Lenovo7i.mail (4076.4ms)
+Date: Thu, 15 Feb 2024 13:58:08 -0500
+From: videostreamer60@gmail.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce5ec0115e9_96c1ce824083@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce5ec010fc7_96c1ce823961";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce5ec010fc7_96c1ce823961
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce5ec010fc7_96c1ce823961
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce5ec010fc7_96c1ce823961--
+
+Completed 204 No Content in 4110ms (MongoDB: 12.0ms | Allocations: 4708)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 14:00:52 -0500
+  
+SyntaxError (C:/Users/hayer/Documents/Native_Project/AweP2/TClone/Backend2/usmanage_be/app/controllers/api/auth/auth_controller.rb:62: syntax error, unexpected ':', expecting =>
+...ender json: { msg: 'Res', res : :mail}, status: :ok
+...                              ^
+):
+  
+app/controllers/api/auth/auth_controller.rb:62: syntax error, unexpected ':', expecting =>
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 14:02:11 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | localhost:27017 req:75 conn:1:1 sconn:22 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0xc8b1f9e72ea7417f...>}}
+MONGODB | localhost:27017 req:75 | usmanage_be_development.find | SUCCEEDED | 0.024s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.9ms | Allocations: 122)
+  Rendered layout layouts/mailer.html.erb (Duration: 2.2ms | Allocations: 335)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.7ms | Allocations: 130)
+  Rendered layout layouts/mailer.text.erb (Duration: 2.3ms | Allocations: 319)
+ForgetMailer#new_code: processed outbound mail in 13.5ms
+Delivered mail 65ce5fb39edaa_96c1cd424262@Lenovo7i.mail (4089.9ms)
+Date: Thu, 15 Feb 2024 14:02:11 -0500
+From: videostreamer60@gmail.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce5fb39edaa_96c1cd424262@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce5fb39e654_96c1cd424172";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce5fb39e654_96c1cd424172
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce5fb39e654_96c1cd424172
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce5fb39e654_96c1cd424172--
+
+Completed 200 OK in 4168ms (Views: 8.7ms | MongoDB: 24.2ms | Allocations: 13928)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 14:11:31 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"hayersimrat23@gmail.com"}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:25 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0xa52b62a1a5024645...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.012s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.0ms | Allocations: 222)
+  Rendered layout layouts/mailer.html.erb (Duration: 2.0ms | Allocations: 485)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.4ms | Allocations: 136)
+  Rendered layout layouts/mailer.text.erb (Duration: 1.0ms | Allocations: 326)
+ForgetMailer#new_code: processed outbound mail in 33.8ms
+Delivered mail 65ce61e416a10_51981cd4323b6@Lenovo7i.mail (1699.5ms)
+Date: Thu, 15 Feb 2024 14:11:32 -0500
+From: videostreamer60@gmail.com
+To: hayersimrat23@gmail.com
+Message-ID: <65ce61e416a10_51981cd4323b6@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce61e41570c_51981cd43221e";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce61e41570c_51981cd43221e
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce61e41570c_51981cd43221e
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce61e41570c_51981cd43221e--
+
+Completed 200 OK in 2072ms (Views: 1.1ms | MongoDB: 12.1ms | Allocations: 59238)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 15:04:24 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"farhandxb96@gmail.com"}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:27 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"farhandxb96@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0x9106442490ec4f64...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.014s
+Completed 422 Unprocessable Entity in 169ms (Views: 0.3ms | MongoDB: 13.6ms | Allocations: 13646)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/v1/add_user" for ::1 at 2024-02-15 15:04:45 -0500
+Processing by Api::V1::UsersController#addUser as */*
+  Parameters: {"fullname"=>"Faruu", "email"=>"farhandxb96@gmail.com", "password"=>"[FILTERED]"}
+MONGODB | localhost:27017 req:9 conn:1:1 sconn:27 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"farhandxb96@gmail.com"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0x9106442490ec4f64...>}}
+MONGODB | localhost:27017 req:9 | usmanage_be_development.find | SUCCEEDED | 0.025s
+MONGODB | localhost:27017 req:10 conn:1:1 sconn:27 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65ce6e5e30425433b8b990ed'), "fullname"=>"Faruu", "email"=>"farhandxb96@gmail.com", "password_digest"=>"$2a$12$LdeTTImQTV88Bs9j.GmPLuDUZAxI/pJU1NPmeZTn2tROuT/xUj7VK", "type"=>2,...
+MONGODB | localhost:27017 req:10 | usmanage_be_development.insert | SUCCEEDED | 0.027s
+Completed 200 OK in 440ms (Views: 1.2ms | MongoDB: 51.6ms | Allocations: 4084)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 15:04:50 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"farhandxb96@gmail.com"}
+MONGODB | localhost:27017 req:11 conn:1:1 sconn:27 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"farhandxb96@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0x9106442490ec4f64...>}}
+MONGODB | localhost:27017 req:11 | usmanage_be_development.find | SUCCEEDED | 0.022s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.5ms | Allocations: 222)
+  Rendered layout layouts/mailer.html.erb (Duration: 3.3ms | Allocations: 481)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 1.0ms | Allocations: 136)
+  Rendered layout layouts/mailer.text.erb (Duration: 2.6ms | Allocations: 326)
+ForgetMailer#new_code: processed outbound mail in 77.9ms
+Delivered mail 65ce6e62d3040_33b81d1078559@Lenovo7i.mail (1708.8ms)
+Date: Thu, 15 Feb 2024 15:04:50 -0500
+From: videostreamer60@gmail.com
+To: farhandxb96@gmail.com
+Message-ID: <65ce6e62d3040_33b81d1078559@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce6e62d03f7_33b81d1078497";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce6e62d03f7_33b81d1078497
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce6e62d03f7_33b81d1078497
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce6e62d03f7_33b81d1078497--
+
+Completed 200 OK in 2093ms (Views: 5.1ms | MongoDB: 22.5ms | Allocations: 46030)
+
+
+Started POST "/api/v1/add_user" for ::1 at 2024-02-15 16:43:00 -0500
+Processing by Api::V1::UsersController#addUser as */*
+  Parameters: {"fullname"=>"Faruu", "email"=>"mali34@uoguelph.ca", "password"=>"[FILTERED]"}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:30 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"mali34@uoguelph.ca"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0x45df4372b52e43c7...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.027s
+MONGODB | localhost:27017 req:7 conn:1:1 sconn:30 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65ce856730425419d02cfc2a'), "fullname"=>"Faruu", "email"=>"mali34@uoguelph.ca", "password_digest"=>"$2a$12$rOIyOdhU2Gdt7pCPUVmdyeN8qI1tdoM1mBl1w7TJAes36iLDsEmWK", "type"=>2, "u...
+MONGODB | localhost:27017 req:7 | usmanage_be_development.insert | SUCCEEDED | 0.017s
+Completed 200 OK in 651ms (Views: 6.1ms | MongoDB: 43.8ms | Allocations: 16960)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 16:43:18 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"mali34@uoguelph.ca"}
+MONGODB | localhost:27017 req:9 conn:1:1 sconn:30 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"mali34@uoguelph.ca"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0x45df4372b52e43c7...>}}
+MONGODB | localhost:27017 req:9 | usmanage_be_development.find | SUCCEEDED | 0.020s
+  Rendering layout layouts/mailer.html.erb
+  Rendering forget_mailer/new_code.html.erb within layouts/mailer
+  Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.3ms | Allocations: 222)
+  Rendered layout layouts/mailer.html.erb (Duration: 3.8ms | Allocations: 481)
+  Rendering layout layouts/mailer.text.erb
+  Rendering forget_mailer/new_code.text.erb within layouts/mailer
+  Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.8ms | Allocations: 136)
+  Rendered layout layouts/mailer.text.erb (Duration: 2.4ms | Allocations: 326)
+ForgetMailer#new_code: processed outbound mail in 724.0ms
+Delivered mail 65ce857bd022_19d01ce8465aa@Lenovo7i.mail (2002.7ms)
+Date: Thu, 15 Feb 2024 16:43:23 -0500
+From: videostreamer60@gmail.com
+To: mali34@uoguelph.ca
+Message-ID: <65ce857bd022_19d01ce8465aa@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce857b1bd0_19d01ce846415";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce857b1bd0_19d01ce846415
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce857b1bd0_19d01ce846415
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce857b1bd0_19d01ce846415--
+
+Completed 200 OK in 6285ms (Views: 18.5ms | MongoDB: 20.1ms | Allocations: 46571)
+
+
+Started POST "/api/auth/forgetCode" for ::1 at 2024-02-15 16:44:17 -0500
+Processing by Api::Auth::AuthController#forgetCode as */*
+  Parameters: {"email"=>"mali34@uoguelph.ca"}
+MONGODB | localhost:27017 req:16 conn:1:1 sconn:30 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"mali34@uoguelph.ca"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10280 type=uuid data=0x45df4372b52e43c7...>}}
+MONGODB | localhost:27017 req:16 | usmanage_be_development.find | SUCCEEDED | 0.020s
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: 169478cd-ab1c-430f-b4a6-3cd059f34436) to Async(default) with arguments: "ForgetMailer", "new_code", "deliver_now", {:args=>["mali34@uoguelph.ca"]}
+[ActiveJob] ↳ app/controllers/api/auth/auth_controller.rb:61:in `forgetCode'
+Completed 200 OK in 188ms (Views: 0.4ms | MongoDB: 19.5ms | Allocations: 8999)
+
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436] Performing ActionMailer::MailDeliveryJob (Job ID: 169478cd-ab1c-430f-b4a6-3cd059f34436) from Async(default) enqueued at 2024-02-15T21:44:17.610360700Z with arguments: "ForgetMailer", "new_code", "deliver_now", {:args=>["mali34@uoguelph.ca"]}
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436]   Rendering layout layouts/mailer.html.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436]   Rendering forget_mailer/new_code.html.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436]   Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.1ms | Allocations: 118)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436]   Rendered layout layouts/mailer.html.erb (Duration: 3.6ms | Allocations: 335)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436]   Rendering layout layouts/mailer.text.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436]   Rendering forget_mailer/new_code.text.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436]   Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 1.2ms | Allocations: 130)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436]   Rendered layout layouts/mailer.text.erb (Duration: 3.6ms | Allocations: 323)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436] ForgetMailer#new_code: processed outbound mail in 23.6ms
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436] Delivered mail 65ce85b1a90a9_19d033cc4676a@Lenovo7i.mail (1284.8ms)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436] Date: Thu, 15 Feb 2024 16:44:17 -0500
+From: videostreamer60@gmail.com
+To: mali34@uoguelph.ca
+Message-ID: <65ce85b1a90a9_19d033cc4676a@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce85b1a7e9b_19d033cc4665d";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce85b1a7e9b_19d033cc4665d
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce85b1a7e9b_19d033cc4665d
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce85b1a7e9b_19d033cc4665d--
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [169478cd-ab1c-430f-b4a6-3cd059f34436] Performed ActionMailer::MailDeliveryJob (Job ID: 169478cd-ab1c-430f-b4a6-3cd059f34436) from Async(default) in 1408.18ms
+Started POST "/api/auth/forgetCode" for 127.0.0.1 at 2024-02-15 16:52:38 -0500
+Processing by Api::Auth::AuthController#forgetCode as HTML
+  Parameters: {"email"=>"mali34@uoguelph.ca", "auth"=>{"email"=>"mali34@uoguelph.ca"}}
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:33 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"mali34@uoguelph.ca"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10320 type=uuid data=0xa29f155c895e4f39...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.025s
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: bf1e919c-421a-4342-8e40-437c56f51a1f) to Async(default) with arguments: "ForgetMailer", "new_code", "deliver_now", {:args=>["mali34@uoguelph.ca"]}
+[ActiveJob] ↳ app/controllers/api/auth/auth_controller.rb:61:in `forgetCode'
+Completed 200 OK in 681ms (Views: 1.0ms | MongoDB: 24.8ms | Allocations: 44624)
+
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f] Performing ActionMailer::MailDeliveryJob (Job ID: bf1e919c-421a-4342-8e40-437c56f51a1f) from Async(default) enqueued at 2024-02-15T21:52:39.332552500Z with arguments: "ForgetMailer", "new_code", "deliver_now", {:args=>["mali34@uoguelph.ca"]}
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f]   Rendering layout layouts/mailer.html.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f]   Rendering forget_mailer/new_code.html.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f]   Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 1.7ms | Allocations: 222)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f]   Rendered layout layouts/mailer.html.erb (Duration: 4.3ms | Allocations: 485)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f]   Rendering layout layouts/mailer.text.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f]   Rendering forget_mailer/new_code.text.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f]   Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 1.5ms | Allocations: 136)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f]   Rendered layout layouts/mailer.text.erb (Duration: 5.7ms | Allocations: 330)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f] ForgetMailer#new_code: processed outbound mail in 107.7ms
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f] Delivered mail 65ce87a77a942_7a3028b4545cf@Lenovo7i.mail (1515.5ms)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f] Date: Thu, 15 Feb 2024 16:52:39 -0500
+From: videostreamer60@gmail.com
+To: mali34@uoguelph.ca
+Message-ID: <65ce87a77a942_7a3028b4545cf@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce87a777a13_7a3028b4544f3";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce87a777a13_7a3028b4544f3
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce87a777a13_7a3028b4544f3
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce87a777a13_7a3028b4544f3--
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [bf1e919c-421a-4342-8e40-437c56f51a1f] Performed ActionMailer::MailDeliveryJob (Job ID: bf1e919c-421a-4342-8e40-437c56f51a1f) from Async(default) in 1643.53ms
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone'.
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/forgetCode" for 127.0.0.1 at 2024-02-15 16:54:03 -0500
+Processing by Api::Auth::AuthController#forgetCode as HTML
+  Parameters: {"email"=>"mali34@uoguelph.ca", "auth"=>{"email"=>"mali34@uoguelph.ca"}}
+MONGODB | localhost:27017 req:15 conn:1:1 sconn:33 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"mali34@uoguelph.ca"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10320 type=uuid data=0xa29f155c895e4f39...>}}
+MONGODB | localhost:27017 req:15 | usmanage_be_development.find | SUCCEEDED | 0.002s
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: 88320873-ff01-4b0d-94a9-ffa32b711075) to Async(default) with arguments: "ForgetMailer", "new_code", "deliver_now", {:args=>["mali34@uoguelph.ca"]}
+[ActiveJob] ↳ app/controllers/api/auth/auth_controller.rb:61:in `forgetCode'
+Completed 200 OK in 13ms (Views: 0.3ms | MongoDB: 2.4ms | Allocations: 1351)
+
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075] Performing ActionMailer::MailDeliveryJob (Job ID: 88320873-ff01-4b0d-94a9-ffa32b711075) from Async(default) enqueued at 2024-02-15T21:54:03.987108400Z with arguments: "ForgetMailer", "new_code", "deliver_now", {:args=>["mali34@uoguelph.ca"]}
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075]   Rendering layout layouts/mailer.html.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075]   Rendering forget_mailer/new_code.html.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075]   Rendered forget_mailer/new_code.html.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075]   Rendered layout layouts/mailer.html.erb (Duration: 7.0ms | Allocations: 105)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075]   Rendering layout layouts/mailer.text.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075]   Rendering forget_mailer/new_code.text.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075]   Rendered forget_mailer/new_code.text.erb within layouts/mailer (Duration: 0.1ms | Allocations: 8)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075]   Rendered layout layouts/mailer.text.erb (Duration: 2.4ms | Allocations: 105)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075] ForgetMailer#new_code: processed outbound mail in 15.8ms
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075] Delivered mail 65ce87fc1aaec_7a3028b45472b@Lenovo7i.mail (1385.8ms)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075] Date: Thu, 15 Feb 2024 16:54:04 -0500
+From: videostreamer60@gmail.com
+To: mali34@uoguelph.ca
+Message-ID: <65ce87fc1aaec_7a3028b45472b@Lenovo7i.mail>
+Subject: Reset Password Request
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_65ce87fc19307_7a3028b454661";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_65ce87fc19307_7a3028b454661
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Forget#new_code
+
+Hi, find me in app/views/forget_mailer/new_code.text.erb
+
+See post here
+
+
+----==_mimepart_65ce87fc19307_7a3028b454661
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Forget#new_code</h1>
+
+<p>
+  Hi, find me in app/views/forget_mailer/new_code.html.erb
+</p>
+
+  </body>
+</html>
+
+----==_mimepart_65ce87fc19307_7a3028b454661--
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [88320873-ff01-4b0d-94a9-ffa32b711075] Performed ActionMailer::MailDeliveryJob (Job ID: 88320873-ff01-4b0d-94a9-ffa32b711075) from Async(default) in 1415.97ms
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-15 16:55:26 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"ssksksks", "password"=>"[FILTERED]", "auth"=>{"email"=>"ssksksks", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:24 conn:1:1 sconn:33 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"ssksksks"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10320 type=uuid data=0xa29f155c895e4f39...>}}
+MONGODB | localhost:27017 req:24 | usmanage_be_development.find | SUCCEEDED | 0.023s
+Completed 422 Unprocessable Entity in 27ms (Views: 0.3ms | MongoDB: 22.8ms | Allocations: 661)
+
+

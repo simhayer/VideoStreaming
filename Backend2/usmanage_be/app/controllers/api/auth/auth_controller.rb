@@ -19,4 +19,51 @@ class Api::Auth::AuthController < ApplicationController
     end
 
   end
+
+  def logout
+    user = User.find_by(:email => params[:email])
+
+    # checkk user is exist
+    # print (user)
+
+    if !user
+      render json: { msg: 'Email does not exist'}, status: :unprocessable_entity
+      return true;
+    end
+
+    # if user.authenticate(params[:password])
+      # token = self.create_token(user.id.to_s, user.email, user.type.to_s)
+      user.set(:token => nil)
+      render json: {msg: 'Success Logout', user: user.as_json({ :except => [:password_digest]})}, status: :ok
+    # else
+    #   render json: { msg: 'Password did not match'}, status: :unprocessable_entity
+    # end
+
+  end
+
+
+  def forgetCode
+    user = User.find_by(:email => params[:email])
+
+    # checkk user is exist
+    # print (user)
+
+    if !user
+      render json: { msg: 'Email does not exist'}, status: :unprocessable_entity
+      return true;
+    end
+
+    # if user.authenticate(params[:password])
+      # token = self.create_token(user.id.to_s, user.email, user.type.to_s)
+      # user.set(:token => nil)
+      # render json: {msg: 'Success Logout', user: user.as_json({ :except => [:password_digest]})}, status: :ok
+
+    mail = ForgetMailer.new_code(user.email).deliver_later
+    render json: { msg: 'Res', result: 'Mail sent successfully', email_info: mail }, status: :ok
+    # else
+    #   render json: { msg: 'Password did not match'}, status: :unprocessable_entity
+    # end
+
+  end
+
 end

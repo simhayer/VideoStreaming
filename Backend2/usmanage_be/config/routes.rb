@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
     namespace :auth do
       post 'login', action: :login, controller: :auth
+      post 'logout', action: :logout, controller: :auth
+      post 'forgetCode', action: :forgetCode, controller: :auth
     end
 
     namespace :v1 do
