@@ -13,13 +13,14 @@ Rails.application.routes.draw do
       post 'login', action: :login, controller: :auth
       post 'logout', action: :logout, controller: :auth
       post 'forgetCode', action: :forgetCode, controller: :auth
+      post 'forgetCodeCheck', action: :forgetCodeCheck, controller: :auth
     end
 
     namespace :v1 do
       get 'get_users', action: :getUsers, controller: :users
       post 'add_user', action: :addUser, controller: :users
       get 'show_user', action: :showUser, controller: :users
-      put 'update_user', action: :updateUser, controller: :users
+      put 'updateUser', action: :updateUser, controller: :users
       delete 'delete_user', action: :deleteUser, controller: :users
     end
   end

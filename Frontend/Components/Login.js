@@ -50,9 +50,11 @@ const Login = () => {
     try {
       const result = dispatch(login(loginParams));
       // You can use the result here or return it if needed
+      setIsError(false);
       return result;
     } catch (error) {
       console.error('Error during login:', error);
+      setIsError(true);
       return null;
     }
     // dispatch(login(loginParams));

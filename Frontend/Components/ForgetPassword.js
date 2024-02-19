@@ -56,7 +56,7 @@ const ForgetPassword = () => {
         console.error('Forget error:', error);
         // Handle the error, such as displaying an error message to the user
       }
-      navigation.navigate('ForgetCode');
+      navigation.navigate('ForgetCode', {email});
   };
 
   return (

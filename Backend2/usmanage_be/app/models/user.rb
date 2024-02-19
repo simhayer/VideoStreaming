@@ -8,6 +8,8 @@ class User
   field :password_digest, type: String
   field :type, type: Integer
   field :token, type: String
+  field :resetCode, type: Integer
+  field :resetCodeExpiry, type: DateTime
 
   validates :fullname, presence: true
   validates :email, uniqueness: true, presence: true

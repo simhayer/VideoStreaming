@@ -16,10 +16,10 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../Redux/Features/AuthSlice';
 
-const ResetPassword = () => {
+const ResetPassword = ({ route }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    const { email } = route.params;
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState('');
@@ -29,35 +29,43 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
   const {userData, isLoading} = useSelector(state => state.auth);
 
-  const onResetClick = async (email) => {
+  const onResetClick = async () => {
     if (email.length === 0) {
-      Alert.alert('Login', 'Please provide your email');
+      Alert.alert('Login', 'Something went wrong');
+      return;
+    }
+    
+
+    if (password != confirmPassword){
+      Alert.alert('Login', 'Password do no match');
       return;
     }
 
     //const loginParams = { email, password };
     const forgetParams = {
       email: email,
+      password: password,
     };
 
-    // try {
-    //     // console.log(loginParams)
-    //     axios
-    //       .post(baseURL + apiEndpoints.register, forgetParams)
-    //       .then(res => {
-    //         console.log(res.data);
-    //       })
-    //       .catch(err => {
-    //         console.log(err);
-    //         Alert.alert('Forget', 'Could not send the reset email');
-    //       });
+    try {
+        // console.log(loginParams)
+        axios
+          .put(baseURL + apiEndpoints.updatePassword, forgetParams)
+          .then(res => {
+            console.log(res.data);
+            navigation.navigate('Login');
+          })
+          .catch(err => {
+            console.log(err);
+            Alert.alert('Forget', 'Could not update password');
+          });
   
-    //     // Handle the response or navigate to another screen upon successful login
-    //   } catch (error) {
-    //     console.error('Forget error:', error);
-    //     // Handle the error, such as displaying an error message to the user
-    //   }
-      navigation.navigate('Login');
+        // Handle the response or navigate to another screen upon successful login
+      } catch (error) {
+        console.error('Update error:', error);
+        // Handle the error, such as displaying an error message to the user
+      }
+      
   };
 
   return (
@@ -81,7 +89,7 @@ const ResetPassword = () => {
         />
         <TouchableOpacity
           isloading={isLoading}
-          onPress={() => onResetClick(password)}
+          onPress={() => onResetClick()}
           style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
           <Text style={{color: 'white', textAlign: 'center'}}>Reset</Text>
         </TouchableOpacity>

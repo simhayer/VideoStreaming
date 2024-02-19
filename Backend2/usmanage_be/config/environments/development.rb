@@ -34,6 +34,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
 
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   address:         'smtp.gmail.com',
   port:            587,
@@ -42,8 +43,8 @@ Rails.application.configure do
     :password => "qlctttmgbjwwtmnq",
     authentication:  'plain',
   enable_starttls: true,
-  open_timeout:    5,
-  read_timeout:    5
+  open_timeout:    30,
+  read_timeout:    30
 }
 
   # Don't care if the mailer can't send.

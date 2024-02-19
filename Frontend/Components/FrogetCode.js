@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useRoute } from '@react-navigation/native';
 import {
   Alert,
   View,
@@ -16,8 +17,9 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../Redux/Features/AuthSlice';
 
-const ForgetCode = () => {
+const ForgetCode = ({ route }) => {
   const [code, setCode] = useState('');
+  const { email } = route.params;
 
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -36,27 +38,29 @@ const ForgetCode = () => {
 
     //const loginParams = { email, password };
     const forgetParams = {
-      code: code,
+      email: email,
+      resetCode: code,
     };
 
-    // try {
-    //     // console.log(loginParams)
-    //     axios
-    //       .post(baseURL + apiEndpoints.register, forgetParams)
-    //       .then(res => {
-    //         console.log(res.data);
-    //       })
-    //       .catch(err => {
-    //         console.log(err);
-    //         Alert.alert('Forget', 'Could not send the reset email');
-    //       });
+    try {
+        console.log(forgetParams)
+        axios
+          .post(baseURL + apiEndpoints.forgetCodeCheck, forgetParams)
+          .then(res => {
+            console.log(res.data);
+            navigation.navigate('ResetPassword', {email});
+          })
+          .catch(err => {
+            console.log(err);
+            Alert.alert('Forget', 'Could not confirm the code, please try again');
+          });
   
-    //     // Handle the response or navigate to another screen upon successful login
-    //   } catch (error) {
-    //     console.error('Forget error:', error);
-    //     // Handle the error, such as displaying an error message to the user
-    //   }
-      navigation.navigate('ResetPassword');
+        // Handle the response or navigate to another screen upon successful login
+      } catch (error) {
+        console.error('Forget error:', error);
+        // Handle the error, such as displaying an error message to the user
+      }
+      
   };
 
   return (

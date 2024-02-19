@@ -1,9 +1,9 @@
 class Api::V1::UsersController < ApplicationController
     before_action :getUser, only: [:updateUser, :deleteUser, :showUser]
 
-    before_action only: [:updateUser, :deleteUser] do
-        check_token(2)
-    end
+    # before_action only: [:updateUser, :deleteUser] do
+    #     check_token(2)
+    # end
 
     # get
     def getUsers
@@ -70,6 +70,7 @@ class Api::V1::UsersController < ApplicationController
         end
 
         def getUser
-            @user = User.find(params[:id])
+            # @user = User.find(params[:id])
+            @user = User.find_by(:email => params[:email])
         end
 end

@@ -5,9 +5,10 @@ class ForgetMailer < ApplicationMailer
   #
   #   en.forget_mailer.new_code.subject
   #
-  def new_code(user_email)
+  def new_code(user_email, resetCode)
     @user_email = user_email
     @greeting = "Hi"
+    @resetCode = resetCode
     
     mail(
       from: "videostreamer60@gmail.com",

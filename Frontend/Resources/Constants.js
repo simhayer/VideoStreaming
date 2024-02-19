@@ -5,5 +5,7 @@ export const apiEndpoints = {
     register: '/api/v1/add_user',
     logout: '/api/auth/logout',
     forgetCode: '/api/auth/forgetCode',
+    forgetCodeCheck: '/api/auth/forgetCodeCheck',
+    updatePassword: '/api/v1/updateUser',
     // Add more API endpoints as needed
   };
