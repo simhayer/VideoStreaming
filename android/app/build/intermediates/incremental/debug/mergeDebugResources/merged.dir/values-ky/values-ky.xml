@@ -40,6 +40,7 @@
     <string name="character_counter_overflowed_content_description">Символдордун саны коюлган %2$d чегинен %1$d символго ашып кетти</string>
     <string name="clear_text_end_icon_content_description">Текстти тазалоо</string>
     <string name="error_icon_content_description">Ката</string>
+    <string msgid="1234962710353108940" name="expand_button_title">"Өркүндөтүлгөн"</string>
     <string name="exposed_dropdown_menu_content_description">Түрүлмө менюну көрсөтүү</string>
     <string name="icon_content_description">Диалог сүрөтчөсү</string>
     <string gender="unknown" name="image_description">Сүрөт</string>
@@ -101,4 +102,7 @@
     <string gender="unknown" name="state_off_description">өчүк</string>
     <string gender="unknown" name="state_on_description">күйүк</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
+    <string msgid="5138405918326871307" name="v7_preference_off">"ӨЧҮК"</string>
+    <string msgid="27351710992731591" name="v7_preference_on">"КҮЙҮК"</string>
 </resources>

@@ -40,6 +40,7 @@
     <string name="character_counter_overflowed_content_description">S\'ha superat el límit de caràcters (%1$d de %2$d)</string>
     <string name="clear_text_end_icon_content_description">Esborra el text</string>
     <string name="error_icon_content_description">Error</string>
+    <string msgid="1234962710353108940" name="expand_button_title">"Opcions avançades"</string>
     <string name="exposed_dropdown_menu_content_description">Mostra el menú desplegable</string>
     <string name="icon_content_description">Icona del quadre de diàleg</string>
     <string name="item_view_role_description">Tabulador</string>
@@ -95,4 +96,7 @@
     <string name="password_toggle_content_description">Mostra la contrasenya</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Cerca"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
+    <string msgid="5138405918326871307" name="v7_preference_off">"DESACTIVAT"</string>
+    <string msgid="27351710992731591" name="v7_preference_on">"ACTIVAT"</string>
 </resources>

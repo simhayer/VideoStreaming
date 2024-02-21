@@ -7708,3 +7708,48 @@ MONGODB | localhost:27017 req:308 | usmanage_be_development.update | SUCCEEDED |
 Completed 200 OK in 274ms (Views: 0.2ms | MongoDB: 44.4ms | Allocations: 1611)
 
 
+Started POST "/api/v1/add_user" for 127.0.0.1 at 2024-02-21 10:55:11 -0500
+Processing by Api::V1::UsersController#addUser as HTML
+  Parameters: {"fullname"=>"Edrrrrr", "email"=>"Rttttr", "password"=>"[FILTERED]", "user"=>{"fullname"=>"Edrrrrr", "email"=>"Rttttr"}}
+[31mUnpermitted parameter: :user. Context: { controller: Api::V1::UsersController, action: addUser, request: #<ActionDispatch::Request:0x0000021357d14a68>, params: {"fullname"=>"Edrrrrr", "email"=>"Rttttr", "password"=>"[FILTERED]", "controller"=>"api/v1/users", "action"=>"addUser", "user"=>{"fullname"=>"Edrrrrr", "email"=>"Rttttr"}} }[0m
+MONGODB | Topology type 'unknown' initializing.
+MONGODB | There was a change in the members of the 'Unknown' topology.
+MONGODB | Server localhost:27017 initializing.
+MONGODB | Waiting for up to 30.00 seconds for servers to be scanned: #<Cluster topology=Unknown[localhost:27017] servers=[#<Server address=localhost:27017 UNKNOWN>]>
+MONGODB | Server description for localhost:27017 changed from 'unknown' to 'standalone'.
+MONGODB | Topology type 'Unknown' changed to type 'Single'.
+MONGODB | localhost:27017 req:6 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Rttttr"}, "limit"=>1, "projection"=>{"_id"=>1}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10460 type=uuid data=0x8097fe0a97e5481b...>}}
+MONGODB | localhost:27017 req:6 | usmanage_be_development.find | SUCCEEDED | 0.042s
+MONGODB | localhost:27017 req:7 conn:1:1 sconn:2 | usmanage_be_development.insert | STARTED | {"insert"=>"users", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('65d61ce23042544bb078ad37'), "fullname"=>"Edrrrrr", "email"=>"Rttttr", "password_digest"=>"$2a$12$/nDPq1XN1ymsPHmHVOYR8eHjfhsuxqzsjxfRXgLfit0Mf3Jd.EHJC", "type"=>2, "updated_at"...
+MONGODB | localhost:27017 req:7 | usmanage_be_development.insert | SUCCEEDED | 0.038s
+Completed 200 OK in 843ms (Views: 4.2ms | MongoDB: 79.7ms | Allocations: 10529)
+
+
+MONGODB | Server description for localhost:27017 changed from 'standalone' to 'standalone' [awaited].
+MONGODB | There was a change in the members of the 'Single' topology.
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-21 10:55:35 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Hayersimrat23@gmail.com", "password"=>"[FILTERED]", "auth"=>{"email"=>"Hayersimrat23@gmail.com", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:10 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10460 type=uuid data=0x8097fe0a97e5481b...>}}
+MONGODB | localhost:27017 req:10 | usmanage_be_development.find | SUCCEEDED | 0.022s
+Completed 422 Unprocessable Entity in 27ms (Views: 0.3ms | MongoDB: 21.6ms | Allocations: 780)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-21 10:55:39 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"Hayersimrat23@gmail.com", "password"=>"[FILTERED]", "auth"=>{"email"=>"Hayersimrat23@gmail.com", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:11 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"Hayersimrat23@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10460 type=uuid data=0x8097fe0a97e5481b...>}}
+MONGODB | localhost:27017 req:11 | usmanage_be_development.find | SUCCEEDED | 0.002s
+Completed 422 Unprocessable Entity in 8ms (Views: 0.4ms | MongoDB: 1.7ms | Allocations: 652)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2024-02-21 10:56:29 -0500
+Processing by Api::Auth::AuthController#login as HTML
+  Parameters: {"email"=>"shriya0901gh@gmail.com", "password"=>"[FILTERED]", "auth"=>{"email"=>"shriya0901gh@gmail.com", "password"=>"[FILTERED]"}}
+MONGODB | localhost:27017 req:17 conn:1:1 sconn:2 | usmanage_be_development.find | STARTED | {"find"=>"users", "filter"=>{"email"=>"shriya0901gh@gmail.com"}, "$db"=>"usmanage_be_development", "lsid"=>{"id"=><BSON::Binary:0x10460 type=uuid data=0x8097fe0a97e5481b...>}}
+MONGODB | localhost:27017 req:17 | usmanage_be_development.find | SUCCEEDED | 0.014s
+MONGODB | localhost:27017 req:18 conn:1:1 sconn:2 | usmanage_be_development.update | STARTED | {"update"=>"users", "ordered"=>true, "updates"=>[{"q"=>{"_id"=>BSON::ObjectId('65d391c13042546df4a37fe1')}, "u"=>{"$set"=>{"token"=>"073AC43174B79F06EB4CBE2C1DDACB2C60ADB9E455DED400F5F9410327916697.4156DA12877CC0D5EBD0538EDAD4F13E84B3CACB6A5CEE32E3983...
+MONGODB | localhost:27017 req:18 | usmanage_be_development.update | SUCCEEDED | 0.014s
+Completed 200 OK in 469ms (Views: 0.4ms | MongoDB: 28.0ms | Allocations: 1862)
+
+

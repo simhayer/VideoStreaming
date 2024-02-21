@@ -3,12 +3,17 @@ import {Text, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
 import { logout } from '../Redux/Features/AuthSlice';
+import HomeTab from './Screens/HomeTab';
+import Profile from './Screens/Profile';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Home = () => {
   const dispatch = useDispatch();
   const {userData, isLoading} = useSelector(state => state.auth);
 
   const email = userData?.user?.email;
+    
+  const Tab = createBottomTabNavigator();
 
   const onLogoutClick = async () => {
 
@@ -22,15 +27,19 @@ const Home = () => {
 };
 
   return (
-    <SafeAreaView>
-      <Text>You are logged in!</Text>
-      <TouchableOpacity
-        isloading={isLoading}
-        onPress={() => onLogoutClick()}
-        style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-        <Text style={{color: 'white', textAlign: 'center'}}>LogOut</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    // <SafeAreaView>
+    //   <Text>You are logged in!</Text>
+    //   <TouchableOpacity
+    //     isloading={isLoading}
+    //     onPress={() => onLogoutClick()}
+    //     style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
+    //     <Text style={{color: 'white', textAlign: 'center'}}>LogOut</Text>
+    //   </TouchableOpacity>
+    // </SafeAreaView>
+    <Tab.Navigator>
+      <Tab.Screen name="HomeTab" component={HomeTab} />
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
   );
 };
 

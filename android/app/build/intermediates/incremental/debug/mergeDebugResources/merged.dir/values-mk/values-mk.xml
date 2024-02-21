@@ -44,6 +44,7 @@
     <string name="clear_text_end_icon_content_description">Избриши го текстот</string>
     <string gender="unknown" name="combobox_description">Комбинирано поле</string>
     <string name="error_icon_content_description">Грешка</string>
+    <string msgid="1234962710353108940" name="expand_button_title">"Напредни"</string>
     <string name="exposed_dropdown_menu_content_description">Прикажи паѓачко мени</string>
     <string gender="unknown" name="header_description">Заглавие</string>
     <string name="icon_content_description">Икона за дијалог</string>
@@ -118,8 +119,11 @@
     <string gender="unknown" name="state_on_description">вклучено</string>
     <string gender="unknown" name="state_unselected_description">изборот е поништен</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">Резиме</string>
     <string gender="unknown" name="tablist_description">Список со картички</string>
     <string gender="unknown" name="timer_description">Тајмер</string>
     <string gender="unknown" name="toolbar_description">Лента со алатки</string>
+    <string msgid="5138405918326871307" name="v7_preference_off">"ИСКЛУЧЕНО"</string>
+    <string msgid="27351710992731591" name="v7_preference_on">"ВКЛУЧЕНО"</string>
 </resources>

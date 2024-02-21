@@ -45,6 +45,7 @@
     <string name="clear_text_end_icon_content_description">Izbris besedila</string>
     <string gender="unknown" name="combobox_description">Kombinirano polje</string>
     <string name="error_icon_content_description">Napaka</string>
+    <string msgid="1234962710353108940" name="expand_button_title">"Dodatno"</string>
     <string name="exposed_dropdown_menu_content_description">Prikaz spustnega menija</string>
     <string gender="unknown" name="header_description">Naslov</string>
     <string name="icon_content_description">Ikona pogovornega okna</string>
@@ -119,8 +120,11 @@
     <string gender="unknown" name="state_on_description">vklopljeno</string>
     <string gender="unknown" name="state_unselected_description">neizbrano</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">Povzetek</string>
     <string gender="unknown" name="tablist_description">Seznam z zavihki</string>
     <string gender="unknown" name="timer_description">Časovnik</string>
     <string gender="unknown" name="toolbar_description">Vrstica z orodji</string>
+    <string msgid="5138405918326871307" name="v7_preference_off">"IZKLOPLJENO"</string>
+    <string msgid="27351710992731591" name="v7_preference_on">"VKLOPLJENO"</string>
 </resources>

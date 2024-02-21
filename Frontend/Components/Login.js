@@ -51,10 +51,12 @@ const Login = () => {
       const result = dispatch(login(loginParams));
       // You can use the result here or return it if needed
       setIsError(false);
+      setLoginError('');
       return result;
     } catch (error) {
       console.error('Error during login:', error);
       setIsError(true);
+      setLoginError("Error during login");
       return null;
     }
     // dispatch(login(loginParams));
