@@ -38,7 +38,6 @@ export const login = createAsyncThunk('login', async (params, thunkApi) => {
 });
 
 //logout
-//login 
 export const logout = createAsyncThunk('logout', async (params, thunkApi) => {
     console.log("- file: AuthSlice.js:12 - logout - params:", params);
     try {
@@ -52,14 +51,14 @@ export const logout = createAsyncThunk('logout', async (params, thunkApi) => {
         if (error.response) {
             // If it's an AxiosError, include only necessary information
             return thunkApi.rejectWithValue({
-                message: 'Login failed',
+                message: 'Logout failed',
                 status: error.response.status,
                 data: error.response.data,
             });
         } else {
             // For non-Axios errors, include a simple error message
             return thunkApi.rejectWithValue({
-                message: 'Login failed',
+                message: 'Logout failed',
             });
         }
     }

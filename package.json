@@ -17,15 +17,21 @@
     "@react-navigation/stack": "^6.3.20",
     "@reduxjs/toolkit": "^2.1.0",
     "axios": "^1.6.7",
+    "jsonwebtoken": "^9.0.2",
     "react": "18.2.0",
     "react-native": "0.73.3",
+    "react-native-actioncable": "^0.0.3",
     "react-native-gesture-handler": "^2.15.0",
+    "react-native-incall-manager": "^4.2.0",
     "react-native-safe-area-context": "^4.9.0",
     "react-native-screens": "^3.29.0",
+    "react-native-svg": "^14.1.0",
     "react-native-webrtc": "^118.0.1",
+    "react-native-websocket": "^1.0.2",
     "react-redux": "^9.1.0",
     "redux-persist": "^6.0.0",
-    "ruby": "^0.6.1"
+    "ruby": "^0.6.1",
+    "socket.io-client": "^4.7.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

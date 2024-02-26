@@ -3496,10 +3496,6 @@ dimen preference_seekbar_padding_start
 dimen preference_seekbar_value_width
 dimen scale_type_margin_top
 dimen scale_type_padding
-dimen subtitle_corner_radius
-dimen subtitle_outline_width
-dimen subtitle_shadow_offset
-dimen subtitle_shadow_radius
 dimen text_sz_scale_type
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
@@ -4023,6 +4019,7 @@ id material_timepicker_view
 id material_value_index
 id matrix
 id media_actions
+id media_controller_compat_view_tag
 id mediastorephotoadapter
 id message
 id middle

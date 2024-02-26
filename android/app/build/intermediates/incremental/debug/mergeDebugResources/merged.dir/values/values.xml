@@ -2243,10 +2243,6 @@
     <dimen name="preference_seekbar_value_width">36dp</dimen>
     <dimen name="scale_type_margin_top">18dp</dimen>
     <dimen name="scale_type_padding">16dp</dimen>
-    <dimen name="subtitle_corner_radius">2dp</dimen>
-    <dimen name="subtitle_outline_width">2dp</dimen>
-    <dimen name="subtitle_shadow_offset">2dp</dimen>
-    <dimen name="subtitle_shadow_radius">2dp</dimen>
     <dimen name="text_sz_scale_type">24sp</dimen>
     <dimen name="tooltip_corner_radius">2dp</dimen>
     <dimen name="tooltip_horizontal_padding">16dp</dimen>
@@ -2328,6 +2324,7 @@
     <item name="material_clock_face" type="id"/>
     <item name="material_clock_level" type="id"/>
     <item name="material_value_index" type="id"/>
+    <item name="media_controller_compat_view_tag" type="id"/>
     <item name="mediastorephotoadapter" type="id"/>
     <item name="message" type="id"/>
     <item name="motion_base" type="id"/>

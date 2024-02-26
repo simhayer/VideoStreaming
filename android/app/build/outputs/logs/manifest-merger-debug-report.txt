@@ -8,8 +8,10 @@ INJECTED from C:\Users\hayer\Documents\Native_Project\AweP2\TClone\android\app\s
 MERGED from [com.facebook.react:flipper-integration:0.73.3] C:\Users\hayer\.gradle\caches\transforms-3\05ec83e5cef9923925a20a8b4150b312\transformed\jetified-flipper-integration-0.73.3-debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-async-storage_async-storage] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\@react-native-async-storage\async-storage\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-gesture-handler] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-incall-manager] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-incall-manager\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-safe-area-context] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-screens] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-svg] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-svg\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-webrtc] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-13:12
 MERGED from [com.facebook.react:react-android:0.73.3] C:\Users\hayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:2:1-24:12
 MERGED from [com.facebook.fresco:flipper-fresco-plugin:3.1.3] C:\Users\hayer\.gradle\caches\transforms-3\2b5ba21ddda073e33e012f0d689623c6\transformed\jetified-flipper-fresco-plugin-3.1.3\AndroidManifest.xml:8:1-13:12
@@ -59,6 +61,7 @@ MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\hayer\.gradle\caches\transfo
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\hayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:17:1-37:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\hayer\.gradle\caches\transforms-3\57875db857c52963776a564122dcb84b\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\1b375b5e368b03c6f05fa335182ca0d8\transformed\jetified-tracing-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.4.3] C:\Users\hayer\.gradle\caches\transforms-3\14db2628a40fec8abe37adac6383e80c\transformed\media-1.4.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] C:\Users\hayer\.gradle\caches\transforms-3\f1ad4007c9d50652fdaa15828c92907b\transformed\coordinatorlayout-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.autofill:autofill:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\38344280fe9342d918737701bd2e1811\transformed\jetified-autofill-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\27f32e5559bcd43034d6914ede1dc092\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -70,7 +73,6 @@ MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\hayer\.gradle\caches\transfo
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\0fd1425c12b4ad547fe75169beca3740\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\a9b154a690c70bf16ec6c34a860aafaa\transformed\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\73759641b17cf7e1f9f823253eaf747b\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media:media:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\a1b1d133c255dd90652eddc62cc5894f\transformed\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\9b65a0a6934ab3927698d003699550a8\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.9.0] C:\Users\hayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\078806bd157ae28fc0dc0dff008ec247\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -227,10 +229,14 @@ MERGED from [:react-native-async-storage_async-storage] C:\Users\hayer\Documents
 MERGED from [:react-native-async-storage_async-storage] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\@react-native-async-storage\async-storage\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-incall-manager] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-incall-manager\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-incall-manager] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-incall-manager\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-safe-area-context] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-safe-area-context] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-screens] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-screens] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-svg] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-svg\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-svg] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-svg\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-webrtc] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:6:5-44
 MERGED from [:react-native-webrtc] C:\Users\hayer\Documents\Native_Project\AweP2\TClone\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:6:5-44
 MERGED from [com.facebook.react:react-android:0.73.3] C:\Users\hayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:10:5-44
@@ -329,6 +335,8 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\hayer\.gradle\cach
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\hayer\.gradle\caches\transforms-3\57875db857c52963776a564122dcb84b\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.tracing:tracing:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\1b375b5e368b03c6f05fa335182ca0d8\transformed\jetified-tracing-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\1b375b5e368b03c6f05fa335182ca0d8\transformed\jetified-tracing-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.4.3] C:\Users\hayer\.gradle\caches\transforms-3\14db2628a40fec8abe37adac6383e80c\transformed\media-1.4.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.4.3] C:\Users\hayer\.gradle\caches\transforms-3\14db2628a40fec8abe37adac6383e80c\transformed\media-1.4.3\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] C:\Users\hayer\.gradle\caches\transforms-3\f1ad4007c9d50652fdaa15828c92907b\transformed\coordinatorlayout-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] C:\Users\hayer\.gradle\caches\transforms-3\f1ad4007c9d50652fdaa15828c92907b\transformed\coordinatorlayout-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.autofill:autofill:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\38344280fe9342d918737701bd2e1811\transformed\jetified-autofill-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -351,8 +359,6 @@ MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\hayer\
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\a9b154a690c70bf16ec6c34a860aafaa\transformed\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\73759641b17cf7e1f9f823253eaf747b\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\hayer\.gradle\caches\transforms-3\73759641b17cf7e1f9f823253eaf747b\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media:media:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\a1b1d133c255dd90652eddc62cc5894f\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\a1b1d133c255dd90652eddc62cc5894f\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\9b65a0a6934ab3927698d003699550a8\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\hayer\.gradle\caches\transforms-3\9b65a0a6934ab3927698d003699550a8\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.9.0] C:\Users\hayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:20:5-44

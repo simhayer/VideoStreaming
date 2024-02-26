@@ -5,7 +5,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import { logout } from '../Redux/Features/AuthSlice';
 import HomeTab from './Screens/HomeTab';
 import Profile from './Screens/Profile';
+import HomeTab1 from './Screens/HomeTab1';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeTab2 from './Screens/HomeTab2';
+import HomeTab3 from './Screens/CallComponents/HomeTab3'
+import HomeTab4 from './Screens/CallComponents/HomeTab4'
+import HomeTab5 from './Screens/CallComponents/HomeTab5'
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -37,7 +42,7 @@ const Home = () => {
     //   </TouchableOpacity>
     // </SafeAreaView>
     <Tab.Navigator>
-      <Tab.Screen name="HomeTab" component={HomeTab} />
+      <Tab.Screen name="HomeTab" component={HomeTab5} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );

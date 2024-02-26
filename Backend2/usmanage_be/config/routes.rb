@@ -24,4 +24,6 @@ Rails.application.routes.draw do
       delete 'delete_user', action: :deleteUser, controller: :users
     end
   end
+
+  mount ActionCable.server => '/cable'
 end
