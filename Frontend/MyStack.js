@@ -1,5 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUp from './Components/SignUp';
+import SignUpOptions from './Components/SignUpOptions';
 import Login from './Components/Login';
 import ForgetPassword from './Components/ForgetPassword'
 import Home from './Components/Home';
@@ -20,6 +21,12 @@ const MyStack = () => {
         <Stack.Screen name="Home" component={Home} options={{title: 'Home'}} />
       ) : (
         <Stack.Group>
+          <Stack.Screen
+            name="SignUpOptions"
+            component={SignUpOptions} // Corrected: Removed the function invocation
+            initialParams= {{type: 'Signup'}}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name="SignUp"
             component={SignUp}

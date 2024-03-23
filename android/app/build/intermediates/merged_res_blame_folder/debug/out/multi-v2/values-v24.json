@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-39:/values-v24/values-v24.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-42:/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hayer\\.gradle\\caches\\transforms-3\\14db2628a40fec8abe37adac6383e80c\\transformed\\media-1.4.3\\res\\values-v24\\values-v24.xml",

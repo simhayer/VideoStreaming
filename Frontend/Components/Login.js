@@ -16,6 +16,37 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../Redux/Features/AuthSlice';
 
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
+//TODO
+const {
+  // GOOGLE_WEB_CLIENT_ID,
+  GOOGLE_ANDROID_CLIENT_ID,
+  // GOOGLE_IOS_CLIENT_ID,
+} = process.env;
+
+//const GOOGLE_ANDROID_CLIENT_ID = "423122273522-adm11brgik1kv9bj2soq8r3ge88rom6g.apps.googleusercontent.com";
+
+GoogleSignin.configure({
+	// webClientId: GOOGLE_WEB_CLIENT_ID,
+	androidClientId: GOOGLE_ANDROID_CLIENT_ID,
+	// iosClientId: GOOGLE_IOS_CLIENT_ID,
+	scopes: ['profile', 'email'],
+});
+
+const GoogleLogin = async () => {
+	await GoogleSignin.hasPlayServices();
+  try{
+    const userInfo = await GoogleSignin.signIn();
+    console.log(userInfo);
+    return userInfo;
+  }
+  catch(error){
+    console.log(error);
+  }
+
+};
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -63,6 +94,34 @@ const Login = () => {
 
   };
 
+  const [error, setError] = useState('');
+	const [loading, setLoading] = useState(false);
+
+  const handleGoogleLogin = async () => {
+		setLoading(true);
+		try {
+			const response = await GoogleLogin();
+			const { idToken, user } = response;
+      console.log(user.email)
+      console.log("here");
+
+			if (idToken) {
+				const resp = await authAPI.validateToken({
+					token: idToken,
+					email: user.email,
+				});
+				await handlePostLoginData(resp.data);
+			}
+		} catch (apiError) {
+      console.log(apiError);
+			setError(
+				apiError?.response?.data?.error?.message || 'Something went wrong'
+			);
+		} finally {
+			setLoading(false);
+		}
+	};
+
   return (
     <View style={commonStyles.signup}>
       <View style={{paddingTop: '20%', alignItems: 'center'}}>
@@ -102,6 +161,12 @@ const Login = () => {
           onPress={() => navigation.navigate('SignUp')}
           style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
           <Text style={{color: 'white', textAlign: 'center'}}>Signup</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          isloading={isLoading}
+          onPress={() => handleGoogleLogin()}
+          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
+          <Text style={{color: 'white', textAlign: 'center'}}>Continue with Google</Text>
         </TouchableOpacity>
       </View>
     </View>

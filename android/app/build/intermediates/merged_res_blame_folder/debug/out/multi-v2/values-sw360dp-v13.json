@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-39:/values-sw360dp-v13/values-sw360dp-v13.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-42:/values-sw360dp-v13/values-sw360dp-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hayer\\.gradle\\caches\\transforms-3\\56d8c310386a921e81097bf4bdb84ea6\\transformed\\preference-1.0.0\\res\\values-sw360dp-v13\\values-sw360dp-v13.xml",

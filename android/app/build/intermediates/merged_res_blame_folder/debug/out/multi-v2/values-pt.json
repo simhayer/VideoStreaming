@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-39:/values-pt/values-pt.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-42:/values-pt/values-pt.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hayer\\.gradle\\caches\\transforms-3\\ff34738e7fb960ce73fd0d6cf687f2a8\\transformed\\jetified-react-android-0.73.3-debug\\res\\values-pt\\values-pt.xml",

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.21.0",
+    "@react-native-google-signin/google-signin": "^11.0.0",
     "@react-navigation/bottom-tabs": "^6.5.12",
     "@react-navigation/native": "^6.1.10",
     "@react-navigation/native-stack": "^6.9.18",
@@ -21,6 +22,7 @@
     "react": "18.2.0",
     "react-native": "0.73.3",
     "react-native-actioncable": "^0.0.3",
+    "react-native-dotenv": "^3.4.11",
     "react-native-gesture-handler": "^2.15.0",
     "react-native-incall-manager": "^4.2.0",
     "react-native-safe-area-context": "^4.9.0",
@@ -44,6 +46,7 @@
     "@types/react": "^18.2.6",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
+    "dotenv": "^16.4.5",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "prettier": "2.8.8",
