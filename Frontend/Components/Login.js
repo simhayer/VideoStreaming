@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Alert,
   View,
@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import axios from 'axios';
@@ -61,6 +62,9 @@ const Login = () => {
   //hooks
   const dispatch = useDispatch();
   const {userData, isLoading, isAuthenticated} = useSelector(state => state.auth);
+
+  const screenHeight = Dimensions.get('window').height;
+  const calculatedFontSize = screenHeight * 0.05;
 
   const onLoginClick = async (email, password) => {
     if (email.length === 0) {
@@ -122,52 +126,60 @@ const Login = () => {
 		}
 	};
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus on the input field when the screen loads
+    inputRef.current.focus();
+  }, []);
+
   return (
     <View style={commonStyles.signup}>
-      <View style={{paddingTop: '20%', alignItems: 'center'}}>
+      <View style={{alignItems:'center', paddingTop:'12%'}}>
+        <View style = {{width:'85%'}}>
         <TextInput
+         ref={inputRef}
           value={email}
           onChangeText={email => setEmail(email.trim())}
           placeholder={'Email'}
-          style={commonStyles.input}
+          style={{...commonStyles.input,fontSize: calculatedFontSize / 2.3,paddingBottom:'0%',marginBottom:'5%' }}
         />
 
-        <TextInput
+<TextInput
           value={password}
           onChangeText={password => setPassword(password.trim())}
           placeholder={'Password'}
-          style={commonStyles.input}
+          style={{...commonStyles.input,fontSize: calculatedFontSize / 2.3,paddingBottom:'0%',marginBottom:'5%' }}
           secureTextEntry={true}
         />
+        </View>
 
           {isError && (
           <Text>
             Error Here
           </Text>
         )}
+        <View style={{width: '85%',alignItems:'center', paddingTop:'15%'}}>
         <TouchableOpacity
-          isloading={isLoading}
           onPress={() => onLoginClick(email, password)}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Login</Text>
+          style={{backgroundColor: '#f542a4', borderRadius: 40,paddingVertical:'4%', alignItems:'center', width:'100%'}}>
+          <Text
+              style={{
+                color: 'white',
+                textAlign: 'left',
+                fontSize: calculatedFontSize / 2.2,
+                fontWeight: 'bold',
+              }}>
+              Login
+            </Text>
         </TouchableOpacity>
+        </View>
         <TouchableOpacity
           onPress={() => navigation.navigate('ForgetPassword')}
           style={{padding: 10,borderRadius: 5}}>
           <Text style={{color: 'blue', textAlign: 'center'}}>Forget Password?</Text>
         </TouchableOpacity>
-        <Text>Dont have an Account?</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Signup</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          isloading={isLoading}
-          onPress={() => handleGoogleLogin()}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Continue with Google</Text>
-        </TouchableOpacity>
+       
       </View>
     </View>
   );

@@ -30,12 +30,12 @@ const MyStack = () => {
           <Stack.Screen
             name="SignUp"
             component={SignUp}
-            options={{title: 'SignUp'}}
+            options={{headerShown: false}}
           />
           <Stack.Screen
             name="Login"
             component={Login}
-            options={{title: 'Login'}}
+            options={{headerShown: false}}
           />
           <Stack.Screen
             name="ForgetPassword"

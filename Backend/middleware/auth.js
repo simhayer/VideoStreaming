@@ -6,12 +6,19 @@ const jwtSecret = '0bbb60bc7d2fe832d54d785370672901832d3ba849366219ddfea07bd5eed
 // auth.js
 exports.register = async (req, res, next) => {
     console.log("Register function called");
-  console.log("Request body:", req.body);
+    console.log("Request body:", req.body);
     const { fullname,email, password } = req.body
-    if (password.length < 6) {
-      return res.status(400).json({ message: "Password less than 6 characters" })
-    }
+    
     try {
+
+      const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: "User with this email already exists" });
+        }
+      if (password.length < 6) {
+        return res.status(400).json({ message: "Password less than 6 characters" })
+      }
+
         bcrypt.hash(password, 10).then(async (hash) => {
             await User.create({
               fullname,
@@ -57,15 +64,17 @@ exports.register = async (req, res, next) => {
           error: "User not found",
         })
       } else {
-        // comparing given password with hashed password
-        bcrypt.compare(password, user.password).then(function (result) {
-          result
-            ? res.status(200).json({
-                message: "Login successful",
-                user,
-              })
-            : res.status(400).json({ message: "Login not succesful" })
-        })
+
+        bcrypt.compare(password, user.password, (err, compareRes) => {
+          if (err) { // error while comparing
+              res.status(502).json({message: "error while checking user password"});
+          } else if (compareRes) { // password match
+              const token = jwt.sign({ email: req.body.email }, 'secret', { expiresIn: '20d' });
+              res.status(200).json({message: "user logged in", "token": token});
+          } else { // password doesnt match
+              res.status(401).json({message: "invalid credentials"});
+          };
+      });
       }
     } catch (error) {
       res.status(400).json({
