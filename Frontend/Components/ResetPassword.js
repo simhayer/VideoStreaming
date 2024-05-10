@@ -48,9 +48,9 @@ const ResetPassword = ({ route }) => {
     };
 
     try {
-        // console.log(loginParams)
-        axios
-          .put(baseURL + apiEndpoints.updatePassword, forgetParams)
+      console.log(forgetParams)
+      axios
+        .post(baseURL + apiEndpoints.updatePassword, forgetParams)
           .then(res => {
             console.log(res.data);
             navigation.navigate('Login');

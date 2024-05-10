@@ -20,6 +20,11 @@ const UserSchema = new Mongoose.Schema({
     default: "Basic",
     required: true,
   },
+  resetCode: {
+    type: String,
+    default: "Basic",
+    required: false,
+  },
 })
 
 const User = Mongoose.model("user", UserSchema)

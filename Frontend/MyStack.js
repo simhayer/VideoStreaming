@@ -40,7 +40,7 @@ const MyStack = () => {
           <Stack.Screen
             name="ForgetPassword"
             component={ForgetPassword}
-            options={{title: 'ForgetPassword'}}
+            options={{headerShown: false}}
           />
           <Stack.Screen
             name="ForgetCode"
