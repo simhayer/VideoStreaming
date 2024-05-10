@@ -2,25 +2,25 @@ import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
-import { logout } from '../../Redux/Features/AuthSlice';
+import {logout} from '../../Redux/Features/AuthSlice';
 
 const Profile = () => {
   const dispatch = useDispatch();
   const {userData, isLoading} = useSelector(state => state.auth);
 
   const email = userData?.user?.email;
+  //const email = "hayersimrat23@gmail.com"
+  //const {userData, isAuthenticated} = useSelector(state => state.auth);
   const fullname = userData?.user?.fullname;
-  
+
   const onLogoutClick = async () => {
-
-    console.log("Email from redux, ", email);
-    const logoutParams  = {
+    console.log('Email from redux, ', email);
+    const logoutParams = {
       email: email,
-    }
+    };
 
-    dispatch(logout(logoutParams))
-
-};
+    dispatch(logout(logoutParams));
+  };
 
   return (
     <SafeAreaView>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Alert,
   View,
@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import axios from 'axios';
@@ -19,16 +20,17 @@ import {login} from '../Redux/Features/AuthSlice';
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
 
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState('');
   const navigation = useNavigation();
+  const screenHeight = Dimensions.get('window').height;
+  const calculatedFontSize = screenHeight * 0.05;
 
   //hooks
   const dispatch = useDispatch();
   const {userData, isLoading} = useSelector(state => state.auth);
 
-  const onSendClick = async (email) => {
+  const onSendClick = async email => {
     if (email.length === 0) {
       Alert.alert('Login', 'Please provide your email');
       return;
@@ -40,48 +42,101 @@ const ForgetPassword = () => {
     };
 
     try {
-        // console.log(loginParams)
-        axios
-          .post(baseURL + apiEndpoints.forgetCode, forgetParams)
-          .then(res => {
-            console.log(res.data);
-          })
-          .catch(err => {
-            console.log(err);
-            Alert.alert('Forget', 'Could not send the reset email');
-          });
-  
-        // Handle the response or navigate to another screen upon successful login
-      } catch (error) {
-        console.error('Forget error:', error);
-        // Handle the error, such as displaying an error message to the user
-      }
-      navigation.navigate('ForgetCode', {email});
+      // console.log(loginParams)
+      axios
+        .post(baseURL + apiEndpoints.forgetCode, forgetParams)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+          Alert.alert('Forget', 'Could not send the reset email');
+        });
+
+      // Handle the response or navigate to another screen upon successful login
+    } catch (error) {
+      console.error('Forget error:', error);
+      // Handle the error, such as displaying an error message to the user
+    }
+    navigation.navigate('ForgetCode', {email});
   };
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus on the input field when the screen loads
+    inputRef.current.focus();
+  }, []);
 
   return (
     <View style={commonStyles.signup}>
-      <View style={{paddingTop: '20%', alignItems: 'center'}}>
-      <Text style={{padding: '3%'}}>Enter your email to recieve reset instructions</Text>
+      <View style={{alignItems: 'center', paddingTop: '12%'}}>
+        <View style={{width: '85%'}}>
+          <Text style={{padding: '3%', fontSize: calculatedFontSize / 2.7}}>
+            Enter your email to recieve reset instructions
+          </Text>
+          <TextInput
+            ref={inputRef}
+            value={email}
+            onChangeText={email => setEmail(email.trim())}
+            placeholder={'Email'}
+            style={{
+              ...commonStyles.input,
+              fontSize: calculatedFontSize / 2.3,
+              paddingBottom: '0%',
+              marginBottom: '5%',
+            }}
+          />
 
-        <TextInput
-          value={email}
-          onChangeText={email => setEmail(email.trim())}
-          placeholder={'Email'}
-          style={commonStyles.input}
-        />
-        <TouchableOpacity
-          isloading={isLoading}
-          onPress={() => onSendClick(email)}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Send Email</Text>
-        </TouchableOpacity>
-        <Text>Dont have an Account?</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Signup</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => onSendClick(email)}
+            style={{
+              backgroundColor: '#f542a4',
+              borderRadius: 40,
+              paddingVertical: '4%',
+              alignItems: 'center',
+              width: '100%',
+            }}>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'left',
+                fontSize: calculatedFontSize / 2.2,
+                fontWeight: 'bold',
+              }}>
+              Send Email
+            </Text>
+          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text
+              style={{
+                fontSize: calculatedFontSize / 2.2,
+                color: 'black',
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              Don't have an Account?
+            </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('SignUp', {type: 'Signup'})}
+              style={{padding: 10, borderRadius: 5}}>
+              <Text
+                style={{
+                  color: '#f542a4',
+                  textAlign: 'center',
+                  fontSize: calculatedFontSize / 2.2,
+                  fontWeight: 'bold',
+                }}>
+                Sign Up
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </View>
   );
