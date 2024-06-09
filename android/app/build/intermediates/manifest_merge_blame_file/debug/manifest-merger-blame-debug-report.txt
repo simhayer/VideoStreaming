@@ -9,39 +9,39 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:5-67
-11-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:22-64
+11-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:5-67
+11-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:22-64
 12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:4:5-79
-12-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:4:22-76
+12-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:4:5-79
+12-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:4:22-76
 13    <uses-permission android:name="android.permission.BLUETOOTH" />
-13-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:5:5-68
-13-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:5:22-65
+13-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:5:5-68
+13-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:5:22-65
 14    <uses-permission android:name="android.permission.CAMERA" />
-14-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:6:5-65
-14-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:6:22-62
+14-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:6:5-65
+14-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:6:22-62
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:5-67
-15-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:22-64
+15-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:5-67
+15-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:22-64
 16    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-16-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:8:5-80
-16-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:8:22-77
+16-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:8:5-80
+16-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:8:22-77
 17    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-17-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:9:5-71
-17-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:9:22-68
+17-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:9:5-71
+17-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:9:22-68
 18    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-18-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:10:5-78
-18-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:10:22-75
+18-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:10:5-78
+18-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:10:22-75
 19    <uses-permission android:name="android.permission.WAKE_LOCK" />
-19-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:11:5-68
-19-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:11:22-65
+19-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:11:5-68
+19-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:11:22-65
 20
 21    <uses-feature
-21-->[:react-native-webrtc] C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-11:32
+21-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-11:32
 22        android:name="android.hardware.usb.host"
-22-->[:react-native-webrtc] C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:9-49
+22-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:9-49
 23        android:required="false" />
-23-->[:react-native-webrtc] C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-33
+23-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-33
 24
 25    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 25-->[com.facebook.flipper:flipper:0.201.0] C:\Users\shayer\.gradle\caches\transforms-3\9b2c28bd5719adb7e465469e2ca76c12\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:5-76
@@ -59,57 +59,57 @@
 31-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 32
 33    <application
-33-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:13:5-32:19
+33-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:13:5-32:19
 34        android:name="com.tclone.MainApplication"
-34-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:14:7-38
+34-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:14:7-38
 35        android:allowBackup="false"
-35-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:18:7-34
+35-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:18:7-34
 36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 36-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 37        android:debuggable="true"
 38        android:extractNativeLibs="true"
 39        android:icon="@mipmap/ic_launcher"
-39-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:16:7-41
+39-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:16:7-41
 40        android:label="@string/app_name"
-40-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:15:7-39
+40-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:15:7-39
 41        android:roundIcon="@mipmap/ic_launcher_round"
-41-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:17:7-52
+41-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:17:7-52
 42        android:theme="@style/AppTheme"
-42-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:19:7-38
+42-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:19:7-38
 43        android:usesCleartextTraffic="true" >
-43-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\debug\AndroidManifest.xml:6:9-44
+43-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\debug\AndroidManifest.xml:6:9-44
 44        <activity
-44-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:20:7-31:18
+44-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:20:7-31:18
 45            android:name="com.tclone.MainActivity"
-45-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:21:9-37
+45-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:21:9-37
 46            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-46-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:23:9-118
+46-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:23:9-118
 47            android:exported="true"
-47-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:26:9-32
+47-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:26:9-32
 48            android:label="@string/app_name"
-48-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:22:9-41
+48-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:22:9-41
 49            android:launchMode="singleTask"
-49-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:24:9-40
+49-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:24:9-40
 50            android:windowSoftInputMode="adjustResize" >
-50-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:25:9-51
+50-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:25:9-51
 51            <intent-filter>
-51-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:27:9-30:25
+51-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:27:9-30:25
 52                <action android:name="android.intent.action.MAIN" />
-52-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:13-65
-52-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:21-62
+52-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:13-65
+52-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:21-62
 53
 54                <category android:name="android.intent.category.LAUNCHER" />
-54-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:13-73
-54-->C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:23-70
+54-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:13-73
+54-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:23-70
 55            </intent-filter>
 56        </activity>
 57
 58        <service
-58-->[:react-native-webrtc] C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-17:19
+58-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-17:19
 59            android:name="com.oney.WebRTCModule.MediaProjectionService"
-59-->[:react-native-webrtc] C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
+59-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
 60            android:foregroundServiceType="mediaProjection" >
-60-->[:react-native-webrtc] C:\Users\shayer\Documents\VideoStreaming-master\TClone\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
+60-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
 61        </service>
 62
 63        <activity

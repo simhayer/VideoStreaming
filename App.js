@@ -7,7 +7,7 @@ import SignUp from './Frontend/Components/SignUp';
 // import { NavigationContainer } from './Frontend/Navigation';
 import {NavigationContainer} from '@react-navigation/native';
 import MyStack from './Frontend/MyStack';
-import { CableProvider } from './Frontend/Components/Screens/CallComponents/CableProvidor';
+//import { CableProvider } from './Frontend/Components/Screens/CallComponents/CableProvidor';
 
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
     //   </View>
     // </SafeAreaView>
     <NavigationContainer>
-      <CableProvider><MyStack></MyStack></CableProvider>
+      <MyStack></MyStack>
       
     </NavigationContainer>
   );
