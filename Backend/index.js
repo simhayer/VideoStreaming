@@ -15,7 +15,7 @@
 const express = require('express');
 const path = require('path');
 const { createServer } = require('http');
-const { getIO, initIO } = require('./socket');
+const { getIO, initIO } = require('./socket5');
 const connectDB = require('./models/db');
 
 const app = express();

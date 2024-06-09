@@ -62,7 +62,6 @@
     <string name="common_signin_button_text">ಸೈನ್ ಇನ್</string>
     <string name="common_signin_button_text_long">Google ಮೂಲಕ ಸೈನ್ ಇನ್ ಮಾಡಿ</string>
     <string name="error_icon_content_description">ದೋಷ</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"ಸುಧಾರಿತ"</string>
     <string name="exposed_dropdown_menu_content_description">ಡ್ರಾಪ್‌ಡೌನ್ ಮೆನು ತೋರಿಸಿ</string>
     <string gender="unknown" name="header_description">ಶಿರೋಲೇಖ</string>
     <string name="icon_content_description">ಡೈಲಾಗ್ ಐಕಾನ್</string>
@@ -137,11 +136,8 @@
     <string gender="unknown" name="state_on_description">ಆನ್</string>
     <string gender="unknown" name="state_unselected_description">ಆಯ್ಕೆ ರದ್ದುಮಾಡಲಾಗಿದೆ</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">ಸಾರಾಂಶ</string>
     <string gender="unknown" name="tablist_description">ಟ್ಯಾಬ್ ಪಟ್ಟಿ</string>
     <string gender="unknown" name="timer_description">ಟೈಮರ್</string>
     <string gender="unknown" name="toolbar_description">ಟೂಲ್ ಬಾರ್</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"ಆಫ್"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ಆನ್"</string>
 </resources>

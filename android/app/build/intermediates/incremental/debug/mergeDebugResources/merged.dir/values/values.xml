@@ -7,7 +7,6 @@
         <enum name="startHorizontal" value="1"/>
         <enum name="flip" value="2"/>
     </attr>
-    <attr default="-1.0" format="float" name="aspect_ratio"/>
     <attr format="reference" name="badgeStyle"/>
     <attr format="boolean" name="barrierAllowsGoneWidgets"/>
     <attr format="enum" name="barrierDirection">
@@ -92,7 +91,6 @@
     <attr format="color" name="colorTertiaryFixedDim"/>
     <attr format="reference" name="constraintSet"/>
     <attr format="string" name="constraint_referenced_ids"/>
-    <attr format="string" name="constraint_referenced_tags"/>
     <attr format="reference" name="content"/>
     <attr format="reference" name="coordinatorLayoutStyle"/>
     <attr format="enum" name="curveFit">
@@ -162,7 +160,7 @@
         <enum name="spread_inside" value="1"/>
         <enum name="packed" value="2"/>
     </attr>
-    <attr format="enum" name="flow_horizontalAlign">
+    <attr format="float" name="flow_horizontalAlign">
         <enum name="start" value="0"/>
         <enum name="end" value="1"/>
         <enum name="center" value="2"/>
@@ -207,7 +205,6 @@
         <enum name="aligned" value="2"/>
     </attr>
     <attr format="integer" name="framePosition"/>
-    <attr default="true" format="boolean" name="handle_touch_event"/>
     <attr format="reference" name="headerLayout"/>
     <attr format="dimension" name="height"/>
     <attr format="reference" name="hideMotionSpec"/>
@@ -328,7 +325,7 @@
     <attr format="dimension" name="layout_goneMarginTop"/>
     <attr name="layout_optimizationLevel">
         <flag name="none" value="0"/>
-        <flag name="standard" value="257"/> 
+        <flag name="standard" value="7"/> 
         <flag name="direct" value="1"/>
         <flag name="barrier" value="2"/>
         <flag name="chains" value="4"/>
@@ -337,9 +334,6 @@
         <flag name="groups" value="32"/>
         <flag name="graph" value="64"/>
         <flag name="graph_wrap" value="128"/>
-        <flag name="cache_measures" value="256"/>
-        <flag name="dependency_ordering" value="512"/>
-        <flag name="grouping" value="1024"/>
     </attr>
     <attr format="reference" name="linearProgressIndicatorStyle"/>
     <attr format="reference" name="materialButtonOutlinedStyle"/>
@@ -441,11 +435,6 @@
     <attr format="reference" name="popupMenuBackground"/>
     <attr format="reference" name="recyclerViewStyle"/>
     <attr format="color" name="rippleColor"/>
-    <attr default="scale_none" name="scale_mode">
-		<enum name="keep_aspect" value="0"/>
-		<enum name="stretch_to_fit" value="1"/>
-		<enum name="crop_center" value="2"/>
-	</attr>
     <attr format="color|reference" name="scrimBackground"/>
     <attr format="boolean" name="selectionRequired"/>
     <attr format="reference" name="shapeAppearanceCornerExtraLarge"/>
@@ -553,527 +542,7 @@
     </attr>
     <bool name="abc_action_bar_embed_tabs">true</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
-    <bool name="config_materialPreferenceIconSpaceReserved">false</bool>
     <bool name="mtrl_btn_textappearance_all_caps">true</bool>
-    <color name="ALICEBLUE">#fff0f8ff</color>
-    <color name="ANTIQUEWHITE">#fffaebd7</color>
-    <color name="AQUA">#ff00ffff</color>
-    <color name="AQUAMARINE">#ff7fffd4</color>
-    <color name="AZURE">#fff0ffff</color>
-    <color name="BEIGE">#fff5f5dc</color>
-    <color name="BISQUE">#ffffe4c4</color>
-    <color name="BLACK">#ff000000</color>
-    <color name="BLACK_A010">#19000000</color>
-    <color name="BLACK_A020">#33000000</color>
-    <color name="BLACK_A030">#4c000000</color>
-    <color name="BLACK_A040">#66000000</color>
-    <color name="BLACK_A050">#7f000000</color>
-    <color name="BLACK_A060">#99000000</color>
-    <color name="BLACK_A070">#b2000000</color>
-    <color name="BLACK_A080">#cc000000</color>
-    <color name="BLACK_A090">#e6000000</color>
-    <color name="BLACK_A100">#ff000000</color>
-    <color name="BLANCHEDALMOND">#ffffebcd</color>
-    <color name="BLUE">#ff0000ff</color>
-    <color name="BLUEVIOLET">#ff8a2be2</color>
-    <color name="BLUE_A010">#190000ff</color>
-    <color name="BLUE_A020">#330000ff</color>
-    <color name="BLUE_A030">#4c0000ff</color>
-    <color name="BLUE_A040">#660000ff</color>
-    <color name="BLUE_A050">#700000ff</color>
-    <color name="BLUE_A060">#990000ff</color>
-    <color name="BLUE_A070">#b20000ff</color>
-    <color name="BLUE_A080">#cc0000ff</color>
-    <color name="BLUE_A090">#e60000ff</color>
-    <color name="BLUE_A100">#ff0000ff</color>
-    <color name="BROWN">#ffa52a2a</color>
-    <color name="BURLYWOOD">#ffdeb887</color>
-    <color name="CADETBLUE">#ff5f9ea0</color>
-    <color name="CHARTREUSE">#ff7fff00</color>
-    <color name="CHOCOLATE">#ffd2691e</color>
-    <color name="CLEAR">#00000000</color>
-    <color name="CORAL">#ffff7f50</color>
-    <color name="CORNFLOWERBLUE">#ff6495ed</color>
-    <color name="CORNSILK">#fffff8dc</color>
-    <color name="CRIMSON">#ffdc143c</color>
-    <color name="CYAN">#ff00ffff</color>
-    <color name="DARKBLUE">#ff00008b</color>
-    <color name="DARKCYAN">#ff008b8b</color>
-    <color name="DARKGOLDENROD">#ffb8860b</color>
-    <color name="DARKGRAY">#ffa9a9a9</color>
-    <color name="DARKGREEN">#ff006400</color>
-    <color name="DARKKHAKI">#ffbdb76b</color>
-    <color name="DARKMAGENTA">#ff8b008b</color>
-    <color name="DARKOLIVEGREEN">#ff556b2f</color>
-    <color name="DARKORANGE">#ffff8c00</color>
-    <color name="DARKORCHID">#ff9932cc</color>
-    <color name="DARKRED">#ff8b0000</color>
-    <color name="DARKSALMON">#ffe9967a</color>
-    <color name="DARKSEAGREEN">#ff8fbc8f</color>
-    <color name="DARKSLATEBLUE">#ff483d8b</color>
-    <color name="DARKSLATEGRAY">#ff2f4f4f</color>
-    <color name="DARKTURQUOISE">#ff00ced1</color>
-    <color name="DARKVIOLET">#ff9400d3</color>
-    <color name="DEEPPINK">#ffff1493</color>
-    <color name="DEEPSKYBLUE">#ff00bfff</color>
-    <color name="DIMGRAY">#ff696969</color>
-    <color name="DODGERBLUE">#ff1e90ff</color>
-    <color name="FIREBRICK">#ffb22222</color>
-    <color name="FLORALWHITE">#fffffaf0</color>
-    <color name="FORESTGREEN">#ff228b22</color>
-    <color name="FUCHSIA">#ffff00ff</color>
-    <color name="GAINSBORO">#ffdcdcdc</color>
-    <color name="GHOSTWHITE">#fff8f8ff</color>
-    <color name="GOLD">#ffffd700</color>
-    <color name="GOLDENROD">#ffdaa520</color>
-    <color name="GRAY">#ff808080</color>
-    <color name="GRAY_050_A010">#19fafafa</color>
-    <color name="GRAY_050_A020">#33fafafa</color>
-    <color name="GRAY_050_A030">#4cfafafa</color>
-    <color name="GRAY_050_A040">#66fafafa</color>
-    <color name="GRAY_050_A050">#7ffafafa</color>
-    <color name="GRAY_050_A060">#99fafafa</color>
-    <color name="GRAY_050_A070">#b2fafafa</color>
-    <color name="GRAY_050_A080">#ccfafafa</color>
-    <color name="GRAY_050_A090">#e6fafafa</color>
-    <color name="GRAY_050_A100">#fffafafa</color>
-    <color name="GRAY_100_A010">#19f5f5f5</color>
-    <color name="GRAY_100_A020">#33f5f5f5</color>
-    <color name="GRAY_100_A030">#4cf5f5f5</color>
-    <color name="GRAY_100_A040">#66f5f5f5</color>
-    <color name="GRAY_100_A050">#7ff5f5f5</color>
-    <color name="GRAY_100_A060">#99f5f5f5</color>
-    <color name="GRAY_100_A070">#b2f5f5f5</color>
-    <color name="GRAY_100_A080">#ccf5f5f5</color>
-    <color name="GRAY_100_A090">#e6f5f5f5</color>
-    <color name="GRAY_100_A100">#fff5f5f5</color>
-    <color name="GRAY_200_A010">#19eeeeee</color>
-    <color name="GRAY_200_A020">#33eeeeee</color>
-    <color name="GRAY_200_A030">#4ceeeeee</color>
-    <color name="GRAY_200_A040">#66eeeeee</color>
-    <color name="GRAY_200_A050">#7feeeeee</color>
-    <color name="GRAY_200_A060">#99eeeeee</color>
-    <color name="GRAY_200_A070">#b2eeeeee</color>
-    <color name="GRAY_200_A080">#cceeeeee</color>
-    <color name="GRAY_200_A090">#e6eeeeee</color>
-    <color name="GRAY_200_A100">#ffeeeeee</color>
-    <color name="GRAY_300_A010">#19e0e0e0</color>
-    <color name="GRAY_300_A020">#33e0e0e0</color>
-    <color name="GRAY_300_A030">#4ce0e0e0</color>
-    <color name="GRAY_300_A040">#66e0e0e0</color>
-    <color name="GRAY_300_A050">#7fe0e0e0</color>
-    <color name="GRAY_300_A060">#99e0e0e0</color>
-    <color name="GRAY_300_A070">#b2e0e0e0</color>
-    <color name="GRAY_300_A080">#cce0e0e0</color>
-    <color name="GRAY_300_A090">#e6e0e0e0</color>
-    <color name="GRAY_300_A100">#ffe0e0e0</color>
-    <color name="GRAY_400_A010">#19bdbdbd</color>
-    <color name="GRAY_400_A020">#33bdbdbd</color>
-    <color name="GRAY_400_A030">#4cbdbdbd</color>
-    <color name="GRAY_400_A040">#66bdbdbd</color>
-    <color name="GRAY_400_A050">#7fbdbdbd</color>
-    <color name="GRAY_400_A060">#99bdbdbd</color>
-    <color name="GRAY_400_A070">#b2bdbdbd</color>
-    <color name="GRAY_400_A080">#ccbdbdbd</color>
-    <color name="GRAY_400_A090">#e6bdbdbd</color>
-    <color name="GRAY_400_A100">#ffbdbdbd</color>
-    <color name="GRAY_500_A010">#199e9e9e</color>
-    <color name="GRAY_500_A020">#339e9e9e</color>
-    <color name="GRAY_500_A030">#4c9e9e9e</color>
-    <color name="GRAY_500_A040">#669e9e9e</color>
-    <color name="GRAY_500_A050">#7f9e9e9e</color>
-    <color name="GRAY_500_A060">#999e9e9e</color>
-    <color name="GRAY_500_A070">#b29e9e9e</color>
-    <color name="GRAY_500_A080">#cc9e9e9e</color>
-    <color name="GRAY_500_A090">#e69e9e9e</color>
-    <color name="GRAY_500_A100">#ff9e9e9e</color>
-    <color name="GRAY_600_A010">#19757575</color>
-    <color name="GRAY_600_A020">#33757575</color>
-    <color name="GRAY_600_A030">#4c757575</color>
-    <color name="GRAY_600_A040">#66757575</color>
-    <color name="GRAY_600_A050">#7f757575</color>
-    <color name="GRAY_600_A060">#99757575</color>
-    <color name="GRAY_600_A070">#b2757575</color>
-    <color name="GRAY_600_A080">#cc757575</color>
-    <color name="GRAY_600_A090">#e6757575</color>
-    <color name="GRAY_600_A100">#ff757575</color>
-    <color name="GRAY_700_A010">#19616161</color>
-    <color name="GRAY_700_A020">#33616161</color>
-    <color name="GRAY_700_A030">#4c616161</color>
-    <color name="GRAY_700_A040">#66616161</color>
-    <color name="GRAY_700_A050">#7f616161</color>
-    <color name="GRAY_700_A060">#99616161</color>
-    <color name="GRAY_700_A070">#b2616161</color>
-    <color name="GRAY_700_A080">#cc616161</color>
-    <color name="GRAY_700_A090">#e6616161</color>
-    <color name="GRAY_700_A100">#ff616161</color>
-    <color name="GRAY_800_A010">#19424242</color>
-    <color name="GRAY_800_A020">#33424242</color>
-    <color name="GRAY_800_A030">#4c424242</color>
-    <color name="GRAY_800_A040">#66424242</color>
-    <color name="GRAY_800_A050">#7f424242</color>
-    <color name="GRAY_800_A060">#99424242</color>
-    <color name="GRAY_800_A070">#b2424242</color>
-    <color name="GRAY_800_A080">#cc424242</color>
-    <color name="GRAY_800_A090">#e6424242</color>
-    <color name="GRAY_800_A100">#ff424242</color>
-    <color name="GRAY_900_A010">#19212121</color>
-    <color name="GRAY_900_A020">#33212121</color>
-    <color name="GRAY_900_A030">#4c212121</color>
-    <color name="GRAY_900_A040">#66212121</color>
-    <color name="GRAY_900_A050">#7f212121</color>
-    <color name="GRAY_900_A060">#99212121</color>
-    <color name="GRAY_900_A070">#b2212121</color>
-    <color name="GRAY_900_A080">#cc212121</color>
-    <color name="GRAY_900_A090">#e6212121</color>
-    <color name="GRAY_900_A100">#ff212121</color>
-    <color name="GREEN">#ff008000</color>
-    <color name="GREENYELLOW">#ffadff2f</color>
-    <color name="GREEN_A010">#1900ff00</color>
-    <color name="GREEN_A020">#3300ff00</color>
-    <color name="GREEN_A030">#4c00ff00</color>
-    <color name="GREEN_A040">#6600ff00</color>
-    <color name="GREEN_A050">#7000ff00</color>
-    <color name="GREEN_A060">#9900ff00</color>
-    <color name="GREEN_A070">#b200ff00</color>
-    <color name="GREEN_A080">#cc00ff00</color>
-    <color name="GREEN_A090">#e600ff00</color>
-    <color name="GREEN_A100">#ff00ff00</color>
-    <color name="HALF_CLEAR_ALICEBLUE">#7ff0f8ff</color>
-    <color name="HALF_CLEAR_BLACK">#7f000000</color>
-    <color name="HALF_CLEAR_GRAY">#7f808080</color>
-    <color name="HALF_CLEAR_WHITE">#7fffffff</color>
-    <color name="HONEYDEW">#fff0fff0</color>
-    <color name="HOTPINK">#ffff69b4</color>
-    <color name="INDIANRED">#ffcd5c5c</color>
-    <color name="INDIGO">#ff4b0082</color>
-    <color name="IVORY">#fffffff0</color>
-    <color name="KHAKI">#fff0e68c</color>
-    <color name="LAVENDER">#ffe6e6fa</color>
-    <color name="LAVENDERBLUSH">#fffff0f5</color>
-    <color name="LAWNGREEN">#ff7cfc00</color>
-    <color name="LEMONCHIFFON">#fffffacd</color>
-    <color name="LIGHTBLUE">#ffadd8e6</color>
-    <color name="LIGHTCORAL">#fff08080</color>
-    <color name="LIGHTCYAN">#ffe0ffff</color>
-    <color name="LIGHTGOLDENRODYELLOW">#fffafad2</color>
-    <color name="LIGHTGRAY">#ffd3d3d3</color>
-    <color name="LIGHTGREEN">#ff90ee90</color>
-    <color name="LIGHTPINK">#ffffb6c1</color>
-    <color name="LIGHTSALMON">#ffffa07a</color>
-    <color name="LIGHTSEAGREEN">#ff20b2aa</color>
-    <color name="LIGHTSKYBLUE">#ff87cefa</color>
-    <color name="LIGHTSLATEGRAY">#ff778899</color>
-    <color name="LIGHTSTEELBLUE">#ffb0c4de</color>
-    <color name="LIGHTYELLOW">#ffffffe0</color>
-    <color name="LIME">#ff00ff00</color>
-    <color name="LIMEGREEN">#ff32cd32</color>
-    <color name="LINEN">#fffaf0e6</color>
-    <color name="MAGENTA">#ffff00ff</color>
-    <color name="MAROON">#ff800000</color>
-    <color name="MEDIUMAQUAMARINE">#ff66cdaa</color>
-    <color name="MEDIUMBLUE">#ff0000cd</color>
-    <color name="MEDIUMORCHID">#ffba55d3</color>
-    <color name="MEDIUMPURPLE">#ff9370db</color>
-    <color name="MEDIUMSEAGREEN">#ff3cb371</color>
-    <color name="MEDIUMSLATEBLUE">#ff7b68ee</color>
-    <color name="MEDIUMSPRINGGREEN">#ff00fa9a</color>
-    <color name="MEDIUMTURQUOISE">#ff48d1cc</color>
-    <color name="MEDIUMVIOLETRED">#ffc71585</color>
-    <color name="MIDNIGHTBLUE">#ff191970</color>
-    <color name="MINTCREAM">#fff5fffa</color>
-    <color name="MISTYROSE">#ffffe4e1</color>
-    <color name="MOCCASIN">#ffffe4b5</color>
-    <color name="NAVAJOWHITE">#ffffdead</color>
-    <color name="NAVY">#ff000080</color>
-    <color name="OLDLACE">#fffdf5e6</color>
-    <color name="OLIVE">#ff808000</color>
-    <color name="OLIVEDRAB">#ff6b8e23</color>
-    <color name="ORANGE">#ffffa500</color>
-    <color name="ORANGERED">#ffff4500</color>
-    <color name="ORCHID">#ffda70d6</color>
-    <color name="PALEGOLDENROD">#ffeee8aa</color>
-    <color name="PALEGREEN">#ff98fb98</color>
-    <color name="PALETURQUOISE">#ffafeeee</color>
-    <color name="PALEVIOLETRED">#ffdb7093</color>
-    <color name="PAPAYAWHIP">#ffffefd5</color>
-    <color name="PEACHPUFF">#ffffdab9</color>
-    <color name="PERU">#ffcd853f</color>
-    <color name="PINK">#ffffc0cb</color>
-    <color name="PLUM">#ffdda0dd</color>
-    <color name="POWDERBLUE">#ffb0e0e6</color>
-    <color name="PURPLE">#ff800080</color>
-    <color name="PURPLE_A010">#19ff00ff</color>
-    <color name="PURPLE_A020">#33ff00ff</color>
-    <color name="PURPLE_A030">#4cff00ff</color>
-    <color name="PURPLE_A040">#66ff00ff</color>
-    <color name="PURPLE_A050">#70ff00ff</color>
-    <color name="PURPLE_A060">#99ff00ff</color>
-    <color name="PURPLE_A070">#b2ff00ff</color>
-    <color name="PURPLE_A080">#ccff00ff</color>
-    <color name="PURPLE_A090">#e6ff00ff</color>
-    <color name="PURPLE_A100">#ffff00ff</color>
-    <color name="QUARTER_CLEAR_BLACK">#3f000000</color>
-    <color name="QUARTER_CLEAR_GRAY">#3f808080</color>
-    <color name="QUARTER_CLEAR_WHITE">#3fffffff</color>
-    <color name="RED">#ffff0000</color>
-    <color name="RED_050_A010">#19ffebee</color>
-    <color name="RED_050_A020">#33ffebee</color>
-    <color name="RED_050_A030">#4cffebee</color>
-    <color name="RED_050_A040">#66ffebee</color>
-    <color name="RED_050_A050">#7fffebee</color>
-    <color name="RED_050_A060">#99ffebee</color>
-    <color name="RED_050_A070">#b2ffebee</color>
-    <color name="RED_050_A080">#ccffebee</color>
-    <color name="RED_050_A090">#e6ffebee</color>
-    <color name="RED_050_A100">#ffffebee</color>
-    <color name="RED_100_A010">#19ffcdd2</color>
-    <color name="RED_100_A020">#33ffcdd2</color>
-    <color name="RED_100_A030">#4cffcdd2</color>
-    <color name="RED_100_A040">#66ffcdd2</color>
-    <color name="RED_100_A050">#7fffcdd2</color>
-    <color name="RED_100_A060">#99ffcdd2</color>
-    <color name="RED_100_A070">#b2ffcdd2</color>
-    <color name="RED_100_A080">#ccffcdd2</color>
-    <color name="RED_100_A090">#e6ffcdd2</color>
-    <color name="RED_100_A100">#ffffcdd2</color>
-    <color name="RED_200_A010">#19ef9a9a</color>
-    <color name="RED_200_A020">#33ef9a9a</color>
-    <color name="RED_200_A030">#4cef9a9a</color>
-    <color name="RED_200_A040">#66ef9a9a</color>
-    <color name="RED_200_A050">#7fef9a9a</color>
-    <color name="RED_200_A060">#99ef9a9a</color>
-    <color name="RED_200_A070">#b2ef9a9a</color>
-    <color name="RED_200_A080">#ccef9a9a</color>
-    <color name="RED_200_A090">#e6ef9a9a</color>
-    <color name="RED_200_A100">#ffef9a9a</color>
-    <color name="RED_300_A010">#19e57373</color>
-    <color name="RED_300_A020">#33e57373</color>
-    <color name="RED_300_A030">#4ce57373</color>
-    <color name="RED_300_A040">#66e57373</color>
-    <color name="RED_300_A050">#7fe57373</color>
-    <color name="RED_300_A060">#99e57373</color>
-    <color name="RED_300_A070">#b2e57373</color>
-    <color name="RED_300_A080">#cce57373</color>
-    <color name="RED_300_A090">#e6e57373</color>
-    <color name="RED_300_A100">#ffe57373</color>
-    <color name="RED_400_A010">#19ef5350</color>
-    <color name="RED_400_A020">#33ef5350</color>
-    <color name="RED_400_A030">#4cef5350</color>
-    <color name="RED_400_A040">#66ef5350</color>
-    <color name="RED_400_A050">#7fef5350</color>
-    <color name="RED_400_A060">#99ef5350</color>
-    <color name="RED_400_A070">#b2ef5350</color>
-    <color name="RED_400_A080">#ccef5350</color>
-    <color name="RED_400_A090">#e6ef5350</color>
-    <color name="RED_400_A100">#ffef5350</color>
-    <color name="RED_500_A010">#19f44336</color>
-    <color name="RED_500_A020">#33f44336</color>
-    <color name="RED_500_A030">#4cf44336</color>
-    <color name="RED_500_A040">#66f44336</color>
-    <color name="RED_500_A050">#7ff44336</color>
-    <color name="RED_500_A060">#99f44336</color>
-    <color name="RED_500_A070">#b2f44336</color>
-    <color name="RED_500_A080">#ccf44336</color>
-    <color name="RED_500_A090">#e6f44336</color>
-    <color name="RED_500_A100">#fff44336</color>
-    <color name="RED_600_A010">#19e53935</color>
-    <color name="RED_600_A020">#33e53935</color>
-    <color name="RED_600_A030">#4ce53935</color>
-    <color name="RED_600_A040">#66e53935</color>
-    <color name="RED_600_A050">#7fe53935</color>
-    <color name="RED_600_A060">#99e53935</color>
-    <color name="RED_600_A070">#b2e53935</color>
-    <color name="RED_600_A080">#cce53935</color>
-    <color name="RED_600_A090">#e6e53935</color>
-    <color name="RED_600_A100">#ffe53935</color>
-    <color name="RED_700_A010">#19d32f2f</color>
-    <color name="RED_700_A020">#33d32f2f</color>
-    <color name="RED_700_A030">#4cd32f2f</color>
-    <color name="RED_700_A040">#66d32f2f</color>
-    <color name="RED_700_A050">#7fd32f2f</color>
-    <color name="RED_700_A060">#99d32f2f</color>
-    <color name="RED_700_A070">#b2d32f2f</color>
-    <color name="RED_700_A080">#ccd32f2f</color>
-    <color name="RED_700_A090">#e6d32f2f</color>
-    <color name="RED_700_A100">#ffd32f2f</color>
-    <color name="RED_800_A010">#19c62828</color>
-    <color name="RED_800_A020">#33c62828</color>
-    <color name="RED_800_A030">#4cc62828</color>
-    <color name="RED_800_A040">#66c62828</color>
-    <color name="RED_800_A050">#7fc62828</color>
-    <color name="RED_800_A060">#99c62828</color>
-    <color name="RED_800_A070">#b2c62828</color>
-    <color name="RED_800_A080">#ccc62828</color>
-    <color name="RED_800_A090">#e6c62828</color>
-    <color name="RED_800_A100">#ffc62828</color>
-    <color name="RED_900_A010">#19b71c1c</color>
-    <color name="RED_900_A020">#33b71c1c</color>
-    <color name="RED_900_A030">#4cb71c1c</color>
-    <color name="RED_900_A040">#66b71c1c</color>
-    <color name="RED_900_A050">#7fb71c1c</color>
-    <color name="RED_900_A060">#99b71c1c</color>
-    <color name="RED_900_A070">#b2b71c1c</color>
-    <color name="RED_900_A080">#ccb71c1c</color>
-    <color name="RED_900_A090">#e6b71c1c</color>
-    <color name="RED_900_A100">#ffb71c1c</color>
-    <color name="RED_A010">#19ff0000</color>
-    <color name="RED_A020">#33ff0000</color>
-    <color name="RED_A030">#4cff0000</color>
-    <color name="RED_A040">#66ff0000</color>
-    <color name="RED_A050">#7fff0000</color>
-    <color name="RED_A060">#99ff0000</color>
-    <color name="RED_A070">#b2ff0000</color>
-    <color name="RED_A080">#ccff0000</color>
-    <color name="RED_A090">#e6ff0000</color>
-    <color name="RED_A100">#ffff0000</color>
-    <color name="ROSYBROWN">#ffbc8f8f</color>
-    <color name="ROYALBLUE">#ff4169e1</color>
-    <color name="SADDLEBROWN">#ff8b4513</color>
-    <color name="SALMON">#fffa8072</color>
-    <color name="SANDYBROWN">#fff4a460</color>
-    <color name="SEAGREEN">#ff2e8b57</color>
-    <color name="SEASHELL">#fffff5ee</color>
-    <color name="SIENNA">#ffa0522d</color>
-    <color name="SILVER">#ffc0c0c0</color>
-    <color name="SKYBLUE">#ff87ceeb</color>
-    <color name="SLATEBLUE">#ff6a5acd</color>
-    <color name="SLATEGRAY">#ff708090</color>
-    <color name="SNOW">#fffffafa</color>
-    <color name="SPRINGGREEN">#ff00ff7f</color>
-    <color name="STEELBLUE">#ff4682b4</color>
-    <color name="TAN">#ffd2b48c</color>
-    <color name="TEAL">#ff008080</color>
-    <color name="TEAL_050_A010">#19e0f2f1</color>
-    <color name="TEAL_050_A020">#33e0f2f1</color>
-    <color name="TEAL_050_A030">#4ce0f2f1</color>
-    <color name="TEAL_050_A040">#66e0f2f1</color>
-    <color name="TEAL_050_A050">#7fe0f2f1</color>
-    <color name="TEAL_050_A060">#99e0f2f1</color>
-    <color name="TEAL_050_A070">#b2e0f2f1</color>
-    <color name="TEAL_050_A080">#cce0f2f1</color>
-    <color name="TEAL_050_A090">#e6e0f2f1</color>
-    <color name="TEAL_050_A100">#ffe0f2f1</color>
-    <color name="TEAL_100_A010">#19b2dfdb</color>
-    <color name="TEAL_100_A020">#33b2dfdb</color>
-    <color name="TEAL_100_A030">#4cb2dfdb</color>
-    <color name="TEAL_100_A040">#66b2dfdb</color>
-    <color name="TEAL_100_A050">#7fb2dfdb</color>
-    <color name="TEAL_100_A060">#99b2dfdb</color>
-    <color name="TEAL_100_A070">#b2b2dfdb</color>
-    <color name="TEAL_100_A080">#ccb2dfdb</color>
-    <color name="TEAL_100_A090">#e6b2dfdb</color>
-    <color name="TEAL_100_A100">#ffb2dfdb</color>
-    <color name="TEAL_200_A010">#1980cbc4</color>
-    <color name="TEAL_200_A020">#3380cbc4</color>
-    <color name="TEAL_200_A030">#4c80cbc4</color>
-    <color name="TEAL_200_A040">#6680cbc4</color>
-    <color name="TEAL_200_A050">#7f80cbc4</color>
-    <color name="TEAL_200_A060">#9980cbc4</color>
-    <color name="TEAL_200_A070">#b280cbc4</color>
-    <color name="TEAL_200_A080">#cc80cbc4</color>
-    <color name="TEAL_200_A090">#e680cbc4</color>
-    <color name="TEAL_200_A100">#ff80cbc4</color>
-    <color name="TEAL_300_A010">#194db6ac</color>
-    <color name="TEAL_300_A020">#334db6ac</color>
-    <color name="TEAL_300_A030">#4c4db6ac</color>
-    <color name="TEAL_300_A040">#664db6ac</color>
-    <color name="TEAL_300_A050">#7f4db6ac</color>
-    <color name="TEAL_300_A060">#994db6ac</color>
-    <color name="TEAL_300_A070">#b24db6ac</color>
-    <color name="TEAL_300_A080">#cc4db6ac</color>
-    <color name="TEAL_300_A090">#e64db6ac</color>
-    <color name="TEAL_300_A100">#ff4db6ac</color>
-    <color name="TEAL_400_A010">#1926a69a</color>
-    <color name="TEAL_400_A020">#3326a69a</color>
-    <color name="TEAL_400_A030">#4c26a69a</color>
-    <color name="TEAL_400_A040">#6626a69a</color>
-    <color name="TEAL_400_A050">#7f26a69a</color>
-    <color name="TEAL_400_A060">#9926a69a</color>
-    <color name="TEAL_400_A070">#b226a69a</color>
-    <color name="TEAL_400_A080">#cc26a69a</color>
-    <color name="TEAL_400_A090">#e626a69a</color>
-    <color name="TEAL_400_A100">#ff26a69a</color>
-    <color name="TEAL_500_A010">#19009688</color>
-    <color name="TEAL_500_A020">#33009688</color>
-    <color name="TEAL_500_A030">#4c009688</color>
-    <color name="TEAL_500_A040">#66009688</color>
-    <color name="TEAL_500_A050">#7f009688</color>
-    <color name="TEAL_500_A060">#99009688</color>
-    <color name="TEAL_500_A070">#b2009688</color>
-    <color name="TEAL_500_A080">#cc009688</color>
-    <color name="TEAL_500_A090">#e6009688</color>
-    <color name="TEAL_500_A100">#ff009688</color>
-    <color name="TEAL_600_A010">#1900897b</color>
-    <color name="TEAL_600_A020">#3300897b</color>
-    <color name="TEAL_600_A030">#4c00897b</color>
-    <color name="TEAL_600_A040">#6600897b</color>
-    <color name="TEAL_600_A050">#7f00897b</color>
-    <color name="TEAL_600_A060">#9900897b</color>
-    <color name="TEAL_600_A070">#b200897b</color>
-    <color name="TEAL_600_A080">#cc00897b</color>
-    <color name="TEAL_600_A090">#e600897b</color>
-    <color name="TEAL_600_A100">#ff00897b</color>
-    <color name="TEAL_700_A010">#1900796b</color>
-    <color name="TEAL_700_A020">#3300796b</color>
-    <color name="TEAL_700_A030">#4c00796b</color>
-    <color name="TEAL_700_A040">#6600796b</color>
-    <color name="TEAL_700_A050">#7f00796b</color>
-    <color name="TEAL_700_A060">#9900796b</color>
-    <color name="TEAL_700_A070">#b200796b</color>
-    <color name="TEAL_700_A080">#cc00796b</color>
-    <color name="TEAL_700_A090">#e600796b</color>
-    <color name="TEAL_700_A100">#ff00796b</color>
-    <color name="TEAL_800_A010">#1900695c</color>
-    <color name="TEAL_800_A020">#3300695c</color>
-    <color name="TEAL_800_A030">#4c00695c</color>
-    <color name="TEAL_800_A040">#6600695c</color>
-    <color name="TEAL_800_A050">#7f00695c</color>
-    <color name="TEAL_800_A060">#9900695c</color>
-    <color name="TEAL_800_A070">#b200695c</color>
-    <color name="TEAL_800_A080">#cc00695c</color>
-    <color name="TEAL_800_A090">#e600695c</color>
-    <color name="TEAL_800_A100">#ff00695c</color>
-    <color name="TEAL_900_A010">#19004d40</color>
-    <color name="TEAL_900_A020">#33004d40</color>
-    <color name="TEAL_900_A030">#4c004d40</color>
-    <color name="TEAL_900_A040">#66004d40</color>
-    <color name="TEAL_900_A050">#7f004d40</color>
-    <color name="TEAL_900_A060">#99004d40</color>
-    <color name="TEAL_900_A070">#b2004d40</color>
-    <color name="TEAL_900_A080">#cc004d40</color>
-    <color name="TEAL_900_A090">#e6004d40</color>
-    <color name="TEAL_900_A100">#ff004d40</color>
-    <color name="THISTLE">#ffd8bfd8</color>
-    <color name="TOMATO">#ffff6347</color>
-    <color name="TRANSPARENT">#00000000</color>
-    <color name="TURQUOISE">#ff40e0d0</color>
-    <color name="VIOLET">#ffee82ee</color>
-    <color name="WHEAT">#fff5deb3</color>
-    <color name="WHITE">#ffffffff</color>
-    <color name="WHITESMOKE">#fff5f5f5</color>
-    <color name="WHITE_A010">#19ffffff</color>
-    <color name="WHITE_A020">#33ffffff</color>
-    <color name="WHITE_A030">#4cffffff</color>
-    <color name="WHITE_A040">#66ffffff</color>
-    <color name="WHITE_A050">#7fffffff</color>
-    <color name="WHITE_A060">#99ffffff</color>
-    <color name="WHITE_A070">#b2ffffff</color>
-    <color name="WHITE_A080">#ccffffff</color>
-    <color name="WHITE_A090">#e6ffffff</color>
-    <color name="WHITE_A100">#ffffffff</color>
-    <color name="YELLOW">#ffffff00</color>
-    <color name="YELLOWGREEN">#ff9acd32</color>
-    <color name="YELLOW_A010">#19ffff00</color>
-    <color name="YELLOW_A020">#33ffff00</color>
-    <color name="YELLOW_A030">#4cffff00</color>
-    <color name="YELLOW_A040">#66ffff00</color>
-    <color name="YELLOW_A050">#70ffff00</color>
-    <color name="YELLOW_A060">#99ffff00</color>
-    <color name="YELLOW_A070">#b2ffff00</color>
-    <color name="YELLOW_A080">#ccffff00</color>
-    <color name="YELLOW_A090">#e6ffff00</color>
-    <color name="YELLOW_A100">#ffffff00</color>
     <color name="abc_decor_view_status_guard">#ff000000</color>
     <color name="abc_decor_view_status_guard_light">#ffffffff</color>
     <color name="abc_search_url_text_normal">#7fa87f</color>
@@ -1101,36 +570,6 @@
     <color name="cardview_shadow_start_color">#37000000</color>
     <color name="catalyst_logbox_background">#ffffffff</color>
     <color name="catalyst_redbox_background">#eecc0000</color>
-    <color name="colorBlack">#000000</color>
-    <color name="colorDeepRed">#B22222</color>
-    <color name="colorGray">#CDC5BF</color>
-    <color name="colorRed">#FF0000</color>
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="common_25_black">#40000000</color>
-    <color name="common_30_black">#4D000000</color>
-    <color name="common_5_black">#13000000</color>
-    <color name="common_80_white">#90FFFFFF</color>
-    <color name="common_E5E5E5">#FFE5E5E5</color>
-    <color name="common_F2F4F6">#F2F4F6</color>
-    <color name="common_F5F7FB">#F5F7FB</color>
-    <color name="common_a8_black">#A8000000</color>
-    <color name="common_actionbar_bg_color">#FFFFFFFF</color>
-    <color name="common_actionbar_subtitle_color">#232325</color>
-    <color name="common_actionbar_title_color">#232325</color>
-    <color name="common_activity_bg_color">#F2F2F2</color>
-    <color name="common_black">#000000</color>
-    <color name="common_blue_black">#232325</color>
-    <color name="common_blue_light_gray">#E9ECF3</color>
-    <color name="common_blue_med_gray">#ADB0B7</color>
-    <color name="common_blue_med_light_gray">#D7DAE1</color>
-    <color name="common_blue_super_dark_gray">#50607A</color>
-    <color name="common_color_accent">#2E5BFF</color>
-    <color name="common_color_primary">#2E5BFF</color>
-    <color name="common_color_primary_dark">#2E5BFF</color>
-    <color name="common_color_primary_disable">#D7DAE1</color>
-    <color name="common_color_translucent_gray_bg">#70000000</color>
-    <color name="common_dialog_got_it">#2E5BFF</color>
-    <color name="common_divider_color">#0c000000</color>
     <color name="common_google_signin_btn_text_dark_default">@android:color/white</color>
     <color name="common_google_signin_btn_text_dark_disabled">#1F000000</color>
     <color name="common_google_signin_btn_text_dark_focused">@android:color/black</color>
@@ -1139,13 +578,6 @@
     <color name="common_google_signin_btn_text_light_disabled">#1F000000</color>
     <color name="common_google_signin_btn_text_light_focused">#90000000</color>
     <color name="common_google_signin_btn_text_light_pressed">#DE000000</color>
-    <color name="common_light_blue_gray">#F6F7FB</color>
-    <color name="common_orange">#FF6835</color>
-    <color name="common_red_dot">#FF371C</color>
-    <color name="common_ripple">#f2f5f7</color>
-    <color name="common_shadow_color">#88757575</color>
-    <color name="common_white">#FFFFFF</color>
-    <color name="contents_text">@color/BLACK</color>
     <color name="design_bottom_navigation_shadow_color">#14000000</color>
     <color name="design_dark_default_color_background">#121212</color>
     <color name="design_dark_default_color_error">#CF6679</color>
@@ -1185,7 +617,6 @@
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
-    <color name="encode_view">@color/WHITE</color>
     <color name="error_color_material_dark">#ff7043</color>
     <color name="error_color_material_light">#ff5722</color>
     <color name="foreground_material_dark">@android:color/white</color>
@@ -1432,8 +863,6 @@
     <color name="notification_action_color_filter">#ffffffff</color>
     <color name="notification_icon_bg_color">#ff9e9e9e</color>
     <color name="notification_material_background_media_default_color">#ff424242</color>
-    <color name="possible_result_points">#c0ffbd21</color>
-    <color name="preference_fallback_accent_color">#ff008577</color>
     <color name="primary_dark_material_dark">@android:color/black</color>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
     <color name="primary_material_dark">@color/material_grey_900</color>
@@ -1442,25 +871,18 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
-    <color name="result_minor_text">@color/SILVER</color>
-    <color name="result_points">#c099cc00</color>
-    <color name="result_text">@color/WHITE</color>
-    <color name="result_view">#b0000000</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
-    <color name="status_text">@color/WHITE</color>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
-    <color name="viewfinder_laser">#ffcc0000</color>
-    <color name="viewfinder_mask">#60000000</color>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_content_inset_with_nav">72dp</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
@@ -1544,17 +966,10 @@
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
     <dimen name="appcompat_dialog_background_inset">16dp</dimen>
     <dimen name="autofill_inline_suggestion_icon_size">20dp</dimen>
-    <dimen name="button_size">48dp</dimen>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
     <dimen name="clock_face_margin_start">64dp</dimen>
-    <dimen name="color_picker_margin_horizontal">16dp</dimen>
-    <dimen name="color_picker_margin_vertical">16dp</dimen>
-    <dimen name="color_swatch_large">64dip</dimen>
-    <dimen name="color_swatch_margins_large">8dip</dimen>
-    <dimen name="color_swatch_margins_small">4dip</dimen>
-    <dimen name="color_swatch_small">48dip</dimen>
     <dimen name="compat_button_inset_horizontal_material">4dp</dimen>
     <dimen name="compat_button_inset_vertical_material">6dp</dimen>
     <dimen name="compat_button_padding_horizontal_material">8dp</dimen>
@@ -1611,10 +1026,6 @@
     <dimen name="design_tab_text_size">14sp</dimen>
     <dimen name="design_tab_text_size_2line">12sp</dimen>
     <dimen name="design_textinput_caption_translate_y">5dp</dimen>
-    <dimen name="dialog_dont_show_again_checkbox_bottom_margin">0dp</dimen>
-    <dimen name="dialog_dont_show_again_checkbox_left_margin">16dp</dimen>
-    <dimen name="dialog_dont_show_again_checkbox_right_margin">16dp</dimen>
-    <dimen name="dialog_dont_show_again_checkbox_top_margin">16dp</dimen>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
     <dimen name="fastscroll_default_thickness">8dp</dimen>
@@ -1627,13 +1038,9 @@
     <item format="float" name="hint_alpha_material_light" type="dimen">0.38</item>
     <item format="float" name="hint_pressed_alpha_material_dark" type="dimen">0.70</item>
     <item format="float" name="hint_pressed_alpha_material_light" type="dimen">0.54</item>
-    <dimen name="horizontal_margin">16dp</dimen>
     <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_max_velocity">800dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_velocity">120dp</dimen>
-    <dimen name="list_font_size">18sp</dimen>
-    <dimen name="list_height_min">32dp</dimen>
-    <dimen name="list_item_bluetooth_info_padding">8dp</dimen>
     <dimen name="m3_alert_dialog_action_bottom_padding">14dp</dimen>
     <dimen name="m3_alert_dialog_action_top_padding">14dp</dimen>
     <dimen name="m3_alert_dialog_corner_size">28dp</dimen>
@@ -2244,14 +1651,6 @@
     <dimen name="notification_subtext_size">13sp</dimen>
     <dimen name="notification_top_pad">10dp</dimen>
     <dimen name="notification_top_pad_large_text">5dp</dimen>
-    <dimen name="preference_category_padding_start">0dp</dimen>
-    <dimen name="preference_icon_minWidth">0dp</dimen>
-    <dimen name="preference_seekbar_padding_end">22dp</dimen>
-    <dimen name="preference_seekbar_padding_start">0dp</dimen>
-    <dimen name="preference_seekbar_value_width">36dp</dimen>
-    <dimen name="scale_type_margin_top">18dp</dimen>
-    <dimen name="scale_type_padding">16dp</dimen>
-    <dimen name="text_sz_scale_type">24sp</dimen>
     <dimen name="tooltip_corner_radius">2dp</dimen>
     <dimen name="tooltip_horizontal_padding">16dp</dimen>
     <dimen name="tooltip_margin">8dp</dimen>
@@ -2260,7 +1659,6 @@
     <dimen name="tooltip_vertical_padding">6.5dp</dimen>
     <dimen name="tooltip_y_offset_non_touch">0dp</dimen>
     <dimen name="tooltip_y_offset_touch">16dp</dimen>
-    <dimen name="vertical_margin">16dp</dimen>
     <item name="material_ic_keyboard_arrow_next_black_24dp" type="drawable">@drawable/material_ic_keyboard_arrow_right_black_24dp</item>
     <item name="material_ic_keyboard_arrow_previous_black_24dp" type="drawable">@drawable/material_ic_keyboard_arrow_left_black_24dp</item>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
@@ -2312,18 +1710,12 @@
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
-    <item name="address" type="id"/>
-    <item name="anim_duration" type="id"/>
-    <item name="anim_listener" type="id"/>
-    <item name="anim_type" type="id"/>
     <item name="flipper_skip_empty_view_group_traversal" type="id"/>
     <item name="flipper_skip_view_traversal" type="id"/>
     <item name="fragment_container_view_tag" type="id"/>
     <item name="ghost_view" type="id"/>
     <item name="ghost_view_holder" type="id"/>
-    <item name="has_divider" type="id"/>
     <item name="home" type="id"/>
-    <item name="icon" type="id"/>
     <item name="invalidate_transform" type="id"/>
     <item name="item_touch_helper_previous_elevation" type="id"/>
     <item name="labelled_by" type="id"/>
@@ -2333,8 +1725,6 @@
     <item name="material_clock_level" type="id"/>
     <item name="material_value_index" type="id"/>
     <item name="media_controller_compat_view_tag" type="id"/>
-    <item name="mediastorephotoadapter" type="id"/>
-    <item name="message" type="id"/>
     <item name="motion_base" type="id"/>
     <item name="mtrl_anchor_parent" type="id"/>
     <item name="mtrl_card_checked_layer_id" type="id"/>
@@ -2342,7 +1732,6 @@
     <item name="mtrl_internal_children_alpha_tag" type="id"/>
     <item name="mtrl_motion_snapshot_view" type="id"/>
     <item name="mtrl_view_tag_bottom_padding" type="id"/>
-    <item name="name" type="id"/>
     <item name="navigation_bar_item_active_indicator_view" type="id"/>
     <item name="navigation_bar_item_icon_container" type="id"/>
     <item name="navigation_bar_item_icon_view" type="id"/>
@@ -2351,7 +1740,6 @@
     <item name="navigation_bar_item_small_label_view" type="id"/>
     <item name="parent_matrix" type="id"/>
     <item name="pointer_events" type="id"/>
-    <item name="position" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
     <item name="react_test_id" type="id"/>
@@ -2359,8 +1747,6 @@
     <item name="row_index_key" type="id"/>
     <item name="save_non_transition_alpha" type="id"/>
     <item name="save_overlay_view" type="id"/>
-    <item name="seekbar" type="id"/>
-    <item name="seekbar_value_label" type="id"/>
     <item name="selection_type" type="id"/>
     <item name="snackbar_action" type="id"/>
     <item name="snackbar_text" type="id"/>
@@ -2388,7 +1774,6 @@
     <item name="textinput_placeholder" type="id"/>
     <item name="textinput_prefix_text" type="id"/>
     <item name="textinput_suffix_text" type="id"/>
-    <item name="thumbnail" type="id"/>
     <item name="title" type="id"/>
     <item name="transform" type="id"/>
     <item name="transform_origin" type="id"/>
@@ -2411,8 +1796,6 @@
     <integer name="app_bar_elevation_anim_duration">150</integer>
     <integer name="bottom_sheet_slide_duration">150</integer>
     <integer name="cancel_button_image_alpha">127</integer>
-    <integer name="card_flip_time_full">300</integer>
-    <integer name="card_flip_time_half">150</integer>
     <integer name="config_tooltipAnimTime">150</integer>
     <integer name="design_snackbar_text_max_lines">2</integer>
     <integer name="design_tab_indicator_anim_duration_ms">300</integer>
@@ -2519,7 +1902,6 @@
     <string description="A description of an action that a user of an accessibility service can perform to expand a bottomsheet halfway to its full height. [CHAR LIMIT=25]" name="bottomsheet_action_expand_halfway">Expand halfway</string>
     <string description="An accessibility feedback when the bottom sheet drag handle is clicked [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_clicked">Drag handle double-tapped</string>
     <string description="The content description of bottom sheet drag handles [CHAR LIMIT=NONE]" name="bottomsheet_drag_handle_content_description">Drag handle</string>
-    <string name="camera">Camera</string>
     <string name="catalyst_change_bundle_location" project="catalyst" translatable="false">Change Bundle Location</string>
     <string name="catalyst_copy_button" project="catalyst" translatable="false">Copy\n</string>
     <string name="catalyst_debug_connecting" project="catalyst" translatable="false">Connecting to debugger...</string>
@@ -2551,11 +1933,6 @@
     <string name="character_counter_overflowed_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
-    <string name="color_picker_cancel">Cancel</string>
-    <string name="color_picker_default_title">Select a Color</string>
-    <string name="color_picker_select">Select</string>
-    <string name="color_swatch_description">Color <ns2:g example="14" id="color_index">%1$d</ns2:g></string>
-    <string name="color_swatch_description_selected">Color <ns2:g example="14" id="color_index">%1$d</ns2:g> selected</string>
     <string description="input that controls another element that can pop up to help the user set the value of that input" name="combobox_description">Combo Box</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text"><ns2:g id="app_name">%1$s</ns2:g> won\'t work unless you enable Google Play services.</string>
@@ -2575,12 +1952,10 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
-    <string name="dialog_dont_show_again">Don\'t show again.</string>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
   </string>
     <string name="error_icon_content_description">Error</string>
-    <string name="expand_button_title">Advanced</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
@@ -2628,6 +2003,8 @@
     <string description="Suffix for time in 12-hour standard, after noon. [CHAR_LIMIT=2]" name="material_timepicker_pm">PM</string>
     <string description="Title for the dialog with a time picker. [CHAR_LIMIT=32]" name="material_timepicker_select_time">Select time</string>
     <string name="material_timepicker_text_input_mode_description">Switch to text input mode for the time input.</string>
+    <string name="media_projection_notification_text">You are currently sharing your screen.</string>
+    <string name="media_projection_notification_title">Screen sharing</string>
     <string description="offers a list of choices to the user" name="menu_description">Menu</string>
     <string description="presentation of menu that usually remains visible and is usually presented horizontally" name="menubar_description">Menu Bar</string>
     <string description="an option in a set of choices contained by a menu or menubar" name="menuitem_description">Menu Item</string>
@@ -2699,42 +2076,15 @@
     <string name="mtrl_switch_track_path" translatable="false">M0,16 A16,16 0 0,1 16,0 H36 A16,16 0 0,1 36,32 H16 A16,16 0 0,1 0,16</string>
     <string description="Button text to indicate that the widget will ignore the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_cancel">Cancel</string>
     <string description="Button text to indicate that the widget will save the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_confirm">OK</string>
-    <string name="no_device">No USB camera found</string>
+    <string name="ongoing_notification_channel_name">Screen Sharing Notifications</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
-    <string name="permission_audio">No audio recording permission. \nAll audio function is disabled</string>
-    <string name="permission_audio_recording_reason">Audio recording permission is necessary for movie capture with audio.</string>
-    <string name="permission_audio_recording_request">Audio recording permission is necessary for movie capture with audio.</string>
-    <string name="permission_audio_streaming_reason">Audio recording permission is necessary for streaming with audio.</string>
-    <string name="permission_audio_streaming_request">Audio recording permission is necessary for streaming with audio.</string>
-    <string name="permission_camera">No camera access permission</string>
-    <string name="permission_camera_finish">No camera access permission. \nApp will finish soon</string>
-    <string name="permission_camera_reason">Camera access permission is necessary for fallback to built in camera.</string>
-    <string name="permission_camera_request">Camera access permission is necessary for fallback to built in camera.</string>
-    <string name="permission_ext_storage">No permission of writing external storage. \nMovie/still image capturing are disabled.</string>
-    <string name="permission_ext_storage_finish">No writing external storage permission. \nApp will finish soon</string>
-    <string name="permission_ext_storage_reason">Permission of writing external storage is necessary for movie/still image capturing.</string>
-    <string name="permission_ext_storage_request">Permission of writing external storage is necessary for movie/still image capturing.</string>
-    <string name="permission_hardware_id_request">Permission to access phone state/hardware id necessary for calling.</string>
-    <string name="permission_location">No location access permission</string>
-    <string name="permission_location_finish">No location access permission. \nApp will finish soon</string>
-    <string name="permission_location_reason">Location access permission is necessary for %s</string>
-    <string name="permission_location_request">Location access permission is necessary for %s</string>
-    <string name="permission_network">No network access permission.</string>
-    <string name="permission_network_finish">No network access permission. \nApp will finish soon</string>
-    <string name="permission_network_reason">Network access permission is necessary for streaming.</string>
-    <string name="permission_network_request">Network access permission is necessary for streaming.</string>
-    <string name="permission_title">Regarding permission</string>
     <string description="displays the progress status for tasks that take a long time" name="progressbar_description">Progress Bar</string>
     <string description="a group of radio buttons" name="radiogroup_description">Radio Group</string>
-    <string name="refresh">Refresh</string>
     <string description="an interactive element inside a tablist" name="rn_tab_description">Tab</string>
-    <string name="scale_type_inch">inch scale</string>
-    <string name="scale_type_mm">mm scale</string>
-    <string name="scale_type_none">none</string>
     <string description="controls the scrolling of content within a viewing area" name="scrollbar_description">Scroll Bar</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
@@ -2742,10 +2092,6 @@
   </string>
     <string description="Content description for the X button to clear text [CHAR_LIMIT=NONE]" name="searchview_clear_text_content_description">Clear text</string>
     <string description="Content description for the navigation button to return to the previous screen [CHAR_LIMIT=NONE]" name="searchview_navigation_content_description">Back</string>
-    <string name="select">Select USB Web Camera</string>
-    <string name="service_name">Background Service</string>
-    <string name="service_start">Started</string>
-    <string name="service_stop">Stopped</string>
     <string description="Title of the side sheet&apos;s accessibility pane that is spoken by TalkBack when the side sheet appears on screen. [CHAR_LIMIT=NONE]" name="side_sheet_accessibility_pane_title">Side Sheet</string>
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
     <string description="defines a type of range that expects the user to select a value from among discrete choices" name="spinbutton_description">Spin Button</string>
@@ -2757,13 +2103,10 @@
     <string description="a switch in its enabled state" name="state_on_description">on</string>
     <string description="used to indicate which elements within single-selection and multiple-selection composite widgets are not selected" name="state_unselected_description">unselected</string>
     <string name="status_bar_notification_info_overflow">999+</string>
-    <string name="summary_collapsed_preference_list"><ns2:g id="current_items">%1$s</ns2:g>, <ns2:g id="added_items">%2$s</ns2:g></string>
     <string description="provides a summary of current conditions, settings, or state, such as the current temperature in the Weather app" name="summary_description">Summary</string>
     <string description="container for a set of tabs" name="tablist_description">Tab List</string>
     <string description="a numerical counter listing the amount of elapsed time from a starting point or the remaining time until an end point" name="timer_description">Timer</string>
     <string description="a collection of commonly used function buttons or controls represented in a compact visual form" name="toolbar_description">Tool Bar</string>
-    <string name="v7_preference_off">OFF</string>
-    <string name="v7_preference_on">ON</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -6151,16 +5494,6 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
-    <style name="CommonDialogStyle" parent="@android:style/Theme.Dialog">
-        
-        <item name="android:windowFrame">@null</item>
-        
-        <item name="android:windowIsTranslucent">true</item>
-        
-        <item name="android:windowNoTitle">true</item>
-        
-        <item name="android:windowBackground">@android:color/transparent</item>
-    </style>
     <style name="DialogAnimationFade">
     <item name="android:windowEnterAnimation">@anim/catalyst_fade_in</item>
     <item name="android:windowExitAnimation">@anim/catalyst_fade_out</item>
@@ -6425,167 +5758,6 @@
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
     </style>
     <style name="Platform.Widget.AppCompat.Spinner" parent="android:Widget.Holo.Spinner"/>
-    <style name="Preference">
-        <item name="android:layout">@layout/preference</item>
-    </style>
-    <style name="Preference.Category">
-        <item name="android:layout">@layout/preference_category</item>
-        
-        <item name="android:shouldDisableView">false</item>
-        <item name="android:selectable">false</item>
-    </style>
-    <style name="Preference.Category.Material">
-        <item name="android:layout">@layout/preference_category_material</item>
-        <item name="allowDividerAbove">true</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.CheckBoxPreference">
-        <item name="android:widgetLayout">@layout/preference_widget_checkbox</item>
-    </style>
-    <style name="Preference.CheckBoxPreference.Material">
-        <item name="android:layout">@layout/preference_material</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.DialogPreference">
-        <item name="android:positiveButtonText">@android:string/ok</item>
-        <item name="android:negativeButtonText">@android:string/cancel</item>
-    </style>
-    <style name="Preference.DialogPreference.EditTextPreference">
-        <item name="android:dialogLayout">@layout/preference_dialog_edittext</item>
-    </style>
-    <style name="Preference.DialogPreference.EditTextPreference.Material">
-        <item name="android:layout">@layout/preference_material</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="singleLineTitle">false</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.DialogPreference.Material">
-        <item name="android:layout">@layout/preference_material</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.DropDown">
-        <item name="android:layout">@layout/preference_dropdown</item>
-    </style>
-    <style name="Preference.DropDown.Material">
-        <item name="android:layout">@layout/preference_dropdown_material</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.Information">
-        <item name="android:layout">@layout/preference_information</item>
-        <item name="android:enabled">false</item>
-        <item name="android:shouldDisableView">false</item>
-    </style>
-    <style name="Preference.Information.Material">
-        <item name="android:layout">@layout/preference_information_material</item>
-        <item name="android:enabled">false</item>
-        <item name="android:shouldDisableView">false</item>
-    </style>
-    <style name="Preference.Material">
-        <item name="android:layout">@layout/preference_material</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="singleLineTitle">false</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.PreferenceScreen">
-    </style>
-    <style name="Preference.PreferenceScreen.Material">
-        <item name="android:layout">@layout/preference_material</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.SeekBarPreference">
-        <item name="android:layout">@layout/preference_widget_seekbar</item>
-        <item name="adjustable">true</item>
-        <item name="showSeekBarValue">true</item>
-    </style>
-    <style name="Preference.SeekBarPreference.Material">
-        <item name="android:layout">@layout/preference_widget_seekbar_material</item>
-        <item name="adjustable">true</item>
-        <item name="showSeekBarValue">true</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.SwitchPreference">
-        <item name="android:widgetLayout">@layout/preference_widget_switch</item>
-        <item name="android:switchTextOn">@string/v7_preference_on</item>
-        <item name="android:switchTextOff">@string/v7_preference_off</item>
-    </style>
-    <style name="Preference.SwitchPreference.Material">
-        <item name="android:layout">@layout/preference_material</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="singleLineTitle">false</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="Preference.SwitchPreferenceCompat">
-        <item name="android:widgetLayout">@layout/preference_widget_switch_compat</item>
-        <item name="android:switchTextOn">@string/v7_preference_on</item>
-        <item name="android:switchTextOff">@string/v7_preference_off</item>
-    </style>
-    <style name="Preference.SwitchPreferenceCompat.Material">
-        <item name="android:layout">@layout/preference_material</item>
-        <item name="allowDividerAbove">false</item>
-        <item name="allowDividerBelow">true</item>
-        <item name="iconSpaceReserved">@bool/config_materialPreferenceIconSpaceReserved</item>
-    </style>
-    <style name="PreferenceFragment">
-        <item name="android:paddingLeft">0dp</item>
-        <item name="android:paddingRight">0dp</item>
-        <item name="android:divider">?android:attr/listDivider</item>
-    </style>
-    <style name="PreferenceFragment.Material">
-        <item name="android:divider">@drawable/preference_list_divider_material</item>
-        <item name="allowDividerAfterLastItem">false</item>
-    </style>
-    <style name="PreferenceFragmentList">
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-    </style>
-    <style name="PreferenceFragmentList.Material">
-        <item name="android:paddingLeft">0dp</item>
-        <item name="android:paddingRight">0dp</item>
-    </style>
-    <style name="PreferenceThemeOverlay">
-        <item name="android:scrollbars">vertical</item>
-        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference.Material</item>
-        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference.Material</item>
-        <item name="dropdownPreferenceStyle">@style/Preference.DropDown.Material</item>
-        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference.Material</item>
-        <item name="preferenceCategoryStyle">@style/Preference.Category.Material</item>
-        <item name="preferenceFragmentCompatStyle">@style/PreferenceFragment.Material</item>
-        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList.Material</item>
-        <item name="preferenceFragmentStyle">@style/PreferenceFragment.Material</item>
-        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen.Material</item>
-        <item name="preferenceStyle">@style/Preference.Material</item>
-        <item name="seekBarPreferenceStyle">@style/Preference.SeekBarPreference.Material</item>
-        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat.Material</item>
-        <item name="switchPreferenceStyle">@style/Preference.SwitchPreference.Material</item>
-    </style>
-    <style name="PreferenceThemeOverlay.v14"/>
-    <style name="PreferenceThemeOverlay.v14.Material"/>
-    <style name="Preference_TextAppearanceMaterialBody2">
-        <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily" ns1:ignore="NewApi">sans-serif</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textStyle">normal</item>
-    </style>
-    <style name="Preference_TextAppearanceMaterialSubhead">
-        <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily" ns1:ignore="NewApi">sans-serif</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textStyle">normal</item>
-    </style>
     <style name="RtlOverlay.DialogWindowTitle.AppCompat" parent="Base.DialogWindowTitle.AppCompat">
     </style>
     <style name="RtlOverlay.Widget.AppCompat.ActionBar.TitleItem" parent="android:Widget">
@@ -6641,10 +5813,6 @@
         <item name="android:paddingLeft">@dimen/abc_action_bar_overflow_padding_start_material</item>
         <item name="android:paddingRight">@dimen/abc_action_bar_overflow_padding_end_material</item>
     </style>
-    <style name="SeekBarPreference_summary" parent="@android:style/TextAppearance.Small">
-		
-	</style>
-    <style name="SeekBarPreference_title" parent="@android:style/TextAppearance.Large"/>
     <style name="ShapeAppearance.M3.Comp.Badge.Large.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.Full"/>
     <style name="ShapeAppearance.M3.Comp.Badge.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.Full"/>
     <style name="ShapeAppearance.M3.Comp.BottomAppBar.Container.Shape" parent="ShapeAppearance.M3.Sys.Shape.Corner.None"/>
@@ -6786,12 +5954,6 @@
     <item name="cornerSizeBottomLeft">@dimen/mtrl_textinput_box_corner_radius_small</item>
     <item name="cornerSizeBottomRight">@dimen/mtrl_textinput_box_corner_radius_small</item>
   </style>
-    <style name="SheetStyle" parent="android:Widget">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="behavior_peekHeight">auto</item>
-        <item name="behavior_hideable">true</item>
-        <item name="behavior_skipCollapsed">false</item>
-    </style>
     <style name="SpinnerDatePickerDialog" ns1:targetApi="lollipop" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:datePickerStyle">@style/SpinnerDatePickerStyle</item>
     </style>
@@ -7939,9 +7101,6 @@
     <item name="colorControlNormal">@color/material_on_surface_emphasis_medium</item>
     <item name="actionMenuTextColor">@color/material_on_surface_emphasis_medium</item>
   </style>
-    <style name="TransparentBottomSheetStyle" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/SheetStyle</item>
-    </style>
     <style name="Widget.AppCompat.ActionBar" parent="Base.Widget.AppCompat.ActionBar">
     </style>
     <style name="Widget.AppCompat.ActionBar.Solid" parent="Base.Widget.AppCompat.ActionBar.Solid">
@@ -10749,10 +9908,6 @@
         <attr format="reference" name="listChoiceIndicatorMultipleAnimated"/>
 
     </declare-styleable>
-    <declare-styleable name="AspectScaledTextureView">
-		<attr name="aspect_ratio"/>
-		<attr name="scale_mode"/>
-	</declare-styleable>
     <declare-styleable name="Autofill.InlineSuggestion">
         
         <attr format="boolean" name="isAutofillInlineSuggestionTheme"/>
@@ -10766,11 +9921,6 @@
         <attr format="reference" name="autofillInlineSuggestionSubtitle"/>
         
         <attr format="reference" name="autofillInlineSuggestionEndIconStyle"/>
-    </declare-styleable>
-    <declare-styleable name="BackgroundStyle">
-        <attr name="android:selectableItemBackground"/>
-        
-        <attr name="selectableItemBackground"/>
     </declare-styleable>
     <declare-styleable name="Badge">
     
@@ -11038,17 +10188,6 @@
         
         <attr name="android:minHeight"/>
     </declare-styleable>
-    <declare-styleable name="CheckBoxPreference">
-        
-        <attr format="string" name="summaryOn"/>
-        <attr name="android:summaryOn"/>
-        
-        <attr format="string" name="summaryOff"/>
-        <attr name="android:summaryOff"/>
-        
-        <attr format="boolean" name="disableDependentsState"/>
-        <attr name="android:disableDependentsState"/>
-    </declare-styleable>
     <declare-styleable name="CheckedTextView">
         <attr name="android:checkMark"/>
         
@@ -11206,22 +10345,6 @@
     <attr format="reference" name="checkedChip"/>
 
   </declare-styleable>
-    <declare-styleable name="CircleProgressView">
-        
-        <attr format="color|reference" name="outsideCircleBgColor"/>
-        
-        <attr format="color|reference" name="progressArcBgColor"/>
-        
-        <attr format="color|reference" name="insideCircleBgColor"/>
-        <attr format="color|reference" name="insideCircleTouchedBgColor"/>
-        
-        <attr format="color|reference" name="insideRectangleBgColor"/>
-
-        
-        <attr format="color|reference" name="tipTextColor"/>
-        
-        <attr format="dimension" name="tipTextSize"/>
-    </declare-styleable>
     <declare-styleable name="CircularProgressIndicator">
     
     <attr format="dimension" name="indicatorSize"/>
@@ -11415,10 +10538,10 @@
             <enum name="add" value="16"/>
         </attr>
     </declare-styleable>
-    <declare-styleable name="Constraint"><attr name="android:orientation"/><attr name="android:id"/><attr name="android:visibility"/><attr name="visibilityMode"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="pivotAnchor"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr name="constraint_referenced_tags"/><attr name="android:maxHeight"/><attr name="android:maxWidth"/><attr name="android:minHeight"/><attr name="android:minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="animate_relativeTo"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="transitionPathRotate"/><attr name="drawPath"/><attr name="motionProgress"/><attr name="layout_constraintTag"/><attr name="motionStagger"/></declare-styleable>
-    <declare-styleable name="ConstraintLayout_Layout"><attr name="android:orientation"/><attr name="android:minWidth"/><attr name="android:minHeight"/><attr name="android:maxWidth"/><attr name="android:maxHeight"/><attr name="android:visibility"/><attr name="android:elevation"/><attr name="layout_optimizationLevel"/><attr name="layoutDescription"/><attr name="constraintSet"/><attr name="barrierDirection"/><attr name="barrierAllowsGoneWidgets"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr name="constraint_referenced_tags"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="android:padding"/><attr name="android:paddingTop"/><attr name="android:paddingBottom"/><attr name="android:paddingLeft"/><attr name="android:paddingRight"/><attr name="android:paddingStart"/><attr name="android:paddingEnd"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="layout_constraintTag"/></declare-styleable>
+    <declare-styleable name="Constraint"><attr name="android:orientation"/><attr name="android:id"/><attr name="android:visibility"/><attr name="visibilityMode"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="pivotAnchor"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr name="android:maxHeight"/><attr name="android:maxWidth"/><attr name="android:minHeight"/><attr name="android:minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="animate_relativeTo"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="transitionPathRotate"/><attr name="drawPath"/><attr name="motionProgress"/><attr name="layout_constraintTag"/><attr name="motionStagger"/></declare-styleable>
+    <declare-styleable name="ConstraintLayout_Layout"><attr name="android:orientation"/><attr name="android:minWidth"/><attr name="android:minHeight"/><attr name="android:maxWidth"/><attr name="android:maxHeight"/><attr name="android:visibility"/><attr name="android:elevation"/><attr name="layout_optimizationLevel"/><attr name="layoutDescription"/><attr name="constraintSet"/><attr name="barrierDirection"/><attr name="barrierAllowsGoneWidgets"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="android:padding"/><attr name="android:paddingTop"/><attr name="android:paddingBottom"/><attr name="android:paddingLeft"/><attr name="android:paddingRight"/><attr name="android:paddingStart"/><attr name="android:paddingEnd"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="layout_constraintTag"/></declare-styleable>
     <declare-styleable name="ConstraintLayout_placeholder"><attr name="placeholder_emptyVisibility"/><attr name="content"/></declare-styleable>
-    <declare-styleable name="ConstraintSet"><attr format="reference" name="deriveConstraintsFrom"/><attr name="android:orientation"/><attr name="android:id"/><attr name="android:visibility"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="pivotAnchor"/><attr name="android:pivotX"/><attr name="android:pivotY"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="constraint_referenced_ids"/><attr name="constraint_referenced_tags"/><attr name="barrierMargin"/><attr name="android:maxHeight"/><attr name="android:maxWidth"/><attr name="android:minHeight"/><attr name="android:minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="animate_relativeTo"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="transitionPathRotate"/><attr name="motionStagger"/><attr name="drawPath"/><attr name="motionProgress"/><attr name="layout_constraintTag"/></declare-styleable>
+    <declare-styleable name="ConstraintSet"><attr format="reference" name="deriveConstraintsFrom"/><attr name="android:orientation"/><attr name="android:id"/><attr name="android:visibility"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="pivotAnchor"/><attr name="android:pivotX"/><attr name="android:pivotY"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="constraint_referenced_ids"/><attr name="barrierMargin"/><attr name="android:maxHeight"/><attr name="android:maxWidth"/><attr name="android:minHeight"/><attr name="android:minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/><attr name="flow_horizontalStyle"/><attr name="flow_verticalStyle"/><attr name="flow_verticalAlign"/><attr name="flow_horizontalAlign"/><attr name="flow_verticalBias"/><attr name="flow_horizontalBias"/><attr name="flow_wrapMode"/><attr name="flow_maxElementsWrap"/><attr name="flow_horizontalGap"/><attr name="flow_verticalGap"/><attr name="flow_firstHorizontalStyle"/><attr name="flow_firstVerticalStyle"/><attr name="flow_firstHorizontalBias"/><attr name="flow_firstVerticalBias"/><attr name="flow_lastHorizontalStyle"/><attr name="flow_lastVerticalStyle"/><attr name="flow_lastHorizontalBias"/><attr name="flow_lastVerticalBias"/><attr name="animate_relativeTo"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="transitionPathRotate"/><attr name="motionStagger"/><attr name="drawPath"/><attr name="motionProgress"/><attr name="layout_constraintTag"/></declare-styleable>
     <declare-styleable name="CoordinatorLayout">
         
         <attr format="reference" name="keylines"/>
@@ -11510,26 +10633,6 @@
         </attr>
     </declare-styleable>
     <declare-styleable name="CustomAttribute"><attr format="string" name="attributeName"/><attr format="color" name="customColorValue"/><attr format="color" name="customColorDrawableValue"/><attr format="integer" name="customIntegerValue"/><attr format="float" name="customFloatValue"/><attr format="string" name="customStringValue"/><attr format="dimension" name="customDimension"/><attr format="dimension" name="customPixelDimension"/><attr format="boolean" name="customBoolean"/></declare-styleable>
-    <declare-styleable name="DialogPreference">
-        
-        <attr format="string" name="dialogTitle"/>
-        <attr name="android:dialogTitle"/>
-        
-        <attr format="string" name="dialogMessage"/>
-        <attr name="android:dialogMessage"/>
-        
-        <attr format="reference" name="dialogIcon"/>
-        <attr name="android:dialogIcon"/>
-        
-        <attr format="string" name="positiveButtonText"/>
-        <attr name="android:positiveButtonText"/>
-        
-        <attr format="string" name="negativeButtonText"/>
-        <attr name="android:negativeButtonText"/>
-        
-        <attr format="reference" name="dialogLayout"/>
-        <attr name="android:dialogLayout"/>
-    </declare-styleable>
     <declare-styleable name="DrawerArrowToggle">
         
         <attr format="color" name="color"/>
@@ -11704,39 +10807,6 @@
         <attr name="android:name"/>
         <attr name="android:tag"/>
     </declare-styleable>
-    <declare-styleable name="FrameView">
-		
-		<attr default="frame_type_frame" name="frame_type">
-			<enum name="frame_type_none" value="0"/>
-			<enum name="frame_type_frame" value="1"/>
-			<enum name="frame_type_cross_full" value="2"/>
-			<enum name="frame_type_cross_quarter" value="3"/>
-			<enum name="frame_type_circle" value="4"/>
-			<enum name="frame_type_cross_circle" value="5"/>
-			<enum name="frame_type_circle2" value="6"/>
-			<enum name="frame_type_cross_circle2" value="7"/>
-		</attr>
-		
-		<attr default="3dp" format="dimension" name="frame_width"/>
-		
-		<attr default="#ffb1b1b1" format="reference|color|integer" name="frame_color"/>
-		
-		<attr default="scale_none" name="scale_type">
-			<enum name="scale_none" value="0"/>
-			<enum name="scale_inch" value="1"/>
-			<enum name="scale_mm" value="2"/>
-		</attr>
-		
-		<attr default="3dp" format="dimension" name="scale_width"/>
-		
-		<attr default="#ffb1b1b1" format="reference|color|integer" name="scale_color"/>
-		
-		<attr default="0" format="float" name="scale_rotation"/>
-		
-		<attr default="1" format="float" name="scale_scale"/>
-		
-		<attr default="#ffb1b1b1" format="reference|color|integer" name="tick_color"/>
-	</declare-styleable>
     <declare-styleable name="GenericDraweeHierarchy">
 
     
@@ -11910,12 +10980,6 @@
         
         <attr name="android:color"/>
     </declare-styleable>
-    <declare-styleable name="IAspectRatioView">
-		<attr name="aspect_ratio"/>
-	</declare-styleable>
-    <declare-styleable name="IScaledView">
-		<attr name="scale_mode"/>
-	</declare-styleable>
     <declare-styleable name="ImageFilterView"><attr format="reference" name="altSrc"/><attr format="float" name="saturation"/><attr format="float" name="brightness"/><attr format="float" name="warmth"/><attr format="float" name="contrast"/><attr format="float" name="crossfade"/><attr format="dimension" name="round"/><attr format="boolean" name="overlay"/><attr format="float" name="roundPercent"/></declare-styleable>
     <declare-styleable name="Insets">
     
@@ -11927,18 +10991,6 @@
     <attr format="boolean" name="marginRightSystemWindowInsets"/>
     <attr format="boolean" name="marginTopSystemWindowInsets"/>
   </declare-styleable>
-    <declare-styleable name="ItemPicker">
-	    <attr format="reference" name="ItemPickerIncrementSrc"/>
-	    <attr format="reference" name="ItemPickerDecrementSrc"/>
-	    <attr format="reference" name="ItemPickerIncrementBackground"/>
-	    <attr format="reference" name="ItemPickerDecrementBackground"/>
-	    <attr format="reference" name="ItemPickerEditTextBackground"/>
-		<attr format="integer" name="ItemPickerMinItemValue"/>
-		<attr format="integer" name="ItemPickerMaxItemValue"/>
-		<attr format="integer" name="ItemPickerCurrentItemValue"/>
-		<attr format="integer" name="ItemPickerSpeed"/>
-		<attr format="reference" name="ItemPickerDisplayedValue"/>
-	</declare-styleable>
     <declare-styleable name="KeyAttribute"><attr name="framePosition"/><attr name="motionTarget"/><attr name="transitionEasing"/><attr name="curveFit"/><attr name="motionProgress"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:transformPivotX"/><attr name="android:transformPivotY"/><attr name="transitionPathRotate"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/></declare-styleable>
     <declare-styleable name="KeyCycle"><attr name="motionTarget"/><attr name="curveFit"/><attr name="framePosition"/><attr name="transitionEasing"/><attr name="motionProgress"/><attr name="waveShape"/><attr name="wavePeriod"/><attr name="waveOffset"/><attr name="waveVariesBy"/><attr name="transitionPathRotate"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/></declare-styleable>
     <declare-styleable name="KeyFrame"/>
@@ -11951,7 +11003,7 @@
         </attr><attr format="float" name="percentX"/><attr format="float" name="percentY"/><attr format="float" name="percentWidth"/><attr format="float" name="percentHeight"/><attr name="framePosition"/><attr name="motionTarget"/><attr name="transitionEasing"/><attr name="pathMotionArc"/><attr name="curveFit"/><attr name="drawPath"/><attr name="sizePercent"/></declare-styleable>
     <declare-styleable name="KeyTimeCycle"><attr name="framePosition"/><attr name="motionTarget"/><attr name="transitionEasing"/><attr name="curveFit"/><attr name="waveShape"/><attr name="wavePeriod"/><attr name="motionProgress"/><attr name="waveOffset"/><attr name="waveDecay"/><attr name="android:alpha"/><attr name="android:elevation"/><attr name="android:rotation"/><attr name="android:rotationX"/><attr name="android:rotationY"/><attr name="transitionPathRotate"/><attr name="android:scaleX"/><attr name="android:scaleY"/><attr name="android:translationX"/><attr name="android:translationY"/><attr name="android:translationZ"/></declare-styleable>
     <declare-styleable name="KeyTrigger"><attr name="framePosition"/><attr name="motionTarget"/><attr format="reference" name="triggerReceiver"/><attr format="string" name="onNegativeCross"/><attr format="string" name="onPositiveCross"/><attr format="string" name="onCross"/><attr format="float" name="triggerSlack"/><attr format="reference" name="triggerId"/><attr format="boolean" name="motion_postLayoutCollision"/><attr format="reference" name="motion_triggerOnCollision"/></declare-styleable>
-    <declare-styleable name="Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="android:orientation"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr name="constraint_referenced_tags"/><attr format="dimension" name="maxHeight"/><attr format="dimension" name="maxWidth"/><attr format="dimension" name="minHeight"/><attr format="dimension" name="minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/></declare-styleable>
+    <declare-styleable name="Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_marginStart"/><attr name="android:layout_marginBottom"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginEnd"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginRight"/><attr name="layout_constraintCircle"/><attr name="layout_constraintCircleRadius"/><attr name="layout_constraintCircleAngle"/><attr name="layout_constraintGuide_begin"/><attr name="layout_constraintGuide_end"/><attr name="layout_constraintGuide_percent"/><attr name="layout_constraintLeft_toLeftOf"/><attr name="layout_constraintLeft_toRightOf"/><attr name="layout_constraintRight_toLeftOf"/><attr name="layout_constraintRight_toRightOf"/><attr name="layout_constraintTop_toTopOf"/><attr name="layout_constraintTop_toBottomOf"/><attr name="layout_constraintBottom_toTopOf"/><attr name="layout_constraintBottom_toBottomOf"/><attr name="layout_constraintBaseline_toBaselineOf"/><attr name="layout_constraintStart_toEndOf"/><attr name="layout_constraintStart_toStartOf"/><attr name="layout_constraintEnd_toStartOf"/><attr name="layout_constraintEnd_toEndOf"/><attr name="layout_goneMarginLeft"/><attr name="layout_goneMarginTop"/><attr name="layout_goneMarginRight"/><attr name="layout_goneMarginBottom"/><attr name="layout_goneMarginStart"/><attr name="layout_goneMarginEnd"/><attr name="layout_constrainedWidth"/><attr name="layout_constrainedHeight"/><attr name="layout_constraintHorizontal_bias"/><attr name="layout_constraintVertical_bias"/><attr name="layout_constraintWidth_default"/><attr name="layout_constraintHeight_default"/><attr name="layout_constraintWidth_min"/><attr name="layout_constraintWidth_max"/><attr name="android:orientation"/><attr name="layout_constraintWidth_percent"/><attr name="layout_constraintHeight_min"/><attr name="layout_constraintHeight_max"/><attr name="layout_constraintHeight_percent"/><attr name="layout_constraintLeft_creator"/><attr name="layout_constraintTop_creator"/><attr name="layout_constraintRight_creator"/><attr name="layout_constraintBottom_creator"/><attr name="layout_constraintBaseline_creator"/><attr name="layout_constraintDimensionRatio"/><attr name="layout_constraintHorizontal_weight"/><attr name="layout_constraintVertical_weight"/><attr name="layout_constraintHorizontal_chainStyle"/><attr name="layout_constraintVertical_chainStyle"/><attr name="layout_editor_absoluteX"/><attr name="layout_editor_absoluteY"/><attr name="barrierDirection"/><attr name="barrierMargin"/><attr name="constraint_referenced_ids"/><attr format="dimension" name="maxHeight"/><attr format="dimension" name="maxWidth"/><attr format="dimension" name="minHeight"/><attr format="dimension" name="minWidth"/><attr name="barrierAllowsGoneWidgets"/><attr name="chainUseRtl"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat">
         
         <attr name="android:orientation"/>
@@ -12019,14 +11071,6 @@
         <attr name="android:dropDownVerticalOffset"/>
         
         <attr name="android:dropDownHorizontalOffset"/>
-    </declare-styleable>
-    <declare-styleable name="ListPreference">
-        
-        <attr format="reference" name="entries"/>
-        <attr name="android:entries"/>
-        
-        <attr format="reference" name="entryValues"/>
-        <attr name="android:entryValues"/>
     </declare-styleable>
     <declare-styleable name="LoadingImageView"><attr name="imageAspectRatioAdjust">
 <enum name="none" value="0"/>
@@ -12556,14 +11600,6 @@
             <enum name="staticPostLayout" value="2"/>
             <enum name="staticLayout" value="3"/>
         </attr><attr format="color" name="telltales_tailColor"/><attr format="float" name="telltales_tailScale"/></declare-styleable>
-    <declare-styleable name="MultiSelectListPreference">
-        
-        <attr name="entries"/>
-        <attr name="android:entries"/>
-        
-        <attr name="entryValues"/>
-        <attr name="android:entryValues"/>
-    </declare-styleable>
     <declare-styleable name="NavigationBarActiveIndicator">
     
     <attr name="android:color"/>
@@ -12731,156 +11767,6 @@
         
         <attr format="boolean" name="state_above_anchor"/>
     </declare-styleable>
-    <declare-styleable name="Preference">
-        
-        <attr name="icon"/>
-        <attr name="android:icon"/>
-        
-        <attr format="string" name="key"/>
-        <attr name="android:key"/>
-        
-        <attr name="title"/>
-        <attr name="android:title"/>
-        
-        <attr format="string" name="summary"/>
-        <attr name="android:summary"/>
-        
-        <attr format="integer" name="order"/>
-        <attr name="android:order"/>
-        
-        <attr format="string" name="fragment"/>
-        <attr name="android:fragment"/>
-        
-        <attr name="layout"/>
-        <attr name="android:layout"/>
-        
-        <attr format="reference" name="widgetLayout"/>
-        <attr name="android:widgetLayout"/>
-        
-        <attr format="boolean" name="enabled"/>
-        <attr name="android:enabled"/>
-        
-        <attr format="boolean" name="selectable"/>
-        <attr name="android:selectable"/>
-        
-        <attr format="string" name="dependency"/>
-        <attr name="android:dependency"/>
-        
-        <attr format="boolean" name="persistent"/>
-        <attr name="android:persistent"/>
-        
-        <attr format="string|boolean|integer|reference|float" name="defaultValue"/>
-        <attr name="android:defaultValue"/>
-        
-        <attr format="boolean" name="shouldDisableView"/>
-        <attr name="android:shouldDisableView"/>
-
-        
-        <attr format="boolean" name="allowDividerAbove"/>
-
-        
-        <attr format="boolean" name="allowDividerBelow"/>
-
-        
-        <attr format="boolean" name="singleLineTitle"/>
-        <attr name="android:singleLineTitle"/>
-
-        
-        <attr format="boolean" name="iconSpaceReserved"/>
-        <attr name="android:iconSpaceReserved"/>
-
-        
-        <attr format="boolean" name="isPreferenceVisible"/>
-
-    </declare-styleable>
-    <declare-styleable name="PreferenceFragment">
-        
-        <attr name="android:layout"/>
-        
-        <attr name="android:divider"/>
-        
-        <attr name="android:dividerHeight"/>
-        
-        <attr name="allowDividerAfterLastItem"/>
-    </declare-styleable>
-    <declare-styleable name="PreferenceFragmentCompat">
-        
-        <attr name="android:layout"/>
-        
-        <attr name="android:divider"/>
-        
-        <attr name="android:dividerHeight"/>
-        
-        <attr format="boolean" name="allowDividerAfterLastItem"/>
-    </declare-styleable>
-    <declare-styleable name="PreferenceGroup">
-        
-        <attr format="boolean" name="orderingFromXml"/>
-        <attr name="android:orderingFromXml"/>
-        
-        <attr format="integer" name="initialExpandedChildrenCount"/>
-    </declare-styleable>
-    <declare-styleable name="PreferenceImageView">
-        <attr format="dimension" name="maxWidth"/>
-        <attr name="android:maxWidth"/>
-        <attr format="dimension" name="maxHeight"/>
-        <attr name="android:maxHeight"/>
-    </declare-styleable>
-    <declare-styleable name="PreferenceTheme">
-
-        
-        
-        
-        <eat-comment/>
-
-        
-        <attr format="reference" name="preferenceTheme"/>
-
-        
-        <attr format="reference" name="preferenceScreenStyle"/>
-        
-        <attr format="reference" name="preferenceActivityStyle"/>
-        
-        <attr format="reference" name="preferenceFragmentStyle"/>
-        
-        <attr format="reference" name="preferenceFragmentCompatStyle"/>
-        
-        <attr format="reference" name="preferenceCategoryStyle"/>
-        
-        <attr format="reference" name="preferenceStyle"/>
-        
-        <attr format="reference" name="preferenceInformationStyle"/>
-        
-        <attr format="reference" name="checkBoxPreferenceStyle"/>
-        
-        <attr format="reference" name="yesNoPreferenceStyle"/>
-        
-        <attr format="reference" name="dialogPreferenceStyle"/>
-        
-        <attr format="reference" name="editTextPreferenceStyle"/>
-        
-        <attr format="reference" name="ringtonePreferenceStyle"/>
-        
-        <attr format="reference" name="dropdownPreferenceStyle"/>
-        
-        <attr format="reference" name="preferenceLayoutChild"/>
-        
-        <attr format="reference" name="preferencePanelStyle"/>
-        
-        <attr format="reference" name="preferenceHeaderPanelStyle"/>
-        
-        <attr format="reference" name="preferenceListStyle"/>
-        
-        <attr format="reference" name="preferenceFragmentListStyle"/>
-        
-        <attr format="dimension" name="preferenceFragmentPaddingSide"/>
-        
-        <attr format="reference" name="switchPreferenceStyle"/>
-        
-        <attr format="reference" name="switchPreferenceCompatStyle"/>
-        
-        <attr format="reference" name="seekBarPreferenceStyle"/>
-    </declare-styleable>
     <declare-styleable name="PropertySet"><attr name="android:visibility"/><attr name="visibilityMode"/><attr format="float" name="android:alpha"/><attr name="motionProgress"/><attr name="layout_constraintTag"/></declare-styleable>
     <declare-styleable name="RadialViewGroup">
 
@@ -12899,9 +11785,6 @@
         
         <attr format="dimension" name="paddingTopNoTitle"/>
     </declare-styleable>
-    <declare-styleable name="RecycleViewWithEmptyView">
-		<attr format="color|reference" name="listDivider" value="@null"/>
-	</declare-styleable>
     <declare-styleable name="RecyclerView">
         
         <attr format="string" name="layoutManager"/>
@@ -12957,7 +11840,6 @@
     <attr name="strokeWidth"/>
   </declare-styleable>
     <declare-styleable name="SearchView"><attr format="reference" name="layout"/><attr format="boolean" name="iconifiedByDefault"/><attr name="android:maxWidth"/><attr format="string" name="queryHint"/><attr format="string" name="defaultQueryHint"/><attr name="android:imeOptions"/><attr name="android:inputType"/><attr format="reference" name="closeIcon"/><attr format="reference" name="goIcon"/><attr format="reference" name="searchIcon"/><attr format="reference" name="searchHintIcon"/><attr format="reference" name="voiceIcon"/><attr format="reference" name="commitIcon"/><attr format="reference" name="suggestionRowLayout"/><attr format="reference" name="queryBackground"/><attr format="reference" name="submitBackground"/><attr name="android:focusable"/><attr name="android:textAppearance"/><attr name="android:text"/><attr name="android:hint"/><attr format="string" name="searchPrefixText"/><attr format="boolean" name="useDrawerArrowDrawable"/><attr format="boolean" name="animateNavigationIcon"/><attr format="boolean" name="animateMenuItems"/><attr name="hideNavigationIcon"/><attr format="boolean" name="autoShowKeyboard"/><attr name="headerLayout"/></declare-styleable>
-    <declare-styleable name="SeekBarPreference"><attr format="integer" name="min"/><attr name="android:max"/><attr name="android:layout"/><attr format="integer" name="seekBarIncrement"/><attr format="boolean" name="adjustable"/><attr format="boolean" name="showSeekBarValue"/><attr default="0" format="integer|reference" name="min_value"/><attr default="100" format="integer|reference" name="max_value"/><attr default="0" format="integer|reference" name="default_value"/><attr default="0" format="reference" name="seekbar_layout"/><attr default="@id/seekbar" format="reference" name="seekbar_id"/><attr default="@id/seekbar_value_label" format="reference" name="seekbar_label_id"/><attr default="1" format="float" name="scale_value"/><attr default="1" format="string|reference" name="value_format"/></declare-styleable>
     <declare-styleable name="ShapeAppearance">
     
     <attr format="dimension|fraction" name="cornerSize"/>
@@ -13331,40 +12213,6 @@
     
     <attr name="useMaterialThemeColors"/>
   </declare-styleable>
-    <declare-styleable name="SwitchPreference">
-        
-        <attr name="summaryOn"/>
-        <attr name="android:summaryOn"/>
-        
-        <attr name="summaryOff"/>
-        <attr name="android:summaryOff"/>
-        
-        <attr name="switchTextOn"/>
-        <attr name="android:switchTextOn"/>
-        
-        <attr name="switchTextOff"/>
-        <attr name="android:switchTextOff"/>
-        
-        <attr name="disableDependentsState"/>
-        <attr name="android:disableDependentsState"/>
-    </declare-styleable>
-    <declare-styleable name="SwitchPreferenceCompat">
-        
-        <attr name="summaryOn"/>
-        <attr name="android:summaryOn"/>
-        
-        <attr name="summaryOff"/>
-        <attr name="android:summaryOff"/>
-        
-        <attr format="string" name="switchTextOn"/>
-        <attr name="android:switchTextOn"/>
-        
-        <attr format="string" name="switchTextOff"/>
-        <attr name="android:switchTextOff"/>
-        
-        <attr name="disableDependentsState"/>
-        <attr name="android:disableDependentsState"/>
-    </declare-styleable>
     <declare-styleable name="TabItem">
     
     <attr name="android:text"/>
@@ -13772,9 +12620,6 @@
     
     <attr name="android:textAppearance"/>
   </declare-styleable>
-    <declare-styleable name="TimePicker">
-	    <attr format="integer" name="TimePickerDefaultValue"/>
-	</declare-styleable>
     <declare-styleable name="Toolbar">
         <attr format="reference" name="titleTextAppearance"/>
         <attr format="reference" name="subtitleTextAppearance"/>
@@ -13858,25 +12703,6 @@
             <flag name="beginOnFirstDraw" value="1"/>
             />
         </attr></declare-styleable>
-    <declare-styleable name="TwoPainViewGroup">
-		<attr default="horizontal" format="enum|integer" name="orientation1">
-			<enum name="horizontal" value="0"/>
-			<enum name="vertical" value="1"/>
-		</attr>
-		<attr default="split" format="enum|integer" name="displayMode">
-			<enum name="split" value="0"/>
-			<enum name="select1" value="1"/>
-			<enum name="select2" value="2"/>
-			<enum name="single1" value="3"/>
-			<enum name="single2" value="4"/>
-		</attr>
-		<attr default="true" format="boolean" name="enableSubWindow">
-		</attr>
-		<attr default="false" format="boolean" name="flipChildPos">
-		</attr>
-		<attr default="0.2" format="float" name="subWindowScale">
-		</attr>
-	</declare-styleable>
     <declare-styleable name="Variant"><attr format="dimension" name="region_widthLessThan"/><attr format="dimension" name="region_widthMoreThan"/><attr format="dimension" name="region_heightLessThan"/><attr format="dimension" name="region_heightMoreThan"/><attr name="constraints"/></declare-styleable>
     <declare-styleable name="View">
         
@@ -13926,11 +12752,6 @@
         <attr name="android:inflatedId"/>
         <attr name="android:id"/>
     </declare-styleable>
-    <declare-styleable name="ZoomAspectScaledTextureView">
-		<attr name="aspect_ratio"/>
-		<attr name="scale_mode"/>
-		<attr name="handle_touch_event"/>
-	</declare-styleable>
     <macro name="m3_comp_assist_chip_container_shape">?attr/shapeAppearanceCornerSmall</macro>
     <macro name="m3_comp_assist_chip_label_text_type">?attr/textAppearanceLabelLarge</macro>
     <macro name="m3_comp_badge_color">?attr/colorError</macro>

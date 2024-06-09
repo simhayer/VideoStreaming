@@ -59,7 +59,6 @@
     <string name="common_signin_button_text">ລົງຊື່ເຂົ້າໃຊ້</string>
     <string name="common_signin_button_text_long">ລົງຊື່ເຂົ້າໃຊ້ດ້ວຍ Google</string>
     <string name="error_icon_content_description">ຜິດພາດ</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"ຂັ້ນສູງ"</string>
     <string name="exposed_dropdown_menu_content_description">ສະແດງເມນູເລື່ອນລົງ</string>
     <string name="icon_content_description">ໄອຄອນກ່ອງໂຕ້ຕອບ</string>
     <string gender="unknown" name="image_description">ຮູບພາບ</string>
@@ -121,7 +120,4 @@
     <string gender="unknown" name="state_off_description">ປິດ</string>
     <string gender="unknown" name="state_on_description">ເປີດ</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"ປິດ"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ເປີດ"</string>
 </resources>

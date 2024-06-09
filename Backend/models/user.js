@@ -14,6 +14,8 @@ const UserSchema = new Mongoose.Schema({
     type: String,
     minlength: 6,
     required: true,
+    // Increase the length to accommodate hashed passwords (e.g., 60 characters for bcrypt)
+    maxlength: 100, // Adjust this value as needed based on your hashing algorithm
   },
   role: {
     type: String,

@@ -62,7 +62,6 @@
     <string name="common_signin_button_text">సైన్ ఇన్ చేయండి</string>
     <string name="common_signin_button_text_long">Googleతో సైన్ ఇన్ చేయి</string>
     <string name="error_icon_content_description">ఎర్రర్</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"అధునాతన"</string>
     <string name="exposed_dropdown_menu_content_description">డ్రాప్‌డౌన్ మెనూను చూపు</string>
     <string gender="unknown" name="header_description">శీర్షిక</string>
     <string name="icon_content_description">డైలాగ్ చిహ్నం</string>
@@ -137,11 +136,8 @@
     <string gender="unknown" name="state_on_description">ఆన్ చేయి</string>
     <string gender="unknown" name="state_unselected_description">ఎంపిక తీసివేసారు</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">సమ్మరీ</string>
     <string gender="unknown" name="tablist_description">ట్యాబ్ జాబితా</string>
     <string gender="unknown" name="timer_description">టైమర్</string>
     <string gender="unknown" name="toolbar_description">టూల్ బార్</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"ఆఫ్ చేయండి"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ఆన్ చేయండి"</string>
 </resources>

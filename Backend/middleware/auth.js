@@ -54,45 +54,51 @@ exports.register = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-  const {email, password} = req.body;
-  // Check if username and password is provided
+  console.log("Login request received");
+  const { email, password } = req.body;
+  console.log("Request body:", req.body);
+
+  // Check if email and password are provided
   if (!email || !password) {
     return res.status(400).json({
-      message: 'email or Password not present',
+      message: 'Email or password not present',
     });
   }
+
   try {
-    const user = await User.findOne({email});
+    const user = await User.findOne({ email });
     if (!user) {
-      res.status(400).json({
+      console.log("User not found with email:", email);
+      return res.status(400).json({
         message: 'Login not successful',
         error: 'User not found',
       });
-    } else {
-      bcrypt.compare(password, user.password, (err, compareRes) => {
-        if (err) {
-          // error while comparing
-          res.status(502).json({message: 'error while checking user password'});
-        } else if (compareRes) {
-          // password match
-          const token = jwt.sign({email: req.body.email}, 'secret', {
-            expiresIn: '20d',
-          });
-          res.status(200).json({message: 'user logged in', token: token, user});
-        } else {
-          // password doesnt match
-          res.status(401).json({message: 'invalid credentials'});
-        }
-      });
     }
+
+    // Compare the provided password with the hashed password in the database
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (isMatch) {
+      // Password match
+      const token = jwt.sign({ email: user.email }, 'your_secret_key', {
+        expiresIn: '20d',
+      });
+      console.log("User logged in successfully, generating token");
+      return res.status(200).json({ message: 'User logged in', token: token, user });
+    } else {
+      // Password doesn't match
+      console.log("Invalid credentials for email:", email);
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
   } catch (error) {
-    res.status(400).json({
+    console.error("Error during login process:", error);
+    return res.status(400).json({
       message: 'An error occurred',
       error: error.message,
     });
   }
 };
-
 exports.update = async (req, res, next) => {
   const {role, id} = req.body;
 

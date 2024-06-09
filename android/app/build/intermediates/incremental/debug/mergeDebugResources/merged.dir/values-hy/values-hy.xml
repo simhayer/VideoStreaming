@@ -59,7 +59,6 @@
     <string name="common_signin_button_text">Մուտք գործել</string>
     <string name="common_signin_button_text_long">Մուտք գործել Google-ով</string>
     <string name="error_icon_content_description">Սխալ</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"Լրացուցիչ"</string>
     <string name="exposed_dropdown_menu_content_description">Ցույց տալ իջնող ընտրացանկը</string>
     <string name="icon_content_description">Երկխոսության պատուհանի պատկերակ</string>
     <string gender="unknown" name="image_description">Նկար</string>
@@ -121,7 +120,4 @@
     <string gender="unknown" name="state_off_description">անջատած</string>
     <string gender="unknown" name="state_on_description">միացրած</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"ԱՆՋԱՏԱԾ"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ՄԻԱՑՎԱԾ"</string>
 </resources>

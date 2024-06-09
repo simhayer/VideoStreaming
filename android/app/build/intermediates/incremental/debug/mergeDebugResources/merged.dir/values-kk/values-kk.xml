@@ -59,7 +59,6 @@
     <string name="common_signin_button_text">Кіру</string>
     <string name="common_signin_button_text_long">Google арқылы кіру</string>
     <string name="error_icon_content_description">Қате</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"Қосымша"</string>
     <string name="exposed_dropdown_menu_content_description">Ашылмалы мәзірді көрсету</string>
     <string name="icon_content_description">Диалог белгішесі</string>
     <string gender="unknown" name="image_description">Кескін</string>
@@ -120,7 +119,4 @@
     <string gender="unknown" name="state_off_description">өшірулі</string>
     <string gender="unknown" name="state_on_description">қосулы</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"ӨШІРУЛІ"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ҚОСУЛЫ"</string>
 </resources>
