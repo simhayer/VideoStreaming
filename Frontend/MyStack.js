@@ -1,14 +1,14 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SignUp from './Components/SignUp';
-import SignUpOptions from './Components/SignUpOptions';
-import Login from './Components/Login';
-import ForgetPassword from './Components/ForgetPassword'
-import Home from './Components/Home';
+import SignUp from './Screens/SignUp';
+import SignUpOptions from './Screens/SignUpOptions';
+import Login from './Screens/Login';
+import ForgetPassword from './Screens/ForgetPassword'
+import Home from './Screens/Home';
 import {Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import ForgetCode from './Components/FrogetCode';
-import ResetPassword from './Components/ResetPassword';
+import ForgetCode from './Screens/FrogetCode';
+import ResetPassword from './Screens/ResetPassword';
 
 const Stack = createNativeStackNavigator();
 

@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-google-signin/google-signin
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
-// react-native-gesture-handler
-import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-incall-manager
 import com.zxcpoiu.incallmanager.InCallManagerPackage;
 // react-native-safe-area-context
@@ -74,7 +72,6 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
       new RNGoogleSigninPackage(),
-      new RNGestureHandlerPackage(),
       new InCallManagerPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
