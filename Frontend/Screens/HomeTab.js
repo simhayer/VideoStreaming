@@ -3,6 +3,7 @@ import { View, Button, Text } from 'react-native';
 import { RTCView, mediaDevices, RTCPeerConnection, RTCSessionDescription, RTCIceCandidate } from 'react-native-webrtc';
 import axios from 'axios';
 import io from 'socket.io-client';
+import {baseURL, apiEndpoints} from '../Resources/Constants';
 
 const configurationPeerConnection = {
     iceServers: [{
@@ -82,7 +83,11 @@ const App = () => {
 
         //const { data } = await axios.post('/broadcast', payload);
         //console.log(payload)
-        const { data } = await axios.post('http://10.0.2.2:3000/broadcast', payload);
+        //const { data } = await axios.post('http://10.0.2.2:3000/broadcast', payload);
+
+        
+        const { data } = await axios.post(baseURL + apiEndpoints.addBroadcast, payload);
+
         console.log(data.message)
         console.log("after axios")
         const desc = new RTCSessionDescription(data.data.sdp);
@@ -90,15 +95,17 @@ const App = () => {
         await newPeer.setRemoteDescription(desc).catch(e => console.log(e));
 
         localCandidates.forEach(candidate => {
-            socket.current.emit("add-candidate-broadcast", {
-                id: data.data.id,
-                candidate
-            });
+        socket.current.emit("add-candidate-broadcast", {
+            id: data.data.id,
+            candidate
+        });
         });
 
         remoteCandidates.forEach(candidate => {
             newPeer.addIceCandidate(new RTCIceCandidate(candidate));
         });
+        
+        
     };
 
     const setupIceCandidate = (newPeer) => {

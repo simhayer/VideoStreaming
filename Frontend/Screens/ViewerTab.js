@@ -3,6 +3,7 @@ import { View, Text, Button, ScrollView, StyleSheet } from 'react-native';
 import { RTCPeerConnection, RTCSessionDescription, RTCView } from 'react-native-webrtc';
 import io from 'socket.io-client';
 import axios from 'axios';
+import { apiEndpoints, baseURL } from '../Resources/Constants';
 
 const configurationPeerConnection = {
   iceServers: [{ urls: "stun:stun.stunprotocol.org" }]
@@ -17,7 +18,7 @@ const App = () => {
   const [broadcastId, setBroadcastId] = useState('');
 
   useEffect(() => {
-    const newSocket = io('http://10.0.2.2:3000');
+    const newSocket = io(baseURL);
     setSocket(newSocket);
     newSocket.on('candidate-from-server', handleRemoteCandidate);
 
@@ -35,7 +36,7 @@ const App = () => {
 
   const showList = async () => {
     try {
-      const response = await axios.get("http://10.0.2.2:3000/list-broadcast");
+      const response = await axios.get(baseURL + apiEndpoints.listbroadcast);
       setBroadcasts(response.data);
     } catch (error) {
       console.error("Error fetching broadcasts: ", error);
@@ -76,7 +77,7 @@ const App = () => {
       const offer = await newPeer.createOffer();
       await newPeer.setLocalDescription(offer);
 
-      const { data } = await axios.post("http://10.0.2.2:3000/consumer", {
+      const { data } = await axios.post(baseURL + apiEndpoints.addConsumer, {
         sdp: newPeer.localDescription,
         broadcast_id: broadcastId,
       });
