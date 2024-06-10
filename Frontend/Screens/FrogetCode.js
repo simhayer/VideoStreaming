@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { useRoute } from '@react-navigation/native';
 import {
   Alert,
   View,

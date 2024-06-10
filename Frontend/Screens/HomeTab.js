@@ -4,6 +4,7 @@ import { RTCView, mediaDevices, RTCPeerConnection, RTCSessionDescription, RTCIce
 import axios from 'axios';
 import io from 'socket.io-client';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const configurationPeerConnection = {
     iceServers: [{
@@ -21,7 +22,7 @@ const offerSdpConstraints = {
 
 const mediaConstraints = {
     video: true,
-    audio: false
+    audio: true
 };
 
 const App = () => {
@@ -33,10 +34,8 @@ const App = () => {
     const peer = useRef(null);
     const socket = useRef(null);
 
-    useEffect(() => {
-        //socket.current = io(Config.host + ":" + Config.port);
-        //socket.current = io('http://10.0.2.2:3000');
-        socket.current = io('http://10.0.2.2:3000', {
+    useEffect(() => {        
+        socket.current = io(baseURL, {
         transports: ['websocket'],
       });
         socket.current.on('from-server', (id) => {
@@ -81,14 +80,9 @@ const App = () => {
             socket_id: socketId
         };
 
-        //const { data } = await axios.post('/broadcast', payload);
-        //console.log(payload)
-        //const { data } = await axios.post('http://10.0.2.2:3000/broadcast', payload);
-
-        
         const { data } = await axios.post(baseURL + apiEndpoints.addBroadcast, payload);
 
-        console.log(data.message)
+        //console.log(data.message)
         console.log("after axios")
         const desc = new RTCSessionDescription(data.data.sdp);
         setBroadcastId(data.data.id);
@@ -104,8 +98,6 @@ const App = () => {
         remoteCandidates.forEach(candidate => {
             newPeer.addIceCandidate(new RTCIceCandidate(candidate));
         });
-        
-        
     };
 
     const setupIceCandidate = (newPeer) => {

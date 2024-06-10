@@ -23,6 +23,8 @@ import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 // react-native-svg
 import com.horcrux.svg.SvgPackage;
+// react-native-vector-icons
+import com.oblador.vectoricons.VectorIconsPackage;
 // react-native-webrtc
 import com.oney.WebRTCModule.WebRTCModulePackage;
 
@@ -76,6 +78,7 @@ public class PackageList {
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
       new SvgPackage(),
+      new VectorIconsPackage(),
       new WebRTCModulePackage()
     ));
   }
