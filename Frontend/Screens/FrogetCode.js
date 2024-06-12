@@ -16,10 +16,9 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../Redux/Features/AuthSlice';
 
-const ForgetCode = ({ route }) => {
+const ForgetCode = ({route}) => {
   const [code, setCode] = useState('');
-  const { email } = route.params;
-
+  const {email} = route.params;
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState('');
@@ -29,7 +28,7 @@ const ForgetCode = ({ route }) => {
   const dispatch = useDispatch();
   const {userData, isLoading} = useSelector(state => state.auth);
 
-  const onConfirmClick = async (code) => {
+  const onConfirmClick = async code => {
     if (code.length === 0) {
       Alert.alert('Login', 'Please provide your email');
       return;
@@ -42,30 +41,31 @@ const ForgetCode = ({ route }) => {
     };
 
     try {
-        console.log(forgetParams)
-        axios
-          .post(baseURL + apiEndpoints.forgetCodeCheck, forgetParams)
-          .then(res => {
-            console.log(res.data);
-            navigation.navigate('ResetPassword', {email});
-          })
-          .catch(err => {
-            console.log(err);
-            Alert.alert('Forget', 'Could not confirm the code, please try again');
-          });
-  
-        // Handle the response or navigate to another screen upon successful login
-      } catch (error) {
-        console.error('Forget error:', error);
-        // Handle the error, such as displaying an error message to the user
-      }
-      
+      console.log(forgetParams);
+      axios
+        .post(baseURL + apiEndpoints.forgetCodeCheck, forgetParams)
+        .then(res => {
+          console.log(res.data);
+          navigation.navigate('ResetPassword', {email});
+        })
+        .catch(err => {
+          console.log(err);
+          Alert.alert('Forget', 'Could not confirm the code, please try again');
+        });
+
+      // Handle the response or navigate to another screen upon successful login
+    } catch (error) {
+      console.error('Forget error:', error);
+      // Handle the error, such as displaying an error message to the user
+    }
   };
 
   return (
     <View style={commonStyles.signup}>
       <View style={{paddingTop: '20%', alignItems: 'center'}}>
-      <Text style={{padding: '3%'}}>Enter your code you recieved in your email</Text>
+        <Text style={{padding: '3%'}}>
+          Enter your code you recieved in your email
+        </Text>
 
         <TextInput
           value={code}

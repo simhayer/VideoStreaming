@@ -1,4 +1,3 @@
-
 export const baseURL = 'http://10.0.2.2:3000'; //for android studio
 //export const baseURL = 'http://localhost:3000';   //for actual device
 
@@ -21,6 +20,6 @@ export const apiEndpoints = {
   updatePassword: '/api/auth/updatePassword',
   addBroadcast: '/api/auth/broadcast',
   listbroadcast: '/api/auth/list-broadcast',
-  addConsumer: '/api/auth/consumer'
+  addConsumer: '/api/auth/consumer',
   // Add more API endpoints as needed
 };

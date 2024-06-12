@@ -83,7 +83,7 @@ const Login = () => {
     };
 
     try {
-      console.log("here")
+      console.log('here');
       const result = dispatch(login(loginParams));
       // You can use the result here or return it if needed
       setIsError(false);

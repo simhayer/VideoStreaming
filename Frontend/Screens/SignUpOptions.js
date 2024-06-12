@@ -16,7 +16,7 @@ import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../Resources/styles';
 
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 //TODO
 const {
@@ -28,23 +28,21 @@ const {
 //const GOOGLE_ANDROID_CLIENT_ID = "423122273522-adm11brgik1kv9bj2soq8r3ge88rom6g.apps.googleusercontent.com";
 
 GoogleSignin.configure({
-	// webClientId: GOOGLE_WEB_CLIENT_ID,
-	androidClientId: GOOGLE_ANDROID_CLIENT_ID,
-	// iosClientId: GOOGLE_IOS_CLIENT_ID,
-	scopes: ['profile', 'email'],
+  // webClientId: GOOGLE_WEB_CLIENT_ID,
+  androidClientId: GOOGLE_ANDROID_CLIENT_ID,
+  // iosClientId: GOOGLE_IOS_CLIENT_ID,
+  scopes: ['profile', 'email'],
 });
 
 const GoogleLogin = async () => {
-	await GoogleSignin.hasPlayServices();
-  try{
+  await GoogleSignin.hasPlayServices();
+  try {
     const userInfo = await GoogleSignin.signIn();
     console.log(userInfo);
     return userInfo;
-  }
-  catch(error){
+  } catch (error) {
     console.log(error);
   }
-
 };
 
 const SignUp = ({route}) => {
@@ -54,13 +52,11 @@ const SignUp = ({route}) => {
   const navigation = useNavigation();
 
   const onContiueWithEmailClick = () => {
-    if(type && type === 'Login'){
+    if (type && type === 'Login') {
       navigation.navigate('Login');
-    }
-    else{
+    } else {
       navigation.navigate('SignUp');
     }
-    
   };
 
   return (

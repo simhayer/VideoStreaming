@@ -29,8 +29,24 @@ const Profile = () => {
       <TouchableOpacity
         isloading={isLoading}
         onPress={() => onLogoutClick()}
-        style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
+        style={{
+          padding: 10,
+          backgroundColor: 'blue',
+          borderRadius: 5,
+          margin: 10,
+        }}>
         <Text style={{color: 'white', textAlign: 'center'}}>LogOut</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        isloading={isLoading}
+        onPress={() => onLogoutClick()}
+        style={{
+          padding: 10,
+          backgroundColor: 'blue',
+          borderRadius: 5,
+          margin: 10,
+        }}>
+        <Text style={{color: 'white', textAlign: 'center'}}>Edit Profile</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -1,18 +1,25 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-import { RTCPeerConnection, RTCSessionDescription } from 'react-native-webrtc';
+import React, {useEffect, useState, useCallback} from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
+import {RTCPeerConnection, RTCSessionDescription} from 'react-native-webrtc';
 import io from 'socket.io-client';
 import axios from 'axios';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { apiEndpoints, baseURL } from '../Resources/Constants';
-import StreamStore from './StreamStore';  // Import the StreamStore
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {apiEndpoints, baseURL} from '../Resources/Constants';
+import StreamStore from './StreamStore'; // Import the StreamStore
 
-const { height: screenHeight } = Dimensions.get('window');
+const {height: screenHeight} = Dimensions.get('window');
 
 const configurationPeerConnection = {
-  iceServers: [{ urls: "stun:stun.stunprotocol.org" }]
+  iceServers: [{urls: 'stun:stun.stunprotocol.org'}],
 };
-const addTransceiverConstraints = { direction: "recvonly" };
+const addTransceiverConstraints = {direction: 'recvonly'};
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -37,28 +44,28 @@ const HomeScreen = () => {
   useFocusEffect(
     useCallback(() => {
       showList();
-    }, [])
+    }, []),
   );
 
-  const handleRemoteCandidate = (candidate) => {
+  const handleRemoteCandidate = candidate => {
     if (peer) {
       peer.addIceCandidate(new RTCIceCandidate(candidate));
     }
   };
 
   const showList = async () => {
-    console.log("in List update");
+    console.log('in List update');
     try {
       const response = await axios.get(baseURL + apiEndpoints.listbroadcast);
       setBroadcasts(response.data);
     } catch (error) {
-      console.error("Error fetching broadcasts: ", error);
+      console.error('Error fetching broadcasts: ', error);
     }
   };
 
-  const handleTrackEvent = (event) => {
+  const handleTrackEvent = event => {
     const receivedStream = event.streams[0];
-    console.log("Stream received: ", receivedStream);
+    console.log('Stream received: ', receivedStream);
 
     // Generate a unique ID for the stream
     const streamId = Date.now().toString();
@@ -66,23 +73,23 @@ const HomeScreen = () => {
     StreamStore.setStream(streamId, receivedStream);
 
     // Navigate to the VideoScreen with the streamId as a parameter
-    navigation.navigate('Video', { streamId });
+    navigation.navigate('Video', {streamId});
   };
 
-  const watch = async (broadcastId) => {
+  const watch = async broadcastId => {
     if (peer) {
       peer.close();
     }
 
     const newPeer = new RTCPeerConnection(configurationPeerConnection);
-    newPeer.addTransceiver("video", addTransceiverConstraints);
-    newPeer.addTransceiver("audio", addTransceiverConstraints);
+    newPeer.addTransceiver('video', addTransceiverConstraints);
+    newPeer.addTransceiver('audio', addTransceiverConstraints);
 
     newPeer.ontrack = handleTrackEvent;
 
-    newPeer.onicecandidate = (event) => {
+    newPeer.onicecandidate = event => {
       if (event.candidate) {
-        socket.emit("add-candidate-consumer", {
+        socket.emit('add-candidate-consumer', {
           candidate: event.candidate,
           broadcast_id: broadcastId,
         });
@@ -93,7 +100,7 @@ const HomeScreen = () => {
       const offer = await newPeer.createOffer();
       await newPeer.setLocalDescription(offer);
 
-      const { data } = await axios.post(baseURL + apiEndpoints.addConsumer, {
+      const {data} = await axios.post(baseURL + apiEndpoints.addConsumer, {
         sdp: newPeer.localDescription,
         broadcast_id: broadcastId,
       });
@@ -102,7 +109,7 @@ const HomeScreen = () => {
       await newPeer.setRemoteDescription(desc);
       setPeer(newPeer);
     } catch (error) {
-      console.error("Error during negotiation:", error);
+      console.error('Error during negotiation:', error);
     }
   };
 
@@ -110,8 +117,12 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Viewer of Streaming</Text>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        {broadcasts.map((broadcast) => (
-          <TouchableOpacity key={broadcast} title={`Watch ${broadcast}`} style={styles.buttonContainer} onPress={() => watch(broadcast)}>
+        {broadcasts.map(broadcast => (
+          <TouchableOpacity
+            key={broadcast}
+            title={`Watch ${broadcast}`}
+            style={styles.buttonContainer}
+            onPress={() => watch(broadcast)}>
             <Text>{`Watch ${broadcast}`}</Text>
           </TouchableOpacity>
         ))}

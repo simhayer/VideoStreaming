@@ -16,10 +16,10 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../Redux/Features/AuthSlice';
 
-const ResetPassword = ({ route }) => {
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const { email } = route.params;
+const ResetPassword = ({route}) => {
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const {email} = route.params;
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState('');
@@ -34,9 +34,8 @@ const ResetPassword = ({ route }) => {
       Alert.alert('Login', 'Something went wrong');
       return;
     }
-    
 
-    if (password != confirmPassword){
+    if (password != confirmPassword) {
       Alert.alert('Login', 'Password do no match');
       return;
     }
@@ -48,32 +47,31 @@ const ResetPassword = ({ route }) => {
     };
 
     try {
-      console.log(forgetParams)
+      console.log(forgetParams);
       axios
         .post(baseURL + apiEndpoints.updatePassword, forgetParams)
-          .then(res => {
-            console.log(res.data);
-            navigation.navigate('Login');
-          })
-          .catch(err => {
-            console.log(err);
-            Alert.alert('Forget', 'Could not update password');
-          });
-  
-        // Handle the response or navigate to another screen upon successful login
-      } catch (error) {
-        console.error('Update error:', error);
-        // Handle the error, such as displaying an error message to the user
-      }
-      
+        .then(res => {
+          console.log(res.data);
+          navigation.navigate('Login');
+        })
+        .catch(err => {
+          console.log(err);
+          Alert.alert('Forget', 'Could not update password');
+        });
+
+      // Handle the response or navigate to another screen upon successful login
+    } catch (error) {
+      console.error('Update error:', error);
+      // Handle the error, such as displaying an error message to the user
+    }
   };
 
   return (
     <View style={commonStyles.signup}>
       <View style={{paddingTop: '20%', alignItems: 'center'}}>
-      <Text style={{padding: '3%'}}>Reset Password</Text>
+        <Text style={{padding: '3%'}}>Reset Password</Text>
 
-      <TextInput
+        <TextInput
           value={password}
           onChangeText={password => setPassword(password.trim())}
           placeholder={'Password'}
@@ -82,7 +80,9 @@ const ResetPassword = ({ route }) => {
         />
         <TextInput
           value={confirmPassword}
-          onChangeText={confirmPassword => setConfirmPassword(confirmPassword.trim())}
+          onChangeText={confirmPassword =>
+            setConfirmPassword(confirmPassword.trim())
+          }
           placeholder={'Re-enter Password'}
           style={commonStyles.input}
           secureTextEntry={true}

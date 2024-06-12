@@ -27,32 +27,31 @@ const SignUp = () => {
   const calculatedFontSize = screenHeight * 0.05;
 
   const onSignUpClick = async (fullname, email, password) => {
-
     if (fullname.length === 0) {
       //Alert.alert('Login', 'Please provide your email');
       setIsError(true);
-      setLoginError("Please provide your name");
+      setLoginError('Please provide your name');
       return;
     }
 
     if (email.length === 0) {
       //Alert.alert('Login', 'Please provide your email');
       setIsError(true);
-      setLoginError("Please provide your email");
+      setLoginError('Please provide your email');
       return;
     }
 
     if (password.length === 0) {
       //Alert.alert('Login', 'Please provide your password');
       setIsError(true);
-      setLoginError("Please provide your password");
+      setLoginError('Please provide your password');
       return;
     }
 
     if (password.length < 6) {
       //Alert.alert('Login', 'Please provide your password');
       setIsError(true);
-      setLoginError("Password cannot be smaller than 6 digits");
+      setLoginError('Password cannot be smaller than 6 digits');
       return;
     }
 
@@ -92,30 +91,44 @@ const SignUp = () => {
 
   return (
     <View style={commonStyles.signup}>
-      <View style={{alignItems:'center', paddingTop:'12%'}}>
-        <View style = {{width:'85%'}}>
-        <TextInput
-         ref={inputRef}
-          value={fullname}
-          onChangeText={fullname => setFullname(fullname)}
-          placeholder={'Full Name'}
-          style={{...commonStyles.input,fontSize: calculatedFontSize / 2.3,paddingBottom:'0%',marginBottom:'5%' }}
-        />
-        <TextInput
-          value={email}
-          onChangeText={email => setEmail(email.trim())}
-          placeholder={'Email'}
-          style={{...commonStyles.input,fontSize: calculatedFontSize / 2.3,paddingBottom:'0%',marginBottom:'5%' }}
-        />
+      <View style={{alignItems: 'center', paddingTop: '12%'}}>
+        <View style={{width: '85%'}}>
+          <TextInput
+            ref={inputRef}
+            value={fullname}
+            onChangeText={fullname => setFullname(fullname)}
+            placeholder={'Full Name'}
+            style={{
+              ...commonStyles.input,
+              fontSize: calculatedFontSize / 2.3,
+              paddingBottom: '0%',
+              marginBottom: '5%',
+            }}
+          />
+          <TextInput
+            value={email}
+            onChangeText={email => setEmail(email.trim())}
+            placeholder={'Email'}
+            style={{
+              ...commonStyles.input,
+              fontSize: calculatedFontSize / 2.3,
+              paddingBottom: '0%',
+              marginBottom: '5%',
+            }}
+          />
 
-        <TextInput
-          value={password}
-          onChangeText={password => setPassword(password.trim())}
-          placeholder={'Password'}
-          style={{...commonStyles.input,fontSize: calculatedFontSize / 2.3,paddingBottom:'0%',marginBottom:'5%' }}
-          secureTextEntry={true}
-        />
-  
+          <TextInput
+            value={password}
+            onChangeText={password => setPassword(password.trim())}
+            placeholder={'Password'}
+            style={{
+              ...commonStyles.input,
+              fontSize: calculatedFontSize / 2.3,
+              paddingBottom: '0%',
+              marginBottom: '5%',
+            }}
+            secureTextEntry={true}
+          />
         </View>
         <View style={{width: '70%', paddingTop: '2%', alignItems: 'center'}}>
           <Text style={{color: 'black', textAlign: 'center'}}>
@@ -123,16 +136,18 @@ const SignUp = () => {
             and Privacy Policy
           </Text>
         </View>
-        {isError && (
-          <Text>
-            {loginError}
-          </Text>
-        )}
-        <View style={{width: '85%',alignItems:'center', paddingTop:'15%'}}>
-        <TouchableOpacity
-          onPress={() => onSignUpClick(fullname, email, password)}
-          style={{backgroundColor: '#f542a4', borderRadius: 40,paddingVertical:'4%', alignItems:'center', width:'100%'}}>
-          <Text
+        {isError && <Text>{loginError}</Text>}
+        <View style={{width: '85%', alignItems: 'center', paddingTop: '15%'}}>
+          <TouchableOpacity
+            onPress={() => onSignUpClick(fullname, email, password)}
+            style={{
+              backgroundColor: '#f542a4',
+              borderRadius: 40,
+              paddingVertical: '4%',
+              alignItems: 'center',
+              width: '100%',
+            }}>
+            <Text
               style={{
                 color: 'white',
                 textAlign: 'left',
@@ -141,7 +156,7 @@ const SignUp = () => {
               }}>
               Signup
             </Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
