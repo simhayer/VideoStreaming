@@ -1,32 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Button, ScrollView, StyleSheet } from 'react-native';
-import { RTCPeerConnection, RTCSessionDescription, RTCView } from 'react-native-webrtc';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { RTCPeerConnection, RTCSessionDescription } from 'react-native-webrtc';
 import io from 'socket.io-client';
 import axios from 'axios';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { apiEndpoints, baseURL } from '../Resources/Constants';
+import StreamStore from './StreamStore';  // Import the StreamStore
+
+const { height: screenHeight } = Dimensions.get('window');
 
 const configurationPeerConnection = {
   iceServers: [{ urls: "stun:stun.stunprotocol.org" }]
 };
 const addTransceiverConstraints = { direction: "recvonly" };
 
-const App = () => {
+const HomeScreen = () => {
+  const navigation = useNavigation();
   const [peer, setPeer] = useState(null);
-  const [stream, setStream] = useState(null);
   const [broadcasts, setBroadcasts] = useState([]);
   const [socket, setSocket] = useState(null);
-  const [broadcastId, setBroadcastId] = useState('');
 
   useEffect(() => {
     const newSocket = io(baseURL);
     setSocket(newSocket);
     newSocket.on('candidate-from-server', handleRemoteCandidate);
 
+    newSocket.on('List-update', showList);
+
     return () => {
       newSocket.off('candidate-from-server', handleRemoteCandidate);
+      newSocket.off('List-update', showList);
       newSocket.close();
     };
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      showList();
+    }, [])
+  );
 
   const handleRemoteCandidate = (candidate) => {
     if (peer) {
@@ -35,6 +47,7 @@ const App = () => {
   };
 
   const showList = async () => {
+    console.log("in List update");
     try {
       const response = await axios.get(baseURL + apiEndpoints.listbroadcast);
       setBroadcasts(response.data);
@@ -43,17 +56,20 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    showList();
-  }, []);
-
   const handleTrackEvent = (event) => {
-    setStream(event.streams[0]);
-    console.log("Stream received: ", event.streams[0]);
+    const receivedStream = event.streams[0];
+    console.log("Stream received: ", receivedStream);
+
+    // Generate a unique ID for the stream
+    const streamId = Date.now().toString();
+    // Store the stream in the StreamStore
+    StreamStore.setStream(streamId, receivedStream);
+
+    // Navigate to the VideoScreen with the streamId as a parameter
+    navigation.navigate('Video', { streamId });
   };
 
   const watch = async (broadcastId) => {
-    setBroadcastId(broadcastId);
     if (peer) {
       peer.close();
     }
@@ -85,7 +101,6 @@ const App = () => {
       const desc = new RTCSessionDescription(data.data.sdp);
       await newPeer.setRemoteDescription(desc);
       setPeer(newPeer);
-
     } catch (error) {
       console.error("Error during negotiation:", error);
     }
@@ -94,18 +109,11 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Viewer of Streaming</Text>
-      {stream && (
-        <RTCView
-          style={styles.video}
-          objectFit="cover"
-          streamURL={stream.toURL()}
-        />
-      )}
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollView}>
         {broadcasts.map((broadcast) => (
-          <View key={broadcast} style={styles.buttonContainer}>
-            <Button title={`Watch ${broadcast}`} onPress={() => watch(broadcast)} />
-          </View>
+          <TouchableOpacity key={broadcast} title={`Watch ${broadcast}`} style={styles.buttonContainer} onPress={() => watch(broadcast)}>
+            <Text>{`Watch ${broadcast}`}</Text>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>
@@ -115,19 +123,28 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 16,
   },
   title: {
     fontSize: 24,
-    marginBottom: 20,
+    fontWeight: 'bold',
+    marginBottom: 16,
   },
-  video: {
-    width: '100%',
-    height: 300,
+  scrollView: {
+    flexGrow: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   buttonContainer: {
-    marginTop: 10,
+    width: '48%',
+    height: screenHeight * 0.3,
+    marginBottom: '2%',
+    borderColor: 'black',
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
-export default App;
+export default HomeScreen;

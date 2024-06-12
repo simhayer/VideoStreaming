@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Home = () => {
   const Tab = createBottomTabNavigator();
-
+  //const navigation = useNavigation();
   return (
     <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -31,6 +31,9 @@ const Home = () => {
   >
       <Tab.Screen name="HomeTab" component={HomeTab} />
       <Tab.Screen name="ViewerTab" component={ViewerTab} />
+      {/* <Tab.Screen name="ViewerTab">
+        {(props) => <ViewerTab {...props} navigation={navigation} />}
+      </Tab.Screen> */}
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );

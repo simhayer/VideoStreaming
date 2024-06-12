@@ -9,16 +9,24 @@ import {NavigationContainer} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import ForgetCode from './Screens/FrogetCode';
 import ResetPassword from './Screens/ResetPassword';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import VideoScreen from './Screens/VideoScreen'; // Import the new video screen component
 
 const Stack = createNativeStackNavigator();
 
 const MyStack = () => {
   const {userData, isAuthenticated} = useSelector(state => state.auth);
+  //const navigation = useNavigation();
   console.log("file: login.js:22 -login - userData: ", userData)
   return (
     <Stack.Navigator>
       {isAuthenticated ? (
-        <Stack.Screen name="Home" component={Home} options={{title: 'Home'}} />
+        <Stack.Group>
+          <Stack.Screen name="Home" component={Home} options={{title: 'Home'}} />
+          <Stack.Screen name="Video" component={VideoScreen} options={{ title: 'Video' }} />
+        </Stack.Group>
+        
+        
       ) : (
         <Stack.Group>
           <Stack.Screen
@@ -52,6 +60,7 @@ const MyStack = () => {
             component={ResetPassword}
             options={{title: 'ResetPassword'}}
           />
+          
         </Stack.Group>
         
       )}

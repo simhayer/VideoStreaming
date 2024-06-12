@@ -63,9 +63,11 @@ async function broadcastMediaProcess(id)
                 if (["disconnected", "failed", "closed"].includes(connectionStatus2)) {
                     console.log("\x1b[31m", "Broadcaster: " + id + " - " + connectionStatus2, "\x1b[0m")
                     removeBroadcast(id)
+                    socketFunction.sendListUpdateSignal()
                 }
                 if (["connected"].includes(connectionStatus2)) {
                     console.log("\x1b[34m", "Broadcaster: " + id + " - " + connectionStatus2, "\x1b[0m")
+                    socketFunction.sendListUpdateSignal()
                 }
             }
         } catch (e) {
