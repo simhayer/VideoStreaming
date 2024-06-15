@@ -57,6 +57,7 @@ const HomeScreen = () => {
     console.log('in List update');
     try {
       const response = await axios.get(baseURL + apiEndpoints.listbroadcast);
+      console.log('Broadcasts: ', response.data);
       setBroadcasts(response.data);
     } catch (error) {
       console.error('Error fetching broadcasts: ', error);
@@ -118,13 +119,18 @@ const HomeScreen = () => {
       <Text style={styles.title}>Viewer of Streaming</Text>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {broadcasts.map(broadcast => (
-          <TouchableOpacity
-            key={broadcast}
-            title={`Watch ${broadcast}`}
-            style={styles.buttonContainer}
-            onPress={() => watch(broadcast)}>
-            <Text>{`Watch ${broadcast}`}</Text>
-          </TouchableOpacity>
+          <View
+            key={broadcast.id}
+            style={{width: '48%', height: screenHeight * 0.35}}>
+            <Text>{broadcast.username}</Text>
+            <TouchableOpacity
+              key={broadcast.id}
+              title={`Watch ${broadcast.id}`}
+              style={styles.buttonContainer}
+              onPress={() => watch(broadcast.id)}>
+              <Text>{`Watch ${broadcast.username}`}</Text>
+            </TouchableOpacity>
+          </View>
         ))}
       </ScrollView>
     </View>
@@ -148,8 +154,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   buttonContainer: {
-    width: '48%',
-    height: screenHeight * 0.3,
+    width: '100%',
+    height: '100%',
     marginBottom: '2%',
     borderColor: 'black',
     borderWidth: 2,

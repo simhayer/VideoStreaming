@@ -11,6 +11,8 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const configurationPeerConnection = {
   iceServers: [
@@ -41,6 +43,11 @@ const App = () => {
   const [stream, setStream] = useState(null);
   const peer = useRef(null);
   const socket = useRef(null);
+  const {userData, isLoading} = useSelector(state => state.auth);
+
+  const email = userData?.user?.email;
+  const fullname = userData?.user?.fullname;
+  const username = userData?.user?.username;
 
   useEffect(() => {
     socket.current = io(baseURL, {
@@ -92,6 +99,7 @@ const App = () => {
     const payload = {
       sdp: newPeer.localDescription,
       socket_id: socketId,
+      username: username,
     };
 
     const {data} = await axios.post(
