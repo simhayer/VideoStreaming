@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const AppData = require('../models/AppData');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const jwtSecret =
@@ -10,6 +11,12 @@ exports.register = async (req, res, next) => {
   console.log('Register function called');
   console.log('Request body:', req.body);
   const {fullname, email, password} = req.body;
+
+  let appData = await AppData.findOne();
+  appData.highestUserID += 1;
+  await appData.save();
+
+  const newUserID = appData.highestUserID;
 
   try {
     const existingUser = await User.findOne({email});
@@ -30,6 +37,7 @@ exports.register = async (req, res, next) => {
         fullname,
         email,
         password: hash,
+        userID: newUserID,
       })
         .then(user =>
           res.status(200).json({
@@ -54,9 +62,9 @@ exports.register = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-  console.log("Login request received");
-  const { email, password } = req.body;
-  console.log("Request body:", req.body);
+  console.log('Login request received');
+  const {email, password} = req.body;
+  console.log('Request body:', req.body);
 
   // Check if email and password are provided
   if (!email || !password) {
@@ -66,9 +74,9 @@ exports.login = async (req, res, next) => {
   }
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({email});
     if (!user) {
-      console.log("User not found with email:", email);
+      console.log('User not found with email:', email);
       return res.status(400).json({
         message: 'Login not successful',
         error: 'User not found',
@@ -80,25 +88,87 @@ exports.login = async (req, res, next) => {
 
     if (isMatch) {
       // Password match
-      const token = jwt.sign({ email: user.email }, 'your_secret_key', {
+      const token = jwt.sign({email: user.email}, 'your_secret_key', {
         expiresIn: '20d',
       });
-      console.log("User logged in successfully, generating token");
-      return res.status(200).json({ message: 'User logged in', token: token, user });
+      console.log('User logged in successfully, generating token');
+      return res
+        .status(200)
+        .json({message: 'User logged in', token: token, user});
     } else {
       // Password doesn't match
-      console.log("Invalid credentials for email:", email);
-      return res.status(401).json({ message: 'Invalid credentials' });
+      console.log('Invalid credentials for email:', email);
+      return res.status(401).json({message: 'Invalid credentials'});
     }
-
   } catch (error) {
-    console.error("Error during login process:", error);
+    console.error('Error during login process:', error);
     return res.status(400).json({
       message: 'An error occurred',
       error: error.message,
     });
   }
 };
+
+exports.updateUsername = async (req, res, next) => {
+  console.log('Update Username request received');
+  const {email, username} = req.body;
+  console.log('Request body:', req.body);
+
+  // Check if email and password are provided
+  if (!email || !username) {
+    return res.status(400).json({
+      message: 'Email or username not present',
+    });
+  }
+
+  try {
+    const user = await User.findOne({email});
+    if (!user) {
+      console.log('User not found with email:', email);
+      return res.status(400).json({
+        message: 'Login not successful',
+        error: 'User not found',
+      });
+    }
+
+    // Compare the provided password with the hashed password in the database
+    const usrnameExists = await checkUsernameExists(username);
+
+    if (usrnameExists) {
+      console.log('Username already exists');
+      return res.status(400).json({
+        message: 'Username already exists',
+      });
+    } else {
+      user.username = username;
+      await user.save();
+      return res.status(200).json({
+        message: 'Username updated',
+        user,
+      });
+    }
+  } catch (error) {
+    console.error('Error during login process:', error);
+    return res.status(400).json({
+      message: 'An error occurred',
+      error: error.message,
+    });
+  }
+};
+
+async function checkUsernameExists(username) {
+  console.log('Check username request received');
+  console.log('Username:', username);
+
+  try {
+    const user = await User.findOne({username});
+    return !!user; // Returns true if user exists, false otherwise
+  } catch (error) {
+    console.error('Error during username check process:', error);
+    throw new Error('An error occurred during username check');
+  }
+}
+
 exports.update = async (req, res, next) => {
   const {role, id} = req.body;
 
@@ -168,7 +238,6 @@ exports.sendResetCode = async (req, res, next) => {
 
 exports.verifyResetCode = async (req, res, next) => {
   const {email, resetCode} = req.body;
-  
 
   // First - Verifying if email and code are present
   if (email && resetCode) {
@@ -213,9 +282,9 @@ exports.verifyResetCode = async (req, res, next) => {
 };
 
 exports.updatePassword = async (req, res, next) => {
-  console.log(req.body)
+  console.log(req.body);
   const {email, password} = req.body;
-  
+
   // First - Verifying if email is present
   if (email) {
     try {

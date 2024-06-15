@@ -8,68 +8,87 @@ const initialState = {
   isSuccess: false,
   isError: false,
   isAuthenticated: false,
+  errorMessage: '',
 };
 
-//login
-export const login = createAsyncThunk('login', async (params, thunkApi) => {
-  console.log('- file: AuthSlice.js:12 - login - params:', params);
-  try {
-    const response = await axios.post(baseURL + apiEndpoints.login, params);
-    console.log('file: AuthSlice.js:16 - login - response:', response);
-    return response.data;
-  } catch (error) {
-    console.log('file - AuthSlice.js:19 - login - error:', error);
-
-    // Modify the rejection value to be serializable
-    if (error.response) {
-      // If it's an AxiosError, include only necessary information
-      return thunkApi.rejectWithValue({
-        message: 'Login failed',
-        status: error.response.status,
-        data: error.response.data,
-      });
-    } else {
-      // For non-Axios errors, include a simple error message
-      return thunkApi.rejectWithValue({
-        message: 'Login failed',
-      });
+// Login
+export const login = createAsyncThunk(
+  'auth/login',
+  async (params, thunkApi) => {
+    try {
+      const response = await axios.post(baseURL + apiEndpoints.login, params);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return thunkApi.rejectWithValue({
+          message: 'Login failed',
+          status: error.response.status,
+          data: error.response.data,
+        });
+      } else {
+        return thunkApi.rejectWithValue({
+          message: 'Login failed',
+        });
+      }
     }
-  }
-});
+  },
+);
 
-//logout
-export const logout = createAsyncThunk('logout', async (params, thunkApi) => {
-  console.log('- file: AuthSlice.js:12 - logout - params:', params);
-  try {
-    const response = await axios.post(baseURL + apiEndpoints.logout, params);
-    console.log('file: AuthSlice.js:16 - logout - response:', response);
-    return response.data;
-  } catch (error) {
-    console.log('file - AuthSlice.js:19 - logout - error:', error);
-
-    // Modify the rejection value to be serializable
-    if (error.response) {
-      // If it's an AxiosError, include only necessary information
-      return thunkApi.rejectWithValue({
-        message: 'Logout failed',
-        status: error.response.status,
-        data: error.response.data,
-      });
-    } else {
-      // For non-Axios errors, include a simple error message
-      return thunkApi.rejectWithValue({
-        message: 'Logout failed',
-      });
+// Logout
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async (params, thunkApi) => {
+    try {
+      const response = await axios.post(baseURL + apiEndpoints.logout, params);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return thunkApi.rejectWithValue({
+          message: 'Logout failed',
+          status: error.response.status,
+          data: error.response.data,
+        });
+      } else {
+        return thunkApi.rejectWithValue({
+          message: 'Logout failed',
+        });
+      }
     }
-  }
-});
+  },
+);
+
+// Update Username
+export const updateUsername = createAsyncThunk(
+  'auth/updateUsername',
+  async (params, thunkApi) => {
+    try {
+      const response = await axios.post(
+        baseURL + apiEndpoints.updateUsername,
+        params,
+      );
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return thunkApi.rejectWithValue({
+          message: 'Update username failed',
+          status: error.response.status,
+          data: error.response.data,
+        });
+      } else {
+        return thunkApi.rejectWithValue({
+          message: 'Update username failed',
+        });
+      }
+    }
+  },
+);
 
 const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {},
   extraReducers: builder => {
-    //login cases
+    // Login cases
     builder.addCase(login.pending, state => {
       state.isLoading = true;
     });
@@ -81,24 +100,43 @@ const authSlice = createSlice({
     });
     builder.addCase(login.rejected, (state, action) => {
       state.isLoading = false;
-      state.isError = true; //set action payload here to get error message
+      state.isError = true;
+      state.errorMessage = action.payload.message;
       state.isAuthenticated = false;
     });
 
-    //logout cases
+    // Logout cases
     builder.addCase(logout.pending, state => {
       state.isLoading = true;
     });
-    builder.addCase(logout.fulfilled, (state, action) => {
+    builder.addCase(logout.fulfilled, state => {
       state.isLoading = false;
       state.isSuccess = true;
-      //state.userData = action.payload;
       state.userData = null;
       state.isAuthenticated = false;
     });
     builder.addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
-      state.isError = true; //set action payload here to get error message
+      state.isError = true;
+      state.errorMessage = action.payload.message;
+    });
+
+    // Update Username cases
+    builder.addCase(updateUsername.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateUsername.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.userData = {
+        ...state.userData,
+        username: action.payload.user.username,
+      };
+    });
+    builder.addCase(updateUsername.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.errorMessage = action.payload.message;
     });
   },
 });

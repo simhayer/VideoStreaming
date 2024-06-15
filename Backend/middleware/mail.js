@@ -1,6 +1,5 @@
 var nodemailer = require('nodemailer');
 
-
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -9,29 +8,27 @@ var transporter = nodemailer.createTransport({
   },
 });
 
-
 exports.sendResetCodeMail = (email, code, next) => {
   //const { email,code } = req;
   //console.log(res);
   var mailOptions = {
     from: '<videostreamer60@gmail.com> "BARS"',
     to: email,
-    subject: 'Password Reset Request', 
+    subject: 'Password Reset Request',
     text: 'Your verification code is: ' + code,
   };
   try {
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         //console.log(error);
-        return false
+        return false;
       } else {
         console.log('Email sent: ' + info.response);
-        return true
+        return true;
       }
     });
   } catch (error) {
     //console.error('Error sending email:', error);
-    return false
-    throw error;
+    return false;
   }
 };

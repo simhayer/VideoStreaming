@@ -11,6 +11,8 @@ import ForgetCode from './Screens/FrogetCode';
 import ResetPassword from './Screens/ResetPassword';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import VideoScreen from './Screens/VideoScreen'; // Import the new video screen component
+import EditProfile from './Screens/EditProfile';
+import UsernameCreate from './Screens/UsernameCreate';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +34,11 @@ const MyStack = () => {
             component={VideoScreen}
             options={{headerShown: false}}
           />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfile}
+            options={{headerShown: false}}
+          />
         </Stack.Group>
       ) : (
         <Stack.Group>
@@ -44,6 +51,11 @@ const MyStack = () => {
           <Stack.Screen
             name="SignUp"
             component={SignUp}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="UsernameCreate"
+            component={UsernameCreate}
             options={{headerShown: false}}
           />
           <Stack.Screen

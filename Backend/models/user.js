@@ -1,5 +1,5 @@
 // user.js
-const Mongoose = require("mongoose")
+const Mongoose = require('mongoose');
 const UserSchema = new Mongoose.Schema({
   fullname: {
     type: String,
@@ -10,24 +10,32 @@ const UserSchema = new Mongoose.Schema({
     unique: true,
     required: true,
   },
+  username: {
+    type: String,
+    required: false,
+  },
+  userID: {
+    type: Number,
+    required: true,
+  },
   password: {
     type: String,
     minlength: 6,
     required: true,
-    // Increase the length to accommodate hashed passwords (e.g., 60 characters for bcrypt)
-    maxlength: 100, // Adjust this value as needed based on your hashing algorithm
+    // Increased the length to accommodate hashed passwords (e.g., 60 characters for bcrypt)
+    maxlength: 100,
   },
   role: {
     type: String,
-    default: "Basic",
+    default: 'Basic',
     required: true,
   },
   resetCode: {
     type: String,
-    default: "Basic",
+    default: 'Basic',
     required: false,
   },
-})
+});
 
-const User = Mongoose.model("user", UserSchema)
-module.exports = User
+const User = Mongoose.model('user', UserSchema);
+module.exports = User;

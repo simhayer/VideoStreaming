@@ -3,9 +3,11 @@ import {Text, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../Redux/Features/AuthSlice';
+import {useNavigation} from '@react-navigation/native';
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const {userData, isLoading} = useSelector(state => state.auth);
 
   const email = userData?.user?.email;
@@ -20,6 +22,10 @@ const Profile = () => {
     };
 
     dispatch(logout(logoutParams));
+  };
+
+  const onEditProfileClick = async () => {
+    navigation.navigate('EditProfile');
   };
 
   return (
@@ -39,7 +45,7 @@ const Profile = () => {
       </TouchableOpacity>
       <TouchableOpacity
         isloading={isLoading}
-        onPress={() => onLogoutClick()}
+        onPress={() => onEditProfileClick()}
         style={{
           padding: 10,
           backgroundColor: 'blue',

@@ -62,6 +62,9 @@ const SignUp = () => {
         .post(baseURL + apiEndpoints.register, loginParams)
         .then(res => {
           console.log(res.data);
+          setIsError(false);
+          setLoginError('');
+          navigation.navigate('UsernameCreate', {email});
         })
         .catch(err => {
           console.log(err);
@@ -77,9 +80,6 @@ const SignUp = () => {
       setLoginError('Could not create an account');
       // Handle the error, such as displaying an error message to the user
     }
-    setIsError(false);
-    setLoginError('');
-    navigation.navigate('Login');
   };
 
   const inputRef = useRef(null);

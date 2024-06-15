@@ -1,9 +1,24 @@
 // db.js
-const Mongoose = require("mongoose")
-//const localDB = `mongodb://localhost:27017/role_auth`
-const localDB = `mongodb://0.0.0.0:27017/role_auth`
+const mongoose = require('mongoose');
+const AppData = require('./AppData'); // Ensure the path is correct
+
+const localDB = `mongodb://0.0.0.0:27017/role_auth`;
+
+const initializeAppData = async () => {
+  try {
+    const highestUserID = await AppData.findOne();
+    if (!highestUserID) {
+      await AppData.create({highestUserID: 1});
+    }
+  } catch (error) {
+    console.error('Error initializing app data:', error);
+  }
+};
+
 const connectDB = async () => {
-  await Mongoose.connect(localDB)
-  console.log("MongoDB Connected")
-}
-module.exports = connectDB
+  await mongoose.connect(localDB, {});
+  console.log('MongoDB Connected');
+  await initializeAppData();
+};
+
+module.exports = connectDB;
