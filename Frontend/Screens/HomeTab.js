@@ -48,6 +48,7 @@ const App = () => {
   const email = userData?.user?.email;
   const fullname = userData?.user?.fullname;
   const username = userData?.user?.username;
+  const profilePicture = userData?.user?.profilePicture;
 
   useEffect(() => {
     socket.current = io(baseURL, {
@@ -100,6 +101,7 @@ const App = () => {
       sdp: newPeer.localDescription,
       socket_id: socketId,
       username: username,
+      profilePicture: profilePicture,
     };
 
     const {data} = await axios.post(

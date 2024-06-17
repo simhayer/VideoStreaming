@@ -6,6 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  Image,
+  ImageBackground,
 } from 'react-native';
 import {RTCPeerConnection, RTCSessionDescription} from 'react-native-webrtc';
 import io from 'socket.io-client';
@@ -26,6 +28,7 @@ const HomeScreen = () => {
   const [peer, setPeer] = useState(null);
   const [broadcasts, setBroadcasts] = useState([]);
   const [socket, setSocket] = useState(null);
+  const calculatedFontSize = screenHeight * 0.05;
 
   useEffect(() => {
     const newSocket = io(baseURL);
@@ -118,21 +121,59 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Viewer of Streaming</Text>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        {broadcasts.map(broadcast => (
-          <View
-            key={broadcast.id}
-            style={{width: '48%', height: screenHeight * 0.35}}>
-            <Text>{broadcast.username}</Text>
-            <TouchableOpacity
+        {broadcasts.map(broadcast => {
+          const profilePictureFilename = broadcast.profilePicture
+            .split('/')
+            .pop();
+          const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+          return (
+            <View
               key={broadcast.id}
-              title={`Watch ${broadcast.id}`}
-              style={styles.buttonContainer}
-              onPress={() => watch(broadcast.id)}>
-              <Text>{`Watch ${broadcast.username}`}</Text>
-            </TouchableOpacity>
-            <Text>Title goes here</Text>
-          </View>
-        ))}
+              style={{
+                width: '48%',
+                height: screenHeight * 0.35,
+                marginBottom: 16,
+              }}>
+              <View style={styles.row}>
+                <Image
+                  source={{uri: profilePictureURL}}
+                  style={styles.profilePicture}
+                />
+                <Text style={styles.username}>{broadcast.username}</Text>
+              </View>
+              <TouchableOpacity
+                key={broadcast.id}
+                title={`Watch ${broadcast.id}`}
+                style={styles.buttonContainer}
+                onPress={() => watch(broadcast.id)}>
+                <ImageBackground
+                  source={{uri: profilePictureURL}}
+                  style={{width: '100%', height: '100%', borderRadius: 7}}
+                  imageStyle={{borderRadius: 7}}>
+                  <View
+                    style={{
+                      backgroundColor: 'red',
+                      width: '28%',
+                      height: '9%',
+                      margin: '4%',
+                      borderRadius: 3,
+                      alignItems: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        color: 'white',
+                        fontSize: calculatedFontSize / 2.5,
+                      }}>
+                      Live
+                    </Text>
+                  </View>
+                </ImageBackground>
+              </TouchableOpacity>
+              <Text>Title goes here</Text>
+            </View>
+          );
+        })}
       </ScrollView>
     </View>
   );
@@ -141,7 +182,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: '3%',
   },
   title: {
     fontSize: 24,
@@ -154,12 +195,31 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: '4%',
+    height: '9%',
+    width: '100%',
+  },
+  profilePicture: {
+    width: '15%',
+    height: '100%',
+    borderRadius: 25,
+    marginRight: '5%',
+  },
+  username: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    maxWidth: '48%',
+  },
   buttonContainer: {
     width: '100%',
     height: '100%',
     marginBottom: '2%',
     borderColor: 'black',
-    borderWidth: 2,
+    borderWidth: 0.3,
+    borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',
   },

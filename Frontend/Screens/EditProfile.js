@@ -101,7 +101,7 @@ const EditProfile = () => {
             source={
               selectedImage
                 ? {uri: selectedImage}
-                : require('../Resources/AppleLogo.png')
+                : require('../Resources/user.png')
             }
             style={{
               height: 100,

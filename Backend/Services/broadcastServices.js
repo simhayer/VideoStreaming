@@ -11,17 +11,19 @@ class Broadcaster {
     _stream = new MediaStream(),
     _peer = new webrtc.RTCPeerConnection(),
     _socket_id,
-    username,
+    _username,
+    _profilePicture,
   ) {
     this.id = _id;
     this.stream = _stream;
     this.peer = _peer;
     this.socket_id = _socket_id;
-    this.username = username;
+    this.username = _username;
+    this.profilePicture = _profilePicture;
   }
 }
 
-async function addBroadcast(socket_id, sdp, username) {
+async function addBroadcast(socket_id, sdp, username, profilePicture) {
   console.log('new broadcast');
   var id = uuidv4();
   console.log('username: ' + username);
@@ -34,6 +36,7 @@ async function addBroadcast(socket_id, sdp, username) {
     ),
     socket_id,
     username,
+    profilePicture,
   );
 
   broadcasters[id] = broadcast;
@@ -142,6 +145,7 @@ function fetch() {
       data.push({
         id: bs,
         username: broadcasters[bs].username,
+        profilePicture: broadcasters[bs].profilePicture,
       });
     }
   }

@@ -12,6 +12,7 @@ async function add({body}, res) {
     body.socket_id,
     body.sdp,
     body.username,
+    body.profilePicture,
   );
 
   if (id != null) {
