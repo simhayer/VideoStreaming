@@ -10,6 +10,7 @@ const {
   verifyResetCode,
   updatePassword,
   updateUsername,
+  updateProfilePicture,
 } = require('../middleware/auth');
 
 const broadcastController = require('../Controllers/broadcastController');
@@ -26,6 +27,7 @@ router.route('/passwordMail').post(sendResetCode);
 router.route('/verifyResetCode').post(verifyResetCode);
 router.route('/updatePassword').post(updatePassword);
 router.route('/updateUsername').post(updateUsername);
+router.post('/updateProfilePicture', updateProfilePicture);
 
 // Broadcast Routes
 router.route('/broadcast').post(broadcastController.add);

@@ -37,6 +37,7 @@ const UsernameCreate = ({route}) => {
       .unwrap()
       .then(() => {
         navigation.navigate('Login');
+        4;
       })
       .catch(err => {
         //console.error('Error:', err);

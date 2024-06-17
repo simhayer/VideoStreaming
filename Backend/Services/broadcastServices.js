@@ -135,16 +135,6 @@ async function removeBroadcast(id) {
   }
 }
 
-// function fetch() {
-//   var data = [];
-//   //console.log(broadcasters);
-//   for (var bs in broadcasters) {
-//     console.log(bs);
-//     data.push(bs);
-//   }
-//   return data;
-// }
-
 function fetch() {
   var data = [];
   for (var bs in broadcasters) {

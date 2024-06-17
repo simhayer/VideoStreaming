@@ -104,89 +104,107 @@
 55            </intent-filter>
 56        </activity>
 57
-58        <service
-58-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-17:19
-59            android:name="com.oney.WebRTCModule.MediaProjectionService"
-59-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
-60            android:foregroundServiceType="mediaProjection" >
-60-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
-61        </service>
-62
-63        <activity
-63-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:19:9-21:40
-64            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-64-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:20:13-77
-65            android:exported="false" />
-65-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:21:13-37
-66        <activity
-66-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
-67            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-67-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
-68            android:excludeFromRecents="true"
-68-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
-69            android:exported="false"
-69-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
-70            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-70-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
-71        <!--
-72            Service handling Google Sign-In user revocation. For apps that do not integrate with
-73            Google Sign-In, this service will never be started.
-74        -->
-75        <service
-75-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
-76            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-76-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
-77            android:exported="true"
-77-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
-78            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-78-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
-79            android:visibleToInstantApps="true" />
-79-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
-80
-81        <activity
-81-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
-82            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-82-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
-83            android:exported="false"
-83-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
-84            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-84-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
-85
-86        <meta-data
-86-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
-87            android:name="com.google.android.gms.version"
-87-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
-88            android:value="@integer/google_play_services_version" />
-88-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
-89
-90        <provider
-90-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-91            android:name="androidx.startup.InitializationProvider"
-91-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-92            android:authorities="com.tclone.androidx-startup"
-92-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-93            android:exported="false" >
-93-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-94            <meta-data
-94-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-95                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-95-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-96                android:value="androidx.startup" />
-96-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-97            <meta-data
-97-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-98                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-98-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-99                android:value="androidx.startup" />
-99-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-100        </provider>
-101
-102        <meta-data
-102-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:12:9-14:37
-103            android:name="com.facebook.soloader.enabled"
-103-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:13:13-57
-104            android:value="false" />
-104-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:14:13-34
-105    </application>
-106
-107</manifest>
+58        <provider
+58-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
+59            android:name="com.imagepicker.ImagePickerProvider"
+59-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-63
+60            android:authorities="com.tclone.imagepickerprovider"
+60-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-71
+61            android:exported="false"
+61-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
+62            android:grantUriPermissions="true" >
+62-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-47
+63            <meta-data
+63-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:70
+64                android:name="android.support.FILE_PROVIDER_PATHS"
+64-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
+65                android:resource="@xml/imagepicker_provider_paths" />
+65-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-67
+66        </provider>
+67
+68        <service
+68-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-17:19
+69            android:name="com.oney.WebRTCModule.MediaProjectionService"
+69-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
+70            android:foregroundServiceType="mediaProjection" >
+70-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
+71        </service>
+72
+73        <activity
+73-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:19:9-21:40
+74            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+74-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:20:13-77
+75            android:exported="false" />
+75-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:21:13-37
+76        <activity
+76-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
+77            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+77-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
+78            android:excludeFromRecents="true"
+78-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
+79            android:exported="false"
+79-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
+80            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+80-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
+81        <!--
+82            Service handling Google Sign-In user revocation. For apps that do not integrate with
+83            Google Sign-In, this service will never be started.
+84        -->
+85        <service
+85-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
+86            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+86-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
+87            android:exported="true"
+87-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
+88            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+88-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
+89            android:visibleToInstantApps="true" />
+89-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
+90
+91        <activity
+91-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+92            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+92-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+93            android:exported="false"
+93-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+94            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+94-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+95
+96        <meta-data
+96-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
+97            android:name="com.google.android.gms.version"
+97-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
+98            android:value="@integer/google_play_services_version" />
+98-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
+99
+100        <provider
+100-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+101            android:name="androidx.startup.InitializationProvider"
+101-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+102            android:authorities="com.tclone.androidx-startup"
+102-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+103            android:exported="false" >
+103-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+104            <meta-data
+104-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+105                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+105-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+106                android:value="androidx.startup" />
+106-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+107            <meta-data
+107-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+108                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+108-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+109                android:value="androidx.startup" />
+109-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+110        </provider>
+111
+112        <meta-data
+112-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:12:9-14:37
+113            android:name="com.facebook.soloader.enabled"
+113-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:13:13-57
+114            android:value="false" />
+114-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:14:13-34
+115    </application>
+116
+117</manifest>

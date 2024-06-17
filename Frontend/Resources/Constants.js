@@ -24,5 +24,6 @@ export const apiEndpoints = {
   listbroadcast: '/api/auth/list-broadcast',
   addConsumer: '/api/auth/consumer',
   updateUsername: '/api/auth/updateUsername',
+  updateProfilePicture: '/api/auth/updateProfilePicture',
   // Add more API endpoints as needed
 };

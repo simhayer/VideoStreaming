@@ -5,6 +5,10 @@ const jwt = require('jsonwebtoken');
 const jwtSecret =
   '0bbb60bc7d2fe832d54d785370672901832d3ba849366219ddfea07bd5eed8dc06d485';
 const {sendResetCodeMail} = require('./mail');
+const multer = require('multer');
+
+//TODO: to fix this path dependency
+const path = require('path');
 
 // auth.js
 exports.register = async (req, res, next) => {
@@ -88,7 +92,7 @@ exports.login = async (req, res, next) => {
 
     if (isMatch) {
       // Password match
-      const token = jwt.sign({email: user.email}, 'your_secret_key', {
+      const token = jwt.sign({email: user.email}, jwtSecret, {
         expiresIn: '20d',
       });
       console.log('User logged in successfully, generating token');
@@ -374,3 +378,58 @@ exports.logout = async (req, res, next) => {
     });
   }
 };
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Set the destination folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Set the file name
+    //cb(null, Date.now() + '.jpg');
+  },
+});
+
+const upload = multer({storage: storage});
+
+// Update profile picture
+exports.updateProfilePicture = [
+  upload.single('profilePicture'),
+  async (req, res, next) => {
+    const {email} = req.body;
+
+    if (!email || !req.file) {
+      return res.status(400).json({
+        message: 'Email or profile picture not present',
+      });
+    }
+
+    try {
+      const user = await User.findOne({email});
+
+      if (!user) {
+        return res.status(400).json({
+          message: 'User not found',
+        });
+      }
+
+      // Assuming you store the uploaded files in a local directory called 'uploads'
+      const profilePicturePath = `/uploads/${req.file.filename}`;
+
+      // Update the user's profile picture URL
+      user.profilePicture = profilePicturePath;
+      await user.save();
+
+      res.status(200).json({
+        message: 'Profile picture updated successfully',
+        profilePicture: user.profilePicture,
+      });
+    } catch (error) {
+      console.error('Error during profile picture update:', error);
+      return res.status(400).json({
+        message: 'An error occurred',
+        error: error.message,
+      });
+    }
+  },
+];

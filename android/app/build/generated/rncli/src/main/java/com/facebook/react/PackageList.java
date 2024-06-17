@@ -15,8 +15,12 @@ import java.util.ArrayList;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-google-signin/google-signin
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
+// react-native-image-picker
+import com.imagepicker.ImagePickerPackage;
 // react-native-incall-manager
 import com.zxcpoiu.incallmanager.InCallManagerPackage;
+// react-native-randombytes
+import com.bitgo.randombytes.RandomBytesPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
@@ -74,7 +78,9 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
       new RNGoogleSigninPackage(),
+      new ImagePickerPackage(),
       new InCallManagerPackage(),
+      new RandomBytesPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
       new SvgPackage(),

@@ -57,7 +57,7 @@ const HomeScreen = () => {
     console.log('in List update');
     try {
       const response = await axios.get(baseURL + apiEndpoints.listbroadcast);
-      console.log('Broadcasts: ', response.data);
+      //console.log('Broadcasts: ', response.data);
       setBroadcasts(response.data);
     } catch (error) {
       console.error('Error fetching broadcasts: ', error);
@@ -130,6 +130,7 @@ const HomeScreen = () => {
               onPress={() => watch(broadcast.id)}>
               <Text>{`Watch ${broadcast.username}`}</Text>
             </TouchableOpacity>
+            <Text>Title goes here</Text>
           </View>
         ))}
       </ScrollView>
