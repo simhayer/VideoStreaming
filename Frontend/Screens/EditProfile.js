@@ -27,7 +27,13 @@ const EditProfile = () => {
   const username = userData?.user?.username;
   const profilePicture = userData?.user?.profilePicture;
 
-  const [selectedImage, setSelectedImage] = useState(profilePicture);
+  // Check if profilePicture is valid before constructing the URL
+  const profilePictureURL = profilePicture
+    ? `${baseURL}/profilePicture/${profilePicture.split('/').pop()}`
+    : null;
+  console.log(profilePictureURL);
+
+  const [selectedImage, setSelectedImage] = useState(profilePictureURL);
 
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
@@ -46,54 +52,17 @@ const EditProfile = () => {
       } else {
         const uri = response.assets[0].uri;
         setSelectedImage(uri);
-        //uploadProfilePicture(uri);
         const updateParams = {email, uri};
-        //const result = dispatch(uploadProfilePicture(updateParams));
-        //console.log(result);
         dispatch(uploadProfilePicture(updateParams))
           .unwrap()
           .then(() => {
-            //navigation.navigate('Login');
             console.log('Success');
-            //4;
           })
           .catch(err => {
-            //console.log('Success');
             console.error('Error:', err);
-            // Handle the error (errorMessage is already set by the Redux state)
           });
       }
     });
-  };
-
-  const uploadProfilePicture1 = async uri => {
-    const formData = new FormData();
-    formData.append('profilePicture', {
-      uri,
-      type: 'image/jpeg',
-      name: 'profile.jpg',
-    });
-    formData.append('email', email);
-
-    try {
-      const response = await axios.post(
-        baseURL + apiEndpoints.updateProfilePicture,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      );
-
-      if (response.status === 200) {
-        console.log('Profile picture updated successfully');
-      } else {
-        console.log('Failed to update profile picture');
-      }
-    } catch (error) {
-      console.error('Error uploading profile picture: ', error);
-    }
   };
 
   return (
@@ -129,12 +98,11 @@ const EditProfile = () => {
       <View style={{paddingTop: '5%', alignItems: 'center'}}>
         <TouchableOpacity onPress={handleImagePicker}>
           <Image
-            // source={
-            //   selectedImage
-            //     ? {uri: selectedImage}
-            //     : require('../Resources/AppleLogo.png')
-            // }
-            source={profilePicture}
+            source={
+              selectedImage
+                ? {uri: selectedImage}
+                : require('../Resources/AppleLogo.png')
+            }
             style={{
               height: 100,
               width: 100,

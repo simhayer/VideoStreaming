@@ -197,10 +197,7 @@ const authSlice = createSlice({
     builder.addCase(uploadProfilePicture.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.userData.user = {
-        ...state.userData.user,
-        profilePicture: action.payload.profilePicture,
-      };
+      state.userData.user.profilePicture = action.payload.profilePicture;
     });
     builder.addCase(uploadProfilePicture.rejected, (state, action) => {
       state.isLoading = false;

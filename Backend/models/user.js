@@ -12,7 +12,7 @@ const UserSchema = new Mongoose.Schema({
   },
   username: {
     type: String,
-    required: false,
+    default: '',
   },
   userID: {
     type: Number,
