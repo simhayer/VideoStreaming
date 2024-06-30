@@ -1,11 +1,14 @@
-// StreamStore.js
+const streams = {};
+
 const StreamStore = {
-  streams: {},
-  setStream(id, stream) {
-    this.streams[id] = stream;
+  setStream: (id, stream) => {
+    streams[id] = stream;
   },
-  getStream(id) {
-    return this.streams[id];
+  getStream: id => {
+    return streams[id];
+  },
+  removeStream: id => {
+    delete streams[id];
   },
 };
 

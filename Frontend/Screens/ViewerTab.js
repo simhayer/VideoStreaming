@@ -23,7 +23,7 @@ const configurationPeerConnection = {
 };
 const addTransceiverConstraints = {direction: 'recvonly'};
 
-const HomeScreen = () => {
+const VideoScreen = () => {
   const navigation = useNavigation();
   const [peer, setPeer] = useState(null);
   const [broadcasts, setBroadcasts] = useState([]);
@@ -67,7 +67,13 @@ const HomeScreen = () => {
     }
   };
 
-  const handleTrackEvent = event => {
+  const handleTrackEvent = (
+    event,
+    broadcastId,
+    username,
+    watchers,
+    profilePictureURL,
+  ) => {
     const receivedStream = event.streams[0];
     console.log('Stream received: ', receivedStream);
 
@@ -76,11 +82,25 @@ const HomeScreen = () => {
     // Store the stream in the StreamStore
     StreamStore.setStream(streamId, receivedStream);
 
-    // Navigate to the VideoScreen with the streamId as a parameter
-    navigation.navigate('Video', {streamId});
+    // Navigate to the VideoScreen with the streamId, username, and watchers
+    navigateToVideoScreen(streamId, username, watchers, profilePictureURL);
   };
 
-  const watch = async (broadcastId, socketId) => {
+  const navigateToVideoScreen = (
+    streamId,
+    username,
+    watchers,
+    profilePictureURL,
+  ) => {
+    navigation.navigate('Video', {
+      streamId,
+      username,
+      watchers,
+      profilePictureURL,
+    });
+  };
+
+  const watch = async (broadcastId, username, watchers, profilePictureURL) => {
     if (peer) {
       peer.close();
     }
@@ -89,19 +109,16 @@ const HomeScreen = () => {
     newPeer.addTransceiver('video', addTransceiverConstraints);
     newPeer.addTransceiver('audio', addTransceiverConstraints);
 
-    newPeer.ontrack = handleTrackEvent;
+    newPeer.ontrack = event =>
+      handleTrackEvent(
+        event,
+        broadcastId,
+        username,
+        watchers,
+        profilePictureURL,
+      );
 
-    //console.log('watching: ', broadcast);
-    //console.log('watching: ', broadcastId, socketId);
-
-    //socket.to(socketId).emit('watcher', socket.id);
-
-    // socket.emit('watcher', {targetSocketId: socketId, id: socket.id});
-    socket.emit('watcher', {targetSocketId: socketId, id: broadcastId});
-
-    console.log('sockets : ', socketId, socket.id);
-
-    //socket.emit('watcher', socket.id);
+    socket.emit('watcher', {id: broadcastId});
 
     newPeer.onicecandidate = event => {
       if (event.candidate) {
@@ -157,7 +174,14 @@ const HomeScreen = () => {
                 key={broadcast.id}
                 title={`Watch ${broadcast.id}`}
                 style={styles.buttonContainer}
-                onPress={() => watch(broadcast.id, broadcast.socketID)}>
+                onPress={() =>
+                  watch(
+                    broadcast.id,
+                    broadcast.username,
+                    broadcast.watchers,
+                    profilePictureURL,
+                  )
+                }>
                 <ImageBackground
                   source={{uri: profilePictureURL}}
                   style={{width: '100%', height: '100%', borderRadius: 7}}
@@ -237,4 +261,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default VideoScreen;
