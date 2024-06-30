@@ -13,6 +13,7 @@ class Broadcaster {
     _socket_id,
     _username,
     _profilePicture,
+    _title,
   ) {
     this.id = _id;
     this.stream = _stream;
@@ -20,10 +21,13 @@ class Broadcaster {
     this.socket_id = _socket_id;
     this.username = _username;
     this.profilePicture = _profilePicture;
+    4;
+    this.title = _title;
+    this.watchers = 0;
   }
 }
 
-async function addBroadcast(socket_id, sdp, username, profilePicture) {
+async function addBroadcast(socket_id, sdp, username, profilePicture, title) {
   console.log('new broadcast');
   var id = uuidv4();
   console.log('username: ' + username);
@@ -37,6 +41,7 @@ async function addBroadcast(socket_id, sdp, username, profilePicture) {
     socket_id,
     username,
     profilePicture,
+    title,
   );
 
   broadcasters[id] = broadcast;
@@ -138,6 +143,20 @@ async function removeBroadcast(id) {
   }
 }
 
+async function addWatcher(id) {
+  if (broadcasters[id] != null) {
+    console.log('\x1b[31m', 'Updating broadcaster: ' + id, '\x1b[0m');
+
+    if (broadcasters[id].watchers == null) {
+      broadcasters[id].watchers = 0;
+    }
+    broadcasters[id].watchers += 1;
+    //delete broadcasters[id];
+  } else {
+    console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
+  }
+}
+
 function fetch() {
   var data = [];
   for (var bs in broadcasters) {
@@ -146,6 +165,9 @@ function fetch() {
         id: bs,
         username: broadcasters[bs].username,
         profilePicture: broadcasters[bs].profilePicture,
+        title: broadcasters[bs].title,
+        socketID: broadcasters[bs].socket_id,
+        watchers: broadcasters[bs].watchers,
       });
     }
   }
@@ -156,4 +178,5 @@ module.exports = {
   addBroadcast,
   addCandidateFromClient,
   fetch,
+  addWatcher,
 };

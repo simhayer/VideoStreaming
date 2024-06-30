@@ -80,7 +80,7 @@ const HomeScreen = () => {
     navigation.navigate('Video', {streamId});
   };
 
-  const watch = async broadcastId => {
+  const watch = async (broadcastId, socketId) => {
     if (peer) {
       peer.close();
     }
@@ -90,6 +90,18 @@ const HomeScreen = () => {
     newPeer.addTransceiver('audio', addTransceiverConstraints);
 
     newPeer.ontrack = handleTrackEvent;
+
+    //console.log('watching: ', broadcast);
+    //console.log('watching: ', broadcastId, socketId);
+
+    //socket.to(socketId).emit('watcher', socket.id);
+
+    // socket.emit('watcher', {targetSocketId: socketId, id: socket.id});
+    socket.emit('watcher', {targetSocketId: socketId, id: broadcastId});
+
+    console.log('sockets : ', socketId, socket.id);
+
+    //socket.emit('watcher', socket.id);
 
     newPeer.onicecandidate = event => {
       if (event.candidate) {
@@ -132,7 +144,7 @@ const HomeScreen = () => {
               style={{
                 width: '48%',
                 height: screenHeight * 0.35,
-                marginBottom: 16,
+                marginBottom: '20%',
               }}>
               <View style={styles.row}>
                 <Image
@@ -145,7 +157,7 @@ const HomeScreen = () => {
                 key={broadcast.id}
                 title={`Watch ${broadcast.id}`}
                 style={styles.buttonContainer}
-                onPress={() => watch(broadcast.id)}>
+                onPress={() => watch(broadcast.id, broadcast.socketID)}>
                 <ImageBackground
                   source={{uri: profilePictureURL}}
                   style={{width: '100%', height: '100%', borderRadius: 7}}
@@ -153,7 +165,7 @@ const HomeScreen = () => {
                   <View
                     style={{
                       backgroundColor: 'red',
-                      width: '28%',
+                      width: '40%',
                       height: '9%',
                       margin: '4%',
                       borderRadius: 3,
@@ -165,12 +177,12 @@ const HomeScreen = () => {
                         color: 'white',
                         fontSize: calculatedFontSize / 2.5,
                       }}>
-                      Live
+                      Live - {broadcast.watchers}
                     </Text>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
-              <Text>Title goes here</Text>
+              <Text>{broadcast.title}</Text>
             </View>
           );
         })}

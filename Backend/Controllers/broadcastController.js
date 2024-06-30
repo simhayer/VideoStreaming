@@ -13,6 +13,7 @@ async function add({body}, res) {
     body.sdp,
     body.username,
     body.profilePicture,
+    body.title,
   );
 
   if (id != null) {

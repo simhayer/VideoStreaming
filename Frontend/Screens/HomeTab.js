@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Button, Text} from 'react-native';
+import {View, Button, Text, TextInput} from 'react-native';
 import {
   RTCView,
   mediaDevices,
@@ -44,6 +44,7 @@ const App = () => {
   const peer = useRef(null);
   const socket = useRef(null);
   const {userData, isLoading} = useSelector(state => state.auth);
+  const [title, setTitle] = useState('');
 
   const email = userData?.user?.email;
   const fullname = userData?.user?.fullname;
@@ -102,6 +103,7 @@ const App = () => {
       socket_id: socketId,
       username: username,
       profilePicture: profilePicture,
+      title: title,
     };
 
     const {data} = await axios.post(
@@ -159,6 +161,16 @@ const App = () => {
           style={{width: '100%', height: 200}}
         />
       )}
+      <TextInput
+        value={title}
+        onChangeText={title => setTitle(title)}
+        placeholder={'Title'}
+        style={{
+          //fontSize: calculatedFontSize / 2.3,
+          paddingBottom: '0%',
+          marginBottom: '5%',
+        }}
+      />
     </View>
   );
 };
