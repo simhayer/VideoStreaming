@@ -24,6 +24,7 @@ class Broadcaster {
     4;
     this.title = _title;
     this.watchers = 0;
+    this.comments = [];
   }
 }
 
@@ -157,6 +158,16 @@ async function addWatcher(id) {
   }
 }
 
+async function addComment(id, comment) {
+  if (broadcasters[id] != null) {
+    console.log('\x1b[31m', 'Updating broadcaster: ' + id, '\x1b[0m');
+    broadcasters[id].comments.push(comment);
+    //delete broadcasters[id];
+  } else {
+    console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
+  }
+}
+
 function fetch() {
   var data = [];
   for (var bs in broadcasters) {
@@ -179,4 +190,5 @@ module.exports = {
   addCandidateFromClient,
   fetch,
   addWatcher,
+  addComment,
 };

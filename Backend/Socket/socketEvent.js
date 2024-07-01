@@ -19,6 +19,11 @@ module.exports = io => {
       broadcastService.addWatcher(data.id);
     });
 
+    socket.on('comment', data => {
+      console.log('comment: ' + data);
+      broadcastService.addComment(data.id, data.comment);
+    });
+
     io.on('disconnect', socket => {
       console.log('someone disconnected');
     });

@@ -83,17 +83,25 @@ const VideoScreen = () => {
     StreamStore.setStream(streamId, receivedStream);
 
     // Navigate to the VideoScreen with the streamId, username, and watchers
-    navigateToVideoScreen(streamId, username, watchers, profilePictureURL);
+    navigateToVideoScreen(
+      streamId,
+      broadcastId,
+      username,
+      watchers,
+      profilePictureURL,
+    );
   };
 
   const navigateToVideoScreen = (
     streamId,
+    broadcastId,
     username,
     watchers,
     profilePictureURL,
   ) => {
     navigation.navigate('Video', {
       streamId,
+      broadcastId,
       username,
       watchers,
       profilePictureURL,
