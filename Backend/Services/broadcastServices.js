@@ -158,11 +158,10 @@ async function addWatcher(id) {
   }
 }
 
-async function addComment(id, comment) {
+async function addComment(id, comment, userUsername, userProfilePicture) {
   if (broadcasters[id] != null) {
     console.log('\x1b[31m', 'Updating broadcaster: ' + id, '\x1b[0m');
-    broadcasters[id].comments.push(comment);
-    //delete broadcasters[id];
+    broadcasters[id].comments.push({comment, userUsername, userProfilePicture});
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
   }
@@ -179,6 +178,7 @@ function fetch() {
         title: broadcasters[bs].title,
         socketID: broadcasters[bs].socket_id,
         watchers: broadcasters[bs].watchers,
+        comments: broadcasters[bs].comments,
       });
     }
   }

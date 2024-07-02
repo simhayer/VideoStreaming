@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,18 +11,38 @@ import {
   Platform,
   Keyboard,
   TouchableWithoutFeedback,
+  ScrollView,
+  Pressable,
 } from 'react-native';
 import {RTCView} from 'react-native-webrtc';
 import {useNavigation} from '@react-navigation/native';
 import StreamStore from './StreamStore'; // Import the StreamStore
 import io from 'socket.io-client';
 import {apiEndpoints, baseURL} from '../Resources/Constants';
+import {set} from 'mongoose';
+import {useSelector} from 'react-redux';
 
 const VideoScreen = ({route}) => {
-  const {streamId, broadcastId, username, watchers, profilePictureURL} =
-    route.params;
+  const {
+    streamId,
+    broadcastId,
+    username,
+    watchers,
+    profilePictureURL,
+    comments,
+  } = route.params;
+
+  const {userData} = useSelector(state => state.auth);
+
+  const userUsername = userData?.user?.username;
+  const userProfilePicture = userData?.user?.profilePicture;
+
   const navigation = useNavigation();
   const [comment, setComment] = useState('');
+
+  const [curComments, setCurComments] = useState(comments || []);
+
+  const scrollViewRef = useRef();
 
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
@@ -56,11 +76,23 @@ const VideoScreen = ({route}) => {
   const handleSendComment = () => {
     if (comment.trim()) {
       console.log('Comment sent:', comment);
-      // Add your send comment logic here
-      socket.emit('comment', {id: broadcastId, comment});
+
+      const commentData = {
+        id: broadcastId,
+        comment,
+        userUsername,
+        userProfilePicture,
+      };
+      socket.emit('comment', commentData);
       setComment(''); // Clear the input after sending the comment
+      setCurComments([...curComments, commentData]); // Add the comment to the comments list
     }
   };
+
+  useEffect(() => {
+    // Scroll to bottom whenever comments change
+    scrollViewRef.current?.scrollToEnd({animated: true});
+  }, [curComments]);
 
   return (
     <KeyboardAvoidingView
@@ -102,6 +134,57 @@ const VideoScreen = ({route}) => {
               streamURL={stream.toURL()}
             />
           )}
+          <View
+            style={{
+              width: '50%',
+              height: '25%',
+              marginTop: '80%',
+              flex: 1,
+            }}>
+            <ScrollView
+              ref={scrollViewRef}
+              contentContainerStyle={{
+                flexGrow: 1,
+                flexDirection: 'column',
+              }}>
+              {curComments.map((commentData, index) => {
+                const profilePictureFilename = commentData.userProfilePicture
+                  .split('/')
+                  .pop();
+                const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+                return (
+                  <Pressable
+                    key={index}
+                    style={{flex: 1, height: '20%', maxHeight: '20%'}}>
+                    <View
+                      style={{
+                        width: '100%',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginBottom: '2%',
+                      }}>
+                      <Image
+                        source={{uri: profilePictureURL}}
+                        style={{
+                          width: '15%',
+                          height: '80%',
+                          borderRadius: 15,
+                          marginRight: '4%',
+                          marginLeft: '5%',
+                        }}
+                      />
+                      <View>
+                        <Text style={{fontWeight: 'bold'}}>
+                          {commentData.userUsername}
+                        </Text>
+                        <Text>{commentData.comment}</Text>
+                      </View>
+                    </View>
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
+          </View>
           <View style={styles.commentBox}>
             <TextInput
               style={styles.input}
@@ -169,6 +252,7 @@ const styles = StyleSheet.create({
     minHeight: 50,
     marginBottom: '50%',
     marginRight: '40%',
+    marginLeft: '4%',
   },
   input: {
     height: '100%',

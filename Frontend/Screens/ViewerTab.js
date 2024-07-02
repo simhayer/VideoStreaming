@@ -73,6 +73,7 @@ const VideoScreen = () => {
     username,
     watchers,
     profilePictureURL,
+    comments,
   ) => {
     const receivedStream = event.streams[0];
     console.log('Stream received: ', receivedStream);
@@ -89,6 +90,7 @@ const VideoScreen = () => {
       username,
       watchers,
       profilePictureURL,
+      comments,
     );
   };
 
@@ -98,6 +100,7 @@ const VideoScreen = () => {
     username,
     watchers,
     profilePictureURL,
+    comments,
   ) => {
     navigation.navigate('Video', {
       streamId,
@@ -105,10 +108,17 @@ const VideoScreen = () => {
       username,
       watchers,
       profilePictureURL,
+      comments,
     });
   };
 
-  const watch = async (broadcastId, username, watchers, profilePictureURL) => {
+  const watch = async (
+    broadcastId,
+    username,
+    watchers,
+    profilePictureURL,
+    comments,
+  ) => {
     if (peer) {
       peer.close();
     }
@@ -124,6 +134,7 @@ const VideoScreen = () => {
         username,
         watchers,
         profilePictureURL,
+        comments,
       );
 
     socket.emit('watcher', {id: broadcastId});
@@ -188,6 +199,7 @@ const VideoScreen = () => {
                     broadcast.username,
                     broadcast.watchers,
                     profilePictureURL,
+                    broadcast.comments,
                   )
                 }>
                 <ImageBackground

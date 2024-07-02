@@ -21,7 +21,12 @@ module.exports = io => {
 
     socket.on('comment', data => {
       console.log('comment: ' + data);
-      broadcastService.addComment(data.id, data.comment);
+      broadcastService.addComment(
+        data.id,
+        data.comment,
+        data.userUsername,
+        data.userProfilePicture,
+      );
     });
 
     io.on('disconnect', socket => {
