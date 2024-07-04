@@ -170,6 +170,7 @@ const VideoScreen = () => {
       <Text style={styles.title}>Viewer of Streaming</Text>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {broadcasts.map(broadcast => {
+          console.log('Broadcast: ', broadcast);
           const profilePictureFilename = broadcast.profilePicture
             .split('/')
             .pop();

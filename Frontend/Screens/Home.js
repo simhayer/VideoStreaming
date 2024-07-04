@@ -3,6 +3,7 @@ import Profile from './ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeTab from './HomeTab';
 import ViewerTab from './ViewerTab';
+import StreamScreen from './StreamScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Home = () => {
@@ -20,6 +21,8 @@ const Home = () => {
             iconName = focused ? 'eye' : 'eye-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
+          } else if (route.name === 'StreamScreen') {
+            iconName = focused ? 'videocam' : 'videocam-outline';
           }
 
           return <Icon name={iconName} size={size} color={color} />;
@@ -28,8 +31,9 @@ const Home = () => {
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
       })}>
-      <Tab.Screen name="HomeTab" component={HomeTab} />
       <Tab.Screen name="ViewerTab" component={ViewerTab} />
+      <Tab.Screen name="HomeTab" component={HomeTab} />
+      <Tab.Screen name="StreamScreen" component={StreamScreen} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );

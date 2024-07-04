@@ -19,7 +19,6 @@ import {useNavigation} from '@react-navigation/native';
 import StreamStore from './StreamStore'; // Import the StreamStore
 import io from 'socket.io-client';
 import {apiEndpoints, baseURL} from '../Resources/Constants';
-import {set} from 'mongoose';
 import {useSelector} from 'react-redux';
 
 const VideoScreen = ({route}) => {
@@ -39,24 +38,33 @@ const VideoScreen = ({route}) => {
 
   const navigation = useNavigation();
   const [comment, setComment] = useState('');
-
   const [curComments, setCurComments] = useState(comments || []);
+  const [userBid, setUserBid] = useState(0);
 
   const scrollViewRef = useRef();
-
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
-
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
+    console.log('useEffect triggered');
     const newSocket = io(baseURL);
     setSocket(newSocket);
 
+    // Join the specific stream's room
+    newSocket.emit('joinStream', broadcastId);
+
+    // Listen for new comments for the specific stream
+    newSocket.on('newComment', data => {
+      console.log('New comment received:', data);
+      setCurComments(prevComments => [...prevComments, data]);
+    });
+
     return () => {
+      console.log('Cleaning up socket connection');
       newSocket.close();
     };
-  }, []);
+  }, [broadcastId]);
 
   // Retrieve the stream from the StreamStore
   const stream = StreamStore.getStream(streamId);
@@ -85,8 +93,20 @@ const VideoScreen = ({route}) => {
       };
       socket.emit('comment', commentData);
       setComment(''); // Clear the input after sending the comment
-      setCurComments([...curComments, commentData]); // Add the comment to the comments list
+      //setCurComments([...curComments, commentData]); // Add the comment to the comments list
     }
+  };
+
+  const handlePlaceBid = () => {
+    console.log('Bid sent:', curBid);
+
+    const bidData = {
+      id: broadcastId,
+      userBid,
+      userUsername,
+    };
+    socket.emit('placeBid', bidData);
+    //setCurBid(0); // Clear the input after sending the comment
   };
 
   useEffect(() => {
@@ -198,6 +218,42 @@ const VideoScreen = ({route}) => {
             />
             <TouchableOpacity onPress={handleSendComment}>
               <Text>Send</Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              height: '7%',
+              width: '100%',
+            }}>
+            <TouchableOpacity
+              style={{
+                height: '100%',
+                width: '40%',
+                backgroundColor: '#f542a4',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 20,
+                onPress: {handlePlaceBid},
+              }}>
+              <Text style={{color: 'white', fontWeight: 'bold'}}>
+                Custom Bid
+              </Text>
+            </TouchableOpacity>
+            <View style={{width: '20%', justifyContent: 'center'}}>
+              <Text style={{color: 'white'}}>Cur Bid: </Text>
+            </View>
+            <TouchableOpacity
+              style={{
+                height: '100%',
+                width: '40%',
+                backgroundColor: '#f542a4',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 20,
+                onPress: {handlePlaceBid},
+              }}>
+              <Text style={{color: 'white', fontWeight: 'bold'}}>Bid</Text>
             </TouchableOpacity>
           </View>
         </View>

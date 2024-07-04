@@ -19,6 +19,12 @@ module.exports = io => {
       broadcastService.addWatcher(data.id);
     });
 
+    // When a user joins a specific stream
+    socket.on('joinStream', broadcastId => {
+      socket.join(broadcastId);
+      console.log(`User ${socket.id} joined broadcast room: ${broadcastId}`);
+    });
+
     socket.on('comment', data => {
       console.log('comment: ' + data);
       broadcastService.addComment(
@@ -27,6 +33,9 @@ module.exports = io => {
         data.userUsername,
         data.userProfilePicture,
       );
+
+      //io.emit('newComment', data);
+      io.to(data.id).emit('newComment', data);
     });
 
     io.on('disconnect', socket => {
