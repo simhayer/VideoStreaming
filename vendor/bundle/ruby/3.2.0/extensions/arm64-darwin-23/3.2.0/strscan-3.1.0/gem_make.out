@@ -1,0 +1,21 @@
+current directory: /Users/shriyagandhi/Documents/Simrat-dev_new/VideoStreaming/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+/Users/shriyagandhi/.rvm/rubies/ruby-3.2.0/bin/ruby extconf.rb
+checking for onig_region_memsize() in ruby.h... yes
+checking for rb_reg_onig_match() in ruby.h... no
+creating Makefile
+
+current directory: /Users/shriyagandhi/Documents/Simrat-dev_new/VideoStreaming/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240705-22937-vdhfbl sitelibdir\=./.gem.20240705-22937-vdhfbl clean
+
+current directory: /Users/shriyagandhi/Documents/Simrat-dev_new/VideoStreaming/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240705-22937-vdhfbl sitelibdir\=./.gem.20240705-22937-vdhfbl
+compiling strscan.c
+linking shared-object strscan.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/shriyagandhi/Documents/Simrat-dev_new/VideoStreaming/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240705-22937-vdhfbl sitelibdir\=./.gem.20240705-22937-vdhfbl install
+/opt/homebrew/opt/coreutils/bin/ginstall -c -m 0755 strscan.bundle ./.gem.20240705-22937-vdhfbl
+
+current directory: /Users/shriyagandhi/Documents/Simrat-dev_new/VideoStreaming/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240705-22937-vdhfbl sitelibdir\=./.gem.20240705-22937-vdhfbl clean

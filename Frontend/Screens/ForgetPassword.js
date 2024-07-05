@@ -8,6 +8,7 @@ import {
   Button,
   TouchableOpacity,
   Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import axios from 'axios';
@@ -69,7 +70,7 @@ const ForgetPassword = () => {
   }, []);
 
   return (
-    <View style={commonStyles.signup}>
+    <SafeAreaView style={commonStyles.signup}>
       <View style={{alignItems: 'center', paddingTop: '12%'}}>
         <View style={{width: '85%'}}>
           <Text style={{padding: '3%', fontSize: calculatedFontSize / 2.7}}>
@@ -138,7 +139,7 @@ const ForgetPassword = () => {
           </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

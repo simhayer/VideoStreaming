@@ -8,6 +8,7 @@ import {
   Button,
   TouchableOpacity,
   Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import axios from 'axios';
@@ -90,7 +91,7 @@ const SignUp = () => {
   }, []);
 
   return (
-    <View style={commonStyles.signup}>
+    <SafeAreaView style={commonStyles.signup}>
       <View style={{alignItems: 'center', paddingTop: '12%'}}>
         <View style={{width: '85%'}}>
           <TextInput
@@ -159,7 +160,7 @@ const SignUp = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

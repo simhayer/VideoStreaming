@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Button, Text, TextInput} from 'react-native';
+import {View, Button, Text, TextInput, SafeAreaView} from 'react-native';
 import {
   RTCView,
   mediaDevices,
@@ -152,7 +152,7 @@ const App = () => {
   };
 
   return (
-    <View>
+    <SafeAreaView>
       <Button title="Start Stream" onPress={init} />
       {broadcastId && <Text>Streaming id: {broadcastId}</Text>}
       {stream && (
@@ -171,7 +171,7 @@ const App = () => {
           marginBottom: '5%',
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

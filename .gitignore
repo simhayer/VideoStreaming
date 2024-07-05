@@ -1,1 +1,90 @@
-node_modules
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# React Native Packager
+# Use yarn cache instead of npm
+yarn.lock
+
+# Mac System files
+.DS_Store
+
+# iOS
+ios/build/
+ios/Pods/
+ios/DerivedData/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcworkspace/xcshareddata/
+
+# Xcode
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Swift Package Manager
+.build/
+Packages/
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/bin
+fastlane/logs
+
+# Code coverage
+coverage/
+
+# Build generated files
+*.log
+*.json
+
+# Temporary files
+*.swp
+*.swo
+*.swn
+
+# Android
+android/.gradle/
+android/app/build/
+android/local.properties
+android/.idea
+android/app/*.iml
+android/gradle/wrapper/gradle-wrapper.properties
+android/gradle.properties
+android/.idea
+android/.gradle/
+android/.settings/
+android/.project
+android/.classpath
+android/.idea/workspace.xml
+
+
+# Bundler
+*.gem
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build directories
+build/
+dist/

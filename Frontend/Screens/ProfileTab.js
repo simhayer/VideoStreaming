@@ -1,6 +1,5 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../Redux/Features/AuthSlice';
 import {useNavigation} from '@react-navigation/native';

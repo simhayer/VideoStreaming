@@ -8,6 +8,7 @@ import {
   Dimensions,
   Image,
   ImageBackground,
+  SafeAreaView,
 } from 'react-native';
 import {RTCPeerConnection, RTCSessionDescription} from 'react-native-webrtc';
 import io from 'socket.io-client';
@@ -166,7 +167,7 @@ const VideoScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Viewer of Streaming</Text>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {broadcasts.map(broadcast => {
@@ -232,7 +233,8 @@ const VideoScreen = () => {
           );
         })}
       </ScrollView>
-    </View>
+    </SafeAreaView>
+
   );
 };
 

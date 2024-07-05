@@ -10,6 +10,7 @@ import {
   Dimensions,
   Platform,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import axios from 'axios';
@@ -60,7 +61,7 @@ const SignUp = ({route}) => {
   };
 
   return (
-    <View style={commonStyles.signupScreens}>
+    <SafeAreaView style={commonStyles.signupScreens}>
       <View style={{alignItems: 'center'}}>
         <View
           style={{
@@ -287,7 +288,7 @@ const SignUp = ({route}) => {
           </Text>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

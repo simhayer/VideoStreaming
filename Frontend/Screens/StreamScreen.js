@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 
 const StreamScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Stream Screen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

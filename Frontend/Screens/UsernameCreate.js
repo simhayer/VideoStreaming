@@ -8,6 +8,7 @@ import {
   Button,
   TouchableOpacity,
   Dimensions,
+  SafeAreaView,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -53,7 +54,7 @@ const UsernameCreate = ({route}) => {
   }, []);
 
   return (
-    <View style={commonStyles.signup}>
+    <SafeAreaView style={commonStyles.signup}>
       <View style={{alignItems: 'center', paddingTop: '12%'}}>
         <View style={{width: '85%'}}>
           <Text
@@ -100,7 +101,7 @@ const UsernameCreate = ({route}) => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

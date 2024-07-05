@@ -13,6 +13,7 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   Pressable,
+  SafeAreaView,
 } from 'react-native';
 import {RTCView} from 'react-native-webrtc';
 import {useNavigation} from '@react-navigation/native';
@@ -115,6 +116,7 @@ const VideoScreen = ({route}) => {
   }, [curComments]);
 
   return (
+    <SafeAreaView>
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -259,6 +261,7 @@ const VideoScreen = ({route}) => {
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 

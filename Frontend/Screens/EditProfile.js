@@ -6,6 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Button,
+  SafeAreaView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -66,7 +67,7 @@ const EditProfile = () => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       <View
         style={{
           flexDirection: 'row',
@@ -119,7 +120,7 @@ const EditProfile = () => {
         <Text style={{padding: '3%', fontWeight: 'bold'}}>Full Name</Text>
         <Text style={{padding: '3%'}}>{fullname}</Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import axios from 'axios';
@@ -67,7 +68,7 @@ const ResetPassword = ({route}) => {
   };
 
   return (
-    <View style={commonStyles.signup}>
+    <SafeAreaView style={commonStyles.signup}>
       <View style={{paddingTop: '20%', alignItems: 'center'}}>
         <Text style={{padding: '3%'}}>Reset Password</Text>
 
@@ -100,7 +101,7 @@ const ResetPassword = ({route}) => {
           <Text style={{color: 'white', textAlign: 'center'}}>Signup</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
