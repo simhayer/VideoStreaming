@@ -39,6 +39,8 @@ target 'TClone' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'TCloneTests' do
     inherit! :complete
     # Pods for testing
