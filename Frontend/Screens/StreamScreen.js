@@ -3,12 +3,10 @@ import {
   View,
   Button,
   Text,
-  TextInput,
   SafeAreaView,
   StyleSheet,
   Animated,
   TouchableOpacity,
-  PanResponder,
   Dimensions,
 } from 'react-native';
 import {
@@ -22,7 +20,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
 const configurationPeerConnection = {
@@ -56,9 +54,10 @@ const StreamScreen = ({route}) => {
   const [stream, setStream] = useState(null);
   const peer = useRef(null);
   const socket = useRef(null);
-  const {userData, isLoading} = useSelector(state => state.auth);
-  const slideAnim = useRef(new Animated.Value(0)).current; // Initial animation value for the slide menu
-  const [menuVisible, setMenuVisible] = useState(false); // State to manage menu visibility
+  const {userData} = useSelector(state => state.auth);
+  const slideAnim = useRef(new Animated.Value(0)).current;
+  const [menuVisible, setMenuVisible] = useState(false);
+  const screenHeight = Dimensions.get('window').height;
 
   const email = userData?.user?.email;
   const fullname = userData?.user?.fullname;
@@ -133,8 +132,6 @@ const StreamScreen = ({route}) => {
       payload,
     );
 
-    //console.log(data.message)
-    console.log('after axios');
     const desc = new RTCSessionDescription(data.data.sdp);
     setBroadcastId(data.data.id);
     await newPeer.setRemoteDescription(desc).catch(e => console.log(e));
@@ -184,14 +181,18 @@ const StreamScreen = ({route}) => {
 
   const menuHeight = slideAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [50, Dimensions.get('window').height / 2],
+    outputRange: [screenHeight / 60, screenHeight / 2],
   });
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.videoContainer}>
         {stream && (
-          <RTCView streamURL={stream.toURL()} style={styles.rtcView} />
+          <RTCView
+            streamURL={stream.toURL()}
+            style={styles.rtcView}
+            objectFit="cover"
+          />
         )}
       </View>
       <View style={styles.overlay}>
@@ -201,7 +202,11 @@ const StreamScreen = ({route}) => {
 
         <Animated.View style={[styles.menuContainer, {height: menuHeight}]}>
           <TouchableOpacity style={styles.arrowContainer} onPress={toggleMenu}>
-            <Icon name="arrow-up-circle" size={40} color="grey" />
+            {menuVisible ? (
+              <Icon name="chevron-down" size={40} color="white" />
+            ) : (
+              <Icon name="chevron-up" size={40} color="white" />
+            )}
           </TouchableOpacity>
           {menuVisible && (
             <View style={styles.menuContent}>
@@ -242,19 +247,33 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    backgroundColor: 'rgba(0,0,0,0.7)',
+    borderColor: 'grey',
+    borderTopWidth: 4,
+    borderRightWidth: 4,
+    borderLeftWidth: 4,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    backgroundColor: 'white',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 9},
+    shadowOpacity: 0.5,
+    shadowRadius: 12.35,
+    elevation: 19,
   },
   arrowContainer: {
-    padding: 10,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    position: 'absolute',
+    top: -20,
     borderRadius: 20,
-    marginBottom: 10,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   menuContent: {
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 40,
   },
   menuItem: {
     padding: 20,

@@ -10,9 +10,10 @@ import {useSelector} from 'react-redux';
 import ForgetCode from './Screens/FrogetCode';
 import ResetPassword from './Screens/ResetPassword';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import VideoScreen from './Screens/VideoScreen'; // Import the new video screen component
+import VideoScreen from './Screens/VideoScreen';
 import EditProfile from './Screens/EditProfile';
 import UsernameCreate from './Screens/UsernameCreate';
+import StreamScreen from './Screens/StreamScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,11 @@ const MyStack = () => {
           <Stack.Screen
             name="EditProfile"
             component={EditProfile}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="StreamScreen"
+            component={StreamScreen}
             options={{headerShown: false}}
           />
         </Stack.Group>
