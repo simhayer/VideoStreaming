@@ -41,6 +41,7 @@ const VideoScreen = ({route}) => {
   const navigation = useNavigation();
   const [comment, setComment] = useState('');
   const [curComments, setCurComments] = useState(comments || []);
+  const [curBid, setCurBid] = useState(0);
   const [userBid, setUserBid] = useState(0);
 
   const scrollViewRef = useRef();
@@ -60,6 +61,11 @@ const VideoScreen = ({route}) => {
     newSocket.on('newComment', data => {
       console.log('New comment received:', data);
       setCurComments(prevComments => [...prevComments, data]);
+    });
+
+    newSocket.on('newBid', data => {
+      console.log('New bid received:', data);
+      setCurBid(data.userBid);
     });
 
     return () => {
@@ -99,16 +105,20 @@ const VideoScreen = ({route}) => {
     }
   };
 
-  const handlePlaceBid = () => {
-    console.log('Bid sent:', curBid);
+  const handleSendBid = () => {
+    console.log('In Bid sent:', userBid);
+    setUserBid(userBid + 1);
+    if (userBid > 0) {
+      console.log('Bid sent:', userBid);
 
-    const bidData = {
-      id: broadcastId,
-      userBid,
-      userUsername,
-    };
-    socket.emit('placeBid', bidData);
-    //setCurBid(0); // Clear the input after sending the comment
+      const bidData = {
+        id: broadcastId,
+        userBid,
+        userUsername,
+      };
+      socket.emit('bid', bidData);
+      //setUserBid(0); // Clear the input after sending the comment
+    }
   };
 
   useEffect(() => {
@@ -195,6 +205,7 @@ const VideoScreen = ({route}) => {
                       borderRadius: 15,
                       marginRight: '4%',
                       marginLeft: '5%',
+                      marginBottom: '2%',
                     }}
                   />
                   <View>
@@ -246,6 +257,7 @@ const VideoScreen = ({route}) => {
           width: '100%',
         }}>
         <TouchableOpacity
+          onPress={handleSendBid}
           style={{
             height: '100%',
             width: '40%',
@@ -253,14 +265,14 @@ const VideoScreen = ({route}) => {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 20,
-            onPress: {handlePlaceBid},
           }}>
           <Text style={{color: 'white', fontWeight: 'bold'}}>Custom Bid</Text>
         </TouchableOpacity>
         <View style={{width: '20%', justifyContent: 'center'}}>
-          <Text style={{color: 'white'}}>Cur Bid: </Text>
+          <Text style={{color: 'white'}}>Cur Bid: {curBid}</Text>
         </View>
         <TouchableOpacity
+          onPress={handleSendBid}
           style={{
             height: '100%',
             width: '40%',
@@ -268,9 +280,10 @@ const VideoScreen = ({route}) => {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 20,
-            onPress: {handlePlaceBid},
           }}>
-          <Text style={{color: 'white', fontWeight: 'bold'}}>Bid</Text>
+          <Text style={{color: 'white', fontWeight: 'bold'}}>
+            Bid {curBid + 1}
+          </Text>
         </TouchableOpacity>
       </View>
       {/* </View>

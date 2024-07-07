@@ -38,6 +38,13 @@ module.exports = io => {
       io.to(data.id).emit('newComment', data);
     });
 
+    socket.on('bid', data => {
+      console.log('bid: ' + data);
+      broadcastService.addBid(data.id, data.bidAmount, data.userUsername);
+
+      io.to(data.id).emit('newBid', data);
+    });
+
     io.on('disconnect', socket => {
       console.log('someone disconnected');
     });

@@ -1,9 +1,9 @@
 import React from 'react';
 import Profile from './ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeTab from './HomeTab';
-import ViewerTab from './ViewerTab';
 import StreamScreen from './StreamScreen';
+import ViewerTab from './ViewerTab';
+import StartStreamTab from './StartStreamTab';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Home = () => {
@@ -32,8 +32,8 @@ const Home = () => {
         headerShown: false,
       })}>
       <Tab.Screen name="ViewerTab" component={ViewerTab} />
-      <Tab.Screen name="HomeTab" component={HomeTab} />
       <Tab.Screen name="StreamScreen" component={StreamScreen} />
+      <Tab.Screen name="StartStreamTab" component={StartStreamTab} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );

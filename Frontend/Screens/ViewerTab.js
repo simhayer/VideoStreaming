@@ -24,7 +24,7 @@ const configurationPeerConnection = {
 };
 const addTransceiverConstraints = {direction: 'recvonly'};
 
-const VideoScreen = () => {
+const ViewerTab = () => {
   const navigation = useNavigation();
   const [peer, setPeer] = useState(null);
   const [broadcasts, setBroadcasts] = useState([]);
@@ -234,7 +234,6 @@ const VideoScreen = () => {
         })}
       </ScrollView>
     </SafeAreaView>
-
   );
 };
 
@@ -284,4 +283,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VideoScreen;
+export default ViewerTab;

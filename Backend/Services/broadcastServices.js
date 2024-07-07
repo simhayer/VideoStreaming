@@ -25,6 +25,8 @@ class Broadcaster {
     this.title = _title;
     this.watchers = 0;
     this.comments = [];
+    this.isBidding = false;
+    this.curBidDetails = {};
   }
 }
 
@@ -167,6 +169,18 @@ async function addComment(id, comment, userUsername, userProfilePicture) {
   }
 }
 
+async function addBid(id, bidAmount, userUsername) {
+  if (broadcasters[id] != null) {
+    console.log('Updating bid for broadcaster: ' + id);
+    broadcasters[id].curBidDetails = {
+      userUsername,
+      bidAmount,
+    };
+  } else {
+    console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
+  }
+}
+
 function fetch() {
   var data = [];
   for (var bs in broadcasters) {
@@ -179,6 +193,8 @@ function fetch() {
         socketID: broadcasters[bs].socket_id,
         watchers: broadcasters[bs].watchers,
         comments: broadcasters[bs].comments,
+        isBidding: broadcasters[bs].isBidding,
+        curBidDetails: broadcasters[bs].curBidDetails,
       });
     }
   }
@@ -191,4 +207,5 @@ module.exports = {
   fetch,
   addWatcher,
   addComment,
+  addBid,
 };
