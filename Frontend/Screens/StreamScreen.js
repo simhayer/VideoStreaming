@@ -1,13 +1,11 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
+import React, {useState, useEffect, useRef, useCallback, useMemo} from 'react';
 import {
   View,
   Button,
   Text,
   SafeAreaView,
   StyleSheet,
-  Animated,
   TouchableOpacity,
-  Dimensions,
 } from 'react-native';
 import {
   RTCView,
@@ -19,9 +17,10 @@ import {
 import axios from 'axios';
 import io from 'socket.io-client';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {useFocusEffect} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const configurationPeerConnection = {
   iceServers: [
@@ -55,9 +54,6 @@ const StreamScreen = ({route}) => {
   const peer = useRef(null);
   const socket = useRef(null);
   const {userData} = useSelector(state => state.auth);
-  const slideAnim = useRef(new Animated.Value(0)).current;
-  const [menuVisible, setMenuVisible] = useState(false);
-  const screenHeight = Dimensions.get('window').height;
 
   const email = userData?.user?.email;
   const fullname = userData?.user?.fullname;
@@ -170,52 +166,61 @@ const StreamScreen = ({route}) => {
     };
   };
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-    Animated.timing(slideAnim, {
-      toValue: menuVisible ? 0 : 1,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
-  };
+  const bottomSheetRef = useRef(null);
 
-  const menuHeight = slideAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [screenHeight / 60, screenHeight / 2],
-  });
+  const handleSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+  }, []);
+
+  const snapPoints = useMemo(() => ['5%', '60%'], []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.videoContainer}>
-        {stream && (
-          <RTCView
-            streamURL={stream.toURL()}
-            style={styles.rtcView}
-            objectFit="cover"
-          />
-        )}
-      </View>
+      {stream && (
+        <RTCView
+          streamURL={stream.toURL()}
+          style={styles.rtcView}
+          objectFit="cover"
+        />
+      )}
       <View style={styles.overlay}>
-        {broadcastId && <Text>Streaming id: {broadcastId}</Text>}
-        {title && <Text>Title: {title}</Text>}
-        <Button title="Stop" onPress={() => peer.current.close()} />
-
-        <Animated.View style={[styles.menuContainer, {height: menuHeight}]}>
-          <TouchableOpacity style={styles.arrowContainer} onPress={toggleMenu}>
-            {menuVisible ? (
-              <Icon name="chevron-down" size={40} color="white" />
-            ) : (
-              <Icon name="chevron-up" size={40} color="white" />
-            )}
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+          }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'red',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 25,
+              height: '7%',
+              width: '30%',
+              marginBottom: '30%',
+              paddingHorizontal: '6%',
+            }}
+            onPress={() => peer.current.close()}>
+            <Text style={styles.endButtonText}>End Stream</Text>
           </TouchableOpacity>
-          {menuVisible && (
-            <View style={styles.menuContent}>
-              <Text style={styles.menuItem}>Option 1</Text>
-              <Text style={styles.menuItem}>Option 2</Text>
-              <Text style={styles.menuItem}>End Stream</Text>
+        </View>
+        <BottomSheet
+          ref={bottomSheetRef}
+          snapPoints={snapPoints}
+          onChange={handleSheetChanges}>
+          <BottomSheetView style={styles.contentContainer}>
+            <View style={styles.header}>
+              {broadcastId && <Text>Streaming id: {broadcastId}</Text>}
+              {title && <Text>Title: {title}</Text>}
+              <Button
+                title="Start Bid(reset)"
+                onPress={() => peer.current.close()}
+              />
+              <Text>Now Streaming</Text>
             </View>
-          )}
-        </Animated.View>
+          </BottomSheetView>
+        </BottomSheet>
       </View>
     </SafeAreaView>
   );
@@ -224,9 +229,6 @@ const StreamScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
   },
   videoContainer: {
     ...StyleSheet.absoluteFillObject,
@@ -235,50 +237,43 @@ const styles = StyleSheet.create({
   rtcView: {
     width: '100%',
     height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
   overlay: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1,
-    width: '100%',
   },
-  menuContainer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    borderColor: 'grey',
-    borderTopWidth: 4,
-    borderRightWidth: 4,
-    borderLeftWidth: 4,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    backgroundColor: 'white',
+  contentContainer: {
+    flex: 1,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 9},
-    shadowOpacity: 0.5,
-    shadowRadius: 12.35,
-    elevation: 19,
   },
-  arrowContainer: {
-    position: 'absolute',
-    top: -20,
-    borderRadius: 20,
-    backgroundColor: 'rgba(0,0,0,0.2)',
+  header: {
+    paddingTop: '3%',
+    height: '15%',
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  endButton: {
+    backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 25,
+    height: '100%',
+    width: '30%',
   },
-  menuContent: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
-  },
-  menuItem: {
-    padding: 20,
-    fontSize: 18,
+  endButtonText: {
     color: 'white',
+    fontWeight: 'bold',
   },
 });
 

@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-google-signin/google-signin
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
+// react-native-gesture-handler
+import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-image-picker
 import com.imagepicker.ImagePickerPackage;
 // react-native-incall-manager
@@ -31,6 +33,8 @@ import com.horcrux.svg.SvgPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 // react-native-webrtc
 import com.oney.WebRTCModule.WebRTCModulePackage;
+// react-native-reanimated
+import com.swmansion.reanimated.ReanimatedPackage;
 
 public class PackageList {
   private Application application;
@@ -78,6 +82,7 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
       new RNGoogleSigninPackage(),
+      new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
       new InCallManagerPackage(),
       new RandomBytesPackage(),
@@ -85,7 +90,8 @@ public class PackageList {
       new RNScreensPackage(),
       new SvgPackage(),
       new VectorIconsPackage(),
-      new WebRTCModulePackage()
+      new WebRTCModulePackage(),
+      new ReanimatedPackage()
     ));
   }
 }
