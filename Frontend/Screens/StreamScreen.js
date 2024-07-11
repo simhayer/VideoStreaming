@@ -6,6 +6,10 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  Dimensions,
+  ScrollView,
+  Image,
+  TextInput,
 } from 'react-native';
 import {
   RTCView,
@@ -43,6 +47,9 @@ const mediaConstraints = {
   audio: true,
 };
 
+const {height: screenHeight} = Dimensions.get('window');
+const calculatedFontSize = screenHeight * 0.05;
+
 const StreamScreen = ({route}) => {
   const {title} = route.params;
 
@@ -59,6 +66,13 @@ const StreamScreen = ({route}) => {
   const fullname = userData?.user?.fullname;
   const username = userData?.user?.username;
   const profilePicture = userData?.user?.profilePicture;
+
+  const scrollViewRef = useRef();
+  const [curComments, setCurComments] = useState([]);
+  const [comment, setComment] = useState('');
+  const [curBid, setCurBid] = useState(0);
+  const [userBid, setUserBid] = useState(0);
+  const [watchers, setWatchers] = useState(0);
 
   useFocusEffect(
     useCallback(() => {
@@ -79,6 +93,11 @@ const StreamScreen = ({route}) => {
 
     socket.current.on('candidate-from-server', data => {
       setRemoteCandidates(prevCandidates => [...prevCandidates, data]);
+    });
+
+    socket.current.on('newComment', data => {
+      console.log('New comment received:', data);
+      setCurComments(prevComments => [...prevComments, data]);
     });
 
     return () => {
@@ -172,56 +191,126 @@ const StreamScreen = ({route}) => {
     console.log('handleSheetChanges', index);
   }, []);
 
-  const snapPoints = useMemo(() => ['5%', '60%'], []);
+  const closeStream = () => {
+    navigation.goBack();
+  };
+
+  const snapPoints = useMemo(() => ['8%', '60%'], []);
+
+  useEffect(() => {
+    // Scroll to bottom whenever comments change
+    scrollViewRef.current?.scrollToEnd({animated: true});
+  }, [curComments]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{height: '100%', width: '100%'}}>
+      <View style={styles.header}>
+        <Image source={{uri: profilePicture}} style={styles.profilePicture} />
+        <Text
+          style={{
+            color: 'white',
+            fontSize: calculatedFontSize / 2.5,
+            fontWeight: 'bold',
+            flex: 1,
+          }}>
+          {username}
+        </Text>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: calculatedFontSize / 2.5,
+            marginRight: '2%',
+          }}>
+          Watchers: {watchers}
+        </Text>
+        <TouchableOpacity style={styles.closeButton} onPress={closeStream}>
+          <Text style={styles.closeButtonText}>X</Text>
+        </TouchableOpacity>
+      </View>
       {stream && (
         <RTCView
-          streamURL={stream.toURL()}
-          style={styles.rtcView}
+          style={styles.video}
           objectFit="cover"
+          streamURL={stream.toURL()}
         />
       )}
-      <View style={styles.overlay}>
-        <View
-          style={{
-            flex: 1,
+      <View
+        style={{
+          width: '50%',
+          height: '100%',
+          marginTop: '75%',
+          marginLeft: '3%',
+          flex: 1,
+          borderWidth: 1,
+        }}>
+        <ScrollView
+          ref={scrollViewRef}
+          contentContainerStyle={{
+            flexGrow: 1,
             flexDirection: 'column',
-            justifyContent: 'flex-end',
           }}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: 'red',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 25,
-              height: '7%',
-              width: '30%',
-              marginBottom: '30%',
-              paddingHorizontal: '6%',
-            }}
-            onPress={() => peer.current.close()}>
-            <Text style={styles.endButtonText}>End Stream</Text>
-          </TouchableOpacity>
-        </View>
-        <BottomSheet
-          ref={bottomSheetRef}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}>
-          <BottomSheetView style={styles.contentContainer}>
-            <View style={styles.header}>
-              {broadcastId && <Text>Streaming id: {broadcastId}</Text>}
-              {title && <Text>Title: {title}</Text>}
-              <Button
-                title="Start Bid(reset)"
-                onPress={() => peer.current.close()}
-              />
-              <Text>Now Streaming</Text>
-            </View>
-          </BottomSheetView>
-        </BottomSheet>
+          {curComments.map((commentData, index) => {
+            const profilePictureFilename = commentData.userProfilePicture
+              .split('/')
+              .pop();
+            const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+            return (
+              <Pressable
+                key={index}
+                style={{flex: 1, height: '20%', maxHeight: '20%'}}>
+                <View
+                  style={{
+                    width: '100%',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginBottom: '2%',
+                  }}>
+                  <Image
+                    source={{uri: profilePictureURL}}
+                    style={{
+                      width: '15%',
+                      height: '80%',
+                      borderRadius: 15,
+                      marginRight: '4%',
+                      marginLeft: '5%',
+                      marginBottom: '2%',
+                    }}
+                  />
+                  <View>
+                    <Text style={{fontWeight: 'bold'}}>
+                      {commentData.userUsername}
+                    </Text>
+                    <Text>{commentData.comment}</Text>
+                  </View>
+                </View>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
       </View>
+      <View
+        style={{
+          width: '100%',
+          height: '5%',
+          marginBottom: '30%',
+          justifyContent: 'center',
+        }}></View>
+      <BottomSheet
+        ref={bottomSheetRef}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <BottomSheetView style={{}}>
+          <View style={styles.header}>
+            {broadcastId && <Text>Streaming id: {broadcastId}</Text>}
+            {title && <Text>Title: {title}</Text>}
+            <Button
+              title="Start Bid(reset)"
+              onPress={() => peer.current.close()}
+            />
+            <Text>Now Streaming</Text>
+          </View>
+        </BottomSheetView>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
@@ -230,50 +319,58 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  videoContainer: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 0,
-  },
-  rtcView: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  contentContainer: {
+  inner: {
     flex: 1,
-    alignItems: 'center',
-  },
-  header: {
-    paddingTop: '3%',
-    height: '15%',
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
   },
-  endButton: {
-    backgroundColor: 'red',
-    justifyContent: 'center',
+  header: {
+    flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 25,
-    height: '100%',
-    width: '30%',
+    padding: '2%',
+    zIndex: 1,
   },
-  endButtonText: {
+  profilePicture: {
+    width: '8%',
+    height: '100%',
+    borderRadius: 25,
+    marginRight: '1%',
+  },
+  closeButton: {
+    width: '8%',
+    height: '100%',
+    backgroundColor: 'red',
+    borderRadius: 25,
+    padding: '1.5%',
+    alignItems: 'center',
+  },
+  closeButtonText: {
     color: 'white',
     fontWeight: 'bold',
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  commentBox: {
+    flexDirection: 'row',
+    opacity: 0.8,
+    height: '100%',
+    minHeight: 50,
+    width: '40%',
+    marginRight: '10%',
+    marginLeft: '4%',
+  },
+  input: {
+    height: '100%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: '2%',
+    color: 'black',
+    width: '100%',
   },
 });
 
