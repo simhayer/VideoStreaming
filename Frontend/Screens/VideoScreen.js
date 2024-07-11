@@ -68,6 +68,11 @@ const VideoScreen = ({route}) => {
       setCurBid(data.userBid);
     });
 
+    newSocket.on('startBid', data => {
+      console.log('New bid started:', data);
+      setCurBid(data.userBid);
+    });
+
     return () => {
       console.log('Cleaning up socket connection');
       newSocket.close();
@@ -331,6 +336,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    bottom: 0,
+    right: 0,
   },
   commentBox: {
     flexDirection: 'row',

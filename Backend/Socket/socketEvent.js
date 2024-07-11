@@ -16,13 +16,22 @@ module.exports = io => {
 
     socket.on('watcher', data => {
       console.log('watcher: ' + data);
-      broadcastService.addWatcher(data.id);
+      const updatedWatchers = broadcastService.addWatcher(data.id);
+      io.to(data.id).emit('updateWatcher', updatedWatchers);
     });
 
     // When a user joins a specific stream
     socket.on('joinStream', broadcastId => {
       socket.join(broadcastId);
       console.log(`User ${socket.id} joined broadcast room: ${broadcastId}`);
+    });
+
+    socket.on('broadcast-started', data => {
+      const {broadcastId, socketId} = data;
+      socket.join(broadcastId);
+      console.log(
+        `Broadcaster ${socketId} started broadcast and joined room: ${broadcastId}`,
+      );
     });
 
     socket.on('comment', data => {

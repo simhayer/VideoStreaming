@@ -10,6 +10,7 @@ import {
   ScrollView,
   Image,
   TextInput,
+  Pressable,
 } from 'react-native';
 import {
   RTCView,
@@ -21,7 +22,7 @@ import {
 import axios from 'axios';
 import io from 'socket.io-client';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
-import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -74,6 +75,11 @@ const StreamScreen = ({route}) => {
   const [userBid, setUserBid] = useState(0);
   const [watchers, setWatchers] = useState(0);
 
+  const navigation = useNavigation();
+
+  const [timeLeft, setTimeLeft] = useState(0); // Initial time is 0
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+
   useFocusEffect(
     useCallback(() => {
       if (!stream) {
@@ -98,6 +104,10 @@ const StreamScreen = ({route}) => {
     socket.current.on('newComment', data => {
       console.log('New comment received:', data);
       setCurComments(prevComments => [...prevComments, data]);
+    });
+
+    socket.current.on('updateWatcher', updatedWatchers => {
+      setWatchers(updatedWatchers);
     });
 
     return () => {
@@ -151,6 +161,11 @@ const StreamScreen = ({route}) => {
     setBroadcastId(data.data.id);
     await newPeer.setRemoteDescription(desc).catch(e => console.log(e));
 
+    socket.current.emit('broadcast-started', {
+      broadcastId: data.data.id,
+      socketId,
+    });
+
     localCandidates.forEach(candidate => {
       socket.current.emit('add-candidate-broadcast', {
         id: data.data.id,
@@ -195,6 +210,34 @@ const StreamScreen = ({route}) => {
     navigation.goBack();
   };
 
+  const handleStartBid = () => {
+    console.log('In Start Bid');
+
+    const bidData = {
+      id: broadcastId,
+      userBid: 0,
+      userUsername: 'NA',
+    };
+
+    socket.current.emit('start-bid', bidData);
+    setTimeLeft(10);
+    setIsTimerRunning(true);
+    //setUserBid(0); // Clear the input after sending the comment
+  };
+
+  useEffect(() => {
+    let timer;
+    if (isTimerRunning && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft(prevTime => prevTime - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setIsTimerRunning(false);
+    }
+
+    return () => clearInterval(timer);
+  }, [isTimerRunning, timeLeft]);
+
   const snapPoints = useMemo(() => ['8%', '60%'], []);
 
   useEffect(() => {
@@ -205,7 +248,6 @@ const StreamScreen = ({route}) => {
   return (
     <SafeAreaView style={{height: '100%', width: '100%'}}>
       <View style={styles.header}>
-        <Image source={{uri: profilePicture}} style={styles.profilePicture} />
         <Text
           style={{
             color: 'white',
@@ -213,7 +255,7 @@ const StreamScreen = ({route}) => {
             fontWeight: 'bold',
             flex: 1,
           }}>
-          {username}
+          Now Streaming
         </Text>
         <Text
           style={{
@@ -241,7 +283,6 @@ const StreamScreen = ({route}) => {
           marginTop: '75%',
           marginLeft: '3%',
           flex: 1,
-          borderWidth: 1,
         }}>
         <ScrollView
           ref={scrollViewRef}
@@ -299,15 +340,23 @@ const StreamScreen = ({route}) => {
         ref={bottomSheetRef}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
-        <BottomSheetView style={{}}>
-          <View style={styles.header}>
-            {broadcastId && <Text>Streaming id: {broadcastId}</Text>}
-            {title && <Text>Title: {title}</Text>}
-            <Button
-              title="Start Bid(reset)"
-              onPress={() => peer.current.close()}
-            />
-            <Text>Now Streaming</Text>
+        <BottomSheetView style={{flexDirection: 'column'}}>
+          <View style={{height: '30%', marginTop: '3%'}}>
+            <TouchableOpacity
+              onPress={() => handleStartBid()}
+              style={{
+                backgroundColor: '#f542a4',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '20%',
+                height: '30%',
+                margin: '2%',
+              }}>
+              <Text>Start Bid</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{borderWidth: 1, height: '74%', marginTop: '3%'}}>
+            <Text style={styles.timerText}>{timeLeft} seconds left</Text>
           </View>
         </BottomSheetView>
       </BottomSheet>
@@ -353,6 +402,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    bottom: 0,
+    right: 0,
   },
   commentBox: {
     flexDirection: 'row',

@@ -154,9 +154,11 @@ async function addWatcher(id) {
       broadcasters[id].watchers = 0;
     }
     broadcasters[id].watchers += 1;
-    //delete broadcasters[id];
+
+    return broadcasters[id].watchers;
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
+    return 0;
   }
 }
 
@@ -175,6 +177,19 @@ async function addBid(id, bidAmount, userUsername) {
     broadcasters[id].curBidDetails = {
       userUsername,
       bidAmount,
+    };
+  } else {
+    console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
+  }
+}
+
+async function startBid(id) {
+  if (broadcasters[id] != null) {
+    console.log('Starting bid for broadcaster: ' + id);
+    //broadcasters[id].isBidding = true;
+    broadcasters[id].curBidDetails = {
+      userUsername: 'null',
+      bidAmount: 0,
     };
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
