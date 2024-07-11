@@ -107,7 +107,8 @@ const StreamScreen = ({route}) => {
     });
 
     socket.current.on('updateWatcher', updatedWatchers => {
-      setWatchers(updatedWatchers);
+      console.log('Updated watchers:', updatedWatchers);
+      //setWatchers(updatedWatchers);
     });
 
     return () => {
