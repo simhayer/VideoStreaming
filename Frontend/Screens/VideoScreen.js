@@ -49,6 +49,9 @@ const VideoScreen = ({route}) => {
   const calculatedFontSize = screenHeight * 0.05;
   const [socket, setSocket] = useState(null);
 
+  const [timeLeft, setTimeLeft] = useState(0); // Initial time is 0
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+
   useEffect(() => {
     console.log('useEffect triggered');
     const newSocket = io(baseURL);
@@ -70,7 +73,7 @@ const VideoScreen = ({route}) => {
 
     newSocket.on('startBid', data => {
       console.log('New bid started:', data);
-      setCurBid(data.userBid);
+      startBid();
     });
 
     return () => {
@@ -124,6 +127,25 @@ const VideoScreen = ({route}) => {
       socket.emit('bid', bidData);
       //setUserBid(0); // Clear the input after sending the comment
     }
+  };
+
+  useEffect(() => {
+    let timer;
+    if (isTimerRunning && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft(prevTime => prevTime - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setIsTimerRunning(false);
+    }
+
+    return () => clearInterval(timer);
+  }, [isTimerRunning, timeLeft]);
+
+  const startBid = () => {
+    setTimeLeft(10);
+    setIsTimerRunning(true);
+    setCurBid(data.userBid);
   };
 
   useEffect(() => {
@@ -254,6 +276,19 @@ const VideoScreen = ({route}) => {
             <Text></Text>
           </TouchableOpacity>
         </View>
+      </View>
+      <View
+        style={{
+          width: '100%',
+          justifyContent: 'flex-end',
+          flexDirection: 'row',
+          marginBottom: 5,
+        }}>
+        {isTimerRunning && (
+          <Text style={{color: 'red', fontSize: calculatedFontSize / 2.3}}>
+            {timeLeft} s
+          </Text>
+        )}
       </View>
       <View
         style={{
