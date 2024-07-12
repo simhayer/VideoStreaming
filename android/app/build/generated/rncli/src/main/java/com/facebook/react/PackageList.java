@@ -21,6 +21,8 @@ import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 import com.imagepicker.ImagePickerPackage;
 // react-native-incall-manager
 import com.zxcpoiu.incallmanager.InCallManagerPackage;
+// react-native-linear-gradient
+import com.BV.LinearGradient.LinearGradientPackage;
 // react-native-randombytes
 import com.bitgo.randombytes.RandomBytesPackage;
 // react-native-safe-area-context
@@ -85,6 +87,7 @@ public class PackageList {
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
       new InCallManagerPackage(),
+      new LinearGradientPackage(),
       new RandomBytesPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),

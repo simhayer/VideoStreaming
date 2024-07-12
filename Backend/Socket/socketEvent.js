@@ -16,17 +16,14 @@ module.exports = io => {
 
     socket.on('watcher', data => {
       console.log('watcher: ' + data);
-      const updatedWatchers = broadcastService.addWatcher(data.id);
       broadcastService
         .addWatcher(data.id)
         .then(updatedWatchers => {
-          console.log('updatedWatchers: ' + updatedWatchers);
           io.to(data.id).emit('updateWatcher', updatedWatchers);
         })
         .catch(error => {
           console.error('Error updating watchers:', error);
         });
-      //console.log('updatedWatchers: ' + updatedWatchers);
     });
 
     // When a user joins a specific stream

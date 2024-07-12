@@ -1,13 +1,11 @@
 import React, {useState, useEffect, useRef, useCallback, useMemo} from 'react';
 import {
   View,
-  Button,
   Text,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  ScrollView,
   Image,
   TextInput,
   Pressable,
@@ -26,6 +24,8 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {ScrollView} from 'react-native-gesture-handler';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 const configurationPeerConnection = {
   iceServers: [
@@ -79,6 +79,13 @@ const StreamScreen = ({route}) => {
 
   const [timeLeft, setTimeLeft] = useState(0); // Initial time is 0
   const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [startBid, setStartBid] = useState(0);
+
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleItemPress = item => {
+    setSelectedItem(item);
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -246,6 +253,31 @@ const StreamScreen = ({route}) => {
     scrollViewRef.current?.scrollToEnd({animated: true});
   }, [curComments]);
 
+  const items = [
+    'Item1',
+    'Item2',
+    'Item3',
+    'Item4',
+    'Item5',
+    'Item6',
+    'Item1',
+    'Item2',
+    'Item3',
+    'Item4',
+    'Item5',
+    'Item6',
+  ];
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('10s');
+
+  const [timerOptions, setTimerOptions] = useState([
+    {label: '10s', value: '10s'},
+    {label: '15s', value: '15s'},
+    {label: '20s', value: '20s'},
+    {label: '30s', value: '30s'},
+  ]);
+
   return (
     <SafeAreaView style={{height: '100%', width: '100%'}}>
       <View style={styles.header}>
@@ -341,23 +373,129 @@ const StreamScreen = ({route}) => {
         ref={bottomSheetRef}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
-        <BottomSheetView style={{flexDirection: 'column'}}>
-          <View style={{height: '30%', marginTop: '3%'}}>
+        <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+          <View
+            style={{
+              height: '11%',
+              marginTop: '3%',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginHorizontal: '10%',
+              zIndex: 100,
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                width: '30%',
+                zIndex: 100,
+              }}>
+              <DropDownPicker
+                open={open}
+                value={value}
+                items={timerOptions}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setTimerOptions}
+                containerStyle={{
+                  height: '32%',
+                  justifyContent: 'center',
+                  marginTop: '18%',
+                }}
+                labelStyle={{
+                  fontWeight: 'bold',
+                }}
+                dropDownContainerStyle={{
+                  //backgroundColor: 'red',
+                  borderColor: 'black',
+                }}
+                listItemLabelStyle={{
+                  fontWeight: 'bold',
+                }}
+              />
+            </View>
+            <TextInput
+              value={startBid}
+              onChangeText={startBid => setStartBid(startBid)}
+              placeholder={'Start Bid'}
+              style={{
+                //fontSize: calculatedFontSize / 2.3,
+                borderWidth: 1,
+                height: '100%',
+                width: '32%',
+                textAlign: 'center',
+                borderRadius: 8,
+                // minHeight: 50,
+              }}
+            />
+          </View>
+
+          <View
+            style={{
+              height: '20%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
             <TouchableOpacity
               onPress={() => handleStartBid()}
               style={{
                 backgroundColor: '#f542a4',
                 justifyContent: 'center',
                 alignItems: 'center',
-                width: '20%',
-                height: '30%',
-                margin: '2%',
+                width: '35%',
+                height: '50%',
+                marginTop: '2%',
+                marginRight: '2%',
+
+                borderRadius: 8,
               }}>
-              <Text>Start Bid</Text>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: calculatedFontSize / 2.2,
+                  fontWeight: 'bold',
+                }}>
+                Start Bid
+              </Text>
             </TouchableOpacity>
           </View>
-          <View style={{borderWidth: 1, height: '74%', marginTop: '3%'}}>
-            <Text style={styles.timerText}>{timeLeft} seconds left</Text>
+          <View style={{flex: 1, borderWidth: 1, marginTop: '2%'}}>
+            {isTimerRunning && (
+              <Text style={styles.timerText}>{timeLeft} seconds left</Text>
+            )}
+            {!isTimerRunning && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  maxHeight: '70%',
+                }}>
+                <ScrollView
+                  ref={scrollViewRef}
+                  contentContainerStyle={{
+                    flexGrow: 1,
+                    flexDirection: 'column',
+                    padding: 10,
+                  }}>
+                  {items.map((item, index) => {
+                    const isSelected = item === selectedItem;
+                    return (
+                      <Pressable
+                        key={index}
+                        onPress={() => handleItemPress(item)}
+                        style={{
+                          padding: 10,
+                          borderWidth: 1,
+                          marginVertical: 5,
+                          backgroundColor: isSelected ? '#d3d3d3' : 'white', // Highlight selected item
+                        }}>
+                        <Text>{item}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+            )}
           </View>
         </BottomSheetView>
       </BottomSheet>
