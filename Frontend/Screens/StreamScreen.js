@@ -81,7 +81,21 @@ const StreamScreen = ({route}) => {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [startBid, setStartBid] = useState(0);
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const items = [
+    'Item1',
+    'Item2',
+    'Item3',
+    'Item4',
+    'Item5',
+    'Item6',
+    'Item1',
+    'Item2',
+    'Item3',
+    'Item4',
+    'Item5',
+    'Item6',
+  ];
+  const [selectedItem, setSelectedItem] = useState(items[0]);
 
   const handleItemPress = item => {
     setSelectedItem(item);
@@ -221,13 +235,16 @@ const StreamScreen = ({route}) => {
   const handleStartBid = () => {
     console.log('In Start Bid');
 
-    const bidData = {
+    const startbidData = {
       id: broadcastId,
       userBid: 0,
       userUsername: 'NA',
+      timer: timer,
+      startBid: startBid,
+      bidItem: selectedItem,
     };
 
-    socket.current.emit('start-bid', bidData);
+    socket.current.emit('start-bid', startbidData);
     setTimeLeft(10);
     setIsTimerRunning(true);
     //setUserBid(0); // Clear the input after sending the comment
@@ -253,23 +270,8 @@ const StreamScreen = ({route}) => {
     scrollViewRef.current?.scrollToEnd({animated: true});
   }, [curComments]);
 
-  const items = [
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-  ];
-
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('10s');
+  const [timer, setTimer] = useState('10s');
 
   const [timerOptions, setTimerOptions] = useState([
     {label: '10s', value: '10s'},
@@ -392,10 +394,10 @@ const StreamScreen = ({route}) => {
               }}>
               <DropDownPicker
                 open={open}
-                value={value}
+                value={timer}
                 items={timerOptions}
                 setOpen={setOpen}
-                setValue={setValue}
+                setValue={setTimer}
                 setItems={setTimerOptions}
                 containerStyle={{
                   height: '32%',
@@ -421,7 +423,7 @@ const StreamScreen = ({route}) => {
               style={{
                 //fontSize: calculatedFontSize / 2.3,
                 borderWidth: 1,
-                height: '100%',
+                height: '90%',
                 width: '32%',
                 textAlign: 'center',
                 borderRadius: 8,
@@ -443,7 +445,7 @@ const StreamScreen = ({route}) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: '35%',
-                height: '50%',
+                height: 50,
                 marginTop: '2%',
                 marginRight: '2%',
 
@@ -459,16 +461,31 @@ const StreamScreen = ({route}) => {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={{flex: 1, borderWidth: 1, marginTop: '2%'}}>
+          <View
+            style={{
+              flex: 1,
+              borderWidth: 1,
+              marginTop: '2%',
+              maxHeight: '60%',
+              height: '60%',
+            }}>
             {isTimerRunning && (
-              <Text style={styles.timerText}>{timeLeft} seconds left</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  width: '100%',
+                  marginTop: '2%',
+                }}>
+                <Text style={{color: 'red'}}>{timeLeft} seconds left</Text>
+              </View>
             )}
             {!isTimerRunning && (
               <View
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'center',
-                  maxHeight: '70%',
+                  maxHeight: '100%',
                 }}>
                 <ScrollView
                   ref={scrollViewRef}

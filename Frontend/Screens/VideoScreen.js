@@ -73,7 +73,7 @@ const VideoScreen = ({route}) => {
 
     newSocket.on('startBid', data => {
       console.log('New bid started:', data);
-      startBid();
+      startBid(data);
     });
 
     return () => {
