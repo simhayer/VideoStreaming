@@ -142,10 +142,13 @@ const VideoScreen = ({route}) => {
     return () => clearInterval(timer);
   }, [isTimerRunning, timeLeft]);
 
-  const startBid = () => {
-    setTimeLeft(10);
+  const startBid = data => {
+    const {bidItem, startBid, timer} = data;
+
+    const timeInSeconds = parseInt(timer, 10);
+    setTimeLeft(timeInSeconds);
     setIsTimerRunning(true);
-    setCurBid(data.userBid);
+    setCurBid(startBid);
   };
 
   useEffect(() => {
