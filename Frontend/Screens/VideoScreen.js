@@ -157,234 +157,237 @@ const VideoScreen = ({route}) => {
   }, [curComments]);
 
   return (
-    <SafeAreaView style={{height: '100%', width: '100%'}}>
-      {/* {/* <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}> */}
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.inner}>
-          <View style={styles.header}>
-            <Image
-              source={{uri: profilePictureURL}}
-              style={styles.profilePicture}
-            />
-            <Text
-              style={{
-                color: 'white',
-                fontSize: calculatedFontSize / 2.5,
-                fontWeight: 'bold',
-                flex: 1,
-              }}>
-              {username}
-            </Text>
-            <Text
-              style={{
-                color: 'white',
-                fontSize: calculatedFontSize / 2.5,
-                marginRight: '2%',
-              }}>
-              Watchers: {watchers}
-            </Text>
-            <TouchableOpacity style={styles.closeButton} onPress={closeStream}>
-              <Text style={styles.closeButtonText}>X</Text>
-            </TouchableOpacity>
-          </View>
-          {stream && (
-            <RTCView
-              style={styles.video}
-              objectFit="cover"
-              streamURL={stream.toURL()}
-            />
-          )}
-          <View
-            style={{
-              width: '70%',
-              height: '100%',
-              marginTop: '75%',
-              marginLeft: '5%',
-              flex: 1,
-              marginBottom: '2%',
-            }}>
-            <ScrollView
-              ref={scrollViewRef}
-              contentContainerStyle={{
-                flexGrow: 1,
-                flexDirection: 'column',
-              }}>
-              {curComments.map((commentData, index) => {
-                const profilePictureFilename = commentData.userProfilePicture
-                  .split('/')
-                  .pop();
-                const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
-                return (
-                  <Pressable
-                    key={index}
-                    style={{flex: 1, height: '20%', maxHeight: '20%'}}>
-                    <View
-                      style={{
-                        width: '100%',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        marginBottom: '2%',
-                      }}>
-                      <Image
-                        source={{uri: profilePictureURL}}
-                        style={{
-                          width: '12%',
-                          height: '80%',
-                          borderRadius: 20,
-                          marginRight: '4%',
-                          marginTop: '1%',
-                        }}
-                      />
-                      <View>
-                        <Text style={{fontWeight: 'bold', color: 'white'}}>
-                          {commentData.userUsername}
-                        </Text>
-                        <Text style={{color: 'white'}}>
-                          {commentData.comment}
-                        </Text>
-                      </View>
-                    </View>
-                  </Pressable>
-                );
-              })}
-            </ScrollView>
-          </View>
-          <View
-            style={{
-              width: '100%',
-              height: '5%',
-              justifyContent: 'center',
-              minHeight: 50,
-            }}>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: 'grey',
-                width: '70%',
-                marginLeft: '5%',
-                borderRadius: 20,
-              }}>
-              <View style={styles.commentBox}>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Add a comment..."
-                  placeholderTextColor="grey"
-                  value={comment}
-                  onChangeText={handleCommentChange}
-                  returnKeyType="send"
-                  enterKeyHint="send"
-                  onSubmitEditing={handleSendComment}
-                />
-                <TouchableOpacity
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingTop: '6%',
-                  }}
-                  onPress={handleSendComment}>
-                  <Icon name="arrow-up-circle" size={40} color="grey" />
-                  <Text></Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-          <View
-            style={{
-              width: '94%',
-              justifyContent: 'flex-end',
-              flexDirection: 'row',
-              height: '4%',
-            }}>
-            {isTimerRunning && (
+    <View>
+      {stream && (
+        <RTCView
+          style={styles.video}
+          objectFit="cover"
+          streamURL={stream.toURL()}
+        />
+      )}
+      <SafeAreaView style={{height: '100%', width: '100%'}}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.inner}>
+            <View style={styles.header}>
+              <Image
+                source={{uri: profilePictureURL}}
+                style={styles.profilePicture}
+              />
               <Text
                 style={{
                   color: 'white',
-                  fontSize: calculatedFontSize / 1.4,
+                  fontSize: calculatedFontSize / 2.5,
+                  fontWeight: 'bold',
+                  flex: 1,
                 }}>
-                ${curBid}
+                {username}
               </Text>
-            )}
-          </View>
-          <View
-            style={{
-              width: '96%',
-              justifyContent: 'flex-end',
-              flexDirection: 'row',
-              marginBottom: 50,
-              height: '3%',
-            }}>
-            {isTimerRunning && (
-              <Text style={{color: 'red', fontSize: calculatedFontSize / 2.4}}>
-                {timeLeft} s
-              </Text>
-            )}
-          </View>
-          {!isTimerRunning && (
-            <View
-              style={{
-                flexDirection: 'row',
-                height: '6%',
-                width: '75%',
-                marginBottom: 20,
-                marginLeft: '12%',
-                backgroundColor: 'rgba(128, 128, 128, 0.7)',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 30,
-              }}>
               <Text
-                style={{color: 'white', fontSize: calculatedFontSize / 2.4}}>
-                Awaiting Next Bid
+                style={{
+                  color: 'white',
+                  fontSize: calculatedFontSize / 2.5,
+                  marginRight: '2%',
+                }}>
+                Watchers: {watchers}
               </Text>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={closeStream}>
+                <Text style={styles.closeButtonText}>X</Text>
+              </TouchableOpacity>
             </View>
-          )}
-          {isTimerRunning && (
+
             <View
               style={{
-                flexDirection: 'row',
-                height: '6%',
-                width: '100%',
-                marginBottom: 20,
+                width: '70%',
+                height: '100%',
+                marginTop: '75%',
                 marginLeft: '5%',
+                flex: 1,
+                marginBottom: '2%',
               }}>
-              <TouchableOpacity
-                onPress={handleSendBid}
-                style={{
-                  height: '100%',
-                  width: '25%',
-                  backgroundColor: '#f542a4',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 20,
+              <ScrollView
+                ref={scrollViewRef}
+                contentContainerStyle={{
+                  flexGrow: 1,
+                  flexDirection: 'column',
                 }}>
-                <Text style={{color: 'white', fontWeight: 'bold'}}>Custom</Text>
-              </TouchableOpacity>
-              <View style={{width: '20%', justifyContent: 'center'}}>
-                {/* <Text style={{color: 'white'}}>Cur Bid: {curBid}</Text> */}
-              </View>
-              <TouchableOpacity
-                onPress={handleSendBid}
-                style={{
-                  height: '100%',
-                  width: '45%',
-                  backgroundColor: '#f542a4',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 20,
-                }}>
-                <Text style={{color: 'white', fontWeight: 'bold'}}>
-                  Bid {curBid + 1}
-                </Text>
-              </TouchableOpacity>
+                {curComments.map((commentData, index) => {
+                  const profilePictureFilename = commentData.userProfilePicture
+                    .split('/')
+                    .pop();
+                  const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+                  return (
+                    <Pressable
+                      key={index}
+                      style={{flex: 1, height: '20%', maxHeight: '20%'}}>
+                      <View
+                        style={{
+                          width: '100%',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          marginBottom: '2%',
+                        }}>
+                        <Image
+                          source={{uri: profilePictureURL}}
+                          style={{
+                            width: '12%',
+                            height: '80%',
+                            borderRadius: 20,
+                            marginRight: '4%',
+                            marginTop: '1%',
+                          }}
+                        />
+                        <View>
+                          <Text style={{fontWeight: 'bold', color: 'white'}}>
+                            {commentData.userUsername}
+                          </Text>
+                          <Text style={{color: 'white'}}>
+                            {commentData.comment}
+                          </Text>
+                        </View>
+                      </View>
+                    </Pressable>
+                  );
+                })}
+              </ScrollView>
             </View>
-          )}
-        </View>
-      </TouchableWithoutFeedback>
-      {/* </KeyboardAvoidingView>} */}
-    </SafeAreaView>
+            <View
+              style={{
+                width: '100%',
+                height: '5%',
+                justifyContent: 'center',
+                minHeight: 50,
+              }}>
+              <View
+                style={{
+                  borderWidth: 1,
+                  borderColor: 'grey',
+                  width: '70%',
+                  marginLeft: '5%',
+                  borderRadius: 20,
+                }}>
+                <View style={styles.commentBox}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Add a comment..."
+                    placeholderTextColor="grey"
+                    value={comment}
+                    onChangeText={handleCommentChange}
+                    returnKeyType="send"
+                    enterKeyHint="send"
+                    onSubmitEditing={handleSendComment}
+                  />
+                  <TouchableOpacity
+                    style={{
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      paddingTop: '6%',
+                    }}
+                    onPress={handleSendComment}>
+                    <Icon name="arrow-up-circle" size={40} color="grey" />
+                    <Text></Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                width: '94%',
+                justifyContent: 'flex-end',
+                flexDirection: 'row',
+                height: '4%',
+              }}>
+              {isTimerRunning && (
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: calculatedFontSize / 1.4,
+                  }}>
+                  ${curBid}
+                </Text>
+              )}
+            </View>
+            <View
+              style={{
+                width: '96%',
+                justifyContent: 'flex-end',
+                flexDirection: 'row',
+                marginBottom: 50,
+                height: '3%',
+              }}>
+              {isTimerRunning && (
+                <Text
+                  style={{color: 'red', fontSize: calculatedFontSize / 2.4}}>
+                  {timeLeft} s
+                </Text>
+              )}
+            </View>
+            {!isTimerRunning && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  height: '6%',
+                  width: '75%',
+                  marginBottom: 20,
+                  marginLeft: '12%',
+                  backgroundColor: 'rgba(128, 128, 128, 0.7)',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderRadius: 30,
+                }}>
+                <Text
+                  style={{color: 'white', fontSize: calculatedFontSize / 2.4}}>
+                  Awaiting Next Bid
+                </Text>
+              </View>
+            )}
+            {isTimerRunning && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  height: '6%',
+                  width: '100%',
+                  marginBottom: 20,
+                  marginLeft: '5%',
+                }}>
+                <TouchableOpacity
+                  onPress={handleSendBid}
+                  style={{
+                    height: '100%',
+                    width: '25%',
+                    backgroundColor: '#f542a4',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 20,
+                  }}>
+                  <Text style={{color: 'white', fontWeight: 'bold'}}>
+                    Custom
+                  </Text>
+                </TouchableOpacity>
+                <View style={{width: '20%', justifyContent: 'center'}}>
+                  {/* <Text style={{color: 'white'}}>Cur Bid: {curBid}</Text> */}
+                </View>
+                <TouchableOpacity
+                  onPress={handleSendBid}
+                  style={{
+                    height: '100%',
+                    width: '45%',
+                    backgroundColor: '#f542a4',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 20,
+                  }}>
+                  <Text style={{color: 'white', fontWeight: 'bold'}}>
+                    Bid {curBid + 1}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>
+        </TouchableWithoutFeedback>
+      </SafeAreaView>
+    </View>
   );
 };
 

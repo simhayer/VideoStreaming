@@ -9,6 +9,8 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
+  TextInput,
+  RefreshControl,
 } from 'react-native';
 import {RTCPeerConnection, RTCSessionDescription} from 'react-native-webrtc';
 import io from 'socket.io-client';
@@ -16,6 +18,7 @@ import axios from 'axios';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {apiEndpoints, baseURL} from '../Resources/Constants';
 import StreamStore from './StreamStore'; // Import the StreamStore
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const {height: screenHeight} = Dimensions.get('window');
 
@@ -30,6 +33,20 @@ const ViewerTab = () => {
   const [broadcasts, setBroadcasts] = useState([]);
   const [socket, setSocket] = useState(null);
   const calculatedFontSize = screenHeight * 0.05;
+
+  const [search, setSearch] = useState('');
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    // Simulate a network request
+    setTimeout(() => {
+      setRefreshing(false);
+      // You can perform your refresh logic here
+      showList();
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     const newSocket = io(baseURL);
@@ -168,10 +185,63 @@ const ViewerTab = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Viewer of Streaming</Text>
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <View
+        style={{
+          borderWidth: 1,
+          borderColor: 'rgba(0,0,0,0.2)',
+          width: '95%',
+          marginLeft: '2.5%',
+          borderRadius: 20,
+          height: '6%',
+          justifyContent: 'center',
+          marginTop: '3%',
+          minHeight: 50,
+        }}>
+        <View style={styles.commentBox}>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingTop: '1%',
+              marginLeft: '3%',
+            }}>
+            <Icon name="search" size={40} color="grey" />
+          </View>
+
+          <TextInput
+            style={styles.input}
+            placeholder="Search streams..."
+            placeholderTextColor="grey"
+            value={search}
+            onChangeText={setSearch}
+            returnKeyType="send"
+            enterKeyHint="send"
+          />
+          <TouchableOpacity
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingTop: '6%',
+            }}>
+            <Icon name="arrow-up-circle" size={40} color="grey" />
+            <Text></Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View
+        style={{
+          height: '3%',
+          borderTopWidth: 1,
+          borderColor: 'rgba(0,0,0,0.2)',
+          marginTop: 20,
+          width: '100%',
+        }}></View>
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         {broadcasts.map(broadcast => {
-          console.log('Broadcast: ', broadcast);
           const profilePictureFilename = broadcast.profilePicture
             .split('/')
             .pop();
@@ -240,7 +310,6 @@ const ViewerTab = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: '3%',
   },
   title: {
     fontSize: 24,
@@ -252,6 +321,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    paddingHorizontal: '3%',
   },
   row: {
     flexDirection: 'row',
@@ -280,6 +350,15 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  commentBox: {
+    flexDirection: 'row',
+    width: '80%',
+  },
+  input: {
+    minHeight: 50,
+    color: 'black',
+    width: '90%',
   },
 });
 

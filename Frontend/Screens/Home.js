@@ -18,7 +18,7 @@ const Home = () => {
           if (route.name === 'StartStreamTab') {
             iconName = focused ? 'add-circle' : 'add-circle-outline';
           } else if (route.name === 'ViewerTab') {
-            iconName = focused ? 'eye' : 'eye-outline';
+            iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
           } else if (route.name === 'StreamScreen') {
@@ -33,7 +33,6 @@ const Home = () => {
       })}>
       <Tab.Screen name="ViewerTab" component={ViewerTab} />
       <Tab.Screen name="StartStreamTab" component={StartStreamTab} />
-      {/* <Tab.Screen name="StreamScreen" component={StreamScreen} /> */}
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
