@@ -260,6 +260,10 @@ const StreamScreen = ({route}) => {
         setTimeLeft(prevTime => prevTime - 1);
       }, 1000);
     } else if (timeLeft === 0) {
+      if (isTimerRunning) {
+        socket.current.emit('end-bid', broadcastId);
+      }
+      //socket.current.emit('end-bid', broadcastId);
       setIsTimerRunning(false);
     }
 

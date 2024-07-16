@@ -23,7 +23,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 const {
   // GOOGLE_WEB_CLIENT_ID,
   GOOGLE_ANDROID_CLIENT_ID,
-  // GOOGLE_IOS_CLIENT_ID,
+  GOOGLE_IOS_CLIENT_ID,
 } = process.env;
 
 //const GOOGLE_ANDROID_CLIENT_ID = "423122273522-adm11brgik1kv9bj2soq8r3ge88rom6g.apps.googleusercontent.com";
@@ -31,7 +31,7 @@ const {
 GoogleSignin.configure({
   // webClientId: GOOGLE_WEB_CLIENT_ID,
   androidClientId: GOOGLE_ANDROID_CLIENT_ID,
-  // iosClientId: GOOGLE_IOS_CLIENT_ID,
+  iosClientId: GOOGLE_IOS_CLIENT_ID,
   scopes: ['profile', 'email'],
 });
 

@@ -67,6 +67,13 @@ module.exports = io => {
       io.to(data.id).emit('startBid', data);
     });
 
+    socket.on('end-bid', data => {
+      console.log('end-bid: ' + data);
+      broadcastService.endBid(data.id).then(data => {
+        io.to(data.id).emit('endBid', data);
+      });
+    });
+
     io.on('disconnect', socket => {
       console.log('someone disconnected');
     });

@@ -52,6 +52,8 @@ const VideoScreen = ({route}) => {
   const [timeLeft, setTimeLeft] = useState(0); // Initial time is 0
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
+  const [showEndBidText, setShowEndBidText] = useState(false);
+
   useEffect(() => {
     console.log('useEffect triggered');
     const newSocket = io(baseURL);
@@ -74,6 +76,15 @@ const VideoScreen = ({route}) => {
     newSocket.on('startBid', data => {
       console.log('New bid started:', data);
       startBid(data);
+    });
+
+    newSocket.on('endBid', data => {
+      console.log('Bid ended:', data);
+      setIsTimerRunning(false);
+      setShowEndBidText(true);
+      setTimeout(() => {
+        setShowEndBidText(false);
+      }, 4000);
     });
 
     return () => {
@@ -196,7 +207,11 @@ const VideoScreen = ({route}) => {
                 <Text style={styles.closeButtonText}>X</Text>
               </TouchableOpacity>
             </View>
-
+            {showEndBidText && (
+              <View style={styles.endBidTextContainer}>
+                <Text style={styles.endBidText}>Bid Ended</Text>
+              </View>
+            )}
             <View
               style={{
                 width: '70%',
