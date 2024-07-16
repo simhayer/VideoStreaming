@@ -22,6 +22,8 @@ import io from 'socket.io-client';
 import {apiEndpoints, baseURL} from '../Resources/Constants';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
+import MaskedView from '@react-native-masked-view/masked-view';
+import LinearGradient from 'react-native-linear-gradient';
 
 const VideoScreen = ({route}) => {
   const {
@@ -221,51 +223,60 @@ const VideoScreen = ({route}) => {
                 flex: 1,
                 marginBottom: '2%',
               }}>
-              <ScrollView
-                ref={scrollViewRef}
-                contentContainerStyle={{
-                  flexGrow: 1,
-                  flexDirection: 'column',
-                }}>
-                {curComments.map((commentData, index) => {
-                  const profilePictureFilename = commentData.userProfilePicture
-                    .split('/')
-                    .pop();
-                  const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
-                  return (
-                    <Pressable
-                      key={index}
-                      style={{flex: 1, height: '20%', maxHeight: '20%'}}>
-                      <View
-                        style={{
-                          width: '100%',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          marginBottom: '2%',
-                        }}>
-                        <Image
-                          source={{uri: profilePictureURL}}
+              <MaskedView
+                style={{flex: 1}}
+                maskElement={
+                  <LinearGradient
+                    style={{flex: 1}}
+                    colors={['transparent', 'white', 'white', 'white']}
+                  />
+                }>
+                <ScrollView
+                  ref={scrollViewRef}
+                  contentContainerStyle={{
+                    flexGrow: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                  }}>
+                  {curComments.map((commentData, index) => {
+                    const profilePictureFilename =
+                      commentData.userProfilePicture.split('/').pop();
+                    const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+                    return (
+                      <Pressable
+                        key={index}
+                        style={{flex: 1, height: '20%', maxHeight: '20%'}}>
+                        <View
                           style={{
-                            width: '12%',
-                            height: '80%',
-                            borderRadius: 20,
-                            marginRight: '4%',
-                            marginTop: '1%',
-                          }}
-                        />
-                        <View>
-                          <Text style={{fontWeight: 'bold', color: 'white'}}>
-                            {commentData.userUsername}
-                          </Text>
-                          <Text style={{color: 'white'}}>
-                            {commentData.comment}
-                          </Text>
+                            width: '100%',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginBottom: '2%',
+                          }}>
+                          <Image
+                            source={{uri: profilePictureURL}}
+                            style={{
+                              width: '12%',
+                              height: '80%',
+                              borderRadius: 20,
+                              marginRight: '4%',
+                              marginTop: '1%',
+                            }}
+                          />
+                          <View>
+                            <Text style={{fontWeight: 'bold', color: 'white'}}>
+                              {commentData.userUsername}
+                            </Text>
+                            <Text style={{color: 'white'}}>
+                              {commentData.comment}
+                            </Text>
+                          </View>
                         </View>
-                      </View>
-                    </Pressable>
-                  );
-                })}
-              </ScrollView>
+                      </Pressable>
+                    );
+                  })}
+                </ScrollView>
+              </MaskedView>
             </View>
             <View
               style={{

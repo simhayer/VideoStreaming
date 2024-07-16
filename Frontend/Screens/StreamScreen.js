@@ -28,6 +28,8 @@ import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {ScrollView} from 'react-native-gesture-handler';
 import DropDownPicker from 'react-native-dropdown-picker';
+import MaskedView from '@react-native-masked-view/masked-view';
+import LinearGradient from 'react-native-linear-gradient';
 
 const configurationPeerConnection = {
   iceServers: [
@@ -336,50 +338,59 @@ const StreamScreen = ({route}) => {
                 marginLeft: '3%',
                 flex: 1,
               }}>
-              <ScrollView
-                ref={scrollViewRef}
-                contentContainerStyle={{
-                  flexGrow: 1,
-                  flexDirection: 'column',
-                }}>
-                {curComments.map((commentData, index) => {
-                  const profilePictureFilename = commentData.userProfilePicture
-                    .split('/')
-                    .pop();
-                  const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
-                  return (
-                    <Pressable
-                      key={index}
-                      style={{flex: 1, height: '20%', maxHeight: '20%'}}>
-                      <View
-                        style={{
-                          width: '100%',
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          marginBottom: '2%',
-                        }}>
-                        <Image
-                          source={{uri: profilePictureURL}}
+              <MaskedView
+                style={{flex: 1}}
+                maskElement={
+                  <LinearGradient
+                    style={{flex: 1}}
+                    colors={['transparent', 'white', 'white', 'white']}
+                  />
+                }>
+                <ScrollView
+                  ref={scrollViewRef}
+                  contentContainerStyle={{
+                    flexGrow: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                  }}>
+                  {curComments.map((commentData, index) => {
+                    const profilePictureFilename =
+                      commentData.userProfilePicture.split('/').pop();
+                    const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+                    return (
+                      <Pressable
+                        key={index}
+                        style={{flex: 1, height: '20%', maxHeight: '20%'}}>
+                        <View
                           style={{
-                            width: '15%',
-                            height: '80%',
-                            borderRadius: 15,
-                            marginRight: '4%',
-                            marginLeft: '5%',
+                            width: '100%',
+                            flexDirection: 'row',
+                            alignItems: 'center',
                             marginBottom: '2%',
-                          }}
-                        />
-                        <View>
-                          <Text style={{fontWeight: 'bold'}}>
-                            {commentData.userUsername}
-                          </Text>
-                          <Text>{commentData.comment}</Text>
+                          }}>
+                          <Image
+                            source={{uri: profilePictureURL}}
+                            style={{
+                              width: '15%',
+                              height: '80%',
+                              borderRadius: 15,
+                              marginRight: '4%',
+                              marginLeft: '5%',
+                              marginBottom: '2%',
+                            }}
+                          />
+                          <View>
+                            <Text style={{fontWeight: 'bold'}}>
+                              {commentData.userUsername}
+                            </Text>
+                            <Text>{commentData.comment}</Text>
+                          </View>
                         </View>
-                      </View>
-                    </Pressable>
-                  );
-                })}
-              </ScrollView>
+                      </Pressable>
+                    );
+                  })}
+                </ScrollView>
+              </MaskedView>
             </View>
             <View
               style={{
@@ -388,167 +399,163 @@ const StreamScreen = ({route}) => {
                 marginBottom: '30%',
                 justifyContent: 'center',
               }}></View>
-            <BottomSheet
-              ref={bottomSheetRef}
-              snapPoints={snapPoints}
-              onChange={handleSheetChanges}>
-              <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-                <View
-                  style={{
-                    height: '11%',
-                    marginTop: '3%',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginHorizontal: '10%',
-                    zIndex: 100,
-                  }}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'center',
-                      width: '30%',
-                      zIndex: 100,
-                    }}>
-                    <DropDownPicker
-                      open={open}
-                      value={timer}
-                      items={timerOptions}
-                      setOpen={setOpen}
-                      setValue={setTimer}
-                      setItems={setTimerOptions}
-                      containerStyle={{
-                        height: '32%',
-                        justifyContent: 'center',
-                        marginTop: '18%',
-                      }}
-                      labelStyle={{
-                        fontWeight: 'bold',
-                      }}
-                      dropDownContainerStyle={{
-                        //backgroundColor: 'red',
-                        borderColor: 'black',
-                      }}
-                      listItemLabelStyle={{
-                        fontWeight: 'bold',
-                      }}
-                    />
-                  </View>
-                  <View
-                    style={{
-                      width: '32%',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <Text style={{fontSize: calculatedFontSize / 2}}>$ </Text>
-                    <TextInput
-                      value={startBid}
-                      onChangeText={startBid => setStartBid(startBid)}
-                      placeholder={'Start Bid'}
-                      style={{
-                        //fontSize: calculatedFontSize / 2.3,
-                        borderWidth: 1,
-                        height: '90%',
-                        width: '100%',
-                        textAlign: 'center',
-                        borderRadius: 8,
-                        minHeight: 50,
-                      }}
-                    />
-                  </View>
-                </View>
-
-                <View
-                  style={{
-                    height: '20%',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <TouchableOpacity
-                    onPress={() => handleStartBid()}
-                    style={{
-                      backgroundColor: '#f542a4',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: '35%',
-                      height: 50,
-                      marginTop: '2%',
-                      marginRight: '2%',
-
-                      borderRadius: 8,
-                    }}>
-                    <Text
-                      style={{
-                        color: 'white',
-                        fontSize: calculatedFontSize / 2.2,
-                        fontWeight: 'bold',
-                      }}>
-                      Start Bid
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <View
-                  style={{
-                    flex: 1,
-                    borderWidth: 1,
-                    marginTop: '2%',
-                    maxHeight: '60%',
-                    height: '60%',
-                  }}>
-                  {isTimerRunning && (
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        width: '100%',
-                        marginTop: '2%',
-                      }}>
-                      <Text style={{color: 'red'}}>
-                        {timeLeft} seconds left
-                      </Text>
-                    </View>
-                  )}
-                  {!isTimerRunning && (
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        maxHeight: '100%',
-                      }}>
-                      <ScrollView
-                        ref={scrollViewRef}
-                        contentContainerStyle={{
-                          flexGrow: 1,
-                          flexDirection: 'column',
-                          padding: 10,
-                        }}>
-                        {items.map((item, index) => {
-                          const isSelected = item === selectedItem;
-                          return (
-                            <Pressable
-                              key={index}
-                              onPress={() => handleItemPress(item)}
-                              style={{
-                                padding: 10,
-                                borderWidth: 1,
-                                marginVertical: 5,
-                                backgroundColor: isSelected
-                                  ? '#d3d3d3'
-                                  : 'white', // Highlight selected item
-                              }}>
-                              <Text>{item}</Text>
-                            </Pressable>
-                          );
-                        })}
-                      </ScrollView>
-                    </View>
-                  )}
-                </View>
-              </BottomSheetView>
-            </BottomSheet>
           </View>
         </TouchableWithoutFeedback>
       </SafeAreaView>
+      <BottomSheet
+        ref={bottomSheetRef}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+          <View
+            style={{
+              height: '11%',
+              marginTop: '3%',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginHorizontal: '10%',
+              zIndex: 100,
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                width: '30%',
+                zIndex: 100,
+              }}>
+              <DropDownPicker
+                open={open}
+                value={timer}
+                items={timerOptions}
+                setOpen={setOpen}
+                setValue={setTimer}
+                setItems={setTimerOptions}
+                containerStyle={{
+                  height: '32%',
+                  justifyContent: 'center',
+                  marginTop: '18%',
+                }}
+                labelStyle={{
+                  fontWeight: 'bold',
+                }}
+                dropDownContainerStyle={{
+                  //backgroundColor: 'red',
+                  borderColor: 'black',
+                }}
+                listItemLabelStyle={{
+                  fontWeight: 'bold',
+                }}
+              />
+            </View>
+            <View
+              style={{
+                width: '32%',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text style={{fontSize: calculatedFontSize / 2}}>$ </Text>
+              <TextInput
+                value={startBid}
+                onChangeText={startBid => setStartBid(startBid)}
+                placeholder={'Start Bid'}
+                style={{
+                  //fontSize: calculatedFontSize / 2.3,
+                  borderWidth: 1,
+                  height: '90%',
+                  width: '100%',
+                  textAlign: 'center',
+                  borderRadius: 8,
+                  minHeight: 50,
+                }}
+              />
+            </View>
+          </View>
+
+          <View
+            style={{
+              height: '20%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity
+              onPress={() => handleStartBid()}
+              style={{
+                backgroundColor: '#f542a4',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '35%',
+                height: 50,
+                marginTop: '2%',
+                marginRight: '2%',
+
+                borderRadius: 8,
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: calculatedFontSize / 2.2,
+                  fontWeight: 'bold',
+                }}>
+                Start Bid
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              borderWidth: 1,
+              marginTop: '2%',
+              maxHeight: '60%',
+              height: '60%',
+            }}>
+            {isTimerRunning && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  width: '100%',
+                  marginTop: '2%',
+                }}>
+                <Text style={{color: 'red'}}>{timeLeft} seconds left</Text>
+              </View>
+            )}
+            {!isTimerRunning && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  maxHeight: '100%',
+                }}>
+                <ScrollView
+                  ref={scrollViewRef}
+                  contentContainerStyle={{
+                    flexGrow: 1,
+                    flexDirection: 'column',
+                    padding: 10,
+                  }}>
+                  {items.map((item, index) => {
+                    const isSelected = item === selectedItem;
+                    return (
+                      <Pressable
+                        key={index}
+                        onPress={() => handleItemPress(item)}
+                        style={{
+                          padding: 10,
+                          borderWidth: 1,
+                          marginVertical: 5,
+                          backgroundColor: isSelected ? '#d3d3d3' : 'white', // Highlight selected item
+                        }}>
+                        <Text>{item}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+            )}
+          </View>
+        </BottomSheetView>
+      </BottomSheet>
     </View>
   );
 };

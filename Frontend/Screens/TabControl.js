@@ -6,7 +6,7 @@ import ViewerTab from './ViewerTab';
 import StartStreamTab from './StartStreamTab';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Home = () => {
+const TabControl = () => {
   const Tab = createBottomTabNavigator();
   //const navigation = useNavigation();
   return (
@@ -15,13 +15,13 @@ const Home = () => {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
-          if (route.name === 'StartStreamTab') {
+          if (route.name === 'HomeTab') {
             iconName = focused ? 'add-circle' : 'add-circle-outline';
-          } else if (route.name === 'ViewerTab') {
+          } else if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
-          } else if (route.name === 'StreamScreen') {
+          } else if (route.name === 'Stream') {
             iconName = focused ? 'videocam' : 'videocam-outline';
           }
 
@@ -31,11 +31,11 @@ const Home = () => {
         tabBarInactiveTintColor: 'gray',
         headerShown: false,
       })}>
-      <Tab.Screen name="ViewerTab" component={ViewerTab} />
-      <Tab.Screen name="StartStreamTab" component={StartStreamTab} />
+      <Tab.Screen name="Home" component={ViewerTab} />
+      <Tab.Screen name="Stream" component={StartStreamTab} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 };
 
-export default Home;
+export default TabControl;

@@ -3,7 +3,7 @@ import SignUp from './Screens/SignUp';
 import SignUpOptions from './Screens/SignUpOptions';
 import Login from './Screens/Login';
 import ForgetPassword from './Screens/ForgetPassword';
-import Home from './Screens/Home';
+import TabControl from './Screens/TabControl';
 import {Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -26,8 +26,8 @@ const MyStack = () => {
       {isAuthenticated ? (
         <Stack.Group>
           <Stack.Screen
-            name="Home"
-            component={Home}
+            name="TabControl"
+            component={TabControl}
             options={{headerShown: false}}
           />
           <Stack.Screen
