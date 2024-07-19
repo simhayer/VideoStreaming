@@ -11,6 +11,7 @@ import {
   SafeAreaView,
   TextInput,
   RefreshControl,
+  FlatList,
 } from 'react-native';
 import {RTCPeerConnection, RTCSessionDescription} from 'react-native-webrtc';
 import io from 'socket.io-client';
@@ -236,42 +237,38 @@ const ViewerTab = () => {
           marginTop: 20,
           width: '100%',
         }}></View>
-      <ScrollView
-        contentContainerStyle={styles.scrollView}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
-        {broadcasts.map(broadcast => {
-          const profilePictureFilename = broadcast.profilePicture
-            .split('/')
-            .pop();
+      <FlatList
+        data={broadcasts}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({item}) => {
+          const profilePictureFilename = item.profilePicture.split('/').pop();
           const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
           return (
             <View
-              key={broadcast.id}
               style={{
                 width: '48%',
                 height: screenHeight * 0.35,
                 marginBottom: '20%',
+                marginRight: '4%',
               }}>
               <View style={styles.row}>
                 <Image
                   source={{uri: profilePictureURL}}
                   style={styles.profilePicture}
                 />
-                <Text style={styles.username}>{broadcast.username}</Text>
+                <Text style={styles.username}>{item.username}</Text>
               </View>
               <TouchableOpacity
-                key={broadcast.id}
-                title={`Watch ${broadcast.id}`}
+                key={item.id}
+                title={`Watch ${item.id}`}
                 style={styles.buttonContainer}
                 onPress={() =>
                   watch(
-                    broadcast.id,
-                    broadcast.username,
-                    broadcast.watchers,
+                    item.id,
+                    item.username,
+                    item.watchers,
                     profilePictureURL,
-                    broadcast.comments,
+                    item.comments,
                   )
                 }>
                 <ImageBackground
@@ -293,16 +290,21 @@ const ViewerTab = () => {
                         color: 'white',
                         fontSize: calculatedFontSize / 2.5,
                       }}>
-                      Live - {broadcast.watchers}
+                      Live - {item.watchers}
                     </Text>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
-              <Text>{broadcast.title}</Text>
+              <Text>{item.title}</Text>
             </View>
           );
-        })}
-      </ScrollView>
+        }}
+        numColumns={2}
+        contentContainerStyle={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      />
     </SafeAreaView>
   );
 };
@@ -318,8 +320,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flexGrow: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'space-between',
     paddingHorizontal: '3%',
   },
@@ -345,8 +345,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     marginBottom: '2%',
-    borderColor: 'black',
-    borderWidth: 0.3,
     borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',

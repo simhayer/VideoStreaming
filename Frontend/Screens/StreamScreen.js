@@ -26,7 +26,7 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {ScrollView} from 'react-native-gesture-handler';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
@@ -346,21 +346,21 @@ const StreamScreen = ({route}) => {
                     colors={['transparent', 'white', 'white', 'white']}
                   />
                 }>
-                <ScrollView
+                <FlatList
                   ref={scrollViewRef}
-                  contentContainerStyle={{
-                    flexGrow: 1,
-                    flexDirection: 'column',
-                    justifyContent: 'flex-end',
-                  }}>
-                  {curComments.map((commentData, index) => {
-                    const profilePictureFilename =
-                      commentData.userProfilePicture.split('/').pop();
+                  data={curComments}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({item}) => {
+                    const profilePictureFilename = item.userProfilePicture
+                      .split('/')
+                      .pop();
                     const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
                     return (
                       <Pressable
-                        key={index}
-                        style={{flex: 1, height: '20%', maxHeight: '20%'}}>
+                        style={{
+                          flex: 1,
+                          height: '20%',
+                        }}>
                         <View
                           style={{
                             width: '100%',
@@ -381,15 +381,20 @@ const StreamScreen = ({route}) => {
                           />
                           <View>
                             <Text style={{fontWeight: 'bold'}}>
-                              {commentData.userUsername}
+                              {item.userUsername}
                             </Text>
-                            <Text>{commentData.comment}</Text>
+                            <Text>{item.comment}</Text>
                           </View>
                         </View>
                       </Pressable>
                     );
-                  })}
-                </ScrollView>
+                  }}
+                  contentContainerStyle={{
+                    flexGrow: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                  }}
+                />
               </MaskedView>
             </View>
             <View
@@ -527,18 +532,14 @@ const StreamScreen = ({route}) => {
                   justifyContent: 'center',
                   maxHeight: '100%',
                 }}>
-                <ScrollView
+                <FlatList
                   ref={scrollViewRef}
-                  contentContainerStyle={{
-                    flexGrow: 1,
-                    flexDirection: 'column',
-                    padding: 10,
-                  }}>
-                  {items.map((item, index) => {
+                  data={items}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({item}) => {
                     const isSelected = item === selectedItem;
                     return (
                       <Pressable
-                        key={index}
                         onPress={() => handleItemPress(item)}
                         style={{
                           padding: 10,
@@ -549,8 +550,13 @@ const StreamScreen = ({route}) => {
                         <Text>{item}</Text>
                       </Pressable>
                     );
-                  })}
-                </ScrollView>
+                  }}
+                  contentContainerStyle={{
+                    flexGrow: 1,
+                    flexDirection: 'column',
+                    padding: 10,
+                  }}
+                />
               </View>
             )}
           </View>

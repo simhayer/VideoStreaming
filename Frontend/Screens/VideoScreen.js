@@ -14,6 +14,7 @@ import {
   ScrollView,
   Pressable,
   SafeAreaView,
+  FlatList,
 } from 'react-native';
 import {RTCView} from 'react-native-webrtc';
 import {useNavigation} from '@react-navigation/native';
@@ -231,21 +232,21 @@ const VideoScreen = ({route}) => {
                     colors={['transparent', 'white', 'white', 'white']}
                   />
                 }>
-                <ScrollView
+                <FlatList
                   ref={scrollViewRef}
-                  contentContainerStyle={{
-                    flexGrow: 1,
-                    flexDirection: 'column',
-                    justifyContent: 'flex-end',
-                  }}>
-                  {curComments.map((commentData, index) => {
-                    const profilePictureFilename =
-                      commentData.userProfilePicture.split('/').pop();
+                  data={curComments}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({item}) => {
+                    const profilePictureFilename = item.userProfilePicture
+                      .split('/')
+                      .pop();
                     const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
                     return (
                       <Pressable
-                        key={index}
-                        style={{flex: 1, height: '20%', maxHeight: '20%'}}>
+                        style={{
+                          flex: 1,
+                          height: '20%',
+                        }}>
                         <View
                           style={{
                             width: '100%',
@@ -265,17 +266,20 @@ const VideoScreen = ({route}) => {
                           />
                           <View>
                             <Text style={{fontWeight: 'bold', color: 'white'}}>
-                              {commentData.userUsername}
+                              {item.userUsername}
                             </Text>
-                            <Text style={{color: 'white'}}>
-                              {commentData.comment}
-                            </Text>
+                            <Text style={{color: 'white'}}>{item.comment}</Text>
                           </View>
                         </View>
                       </Pressable>
                     );
-                  })}
-                </ScrollView>
+                  }}
+                  contentContainerStyle={{
+                    flexGrow: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                  }}
+                />
               </MaskedView>
             </View>
             <View
