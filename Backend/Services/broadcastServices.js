@@ -8,21 +8,18 @@ const socketFunction = require('../Socket/socketFunction');
 class Broadcaster {
   constructor(
     _id = null,
-    _stream = new MediaStream(),
-    _peer = new webrtc.RTCPeerConnection(),
     _socket_id,
     _username,
     _profilePicture,
     _title,
+    _meetingId,
   ) {
     this.id = _id;
-    this.stream = _stream;
-    this.peer = _peer;
     this.socket_id = _socket_id;
     this.username = _username;
     this.profilePicture = _profilePicture;
-    4;
     this.title = _title;
+    this.meetingId = _meetingId;
     this.watchers = 0;
     this.comments = [];
     this.isBidding = false;
@@ -30,44 +27,76 @@ class Broadcaster {
   }
 }
 
-async function addBroadcast(socket_id, sdp, username, profilePicture, title) {
+// async function addBroadcast(socket_id, sdp, username, profilePicture, title) {
+//   console.log('new broadcast');
+//   var id = uuidv4();
+//   console.log('username: ' + username);
+//   var broadcast = new Broadcaster(
+//     id,
+//     new MediaStream(),
+//     new webrtc.RTCPeerConnection(
+//       config.configurationPeerConnection,
+//       config.offerSdpConstraints,
+//     ),
+//     socket_id,
+//     username,
+//     profilePicture,
+//     title,
+//   );
+
+//   broadcasters[id] = broadcast;
+
+//   broadcastMediaProcess(id);
+//   broadcastConnectionState(id);
+//   broadcastOnIceCandidate(id);
+
+//   await broadcastSdpProcess(id, sdp);
+
+//   return id;
+// }
+
+async function addBroadcast(
+  socket_id,
+  sdp,
+  username,
+  profilePicture,
+  title,
+  meetingId,
+) {
   console.log('new broadcast');
   var id = uuidv4();
   console.log('username: ' + username);
   var broadcast = new Broadcaster(
     id,
-    new MediaStream(),
-    new webrtc.RTCPeerConnection(
-      config.configurationPeerConnection,
-      config.offerSdpConstraints,
-    ),
     socket_id,
     username,
     profilePicture,
     title,
+    meetingId,
   );
 
   broadcasters[id] = broadcast;
 
-  broadcastMediaProcess(id);
+  //broadcastMediaProcess(id);
+  //broadcastConnectionState(id);
+  //broadcastOnIceCandidate(id);
 
-  broadcastConnectionState(id);
-
-  broadcastOnIceCandidate(id);
-
-  await broadcastSdpProcess(id, sdp);
+  //await broadcastSdpProcess(id, sdp);
 
   return id;
 }
 
 async function broadcastMediaProcess(id) {
   try {
-    broadcasters[id].peer.ontrack = e =>
-      (broadcasters[id].stream = e.streams[0]);
+    broadcasters[id].peer.ontrack = e => {
+      console.log(`Track received for broadcaster ${id}`);
+      broadcasters[id].stream = e.streams[0];
+    };
   } catch (e) {
-    console.log(e);
+    console.log(`Error in broadcastMediaProcess: ${e.message}`);
   }
 }
+
 async function broadcastConnectionState(id) {
   broadcasters[id].peer.oniceconnectionstatechange = e => {
     try {
@@ -92,7 +121,7 @@ async function broadcastConnectionState(id) {
         }
       }
     } catch (e) {
-      console.log(e);
+      console.log(`Error in broadcastConnectionState: ${e.message}`);
     }
   };
 }
@@ -106,14 +135,14 @@ async function broadcastOnIceCandidate(id) {
         sdpMid: String(e.candidate.sdpMid),
         sdpMLineIndex: e.candidate.sdpMLineIndex,
       };
-      // console.log(candidate)
+      console.log(`Sending ICE candidate for broadcaster ${id}`);
       socketFunction.sendCandidateToClient(
         broadcasters[id].socket_id,
         candidate,
       );
     };
   } catch (e) {
-    console.log(e);
+    console.log(`Error in broadcastOnIceCandidate: ${e.message}`);
   }
 }
 
@@ -126,15 +155,19 @@ async function broadcastSdpProcess(id, sdp) {
     });
     await broadcasters[id].peer.setLocalDescription(answer);
   } catch (e) {
-    console.log(e);
+    console.log(`Error in broadcastSdpProcess: ${e.message}`);
   }
 }
 
 async function addCandidateFromClient(data) {
   if (broadcasters[data['id']] != null) {
-    broadcasters[data['id']].peer.addIceCandidate(
-      new webrtc.RTCIceCandidate(data['candidate']),
-    );
+    try {
+      broadcasters[data['id']].peer.addIceCandidate(
+        new webrtc.RTCIceCandidate(data['candidate']),
+      );
+    } catch (e) {
+      console.log(`Error adding ICE candidate from client: ${e.message}`);
+    }
   }
 }
 
@@ -186,7 +219,6 @@ async function addBid(id, bidAmount, userUsername) {
 async function startBid(id) {
   if (broadcasters[id] != null) {
     console.log('Starting bid for broadcaster: ' + id);
-    //broadcasters[id].isBidding = true;
 
     var ret = broadcasters[id].curBidDetails;
 
@@ -221,6 +253,7 @@ function fetch() {
         username: broadcasters[bs].username,
         profilePicture: broadcasters[bs].profilePicture,
         title: broadcasters[bs].title,
+        meetingId: broadcasters[bs].meetingId,
         socketID: broadcasters[bs].socket_id,
         watchers: broadcasters[bs].watchers,
         comments: broadcasters[bs].comments,
@@ -240,4 +273,5 @@ module.exports = {
   addComment,
   addBid,
   startBid,
+  endBid,
 };

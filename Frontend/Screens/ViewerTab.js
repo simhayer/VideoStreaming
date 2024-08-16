@@ -2,18 +2,21 @@ import React, {useEffect, useState, useCallback} from 'react';
 import {
   View,
   Text,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  Image,
-  ImageBackground,
   SafeAreaView,
   TextInput,
   RefreshControl,
   FlatList,
+  ImageBackground,
+  Image,
 } from 'react-native';
-import {RTCPeerConnection, RTCSessionDescription} from 'react-native-webrtc';
+import {
+  RTCView,
+  RTCPeerConnection,
+  RTCSessionDescription,
+} from 'react-native-webrtc';
 import io from 'socket.io-client';
 import axios from 'axios';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
@@ -24,8 +27,33 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const {height: screenHeight} = Dimensions.get('window');
 
 const configurationPeerConnection = {
-  iceServers: [{urls: 'stun:stun.stunprotocol.org'}],
+  iceServers: [
+    {
+      urls: 'stun:stun.l.google.com:19302',
+    },
+    {
+      urls: 'turn:global.relay.metered.ca:80',
+      username: 'aca60fb4568ea274f8245009',
+      credential: 'Zi/jzkiJuI2fmwLx',
+    },
+    {
+      urls: 'turn:global.relay.metered.ca:80?transport=tcp',
+      username: 'aca60fb4568ea274f8245009',
+      credential: 'Zi/jzkiJuI2fmwLx',
+    },
+    {
+      urls: 'turn:global.relay.metered.ca:443',
+      username: 'aca60fb4568ea274f8245009',
+      credential: 'Zi/jzkiJuI2fmwLx',
+    },
+    {
+      urls: 'turns:global.relay.metered.ca:443?transport=tcp',
+      username: 'aca60fb4568ea274f8245009',
+      credential: 'Zi/jzkiJuI2fmwLx',
+    },
+  ],
 };
+
 const addTransceiverConstraints = {direction: 'recvonly'};
 
 const ViewerTab = () => {
@@ -36,15 +64,12 @@ const ViewerTab = () => {
   const calculatedFontSize = screenHeight * 0.05;
 
   const [search, setSearch] = useState('');
-
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    // Simulate a network request
     setTimeout(() => {
       setRefreshing(false);
-      // You can perform your refresh logic here
       showList();
     }, 1000);
   }, []);
@@ -52,8 +77,8 @@ const ViewerTab = () => {
   useEffect(() => {
     const newSocket = io(baseURL);
     setSocket(newSocket);
-    newSocket.on('candidate-from-server', handleRemoteCandidate);
 
+    newSocket.on('candidate-from-server', handleRemoteCandidate);
     newSocket.on('List-update', showList);
 
     return () => {
@@ -71,15 +96,14 @@ const ViewerTab = () => {
 
   const handleRemoteCandidate = candidate => {
     if (peer) {
+      console.log('Adding remote candidate', candidate);
       peer.addIceCandidate(new RTCIceCandidate(candidate));
     }
   };
 
   const showList = async () => {
-    console.log('in List update');
     try {
       const response = await axios.get(baseURL + apiEndpoints.listbroadcast);
-      //console.log('Broadcasts: ', response.data);
       setBroadcasts(response.data);
     } catch (error) {
       console.error('Error fetching broadcasts: ', error);
@@ -97,12 +121,9 @@ const ViewerTab = () => {
     const receivedStream = event.streams[0];
     console.log('Stream received: ', receivedStream);
 
-    // Generate a unique ID for the stream
     const streamId = Date.now().toString();
-    // Store the stream in the StreamStore
     StreamStore.setStream(streamId, receivedStream);
 
-    // Navigate to the VideoScreen with the streamId, username, and watchers
     navigateToVideoScreen(
       streamId,
       broadcastId,
@@ -160,6 +181,7 @@ const ViewerTab = () => {
 
     newPeer.onicecandidate = event => {
       if (event.candidate) {
+        console.log('Sending ICE candidate for consumer', event.candidate);
         socket.emit('add-candidate-consumer', {
           candidate: event.candidate,
           broadcast_id: broadcastId,
@@ -182,6 +204,29 @@ const ViewerTab = () => {
     } catch (error) {
       console.error('Error during negotiation:', error);
     }
+  };
+
+  const watchVideoSDK = async (
+    broadcastId,
+    username,
+    watchers,
+    profilePictureURL,
+    comments,
+    meetingId,
+  ) => {
+    // navigation.navigate('VideoSDKViewer', {
+    //   meetingId,
+    // });
+
+    navigation.navigate('VideoScreenSDK', {
+      streamId: '',
+      broadcastId,
+      username,
+      watchers,
+      profilePictureURL,
+      comments,
+      meetingId,
+    });
   };
 
   return (
@@ -263,12 +308,13 @@ const ViewerTab = () => {
                 title={`Watch ${item.id}`}
                 style={styles.buttonContainer}
                 onPress={() =>
-                  watch(
+                  watchVideoSDK(
                     item.id,
                     item.username,
                     item.watchers,
                     profilePictureURL,
                     item.comments,
+                    item.meetingId,
                   )
                 }>
                 <ImageBackground

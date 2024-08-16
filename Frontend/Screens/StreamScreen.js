@@ -34,7 +34,27 @@ import LinearGradient from 'react-native-linear-gradient';
 const configurationPeerConnection = {
   iceServers: [
     {
-      urls: 'stun:stun.stunprotocol.org',
+      urls: 'stun:stun.l.google.com:19302',
+    },
+    {
+      urls: 'turn:global.relay.metered.ca:80',
+      username: 'aca60fb4568ea274f8245009',
+      credential: 'Zi/jzkiJuI2fmwLx',
+    },
+    {
+      urls: 'turn:global.relay.metered.ca:80?transport=tcp',
+      username: 'aca60fb4568ea274f8245009',
+      credential: 'Zi/jzkiJuI2fmwLx',
+    },
+    {
+      urls: 'turn:global.relay.metered.ca:443',
+      username: 'aca60fb4568ea274f8245009',
+      credential: 'Zi/jzkiJuI2fmwLx',
+    },
+    {
+      urls: 'turns:global.relay.metered.ca:443?transport=tcp',
+      username: 'aca60fb4568ea274f8245009',
+      credential: 'Zi/jzkiJuI2fmwLx',
     },
   ],
 };
@@ -152,10 +172,7 @@ const StreamScreen = ({route}) => {
   };
 
   const createPeer = async () => {
-    const newPeer = new RTCPeerConnection(
-      configurationPeerConnection,
-      offerSdpConstraints,
-    );
+    const newPeer = new RTCPeerConnection(configurationPeerConnection);
     setLocalCandidates([]);
     setRemoteCandidates([]);
     setupIceCandidate(newPeer);
@@ -214,6 +231,14 @@ const StreamScreen = ({route}) => {
         sdpMLineIndex: e.candidate.sdpMLineIndex,
       };
       setLocalCandidates(prevCandidates => [...prevCandidates, candidate]);
+
+      // Send candidate to server
+      if (broadcastId) {
+        socket.current.emit('add-candidate-broadcast', {
+          id: broadcastId,
+          candidate,
+        });
+      }
     };
 
     newPeer.oniceconnectionstatechange = e => {

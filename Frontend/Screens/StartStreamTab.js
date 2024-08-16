@@ -7,7 +7,7 @@ const StartStreamTab = () => {
   const [title, setTitle] = useState('');
 
   const startStream = async () => {
-    navigation.navigate('StreamScreen', {title});
+    navigation.navigate('StreamScreenSDK', {title});
   };
 
   return (

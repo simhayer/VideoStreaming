@@ -9,202 +9,281 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:5-67
-11-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:22-64
+11-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:5-67
+11-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:22-64
 12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:4:5-79
-12-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:4:22-76
-13    <uses-permission android:name="android.permission.BLUETOOTH" />
-13-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:5:5-68
-13-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:5:22-65
-14    <uses-permission android:name="android.permission.CAMERA" />
-14-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:6:5-65
-14-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:6:22-62
-15    <uses-permission android:name="android.permission.INTERNET" />
-15-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:5-67
-15-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:22-64
-16    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-16-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:8:5-80
-16-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:8:22-77
-17    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-17-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:9:5-71
-17-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:9:22-68
-18    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-18-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:10:5-78
-18-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:10:22-75
-19    <uses-permission android:name="android.permission.WAKE_LOCK" />
-19-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:11:5-68
-19-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:11:22-65
-20
-21    <uses-feature
-21-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-11:32
-22        android:name="android.hardware.usb.host"
-22-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:9-49
-23        android:required="false" />
-23-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-33
-24
-25    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-25-->[com.facebook.flipper:flipper:0.201.0] C:\Users\shayer\.gradle\caches\transforms-3\9b2c28bd5719adb7e465469e2ca76c12\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:5-76
-25-->[com.facebook.flipper:flipper:0.201.0] C:\Users\shayer\.gradle\caches\transforms-3\9b2c28bd5719adb7e465469e2ca76c12\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:22-73
-26
-27    <permission
-27-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
-28        android:name="com.tclone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-28-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
-29        android:protectionLevel="signature" />
-29-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
-30
-31    <uses-permission android:name="com.tclone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-31-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
-31-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+12-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:4:5-79
+12-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:4:22-76
+13    <uses-permission android:name="android.permission.CAMERA" />
+13-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:5:5-65
+13-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:5:22-62
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:5-67
+14-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:3:22-64
+15    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+15-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:7:5-80
+15-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:7:22-77
+16    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+16-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:8:5-71
+16-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:8:22-68
+17    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+17-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:9:5-78
+17-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:9:22-75
+18    <uses-permission android:name="android.permission.WAKE_LOCK" />
+18-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:10:5-68
+18-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:10:22-65
+19    <uses-permission
+19-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:12:5-14:38
+20        android:name="android.permission.BLUETOOTH"
+20-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:13:9-52
+21        android:maxSdkVersion="30" />
+21-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:14:9-35
+22    <uses-permission
+22-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:15:5-17:38
+23        android:name="android.permission.BLUETOOTH_ADMIN"
+23-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:16:9-58
+24        android:maxSdkVersion="30" />
+24-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:17:9-35
+25    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+25-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:19:5-76
+25-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:19:22-73
+26    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+26-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:5-77
+26-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:22-74
+27    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+27-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-94
+27-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-91
+28
+29    <uses-feature
+29-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-14:32
+30        android:name="android.hardware.usb.host"
+30-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-49
+31        android:required="false" />
+31-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-33
 32
-33    <application
-33-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:13:5-32:19
-34        android:name="com.tclone.MainApplication"
-34-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:14:7-38
-35        android:allowBackup="false"
-35-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:18:7-34
-36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-36-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
-37        android:debuggable="true"
-38        android:extractNativeLibs="true"
-39        android:icon="@mipmap/ic_launcher"
-39-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:16:7-41
-40        android:label="@string/app_name"
-40-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:15:7-39
-41        android:roundIcon="@mipmap/ic_launcher_round"
-41-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:17:7-52
-42        android:theme="@style/AppTheme"
-42-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:19:7-38
-43        android:usesCleartextTraffic="true" >
-43-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\debug\AndroidManifest.xml:6:9-44
-44        <activity
-44-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:20:7-31:18
-45            android:name="com.tclone.MainActivity"
-45-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:21:9-37
-46            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-46-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:23:9-118
-47            android:exported="true"
-47-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:26:9-32
-48            android:label="@string/app_name"
-48-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:22:9-41
-49            android:launchMode="singleTask"
-49-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:24:9-40
-50            android:windowSoftInputMode="adjustResize" >
-50-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:25:9-51
-51            <intent-filter>
-51-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:27:9-30:25
-52                <action android:name="android.intent.action.MAIN" />
-52-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:13-65
-52-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:21-62
-53
-54                <category android:name="android.intent.category.LAUNCHER" />
-54-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:13-73
-54-->C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:23-70
-55            </intent-filter>
-56        </activity>
-57
-58        <provider
-58-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
-59            android:name="com.imagepicker.ImagePickerProvider"
-59-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-63
-60            android:authorities="com.tclone.imagepickerprovider"
-60-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-71
-61            android:exported="false"
-61-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
-62            android:grantUriPermissions="true" >
-62-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-47
-63            <meta-data
-63-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:70
-64                android:name="android.support.FILE_PROVIDER_PATHS"
-64-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
-65                android:resource="@xml/imagepicker_provider_paths" />
-65-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-67
-66        </provider>
-67
-68        <service
-68-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-17:19
-69            android:name="com.oney.WebRTCModule.MediaProjectionService"
-69-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
-70            android:foregroundServiceType="mediaProjection" >
-70-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
-71        </service>
-72
-73        <activity
-73-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:19:9-21:40
-74            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-74-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:20:13-77
-75            android:exported="false" />
-75-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:21:13-37
-76        <activity
-76-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
-77            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-77-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
-78            android:excludeFromRecents="true"
-78-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
-79            android:exported="false"
-79-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
-80            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-80-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
-81        <!--
-82            Service handling Google Sign-In user revocation. For apps that do not integrate with
-83            Google Sign-In, this service will never be started.
-84        -->
+33    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+33-->[com.facebook.flipper:flipper:0.201.0] C:\Users\shayer\.gradle\caches\transforms-3\9b2c28bd5719adb7e465469e2ca76c12\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:5-76
+33-->[com.facebook.flipper:flipper:0.201.0] C:\Users\shayer\.gradle\caches\transforms-3\9b2c28bd5719adb7e465469e2ca76c12\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:22-73
+34
+35    <permission
+35-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+36        android:name="com.tclone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+36-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+37        android:protectionLevel="signature" />
+37-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+38
+39    <uses-permission android:name="com.tclone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+39-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+39-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+40
+41    <application
+41-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:21:5-43:19
+42        android:name="com.tclone.MainApplication"
+42-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:22:7-38
+43        android:allowBackup="false"
+43-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:26:7-34
+44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+44-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+45        android:debuggable="true"
+46        android:extractNativeLibs="true"
+47        android:icon="@mipmap/ic_launcher"
+47-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:24:7-41
+48        android:label="@string/app_name"
+48-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:23:7-39
+49        android:roundIcon="@mipmap/ic_launcher_round"
+49-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:25:7-52
+50        android:theme="@style/AppTheme"
+50-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:27:7-38
+51        android:usesCleartextTraffic="true" >
+51-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\debug\AndroidManifest.xml:6:9-44
+52        <activity
+52-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:7-39:18
+53            android:name="com.tclone.MainActivity"
+53-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:9-37
+54            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+54-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:31:9-118
+55            android:exported="true"
+55-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:34:9-32
+56            android:label="@string/app_name"
+56-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:30:9-41
+57            android:launchMode="singleTask"
+57-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:32:9-40
+58            android:windowSoftInputMode="adjustResize" >
+58-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:33:9-51
+59            <intent-filter>
+59-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:35:9-38:25
+60                <action android:name="android.intent.action.MAIN" />
+60-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:36:13-65
+60-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:36:21-62
+61
+62                <category android:name="android.intent.category.LAUNCHER" />
+62-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:37:13-73
+62-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:37:23-70
+63            </intent-filter>
+64        </activity>
+65
+66        <service
+66-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:7-133
+67            android:name="live.videosdk.rnfgservice.ForegroundService"
+67-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:16-74
+68            android:foregroundServiceType="mediaProjection" />
+68-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:75-122
+69        <service android:name="live.videosdk.rnfgservice.ForegroundServiceTask" />
+69-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:42:5-87
+69-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:42:14-76
+70        <service
+70-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:9-20:19
+71            android:name="live.videosdk.rnwebrtc.MediaProjectionService"
+71-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-73
+72            android:foregroundServiceType="mediaProjection" >
+72-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-60
+73        </service>
+74
+75        <provider
+75-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
+76            android:name="com.imagepicker.ImagePickerProvider"
+76-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-63
+77            android:authorities="com.tclone.imagepickerprovider"
+77-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-71
+78            android:exported="false"
+78-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
+79            android:grantUriPermissions="true" >
+79-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-47
+80            <meta-data
+80-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:70
+81                android:name="android.support.FILE_PROVIDER_PATHS"
+81-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
+82                android:resource="@xml/imagepicker_provider_paths" />
+82-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-67
+83        </provider>
+84
 85        <service
-85-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
-86            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-86-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
-87            android:exported="true"
-87-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
-88            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-88-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
-89            android:visibleToInstantApps="true" />
-89-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
-90
-91        <activity
-91-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
-92            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-92-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
-93            android:exported="false"
-93-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
-94            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-94-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
-95
-96        <meta-data
-96-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
-97            android:name="com.google.android.gms.version"
-97-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
-98            android:value="@integer/google_play_services_version" />
-98-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
-99
-100        <provider
-100-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-101            android:name="androidx.startup.InitializationProvider"
-101-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-102            android:authorities="com.tclone.androidx-startup"
-102-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-103            android:exported="false" >
-103-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-104            <meta-data
-104-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-105                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-105-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-106                android:value="androidx.startup" />
-106-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-107            <meta-data
-107-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-108                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-108-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-109                android:value="androidx.startup" />
-109-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\shayer\.gradle\caches\transforms-3\71b91ea8216105cda74b0317da307340\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-110        </provider>
-111
-112        <meta-data
-112-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:12:9-14:37
-113            android:name="com.facebook.soloader.enabled"
-113-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:13:13-57
-114            android:value="false" />
-114-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:14:13-34
-115    </application>
+85-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-17:19
+86            android:name="com.oney.WebRTCModule.MediaProjectionService"
+86-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
+87            android:foregroundServiceType="mediaProjection" >
+87-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
+88        </service>
+89
+90        <activity
+90-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:19:9-21:40
+91            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+91-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:20:13-77
+92            android:exported="false" />
+92-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:21:13-37
+93        <activity
+93-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
+94            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+94-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
+95            android:excludeFromRecents="true"
+95-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
+96            android:exported="false"
+96-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
+97            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+97-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
+98        <!--
+99            Service handling Google Sign-In user revocation. For apps that do not integrate with
+100            Google Sign-In, this service will never be started.
+101        -->
+102        <service
+102-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
+103            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+103-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
+104            android:exported="true"
+104-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
+105            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+105-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
+106            android:visibleToInstantApps="true" />
+106-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
+107
+108        <activity
+108-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+109            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+109-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+110            android:exported="false"
+110-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+111            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+111-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+112
+113        <meta-data
+113-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
+114            android:name="com.google.android.gms.version"
+114-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
+115            android:value="@integer/google_play_services_version" />
+115-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
 116
-117</manifest>
+117        <provider
+117-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+118            android:name="androidx.startup.InitializationProvider"
+118-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+119            android:authorities="com.tclone.androidx-startup"
+119-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+120            android:exported="false" >
+120-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+121            <meta-data
+121-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+122                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+122-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+123                android:value="androidx.startup" />
+123-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+124            <meta-data
+124-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\shayer\.gradle\caches\transforms-3\4445fe79bf905819a8215a4f222f1322\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+125                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+125-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\shayer\.gradle\caches\transforms-3\4445fe79bf905819a8215a4f222f1322\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+126                android:value="androidx.startup" />
+126-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\shayer\.gradle\caches\transforms-3\4445fe79bf905819a8215a4f222f1322\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+127            <meta-data
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+128                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+129                android:value="androidx.startup" />
+129-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+130        </provider>
+131
+132        <receiver
+132-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+133            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+133-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+134            android:directBootAware="false"
+134-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+135            android:enabled="true"
+135-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+136            android:exported="true"
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+137            android:permission="android.permission.DUMP" >
+137-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+138            <intent-filter>
+138-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+139                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+140            </intent-filter>
+141            <intent-filter>
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+142                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+143            </intent-filter>
+144            <intent-filter>
+144-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+145                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+145-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+145-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+146            </intent-filter>
+147            <intent-filter>
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+148                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+148-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+148-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+149            </intent-filter>
+150        </receiver>
+151
+152        <meta-data
+152-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:12:9-14:37
+153            android:name="com.facebook.soloader.enabled"
+153-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:13:13-57
+154            android:value="false" />
+154-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:14:13-34
+155    </application>
+156
+157</manifest>

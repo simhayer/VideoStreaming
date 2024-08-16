@@ -4,6 +4,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import StreamScreen from './StreamScreen';
 import ViewerTab from './ViewerTab';
 import StartStreamTab from './StartStreamTab';
+import MainVideoSDK from './MainVideoSDK1';
+import VideoSDKViewer from './VideoSDKViewer';
+import StreamScreenSDK from './StreamScreenSDK';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const TabControl = () => {
@@ -34,6 +37,9 @@ const TabControl = () => {
       <Tab.Screen name="Home" component={ViewerTab} />
       <Tab.Screen name="Stream" component={StartStreamTab} />
       <Tab.Screen name="Profile" component={Profile} />
+      {/* <Tab.Screen name="MainVideoSDK" component={MainVideoSDK} /> */}
+      {/* <Tab.Screen name="VideoSDKViewer" component={VideoSDKViewer} /> */}
+      {/* <Tab.Screen name="StreamScreenSDK" component={StreamScreenSDK} /> */}
     </Tab.Navigator>
   );
 };

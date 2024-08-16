@@ -14,13 +14,14 @@ async function add({body}, res) {
     body.username,
     body.profilePicture,
     body.title,
+    body.meetingId,
   );
 
   if (id != null) {
     data = {
       message: 'success',
       data: {
-        sdp: broadcasters[id].peer.localDescription,
+        //sdp: broadcasters[id].peer.localDescription,
         id: id,
       },
     };

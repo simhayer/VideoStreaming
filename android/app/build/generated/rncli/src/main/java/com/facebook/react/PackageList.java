@@ -17,12 +17,12 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // @react-native-masked-view/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// @videosdk.live/react-native-incallmanager
+import live.videosdk.rnincallmanager.InCallManagerPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-image-picker
 import com.imagepicker.ImagePickerPackage;
-// react-native-incall-manager
-import com.zxcpoiu.incallmanager.InCallManagerPackage;
 // react-native-linear-gradient
 import com.BV.LinearGradient.LinearGradientPackage;
 // react-native-randombytes
@@ -35,6 +35,8 @@ import com.swmansion.rnscreens.RNScreensPackage;
 import com.horcrux.svg.SvgPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
+// react-native-video
+import com.brentvatne.react.ReactVideoPackage;
 // react-native-webrtc
 import com.oney.WebRTCModule.WebRTCModulePackage;
 // react-native-reanimated
@@ -87,15 +89,16 @@ public class PackageList {
       new AsyncStoragePackage(),
       new RNGoogleSigninPackage(),
       new RNCMaskedViewPackage(),
+      new InCallManagerPackage(),
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
-      new InCallManagerPackage(),
       new LinearGradientPackage(),
       new RandomBytesPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
       new SvgPackage(),
       new VectorIconsPackage(),
+      new ReactVideoPackage(),
       new WebRTCModulePackage(),
       new ReanimatedPackage()
     ));

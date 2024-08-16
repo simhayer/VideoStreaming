@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-38:/values-large-v4/values-large-v4.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-53:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\f150f74d51d5a6544b03fae36fafe644\\transformed\\material-1.6.1\\res\\values-large-v4\\values-large-v4.xml",
