@@ -27,34 +27,6 @@ class Broadcaster {
   }
 }
 
-// async function addBroadcast(socket_id, sdp, username, profilePicture, title) {
-//   console.log('new broadcast');
-//   var id = uuidv4();
-//   console.log('username: ' + username);
-//   var broadcast = new Broadcaster(
-//     id,
-//     new MediaStream(),
-//     new webrtc.RTCPeerConnection(
-//       config.configurationPeerConnection,
-//       config.offerSdpConstraints,
-//     ),
-//     socket_id,
-//     username,
-//     profilePicture,
-//     title,
-//   );
-
-//   broadcasters[id] = broadcast;
-
-//   broadcastMediaProcess(id);
-//   broadcastConnectionState(id);
-//   broadcastOnIceCandidate(id);
-
-//   await broadcastSdpProcess(id, sdp);
-
-//   return id;
-// }
-
 async function addBroadcast(
   socket_id,
   sdp,
@@ -64,7 +36,8 @@ async function addBroadcast(
   meetingId,
 ) {
   console.log('new broadcast');
-  var id = uuidv4();
+  //var id = uuidv4();
+  var id = socket_id;
   console.log('username: ' + username);
   var broadcast = new Broadcaster(
     id,
@@ -174,7 +147,6 @@ async function addCandidateFromClient(data) {
 async function removeBroadcast(id) {
   if (broadcasters[id] != null) {
     console.log('\x1b[31m', 'remove broadcaster: ' + id, '\x1b[0m');
-    broadcasters[id].peer.close();
     delete broadcasters[id];
   }
 }
@@ -217,6 +189,7 @@ async function addBid(id, bidAmount, userUsername) {
 }
 
 async function startBid(id) {
+  console.log('broadcasters: ' + broadcasters);
   if (broadcasters[id] != null) {
     console.log('Starting bid for broadcaster: ' + id);
 
@@ -239,8 +212,14 @@ async function endBid(id) {
     console.log('Ending bid for broadcaster: ' + id);
     broadcasters[id].isBidding = false;
     broadcasters[id].curBidDetails = {};
+
+    //todo: send the winner to the client
+
+    var ret = id;
+    return ret;
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
+    return 0;
   }
 }
 
@@ -274,4 +253,5 @@ module.exports = {
   addBid,
   startBid,
   endBid,
+  removeBroadcast,
 };

@@ -16,7 +16,7 @@ import UsernameCreate from './Screens/UsernameCreate';
 import StreamScreen from './Screens/StreamScreen';
 import StreamScreenSDK from './Screens/StreamScreenSDK';
 import VideoScreenSDK from './Screens/VideoScreenSDK';
-import VideoSDKViewer from './Screens/VideoSDKViewer';
+//import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
 
@@ -56,11 +56,6 @@ const MyStack = () => {
           <Stack.Screen
             name="VideoScreenSDK"
             component={VideoScreenSDK}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="VideoSDKViewer"
-            component={VideoSDKViewer}
             options={{headerShown: false}}
           />
         </Stack.Group>

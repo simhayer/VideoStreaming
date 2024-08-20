@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -26,24 +26,36 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import StreamStore from './StreamStore'; // Import the StreamStore
 import io from 'socket.io-client';
-import {apiEndpoints, baseURL} from '../Resources/Constants';
+import {apiEndpoints, baseURL, token} from '../Resources/Constants';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
-
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Video from 'react-native-video';
+import {useSharedValue} from 'react-native-reanimated';
+
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 function ViewerView({}) {
   const {hlsState, hlsUrls} = useMeeting();
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (hlsState === 'HLS_PLAYABLE') {
+      // Seek to the end of the video (live)
+      videoRef.current.seek(Number.MAX_SAFE_INTEGER); // Seeking to a very high number should take you to the live edge
+    }
+  }, [hlsState]);
+
   return (
     <SafeAreaView style={{flex: 1}}>
       {hlsState == 'HLS_PLAYABLE' ? (
         <>
           {/* Render VideoPlayer that will play downstreamUrl*/}
           <Video
+            ref={videoRef}
             controls={false}
             source={{
               uri: hlsUrls.downstreamUrl,
@@ -52,6 +64,9 @@ function ViewerView({}) {
             style={{
               backgroundColor: 'black',
               height: screenHeight,
+            }}
+            onLoad={() => {
+              videoRef.current.seek(Number.MAX_SAFE_INTEGER);
             }}
             onError={e => console.log('error', e)}
           />
@@ -116,7 +131,7 @@ const VideoScreen = ({route}) => {
 
     newSocket.on('newBid', data => {
       console.log('New bid received:', data);
-      setCurBid(data.userBid);
+      setCurBid(Number(data.userBid));
     });
 
     newSocket.on('startBid', data => {
@@ -168,13 +183,28 @@ const VideoScreen = ({route}) => {
 
   const handleSendBid = () => {
     console.log('In Bid sent:', curBid + 1);
-    setUserBid(curBid + 1);
+    setUserBid(Number(curBid) + 1);
     if (curBid + 1 > 0) {
       console.log('Bid sent:', curBid + 1);
 
       const bidData = {
         id: broadcastId,
         userBid: curBid + 1,
+        userUsername,
+      };
+      socket.emit('bid', bidData);
+      //setUserBid(0); // Clear the input after sending the comment
+    }
+  };
+
+  const handleSendCustomBid = () => {
+    console.log('In Bid sent:', Number(userBid));
+    if (userBid > curBid) {
+      console.log('Bid sent:', userBid);
+
+      const bidData = {
+        id: broadcastId,
+        userBid: userBid,
         userUsername,
       };
       socket.emit('bid', bidData);
@@ -209,6 +239,23 @@ const VideoScreen = ({route}) => {
     scrollViewRef.current?.scrollToEnd({animated: true});
   }, [curComments]);
 
+  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
+
+  const bottomSheetRef = useRef(null);
+
+  const handleSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+    if (index === 0) {
+      console.log('Closing bottom sheet');
+      setIsBottomSheetVisible(false);
+    }
+  }, []);
+
+  const snapPoints = useMemo(() => ['1%', '25%'], []);
+  const progress = useSharedValue(30);
+  const min = useSharedValue(0);
+  const max = useSharedValue(100);
+
   return (
     <MeetingProvider
       config={{
@@ -219,7 +266,7 @@ const VideoScreen = ({route}) => {
         mode: Constants.modes.VIEWER,
       }}
       joinWithoutUserInteraction
-      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJkYTIyODY0OS00YmM5LTQxYzctYmI3Yi1jZjA4Y2RlZjNhZmQiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTcyMzY5MTY4MSwiZXhwIjoxNzU1MjI3NjgxfQ.z9HIp4NOtQF0nXAyqPAIvUUcq917rT4WAeglxl5jgxU">
+      token={token}>
       <View>
         <ViewerView />
         <SafeAreaView style={{height: '100%', width: '100%'}}>
@@ -431,7 +478,7 @@ const VideoScreen = ({route}) => {
                     marginLeft: '5%',
                   }}>
                   <TouchableOpacity
-                    onPress={handleSendBid}
+                    onPress={() => setIsBottomSheetVisible(true)}
                     style={{
                       height: '100%',
                       width: '25%',
@@ -458,13 +505,99 @@ const VideoScreen = ({route}) => {
                       borderRadius: 20,
                     }}>
                     <Text style={{color: 'white', fontWeight: 'bold'}}>
-                      Bid {curBid + 1}
+                      Bid {Number(curBid) + 1}
                     </Text>
                   </TouchableOpacity>
                 </View>
               )}
             </View>
           </TouchableWithoutFeedback>
+          {isBottomSheetVisible && (
+            <BottomSheet
+              ref={bottomSheetRef}
+              snapPoints={snapPoints}
+              index={isBottomSheetVisible ? 1 : -1}
+              onChange={handleSheetChanges}>
+              <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+                <View style={{flexDirection: 'column', marginTop: 2}}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 2,
+                      }}>
+                      Current Bid:{'     '}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 1.4,
+                      }}>
+                      ${curBid}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      minHeight: 40,
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 1.4,
+                      }}>
+                      ${' '}
+                    </Text>
+                    <TextInput
+                      placeholder="Enter Bid"
+                      keyboardType="numeric"
+                      maxLength={5}
+                      textAlign="center"
+                      value={userBid}
+                      onChangeText={text => {
+                        const numericValue = text.replace(/[^0-9]/g, '');
+                        setUserBid(numericValue);
+                      }}
+                      style={{
+                        width: '30%',
+                        borderBottomWidth: 1,
+                        textAlign: 'center',
+                      }}
+                    />
+                    <TouchableOpacity
+                      onPress={handleSendCustomBid}
+                      disabled={userBid <= curBid}
+                      style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginLeft: '10%',
+                        marginTop: '2%',
+                        opacity: userBid <= curBid ? 0.5 : 1,
+                      }}>
+                      <Icon
+                        name="arrow-up-circle"
+                        size={40}
+                        color={userBid <= curBid ? 'gray' : '#f542a4'}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{alignItems: 'center'}}>
+                    <Text
+                      style={{
+                        color: 'red',
+                        marginTop: '5%',
+                      }}>
+                      Time Left: {timeLeft} s
+                    </Text>
+                  </View>
+                </View>
+              </BottomSheetView>
+            </BottomSheet>
+          )}
         </SafeAreaView>
       </View>
     </MeetingProvider>

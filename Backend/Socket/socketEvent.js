@@ -68,14 +68,18 @@ module.exports = io => {
     });
 
     socket.on('end-bid', data => {
-      console.log('end-bid: ' + data);
-      broadcastService.endBid(data.id).then(data => {
-        io.to(data.id).emit('endBid', data);
-      });
+      console.log('end data:', data);
+      if (data && data.id) {
+        broadcastService.endBid(data.id).then(data => {
+          io.to(data.id).emit('endBid', data);
+        });
+      } else {
+        console.log('id is undefined or missing');
+      }
     });
 
-    io.on('disconnect', socket => {
-      console.log('someone disconnected');
+    socket.on('disconnect', socket => {
+      broadcastService.removeBroadcast(socket.id);
     });
   });
 };

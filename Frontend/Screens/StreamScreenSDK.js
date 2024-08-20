@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import io from 'socket.io-client';
-import {baseURL, apiEndpoints} from '../Resources/Constants';
+import {baseURL, apiEndpoints, token} from '../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
@@ -30,12 +30,10 @@ import {
   Constants,
   RTCView,
 } from '@videosdk.live/react-native-sdk';
+import {set} from 'mongoose';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
-
-export const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJkYTIyODY0OS00YmM5LTQxYzctYmI3Yi1jZjA4Y2RlZjNhZmQiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTcyMzY5MTY4MSwiZXhwIjoxNzU1MjI3NjgxfQ.z9HIp4NOtQF0nXAyqPAIvUUcq917rT4WAeglxl5jgxU';
 
 // API call to create meeting
 export const createMeeting = async ({token}) => {
@@ -97,48 +95,7 @@ function Controls() {
     _handleHLS();
   }, []);
 
-  return (
-    <>
-      {hlsState === 'HLS_STARTED' ||
-      hlsState === 'HLS_STOPPING' ||
-      hlsState === 'HLS_STARTING' ||
-      hlsState === 'HLS_PLAYABLE' ? (
-        <TouchableOpacity
-          style={{
-            width: 100,
-            padding: 10,
-            borderRadius: 8,
-            backgroundColor: '#FF5D5D',
-          }}
-          onPress={() => {
-            _handleHLS();
-          }}>
-          <Text style={{color: 'blue', fontSize: 20}}>
-            {hlsState === 'HLS_STARTED'
-              ? 'Live Starting'
-              : hlsState === 'HLS_STOPPING'
-              ? 'Live Stopping'
-              : hlsState === 'HLS_PLAYABLE'
-              ? 'Stop Live'
-              : 'Loading...'}
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={{
-            width: 100,
-            padding: 10,
-            borderRadius: 8,
-            backgroundColor: '#FF5D5D',
-          }}
-          onPress={() => {
-            _handleHLS();
-          }}>
-          <Text style={{color: 'blue'}}>Go Live</Text>
-        </TouchableOpacity>
-      )}
-    </>
-  );
+  return <></>;
 }
 
 function SpeakerView({socketId, username, profilePicture, title, meetingId}) {
@@ -275,8 +232,10 @@ const StreamScreen = ({route}) => {
     socket.current = io(baseURL, {
       transports: ['websocket'],
     });
+
     socket.current.on('from-server', id => {
       setSocketId(id);
+      setBroadcastId(id);
       console.log('Connected with socket ID: ' + id);
     });
 
@@ -336,9 +295,8 @@ const StreamScreen = ({route}) => {
       }, 1000);
     } else if (timeLeft === 0) {
       if (isTimerRunning) {
-        socket.current.emit('end-bid', broadcastId);
+        socket.current.emit('end-bid', {id: broadcastId});
       }
-      //socket.current.emit('end-bid', broadcastId);
       setIsTimerRunning(false);
     }
 
@@ -379,7 +337,7 @@ const StreamScreen = ({route}) => {
             socketId={socketId}
             username={username}
             profilePicture={profilePicture}
-            title="Your Broadcast Title"
+            title={title}
             meetingId={meetingId}
             style={{flex: 1, height: '100%', width: '100%'}}
           />

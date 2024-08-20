@@ -4,8 +4,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import StreamScreen from './StreamScreen';
 import ViewerTab from './ViewerTab';
 import StartStreamTab from './StartStreamTab';
-import MainVideoSDK from './MainVideoSDK1';
-import VideoSDKViewer from './VideoSDKViewer';
 import StreamScreenSDK from './StreamScreenSDK';
 import Icon from 'react-native-vector-icons/Ionicons';
 

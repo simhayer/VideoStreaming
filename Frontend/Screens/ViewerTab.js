@@ -20,41 +20,11 @@ import {
 import io from 'socket.io-client';
 import axios from 'axios';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {apiEndpoints, baseURL} from '../Resources/Constants';
+import {apiEndpoints, baseURL, token} from '../Resources/Constants';
 import StreamStore from './StreamStore'; // Import the StreamStore
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const {height: screenHeight} = Dimensions.get('window');
-
-const configurationPeerConnection = {
-  iceServers: [
-    {
-      urls: 'stun:stun.l.google.com:19302',
-    },
-    {
-      urls: 'turn:global.relay.metered.ca:80',
-      username: 'aca60fb4568ea274f8245009',
-      credential: 'Zi/jzkiJuI2fmwLx',
-    },
-    {
-      urls: 'turn:global.relay.metered.ca:80?transport=tcp',
-      username: 'aca60fb4568ea274f8245009',
-      credential: 'Zi/jzkiJuI2fmwLx',
-    },
-    {
-      urls: 'turn:global.relay.metered.ca:443',
-      username: 'aca60fb4568ea274f8245009',
-      credential: 'Zi/jzkiJuI2fmwLx',
-    },
-    {
-      urls: 'turns:global.relay.metered.ca:443?transport=tcp',
-      username: 'aca60fb4568ea274f8245009',
-      credential: 'Zi/jzkiJuI2fmwLx',
-    },
-  ],
-};
-
-const addTransceiverConstraints = {direction: 'recvonly'};
 
 const ViewerTab = () => {
   const navigation = useNavigation();
@@ -78,11 +48,11 @@ const ViewerTab = () => {
     const newSocket = io(baseURL);
     setSocket(newSocket);
 
-    newSocket.on('candidate-from-server', handleRemoteCandidate);
+    //newSocket.on('candidate-from-server', handleRemoteCandidate);
     newSocket.on('List-update', showList);
 
     return () => {
-      newSocket.off('candidate-from-server', handleRemoteCandidate);
+      //newSocket.off('candidate-from-server', handleRemoteCandidate);
       newSocket.off('List-update', showList);
       newSocket.close();
     };
@@ -94,115 +64,13 @@ const ViewerTab = () => {
     }, []),
   );
 
-  const handleRemoteCandidate = candidate => {
-    if (peer) {
-      console.log('Adding remote candidate', candidate);
-      peer.addIceCandidate(new RTCIceCandidate(candidate));
-    }
-  };
-
   const showList = async () => {
     try {
+      console.log('showList');
       const response = await axios.get(baseURL + apiEndpoints.listbroadcast);
       setBroadcasts(response.data);
     } catch (error) {
       console.error('Error fetching broadcasts: ', error);
-    }
-  };
-
-  const handleTrackEvent = (
-    event,
-    broadcastId,
-    username,
-    watchers,
-    profilePictureURL,
-    comments,
-  ) => {
-    const receivedStream = event.streams[0];
-    console.log('Stream received: ', receivedStream);
-
-    const streamId = Date.now().toString();
-    StreamStore.setStream(streamId, receivedStream);
-
-    navigateToVideoScreen(
-      streamId,
-      broadcastId,
-      username,
-      watchers,
-      profilePictureURL,
-      comments,
-    );
-  };
-
-  const navigateToVideoScreen = (
-    streamId,
-    broadcastId,
-    username,
-    watchers,
-    profilePictureURL,
-    comments,
-  ) => {
-    navigation.navigate('Video', {
-      streamId,
-      broadcastId,
-      username,
-      watchers,
-      profilePictureURL,
-      comments,
-    });
-  };
-
-  const watch = async (
-    broadcastId,
-    username,
-    watchers,
-    profilePictureURL,
-    comments,
-  ) => {
-    if (peer) {
-      peer.close();
-    }
-
-    const newPeer = new RTCPeerConnection(configurationPeerConnection);
-    newPeer.addTransceiver('video', addTransceiverConstraints);
-    newPeer.addTransceiver('audio', addTransceiverConstraints);
-
-    newPeer.ontrack = event =>
-      handleTrackEvent(
-        event,
-        broadcastId,
-        username,
-        watchers,
-        profilePictureURL,
-        comments,
-      );
-
-    socket.emit('watcher', {id: broadcastId});
-
-    newPeer.onicecandidate = event => {
-      if (event.candidate) {
-        console.log('Sending ICE candidate for consumer', event.candidate);
-        socket.emit('add-candidate-consumer', {
-          candidate: event.candidate,
-          broadcast_id: broadcastId,
-        });
-      }
-    };
-
-    try {
-      const offer = await newPeer.createOffer();
-      await newPeer.setLocalDescription(offer);
-
-      const {data} = await axios.post(baseURL + apiEndpoints.addConsumer, {
-        sdp: newPeer.localDescription,
-        broadcast_id: broadcastId,
-      });
-
-      const desc = new RTCSessionDescription(data.data.sdp);
-      await newPeer.setRemoteDescription(desc);
-      setPeer(newPeer);
-    } catch (error) {
-      console.error('Error during negotiation:', error);
     }
   };
 
@@ -214,9 +82,7 @@ const ViewerTab = () => {
     comments,
     meetingId,
   ) => {
-    // navigation.navigate('VideoSDKViewer', {
-    //   meetingId,
-    // });
+    socket.emit('watcher', {id: broadcastId});
 
     navigation.navigate('VideoScreenSDK', {
       streamId: '',
