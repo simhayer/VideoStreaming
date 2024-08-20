@@ -182,6 +182,7 @@ async function addBid(id, bidAmount, userUsername) {
     broadcasters[id].curBidDetails = {
       userUsername,
       bidAmount,
+      bidNo: broadcasters[id].curBidDetails.bidNo + 1,
     };
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
@@ -198,6 +199,7 @@ async function startBid(id) {
     broadcasters[id].curBidDetails = {
       userUsername: 'null',
       bidAmount: 0,
+      bidNo: 0,
     };
 
     return ret;
@@ -210,16 +212,15 @@ async function startBid(id) {
 async function endBid(id) {
   if (broadcasters[id] != null) {
     console.log('Ending bid for broadcaster: ' + id);
+    ret = broadcasters[id].curBidDetails;
     broadcasters[id].isBidding = false;
     broadcasters[id].curBidDetails = {};
 
     //todo: send the winner to the client
-
-    var ret = id;
     return ret;
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
-    return 0;
+    return {userUsername: 'null', bidAmount: 0, bidNo: 0};
   }
 }
 

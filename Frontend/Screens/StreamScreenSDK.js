@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import io from 'socket.io-client';
-import {baseURL, apiEndpoints, token} from '../Resources/Constants';
+import {baseURL, apiEndpoints, token, appPink} from '../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
@@ -31,6 +31,7 @@ import {
   RTCView,
 } from '@videosdk.live/react-native-sdk';
 import {set} from 'mongoose';
+import {endBid} from '../../Backend/Services/broadcastServices';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -187,6 +188,9 @@ const StreamScreen = ({route}) => {
   const [curComments, setCurComments] = useState([]);
   const [comment, setComment] = useState('');
   const [curBid, setCurBid] = useState(0);
+  const [noOfBids, setNoOfBids] = useState(0);
+  const [curBidWinner, setCurBidWinner] = useState('');
+  const [showWinner, setShowWinner] = useState(false);
   const [userBid, setUserBid] = useState(0);
   const [watchers, setWatchers] = useState(0);
 
@@ -253,6 +257,25 @@ const StreamScreen = ({route}) => {
       //setWatchers(updatedWatchers);
     });
 
+    socket.current.on('newBid', data => {
+      console.log('New bid received:', data);
+      setCurBid(Number(data.userBid));
+      setNoOfBids(Number(data.bidNo));
+    });
+
+    socket.current.on('endBid', data => {
+      console.log('Bid ended:', data);
+      if (data.userUsername !== 'null') {
+        setCurBidWinner(data.userUsername);
+        setShowWinner(true); // Show the winner
+
+        // Hide the winner after 3 seconds
+        setTimeout(() => {
+          setShowWinner(false);
+        }, 3000);
+      }
+    });
+
     return () => {
       socket.current.disconnect();
     };
@@ -284,7 +307,15 @@ const StreamScreen = ({route}) => {
     const timeInSeconds = parseInt(timer, 10);
     setTimeLeft(timeInSeconds);
     setIsTimerRunning(true);
+    setCurBid(Number(startBid));
+    setNoOfBids(0);
     //setUserBid(0); // Clear the input after sending the comment
+  };
+
+  const handleEndBid = broadcastId => {
+    socket.current.emit('end-bid', {id: broadcastId});
+    setNoOfBids(0);
+    setCurBid(0);
   };
 
   useEffect(() => {
@@ -295,7 +326,7 @@ const StreamScreen = ({route}) => {
       }, 1000);
     } else if (timeLeft === 0) {
       if (isTimerRunning) {
-        socket.current.emit('end-bid', {id: broadcastId});
+        handleEndBid(broadcastId);
       }
       setIsTimerRunning(false);
     }
@@ -349,6 +380,20 @@ const StreamScreen = ({route}) => {
                 flex: 1,
                 justifyContent: 'space-between',
               }}>
+              {showWinner && (
+                <View
+                  style={{
+                    position: 'absolute',
+                    top: '15%',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}>
+                  <Text
+                    style={{color: 'red', fontSize: calculatedFontSize / 2.3}}>
+                    {curBidWinner} won the bid!
+                  </Text>
+                </View>
+              )}
               <View style={styles.header}>
                 <Text
                   style={{
@@ -474,6 +519,7 @@ const StreamScreen = ({route}) => {
                 }}>
                 <DropDownPicker
                   open={open}
+                  disabled={isTimerRunning}
                   value={timer}
                   items={timerOptions}
                   setOpen={setOpen}
@@ -494,6 +540,9 @@ const StreamScreen = ({route}) => {
                   listItemLabelStyle={{
                     fontWeight: 'bold',
                   }}
+                  style={{
+                    opacity: isTimerRunning ? 0.5 : 1,
+                  }}
                 />
               </View>
               <View
@@ -506,8 +555,13 @@ const StreamScreen = ({route}) => {
                 <Text style={{fontSize: calculatedFontSize / 2}}>$ </Text>
                 <TextInput
                   value={startBid}
-                  onChangeText={text => setStartBid(Number(text))}
                   placeholder={'Start Bid'}
+                  editable={!isTimerRunning}
+                  keyboardType="numeric"
+                  onChangeText={text => {
+                    const numericValue = text.replace(/[^0-9]/g, '');
+                    setStartBid(Number(numericValue));
+                  }}
                   style={{
                     //fontSize: calculatedFontSize / 2.3,
                     borderWidth: 1,
@@ -516,6 +570,7 @@ const StreamScreen = ({route}) => {
                     textAlign: 'center',
                     borderRadius: 8,
                     minHeight: 50,
+                    opacity: isTimerRunning ? 0.5 : 1,
                   }}
                 />
               </View>
@@ -529,16 +584,17 @@ const StreamScreen = ({route}) => {
               }}>
               <TouchableOpacity
                 onPress={() => handleStartBid()}
+                disabled={isTimerRunning}
                 style={{
-                  backgroundColor: '#f542a4',
+                  backgroundColor: isTimerRunning ? 'grey' : appPink,
                   justifyContent: 'center',
                   alignItems: 'center',
                   width: '35%',
                   height: 50,
                   marginTop: '2%',
                   marginRight: '2%',
-
                   borderRadius: 8,
+                  opacity: isTimerRunning ? 0.5 : 1,
                 }}>
                 <Text
                   style={{
@@ -553,20 +609,49 @@ const StreamScreen = ({route}) => {
             <View
               style={{
                 flex: 1,
-                borderWidth: 1,
-                marginTop: '2%',
                 maxHeight: '60%',
                 height: '60%',
               }}>
               {isTimerRunning && (
                 <View
                   style={{
-                    flexDirection: 'row',
+                    margin: 7,
+                    borderWidth: 1,
+                    flex: 1,
+                    borderColor: appPink,
+                    borderRadius: 8,
+                    alignItems: 'center',
                     justifyContent: 'center',
-                    width: '100%',
-                    marginTop: '2%',
                   }}>
-                  <Text style={{color: 'red'}}>{timeLeft} seconds left</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 2,
+                      }}>
+                      Highest Bid :{'     '}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 1.4,
+                      }}>
+                      ${curBid}
+                    </Text>
+                  </View>
+                  <Text
+                    style={{
+                      marginTop: '10%',
+                      fontSize: calculatedFontSize / 2,
+                    }}>
+                    No of bids : {noOfBids}
+                  </Text>
+                  <Text style={{color: 'red', marginTop: '10%'}}>
+                    {timeLeft} seconds left
+                  </Text>
                 </View>
               )}
               {!isTimerRunning && (

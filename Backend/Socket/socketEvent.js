@@ -69,9 +69,10 @@ module.exports = io => {
 
     socket.on('end-bid', data => {
       console.log('end data:', data);
-      if (data && data.id) {
+      const id = data.id;
+      if (data) {
         broadcastService.endBid(data.id).then(data => {
-          io.to(data.id).emit('endBid', data);
+          io.to(id).emit('endBid', data);
         });
       } else {
         console.log('id is undefined or missing');

@@ -33,7 +33,6 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Video from 'react-native-video';
-import {useSharedValue} from 'react-native-reanimated';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -113,17 +112,16 @@ const VideoScreen = ({route}) => {
   const [timeLeft, setTimeLeft] = useState(0); // Initial time is 0
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  const [showEndBidText, setShowEndBidText] = useState(false);
+  const [curBidWinner, setCurBidWinner] = useState('');
+  const [showWinner, setShowWinner] = useState(false);
 
   useEffect(() => {
     console.log('useEffect triggered');
     const newSocket = io(baseURL);
     setSocket(newSocket);
 
-    // Join the specific stream's room
     newSocket.emit('joinStream', broadcastId);
 
-    // Listen for new comments for the specific stream
     newSocket.on('newComment', data => {
       console.log('New comment received:', data);
       setCurComments(prevComments => [...prevComments, data]);
@@ -141,11 +139,13 @@ const VideoScreen = ({route}) => {
 
     newSocket.on('endBid', data => {
       console.log('Bid ended:', data);
-      setIsTimerRunning(false);
-      setShowEndBidText(true);
-      setTimeout(() => {
-        setShowEndBidText(false);
-      }, 4000);
+      if (data.userUsername !== 'null') {
+        setCurBidWinner(data.userUsername);
+        setShowWinner(true);
+        setTimeout(() => {
+          setShowWinner(false);
+        }, 3000);
+      }
     });
 
     return () => {
@@ -252,9 +252,6 @@ const VideoScreen = ({route}) => {
   }, []);
 
   const snapPoints = useMemo(() => ['1%', '25%'], []);
-  const progress = useSharedValue(30);
-  const min = useSharedValue(0);
-  const max = useSharedValue(100);
 
   return (
     <MeetingProvider
@@ -300,9 +297,18 @@ const VideoScreen = ({route}) => {
                   <Text style={styles.closeButtonText}>X</Text>
                 </TouchableOpacity>
               </View>
-              {showEndBidText && (
-                <View style={styles.endBidTextContainer}>
-                  <Text style={styles.endBidText}>Bid Ended</Text>
+              {showWinner && (
+                <View
+                  style={{
+                    position: 'absolute',
+                    top: '15%',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}>
+                  <Text
+                    style={{color: 'red', fontSize: calculatedFontSize / 2.3}}>
+                    {curBidWinner} won the bid!
+                  </Text>
                 </View>
               )}
               <View
