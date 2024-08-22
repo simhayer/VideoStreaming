@@ -142,10 +142,9 @@ const ViewerTab = () => {
       </View>
       <View
         style={{
-          height: '3%',
-          borderTopWidth: 1,
+          height: '2%',
+          borderBottomWidth: 1,
           borderColor: 'rgba(0,0,0,0.2)',
-          marginTop: 20,
           width: '100%',
         }}></View>
       <FlatList
@@ -224,11 +223,6 @@ const ViewerTab = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
   },
   scrollView: {
     flexGrow: 1,

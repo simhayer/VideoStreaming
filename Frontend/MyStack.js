@@ -1,21 +1,23 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import SignUp from './Screens/SignUp';
-import SignUpOptions from './Screens/SignUpOptions';
-import Login from './Screens/Login';
-import ForgetPassword from './Screens/ForgetPassword';
+import SignUp from './Screens/Authentication/SignUp';
+import SignUpOptions from './Screens//Authentication/SignUpOptions';
+import Login from './Screens/Authentication/Login';
+import ForgetPassword from './Screens/Authentication/PassowrdHandle/ForgetPassword';
 import TabControl from './Screens/TabControl';
 import {Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import ForgetCode from './Screens/FrogetCode';
-import ResetPassword from './Screens/ResetPassword';
+import ForgetCode from './Screens/Authentication/PassowrdHandle/FrogetCode';
+import ResetPassword from './Screens/Authentication/PassowrdHandle/ResetPassword';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import VideoScreen from './Screens/VideoScreen';
 import EditProfile from './Screens/EditProfile';
-import UsernameCreate from './Screens/UsernameCreate';
+import UsernameCreate from './Screens/Authentication/UsernameCreate';
 import StreamScreen from './Screens/StreamScreen';
 import StreamScreenSDK from './Screens/StreamScreenSDK';
 import VideoScreenSDK from './Screens/VideoScreenSDK';
+import GetStartedSell from './Screens/GetStartedSell/GetStartedSell';
+import GetStartedSellRules from './Screens/GetStartedSell/GetStartedSellRules';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -56,6 +58,16 @@ const MyStack = () => {
           <Stack.Screen
             name="VideoScreenSDK"
             component={VideoScreenSDK}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="GetStartedSell"
+            component={GetStartedSell}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="GetStartedSellRules"
+            component={GetStartedSellRules}
             options={{headerShown: false}}
           />
         </Stack.Group>
