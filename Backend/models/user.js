@@ -39,6 +39,10 @@ const UserSchema = new Mongoose.Schema({
     type: String,
     default: '',
   },
+  stripeUserId: {
+    type: String,
+    default: '',
+  },
 });
 
 const User = Mongoose.model('user', UserSchema);

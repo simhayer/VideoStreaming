@@ -9,6 +9,7 @@ const multer = require('multer');
 
 //TODO: to fix this path dependency
 const path = require('path');
+const {set} = require('mongoose');
 
 // auth.js
 exports.register = async (req, res, next) => {
@@ -433,3 +434,101 @@ exports.updateProfilePicture = [
     }
   },
 ];
+
+exports.getUserDetails = async email => {
+  console.log('Request Body:', email); // Log the body of the request
+
+  // Check if email is provided
+  if (!email) {
+    return null;
+  }
+
+  try {
+    const user = await User.findOne({email}); // Look up the user by email
+    if (!user) {
+      return null;
+    } else {
+      console.log('User:', user);
+      return {
+        username: user.username,
+        fullname: user.fullname,
+        stripeUserId: user.stripeUserId,
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching user stripe ID:', error);
+    return null;
+  }
+};
+
+exports.getUserStripeId = async email => {
+  console.log('Request Body:', email); // Log the body of the request
+
+  // Check if email is provided
+  if (!email) {
+    return null;
+  }
+
+  try {
+    const user = await User.findOne({email}); // Look up the user by email
+    if (!user) {
+      return null;
+    } else {
+      return user.stripeUserId;
+    }
+  } catch (error) {
+    console.error('Error fetching user stripe ID:', error);
+    return null;
+  }
+};
+
+exports.setUserStripeId = async (email, stripeUserId) => {
+  if (!email) {
+    return;
+  }
+  try {
+    const user = await User.findOne({email});
+    if (!user) {
+      return;
+    } else {
+      user.stripeUserId = stripeUserId;
+      await user.save();
+      return;
+    }
+  } catch (error) {
+    console.error('Error setting user stripe ID:', error);
+  }
+};
+
+// exports.setUserStripeId = async (req, res) => {
+//   console.log('In set Request:', req.body);
+//   const {email, stripeUserId} = req.body;
+//   // Check if username and password is provided
+//   if (!email) {
+//     return res.json({
+//       message: 'email not present',
+//       stripeUserId: null,
+//     });
+//   }
+//   try {
+//     const user = await User.findOne({email});
+//     if (!user) {
+//       res.json({
+//         message: 'User not found',
+//         stripeUserId: null,
+//       });
+//     } else {
+//       user.stripeUserId = stripeUserId;
+//       await user.save();
+//       res.json({
+//         message: 'StripeUserID set successfully',
+//       });
+//     }
+//   } catch (error) {
+//     res.json({
+//       message: 'An error occurred',
+//       stripeUserId: null,
+//       error: error.message,
+//     });
+//   }
+// };

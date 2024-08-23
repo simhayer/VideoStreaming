@@ -15,6 +15,7 @@ const {
 
 const broadcastController = require('../Controllers/broadcastController');
 const consumerController = require('../Controllers/consumerController');
+const stripeService = require('../Services/stripeService');
 
 //auth routes
 router.route('/register').post(register);
@@ -33,5 +34,9 @@ router.post('/updateProfilePicture', updateProfilePicture);
 router.route('/broadcast').post(broadcastController.add);
 router.route('/list-broadcast').get(broadcastController.fetch);
 router.route('/consumer').post(consumerController.add);
+
+// Stripe Routes
+router.route('/paymentSheet').post(stripeService.paymentSheet);
+//router.route('/create-payment-intent').post(consumerController.createPaymentIntent);
 
 module.exports = router;
