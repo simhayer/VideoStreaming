@@ -17,6 +17,8 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // @react-native-masked-view/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// @stripe/stripe-react-native
+import com.reactnativestripesdk.StripeSdkPackage;
 // @videosdk.live/react-native-incallmanager
 import live.videosdk.rnincallmanager.InCallManagerPackage;
 // react-native-gesture-handler
@@ -89,6 +91,7 @@ public class PackageList {
       new AsyncStoragePackage(),
       new RNGoogleSigninPackage(),
       new RNCMaskedViewPackage(),
+      new StripeSdkPackage(),
       new InCallManagerPackage(),
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),

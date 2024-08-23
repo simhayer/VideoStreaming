@@ -26,7 +26,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import StreamStore from './StreamStore'; // Import the StreamStore
 import io from 'socket.io-client';
-import {apiEndpoints, baseURL, token} from '../Resources/Constants';
+import {apiEndpoints, appPink, baseURL, token} from '../Resources/Constants';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-masked-view/masked-view';
@@ -97,6 +97,8 @@ const VideoScreen = ({route}) => {
 
   const userUsername = userData?.user?.username;
   const userProfilePicture = userData?.user?.profilePicture;
+
+  const [canBid, setCanBid] = useState(false);
 
   const navigation = useNavigation();
   const [comment, setComment] = useState('');
@@ -239,15 +241,28 @@ const VideoScreen = ({route}) => {
     scrollViewRef.current?.scrollToEnd({animated: true});
   }, [curComments]);
 
-  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
+  const [isBidBottomSheetVisible, setIsBidBottomSheetVisible] = useState(false);
 
-  const bottomSheetRef = useRef(null);
+  const bidBottomSheetRef = useRef(null);
 
   const handleSheetChanges = useCallback(index => {
     console.log('handleSheetChanges', index);
     if (index === 0) {
       console.log('Closing bottom sheet');
-      setIsBottomSheetVisible(false);
+      setIsBidBottomSheetVisible(false);
+    }
+  }, []);
+
+  const [isCannotBidBottomSheetVisible, setIsCannotBidBottomSheetVisible] =
+    useState(!canBid);
+
+  const cannotBidBottomSheetRef = useRef(null);
+
+  const handleCannotBidSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+    if (index === 0) {
+      console.log('Closing bottom sheet');
+      setIsCannotBidBottomSheetVisible(false);
     }
   }, []);
 
@@ -518,11 +533,67 @@ const VideoScreen = ({route}) => {
               )}
             </View>
           </TouchableWithoutFeedback>
-          {isBottomSheetVisible && (
+          {isCannotBidBottomSheetVisible && (
             <BottomSheet
-              ref={bottomSheetRef}
+              ref={cannotBidBottomSheetRef}
               snapPoints={snapPoints}
-              index={isBottomSheetVisible ? 1 : -1}
+              index={isCannotBidBottomSheetVisible ? 1 : -1}
+              onChange={handleCannotBidSheetChanges}>
+              <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+                <View
+                  style={{
+                    alignItems: 'center',
+                    marginHorizontal: '4%',
+                    marginTop: 10,
+                  }}>
+                  <Text
+                    style={{
+                      color: 'black',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      fontSize: calculatedFontSize / 2.8,
+                    }}>
+                    For placing a bid, you need to add payment and shipping
+                    information
+                  </Text>
+                  <Text
+                    style={{
+                      color: 'black',
+                      textAlign: 'center',
+                      fontSize: calculatedFontSize / 3,
+                    }}>
+                    You will not be charged until your bid is accepted. All bids
+                    placed are final.
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('AddPaymentMethod')}
+                    style={{
+                      paddingVertical: '2%',
+                      width: '100%',
+                      backgroundColor: appPink,
+                      borderRadius: 40,
+                      marginTop: '6%',
+                      justifyContent: 'center',
+                    }}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        textAlign: 'center',
+                        fontSize: calculatedFontSize / 2.2,
+                        fontWeight: 'bold',
+                      }}>
+                      Add Info
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </BottomSheetView>
+            </BottomSheet>
+          )}
+          {isBidBottomSheetVisible && (
+            <BottomSheet
+              ref={bidBottomSheetRef}
+              snapPoints={snapPoints}
+              index={isBidBottomSheetVisible ? 1 : -1}
               onChange={handleSheetChanges}>
               <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
                 <View style={{flexDirection: 'column', marginTop: 2}}>

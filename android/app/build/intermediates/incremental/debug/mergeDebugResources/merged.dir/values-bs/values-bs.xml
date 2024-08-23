@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
     <string-array name="exo_controls_playback_speeds">
     <item>0,25 x</item>
     <item>0,5 x</item>
@@ -53,11 +53,25 @@
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Suzi"</string>
     <string gender="unknown" name="alert_description">Upozorenje</string>
     <string name="authentication_required">Potrebna je autentifikacija</string>
+    <string name="bottomsheet_action_collapse">Sužavanje donje tabele</string>
+    <string name="bottomsheet_action_expand">Proširivanje donje tabele</string>
     <string name="bottomsheet_action_expand_halfway">Proširivanje dopola</string>
+    <string name="bottomsheet_drag_handle_clicked">Ručica za prevlačenje je dvaput dodirnuta</string>
+    <string name="bottomsheet_drag_handle_content_description">Ručica za prevlačenje</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Odgovori"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Video"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Odbaci"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Prekini vezu"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Dolazni poziv"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Poziv u toku"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Filtriranje dolaznog poziva"</string>
     <string gender="unknown" name="catalyst_dev_menu_sub_header">Prikazuje %1$s</string>
     <string name="character_counter_content_description">Uneseno znakova: %1$d od %2$d</string>
     <string name="character_counter_overflowed_content_description">Ograničenje broja znakova premašuje %1$d od %2$d</string>
     <string name="clear_text_end_icon_content_description">Obriši tekst</string>
+    <string msgid="406453423630273620" name="close_drawer">"Zatvaranje navigacionog menija"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Zatvaranje tabele"</string>
+    <string msgid="5389587048670450460" name="collapsed">"Suženo"</string>
     <string gender="unknown" name="combobox_description">Kombinovana kutija</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Omogući</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text">Aplikacija %1$s neće raditi ako ne omogućite Google Play usluge.</string>
@@ -77,7 +91,12 @@
     <string name="common_open_on_phone">Otvori na telefonu</string>
     <string name="common_signin_button_text">Prijava</string>
     <string name="common_signin_button_text_long">Prijavi se pomoću Googlea</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link je kopiran u međumemoriju"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Pogrešan unos"</string>
     <string name="default_notification_channel_name">Trenutno se reproducira</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Skočni prozor"</string>
+    <string msgid="4057925834421392736" name="dialog">"Dijaloški okvir"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Padajući meni"</string>
     <string name="error_icon_content_description">Greška</string>
     <string name="exo_controls_cc_disabled_description">Omogućavanje titlova</string>
     <string name="exo_controls_cc_enabled_description">Onemogućavanje titlova</string>
@@ -132,14 +151,22 @@
     <string name="exo_track_unknown">Nepoznato</string>
     <string name="exo_track_unknown_name">Nepoznato (%1$s)</string>
     <string msgid="1234962710353108940" name="expand_button_title">"Napredno"</string>
+    <string msgid="5974471714631304645" name="expanded">"Prošireno"</string>
     <string name="exposed_dropdown_menu_content_description">Prikaži padajući meni</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopiraj link"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Otvori u pregledniku"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Dijeli link"</string>
+    <string name="gpay_logo_description">Google Pay</string>
     <string gender="unknown" name="header_description">Zaglavlje</string>
     <string name="icon_content_description">ikona dijaloškog okvira</string>
     <string gender="unknown" name="image_description">Slika</string>
     <string gender="unknown" name="imagebutton_description">Dugme, slika</string>
+    <string msgid="6827826412747255547" name="in_progress">"U toku"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Djelimično označeno"</string>
     <string name="item_view_role_description">Kartica</string>
     <string gender="unknown" name="link_description">Veza</string>
     <string name="material_clock_toggle_content_description">Odaberite prijepodne ili poslijepodne</string>
+    <string name="material_hour_24h_suffix">%1$s h</string>
     <string name="material_hour_selection">Odaberite sat</string>
     <string name="material_hour_suffix">%1$s h</string>
     <string name="material_minute_selection">Odaberite minute</string>
@@ -162,20 +189,25 @@
     <string gender="unknown" name="menuitem_description">Stavka menija</string>
     <string name="mtrl_badge_numberless_content_description">Novo obavještenje</string>
     <string name="mtrl_chip_close_icon_content_description">Uklonite %1$s</string>
-    <string name="mtrl_exceed_max_badge_number_content_description">Broj novih obavještenja: više od %1$d</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Broj novih obavještenja: više od %1$d</string>
     <string name="mtrl_picker_a11y_next_month">Promijeni na sljedeći mjesec</string>
     <string name="mtrl_picker_a11y_prev_month">Promijeni na prethodni mjesec</string>
+    <string name="mtrl_picker_announce_current_range_selection">Odabir datuma početka: %1$s – Odabir datuma završetka: %2$s</string>
     <string name="mtrl_picker_announce_current_selection">Trenutni izbor: %1$s</string>
-    <string name="mtrl_picker_confirm">@android:string/ok</string>
+    <string name="mtrl_picker_announce_current_selection_none">ništa</string>
+    <string name="mtrl_picker_cancel">Otkaži</string>
+    <string name="mtrl_picker_confirm">Uredu</string>
     <string name="mtrl_picker_date_header_selected">%1$s</string>
     <string name="mtrl_picker_date_header_title">Odaberite datum</string>
     <string name="mtrl_picker_date_header_unselected">Odabrani datum</string>
     <string name="mtrl_picker_day_of_week_column_header">Kolona za dane: %1$s</string>
+    <string name="mtrl_picker_end_date_description">Datum završetka %1$s</string>
     <string name="mtrl_picker_invalid_format">Nevažeći format.</string>
     <string name="mtrl_picker_invalid_format_example">Primjer: %1$s</string>
     <string name="mtrl_picker_invalid_format_use">Koristi: %1$s</string>
     <string name="mtrl_picker_invalid_range">Nevažeći opseg.</string>
-    <string name="mtrl_picker_navigate_to_year_description">Odlazak na %1$s. godinu</string>
+    <string name="mtrl_picker_navigate_to_current_year_description">Odlazak na trenutnu godinu %1$d</string>
+    <string name="mtrl_picker_navigate_to_year_description">Odlazak na %1$d. godinu</string>
     <string name="mtrl_picker_out_of_range">Izvan opsega: %1$s</string>
     <string name="mtrl_picker_range_header_only_end_selected">Datum početka – %1$s</string>
     <string name="mtrl_picker_range_header_only_start_selected">%1$s – Datum završetka</string>
@@ -183,22 +215,33 @@
     <string name="mtrl_picker_range_header_title">Odaberite raspon</string>
     <string name="mtrl_picker_range_header_unselected">Datum početka – Datum završetka</string>
     <string name="mtrl_picker_save">Sačuvaj</string>
+    <string name="mtrl_picker_start_date_description">Datum početka %1$s</string>
     <string name="mtrl_picker_text_input_date_hint">Datum</string>
     <string name="mtrl_picker_text_input_date_range_end_hint">Datum završetka</string>
     <string name="mtrl_picker_text_input_date_range_start_hint">Datum početka</string>
     <string name="mtrl_picker_text_input_day_abbr">d</string>
     <string name="mtrl_picker_text_input_month_abbr">m</string>
     <string name="mtrl_picker_text_input_year_abbr">g</string>
+    <string name="mtrl_picker_today_description">Danas %1$s</string>
     <string name="mtrl_picker_toggle_to_calendar_input_mode">Prebacivanje na način unosa kalendara</string>
-    <string name="mtrl_picker_toggle_to_day_selection">Dodirnite da prebacite na odabir dana</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Prebacivanje dodirom na prikaz Kalendara</string>
     <string name="mtrl_picker_toggle_to_text_input_mode">Prebacivanje na način unosa teksta</string>
-    <string name="mtrl_picker_toggle_to_year_selection">Dodirnite da prebacite na odabir godine</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Prebacivanje dodirom na prikaz godine</string>
+    <string name="mtrl_timepicker_cancel">Otkaži</string>
+    <string name="mtrl_timepicker_confirm">Uredu</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Meni za navigaciju"</string>
+    <string msgid="6610465462668679431" name="not_selected">"Nije odabrano"</string>
+    <string msgid="875452955155264703" name="off">"Isključeno"</string>
+    <string msgid="8655164131929253426" name="on">"Uključeno"</string>
     <string name="password_toggle_content_description">Prikaži lozinku</string>
     <string gender="unknown" name="progressbar_description">Traka napretka</string>
     <string gender="unknown" name="radiogroup_description">Grupa za radio</string>
+    <string msgid="5941395253238309765" name="range_end">"Kraj raspona"</string>
+    <string msgid="7097486360902471446" name="range_start">"Početak raspona"</string>
     <string gender="unknown" name="rn_tab_description">Kartica</string>
     <string gender="unknown" name="scrollbar_description">Traka klizača</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Pretražite"</string>
+    <string msgid="6043586758067023" name="selected">"Odabrano"</string>
     <string gender="unknown" name="spinbutton_description">Dugme za okretanje</string>
     <string gender="unknown" name="state_busy_description">zauzeto</string>
     <string gender="unknown" name="state_collapsed_description">skupljeno</string>
@@ -208,11 +251,16 @@
     <string gender="unknown" name="state_on_description">uključeno</string>
     <string gender="unknown" name="state_unselected_description">nije odabrano</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="stripe_hcaptcha_loading_text">Potvrda da ste čovjek</string>
     <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">Sažetak</string>
+    <string msgid="2561197295334830845" name="switch_role">"Promijeni"</string>
+    <string msgid="1672349317127674378" name="tab">"Kartica"</string>
     <string gender="unknown" name="tablist_description">Lista kartica</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> posto."</string>
     <string gender="unknown" name="timer_description">Tajmer</string>
     <string gender="unknown" name="toolbar_description">Traka alata</string>
     <string msgid="5138405918326871307" name="v7_preference_off">"ISKLJUČENO"</string>
     <string msgid="27351710992731591" name="v7_preference_on">"UKLJUČENO"</string>
+    <string name="wallet_buy_button_place_holder">Kupite putem Googlea</string>
 </resources>

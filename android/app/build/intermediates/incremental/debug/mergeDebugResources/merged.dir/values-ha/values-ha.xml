@@ -23,6 +23,7 @@
     <string gender="unknown" name="state_off_description">kashe</string>
     <string gender="unknown" name="state_on_description">kunna</string>
     <string gender="unknown" name="state_unselected_description">wanda ba a zaɓa ba</string>
+    <string name="stripe_hcaptcha_loading_text">Tabbatar da cewa kai mutum ne</string>
     <string gender="unknown" name="summary_description">Taƙaitawa</string>
     <string gender="unknown" name="tablist_description">Jerin Madannin Shiga Gurbi</string>
     <string gender="unknown" name="timer_description">Na\'urar sarrafa lokaci</string>

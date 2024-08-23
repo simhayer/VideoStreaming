@@ -6,4 +6,5 @@
     <string gender="unknown" name="link_description">Пайванд</string>
     <string gender="unknown" name="state_off_description">хомӯш</string>
     <string gender="unknown" name="state_on_description">фаъол</string>
+    <string name="stripe_hcaptcha_loading_text">Одам будани шуморо тасдиқ кунед</string>
 </resources>

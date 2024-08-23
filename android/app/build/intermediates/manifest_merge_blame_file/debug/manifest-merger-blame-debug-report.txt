@@ -61,229 +61,621 @@
 31        android:required="false" />
 31-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-33
 32
-33    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+33    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- See https://developer.android.com/training/package-visibility/declaring for more details. -->
 33-->[com.facebook.flipper:flipper:0.201.0] C:\Users\shayer\.gradle\caches\transforms-3\9b2c28bd5719adb7e465469e2ca76c12\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:5-76
 33-->[com.facebook.flipper:flipper:0.201.0] C:\Users\shayer\.gradle\caches\transforms-3\9b2c28bd5719adb7e465469e2ca76c12\transformed\jetified-flipper-0.201.0\AndroidManifest.xml:14:22-73
-34
-35    <permission
-35-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
-36        android:name="com.tclone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-36-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
-37        android:protectionLevel="signature" />
-37-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
-38
-39    <uses-permission android:name="com.tclone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-39-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
-39-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
-40
-41    <application
-41-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:21:5-43:19
-42        android:name="com.tclone.MainApplication"
-42-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:22:7-38
-43        android:allowBackup="false"
-43-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:26:7-34
-44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-44-->[androidx.core:core:1.9.0] C:\Users\shayer\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
-45        android:debuggable="true"
-46        android:extractNativeLibs="true"
-47        android:icon="@mipmap/ic_launcher"
-47-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:24:7-41
-48        android:label="@string/app_name"
-48-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:23:7-39
-49        android:roundIcon="@mipmap/ic_launcher_round"
-49-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:25:7-52
-50        android:theme="@style/AppTheme"
-50-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:27:7-38
-51        android:usesCleartextTraffic="true" >
-51-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\debug\AndroidManifest.xml:6:9-44
-52        <activity
-52-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:7-39:18
-53            android:name="com.tclone.MainActivity"
-53-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:9-37
-54            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-54-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:31:9-118
-55            android:exported="true"
-55-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:34:9-32
-56            android:label="@string/app_name"
-56-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:30:9-41
-57            android:launchMode="singleTask"
-57-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:32:9-40
-58            android:windowSoftInputMode="adjustResize" >
-58-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:33:9-51
-59            <intent-filter>
-59-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:35:9-38:25
-60                <action android:name="android.intent.action.MAIN" />
-60-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:36:13-65
-60-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:36:21-62
-61
-62                <category android:name="android.intent.category.LAUNCHER" />
-62-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:37:13-73
-62-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:37:23-70
-63            </intent-filter>
-64        </activity>
-65
-66        <service
-66-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:7-133
-67            android:name="live.videosdk.rnfgservice.ForegroundService"
-67-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:16-74
-68            android:foregroundServiceType="mediaProjection" />
-68-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:75-122
-69        <service android:name="live.videosdk.rnfgservice.ForegroundServiceTask" />
-69-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:42:5-87
-69-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:42:14-76
-70        <service
-70-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:9-20:19
-71            android:name="live.videosdk.rnwebrtc.MediaProjectionService"
-71-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-73
-72            android:foregroundServiceType="mediaProjection" >
-72-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-60
-73        </service>
-74
-75        <provider
-75-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
-76            android:name="com.imagepicker.ImagePickerProvider"
-76-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-63
-77            android:authorities="com.tclone.imagepickerprovider"
-77-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-71
-78            android:exported="false"
-78-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
-79            android:grantUriPermissions="true" >
-79-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-47
-80            <meta-data
-80-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:70
-81                android:name="android.support.FILE_PROVIDER_PATHS"
-81-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
-82                android:resource="@xml/imagepicker_provider_paths" />
-82-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-67
-83        </provider>
-84
-85        <service
-85-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-17:19
-86            android:name="com.oney.WebRTCModule.MediaProjectionService"
-86-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
-87            android:foregroundServiceType="mediaProjection" >
-87-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
-88        </service>
-89
-90        <activity
-90-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:19:9-21:40
-91            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-91-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:20:13-77
-92            android:exported="false" />
-92-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:21:13-37
-93        <activity
-93-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
-94            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-94-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
-95            android:excludeFromRecents="true"
-95-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
-96            android:exported="false"
-96-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
-97            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-97-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
-98        <!--
-99            Service handling Google Sign-In user revocation. For apps that do not integrate with
-100            Google Sign-In, this service will never be started.
-101        -->
-102        <service
-102-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
-103            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-103-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
-104            android:exported="true"
-104-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
-105            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-105-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
-106            android:visibleToInstantApps="true" />
-106-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
-107
-108        <activity
-108-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
-109            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-109-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
-110            android:exported="false"
-110-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
-111            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-111-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\shayer\.gradle\caches\transforms-3\5fd09da4e3ebb73eb4f507c78659d4b6\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
-112
-113        <meta-data
-113-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
-114            android:name="com.google.android.gms.version"
-114-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
-115            android:value="@integer/google_play_services_version" />
-115-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\shayer\.gradle\caches\transforms-3\68162890c105b1624553f01ae691581f\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
-116
-117        <provider
-117-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-118            android:name="androidx.startup.InitializationProvider"
-118-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-119            android:authorities="com.tclone.androidx-startup"
-119-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-120            android:exported="false" >
-120-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-121            <meta-data
-121-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-122                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-122-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-123                android:value="androidx.startup" />
-123-->[androidx.emoji2:emoji2:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-124            <meta-data
-124-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\shayer\.gradle\caches\transforms-3\4445fe79bf905819a8215a4f222f1322\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
-125                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-125-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\shayer\.gradle\caches\transforms-3\4445fe79bf905819a8215a4f222f1322\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
-126                android:value="androidx.startup" />
-126-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\shayer\.gradle\caches\transforms-3\4445fe79bf905819a8215a4f222f1322\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
-127            <meta-data
-127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
-128                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
-129                android:value="androidx.startup" />
-129-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
-130        </provider>
-131
-132        <receiver
-132-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
-133            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-133-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
-134            android:directBootAware="false"
-134-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
-135            android:enabled="true"
-135-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
-136            android:exported="true"
-136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
-137            android:permission="android.permission.DUMP" >
-137-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
-138            <intent-filter>
-138-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
-139                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-139-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
-140            </intent-filter>
-141            <intent-filter>
-141-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
-142                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
-143            </intent-filter>
-144            <intent-filter>
-144-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
-145                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-145-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-145-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
-146            </intent-filter>
-147            <intent-filter>
-147-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
-148                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-148-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-148-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
-149            </intent-filter>
-150        </receiver>
+34    <queries>
+34-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:10:5-18:15
+35
+36        <!-- Added to check the default browser that will host the AuthFlow. -->
+37        <intent>
+37-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:13:9-17:18
+38            <action android:name="android.intent.action.VIEW" />
+38-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:14:13-65
+38-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:14:21-62
+39
+40            <data android:scheme="http" />
+40-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+40-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
+41        </intent>
+42        <!-- Added to check if Chrome is installed for browser-based payment authentication (e.g. 3DS1). -->
+43        <package android:name="com.android.chrome" /> <!-- Needs to be explicitly declared on Android R+ -->
+43-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:11:9-54
+43-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:11:18-51
+44        <package android:name="com.google.android.apps.maps" />
+44-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\b8f85cf41f2bd96bda89218f783e0e8d\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:33:9-64
+44-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\b8f85cf41f2bd96bda89218f783e0e8d\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:33:18-61
+45    </queries>
+46
+47    <uses-feature
+47-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\b8f85cf41f2bd96bda89218f783e0e8d\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:26:5-28:35
+48        android:glEsVersion="0x00020000"
+48-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\b8f85cf41f2bd96bda89218f783e0e8d\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:27:9-41
+49        android:required="true" />
+49-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\b8f85cf41f2bd96bda89218f783e0e8d\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:28:9-32
+50
+51    <permission
+51-->[androidx.core:core:1.12.0] C:\Users\shayer\.gradle\caches\transforms-3\37090c8cbd1dedc6ee2ba619cf52b6bb\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+52        android:name="com.tclone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+52-->[androidx.core:core:1.12.0] C:\Users\shayer\.gradle\caches\transforms-3\37090c8cbd1dedc6ee2ba619cf52b6bb\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+53        android:protectionLevel="signature" />
+53-->[androidx.core:core:1.12.0] C:\Users\shayer\.gradle\caches\transforms-3\37090c8cbd1dedc6ee2ba619cf52b6bb\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+54
+55    <uses-permission android:name="com.tclone.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+55-->[androidx.core:core:1.12.0] C:\Users\shayer\.gradle\caches\transforms-3\37090c8cbd1dedc6ee2ba619cf52b6bb\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+55-->[androidx.core:core:1.12.0] C:\Users\shayer\.gradle\caches\transforms-3\37090c8cbd1dedc6ee2ba619cf52b6bb\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+56
+57    <application
+57-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:21:5-47:19
+58        android:name="com.tclone.MainApplication"
+58-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:22:7-38
+59        android:allowBackup="false"
+59-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:26:7-34
+60        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+60-->[androidx.core:core:1.12.0] C:\Users\shayer\.gradle\caches\transforms-3\37090c8cbd1dedc6ee2ba619cf52b6bb\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+61        android:debuggable="true"
+62        android:extractNativeLibs="true"
+63        android:icon="@mipmap/ic_launcher"
+63-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:24:7-41
+64        android:label="@string/app_name"
+64-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:23:7-39
+65        android:roundIcon="@mipmap/ic_launcher_round"
+65-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:25:7-52
+66        android:theme="@style/AppTheme"
+66-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:27:7-38
+67        android:usesCleartextTraffic="true" >
+67-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\debug\AndroidManifest.xml:6:9-44
+68        <activity
+68-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:28:7-39:18
+69            android:name="com.tclone.MainActivity"
+69-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:29:9-37
+70            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+70-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:31:9-118
+71            android:exported="true"
+71-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:34:9-32
+72            android:label="@string/app_name"
+72-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:30:9-41
+73            android:launchMode="singleTask"
+73-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:32:9-40
+74            android:windowSoftInputMode="adjustResize" >
+74-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:33:9-51
+75            <intent-filter>
+75-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:35:9-38:25
+76                <action android:name="android.intent.action.MAIN" />
+76-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:36:13-65
+76-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:36:21-62
+77
+78                <category android:name="android.intent.category.LAUNCHER" />
+78-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:37:13-73
+78-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:37:23-70
+79            </intent-filter>
+80        </activity>
+81
+82        <service
+82-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:7-133
+83            android:name="live.videosdk.rnfgservice.ForegroundService"
+83-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:16-74
+84            android:foregroundServiceType="mediaProjection" />
+84-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:41:75-122
+85        <service android:name="live.videosdk.rnfgservice.ForegroundServiceTask" />
+85-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:42:5-87
+85-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:42:14-76
+86
+87        <meta-data
+87-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:44:5-46:28
+88            android:name="com.google.android.gms.wallet.api.enabled"
+88-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:45:5-61
+89            android:value="true" />
+89-->C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\android\app\src\main\AndroidManifest.xml:46:5-25
+90
+91        <service
+91-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:17:9-20:19
+92            android:name="live.videosdk.rnwebrtc.MediaProjectionService"
+92-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-73
+93            android:foregroundServiceType="mediaProjection" >
+93-->[:rnwebrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\@videosdk.live\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-60
+94        </service>
+95
+96        <provider
+96-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
+97            android:name="com.imagepicker.ImagePickerProvider"
+97-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-63
+98            android:authorities="com.tclone.imagepickerprovider"
+98-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-71
+99            android:exported="false"
+99-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
+100            android:grantUriPermissions="true" >
+100-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-47
+101            <meta-data
+101-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:70
+102                android:name="android.support.FILE_PROVIDER_PATHS"
+102-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67
+103                android:resource="@xml/imagepicker_provider_paths" />
+103-->[:react-native-image-picker] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-67
+104        </provider>
+105
+106        <service
+106-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-17:19
+107            android:name="com.oney.WebRTCModule.MediaProjectionService"
+107-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
+108            android:foregroundServiceType="mediaProjection" >
+108-->[:react-native-webrtc] C:\Users\shayer\Documents\TClone_VideoAPI\VideoStreaming\node_modules\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
+109        </service>
+110
+111        <activity
+111-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:19:9-21:40
+112            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+112-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:20:13-77
+113            android:exported="false" />
+113-->[com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\ff34738e7fb960ce73fd0d6cf687f2a8\transformed\jetified-react-android-0.73.3-debug\AndroidManifest.xml:21:13-37
+114        <activity
+114-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:21:9-65:20
+115            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetRedirectActivity"
+115-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:22:13-109
+116            android:exported="true"
+116-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:23:13-36
+117            android:launchMode="singleTask" >
+117-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:24:13-44
+118            <intent-filter>
+118-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:25:13-64:29
+119                <action android:name="android.intent.action.VIEW" />
+119-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:14:13-65
+119-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:14:21-62
+120
+121                <category android:name="android.intent.category.DEFAULT" />
+121-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:28:17-76
+121-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:28:27-73
+122                <category android:name="android.intent.category.BROWSABLE" />
+122-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:29:17-78
+122-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:29:27-75
+123
+124                <!-- Returning from app2app: return_url is triggered to reopen web AuthFlow and poll accounts. -->
+125                <data
+125-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+126                    android:host="link-accounts"
+127                    android:pathPrefix="/com.tclone/authentication_return"
+128                    android:scheme="stripe-auth" />
+128-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
+129
+130                <!-- Returning from app2app: return_url is triggered to reopen native AuthFlow and poll accounts. -->
+131                <data
+131-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+132                    android:host="link-native-accounts"
+133                    android:pathPrefix="/com.tclone/authentication_return"
+134                    android:scheme="stripe-auth" />
+134-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
+135
+136                <!-- End of web AuthFlow success and cancel URIs that begin with "stripe-auth://link-accounts/{app-id}/...” -->
+137                <data
+137-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+138                    android:host="link-accounts"
+139                    android:path="/com.tclone/success"
+140                    android:scheme="stripe-auth" />
+140-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
+141                <data
+141-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+142                    android:host="link-accounts"
+143                    android:path="/com.tclone/cancel"
+144                    android:scheme="stripe-auth" />
+144-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
+145
+146                <!-- Opening app2app: Web flow triggers stripe-auth://native-redirect/{app-id}/http://web-that-redirects-to-native -->
+147                <data
+147-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+148                    android:host="native-redirect"
+149                    android:pathPrefix="/com.tclone"
+150                    android:scheme="stripe-auth" />
+150-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
 151
-152        <meta-data
-152-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:12:9-14:37
-153            android:name="com.facebook.soloader.enabled"
-153-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:13:13-57
-154            android:value="false" />
-154-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:14:13-34
-155    </application>
-156
-157</manifest>
+152                <!-- Accepts success/cancel/fail URIs that begin with "stripe://auth-redirect” -->
+153                <data
+153-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+154                    android:host="auth-redirect"
+155                    android:pathPrefix="/com.tclone"
+156                    android:scheme="stripe" />
+156-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
+157            </intent-filter>
+158        </activity>
+159        <activity
+159-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:66:9-69:77
+160            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetActivity"
+160-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:67:13-101
+161            android:exported="false"
+161-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:68:13-37
+162            android:theme="@style/StripeFinancialConnectionsDefaultTheme" />
+162-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:69:13-74
+163        <activity
+163-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:70:9-74:58
+164            android:name="com.stripe.android.financialconnections.ui.FinancialConnectionsSheetNativeActivity"
+164-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:71:13-110
+165            android:exported="false"
+165-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:72:13-37
+166            android:theme="@style/StripeFinancialConnectionsDefaultTheme"
+166-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:73:13-74
+167            android:windowSoftInputMode="adjustResize" />
+167-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:74:13-55
+168        <activity
+168-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:8:9-11:69
+169            android:name="com.stripe.android.paymentsheet.PaymentSheetActivity"
+169-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:9:13-80
+170            android:exported="false"
+170-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:10:13-37
+171            android:theme="@style/StripePaymentSheetDefaultTheme" />
+171-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:11:13-66
+172        <activity
+172-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:12:9-15:69
+173            android:name="com.stripe.android.paymentsheet.PaymentOptionsActivity"
+173-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:13:13-82
+174            android:exported="false"
+174-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:14:13-37
+175            android:theme="@style/StripePaymentSheetDefaultTheme" />
+175-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:15:13-66
+176        <activity
+176-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:16:9-19:69
+177            android:name="com.stripe.android.customersheet.CustomerSheetActivity"
+177-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:17:13-82
+178            android:exported="false"
+178-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:18:13-37
+179            android:theme="@style/StripePaymentSheetDefaultTheme" />
+179-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:19:13-66
+180        <activity
+180-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:20:9-23:69
+181            android:name="com.stripe.android.paymentsheet.addresselement.AddressElementActivity"
+181-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:21:13-97
+182            android:exported="false"
+182-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:22:13-37
+183            android:theme="@style/StripePaymentSheetDefaultTheme" />
+183-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:23:13-66
+184        <activity
+184-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:24:9-27:69
+185            android:name="com.stripe.android.paymentsheet.paymentdatacollection.bacs.BacsMandateConfirmationActivity"
+185-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:25:13-118
+186            android:exported="false"
+186-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:26:13-37
+187            android:theme="@style/StripePaymentSheetDefaultTheme" />
+187-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:27:13-66
+188        <activity
+188-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:28:9-31:69
+189            android:name="com.stripe.android.paymentsheet.paymentdatacollection.polling.PollingActivity"
+189-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:29:13-105
+190            android:exported="false"
+190-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:30:13-37
+191            android:theme="@style/StripePaymentSheetDefaultTheme" />
+191-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:31:13-66
+192        <activity
+192-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:32:9-35:69
+193            android:name="com.stripe.android.paymentsheet.ui.SepaMandateActivity"
+193-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:33:13-82
+194            android:exported="false"
+194-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:34:13-37
+195            android:theme="@style/StripePaymentSheetDefaultTheme" />
+195-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:35:13-66
+196        <activity
+196-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:36:9-39:68
+197            android:name="com.stripe.android.paymentsheet.ExternalPaymentMethodProxyActivity"
+197-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:37:13-94
+198            android:exported="false"
+198-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:38:13-37
+199            android:theme="@style/StripePayLauncherDefaultTheme" />
+199-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:39:13-65
+200        <activity
+200-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:40:9-42:69
+201            android:name="com.stripe.android.paymentsheet.paymentdatacollection.cvcrecollection.CvcRecollectionActivity"
+201-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:41:13-121
+202            android:theme="@style/StripePaymentSheetDefaultTheme" />
+202-->[com.stripe:paymentsheet:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\9f7bb871a4f7ab60b1a3eec45be2ef7f\transformed\jetified-paymentsheet-20.48.5\AndroidManifest.xml:42:13-66
+203        <activity
+203-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:8:9-13:61
+204            android:name="com.stripe.android.link.LinkForegroundActivity"
+204-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:9:13-74
+205            android:autoRemoveFromRecents="true"
+205-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:10:13-49
+206            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout|screenSize|smallestScreenSize"
+206-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:11:13-115
+207            android:launchMode="singleTop"
+207-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:12:13-43
+208            android:theme="@style/StripeTransparentTheme" />
+208-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:13:13-58
+209        <activity
+209-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:14:9-31:20
+210            android:name="com.stripe.android.link.LinkRedirectHandlerActivity"
+210-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:15:13-79
+211            android:autoRemoveFromRecents="true"
+211-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:16:13-49
+212            android:exported="true"
+212-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:17:13-36
+213            android:launchMode="singleInstance"
+213-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:18:13-48
+214            android:theme="@style/StripeTransparentTheme" >
+214-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:19:13-58
+215            <intent-filter>
+215-->[com.stripe:link:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\1b9ec7f82c32fbe85a48e33b8a3893dd\transformed\jetified-link-20.48.5\AndroidManifest.xml:20:13-30:29
+216                <action android:name="android.intent.action.VIEW" />
+216-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:14:13-65
+216-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:14:21-62
+217
+218                <category android:name="android.intent.category.DEFAULT" />
+218-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:28:17-76
+218-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:28:27-73
+219                <category android:name="android.intent.category.BROWSABLE" />
+219-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:29:17-78
+219-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:29:27-75
+220
+221                <data
+221-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+222                    android:host="complete"
+223                    android:path="/com.tclone"
+224                    android:scheme="link-popup" />
+224-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
+225            </intent-filter>
+226        </activity>
+227        <activity
+227-->[com.stripe:payments-ui-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\8d71b613c26bd82442a76d18a5406417\transformed\jetified-payments-ui-core-20.48.5\AndroidManifest.xml:8:9-11:69
+228            android:name="com.stripe.android.ui.core.cardscan.CardScanActivity"
+228-->[com.stripe:payments-ui-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\8d71b613c26bd82442a76d18a5406417\transformed\jetified-payments-ui-core-20.48.5\AndroidManifest.xml:9:13-80
+229            android:exported="false"
+229-->[com.stripe:payments-ui-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\8d71b613c26bd82442a76d18a5406417\transformed\jetified-payments-ui-core-20.48.5\AndroidManifest.xml:10:13-37
+230            android:theme="@style/StripePaymentSheetDefaultTheme" />
+230-->[com.stripe:payments-ui-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\8d71b613c26bd82442a76d18a5406417\transformed\jetified-payments-ui-core-20.48.5\AndroidManifest.xml:11:13-66
+231        <activity
+231-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:15:9-18:57
+232            android:name="com.stripe.android.view.AddPaymentMethodActivity"
+232-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:16:13-76
+233            android:exported="false"
+233-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:17:13-37
+234            android:theme="@style/StripeDefaultTheme" />
+234-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:18:13-54
+235        <activity
+235-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:19:9-22:57
+236            android:name="com.stripe.android.view.PaymentMethodsActivity"
+236-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:20:13-74
+237            android:exported="false"
+237-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:21:13-37
+238            android:theme="@style/StripeDefaultTheme" />
+238-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:22:13-54
+239        <activity
+239-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:23:9-26:57
+240            android:name="com.stripe.android.view.PaymentFlowActivity"
+240-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:24:13-71
+241            android:exported="false"
+241-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:25:13-37
+242            android:theme="@style/StripeDefaultTheme" />
+242-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:26:13-54
+243        <activity
+243-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:27:9-30:57
+244            android:name="com.stripe.android.view.PaymentAuthWebViewActivity"
+244-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:28:13-78
+245            android:exported="false"
+245-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:29:13-37
+246            android:theme="@style/StripeDefaultTheme" />
+246-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:30:13-54
+247        <activity
+247-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:31:9-34:61
+248            android:name="com.stripe.android.view.PaymentRelayActivity"
+248-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:32:13-72
+249            android:exported="false"
+249-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:33:13-37
+250            android:theme="@style/StripeTransparentTheme" />
+250-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:34:13-58
+251        <!--
+252        Set android:launchMode="singleTop" so that the StripeBrowserLauncherActivity instance that
+253        launched the browser Activity will also handle the return URL deep link.
+254        -->
+255        <activity
+255-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:40:9-44:61
+256            android:name="com.stripe.android.payments.StripeBrowserLauncherActivity"
+256-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:41:13-85
+257            android:exported="false"
+257-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:42:13-37
+258            android:launchMode="singleTask"
+258-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:43:13-44
+259            android:theme="@style/StripeTransparentTheme" />
+259-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:44:13-58
+260        <activity
+260-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:45:9-62:20
+261            android:name="com.stripe.android.payments.StripeBrowserProxyReturnActivity"
+261-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:46:13-88
+262            android:exported="true"
+262-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:47:13-36
+263            android:launchMode="singleTask"
+263-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:48:13-44
+264            android:theme="@style/StripeTransparentTheme" >
+264-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:49:13-58
+265            <intent-filter>
+265-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:50:13-61:29
+266                <action android:name="android.intent.action.VIEW" />
+266-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:14:13-65
+266-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:14:21-62
+267
+268                <category android:name="android.intent.category.DEFAULT" />
+268-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:28:17-76
+268-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:28:27-73
+269                <category android:name="android.intent.category.BROWSABLE" />
+269-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:29:17-78
+269-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:29:27-75
+270
+271                <!-- Must match `DefaultReturnUrl#value`. -->
+272                <data
+272-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:13-43
+273                    android:host="payment_return_url"
+274                    android:path="/com.tclone"
+275                    android:scheme="stripesdk" />
+275-->[com.stripe:financial-connections:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\2a228fa9b5f78aa1f80b25280ce4da3f\transformed\jetified-financial-connections-20.48.5\AndroidManifest.xml:16:19-40
+276            </intent-filter>
+277        </activity>
+278        <activity
+278-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:63:9-66:57
+279            android:name="com.stripe.android.payments.core.authentication.threeds2.Stripe3ds2TransactionActivity"
+279-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:64:13-114
+280            android:exported="false"
+280-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:65:13-37
+281            android:theme="@style/StripeDefaultTheme" />
+281-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:66:13-54
+282        <activity
+282-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:67:9-70:66
+283            android:name="com.stripe.android.googlepaylauncher.GooglePayLauncherActivity"
+283-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:68:13-90
+284            android:exported="false"
+284-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:69:13-37
+285            android:theme="@style/StripeGooglePayDefaultTheme" />
+285-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:70:13-63
+286        <activity
+286-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:71:9-74:66
+287            android:name="com.stripe.android.googlepaylauncher.GooglePayPaymentMethodLauncherActivity"
+287-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:72:13-103
+288            android:exported="false"
+288-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:73:13-37
+289            android:theme="@style/StripeGooglePayDefaultTheme" />
+289-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:74:13-63
+290        <activity
+290-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:75:9-78:68
+291            android:name="com.stripe.android.payments.paymentlauncher.PaymentLauncherConfirmationActivity"
+291-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:76:13-107
+292            android:exported="false"
+292-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:77:13-37
+293            android:theme="@style/StripePayLauncherDefaultTheme" />
+293-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:78:13-65
+294        <activity
+294-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:79:9-82:61
+295            android:name="com.stripe.android.payments.bankaccount.ui.CollectBankAccountActivity"
+295-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:80:13-97
+296            android:exported="false"
+296-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:81:13-37
+297            android:theme="@style/StripeTransparentTheme" />
+297-->[com.stripe:payments-core:20.48.5] C:\Users\shayer\.gradle\caches\transforms-3\525fcd8a17b58b9423097e4557936ea5\transformed\jetified-payments-core-20.48.5\AndroidManifest.xml:82:13-58
+298        <activity
+298-->[com.stripe:stripe-3ds2-android:6.1.8] C:\Users\shayer\.gradle\caches\transforms-3\9a4adeb208f09cb0292df8feb096884f\transformed\jetified-stripe-3ds2-android-6.1.8\AndroidManifest.xml:8:9-11:54
+299            android:name="com.stripe.android.stripe3ds2.views.ChallengeActivity"
+299-->[com.stripe:stripe-3ds2-android:6.1.8] C:\Users\shayer\.gradle\caches\transforms-3\9a4adeb208f09cb0292df8feb096884f\transformed\jetified-stripe-3ds2-android-6.1.8\AndroidManifest.xml:9:13-81
+300            android:exported="false"
+300-->[com.stripe:stripe-3ds2-android:6.1.8] C:\Users\shayer\.gradle\caches\transforms-3\9a4adeb208f09cb0292df8feb096884f\transformed\jetified-stripe-3ds2-android-6.1.8\AndroidManifest.xml:10:13-37
+301            android:theme="@style/Stripe3DS2Theme" />
+301-->[com.stripe:stripe-3ds2-android:6.1.8] C:\Users\shayer\.gradle\caches\transforms-3\9a4adeb208f09cb0292df8feb096884f\transformed\jetified-stripe-3ds2-android-6.1.8\AndroidManifest.xml:11:13-51
+302        <activity
+302-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
+303            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+303-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
+304            android:excludeFromRecents="true"
+304-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
+305            android:exported="false"
+305-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
+306            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+306-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
+307        <!--
+308            Service handling Google Sign-In user revocation. For apps that do not integrate with
+309            Google Sign-In, this service will never be started.
+310        -->
+311        <service
+311-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
+312            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+312-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
+313            android:exported="true"
+313-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
+314            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+314-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
+315            android:visibleToInstantApps="true" />
+315-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\shayer\.gradle\caches\transforms-3\4b7e864c4d56ebbd7b0b92fe706acbb4\transformed\jetified-play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
+316
+317        <provider
+317-->[androidx.emoji2:emoji2:1.4.0] C:\Users\shayer\.gradle\caches\transforms-3\9ef3666852ea509f444acdc6016bc814\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
+318            android:name="androidx.startup.InitializationProvider"
+318-->[androidx.emoji2:emoji2:1.4.0] C:\Users\shayer\.gradle\caches\transforms-3\9ef3666852ea509f444acdc6016bc814\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:25:13-67
+319            android:authorities="com.tclone.androidx-startup"
+319-->[androidx.emoji2:emoji2:1.4.0] C:\Users\shayer\.gradle\caches\transforms-3\9ef3666852ea509f444acdc6016bc814\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:26:13-68
+320            android:exported="false" >
+320-->[androidx.emoji2:emoji2:1.4.0] C:\Users\shayer\.gradle\caches\transforms-3\9ef3666852ea509f444acdc6016bc814\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:27:13-37
+321            <meta-data
+321-->[androidx.emoji2:emoji2:1.4.0] C:\Users\shayer\.gradle\caches\transforms-3\9ef3666852ea509f444acdc6016bc814\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+322                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+322-->[androidx.emoji2:emoji2:1.4.0] C:\Users\shayer\.gradle\caches\transforms-3\9ef3666852ea509f444acdc6016bc814\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:30:17-75
+323                android:value="androidx.startup" />
+323-->[androidx.emoji2:emoji2:1.4.0] C:\Users\shayer\.gradle\caches\transforms-3\9ef3666852ea509f444acdc6016bc814\transformed\jetified-emoji2-1.4.0\AndroidManifest.xml:31:17-49
+324            <meta-data
+324-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\648a94735fccf0dde746a365b9d93627\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+325                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+325-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\648a94735fccf0dde746a365b9d93627\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+326                android:value="androidx.startup" />
+326-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\648a94735fccf0dde746a365b9d93627\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+327            <meta-data
+327-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+328                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+328-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+329                android:value="androidx.startup" />
+329-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+330        </provider> <!-- Needs to be explicitly declared on P+ -->
+331        <uses-library
+331-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\b8f85cf41f2bd96bda89218f783e0e8d\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:39:9-41:40
+332            android:name="org.apache.http.legacy"
+332-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\b8f85cf41f2bd96bda89218f783e0e8d\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:40:13-50
+333            android:required="false" />
+333-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\b8f85cf41f2bd96bda89218f783e0e8d\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:41:13-37
+334
+335        <activity
+335-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\shayer\.gradle\caches\transforms-3\e7cb4214b2ca84b468920829a69f1aba\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:20:9-22:45
+336            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+336-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\shayer\.gradle\caches\transforms-3\e7cb4214b2ca84b468920829a69f1aba\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:20:19-85
+337            android:exported="false"
+337-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\shayer\.gradle\caches\transforms-3\e7cb4214b2ca84b468920829a69f1aba\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:22:19-43
+338            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+338-->[com.google.android.gms:play-services-base:18.3.0] C:\Users\shayer\.gradle\caches\transforms-3\e7cb4214b2ca84b468920829a69f1aba\transformed\jetified-play-services-base-18.3.0\AndroidManifest.xml:21:19-78
+339
+340        <meta-data
+340-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\shayer\.gradle\caches\transforms-3\347373a76a492559304517f6f2a9d872\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+341            android:name="com.google.android.gms.version"
+341-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\shayer\.gradle\caches\transforms-3\347373a76a492559304517f6f2a9d872\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+342            android:value="@integer/google_play_services_version" />
+342-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\shayer\.gradle\caches\transforms-3\347373a76a492559304517f6f2a9d872\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
+343
+344        <receiver
+344-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+345            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+345-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+346            android:directBootAware="false"
+346-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+347            android:enabled="true"
+347-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+348            android:exported="true"
+348-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+349            android:permission="android.permission.DUMP" >
+349-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+350            <intent-filter>
+350-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+351                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+351-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+351-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+352            </intent-filter>
+353            <intent-filter>
+353-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+354                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+354-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+354-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+355            </intent-filter>
+356            <intent-filter>
+356-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+357                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+357-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+357-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+358            </intent-filter>
+359            <intent-filter>
+359-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+360                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+360-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+360-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\0f099b6580320a91cfdc75edaa838a1d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+361            </intent-filter>
+362        </receiver>
+363
+364        <meta-data
+364-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:12:9-14:37
+365            android:name="com.facebook.soloader.enabled"
+365-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:13:13-57
+366            android:value="false" />
+366-->[com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\03d018e18e7118763cc731de8f689ba0\transformed\jetified-soloader-0.10.5\AndroidManifest.xml:14:13-34
+367        <meta-data
+367-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\938ffb9705572a6c518526c6e5594633\transformed\jetified-instantapps-1.1.0\AndroidManifest.xml:10:9-12:33
+368            android:name="aia-compat-api-min-version"
+368-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\938ffb9705572a6c518526c6e5594633\transformed\jetified-instantapps-1.1.0\AndroidManifest.xml:11:13-54
+369            android:value="1" />
+369-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\938ffb9705572a6c518526c6e5594633\transformed\jetified-instantapps-1.1.0\AndroidManifest.xml:12:13-30
+370    </application>
+371
+372</manifest>

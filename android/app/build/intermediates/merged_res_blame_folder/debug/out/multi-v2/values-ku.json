@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-53:/values-ku/values-ku.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-100:/values-ku/values-ku.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\2ae447e2c98368deb560846a897c96ca\\transformed\\jetified-hcaptcha-20.48.5\\res\\values-ku\\values-ku.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "84",
+                        "endOffsets": "135"
+                    },
+                    "to": {
+                        "startLines": "8",
+                        "startColumns": "4",
+                        "startOffsets": "495",
+                        "endColumns": "84",
+                        "endOffsets": "575"
+                    }
+                },
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\ff34738e7fb960ce73fd0d6cf687f2a8\\transformed\\jetified-react-android-0.73.3-debug\\res\\values-ku\\values-ku.xml",
                     "from": {

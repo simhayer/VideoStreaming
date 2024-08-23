@@ -20,6 +20,7 @@ export const apiEndpoints = {
   addConsumer: '/api/auth/consumer',
   updateUsername: '/api/auth/updateUsername',
   updateProfilePicture: '/api/auth/updateProfilePicture',
+  paymentSheet: '/api/auth/paymentSheet',
   // Add more API endpoints as needed
 };
 

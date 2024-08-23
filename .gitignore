@@ -88,3 +88,6 @@ Thumbs.db
 # Build directories
 build/
 dist/
+
+# Ignore APK files
+android/app/build/outputs/apk/*.apk

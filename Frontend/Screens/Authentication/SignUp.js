@@ -10,7 +10,8 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import {baseURL, apiEndpoints} from '../Resources/Constants';
+//import {baseURL, apiEndpoints} from '../Resources/Constants';
+import {baseURL, apiEndpoints} from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../../Resources/styles';
