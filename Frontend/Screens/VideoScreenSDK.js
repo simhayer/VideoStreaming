@@ -499,7 +499,7 @@ const VideoScreen = ({route}) => {
                     marginLeft: '5%',
                   }}>
                   <TouchableOpacity
-                    onPress={() => setIsBottomSheetVisible(true)}
+                    onPress={() => setIsBidBottomSheetVisible(true)}
                     style={{
                       height: '100%',
                       width: '25%',
@@ -566,7 +566,7 @@ const VideoScreen = ({route}) => {
                     placed are final.
                   </Text>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('AddPaymentMethod')}
+                    onPress={() => navigation.navigate('AddPaymentOrShipping')}
                     style={{
                       paddingVertical: '2%',
                       width: '100%',

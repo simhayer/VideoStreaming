@@ -21,6 +21,8 @@ export const apiEndpoints = {
   updateUsername: '/api/auth/updateUsername',
   updateProfilePicture: '/api/auth/updateProfilePicture',
   paymentSheet: '/api/auth/paymentSheet',
+  checkStripePaymentPresent: '/api/auth/checkStripePaymentandAddressPresent',
+  updateStripeCustomerAddress: '/api/auth/updateStripeCustomerAddress',
   // Add more API endpoints as needed
 };
 
@@ -42,3 +44,6 @@ export const colors = {
   background: 'white',
   blackContent: 'black',
 };
+
+export const stripePublishableKey =
+  'pk_test_51PqQlpD4UkX571U3JIaxfkmVEVWLFA7OVrDB2zeyn2jiS5HScEiO8sCGeMZ9S06g2tF0r7tRZiL49A4p6DYD6Jg300nCoKfNXY';

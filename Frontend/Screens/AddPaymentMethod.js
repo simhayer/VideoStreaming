@@ -2,17 +2,20 @@ import {StripeProvider, useStripe} from '@stripe/stripe-react-native';
 import {useEffect, useState} from 'react';
 import {Alert, Button, Text, TouchableOpacity, View} from 'react-native';
 import {Screen} from 'react-native-screens';
-import {baseURL, apiEndpoints} from '../Resources/Constants';
+import {
+  baseURL,
+  apiEndpoints,
+  stripePublishableKey,
+} from '../Resources/Constants';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-const publishableKey =
-  'pk_test_51PqQlpD4UkX571U3JIaxfkmVEVWLFA7OVrDB2zeyn2jiS5HScEiO8sCGeMZ9S06g2tF0r7tRZiL49A4p6DYD6Jg300nCoKfNXY';
+import {useNavigation} from '@react-navigation/native';
 
 export default function AddPaymentMethod() {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
 
   const {userData} = useSelector(state => state.auth);
 
@@ -62,12 +65,10 @@ export default function AddPaymentMethod() {
     const {error} = await presentPaymentSheet();
 
     if (error) {
-      Alert.alert(`Error code: ${error.code}`, error.message);
+      console.log('Card add failed');
     } else {
-      Alert.alert(
-        'Success',
-        'Your payment method is successfully set up for future payments!',
-      );
+      console.log('card added');
+      navigation.navigate('AddPaymentOrShipping');
     }
   };
 
@@ -82,7 +83,7 @@ export default function AddPaymentMethod() {
 
   return (
     <StripeProvider
-      publishableKey={publishableKey}
+      publishableKey={stripePublishableKey}
       merchantIdentifier="merchant.identifier" // required for Apple Pay
       urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
     >

@@ -435,7 +435,7 @@ exports.updateProfilePicture = [
   },
 ];
 
-exports.getUserDetails = async email => {
+exports.getUserStripeDetails = async email => {
   console.log('Request Body:', email); // Log the body of the request
 
   // Check if email is provided
@@ -448,7 +448,7 @@ exports.getUserDetails = async email => {
     if (!user) {
       return null;
     } else {
-      console.log('User:', user);
+      //console.log('User:', user);
       return {
         username: user.username,
         fullname: user.fullname,
@@ -499,36 +499,3 @@ exports.setUserStripeId = async (email, stripeUserId) => {
     console.error('Error setting user stripe ID:', error);
   }
 };
-
-// exports.setUserStripeId = async (req, res) => {
-//   console.log('In set Request:', req.body);
-//   const {email, stripeUserId} = req.body;
-//   // Check if username and password is provided
-//   if (!email) {
-//     return res.json({
-//       message: 'email not present',
-//       stripeUserId: null,
-//     });
-//   }
-//   try {
-//     const user = await User.findOne({email});
-//     if (!user) {
-//       res.json({
-//         message: 'User not found',
-//         stripeUserId: null,
-//       });
-//     } else {
-//       user.stripeUserId = stripeUserId;
-//       await user.save();
-//       res.json({
-//         message: 'StripeUserID set successfully',
-//       });
-//     }
-//   } catch (error) {
-//     res.json({
-//       message: 'An error occurred',
-//       stripeUserId: null,
-//       error: error.message,
-//     });
-//   }
-// };

@@ -37,6 +37,12 @@ router.route('/consumer').post(consumerController.add);
 
 // Stripe Routes
 router.route('/paymentSheet').post(stripeService.paymentSheet);
+router
+  .route('/checkStripePaymentandAddressPresent')
+  .post(stripeService.checkStripePaymentandAddressPresent);
+router
+  .route('/updateStripeCustomerAddress')
+  .post(stripeService.updateStripeCustomerAddress);
 //router.route('/create-payment-intent').post(consumerController.createPaymentIntent);
 
 module.exports = router;

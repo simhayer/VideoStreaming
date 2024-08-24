@@ -9,6 +9,7 @@ import StreamScreenSDK from './StreamScreenSDK';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
+import AddPaymentOrShipping from './AddPaymentOrShipping';
 
 const TabControl = () => {
   const Tab = createBottomTabNavigator();

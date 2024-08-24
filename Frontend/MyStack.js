@@ -18,7 +18,9 @@ import StreamScreenSDK from './Screens/StreamScreenSDK';
 import VideoScreenSDK from './Screens/VideoScreenSDK';
 import GetStartedSell from './Screens/GetStartedSell/GetStartedSell';
 import GetStartedSellRules from './Screens/GetStartedSell/GetStartedSellRules';
+import AddPaymentOrShipping from './Screens/AddPaymentOrShipping';
 import AddPaymentMethod from './Screens/AddPaymentMethod';
+import AddAddress from './Screens/AddAddress';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -72,8 +74,18 @@ const MyStack = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
+            name="AddPaymentOrShipping"
+            component={AddPaymentOrShipping}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
             name="AddPaymentMethod"
             component={AddPaymentMethod}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="AddAddress"
+            component={AddAddress}
             options={{headerShown: false}}
           />
         </Stack.Group>
