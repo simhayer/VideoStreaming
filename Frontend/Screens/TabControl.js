@@ -1,15 +1,13 @@
 import React, {useState} from 'react';
 import Profile from './ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import StreamScreen from './StreamScreen';
 import ViewerTab from './ViewerTab';
 import StartStreamTab from './StartStreamTab';
 import SellTab from './SellTab';
-import StreamScreenSDK from './StreamScreenSDK';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
-import AddPaymentOrShipping from './AddPaymentOrShipping';
+import AddPaymentOrShipping from './PaymentAndShipping/AddPaymentOrShipping';
 
 const TabControl = () => {
   const Tab = createBottomTabNavigator();
@@ -28,7 +26,7 @@ const TabControl = () => {
           } else if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Profile') {
-            iconName = focused ? 'person' : 'person-outline';
+            iconName = focused ? 'person-circle' : 'person-circle-outline';
           } else if (route.name === 'Stream') {
             iconName = focused ? 'videocam' : 'videocam-outline';
           } else if (route.name === 'Sell') {

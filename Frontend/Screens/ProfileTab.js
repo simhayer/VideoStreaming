@@ -1,58 +1,55 @@
 import React from 'react';
-import {SafeAreaView, Text, TouchableOpacity} from 'react-native';
+import {
+  Dimensions,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../Redux/Features/AuthSlice';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Profile = () => {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
   const {userData, isLoading} = useSelector(state => state.auth);
+  const screenHeight = Dimensions.get('window').height;
+  const calculatedFontSize = screenHeight * 0.05;
 
   const email = userData?.user?.email;
   //const email = "hayersimrat23@gmail.com"
   //const {userData, isAuthenticated} = useSelector(state => state.auth);
+  const username = userData?.user?.username;
   const fullname = userData?.user?.fullname;
-
-  const onLogoutClick = async () => {
-    console.log('Email from redux, ', email);
-    const logoutParams = {
-      email: email,
-    };
-
-    dispatch(logout(logoutParams));
-  };
-
-  const onEditProfileClick = async () => {
-    navigation.navigate('EditProfile');
-  };
 
   return (
     <SafeAreaView>
-      <Text>You are logged in!</Text>
+      <View
+        style={{
+          borderBottomWidth: 1,
+          borderColor: 'rgba(0,0,0,0.2)',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingVertical: '1%',
+        }}>
+        <Text
+          style={{
+            color: 'black',
+            fontWeight: 'bold',
+            marginLeft: '2%',
+            fontSize: calculatedFontSize / 2,
+          }}>
+          {username}
+        </Text>
+        <TouchableOpacity
+          style={{marginRight: '2%'}}
+          onPress={() => navigation.navigate('SettingsMenu')}>
+          <Icon name="menu" size={40} color="black" />
+        </TouchableOpacity>
+      </View>
       <Text>Welcome - {fullname}</Text>
-      <TouchableOpacity
-        isloading={isLoading}
-        onPress={() => onLogoutClick()}
-        style={{
-          padding: 10,
-          backgroundColor: 'blue',
-          borderRadius: 5,
-          margin: 10,
-        }}>
-        <Text style={{color: 'white', textAlign: 'center'}}>LogOut</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        isloading={isLoading}
-        onPress={() => onEditProfileClick()}
-        style={{
-          padding: 10,
-          backgroundColor: 'blue',
-          borderRadius: 5,
-          margin: 10,
-        }}>
-        <Text style={{color: 'white', textAlign: 'center'}}>Edit Profile</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };

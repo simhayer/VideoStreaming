@@ -23,8 +23,7 @@ import {
   Constants,
   RTCView,
 } from '@videosdk.live/react-native-sdk';
-import {useNavigation} from '@react-navigation/native';
-import StreamStore from './StreamStore'; // Import the StreamStore
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import io from 'socket.io-client';
 import {apiEndpoints, appPink, baseURL, token} from '../Resources/Constants';
 import {useSelector} from 'react-redux';
@@ -33,6 +32,8 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Video from 'react-native-video';
+import {set} from 'mongoose';
+import axios from 'axios';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -96,9 +97,12 @@ const VideoScreen = ({route}) => {
   const {userData} = useSelector(state => state.auth);
 
   const userUsername = userData?.user?.username;
+  const userEmail = userData?.user?.email;
   const userProfilePicture = userData?.user?.profilePicture;
 
   const [canBid, setCanBid] = useState(false);
+  const [isCannotBidBottomSheetVisible, setIsCannotBidBottomSheetVisible] =
+    useState(false);
 
   const navigation = useNavigation();
   const [comment, setComment] = useState('');
@@ -155,9 +159,6 @@ const VideoScreen = ({route}) => {
       newSocket.close();
     };
   }, [broadcastId]);
-
-  // Retrieve the stream from the StreamStore
-  const stream = StreamStore.getStream(streamId);
 
   const closeStream = () => {
     navigation.goBack();
@@ -253,20 +254,53 @@ const VideoScreen = ({route}) => {
     }
   }, []);
 
-  const [isCannotBidBottomSheetVisible, setIsCannotBidBottomSheetVisible] =
-    useState(!canBid);
-
   const cannotBidBottomSheetRef = useRef(null);
 
   const handleCannotBidSheetChanges = useCallback(index => {
     console.log('handleSheetChanges', index);
     if (index === 0) {
       console.log('Closing bottom sheet');
+      //todo:get this function to work
       setIsCannotBidBottomSheetVisible(false);
     }
   }, []);
 
   const snapPoints = useMemo(() => ['1%', '25%'], []);
+
+  const checkPaymentandAddressExist = async email => {
+    console.log('Checking payment and address exist');
+    const payload = {
+      email: email,
+    };
+
+    const response = await axios
+      .post(baseURL + apiEndpoints.checkStripePaymentPresent, payload)
+      .catch(error => {
+        console.error('Error checking payment present:', error);
+      });
+
+    console.log('Response:', response.data);
+
+    const {paymentPresent, address} = response.data;
+
+    console.log('Payment present:', paymentPresent);
+    if (paymentPresent && address != null) {
+      console.log('Payment and address exist');
+      setCanBid(true);
+    } else {
+      console.log('Payment and address do not exist');
+      setCanBid(false);
+      setIsCannotBidBottomSheetVisible(true);
+    }
+
+    return {
+      canBid,
+    };
+  };
+
+  useEffect(() => {
+    checkPaymentandAddressExist(userEmail);
+  }, [userEmail]);
 
   return (
     <MeetingProvider

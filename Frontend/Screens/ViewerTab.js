@@ -21,7 +21,6 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {apiEndpoints, baseURL, token} from '../Resources/Constants';
-import StreamStore from './StreamStore'; // Import the StreamStore
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const {height: screenHeight} = Dimensions.get('window');

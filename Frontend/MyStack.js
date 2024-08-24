@@ -5,22 +5,20 @@ import Login from './Screens/Authentication/Login';
 import ForgetPassword from './Screens/Authentication/PassowrdHandle/ForgetPassword';
 import TabControl from './Screens/TabControl';
 import {Text} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import ForgetCode from './Screens/Authentication/PassowrdHandle/FrogetCode';
 import ResetPassword from './Screens/Authentication/PassowrdHandle/ResetPassword';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import VideoScreen from './Screens/VideoScreen';
 import EditProfile from './Screens/EditProfile';
 import UsernameCreate from './Screens/Authentication/UsernameCreate';
-import StreamScreen from './Screens/StreamScreen';
 import StreamScreenSDK from './Screens/StreamScreenSDK';
 import VideoScreenSDK from './Screens/VideoScreenSDK';
 import GetStartedSell from './Screens/GetStartedSell/GetStartedSell';
 import GetStartedSellRules from './Screens/GetStartedSell/GetStartedSellRules';
-import AddPaymentOrShipping from './Screens/AddPaymentOrShipping';
-import AddPaymentMethod from './Screens/AddPaymentMethod';
-import AddAddress from './Screens/AddAddress';
+import AddPaymentOrShipping from './Screens/PaymentAndShipping/AddPaymentOrShipping';
+import AddPaymentMethod from './Screens/PaymentAndShipping/AddPaymentMethod';
+import AddAddress from './Screens/PaymentAndShipping/AddAddress';
+import SettingsMenu from './Screens/SettingsMenu';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -39,18 +37,8 @@ const MyStack = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="Video"
-            component={VideoScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
             name="EditProfile"
             component={EditProfile}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="StreamScreen"
-            component={StreamScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen
@@ -86,6 +74,11 @@ const MyStack = () => {
           <Stack.Screen
             name="AddAddress"
             component={AddAddress}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="SettingsMenu"
+            component={SettingsMenu}
             options={{headerShown: false}}
           />
         </Stack.Group>
