@@ -499,3 +499,76 @@ exports.setUserStripeId = async (email, stripeUserId) => {
     console.error('Error setting user stripe ID:', error);
   }
 };
+
+exports.getUserProducts = async (req, res) => {
+  console.log('Request Body:', req.body); // Log the body of the request
+  const {email} = req.body;
+  console.log('Request Body:', email); // Log the body of the request
+
+  // Check if email is provided
+  if (!email) {
+    return res.status(400).json({message: 'Email is required'});
+  }
+
+  try {
+    const user = await User.findOne({email}); // Look up the user by email
+    if (!user) {
+      res.status(404).json({message: 'User not found'});
+    } else {
+      res.status(200).json({products: user.products});
+    }
+  } catch (error) {
+    console.error('Error fetching user products:', error);
+    res.status(400).json({message: 'An error occurred', error: error.message});
+  }
+};
+
+exports.addProductToUser = async (req, res) => {
+  const {email, product} = req.body;
+  if (!email) {
+    return res.status(400).json({message: 'Email is required'});
+  }
+  try {
+    const user = await User.findOne({email});
+    if (!user) {
+      return res.status(404).json({message: 'User not found'});
+    } else {
+      // Push the product object into the products array
+      user.products.push(product);
+      await user.save();
+      res.status(200).json({message: 'Product added to user', user});
+    }
+  } catch (error) {
+    console.error('Error adding product to user:', error);
+    res.status(400).json({message: 'An error occurred', error: error.message});
+  }
+};
+
+exports.removeProductsFromUser = async (req, res) => {
+  const {email, products} = req.body;
+  if (!email) {
+    return res.status(400).json({message: 'Email is required'});
+  }
+  try {
+    const user = await User.findOne({email});
+    if (!user) {
+      return res.status(400).json({message: 'User not found'});
+    } else {
+      // Filter out any products that match any in the list of products to remove
+      user.products = user.products.filter(
+        p =>
+          !products.some(
+            prod =>
+              prod.name === p.name &&
+              prod.size === p.size &&
+              prod.type === p.type,
+          ),
+      );
+      await user.save();
+      res.status(200).json({message: 'Products removed from user'});
+    }
+  } catch (error) {
+    console.error('Error removing products from user:', error);
+    res.status(400).json({message: 'An error occurred', error: error.message});
+  }
+};

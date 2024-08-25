@@ -1,5 +1,22 @@
 // user.js
 const Mongoose = require('mongoose');
+
+// Define a schema for products
+const ProductSchema = new Mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: String,
+    required: false,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+});
+
 const UserSchema = new Mongoose.Schema({
   fullname: {
     type: String,
@@ -42,6 +59,10 @@ const UserSchema = new Mongoose.Schema({
   stripeUserId: {
     type: String,
     default: '',
+  },
+  products: {
+    type: [ProductSchema], // Using the ProductSchema here
+    default: [], // Default to an empty array
   },
 });
 

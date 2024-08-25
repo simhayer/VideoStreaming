@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../Redux/Features/AuthSlice';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {appPink} from '../Resources/Constants';
 
 const Profile = () => {
   const navigation = useNavigation();

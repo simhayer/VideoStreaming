@@ -11,6 +11,9 @@ const {
   updatePassword,
   updateUsername,
   updateProfilePicture,
+  addProductToUser,
+  removeProductsFromUser,
+  getUserProducts,
 } = require('../middleware/auth');
 
 const broadcastController = require('../Controllers/broadcastController');
@@ -29,6 +32,10 @@ router.route('/verifyResetCode').post(verifyResetCode);
 router.route('/updatePassword').post(updatePassword);
 router.route('/updateUsername').post(updateUsername);
 router.post('/updateProfilePicture', updateProfilePicture);
+
+router.route('/addProductToUser').post(addProductToUser);
+router.route('/removeProductsFromUser').post(removeProductsFromUser);
+router.route('/getUserProducts').post(getUserProducts);
 
 // Broadcast Routes
 router.route('/broadcast').post(broadcastController.add);
