@@ -121,7 +121,7 @@ export default function AddPaymentMethod() {
         }}
         onPress={() => navigation.navigate('ManageProducts')}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Icon name="pricetags-outline" size={35} color="black" />
+          <Icon name="cube-outline" size={35} color="black" />
           <Text style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
             Manage Products
           </Text>

@@ -179,7 +179,7 @@ const StreamScreen = ({route}) => {
   const socket = useRef(null);
   const {userData} = useSelector(state => state.auth);
 
-  const email = userData?.user?.email;
+  const userEmail = userData?.user?.email;
   const fullname = userData?.user?.fullname;
   const username = userData?.user?.username;
   const profilePicture = userData?.user?.profilePicture;
@@ -193,6 +193,8 @@ const StreamScreen = ({route}) => {
   const [showWinner, setShowWinner] = useState(false);
   const [userBid, setUserBid] = useState(0);
   const [watchers, setWatchers] = useState(0);
+
+  const [items, setItems] = useState([]);
 
   const navigation = useNavigation();
 
@@ -212,7 +214,7 @@ const StreamScreen = ({route}) => {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [startBid, setStartBid] = useState('0');
 
-  const items = [
+  const items1 = [
     'Item1',
     'Item2',
     'Item3',
@@ -350,6 +352,46 @@ const StreamScreen = ({route}) => {
     {label: '20s', value: '20s'},
     {label: '30s', value: '30s'},
   ]);
+
+  const fetchProducts = async () => {
+    const payload = {
+      email: userEmail,
+    };
+    try {
+      const response = await axios.post(
+        baseURL + apiEndpoints.getUserProducts,
+        payload,
+      );
+      if (response.status === 200) {
+        setItems(response.data.products);
+      } else {
+        console.error('Failed to fetch products:', response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const getItemIcon = type => {
+    switch (type) {
+      case 'Clothing':
+        return 'shirt-outline'; // Clothing icon
+      case 'Footwear':
+        return 'footsteps-outline'; // Footwear icon (this is not an Ionicons icon, so you may need to choose another or customize)
+      case 'Accessories':
+        return 'watch-outline'; // Accessory icon
+      case 'Electronics':
+        return 'phone-portrait-outline'; // Electronics icon
+      case 'VideoGames':
+        return 'game-controller-outline'; // Video Games icon
+      default:
+        return 'cube-outline'; // Default icon
+    }
+  };
 
   return meetingId ? (
     <MeetingProvider
@@ -660,10 +702,11 @@ const StreamScreen = ({route}) => {
                     flexDirection: 'row',
                     justifyContent: 'center',
                     maxHeight: '100%',
+                    flex: 1,
                   }}>
-                  <FlatList
+                  {/* <FlatList
                     ref={scrollViewRef}
-                    data={items}
+                    data={items1}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) => {
                       const isSelected = item === selectedItem;
@@ -677,6 +720,51 @@ const StreamScreen = ({route}) => {
                             backgroundColor: isSelected ? '#d3d3d3' : 'white', // Highlight selected item
                           }}>
                           <Text>{item}</Text>
+                        </Pressable>
+                      );
+                    }}
+                    contentContainerStyle={{
+                      flexGrow: 1,
+                      flexDirection: 'column',
+                      padding: 10,
+                    }}
+                  /> */}
+                  <FlatList
+                    style={{flex: 1}}
+                    data={items}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({item}) => {
+                      const isSelected = item.name === selectedItem?.name;
+                      return (
+                        <Pressable
+                          onPress={() => handleItemPress(item)}
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            borderWidth: 1,
+                            borderColor: 'rgba(0,0,0,0.2)',
+                            borderRadius: 20,
+                            marginTop: 10,
+                            paddingVertical: '3%',
+                            paddingHorizontal: '5%',
+                            backgroundColor: isSelected ? '#d3d3d3' : 'white', // Highlight selected item
+                            justifyContent: 'space-between',
+                          }}>
+                          <Icon
+                            name={getItemIcon(item.type)}
+                            size={40}
+                            color="black"
+                          />
+                          <Text
+                            style={{
+                              fontWeight: 'bold',
+                              textAlign: 'left',
+                              width: '60%',
+                              maxWidth: '60%',
+                            }}>
+                            {item.name}
+                          </Text>
+                          <Text style={{marginRight: '8%'}}>{item.size}</Text>
                         </Pressable>
                       );
                     }}

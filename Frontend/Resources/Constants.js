@@ -54,7 +54,8 @@ export const stripePublishableKey =
 export const productTypes = [
   {label: 'Clothing', value: 'Clothing'},
   {label: 'Sneakers & Footwear', value: 'Footwear'},
-  {label: 'Electronics', value: 'Accessories'},
+  {label: 'Electronics', value: 'Electronics'},
+  {label: 'Accessories', value: 'Accessories'},
   {label: 'Video Games', value: 'VideoGames'},
   {label: 'Other', value: 'Other'},
 ];

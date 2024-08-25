@@ -21,7 +21,6 @@ const StartStreamTab = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   const [deletedItems, setDeletedItems] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
@@ -51,10 +50,6 @@ const StartStreamTab = () => {
       fetchProducts();
     }, []),
   );
-
-  const handleItemPress = item => {
-    setSelectedItem(item);
-  };
 
   const handleDeleteItem = item => {
     // Remove the item from the current list
@@ -92,6 +87,24 @@ const StartStreamTab = () => {
     navigation.goBack();
   };
 
+  // Function to get the icon based on item type
+  const getItemIcon = type => {
+    switch (type) {
+      case 'Clothing':
+        return 'shirt-outline'; // Clothing icon
+      case 'Footwear':
+        return 'footsteps-outline'; // Footwear icon (this is not an Ionicons icon, so you may need to choose another or customize)
+      case 'Accessories':
+        return 'watch-outline'; // Accessory icon
+      case 'Electronics':
+        return 'phone-portrait-outline'; // Electronics icon
+      case 'VideoGames':
+        return 'game-controller-outline'; // Video Games icon
+      default:
+        return 'cube-outline'; // Default icon
+    }
+  };
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{alignItems: 'center', marginTop: '2%'}}>
@@ -115,14 +128,12 @@ const StartStreamTab = () => {
           </Text>
         </View>
         <FlatList
-          style={{height: '70%', width: '90%'}}
+          style={{height: '70%', width: '100%'}}
           data={items}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({item}) => {
-            const isSelected = item.name === selectedItem?.name;
             return (
-              <Pressable
-                onPress={() => handleItemPress(item)}
+              <View
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -132,16 +143,15 @@ const StartStreamTab = () => {
                   marginTop: 10,
                   paddingVertical: '3%',
                   paddingHorizontal: '5%',
-                  backgroundColor: isSelected ? '#d3d3d3' : 'white', // Highlight selected item
                   justifyContent: 'space-between',
                 }}>
-                <Icon name="shirt-outline" size={40} color="black" />
+                <Icon name={getItemIcon(item.type)} size={40} color="black" />
                 <Text
                   style={{
                     fontWeight: 'bold',
                     textAlign: 'left',
-                    width: '60%',
-                    maxWidth: '60%',
+                    width: '58%',
+                    maxWidth: '58%',
                   }}>
                   {item.name}
                 </Text>
@@ -149,7 +159,7 @@ const StartStreamTab = () => {
                 <TouchableOpacity onPress={() => handleDeleteItem(item)}>
                   <Icon name="close-circle-outline" size={25} color="red" />
                 </TouchableOpacity>
-              </Pressable>
+              </View>
             );
           }}
           contentContainerStyle={{
