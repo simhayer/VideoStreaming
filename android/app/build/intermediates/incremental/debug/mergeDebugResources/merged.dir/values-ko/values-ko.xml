@@ -333,6 +333,8 @@
     <string name="stripe_affirm_buy_now_pay_later">&lt;img src=\"affirm\">으로 할부 결제하십시오.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Affirm으로 할부 결제하십시오.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[<img/>로 <installment_price/>의 <num_installments/>회 무이자 결제로 대금을 지급하십시오.]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d%2$s회 무이자 결제</string>
+    <string name="stripe_afterpay_subtitle">지금 구매하거나 Afterpay로 나중에 결제</string>
     <string name="stripe_amazon_pay_mandate">AmazonPay 결제를 확인하면 %s에서 해당 회사의 약관에 따라 향후 AmazonPay 계정에 결제 대금을 청구할 수 있습니다.</string>
     <string name="stripe_au_becs_account_name">계좌 명의</string>
     <string name="stripe_au_becs_bsb_number">BSB 번호</string>
@@ -370,6 +372,7 @@
     <string name="stripe_card_ending_in">%2$s(으)로 끝나는 %1$s</string>
     <string name="stripe_cash_app_pay_mandate">계속하면 이 승인이 취소될 때까지 %2$s의 약관에 따라 이 결제 및 향후 결제에 대해 %1$s이(가) Cash App 계좌에서 인출하도록 승인하는 것입니다. 이는 Cash App 설정에서 언제든지 변경할 수 있습니다.</string>
     <string name="stripe_change">변경</string>
+    <string name="stripe_clearpay_subtitle">지금 구매하거나 Clearpay로 나중에 결제</string>
     <string name="stripe_close">닫기</string>
     <string name="stripe_confirm_close_form_body">귀하의 결제 정보가 저장되지 않습니다.</string>
     <string name="stripe_confirm_close_form_title">이 양식을 닫으시겠습니까?</string>
@@ -455,6 +458,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">내 결제 방식 관리</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe에서 영업일 기준 1~2일 후에 계좌로 0.01$를 입금할 예정입니다. 그런 다음 %s에 대한 결제를 완료하기 위한 지침이 포함된 이메일을 전송할 것입니다.</string>
     <string name="stripe_paymentsheet_modify_pm">%s 수정</string>
+    <string name="stripe_paymentsheet_new_card">새 카드</string>
     <string name="stripe_paymentsheet_new_pm">새 결제 방식</string>
     <string name="stripe_paymentsheet_or_pay_using">또는 다음 결제 방식 사용</string>
     <string name="stripe_paymentsheet_or_pay_with_card">또는 카드 결제</string>

@@ -326,6 +326,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Betal over tid med &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Betal over tid med Affirm.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Betal med <num_installments/> rentefri avdrag på <installment_price/> med <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d rentefri betalinger på %2$s</string>
+    <string name="stripe_afterpay_subtitle">Kjøp nå eller betal senere med Afterpay</string>
     <string name="stripe_amazon_pay_mandate">Ved å bekrefte betalingen med Amazon Pay, tillater du %s å belaste Amazon Pay-kontoen for fremtidige betalinger i samsvar med vilkårene deres.</string>
     <string name="stripe_au_becs_account_name">Navn på kontoen</string>
     <string name="stripe_au_becs_bsb_number">BSB-nummer</string>
@@ -363,6 +365,7 @@
     <string name="stripe_card_ending_in">%1$s som slutter på %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Ved å fortsette, godkjenner du at %1$s belaster Cash App-kontoen din for denne og fremtidige betalinger, i henhold til vilkårene fra %2$s, frem til autorisasjonen er tilbakekalt. Du kan når som helst endre dette i Cash App-innstillingene.</string>
     <string name="stripe_change">Endre</string>
+    <string name="stripe_clearpay_subtitle">Kjøp nå eller betal senere med Clearpay</string>
     <string name="stripe_close">Lukk</string>
     <string name="stripe_confirm_close_form_body">Betalingsinformasjonen din lagres ikke.</string>
     <string name="stripe_confirm_close_form_title">Vil du lukke dette skjemaet?</string>
@@ -447,6 +450,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Administrer betalingsmetodene dine</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe vil sette inn et innskudd på USD 0,01 på kontoen din innen 1–2 virkedager. Deretter vil du få en e-post med instruksjoner for å fullføre betalingen til %s.</string>
     <string name="stripe_paymentsheet_modify_pm">Rediger %s</string>
+    <string name="stripe_paymentsheet_new_card">Nytt kort</string>
     <string name="stripe_paymentsheet_new_pm">Ny betalingsmetode</string>
     <string name="stripe_paymentsheet_or_pay_using">Eller betal med</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Eller betal med et kort</string>

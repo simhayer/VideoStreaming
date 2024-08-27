@@ -47,9 +47,32 @@ router.route('/paymentSheet').post(stripeService.paymentSheet);
 router
   .route('/checkStripePaymentandAddressPresent')
   .post(stripeService.checkStripePaymentandAddressPresent);
+//router.route('/create-payment-intent').post(consumerController.createPaymentIntent);
+
 router
   .route('/updateStripeCustomerAddress')
   .post(stripeService.updateStripeCustomerAddress);
-//router.route('/create-payment-intent').post(consumerController.createPaymentIntent);
+
+router
+  .route('/createStripeConnectedAccount')
+  .post(stripeService.createStripeConnectedAccount);
+
+router
+  .route('/createStripeConnectedAccountRefreshURL')
+  .get(stripeService.createStripeConnectedAccountRefreshURL);
+
+router
+  .route('/createStripeConnectedAccountReturnURL')
+  .get(stripeService.createStripeConnectedAccountReturnURL);
+
+router
+  .route('/checkStripeConnectedAccountOnboardingComplete')
+  .post(stripeService.checkStripeConnectedAccountOnboardingComplete);
+
+router
+  .route('/createStripeLoginLink')
+  .post(stripeService.createStripeLoginLink);
+
+router.route('/continueOnboarding').post(stripeService.continueOnboarding);
 
 module.exports = router;

@@ -330,6 +330,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Payez par versements échelonnés avec &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Payez par versements échelonnés avec Affirm.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Payer en <num_installments/> versements sans intérêts de <installment_price/> avec <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d versements de %2$s, sans intérêts</string>
+    <string name="stripe_afterpay_subtitle">Paiement différé avec Afterpay</string>
     <string name="stripe_amazon_pay_mandate">En confirmant votre paiement via Amazon Pay, vous autorisez %s à débiter votre compte Amazon Pay pour les paiements à venir, conformément à ses conditions.</string>
     <string name="stripe_au_becs_account_name">Nom du titulaire du compte</string>
     <string name="stripe_au_becs_bsb_number">Numéro BSB</string>
@@ -367,6 +369,7 @@
     <string name="stripe_card_ending_in">%1$s se terminant par %2$s</string>
     <string name="stripe_cash_app_pay_mandate">En continuant, vous autorisez %1$s à débiter votre compte Cash App pour ce paiement et les paiements futurs, conformément aux conditions de %2$s, jusqu\'à la révocation de cette autorisation. Vous pouvez modifier cela à tout moment dans les paramètres de Cash App.</string>
     <string name="stripe_change">Modifier</string>
+    <string name="stripe_clearpay_subtitle">Paiement différé avec Clearpay</string>
     <string name="stripe_close">Fermer</string>
     <string name="stripe_confirm_close_form_body">Vos informations de paiement ne seront pas enregistrées.</string>
     <string name="stripe_confirm_close_form_title">Voulez-vous vraiment fermer ce formulaire ?</string>
@@ -452,6 +455,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Gérer vos moyens de paiement</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe va effectuer un versement de 0,01 $ sur votre compte sous 1 ou 2 jours ouvrables. Vous recevrez ensuite un e-mail contenant des instructions pour finaliser le paiement en faveur de %s.</string>
     <string name="stripe_paymentsheet_modify_pm">Modifier %s</string>
+    <string name="stripe_paymentsheet_new_card">Nouvelle carte</string>
     <string name="stripe_paymentsheet_new_pm">Nouveau moyen de paiement</string>
     <string name="stripe_paymentsheet_or_pay_using">Ou payer avec</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Ou payez par carte bancaire</string>

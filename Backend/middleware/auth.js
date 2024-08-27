@@ -453,6 +453,7 @@ exports.getUserStripeDetails = async email => {
         username: user.username,
         fullname: user.fullname,
         stripeUserId: user.stripeUserId,
+        stripeConnectedAccountId: user.stripeConnectedAccountId,
       };
     }
   } catch (error) {
@@ -492,6 +493,27 @@ exports.setUserStripeId = async (email, stripeUserId) => {
       return;
     } else {
       user.stripeUserId = stripeUserId;
+      await user.save();
+      return;
+    }
+  } catch (error) {
+    console.error('Error setting user stripe ID:', error);
+  }
+};
+
+exports.setUserStripeConnectedAccountId = async (
+  email,
+  stripeConnectedAccountId,
+) => {
+  if (!email) {
+    return;
+  }
+  try {
+    const user = await User.findOne({email});
+    if (!user) {
+      return;
+    } else {
+      user.stripeConnectedAccountId = stripeConnectedAccountId;
       await user.save();
       return;
     }

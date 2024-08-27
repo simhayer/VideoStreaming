@@ -372,6 +372,8 @@
     <string name="stripe_affirm_buy_now_pay_later">&lt;img src=\"affirm\"> で時間をかけて支払う</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Affirm で分割払いに。</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[<img/> で毎回 <installment_price/> ずつ、無利息の <num_installments/> 回の分割払いで支払う]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%2$s の無利息の %1$d 回払い</string>
+    <string name="stripe_afterpay_subtitle">Afterpay で後払い</string>
     <string name="stripe_amazon_pay_mandate">AmazonPay による支払いを確定すると、%s が規約に従って今後の支払いをお客様の AmazonPay アカウントに請求することを許可することになります。</string>
     <string name="stripe_au_becs_account_name">口座名義人</string>
     <string name="stripe_au_becs_bsb_number">BSB 番号</string>
@@ -409,6 +411,7 @@
     <string name="stripe_card_ending_in">末尾が %2$s の %1$s</string>
     <string name="stripe_cash_app_pay_mandate">続行すると、%2$s の利用規約に従って、この許可が取り消されない限り、お客様は今回の支払いおよび今後の支払いを、Cash App のアカウントから引き落とすことを %1$s に許可したものとみなされます。これは、Cash App の設定でいつでも変更することができます。</string>
     <string name="stripe_change">変更する</string>
+    <string name="stripe_clearpay_subtitle">Clearpay で後払い</string>
     <string name="stripe_close">閉じる</string>
     <string name="stripe_confirm_close_form_body">支払い情報は保存されません。</string>
     <string name="stripe_confirm_close_form_title">このフォームを閉じてもよいですか？</string>
@@ -494,6 +497,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">決済手段を管理する</string>
     <string name="stripe_paymentsheet_microdeposit">1 ～ 2 営業日以内に Stripe は口座に $0.01 を入金します。その後、%s への支払いを完了するための手順が記載されたメールが送信されます。</string>
     <string name="stripe_paymentsheet_modify_pm">%s を編集する</string>
+    <string name="stripe_paymentsheet_new_card">新しいカード</string>
     <string name="stripe_paymentsheet_new_pm">新しい決済手段</string>
     <string name="stripe_paymentsheet_or_pay_using">または別の方法で支払う</string>
     <string name="stripe_paymentsheet_or_pay_with_card">または、カードで支払う</string>

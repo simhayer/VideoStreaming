@@ -333,6 +333,8 @@
     <string name="stripe_affirm_buy_now_pay_later">用 &lt;img src=\"affirm\"> 慢慢支付。</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">用 Affirm 慢慢支付。</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[用 <img/> 分 <num_installments/> 支付，無利息，每期 <installment_price/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d 無息付款 %2$s</string>
+    <string name="stripe_afterpay_subtitle">用 Afterpay 先買後付</string>
     <string name="stripe_amazon_pay_mandate">確認您的 Amazon Pay 付款即表示您允許 %s 按照其條款從您的 Amazon Pay 賬戶扣取未來款項。</string>
     <string name="stripe_au_becs_account_name">賬戶上的姓名</string>
     <string name="stripe_au_becs_bsb_number">BSB 號碼</string>
@@ -370,6 +372,7 @@
     <string name="stripe_card_ending_in">%1$s - 尾號：%2$s</string>
     <string name="stripe_cash_app_pay_mandate">繼續操作，即表示您授權 %1$s 按照 %2$s 的條款從您的 Cash App 賬戶中扣取該款項及未來的款項，直至撤銷授權。您可以隨時在 Cash App 設置中進行修改。</string>
     <string name="stripe_change">更改</string>
+    <string name="stripe_clearpay_subtitle">用 Clearpay 先買後付</string>
     <string name="stripe_close">關閉</string>
     <string name="stripe_confirm_close_form_body">不會保存您的付款資訊。</string>
     <string name="stripe_confirm_close_form_title">您確定要保存此表單嗎？</string>
@@ -454,6 +457,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">管理您的支付方式</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe 會在 1-2 個工作日向您的賬戶存入 0.01 美元。然後您會收到一封郵件，指導您完成向 %s 的付款。</string>
     <string name="stripe_paymentsheet_modify_pm">編輯%s</string>
+    <string name="stripe_paymentsheet_new_card">添加新卡</string>
     <string name="stripe_paymentsheet_new_pm">新支付方式</string>
     <string name="stripe_paymentsheet_or_pay_using">或用以下方式支付</string>
     <string name="stripe_paymentsheet_or_pay_with_card">或用銀行卡支付</string>

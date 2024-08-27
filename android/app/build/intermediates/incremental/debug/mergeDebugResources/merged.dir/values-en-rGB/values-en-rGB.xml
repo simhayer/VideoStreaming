@@ -317,8 +317,10 @@
     <string name="stripe_address_zip_invalid">Your ZIP code is invalid.</string>
     <string name="stripe_address_zip_postal_invalid">Your ZIP/Postal code is invalid</string>
     <string name="stripe_affirm_buy_now_pay_later">Pay over time with &lt;img src=\"affirm\">.</string>
-    <string name="stripe_affirm_buy_now_pay_later_plaintext">Pay over time with Affirm.</string>
+    <string name="stripe_affirm_buy_now_pay_later_plaintext">Pay over time with Affirm</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Pay in <num_installments/> interest-free payments of <installment_price/> with <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d interest-free payments of %2$s</string>
+    <string name="stripe_afterpay_subtitle">Buy now or pay later with Afterpay</string>
     <string name="stripe_amazon_pay_mandate">By confirming your payment with Amazon Pay, you allow %s to charge your Amazon Pay account for future payments in accordance with their terms.</string>
     <string name="stripe_au_becs_account_name">Name on account</string>
     <string name="stripe_au_becs_bsb_number">BSB number</string>
@@ -356,6 +358,7 @@
     <string name="stripe_card_ending_in">%1$s ending in %2$s</string>
     <string name="stripe_cash_app_pay_mandate">By continuing, you authorize %1$s to debit your Cash App account for this payment and future payments in accordance with %2$s\'s terms, until this authorization is revoked. You can change this anytime in your Cash App Settings.</string>
     <string name="stripe_change">Change</string>
+    <string name="stripe_clearpay_subtitle">Buy now or pay later with Clearpay</string>
     <string name="stripe_close">Close</string>
     <string name="stripe_confirm_close_form_body">Your payment information will not be saved.</string>
     <string name="stripe_confirm_close_form_title">Do you want to close this form?</string>
@@ -402,7 +405,7 @@
     <string name="stripe_invalid_zip">Your postcode is incomplete.</string>
     <string name="stripe_klarna_buy_now_pay_later">Buy now or pay later with Klarna.</string>
     <string name="stripe_klarna_mandate">By continuing to Klarna, you allow %1$s to charge your Klarna account for future payments in accordance with their terms and Klarna\'s terms. You can change this at any time in your Klarna app or by reaching out to %2$s.</string>
-    <string name="stripe_klarna_pay_later">Pay later with Klarna.</string>
+    <string name="stripe_klarna_pay_later">Pay later with Klarna</string>
     <string name="stripe_konbini_confirmation_number_label">Phone</string>
     <string name="stripe_link_simple_secure_payments">Simple, secure one-click payments</string>
     <string name="stripe_log_out">Log out of Link</string>
@@ -440,6 +443,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Manage your payment methods</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe will deposit $0.01 to your account in 1-2 business days. Then you’ll get an email with instructions to complete payment to %s.</string>
     <string name="stripe_paymentsheet_modify_pm">Edit %s</string>
+    <string name="stripe_paymentsheet_new_card">New card</string>
     <string name="stripe_paymentsheet_new_pm">New payment method</string>
     <string name="stripe_paymentsheet_or_pay_using">Or pay using</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Or pay with a card</string>

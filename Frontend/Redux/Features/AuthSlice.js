@@ -137,7 +137,13 @@ export const uploadProfilePicture = createAsyncThunk(
 const authSlice = createSlice({
   name: 'authSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    setOnboardingStarted: state => {
+      if (state.userData) {
+        state.userData.user.isOnboardingStarted = true;
+      }
+    },
+  },
   extraReducers: builder => {
     // Login cases
     builder.addCase(login.pending, state => {
@@ -207,4 +213,5 @@ const authSlice = createSlice({
   },
 });
 
+export const {setOnboardingStarted} = authSlice.actions;
 export default authSlice.reducer;

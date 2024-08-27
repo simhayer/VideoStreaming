@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Profile from './ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ViewerTab from './ViewerTab';
@@ -7,23 +7,22 @@ import SellTab from './SellTab';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
-import AddPaymentOrShipping from './PaymentAndShipping/AddPaymentOrShipping';
+import {useSelector} from 'react-redux';
 
 const TabControl = () => {
   const Tab = createBottomTabNavigator();
   const navigation = useNavigation();
-  const [canSell, setCanSell] = useState(false);
 
-  //const navigation = useNavigation();
+  const {userData} = useSelector(state => state.auth);
+  const canSell = userData?.isOnboardingStarted;
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
-          if (route.name === 'HomeTab') {
-            iconName = focused ? 'add-circle' : 'add-circle-outline';
-          } else if (route.name === 'Home') {
+          if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
@@ -41,21 +40,18 @@ const TabControl = () => {
         headerShown: false,
       })}>
       <Tab.Screen name="Home" component={ViewerTab} />
-      {canSell ? (
-        <Tab.Screen name="Sell" component={SellTab} />
-      ) : (
-        <Tab.Screen
-          name="Sell"
-          component={SellTab}
-          listeners={{
-            tabPress: e => {
+      <Tab.Screen
+        name="Sell"
+        component={SellTab}
+        listeners={{
+          tabPress: e => {
+            if (!canSell) {
               e.preventDefault();
-              navigation.navigate('GetStartedSell');
-            },
-          }}
-        />
-      )}
-      <Tab.Screen name="Stream" component={StartStreamTab} />
+              navigation.navigate('GetStartedSell'); // Ensure this screen is in your stack navigator
+            }
+          },
+        }}
+      />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );

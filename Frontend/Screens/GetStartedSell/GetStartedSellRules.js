@@ -4,14 +4,18 @@ import {
   Button,
   Dimensions,
   Image,
+  Linking,
   SafeAreaView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {appPink} from '../../Resources/Constants';
+import {apiEndpoints, appPink, baseURL} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useDispatch, useSelector} from 'react-redux';
+import axios from 'axios';
+import {setOnboardingStarted} from '../../Redux/Features/AuthSlice';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -19,13 +23,34 @@ const calculatedFontSize = screenHeight * 0.05;
 const GetStartedSell = () => {
   const navigation = useNavigation();
   const [title, setTitle] = useState('');
+  const dispatch = useDispatch();
 
-  const startStream = async () => {
-    navigation.navigate('StreamScreenSDK', {title});
+  const {userData} = useSelector(state => state.auth);
+
+  const userEmail = userData?.user?.email;
+
+  const startOnboarding = async () => {
+    const payload = {
+      email: userEmail,
+    };
+
+    const response = await axios
+      .post(baseURL + apiEndpoints.createStripeConnectedAccount, payload)
+      .catch(error => {
+        console.error('Error adding broadcast:', error);
+      });
+
+    const {accountId, accountLink} = response.data;
+
+    if (accountLink && accountLink.url) {
+      dispatch(setOnboardingStarted());
+      Linking.openURL(accountLink.url);
+      navigation.navigate('CreateConnectedAccount');
+    }
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       <View style={{alignItems: 'flex-end'}}>
         <TouchableOpacity
           style={{margin: 12}}
@@ -111,6 +136,7 @@ const GetStartedSell = () => {
           </View>
         </View>
         <TouchableOpacity
+          onPress={() => startOnboarding()}
           style={{
             flexDirection: 'row',
             paddingVertical: '4%',
@@ -126,7 +152,7 @@ const GetStartedSell = () => {
               fontSize: calculatedFontSize / 2.2,
               fontWeight: 'bold',
             }}>
-            Continue
+            Start Onboarding
           </Text>
         </TouchableOpacity>
       </View>

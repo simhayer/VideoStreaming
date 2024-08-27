@@ -60,9 +60,13 @@ const UserSchema = new Mongoose.Schema({
     type: String,
     default: '',
   },
+  stripeConnectedAccountId: {
+    type: String,
+    default: '',
+  },
   products: {
-    type: [ProductSchema], // Using the ProductSchema here
-    default: [], // Default to an empty array
+    type: [ProductSchema],
+    default: [],
   },
 });
 

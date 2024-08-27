@@ -324,6 +324,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Bayar dengan jangka waktu dengan &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Bayar dengan jangka waktu dengan Affirm.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Bayar dalam <num_installments/> angsuran bebas bunga sebesar <installment_price/> dengan <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d pembayaran bebas bunga sebesar %2$s</string>
+    <string name="stripe_afterpay_subtitle">Beli sekarang atau bayar nanti dengan Afterpay</string>
     <string name="stripe_amazon_pay_mandate">Dengan mengonfirmasi pembayaran menggunakan Amazon Pay, berarti Anda mengizinkan %s mengenakan charge untuk pembayaran mendatang pada akun Amazon Pay Anda sesuai dengan ketentuan mereka.</string>
     <string name="stripe_au_becs_account_name">Nama pada rekening</string>
     <string name="stripe_au_becs_bsb_number">Nomor BSB</string>
@@ -361,6 +363,7 @@
     <string name="stripe_card_ending_in">%1$s berakhiran %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Dengan melanjutkan, berarti Anda memberi %1$s otorisasi untuk mendebit akun Cash App Anda bagi pembayaran ini dan pembayaran mendatang sesuai dengan ketentuan %2$s, hingga otorisasi ini dicabut. Anda dapat mengubahnya kapan saja di Pengaturan Cash App.</string>
     <string name="stripe_change">Ubah</string>
+    <string name="stripe_clearpay_subtitle">Beli sekarang atau bayar nanti dengan Clearpay</string>
     <string name="stripe_close">Tutup</string>
     <string name="stripe_confirm_close_form_body">Informasi pembayaran Anda tidak akan disimpan.</string>
     <string name="stripe_confirm_close_form_title">Anda ingin menutup formulir ini?</string>
@@ -446,6 +449,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Kelola metode pembayaran Anda</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe akan menyetorkan $0,01 ke rekening Anda dalam waktu 1–2 hari kerja. Kemudian Anda akan mendapatkan email yang berisi petunjuk untuk menyelesaikan pembayaran kepada %s.</string>
     <string name="stripe_paymentsheet_modify_pm">Edit %s</string>
+    <string name="stripe_paymentsheet_new_card">Kartu baru</string>
     <string name="stripe_paymentsheet_new_pm">Metode pembayaran baru</string>
     <string name="stripe_paymentsheet_or_pay_using">Atau bayar menggunakan</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Atau bayar dengan kartu</string>

@@ -25,7 +25,7 @@ const GetStartedSell = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       <View style={{alignItems: 'flex-end'}}>
         <TouchableOpacity
           style={{margin: 12}}
@@ -42,9 +42,10 @@ const GetStartedSell = () => {
           source={require('../../Resources/paid.png')}
           style={{
             width: '40%',
-            height: '30%',
+            height: '20%',
             resizeMode: 'center',
           }}
+          resizeMode="contain"
         />
         <Text
           style={{
@@ -54,6 +55,7 @@ const GetStartedSell = () => {
             textAlign: 'center',
             marginHorizontal: '8%',
             marginBottom: '4%',
+            marginTop: '4%',
           }}>
           Start Selling on BARS and Earn
         </Text>

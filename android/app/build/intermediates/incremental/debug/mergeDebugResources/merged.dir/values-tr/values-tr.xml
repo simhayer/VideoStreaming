@@ -332,6 +332,8 @@
     <string name="stripe_affirm_buy_now_pay_later">&lt;img src=\"affirm\"> ile zaman içinde ödeyin.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Affirm ile zaman içinde ödeyin.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[<img/> ile <installment_price/> tutarında faizsiz <num_installments/> taksitle ödeyin]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d tutarında %2$s faizsiz ödeme</string>
+    <string name="stripe_afterpay_subtitle">Şimdi satın alın veya daha sonra Afterpay ile ödeyin</string>
     <string name="stripe_amazon_pay_mandate">AmazonPay ile ödemenizi doğrulayarak %s tarafından AmazonPay hesabınızdan, kendi koşulları doğrultusunda gelecekteki ödemelerinizin tahsil edilmesine izin vermektesiniz.</string>
     <string name="stripe_au_becs_account_name">Hesaptaki ad</string>
     <string name="stripe_au_becs_bsb_number">BSB numarası</string>
@@ -369,6 +371,7 @@
     <string name="stripe_card_ending_in">%2$s İle Biten %1$s</string>
     <string name="stripe_cash_app_pay_mandate">Devam ederek %1$s şirketinin bu ödeme ve gelecekteki ödemeler için Cash Uygulaması hesabınızı %2$s şirketinin şartlarına uygun olarak borçlandırmasına izin vermiş olursunuz. Bu durum, izin iptal edilene kadar geçerli olur. İstediğiniz zaman Cash Uygulamasının Ayarlarından bu izni değiştirebilirsiniz.</string>
     <string name="stripe_change">Değiştir</string>
+    <string name="stripe_clearpay_subtitle">Şimdi satın alın veya daha sonra Clearpay ile ödeyin</string>
     <string name="stripe_close">Kapat</string>
     <string name="stripe_confirm_close_form_body">Ödeme bilgileriniz kaydedilmeyecek.</string>
     <string name="stripe_confirm_close_form_title">Bu formu kapatmak istiyor musunuz?</string>
@@ -454,6 +457,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Ödeme yöntemlerinizi yönetin</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe, 1-2 iş günü içinde hesabınıza 0,01 ABD doları yatıracaktır. Ardından, %s ödemesini tamamlama talimatlarını içeren bir e-posta alacaksınız.</string>
     <string name="stripe_paymentsheet_modify_pm">%s yöntemini düzenle</string>
+    <string name="stripe_paymentsheet_new_card">Yeni kart</string>
     <string name="stripe_paymentsheet_new_pm">Yeni ödeme yöntemi</string>
     <string name="stripe_paymentsheet_or_pay_using">Veya şununla ödeyin:</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Ya da kartla ödeyin</string>

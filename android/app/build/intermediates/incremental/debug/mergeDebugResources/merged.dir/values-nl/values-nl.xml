@@ -331,6 +331,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Betalen in termijnen met &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Betaal in termijnen met Affirm.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Betaal in <num_installments/> rentevrije termijnen van <installment_price/> met <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d rentevrije betalingen van %2$s</string>
+    <string name="stripe_afterpay_subtitle">Koop nu of betaal later met Afterpay</string>
     <string name="stripe_amazon_pay_mandate">Als je je betaling op Amazon Pay bevestigt, geef je %s toestemming om toekomstige betalingen in rekening te brengen op je Amazon Pay-account in overeenstemming met hun voorwaarden.</string>
     <string name="stripe_au_becs_account_name">Naam op account</string>
     <string name="stripe_au_becs_bsb_number">BSB-nummer</string>
@@ -368,6 +370,7 @@
     <string name="stripe_card_ending_in">%1$s eindigend op %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Als je doorgaat, geef je %1$s toestemming om deze betaling en toekomstige betalingen in rekening te brengen op je Cash App-account, in overeenstemming met de voorwaarden van %2$s, totdat je deze toestemming intrekt. Je kunt dit op elk moment wijzigen via je Cash App-instellingen.</string>
     <string name="stripe_change">Wijzigen</string>
+    <string name="stripe_clearpay_subtitle">Koop nu of betaal later met Clearpay</string>
     <string name="stripe_close">Sluiten</string>
     <string name="stripe_confirm_close_form_body">Je betaalgegevens worden niet opgeslagen.</string>
     <string name="stripe_confirm_close_form_title">Wil je dit formulier sluiten?</string>
@@ -453,6 +456,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Uw betaalmethoden beheren</string>
     <string name="stripe_paymentsheet_microdeposit">Binnen 1-2 werkdagen stort Stripe $ 0,01 op je rekening. Daarna krijg je een e-mail met instructies over hoe je de betaling aan %s kunt voltooien.</string>
     <string name="stripe_paymentsheet_modify_pm">%s bewerken</string>
+    <string name="stripe_paymentsheet_new_card">Nieuwe betaalkaart</string>
     <string name="stripe_paymentsheet_new_pm">Nieuwe betaalmethode</string>
     <string name="stripe_paymentsheet_or_pay_using">Of betalen met</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Of met een kaart betalen</string>

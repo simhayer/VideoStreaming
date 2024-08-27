@@ -326,6 +326,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Fizessen később a következővel:&lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Fizetés később az Affirm használatával.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Fizetés <num_installments/>, egyenként <installment_price/> összegű kamatmentes részletben <img/> használatával]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d kamatmentes kifizetés %2$s értékben</string>
+    <string name="stripe_afterpay_subtitle">Vegye meg most, vagy fizessen később Afterpayjel</string>
     <string name="stripe_amazon_pay_mandate">A fizetés megerősítésével az Amazon Pay engedélyezi, hogy a(z) %s a feltételeinek megfelelően a jövőbeni kifizetésekkel megterhelje az Amazon Pay-számláját.</string>
     <string name="stripe_au_becs_account_name">A számlán szereplő név</string>
     <string name="stripe_au_becs_bsb_number">BSB-szám</string>
@@ -363,6 +365,7 @@
     <string name="stripe_card_ending_in">%1$s végződése %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Ha folytatja, azzal engedélyezi, hogy a(z) %1$s megterhelje a Cash App számláját ezzel a fizetéssel, és jövőbeli fizetésekkel a(z) %2$s feltételeinek megfelelően, ameddig az engedélyt vissza nem vonja. Ezt bármikor megváltoztathatja a Cash App beállításaiban.</string>
     <string name="stripe_change">Módosítás</string>
+    <string name="stripe_clearpay_subtitle">Vegye meg most, vagy fizessen később Clearpayjel</string>
     <string name="stripe_close">Bezárás</string>
     <string name="stripe_confirm_close_form_body">Fizetési adatai nem lesznek mentve.</string>
     <string name="stripe_confirm_close_form_title">Bezárja ezt az űrlapot?</string>
@@ -408,7 +411,7 @@
     <string name="stripe_invalid_shipping_information">Érvénytelen szállítási cím</string>
     <string name="stripe_invalid_upi_id">Érvénytelen UPI-azonosító</string>
     <string name="stripe_invalid_zip">Az irányítószám hiányos.</string>
-    <string name="stripe_klarna_buy_now_pay_later">Megvásárlás most, vagy fizetés később Klarnával.</string>
+    <string name="stripe_klarna_buy_now_pay_later">Vegye meg most, vagy fizessen később Klarnával.</string>
     <string name="stripe_klarna_mandate">A Klarna fizetési módra történő továbblépéssel Ön engedélyezi, hogy a(z) %1$s és a Klarna feltételeinek megfelelően a jövőbeni kifizetésekkel megterhelje a Klarna-számláját. Ezt bármikor megváltoztathatja a Klarna alkalmazásban vagy a(z) %2$s felkeresésével.</string>
     <string name="stripe_klarna_pay_later">Fizetés később Klarnával.</string>
     <string name="stripe_konbini_confirmation_number_label">Telefon</string>
@@ -448,6 +451,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Fizetési módok kezelése</string>
     <string name="stripe_paymentsheet_microdeposit">A Stripe néhány munkanapon belül egy 0,01 $ összegű utalást fog küldeni a bankszámlájára. Ezután e-mailben megkapja az útmutatást a fizetés befejezéséhez a(z) %s felé.</string>
     <string name="stripe_paymentsheet_modify_pm">%s szerkesztése</string>
+    <string name="stripe_paymentsheet_new_card">Új kártya</string>
     <string name="stripe_paymentsheet_new_pm">Új fizetési mód</string>
     <string name="stripe_paymentsheet_or_pay_using">Vagy fizetés a következővel:</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Vagy fizetés kártyával</string>

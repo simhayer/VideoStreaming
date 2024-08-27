@@ -339,6 +339,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Оплатить в рассрочку с помощью &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Оплатите в рассрочку с помощью Affirm.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Оплатить в беспроцентную рассрочку <num_installments/> выплатами по <installment_price/> через <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d беспроцентных платежа(-ей) по %2$s</string>
+    <string name="stripe_afterpay_subtitle">Купите сейчас или оплатите позже через систему Afterpay</string>
     <string name="stripe_amazon_pay_mandate">Подтверждая платеж через AmazonPay, вы тем самым разрешаете компании %s списывать с вашего счета AmazonPay суммы будущих платежей согласно условиям компании.</string>
     <string name="stripe_au_becs_account_name">Владелец счета</string>
     <string name="stripe_au_becs_bsb_number">Номер BSB</string>
@@ -376,6 +378,7 @@
     <string name="stripe_card_ending_in">%1$s, оканч. на %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Продолжая, вы уполномочиваете компанию %1$s списывать с вашего счета Cash App суммы в соответствии с этим, а также будущими платежами согласно условиям компании %2$s, пока это разрешение не будет отозвано. Отозвать разрешение можно в любой момент в настройках приложения Cash App.</string>
     <string name="stripe_change">Изменить</string>
+    <string name="stripe_clearpay_subtitle">Купите сейчас или оплатите позже через систему Clearpay</string>
     <string name="stripe_close">Закрыть</string>
     <string name="stripe_confirm_close_form_body">Ваши платежные реквизиты не будут сохранены.</string>
     <string name="stripe_confirm_close_form_title">Закрыть форму?</string>
@@ -461,6 +464,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Управление способами оплаты</string>
     <string name="stripe_paymentsheet_microdeposit">Через 1-2 рабочих дня Stripe положит вам на счет сумму $0,01. После этого вы получите электронное письмо с инструкциями по завершению платежа в адрес %s.</string>
     <string name="stripe_paymentsheet_modify_pm">Редактировать%s</string>
+    <string name="stripe_paymentsheet_new_card">Новая карта</string>
     <string name="stripe_paymentsheet_new_pm">Новый способ оплаты</string>
     <string name="stripe_paymentsheet_or_pay_using">Или оплатить с помощью</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Или оплатить картой</string>

@@ -329,6 +329,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Ratenzahlung mit &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Ratenzahlung mit Affirm.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Zahlen Sie mit <img/> in <num_installments/> zinslosen Raten zu je <installment_price/>.]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d zinslose Zahlungen in Höhe von %2$s</string>
+    <string name="stripe_afterpay_subtitle">Jetzt kaufen oder später bezahlen mit Afterpay</string>
     <string name="stripe_amazon_pay_mandate">Indem Sie Ihre Zahlung bei Amazon Pay bestätigen, erklären Sie sich damit einverstanden, dass %s Ihr Amazon Pay-Konto zur Durchführung zukünftiger Zahlungen gemäß den Nutzungsbedingungen belastet.</string>
     <string name="stripe_au_becs_account_name">Name des/der Kontoinhaber/in</string>
     <string name="stripe_au_becs_bsb_number">BSB-Nummer</string>
@@ -366,6 +368,7 @@
     <string name="stripe_card_ending_in">%1$s, endend auf %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Indem Sie fortfahren, erteilen Sie %1$s die Genehmigung, Ihr Cash-App-Konto in Höhe dieser und künftiger Zahlungen zu belasten im Einklang mit den AGB von %2$s, bis diese Genehmigung widerrufen wird. Sie können dies jederzeit in Ihren Cash-App-Einstellungen ändern.</string>
     <string name="stripe_change">Ändern</string>
+    <string name="stripe_clearpay_subtitle">Jetzt kaufen oder später bezahlen mit Clearpay</string>
     <string name="stripe_close">Schließen</string>
     <string name="stripe_confirm_close_form_body">Ihre Zahlungsinformationen werden nicht gespeichert.</string>
     <string name="stripe_confirm_close_form_title">Möchten Sie dieses Formular schließen?</string>
@@ -451,6 +454,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Zahlungsmethoden verwalten</string>
     <string name="stripe_paymentsheet_microdeposit">In ein bis zwei Werktagen wird Stripe Ihrem Konto einen Betrag von 0,01 USD gutschreiben. Danach erhalten Sie eine E-Mail mit weiteren Anweisungen zur Durchführung der Zahlung an %s.</string>
     <string name="stripe_paymentsheet_modify_pm">%s bearbeiten</string>
+    <string name="stripe_paymentsheet_new_card">Neue Karte</string>
     <string name="stripe_paymentsheet_new_pm">Neue Zahlungsmethode</string>
     <string name="stripe_paymentsheet_or_pay_using">Oder zahlen mit</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Oder mit Karte bezahlen</string>

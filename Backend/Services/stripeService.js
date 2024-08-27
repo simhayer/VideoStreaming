@@ -98,14 +98,233 @@ const updateStripeCustomerAddress = async (req, res) => {
   }
 };
 
-async function fetch(req, res) {
-  //   var data = await broadcastService.fetch();
-  //   res.json(data);
-}
+const createStripeConnectedAccount = async (req, res) => {
+  const {email, address} = req.body;
+  try {
+    let {username, fullname, stripeUserId} = await auth.getUserStripeDetails(
+      email,
+    );
+
+    const account = await stripe.accounts.create({
+      controller: {
+        losses: {
+          payments: 'application',
+        },
+        fees: {
+          payer: 'application',
+        },
+        stripe_dashboard: {
+          type: 'express',
+        },
+      },
+      business_profile: {
+        url: 'https://hayersimrat23.wixsite.com/getpanda',
+        mcc: '5734',
+        product_description: 'Test product description',
+      },
+    });
+
+    const accountLink = await stripe.accountLinks.create({
+      account: account.id,
+      refresh_url:
+        config.SERVER_URL + '/api/auth/createStripeConnectedAccountRefreshURL',
+      return_url:
+        config.SERVER_URL + '/api/auth/createStripeConnectedAccountReturnURL',
+      type: 'account_onboarding',
+      collection_options: {
+        fields: 'eventually_due',
+      },
+    });
+
+    await auth.setUserStripeConnectedAccountId(email, account.id);
+
+    res.json({
+      success: true,
+      accountId: account.id,
+      accountLink: accountLink,
+    });
+  } catch (error) {
+    console.error('Error updating customer address:', error);
+    res
+      .status(500)
+      .json({success: false, error: 'Failed to update customer address'});
+  }
+};
+
+const createStripeConnectedAccountReturnURL = async (req, res) => {
+  console.log('Return URL called');
+  console.log(req.body);
+  res.json({message: 'Return URL called'});
+};
+
+const createStripeConnectedAccountRefreshURL = async (req, res) => {
+  console.log('Refresh URL called');
+  console.log(req.body);
+  //const {email, address} = req.body;
+  try {
+    const account = await stripe.accounts.create({
+      controller: {
+        losses: {
+          payments: 'application',
+        },
+        fees: {
+          payer: 'application',
+        },
+        stripe_dashboard: {
+          type: 'express',
+        },
+      },
+    });
+
+    const accountLink = await stripe.accountLinks.create({
+      account: account.id,
+      refresh_url:
+        config.SERVER_URL + '/api/auth/createStripeConnectedAccountRefreshURL',
+      return_url:
+        config.SERVER_URL + '/api/auth/createStripeConnectedAccountReturnURL',
+      type: 'account_onboarding',
+      collection_options: {
+        fields: 'eventually_due',
+      },
+    });
+
+    await auth.setUserStripeConnectedAccountId(email, account.id);
+
+    res.redirect(accountLink.url);
+  } catch (error) {
+    console.error('Error updating customer address:', error);
+    res
+      .status(500)
+      .json({success: false, error: 'Failed to update customer address'});
+  }
+};
+
+const checkStripeConnectedAccountOnboardingComplete = async (req, res) => {
+  const {email} = req.body;
+  try {
+    const {stripeConnectedAccountId} = await auth.getUserStripeDetails(email);
+    console.log('Account ID:', stripeConnectedAccountId);
+    if (stripeConnectedAccountId == null || stripeConnectedAccountId == '') {
+      return res.json({success: false, accountId: stripeConnectedAccountId});
+    }
+    const account = await stripe.accounts.retrieve(stripeConnectedAccountId);
+
+    if (
+      account.requirements.currently_due == null ||
+      account.requirements.currently_due.length == 0
+    ) {
+      res.json({success: true, accountId: stripeConnectedAccountId});
+    } else {
+      res.json({success: false, accountId: stripeConnectedAccountId});
+    }
+  } catch (error) {
+    console.error('Error checking account onboarding status:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to check account onboarding status',
+    });
+  }
+};
+
+const createStripeLoginLink = async (req, res) => {
+  const {email} = req.body;
+  try {
+    const {stripeConnectedAccountId} = await auth.getUserStripeDetails(email);
+    console.log('Account ID:', stripeConnectedAccountId);
+    if (stripeConnectedAccountId == null || stripeConnectedAccountId == '') {
+      return res.json({success: false, accountId: stripeConnectedAccountId});
+    }
+    const loginLink = await stripe.accounts.createLoginLink(
+      stripeConnectedAccountId,
+    );
+    res.json({success: true, loginLink: loginLink});
+  } catch (error) {
+    console.error('Error creating login link:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to create login link',
+    });
+  }
+};
+
+const continueOnboarding = async (req, res) => {
+  const {email} = req.body;
+  try {
+    const {stripeConnectedAccountId} = await auth.getUserStripeDetails(email);
+    console.log('Account ID:', stripeConnectedAccountId);
+    if (stripeConnectedAccountId == null || stripeConnectedAccountId == '') {
+      return res.json({success: false, accountId: stripeConnectedAccountId});
+    }
+
+    try {
+      const loginLink = await stripe.accounts.createLoginLink(
+        stripeConnectedAccountId,
+      );
+
+      res.json({
+        success: true,
+        accountId: stripeConnectedAccountId,
+        loginLink: loginLink,
+      });
+    } catch (error) {
+      console.error('Error creating login link:, Starting new onboarding');
+      const account = await stripe.accounts.create({
+        controller: {
+          losses: {
+            payments: 'application',
+          },
+          fees: {
+            payer: 'application',
+          },
+          stripe_dashboard: {
+            type: 'express',
+          },
+        },
+        business_profile: {
+          url: 'https://hayersimrat23.wixsite.com/getpanda',
+          mcc: '5734',
+          product_description: 'Test product description',
+        },
+      });
+
+      const accountLink = await stripe.accountLinks.create({
+        account: account.id,
+        refresh_url:
+          config.SERVER_URL +
+          '/api/auth/createStripeConnectedAccountRefreshURL',
+        return_url:
+          config.SERVER_URL + '/api/auth/createStripeConnectedAccountReturnURL',
+        type: 'account_onboarding',
+        collection_options: {
+          fields: 'eventually_due',
+        },
+      });
+
+      await auth.setUserStripeConnectedAccountId(email, account.id);
+
+      res.json({
+        success: true,
+        accountId: account.id,
+        loginLink: accountLink,
+      });
+    }
+  } catch (error) {
+    console.error('Error creating login link:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to create login link',
+    });
+  }
+};
 
 module.exports = {
   paymentSheet,
   checkStripePaymentandAddressPresent,
   updateStripeCustomerAddress,
-  fetch,
+  createStripeConnectedAccount,
+  createStripeConnectedAccountReturnURL,
+  createStripeConnectedAccountRefreshURL,
+  checkStripeConnectedAccountOnboardingComplete,
+  createStripeLoginLink,
+  continueOnboarding,
 };

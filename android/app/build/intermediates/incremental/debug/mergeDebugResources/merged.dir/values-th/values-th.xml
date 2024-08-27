@@ -326,6 +326,8 @@
     <string name="stripe_affirm_buy_now_pay_later">ทยอยชำระเงินด้วย &lt;img src=\"affirm\"></string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">ทยอยชำระเงินด้วย Affirm</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[ผ่อนชำระ <num_installments/> งวดแบบปลอดดอกเบี้ย งวดละ <installment_price/> ด้วย <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">ผ่อน %1$d งวดแบบปลอดดอกเบี้ย งวดละ %2$s</string>
+    <string name="stripe_afterpay_subtitle">ซื้อตอนนี้หรือจ่ายทีหลังด้วย Afterpay</string>
     <string name="stripe_amazon_pay_mandate">การยืนยันการการชำระเงินด้วย Amazon Pay หมายความว่าคุณอนุญาตให้ %s เรียกเก็บเงินจากบัญชี Amazon Pay ของคุณสำหรับการชำระเงินในอนาคตตามเงื่อนไขของผู้ค้ารายดังกล่าว</string>
     <string name="stripe_au_becs_account_name">ชื่อในบัญชี</string>
     <string name="stripe_au_becs_bsb_number">หมายเลข BSB</string>
@@ -363,6 +365,7 @@
     <string name="stripe_card_ending_in">%1$s ลงท้ายด้วย %2$s</string>
     <string name="stripe_cash_app_pay_mandate">การดำเนินการต่อ หมายความว่าคุณอนุญาตให้ %1$s ฝากเงินเข้าบัญชี Cash App ของคุณสำหรับการชำระเงินรายการนี้ และการชำระเงินในอนาคตโดยสอดคล้องกับข้อกำหนดของ %2$s จนกว่าจะมีการเพิกถอนการอนุญาต คุณสามารถเปลี่ยนแปลงการตั้งค่านี้ได้ทุกเมื่อในการตั้งค่า Cash App</string>
     <string name="stripe_change">เปลี่ยน</string>
+    <string name="stripe_clearpay_subtitle">ซื้อตอนนี้หรือจ่ายทีหลังด้วย Clearpay</string>
     <string name="stripe_close">ปิด</string>
     <string name="stripe_confirm_close_form_body">ข้อมูลการชำระเงินของคุณจะไม่ได้รับการบันทึก</string>
     <string name="stripe_confirm_close_form_title">แน่ใจไหมว่าต้องการปิดแบบฟอร์มนี้</string>
@@ -448,6 +451,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">จัดการวิธีการชำระเงินของคุณ</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe จะฝากเงินจำนวน $0.01 ในบัญชีของคุณภายใน 1-2 วันทำการ จากนั้นคุณก็จะได้รับอีเมลแจ้งวิธีชำระเงินแก่ %s ให้เสร็จสิ้น</string>
     <string name="stripe_paymentsheet_modify_pm">แก้ไข %s</string>
+    <string name="stripe_paymentsheet_new_card">บัตรใหม่</string>
     <string name="stripe_paymentsheet_new_pm">วิธีการชำระเงินใหม่</string>
     <string name="stripe_paymentsheet_or_pay_using">หรือชำระเงินด้วย</string>
     <string name="stripe_paymentsheet_or_pay_with_card">หรือชำระเงินด้วยบัตร</string>

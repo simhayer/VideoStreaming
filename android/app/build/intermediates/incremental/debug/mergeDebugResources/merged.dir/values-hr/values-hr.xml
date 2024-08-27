@@ -329,6 +329,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Platite u ratama koristeći &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Platite u ratama koristeći Affirm.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Platite u <num_installments/> beskamatnih obroka po <installment_price/> koristeći <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d plaćanja u iznosu od %2$s bez kamata</string>
+    <string name="stripe_afterpay_subtitle">Kupite sada ili platite kasnije s Afterpay</string>
     <string name="stripe_amazon_pay_mandate">Potvrdom svog plaćanja putem Amazon Paya, dopuštate poduzeću %s da tereti vaš AmazonPay račun za buduća plaćanja u skladu s njegovim uvjetima.</string>
     <string name="stripe_au_becs_account_name">Ime na računu</string>
     <string name="stripe_au_becs_bsb_number">BSB broj</string>
@@ -366,6 +368,7 @@
     <string name="stripe_card_ending_in">%1$s završava na %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Ako nastavite, autorizirate %1$s da tereti vaš račun Cash App za ovo plaćanje i buduća plaćanja u skladu s uvjetima poduzeća %2$s, dok se ova autorizacija ne opozove. Ovo možete promijeniti bilo kada u postavkama aplikacije Cash App.</string>
     <string name="stripe_change">Izmijeni</string>
+    <string name="stripe_clearpay_subtitle">Kupite sada ili platite kasnije s Clearpay</string>
     <string name="stripe_close">Zatvori</string>
     <string name="stripe_confirm_close_form_body">Vaši podaci o plaćanju neće biti spremljeni.</string>
     <string name="stripe_confirm_close_form_title">Želite li zatvoriti ovaj obrazac?</string>
@@ -451,6 +454,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Upravljajte svojim metodama plaćanja</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe će uplatiti polog u iznosu od 0,01 USD na vaš račun u roku od 1-2 radna dana. Zatim ćete zaprimiti poruku e-pošte s uputama za dovršetak plaćanja za %s.</string>
     <string name="stripe_paymentsheet_modify_pm">Uredi %s</string>
+    <string name="stripe_paymentsheet_new_card">Nova kartica</string>
     <string name="stripe_paymentsheet_new_pm">Novi način plaćanja</string>
     <string name="stripe_paymentsheet_or_pay_using">Ili platite koristeći</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Ili plati karticom</string>

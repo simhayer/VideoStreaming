@@ -330,6 +330,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Paga nel tempo con &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Paga nel tempo con Affirm.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Paga in <num_installments/> rate senza interessi di <installment_price/> con <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d pagamenti senza interessi pari a %2$s</string>
+    <string name="stripe_afterpay_subtitle">Paga a rate con Afterpay</string>
     <string name="stripe_amazon_pay_mandate">Confermando il tuo pagamento con AmazonPay, consenti a %s di addebitare i pagamenti futuri sul tuo account AmazonPay in base a quanto previsto dai relativi termini e condizioni.</string>
     <string name="stripe_au_becs_account_name">Nome sul conto</string>
     <string name="stripe_au_becs_bsb_number">Numero BSB</string>
@@ -367,6 +369,7 @@
     <string name="stripe_card_ending_in">%1$s che termina con %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Continuando, autorizzi %1$s ad addebitare questo pagamento e i pagamenti futuri sul tuo conto Cash App conformemente ai termini di %2$s, fino alla revoca di tale autorizzazione. Puoi modificarla in qualsiasi momento nelle impostazioni di Cash app.</string>
     <string name="stripe_change">Cambia</string>
+    <string name="stripe_clearpay_subtitle">Paga a rate con Clearpay</string>
     <string name="stripe_close">Chiudi</string>
     <string name="stripe_confirm_close_form_body">I dati di pagamento non verranno salvati.</string>
     <string name="stripe_confirm_close_form_title">Chiudere il modulo?</string>
@@ -452,6 +455,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Gestisci modalità di pagamento</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe verserà 0,01 USD sul tuo account in 1-2 giorni lavorativi. Poi riceverai un\'email con le istruzioni per completare il pagamento a favore di %s.</string>
     <string name="stripe_paymentsheet_modify_pm">Modifica %s</string>
+    <string name="stripe_paymentsheet_new_card">Nuova carta</string>
     <string name="stripe_paymentsheet_new_pm">Nuova modalità di pagamento</string>
     <string name="stripe_paymentsheet_or_pay_using">O paga con</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Oppure paga con carta</string>

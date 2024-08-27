@@ -333,6 +333,8 @@
     <string name="stripe_affirm_buy_now_pay_later">Maksa aikanaan kohteella &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Maksa aikanaan Affirmilla.</string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Maksu <num_installments/> korottomassa <installment_price/> osassa maksutavalla <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d korotonta %2$s maksua</string>
+    <string name="stripe_afterpay_subtitle">Osta nyt tai maksa myöhemmin Afterpaylla</string>
     <string name="stripe_amazon_pay_mandate">Kun vahvistat maksusi Amazon Paylla, %s valtuutetaan veloittamaan tulevia maksuja Amazon Pay -tililtäsi omien ehtojensa mukaisesti.</string>
     <string name="stripe_au_becs_account_name">Tilin nimi</string>
     <string name="stripe_au_becs_bsb_number">BSB-numero</string>
@@ -370,6 +372,7 @@
     <string name="stripe_card_ending_in">%1$s päättyy numeroihin %2$s</string>
     <string name="stripe_cash_app_pay_mandate">Jatkamalla valtuutat kauppiaan %1$s veloittamaan Cash App -tiliäsi tälle ja tuleville maksuille kauppiaan %2$s ehtojen mukaisesti, kunnes tämä todennus peruutetaan. Voit muuttaa tätä milloin tahansa Cash App -asetuksista.</string>
     <string name="stripe_change">Vaihda</string>
+    <string name="stripe_clearpay_subtitle">Osta nyt tai maksa myöhemmin Clearpaylla</string>
     <string name="stripe_close">Sulje</string>
     <string name="stripe_confirm_close_form_body">Maksutietojasi ei tallenneta.</string>
     <string name="stripe_confirm_close_form_title">Haluatko sulkea tämän lomakkeen?</string>
@@ -455,6 +458,7 @@
     <string name="stripe_paymentsheet_manage_your_payment_methods">Hallitse maksutapojasi</string>
     <string name="stripe_paymentsheet_microdeposit">Stripe tallettaa 0,01 dollaria tilillesi 1–2 arkipäivän kuluessa. Saat myös sähköpostiisi ohjeet maksun suorittamiseksi loppuun yritykselle %s.</string>
     <string name="stripe_paymentsheet_modify_pm">Muokkaa %s</string>
+    <string name="stripe_paymentsheet_new_card">Uusi kortti</string>
     <string name="stripe_paymentsheet_new_pm">Uusi maksutapa</string>
     <string name="stripe_paymentsheet_or_pay_using">Tai käytä maksutapaa</string>
     <string name="stripe_paymentsheet_or_pay_with_card">Tai maksa kortilla</string>

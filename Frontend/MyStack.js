@@ -21,6 +21,7 @@ import AddAddress from './Screens/PaymentAndShipping/AddAddress';
 import SettingsMenu from './Screens/SettingsMenu';
 import ManageProducts from './Screens/ManageProducts';
 import AddProduct from './Screens/AddProduct';
+import ContinueOnboarding from './Screens/GetStartedSell/ContinueOnboarding';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -91,6 +92,11 @@ const MyStack = () => {
           <Stack.Screen
             name="AddProduct"
             component={AddProduct}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ContinueOnboarding"
+            component={ContinueOnboarding}
             options={{headerShown: false}}
           />
         </Stack.Group>

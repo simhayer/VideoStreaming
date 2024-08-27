@@ -3585,7 +3585,9 @@
     <string name="stripe_address_zip_postal_invalid">Your ZIP/Postal code is invalid</string>
     <string name="stripe_affirm_buy_now_pay_later">Pay over time with &lt;img src=\"affirm\">.</string>
     <string name="stripe_affirm_buy_now_pay_later_plaintext">Pay over time with Affirm</string>
+    <string name="stripe_afterpay_clearpay_marketing"><![CDATA[Buy now or pay later with <img/>]]></string>
     <string name="stripe_afterpay_clearpay_message"><![CDATA[Pay in <num_installments/> interest-free payments of <installment_price/> with <img/>]]></string>
+    <string name="stripe_afterpay_clearpay_subtitle">%1$d interest-free payments of %2$s</string>
     <string name="stripe_afterpay_subtitle">Buy now or pay later with Afterpay</string>
     <string name="stripe_amazon_pay_mandate">By confirming your payment with Amazon Pay, you allow %s to charge your Amazon Pay account for future payments in accordance with their terms.</string>
     <string name="stripe_attachlinkedpaymentaccount_error_desc">Please enter your bank details manually</string>

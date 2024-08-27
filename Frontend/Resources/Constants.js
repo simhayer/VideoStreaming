@@ -1,4 +1,5 @@
 import {updateUsername} from '../../Backend/middleware/auth';
+import {createStripeConnectedAccountRefreshURL} from '../../Backend/Services/stripeService';
 
 export const baseURL = 'http://10.0.2.2:3000'; //for android studio
 //export const baseURL = 'http://localhost:3000';   //for actual device
@@ -26,6 +27,11 @@ export const apiEndpoints = {
   addProductToUser: '/api/auth/addProductToUser',
   removeProductsFromUser: '/api/auth/removeProductsFromUser',
   getUserProducts: '/api/auth/getUserProducts',
+  createStripeConnectedAccount: '/api/auth/createStripeConnectedAccount',
+  checkStripeConnectedAccountOnboardingComplete:
+    '/api/auth/checkStripeConnectedAccountOnboardingComplete',
+  createStripeLoginLink: '/api/auth/createStripeLoginLink',
+  continueOnboarding: '/api/auth/continueOnboarding',
   // Add more API endpoints as needed
 };
 
