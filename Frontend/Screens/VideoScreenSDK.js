@@ -32,7 +32,6 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Video from 'react-native-video';
-import {set} from 'mongoose';
 import axios from 'axios';
 
 const {height: screenHeight} = Dimensions.get('window');
@@ -53,7 +52,6 @@ function ViewerView({}) {
     <SafeAreaView style={{flex: 1}}>
       {hlsState == 'HLS_PLAYABLE' ? (
         <>
-          {/* Render VideoPlayer that will play downstreamUrl*/}
           <Video
             ref={videoRef}
             controls={false}

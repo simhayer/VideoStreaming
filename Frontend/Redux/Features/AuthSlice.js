@@ -85,13 +85,10 @@ export const updateUsername = createAsyncThunk(
   },
 );
 
-// Update Username
 export const uploadProfilePicture = createAsyncThunk(
   'auth/uploadProfilePicture',
   async (params, thunkApi) => {
-    console.log(params);
-    email = params.email;
-    uri = params.uri;
+    const {email, uri} = params;
     const formData = new FormData();
     formData.append('profilePicture', {
       uri,
@@ -110,27 +107,13 @@ export const uploadProfilePicture = createAsyncThunk(
           },
         },
       );
-      console.log('Profile picture updated successfully');
-      return response.data;
-      // if (response.status === 200) {
-
-      // } else {
-      //   return thunkApi.rejectWithValue({
-      //     message: 'Error uploading profile picture',
-      //   });
-      // }
+      return {profilePicture: response.data.profilePicture, uri}; // Return both server URL and local URI
     } catch (error) {
-      if (error.response) {
-        return thunkApi.rejectWithValue({
-          message: 'Update username failed',
-          status: error.response.status,
-          data: error.response.data,
-        });
-      } else {
-        return thunkApi.rejectWithValue({
-          message: 'Update username failed',
-        });
-      }
+      return thunkApi.rejectWithValue({
+        message: 'Update username failed',
+        status: error.response ? error.response.status : null,
+        data: error.response ? error.response.data : null,
+      });
     }
   },
 );
@@ -204,7 +187,9 @@ const authSlice = createSlice({
     builder.addCase(uploadProfilePicture.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
+      // Save the uploaded image URL and local URI in the state
       state.userData.user.profilePicture = action.payload.profilePicture;
+      state.userData.user.profilePictureURI = action.payload.uri; // Save local URI here
     });
     builder.addCase(uploadProfilePicture.rejected, (state, action) => {
       state.isLoading = false;

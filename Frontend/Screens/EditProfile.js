@@ -26,18 +26,12 @@ const EditProfile = () => {
   const email = userData?.user?.email;
   const fullname = userData?.user?.fullname;
   const username = userData?.user?.username;
-  const profilePicture = userData?.user?.profilePicture;
-
-  // Check if profilePicture is valid before constructing the URL
-  const profilePictureURL = profilePicture
-    ? `${baseURL}/profilePicture/${profilePicture.split('/').pop()}`
-    : null;
-  console.log(profilePictureURL);
-
-  const [selectedImage, setSelectedImage] = useState(profilePictureURL);
 
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
+
+  const profilePictureURI = userData?.user?.profilePictureURI;
+  const [selectedImage, setSelectedImage] = useState(profilePictureURI);
 
   const handleImagePicker = () => {
     const options = {
@@ -53,11 +47,11 @@ const EditProfile = () => {
       } else {
         const uri = response.assets[0].uri;
         setSelectedImage(uri);
-        const updateParams = {email, uri};
+        const updateParams = {email: userData.user.email, uri};
         dispatch(uploadProfilePicture(updateParams))
           .unwrap()
           .then(() => {
-            console.log('Success');
+            console.log('Profile picture updated successfully');
           })
           .catch(err => {
             console.error('Error:', err);
