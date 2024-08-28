@@ -63,7 +63,7 @@ function ViewerView({}) {
             resizeMode={'cover'}
             style={{
               backgroundColor: 'black',
-              height: screenHeight,
+              height: screenHeight * 1.1,
             }}
             onLoad={() => {
               videoRef.current.seek(Number.MAX_SAFE_INTEGER);

@@ -14,7 +14,7 @@ const TabControl = () => {
   const navigation = useNavigation();
 
   const {userData} = useSelector(state => state.auth);
-  const canSell = userData?.isOnboardingStarted;
+  const isOnboardingStarted = userData?.user.isOnboardingStarted;
 
   return (
     <Tab.Navigator
@@ -45,7 +45,7 @@ const TabControl = () => {
         component={SellTab}
         listeners={{
           tabPress: e => {
-            if (!canSell) {
+            if (!isOnboardingStarted) {
               e.preventDefault();
               navigation.navigate('GetStartedSell'); // Ensure this screen is in your stack navigator
             }

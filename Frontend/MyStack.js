@@ -22,6 +22,7 @@ import SettingsMenu from './Screens/SettingsMenu';
 import ManageProducts from './Screens/ManageProducts';
 import AddProduct from './Screens/AddProduct';
 import ContinueOnboarding from './Screens/GetStartedSell/ContinueOnboarding';
+import StartStreamTab from './Screens/StartStreamTab';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -97,6 +98,11 @@ const MyStack = () => {
           <Stack.Screen
             name="ContinueOnboarding"
             component={ContinueOnboarding}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="StartStreamTab"
+            component={StartStreamTab}
             options={{headerShown: false}}
           />
         </Stack.Group>

@@ -83,7 +83,7 @@ const CreateConnectedAccount = () => {
             width: '50%',
             width: '100%',
           }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
             <Icon name="chevron-back" size={40} color="black" />
           </TouchableOpacity>
           <Text

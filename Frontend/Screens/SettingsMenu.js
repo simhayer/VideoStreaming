@@ -18,6 +18,7 @@ import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+import {logout} from '../Redux/Features/AuthSlice';
 
 export default function AddPaymentMethod() {
   const dispatch = useDispatch();
@@ -45,7 +46,6 @@ export default function AddPaymentMethod() {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          width: '50%',
           width: '100%',
         }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>

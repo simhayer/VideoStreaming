@@ -39,6 +39,7 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk(
   'auth/logout',
   async (params, thunkApi) => {
+    console.log('Logout params:', params);
     try {
       const response = await axios.post(baseURL + apiEndpoints.logout, params);
       return response.data;

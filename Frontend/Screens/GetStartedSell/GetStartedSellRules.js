@@ -45,7 +45,7 @@ const GetStartedSell = () => {
     if (accountLink && accountLink.url) {
       dispatch(setOnboardingStarted());
       Linking.openURL(accountLink.url);
-      navigation.navigate('CreateConnectedAccount');
+      navigation.navigate('Sell');
     }
   };
 

@@ -11,10 +11,12 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
+  Linking,
 } from 'react-native';
 import {apiEndpoints, appPink, baseURL} from '../Resources/Constants';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {setOnboardingChecked} from '../Redux/Features/NonPersistSlice';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -29,11 +31,17 @@ const StartStreamTab = () => {
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
 
+  const dispatch = useDispatch();
+  const {isOnboardingChecked} = useSelector(state => state.NonPersistSlice);
+
   const startStream = async () => {
-    navigation.navigate('StreamScreenSDK', {title});
+    navigation.navigate('StartStreamTab', {title});
   };
 
   const checkStripeOnboarding = async () => {
+    if (isOnboardingChecked) {
+      return;
+    }
     setLoading(true); // Start loading
     const payload = {
       email: userEmail,
@@ -55,6 +63,10 @@ const StartStreamTab = () => {
 
     setLoading(false); // Stop loading
 
+    if (success) {
+      dispatch(setOnboardingChecked());
+    }
+
     if (!success) {
       navigation.navigate('ContinueOnboarding');
     }
@@ -67,7 +79,7 @@ const StartStreamTab = () => {
   useFocusEffect(
     useCallback(() => {
       checkStripeOnboarding();
-    }, []),
+    }, [isOnboardingChecked]),
   );
 
   useEffect(() => {
@@ -81,7 +93,31 @@ const StartStreamTab = () => {
     return () => {
       subscription.remove();
     };
-  }, [appState]);
+  }, [appState, isOnboardingChecked]);
+
+  const viewDashboard = async () => {
+    const payload = {
+      email: userEmail,
+    };
+
+    const response = await axios
+      .post(baseURL + apiEndpoints.createStripeLoginLink, payload)
+      .catch(error => {
+        console.error('Error adding broadcast:', error);
+      });
+
+    const {accountId, loginLink} = response.data;
+
+    if (loginLink && loginLink.url) {
+      //navigation.navigate('Sell');
+      Linking.openURL(loginLink.url);
+    }
+
+    return {
+      accountId,
+      loginLink,
+    };
+  };
 
   return (
     <SafeAreaView
@@ -92,7 +128,16 @@ const StartStreamTab = () => {
           <Text>Checking Onboarding Status...</Text>
         </View>
       ) : (
-        <View style={{flex: 1, alignItems: 'center'}}>
+        <View style={{flex: 1, alignItems: 'center', marginTop: '4%'}}>
+          <Text
+            style={{
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2,
+            }}>
+            Sellers Dashboard
+          </Text>
+
           <TouchableOpacity
             style={{
               marginTop: '3%',
@@ -100,7 +145,33 @@ const StartStreamTab = () => {
               borderBottomWidth: 1,
               borderWidth: 1,
               borderColor: 'rgba(0,0,0,0.2)',
-              width: '100%',
+              width: '90%',
+              flexDirection: 'row',
+              paddingVertical: '2%',
+              paddingHorizontal: '4%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderRadius: 40,
+              marginTop: '10%',
+            }}
+            onPress={() => navigation.navigate('ManageProducts')}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Icon name="cube-outline" size={35} color="black" />
+              <Text
+                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                Orders
+              </Text>
+            </View>
+            <Icon name="chevron-forward" size={40} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: '3%',
+              borderTopWidth: 1,
+              borderBottomWidth: 1,
+              borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              width: '90%',
               flexDirection: 'row',
               paddingVertical: '2%',
               paddingHorizontal: '4%',
@@ -108,32 +179,16 @@ const StartStreamTab = () => {
               alignItems: 'center',
               borderRadius: 40,
             }}
-            onPress={() => navigation.navigate('ManageProducts')}>
+            onPress={() => viewDashboard()}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Icon name="cube-outline" size={35} color="black" />
               <Text
                 style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
-                Manage Products
+                View Payments Dashboards
               </Text>
             </View>
             <Icon name="chevron-forward" size={40} color="black" />
           </TouchableOpacity>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="reader-outline" size={40} color="black" />
-            <TextInput
-              value={title}
-              onChangeText={title => setTitle(title.trim())}
-              placeholder={'Enter stream title'}
-              style={{
-                width: '70%',
-                borderBottomWidth: 1,
-                borderColor: 'grey',
-                fontSize: calculatedFontSize / 2.3,
-                marginBottom: '2%',
-                marginLeft: '4%',
-              }}
-            />
-          </View>
           <TouchableOpacity
             onPress={() => startStream()}
             style={{
@@ -141,6 +196,7 @@ const StartStreamTab = () => {
               width: '90%',
               backgroundColor: appPink,
               borderRadius: 40,
+              marginTop: '70%',
             }}>
             <Icon name="videocam-outline" size={40} color="black" />
           </TouchableOpacity>
@@ -151,7 +207,7 @@ const StartStreamTab = () => {
               fontSize: calculatedFontSize / 2.5,
               fontWeight: 'bold',
             }}>
-            Start Stream
+            Start Selling
           </Text>
         </View>
       )}

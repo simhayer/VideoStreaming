@@ -30,8 +30,6 @@ import {
   Constants,
   RTCView,
 } from '@videosdk.live/react-native-sdk';
-import {set} from 'mongoose';
-import {endBid} from '../../Backend/Services/broadcastServices';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -58,14 +56,14 @@ function ParticipantView({participantId}) {
       streamURL={new MediaStream([webcamStream.track]).toURL()}
       objectFit={'cover'}
       style={{
-        height: screenHeight,
+        height: screenHeight * 1.1,
       }}
     />
   ) : (
     <View
       style={{
         backgroundColor: 'grey',
-        height: screenHeight,
+        height: screenHeight * 1.1,
         justifyContent: 'center',
         alignItems: 'center',
       }}>
@@ -214,20 +212,6 @@ const StreamScreen = ({route}) => {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [startBid, setStartBid] = useState('0');
 
-  const items1 = [
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-    'Item5',
-    'Item6',
-  ];
   const [selectedItem, setSelectedItem] = useState(items[0]);
 
   const handleItemPress = item => {
