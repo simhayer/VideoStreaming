@@ -435,6 +435,29 @@ exports.updateProfilePicture = [
   },
 ];
 
+exports.getUserDetailsFromUsername = async username => {
+  console.log('Request Body:', username); // Log the body of the request
+  if (!username) {
+    return null;
+  }
+
+  try {
+    const user = await User.findOne({username}); // Look up the user by username
+    if (!user) {
+      return null;
+    }
+    return {
+      email: user.email,
+      username: user.username,
+      fullname: user.fullname,
+      profilePicture: user.profilePicture,
+    };
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+    return null;
+  }
+};
+
 exports.getUserStripeDetails = async email => {
   console.log('Request Body:', email); // Log the body of the request
 

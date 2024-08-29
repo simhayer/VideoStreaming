@@ -55,9 +55,17 @@ module.exports = io => {
 
     socket.on('bid', data => {
       console.log('bid: ' + data);
-      broadcastService.addBid(data.id, data.bidAmount, data.userUsername);
-
-      io.to(data.id).emit('newBid', data);
+      //broadcastService.addBid(data.id, data.bidAmount, data.userUsername);
+      const id = data.id;
+      if (data) {
+        broadcastService
+          .addBid(data.id, data.bidAmount, data.userUsername)
+          .then(data => {
+            io.to(id).emit('newBid', data);
+          });
+      } else {
+        console.log('id is undefined or missing');
+      }
     });
 
     socket.on('start-bid', data => {

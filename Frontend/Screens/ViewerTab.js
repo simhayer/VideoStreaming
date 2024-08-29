@@ -82,6 +82,7 @@ const ViewerTab = () => {
     meetingId,
   ) => {
     socket.emit('watcher', {id: broadcastId});
+    console.log('watchVideoSDK');
 
     navigation.navigate('VideoScreenSDK', {
       streamId: '',

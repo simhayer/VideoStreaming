@@ -61,7 +61,7 @@ function ViewerView({}) {
             resizeMode={'cover'}
             style={{
               backgroundColor: 'black',
-              height: screenHeight * 1.1,
+              height: screenHeight,
             }}
             onLoad={() => {
               videoRef.current.seek(Number.MAX_SAFE_INTEGER);
@@ -133,7 +133,7 @@ const VideoScreen = ({route}) => {
 
     newSocket.on('newBid', data => {
       console.log('New bid received:', data);
-      setCurBid(Number(data.userBid));
+      setCurBid(Number(data.bidAmount));
     });
 
     newSocket.on('startBid', data => {
@@ -185,14 +185,16 @@ const VideoScreen = ({route}) => {
   const handleSendBid = () => {
     console.log('In Bid sent:', curBid + 1);
     setUserBid(Number(curBid) + 1);
-    if (curBid + 1 > 0) {
+    //setCurBid(Number(curBid) + 1);
+    if (Number(userBid) > 0) {
       console.log('Bid sent:', curBid + 1);
 
       const bidData = {
         id: broadcastId,
-        userBid: curBid + 1,
+        bidAmount: Number(curBid) + 1,
         userUsername,
       };
+      //setCurBid(Number(curBid) + 1);
       socket.emit('bid', bidData);
       //setUserBid(0); // Clear the input after sending the comment
     }
@@ -205,7 +207,7 @@ const VideoScreen = ({route}) => {
 
       const bidData = {
         id: broadcastId,
-        userBid: userBid,
+        bidAmount: Number(userBid),
         userUsername,
       };
       socket.emit('bid', bidData);
@@ -275,10 +277,10 @@ const VideoScreen = ({route}) => {
       .post(baseURL + apiEndpoints.checkStripePaymentPresent, payload)
       .catch(error => {
         console.error('Error checking payment present:', error);
+        return;
       });
 
     console.log('Response:', response.data);
-
     const {paymentPresent, address} = response.data;
 
     console.log('Payment present:', paymentPresent);

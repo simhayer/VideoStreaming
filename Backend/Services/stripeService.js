@@ -4,6 +4,7 @@ const auth = require('../middleware/auth');
 const stripe = require('stripe')(config.StripePublishableKey);
 
 const paymentSheet = async (req, res) => {
+  console.log('Payment sheet called');
   const {email} = req.body; // Destructure to get the email from req.body
 
   let {username, fullname, stripeUserId} = await auth.getUserStripeDetails(
@@ -39,19 +40,23 @@ const paymentSheet = async (req, res) => {
 };
 
 const checkStripePaymentandAddressPresent = async (req, res) => {
-  const {email} = req.body; // Destructure to get the email from req.body
+  console.log('Checking payment and address present');
+  const {email} = req.body;
+  console.log('Email:', email);
 
   let {username, fullname, stripeUserId} = await auth.getUserStripeDetails(
     email,
   );
 
-  const customer = await stripe.customers.retrieve(stripeUserId);
-
   if (stripeUserId == null || stripeUserId == '') {
-    res.json({paymentPresent: false, address: null});
+    return res.json({paymentPresent: false, address: null});
   }
 
   try {
+    const customer = await stripe.customers.retrieve(stripeUserId);
+
+    console.log('Stripe ID:', stripeUserId);
+    console.log('Customer:', customer.id);
     const paymentMethods = await stripe.customers.listPaymentMethods(
       stripeUserId,
       {
@@ -60,13 +65,13 @@ const checkStripePaymentandAddressPresent = async (req, res) => {
     );
 
     if (paymentMethods.data.length == 0) {
-      res.json({paymentPresent: false, address: customer.address});
+      return res.json({paymentPresent: false, address: customer.address});
     } else {
-      res.json({paymentPresent: true, address: customer.address});
+      return res.json({paymentPresent: true, address: customer.address});
     }
-    //res.json(paymentMethods);
   } catch (error) {
-    res.status(400).send(`Error: ${error.message}`);
+    console.error('In catch block for payment and address present:');
+    return res.json({paymentPresent: false, address: null});
   }
 };
 
@@ -317,6 +322,59 @@ const continueOnboarding = async (req, res) => {
   }
 };
 
+const chargeCustomerOffSession = async ({
+  id,
+  amount,
+  userUsername,
+  broadcasterUsername,
+}) => {
+  try {
+    console.log('amount:', amount);
+    // Assuming auth.getUserStripeDetails() requires the username instead of email
+    const {email} = await auth.getUserDetailsFromUsername(userUsername);
+    const {stripeUserId} = await auth.getUserStripeDetails(email);
+    console.log('Account ID:', stripeUserId);
+
+    if (!stripeUserId) {
+      return {success: false, error: 'Stripe user ID not found'};
+    }
+
+    // const paymentMethods = await stripe.paymentMethods.list({
+    //   customer: stripeUserId,
+    //   type: 'card',
+    // });
+
+    const paymentMethods = await stripe.customers.listPaymentMethods(
+      stripeUserId,
+      {
+        limit: 3,
+      },
+    );
+
+    if (paymentMethods.length === 0) {
+      return {success: false, error: 'No payment methods available'};
+    }
+
+    //console.log('Payment method:', paymentMethods.data[0]);
+
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 1099, // Use the passed amount
+      currency: 'cad', // Use the appropriate currency
+      customer: stripeUserId,
+      payment_method: paymentMethods.data[0].id,
+      return_url: 'https://example.com/order/123/complete',
+      off_session: true,
+      confirm: true,
+    });
+
+    console.log('PaymentIntent created:', paymentIntent.id);
+    return {success: true, paymentIntentId: paymentIntent.id};
+  } catch (error) {
+    console.error('Error charging customer:', error);
+    return {success: false, error: 'Failed to charge customer'};
+  }
+};
+
 module.exports = {
   paymentSheet,
   checkStripePaymentandAddressPresent,
@@ -327,4 +385,5 @@ module.exports = {
   checkStripeConnectedAccountOnboardingComplete,
   createStripeLoginLink,
   continueOnboarding,
+  chargeCustomerOffSession,
 };

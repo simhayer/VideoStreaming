@@ -5,7 +5,14 @@ import {
   useStripe,
 } from '@stripe/stripe-react-native';
 import {useCallback, useEffect, useState} from 'react';
-import {Alert, Button, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Button,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Screen} from 'react-native-screens';
 import {
   baseURL,
@@ -72,86 +79,90 @@ export default function AddPaymentOrShipping() {
       merchantIdentifier="merchant.identifier" // required for Apple Pay
       urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
     >
-      <View style={{alignItems: 'center', marginTop: '10%'}}>
-        <Text style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>
-          We need the following information to process for you to start bidding
-        </Text>
-        <Text>You won't be charged untill you purchase an item</Text>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('AddPaymentMethod');
-          }}
-          style={{
-            marginTop: '10%',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '100%',
-            flexDirection: 'row',
-            paddingVertical: '4%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="card-outline" size={40} color="black" />
-            <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
-              Payment
-            </Text>
-          </View>
-          <Icon
-            name="checkmark-circle"
-            size={40}
-            color={paymentMethodExist ? 'green' : 'grey'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('AddAddress', {address});
-          }}
-          style={{
-            borderBottomWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '100%',
-            flexDirection: 'row',
-            paddingVertical: '4%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="home-outline" size={40} color="black" />
-            <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
-              Shipping
-            </Text>
-          </View>
-          <Icon
-            name="checkmark-circle"
-            size={40}
-            color={addressExist ? 'green' : 'grey'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Home')}
-          style={{
-            marginTop: '10%',
-            paddingVertical: '4%',
-            backgroundColor: appPink,
-            borderRadius: 40,
-            paddingHorizontal: '10%',
-          }}>
+      <SafeAreaView style={{flex: 1}}>
+        <View style={{alignItems: 'center', marginTop: '10%'}}>
           <Text
-            style={{
-              color: 'white',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            }}>
-            Done
+            style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>
+            We need the following information to process for you to start
+            bidding
           </Text>
-        </TouchableOpacity>
-      </View>
+          <Text>You won't be charged untill you purchase an item</Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('AddPaymentMethod');
+            }}
+            style={{
+              marginTop: '10%',
+              borderTopWidth: 1,
+              borderBottomWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              width: '100%',
+              flexDirection: 'row',
+              paddingVertical: '4%',
+              paddingHorizontal: '4%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Icon name="card-outline" size={40} color="black" />
+              <Text
+                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                Payment
+              </Text>
+            </View>
+            <Icon
+              name="checkmark-circle"
+              size={40}
+              color={paymentMethodExist ? 'green' : 'grey'}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('AddAddress', {address});
+            }}
+            style={{
+              borderBottomWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              width: '100%',
+              flexDirection: 'row',
+              paddingVertical: '4%',
+              paddingHorizontal: '4%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Icon name="home-outline" size={40} color="black" />
+              <Text
+                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                Shipping
+              </Text>
+            </View>
+            <Icon
+              name="checkmark-circle"
+              size={40}
+              color={addressExist ? 'green' : 'grey'}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            style={{
+              marginTop: '10%',
+              paddingVertical: '4%',
+              backgroundColor: appPink,
+              borderRadius: 40,
+              paddingHorizontal: '10%',
+            }}>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+              }}>
+              Done
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
     </StripeProvider>
   );
 }

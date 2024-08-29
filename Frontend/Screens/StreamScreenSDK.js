@@ -56,14 +56,14 @@ function ParticipantView({participantId}) {
       streamURL={new MediaStream([webcamStream.track]).toURL()}
       objectFit={'cover'}
       style={{
-        height: screenHeight * 1.1,
+        height: screenHeight,
       }}
     />
   ) : (
     <View
       style={{
         backgroundColor: 'grey',
-        height: screenHeight * 1.1,
+        height: screenHeight,
         justifyContent: 'center',
         alignItems: 'center',
       }}>
@@ -245,7 +245,7 @@ const StreamScreen = ({route}) => {
 
     socket.current.on('newBid', data => {
       console.log('New bid received:', data);
-      setCurBid(Number(data.userBid));
+      setCurBid(Number(data.bidAmount));
       setNoOfBids(Number(data.bidNo));
     });
 

@@ -4,6 +4,7 @@ const {v4: uuidv4} = require('uuid');
 const config = require('../config');
 const {broadcasters} = require('../Data/data');
 const socketFunction = require('../Socket/socketFunction');
+const stripeService = require('../Services/stripeService');
 
 class Broadcaster {
   constructor(
@@ -50,98 +51,12 @@ async function addBroadcast(
 
   broadcasters[id] = broadcast;
 
-  //broadcastMediaProcess(id);
   //broadcastConnectionState(id);
-  //broadcastOnIceCandidate(id);
-
-  //await broadcastSdpProcess(id, sdp);
-
   return id;
 }
 
-async function broadcastMediaProcess(id) {
-  try {
-    broadcasters[id].peer.ontrack = e => {
-      console.log(`Track received for broadcaster ${id}`);
-      broadcasters[id].stream = e.streams[0];
-    };
-  } catch (e) {
-    console.log(`Error in broadcastMediaProcess: ${e.message}`);
-  }
-}
-
 async function broadcastConnectionState(id) {
-  broadcasters[id].peer.oniceconnectionstatechange = e => {
-    try {
-      if (broadcasters[id] != null) {
-        const connectionStatus2 = broadcasters[id].peer.iceConnectionState;
-        if (['disconnected', 'failed', 'closed'].includes(connectionStatus2)) {
-          console.log(
-            '\x1b[31m',
-            'Broadcaster: ' + id + ' - ' + connectionStatus2,
-            '\x1b[0m',
-          );
-          removeBroadcast(id);
-          socketFunction.sendListUpdateSignal();
-        }
-        if (['connected'].includes(connectionStatus2)) {
-          console.log(
-            '\x1b[34m',
-            'Broadcaster: ' + id + ' - ' + connectionStatus2,
-            '\x1b[0m',
-          );
-          socketFunction.sendListUpdateSignal();
-        }
-      }
-    } catch (e) {
-      console.log(`Error in broadcastConnectionState: ${e.message}`);
-    }
-  };
-}
-
-async function broadcastOnIceCandidate(id) {
-  try {
-    broadcasters[id].peer.onicecandidate = e => {
-      if (!e || !e.candidate) return;
-      var candidate = {
-        candidate: String(e.candidate.candidate),
-        sdpMid: String(e.candidate.sdpMid),
-        sdpMLineIndex: e.candidate.sdpMLineIndex,
-      };
-      console.log(`Sending ICE candidate for broadcaster ${id}`);
-      socketFunction.sendCandidateToClient(
-        broadcasters[id].socket_id,
-        candidate,
-      );
-    };
-  } catch (e) {
-    console.log(`Error in broadcastOnIceCandidate: ${e.message}`);
-  }
-}
-
-async function broadcastSdpProcess(id, sdp) {
-  try {
-    const desc = new webrtc.RTCSessionDescription(sdp);
-    await broadcasters[id].peer.setRemoteDescription(desc);
-    const answer = await broadcasters[id].peer.createAnswer({
-      offerToReceiveVideo: 1,
-    });
-    await broadcasters[id].peer.setLocalDescription(answer);
-  } catch (e) {
-    console.log(`Error in broadcastSdpProcess: ${e.message}`);
-  }
-}
-
-async function addCandidateFromClient(data) {
-  if (broadcasters[data['id']] != null) {
-    try {
-      broadcasters[data['id']].peer.addIceCandidate(
-        new webrtc.RTCIceCandidate(data['candidate']),
-      );
-    } catch (e) {
-      console.log(`Error adding ICE candidate from client: ${e.message}`);
-    }
-  }
+  socketFunction.sendListUpdateSignal();
 }
 
 async function removeBroadcast(id) {
@@ -179,11 +94,13 @@ async function addComment(id, comment, userUsername, userProfilePicture) {
 async function addBid(id, bidAmount, userUsername) {
   if (broadcasters[id] != null) {
     console.log('Updating bid for broadcaster: ' + id);
+    console.log('bidAmount: ' + bidAmount);
     broadcasters[id].curBidDetails = {
       userUsername,
       bidAmount,
       bidNo: broadcasters[id].curBidDetails.bidNo + 1,
     };
+    return broadcasters[id].curBidDetails;
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
   }
@@ -212,10 +129,17 @@ async function startBid(id) {
 async function endBid(id) {
   if (broadcasters[id] != null) {
     console.log('Ending bid for broadcaster: ' + id);
+    console.log('ret: ' + broadcasters[id].curBidDetails.bidAmount);
     ret = broadcasters[id].curBidDetails;
     broadcasters[id].isBidding = false;
     broadcasters[id].curBidDetails = {};
 
+    stripeService.chargeCustomerOffSession({
+      id,
+      amount: ret.bidAmount,
+      userUsername: ret.userUsername,
+      broadcasterUsername: broadcasters[id].username,
+    });
     //todo: send the winner to the client
     return ret;
   } else {
@@ -247,7 +171,6 @@ function fetch() {
 
 module.exports = {
   addBroadcast,
-  addCandidateFromClient,
   fetch,
   addWatcher,
   addComment,

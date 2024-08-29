@@ -1,6 +1,13 @@
 import {StripeProvider, useStripe} from '@stripe/stripe-react-native';
 import {useEffect, useState} from 'react';
-import {Alert, Button, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Button,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Screen} from 'react-native-screens';
 import {
   baseURL,
@@ -87,35 +94,37 @@ export default function AddPaymentMethod() {
       merchantIdentifier="merchant.identifier" // required for Apple Pay
       urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
     >
-      <View style={{alignItems: 'center', marginTop: '10%'}}>
-        <Text style={{color: 'black', fontWeight: 'bold'}}>
-          Add payment method
-        </Text>
-        <Text>You won't be charged untill you purchase an item</Text>
-        <TouchableOpacity
-          style={{
-            marginTop: '10%',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '100%',
-            flexDirection: 'row',
-            paddingVertical: '4%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-          onPress={() => onAddCardClick()}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="card-outline" size={40} color="black" />
-            <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
-              Credit or Debit Card
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={40} color="black" />
-        </TouchableOpacity>
-      </View>
+      <SafeAreaView style={{flex: 1}}>
+        <View style={{alignItems: 'center', marginTop: '10%'}}>
+          <Text style={{color: 'black', fontWeight: 'bold'}}>
+            Add payment method
+          </Text>
+          <Text>You won't be charged untill you purchase an item</Text>
+          <TouchableOpacity
+            style={{
+              marginTop: '10%',
+              borderTopWidth: 1,
+              borderBottomWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              width: '100%',
+              flexDirection: 'row',
+              paddingVertical: '4%',
+              paddingHorizontal: '4%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+            onPress={() => onAddCardClick()}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Icon name="card-outline" size={40} color="black" />
+              <Text
+                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                Credit or Debit Card
+              </Text>
+            </View>
+            <Icon name="chevron-forward" size={40} color="black" />
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
     </StripeProvider>
   );
 }
