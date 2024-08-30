@@ -146,6 +146,29 @@ export default function AddPaymentMethod() {
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
+          onPress={() => navigation.navigate('Orders')}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Icon name="cart-outline" size={35} color="black" />
+            <Text
+              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+              Orders
+            </Text>
+          </View>
+          <Icon name="chevron-forward" size={40} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            marginTop: '3%',
+            borderTopWidth: 1,
+            borderBottomWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            width: '100%',
+            flexDirection: 'row',
+            paddingVertical: '2%',
+            paddingHorizontal: '4%',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
           onPress={() => onLogoutClick()}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Icon name="log-out-outline" size={40} color="black" />

@@ -82,7 +82,6 @@ const ViewerTab = () => {
     meetingId,
   ) => {
     socket.emit('watcher', {id: broadcastId});
-    console.log('watchVideoSDK');
 
     navigation.navigate('VideoScreenSDK', {
       streamId: '',
@@ -151,8 +150,13 @@ const ViewerTab = () => {
         data={broadcasts}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => {
+          console.log(item);
           const profilePictureFilename = item.profilePicture.split('/').pop();
           const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+
+          const thumbnailUri = `${baseURL}/thumbnail/${item.thumbnail}`;
+          console.log(profilePictureURL);
+          console.log(thumbnailUri);
           return (
             <View
               style={{
@@ -183,7 +187,7 @@ const ViewerTab = () => {
                   )
                 }>
                 <ImageBackground
-                  source={{uri: profilePictureURL}}
+                  source={{uri: thumbnailUri}}
                   style={{width: '100%', height: '100%', borderRadius: 7}}
                   imageStyle={{borderRadius: 7}}>
                   <View

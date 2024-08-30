@@ -97,7 +97,14 @@ function Controls() {
   return <></>;
 }
 
-function SpeakerView({socketId, username, profilePicture, title, meetingId}) {
+function SpeakerView({
+  socketId,
+  username,
+  profilePicture,
+  title,
+  thumbnail,
+  meetingId,
+}) {
   const [joined, setJoined] = useState(null);
   const {participants} = useMeeting();
   const mMeeting = useMeeting({
@@ -125,17 +132,31 @@ function SpeakerView({socketId, username, profilePicture, title, meetingId}) {
 
   useEffect(() => {
     if (joined) {
-      const payload = {
-        sdp: null,
-        socket_id: socketId,
-        username: username,
-        profilePicture: profilePicture,
-        title: title || 'Untitled',
-        meetingId: meetingId,
-      };
+      const formData = new FormData();
+      formData.append('sdp', null);
+      formData.append('socket_id', socketId);
+      formData.append('username', username);
+      formData.append('profilePicture', profilePicture);
+      formData.append('title', title || 'Untitled');
+      formData.append('meetingId', meetingId);
+
+      // Check if a thumbnail is selected
+      if (thumbnail) {
+        // Convert the file URI to a file object
+        const imageFile = {
+          uri: thumbnail,
+          type: 'image/jpeg', // Change type based on the image format
+          name: 'thumbnail.jpg', // Use the correct extension based on the image format
+        };
+        formData.append('thumbnail', imageFile);
+      }
 
       axios
-        .post(baseURL + apiEndpoints.addBroadcast, payload)
+        .post(baseURL + apiEndpoints.addBroadcast, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
         .then(response => {
           console.log('Broadcast added:', response.data);
         })
@@ -166,7 +187,7 @@ function SpeakerView({socketId, username, profilePicture, title, meetingId}) {
 }
 
 const StreamScreen = ({route}) => {
-  const {title} = route.params;
+  const {title, thumbnail} = route.params;
 
   const [socketId, setSocketId] = useState(null);
   const [broadcastId, setBroadcastId] = useState(null);
@@ -395,6 +416,7 @@ const StreamScreen = ({route}) => {
             username={username}
             profilePicture={profilePicture}
             title={title}
+            thumbnail={thumbnail}
             meetingId={meetingId}
             style={{flex: 1, height: '100%', width: '100%'}}
           />

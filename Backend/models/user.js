@@ -70,5 +70,45 @@ const UserSchema = new Mongoose.Schema({
   },
 });
 
+const OrderSchema = new Mongoose.Schema({
+  buyer: {
+    type: Mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: true,
+  },
+  seller: {
+    type: Mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  products: {
+    type: [ProductSchema],
+    required: true,
+  },
+  orderDate: {
+    type: Date,
+    default: Date.now,
+  },
+  status: {
+    type: String,
+    enum: ['Pending', 'Completed', 'Cancelled'],
+    default: 'Pending',
+  },
+  transactionId: {
+    type: String,
+    required: false,
+  },
+  paymentMethod: {
+    type: String,
+    required: true,
+  },
+});
+
 const User = Mongoose.model('user', UserSchema);
-module.exports = User;
+const Order = Mongoose.model('order', OrderSchema);
+
+module.exports = {User, Order};

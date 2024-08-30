@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
+  Alert,
   Button,
   Dimensions,
   Image,
@@ -10,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const screenHeight = Dimensions.get('window').height;
@@ -22,34 +23,42 @@ const StartStreamTab = () => {
   const [selectedImage, setSelectedImage] = useState('');
 
   const startStream = async () => {
-    navigation.navigate('StreamScreenSDK', {title});
+    navigation.navigate('StreamScreenSDK', {title, thumbnail: selectedImage});
   };
 
-  const handleImagePicker = () => {
+  const handleImageSelection = () => {
     const options = {
       mediaType: 'photo',
       quality: 1,
     };
 
-    launchImageLibrary(options, response => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        const uri = response.assets[0].uri;
-        setSelectedImage(uri);
-        // const updateParams = {email, uri};
-        // dispatch(uploadProfilePicture(updateParams))
-        //   .unwrap()
-        //   .then(() => {
-        //     console.log('Success');
-        //   })
-        //   .catch(err => {
-        //     console.error('Error:', err);
-        //   });
-      }
-    });
+    const optionsArray = [
+      {
+        text: 'Take Photo',
+        onPress: () => launchCamera(options, handleImageResponse),
+      },
+      {
+        text: 'Choose from Library',
+        onPress: () => launchImageLibrary(options, handleImageResponse),
+      },
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+    ];
+
+    Alert.alert('Select Image Source', 'Choose an option', optionsArray);
+  };
+
+  const handleImageResponse = response => {
+    if (response.didCancel) {
+      console.log('User cancelled image picker');
+    } else if (response.error) {
+      console.log('ImagePicker Error: ', response.error);
+    } else {
+      const uri = response.assets[0].uri;
+      setSelectedImage(uri);
+    }
   };
 
   return (
@@ -89,7 +98,7 @@ const StartStreamTab = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={{
-            marginTop: '3%',
+            marginTop: '4%',
             borderWidth: 1,
             borderColor: 'rgba(0,0,0,0.2)',
             width: '80%',
@@ -100,9 +109,8 @@ const StartStreamTab = () => {
             alignItems: 'center',
             borderRadius: 40,
           }}
-          onPress={handleImagePicker}>
+          onPress={handleImageSelection}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            {/* <Icon name="cube-outline" size={35} color="black" /> */}
             <Text
               style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
               Add template

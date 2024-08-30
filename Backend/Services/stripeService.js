@@ -339,11 +339,6 @@ const chargeCustomerOffSession = async ({
       return {success: false, error: 'Stripe user ID not found'};
     }
 
-    // const paymentMethods = await stripe.paymentMethods.list({
-    //   customer: stripeUserId,
-    //   type: 'card',
-    // });
-
     const paymentMethods = await stripe.customers.listPaymentMethods(
       stripeUserId,
       {
@@ -355,14 +350,14 @@ const chargeCustomerOffSession = async ({
       return {success: false, error: 'No payment methods available'};
     }
 
-    //console.log('Payment method:', paymentMethods.data[0]);
+    const amountInCents = Math.round(amount * 100);
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 1099, // Use the passed amount
-      currency: 'cad', // Use the appropriate currency
+      amount: amountInCents,
+      currency: 'cad',
       customer: stripeUserId,
       payment_method: paymentMethods.data[0].id,
-      return_url: 'https://example.com/order/123/complete',
+      return_url: 'http://localhost:3000/api/auth/webhook',
       off_session: true,
       confirm: true,
     });
@@ -373,6 +368,49 @@ const chargeCustomerOffSession = async ({
     console.error('Error charging customer:', error);
     return {success: false, error: 'Failed to charge customer'};
   }
+};
+
+const stripeWebhooks = async (req, res) => {
+  console.log('Webhook called');
+  let event = req.body;
+  // Only verify the event if you have an endpoint secret defined.
+  // Otherwise use the basic event deserialized with JSON.parse
+  // if (endpointSecret) {
+  //   // Get the signature sent by Stripe
+  //   const signature = req.headers['stripe-signature'];
+  //   try {
+  //     event = stripe.webhooks.constructEvent(
+  //       req.body,
+  //       signature,
+  //       endpointSecret,
+  //     );
+  //   } catch (err) {
+  //     console.log(`⚠️  Webhook signature verification failed.`, err.message);
+  //     return res.sendStatus(400);
+  //   }
+  // }
+
+  // Handle the event
+  switch (event.type) {
+    case 'payment_intent.succeeded':
+      const paymentIntent = event.data.object;
+      console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
+      // Then define and call a method to handle the successful payment intent.
+      // handlePaymentIntentSucceeded(paymentIntent);
+      break;
+    case 'payment_method.attached':
+      const paymentMethod = event.data.object;
+      // Then define and call a method to handle the successful attachment of a PaymentMethod.
+      // handlePaymentMethodAttached(paymentMethod);
+      break;
+
+    default:
+      // Unexpected event type
+      console.log(`Unhandled event type ${event.type}.`);
+  }
+
+  // Return a 200 response to acknowledge receipt of the event
+  res.send();
 };
 
 module.exports = {
@@ -386,4 +424,5 @@ module.exports = {
   createStripeLoginLink,
   continueOnboarding,
   chargeCustomerOffSession,
+  stripeWebhooks,
 };

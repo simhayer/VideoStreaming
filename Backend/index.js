@@ -25,9 +25,18 @@ process.on('unhandledRejection', err => {
 
 // Endpoint to get profile pictures
 app.get('/profilePicture/:filename', (req, res) => {
+  console.log('Profile picture requested', req.params.filename);
   const filename = req.params.filename;
   const filePath = path.join(__dirname, 'uploads', filename);
+  console.log(filePath);
+  res.sendFile(filePath);
+});
 
+app.get('/thumbnail/:filename', (req, res) => {
+  console.log('Thumbnail requested', req.params.filename);
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, 'uploads/thumbnails', filename);
+  console.log(filePath);
   res.sendFile(filePath);
 });
 

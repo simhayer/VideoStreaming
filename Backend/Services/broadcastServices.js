@@ -5,6 +5,7 @@ const config = require('../config');
 const {broadcasters} = require('../Data/data');
 const socketFunction = require('../Socket/socketFunction');
 const stripeService = require('../Services/stripeService');
+const orderService = require('../Services/orderService');
 
 class Broadcaster {
   constructor(
@@ -13,6 +14,7 @@ class Broadcaster {
     _username,
     _profilePicture,
     _title,
+    _thumbnailFilename,
     _meetingId,
   ) {
     this.id = _id;
@@ -25,6 +27,7 @@ class Broadcaster {
     this.comments = [];
     this.isBidding = false;
     this.curBidDetails = {};
+    this.thumbnailFilename = _thumbnailFilename;
   }
 }
 
@@ -34,24 +37,25 @@ async function addBroadcast(
   username,
   profilePicture,
   title,
+  thumbnailFilename, // Receive the filename here
   meetingId,
 ) {
   console.log('new broadcast');
-  //var id = uuidv4();
   var id = socket_id;
   console.log('username: ' + username);
+
   var broadcast = new Broadcaster(
     id,
     socket_id,
     username,
     profilePicture,
     title,
+    thumbnailFilename, // Assign the filename to the broadcaster object
     meetingId,
   );
 
   broadcasters[id] = broadcast;
 
-  //broadcastConnectionState(id);
   return id;
 }
 
@@ -140,7 +144,52 @@ async function endBid(id) {
       userUsername: ret.userUsername,
       broadcasterUsername: broadcasters[id].username,
     });
+
+    //TODO, save order in db
+
     //todo: send the winner to the client
+    return ret;
+  } else {
+    console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
+    return {userUsername: 'null', bidAmount: 0, bidNo: 0};
+  }
+}
+
+async function endBid(id) {
+  if (broadcasters[id] != null) {
+    console.log('Ending bid for broadcaster: ' + id);
+    console.log('ret: ' + broadcasters[id].curBidDetails.bidAmount);
+    const ret = broadcasters[id].curBidDetails;
+    broadcasters[id].isBidding = false;
+    broadcasters[id].curBidDetails = {};
+
+    if (ret.userUsername == 'null') {
+      return ret;
+    }
+
+    // Charge the customer
+    stripeService.chargeCustomerOffSession({
+      id,
+      amount: ret.bidAmount,
+      userUsername: ret.userUsername,
+      broadcasterUsername: broadcasters[id].username,
+    });
+
+    // Handle the order creation and saving
+    const orderResult = await orderService.handleOrderCreation(
+      ret.userUsername,
+      broadcasters[id].username,
+      ret.bidAmount,
+      ret.products, // Assuming this field exists in your curBidDetails object
+    );
+
+    if (orderResult.success) {
+      // Send the winner details to the client
+      //sendWinnerToClient(broadcasters[id].socket, ret);
+    } else {
+      console.log('Order creation failed:', orderResult.message);
+    }
+
     return ret;
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
@@ -157,6 +206,7 @@ function fetch() {
         username: broadcasters[bs].username,
         profilePicture: broadcasters[bs].profilePicture,
         title: broadcasters[bs].title,
+        thumbnail: broadcasters[bs].thumbnailFilename,
         meetingId: broadcasters[bs].meetingId,
         socketID: broadcasters[bs].socket_id,
         watchers: broadcasters[bs].watchers,

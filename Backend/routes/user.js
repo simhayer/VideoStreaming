@@ -19,6 +19,7 @@ const {
 const broadcastController = require('../Controllers/broadcastController');
 const consumerController = require('../Controllers/consumerController');
 const stripeService = require('../Services/stripeService');
+const orderService = require('../Services/orderService');
 
 //auth routes
 router.route('/register').post(register);
@@ -74,5 +75,11 @@ router
   .post(stripeService.createStripeLoginLink);
 
 router.route('/continueOnboarding').post(stripeService.continueOnboarding);
+
+router.route('/webhook').post(stripeService.stripeWebhooks);
+
+//order
+router.route('/getAllOrdersForBuyer').post(orderService.getAllOrdersForBuyer);
+router.route('/getAllOrdersForSeller').post(orderService.getAllOrdersForSeller);
 
 module.exports = router;
