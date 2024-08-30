@@ -40,6 +40,14 @@ app.get('/thumbnail/:filename', (req, res) => {
   res.sendFile(filePath);
 });
 
+app.get('/products/:filename', (req, res) => {
+  console.log('Thumbnail requested', req.params.filename);
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, 'uploads/products', filename);
+  console.log(filePath);
+  res.sendFile(filePath);
+});
+
 require('./Socket/socketEvent')(io);
 require('./Socket/socketFunction').init(io);
 connectDB();

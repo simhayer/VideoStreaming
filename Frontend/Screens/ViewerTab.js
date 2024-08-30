@@ -145,6 +145,7 @@ const ViewerTab = () => {
           borderBottomWidth: 1,
           borderColor: 'rgba(0,0,0,0.2)',
           width: '100%',
+          marginBottom: 5,
         }}></View>
       <FlatList
         data={broadcasts}

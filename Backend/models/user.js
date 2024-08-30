@@ -15,6 +15,10 @@ const ProductSchema = new Mongoose.Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    required: false,
+  },
 });
 
 const UserSchema = new Mongoose.Schema({

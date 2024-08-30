@@ -6,10 +6,33 @@ const jwtSecret =
   '0bbb60bc7d2fe832d54d785370672901832d3ba849366219ddfea07bd5eed8dc06d485';
 const {sendResetCodeMail} = require('./mail');
 const multer = require('multer');
-
-//TODO: to fix this path dependency
 const path = require('path');
-const {set} = require('mongoose');
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Set the destination folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Set the file name
+    //cb(null, Date.now() + '.jpg');
+  },
+});
+
+const upload = multer({storage: storage});
+
+// Configure multer for file uploads
+const storageProducts = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/products'); // Set the destination folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Set the file name
+    //cb(null, Date.now() + '.jpg');
+  },
+});
+
+const uploadProduct = multer({storage: storageProducts});
 
 // auth.js
 exports.register = async (req, res, next) => {
@@ -380,19 +403,6 @@ exports.logout = async (req, res, next) => {
   }
 };
 
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Set the destination folder
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Set the file name
-    //cb(null, Date.now() + '.jpg');
-  },
-});
-
-const upload = multer({storage: storage});
-
 // Update profile picture
 exports.updateProfilePicture = [
   upload.single('profilePicture'),
@@ -568,26 +578,52 @@ exports.getUserProducts = async (req, res) => {
   }
 };
 
-exports.addProductToUser = async (req, res) => {
-  const {email, product} = req.body;
-  if (!email) {
-    return res.status(400).json({message: 'Email is required'});
-  }
-  try {
-    const user = await User.findOne({email});
-    if (!user) {
-      return res.status(404).json({message: 'User not found'});
-    } else {
-      // Push the product object into the products array
-      user.products.push(product);
-      await user.save();
-      res.status(200).json({message: 'Product added to user', user});
+exports.addProductToUser = [
+  uploadProduct.single('productImage'), // Middleware to handle file upload
+  async (req, res, next) => {
+    const {email, name, size, type} = req.body;
+
+    if (!email) {
+      return res.status(400).json({message: 'Email is required'});
     }
-  } catch (error) {
-    console.error('Error adding product to user:', error);
-    res.status(400).json({message: 'An error occurred', error: error.message});
-  }
-};
+
+    try {
+      const user = await User.findOne({email});
+      if (!user) {
+        return res.status(404).json({message: 'User not found'});
+      } else {
+        let productImageUrl = null;
+
+        // Handle product image upload
+        if (req.file) {
+          const imagePath = path.join(__dirname, 'uploads', req.file.filename); // Change the path as necessary
+          productImageUrl = imagePath;
+
+          // Optionally, you can move or process the file here
+          // fs.renameSync(req.file.path, imagePath);
+        }
+
+        // Combine the fields into a product object
+        const product = {
+          name,
+          size,
+          type,
+          imageUrl: productImageUrl, // Save the image URL/path along with the product details
+        };
+
+        console.log('Product:', product);
+        user.products.push(product);
+        await user.save();
+        res.status(200).json({message: 'Product added to user', user});
+      }
+    } catch (error) {
+      console.error('Error adding product to user:', error);
+      res
+        .status(400)
+        .json({message: 'An error occurred', error: error.message});
+    }
+  },
+];
 
 exports.removeProductsFromUser = async (req, res) => {
   const {email, products} = req.body;

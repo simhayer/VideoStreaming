@@ -19,11 +19,12 @@ import AddPaymentOrShipping from './Screens/PaymentAndShipping/AddPaymentOrShipp
 import AddPaymentMethod from './Screens/PaymentAndShipping/AddPaymentMethod';
 import AddAddress from './Screens/PaymentAndShipping/AddAddress';
 import SettingsMenu from './Screens/SettingsMenu';
-import ManageProducts from './Screens/ManageProducts';
-import AddProduct from './Screens/AddProduct';
+import ManageProducts from './Screens/Products/ManageProducts';
+import AddProduct from './Screens/Products/AddProduct';
 import ContinueOnboarding from './Screens/GetStartedSell/ContinueOnboarding';
 import StartStreamTab from './Screens/StartStreamTab';
 import Orders from './Screens/Orders';
+import ViewProduct from './Screens/Products/ViewProduct';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -109,6 +110,11 @@ const MyStack = () => {
           <Stack.Screen
             name="Orders"
             component={Orders}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ViewProduct"
+            component={ViewProduct}
             options={{headerShown: false}}
           />
         </Stack.Group>
