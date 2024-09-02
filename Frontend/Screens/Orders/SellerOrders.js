@@ -8,6 +8,7 @@ import {
   View,
   Pressable,
   Image,
+  TextInput,
 } from 'react-native';
 import {apiEndpoints, appPink, baseURL} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -25,6 +26,7 @@ const SellerOrders = () => {
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
   const userUsername = userData?.user?.username;
+  const [search, setSearch] = useState('');
 
   // Function to fetch orders from the backend
   const fetchOrders = async () => {
@@ -52,6 +54,10 @@ const SellerOrders = () => {
     }, []),
   );
 
+  const filteredItems = items.filter(item =>
+    item.product.name.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{alignItems: 'center', marginTop: '2%'}}>
@@ -74,15 +80,47 @@ const SellerOrders = () => {
             Orders
           </Text>
         </View>
+        <View
+          style={{
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            width: '95%',
+            borderRadius: 20,
+            height: '6%',
+            justifyContent: 'center',
+            marginTop: '3%',
+            minHeight: 50,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Icon name="search" size={40} color="grey" />
+          <TextInput
+            style={{width: '70%', marginLeft: '3%'}}
+            placeholder="Search orders..."
+            placeholderTextColor="grey"
+            value={search}
+            onChangeText={setSearch}
+            returnKeyType="send"
+            enterKeyHint="send"
+          />
+          <TouchableOpacity
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon name="arrow-up-circle" size={40} color="grey" />
+          </TouchableOpacity>
+        </View>
         <FlatList
-          style={{height: '70%', width: '100%'}}
-          data={items}
+          style={{height: '70%', width: '100%', marginTop: '3%'}}
+          data={filteredItems}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({item}) => {
             if (!item.product.imageUrl) return null;
             const itemImageFilename = item.product.imageUrl.split('\\').pop();
             const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
+
             return (
               <TouchableOpacity
                 style={{
@@ -95,11 +133,8 @@ const SellerOrders = () => {
                   justifyContent: 'space-between',
                 }}
                 onPress={() =>
-                  navigation.navigate('ViewProduct', {
-                    name: item.product.name,
-                    size: item.product.size,
-                    imageUrl: itemImageUrl,
-                    type: item.product.type,
+                  navigation.navigate('ViewOrderSeller', {
+                    order: item,
                   })
                 }>
                 <Image

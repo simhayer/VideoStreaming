@@ -88,10 +88,9 @@ const getAllOrdersForSeller = async (req, res) => {
     }
 
     // Find all orders for this seller
-    const orders = await Order.find({seller: seller._id}).populate(
-      'buyer',
-      'fullname email username',
-    );
+    const orders = await Order.find({seller: seller._id})
+      .populate('buyer', 'fullname email username')
+      .populate('product');
 
     return res.json({orders});
   } catch (error) {
@@ -100,8 +99,76 @@ const getAllOrdersForSeller = async (req, res) => {
   }
 };
 
+const updateOrderTracking = async (req, res) => {
+  console.log('Updating order tracking', req.body);
+  const {orderId, trackingNumber} = req.body;
+
+  try {
+    // Find the order by ID
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res.json({message: 'Order not found'});
+    }
+
+    // Update the order with the tracking details
+    order.trackingNumber = trackingNumber;
+    order.status = 'Shipped';
+
+    await order.save();
+
+    return res.json({message: 'Order updated successfully', order});
+  } catch (error) {
+    console.error('Error updating order:', error);
+    return res.json({message: 'Error updating order', error});
+  }
+};
+
+const getOrderDetails = async (req, res) => {
+  console.log('Getting order tracking', req.body);
+  const {orderId} = req.body;
+
+  try {
+    // Find the order by ID
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res.json({message: 'Order not found'});
+    }
+
+    return res.json({message: 'Order found', order});
+  } catch (error) {
+    console.error('Error getting order:', error);
+    return res.json({message: 'Error getting order', error});
+  }
+};
+
+const markOrderComplete = async (req, res) => {
+  console.log('Marking order complete', req.body);
+  const {orderId} = req.body;
+
+  try {
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res.json({message: 'Order not found'});
+    }
+
+    order.status = 'Completed';
+
+    await order.save();
+    return res.json({message: 'Order marked as complete', order});
+  } catch (error) {
+    console.error('Error marking order complete:', error);
+    return res.json({message: 'Error marking order complete', error});
+  }
+};
+
 module.exports = {
   handleOrderCreation,
   getAllOrdersForBuyer,
   getAllOrdersForSeller,
+  updateOrderTracking,
+  getOrderDetails,
+  markOrderComplete,
 };

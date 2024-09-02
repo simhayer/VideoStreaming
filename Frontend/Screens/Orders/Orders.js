@@ -109,7 +109,7 @@ const Orders = () => {
                     resizeMode="contain"
                     style={{width: '20%', height: 100}}
                   />
-                  <View style={{width: '70%'}}>
+                  <View style={{width: '65%', marginLeft: 20}}>
                     <Text
                       style={{
                         fontWeight: 'bold',

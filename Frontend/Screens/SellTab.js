@@ -35,7 +35,7 @@ const StartStreamTab = () => {
   const {isOnboardingChecked} = useSelector(state => state.NonPersistSlice);
 
   const startStream = async () => {
-    navigation.navigate('StartStreamTab', {title});
+    navigation.navigate('EnterStreamTitle', {title});
   };
 
   const checkStripeOnboarding = async () => {
@@ -140,7 +140,6 @@ const StartStreamTab = () => {
 
           <TouchableOpacity
             style={{
-              marginTop: '3%',
               borderTopWidth: 1,
               borderBottomWidth: 1,
               borderWidth: 1,
@@ -154,9 +153,34 @@ const StartStreamTab = () => {
               borderRadius: 40,
               marginTop: '10%',
             }}
-            onPress={() => navigation.navigate('SellerOrders')}>
+            onPress={() => navigation.navigate('ManageProducts')}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Icon name="cube-outline" size={35} color="black" />
+              <Text
+                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                Manage Products
+              </Text>
+            </View>
+            <Icon name="chevron-forward" size={40} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: '3%',
+              borderTopWidth: 1,
+              borderBottomWidth: 1,
+              borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              width: '90%',
+              flexDirection: 'row',
+              paddingVertical: '2%',
+              paddingHorizontal: '4%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderRadius: 40,
+            }}
+            onPress={() => navigation.navigate('SellerOrders')}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Icon name="cart-outline" size={35} color="black" />
               <Text
                 style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
                 Orders (Selling)
@@ -181,7 +205,7 @@ const StartStreamTab = () => {
             }}
             onPress={() => viewDashboard()}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="cube-outline" size={35} color="black" />
+              <Icon name="cash-outline" size={35} color="black" />
               <Text
                 style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
                 View Payments Dashboards
@@ -192,23 +216,22 @@ const StartStreamTab = () => {
           <TouchableOpacity
             onPress={() => startStream()}
             style={{
-              padding: '4%',
-              width: '90%',
+              paddingVertical: '4%',
+              paddingHorizontal: '20%',
               backgroundColor: appPink,
               borderRadius: 40,
               marginTop: '70%',
             }}>
-            <Icon name="videocam-outline" size={40} color="black" />
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                fontSize: calculatedFontSize / 2.5,
+                fontWeight: 'bold',
+              }}>
+              Start Selling
+            </Text>
           </TouchableOpacity>
-          <Text
-            style={{
-              color: 'black',
-              textAlign: 'center',
-              fontSize: calculatedFontSize / 2.5,
-              fontWeight: 'bold',
-            }}>
-            Start Selling
-          </Text>
         </View>
       )}
     </SafeAreaView>

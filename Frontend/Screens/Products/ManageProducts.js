@@ -9,6 +9,7 @@ import {
   Pressable,
   Image,
   Touchable,
+  TextInput,
 } from 'react-native';
 import {apiEndpoints, appPink, baseURL} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -19,13 +20,18 @@ import {useSelector} from 'react-redux';
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
-const StartStreamTab = () => {
+const ManageProducts = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
   const [deletedItems, setDeletedItems] = useState([]);
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
+  const [search, setSearch] = useState('');
+
+  const filteredItems = items.filter(item =>
+    item.name.toLowerCase().includes(search.toLowerCase()),
+  );
 
   // Function to fetch products from the backend
   const fetchProducts = async () => {
@@ -111,10 +117,41 @@ const StartStreamTab = () => {
             Manage products
           </Text>
         </View>
-        <View style={{height: '75%'}}>
+        <View
+          style={{
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            width: '95%',
+            borderRadius: 20,
+            height: '6%',
+            justifyContent: 'center',
+            marginTop: '3%',
+            minHeight: 50,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Icon name="search" size={40} color="grey" />
+          <TextInput
+            style={{width: '70%', marginLeft: '3%'}}
+            placeholder="Search orders..."
+            placeholderTextColor="grey"
+            value={search}
+            onChangeText={setSearch}
+            returnKeyType="send"
+            enterKeyHint="send"
+          />
+          <TouchableOpacity
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon name="arrow-up-circle" size={40} color="grey" />
+          </TouchableOpacity>
+        </View>
+        <View style={{height: '65%'}}>
           <FlatList
-            style={{flex: 1}}
-            data={items}
+            style={{flex: 1, marginTop: '2%'}}
+            data={filteredItems}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => {
@@ -210,4 +247,4 @@ const StartStreamTab = () => {
   );
 };
 
-export default StartStreamTab;
+export default ManageProducts;

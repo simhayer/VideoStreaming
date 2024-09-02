@@ -81,5 +81,7 @@ router.route('/webhook').post(stripeService.stripeWebhooks);
 //order
 router.route('/getAllOrdersForBuyer').post(orderService.getAllOrdersForBuyer);
 router.route('/getAllOrdersForSeller').post(orderService.getAllOrdersForSeller);
+router.route('/updateOrderTracking').post(orderService.updateOrderTracking);
+router.route('/markOrderComplete').post(orderService.markOrderComplete);
 
 module.exports = router;

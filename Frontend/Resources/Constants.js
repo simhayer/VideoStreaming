@@ -34,6 +34,8 @@ export const apiEndpoints = {
   continueOnboarding: '/api/auth/continueOnboarding',
   getAllOrdersForBuyer: '/api/auth/getAllOrdersForBuyer',
   getAllOrdersForSeller: '/api/auth/getAllOrdersForSeller',
+  updateOrderTracking: '/api/auth/updateOrderTracking',
+  markOrderComplete: '/api/auth/markOrderComplete',
   // Add more API endpoints as needed
 };
 

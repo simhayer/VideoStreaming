@@ -11,7 +11,7 @@ import ResetPassword from './Screens/Authentication/PassowrdHandle/ResetPassword
 import Icon from 'react-native-vector-icons/FontAwesome';
 import EditProfile from './Screens/EditProfile';
 import UsernameCreate from './Screens/Authentication/UsernameCreate';
-import StreamScreenSDK from './Screens/StreamScreenSDK';
+import StreamScreenSDK from './Screens/Stream/StreamScreenSDK';
 import VideoScreenSDK from './Screens/VideoScreenSDK';
 import GetStartedSell from './Screens/GetStartedSell/GetStartedSell';
 import GetStartedSellRules from './Screens/GetStartedSell/GetStartedSellRules';
@@ -22,11 +22,14 @@ import SettingsMenu from './Screens/SettingsMenu';
 import ManageProducts from './Screens/Products/ManageProducts';
 import AddProduct from './Screens/Products/AddProduct';
 import ContinueOnboarding from './Screens/GetStartedSell/ContinueOnboarding';
-import StartStreamTab from './Screens/StartStreamTab';
+import StartStreamTab from './Screens/Stream/StartStreamTab';
 import Orders from './Screens/Orders/Orders';
 import ViewProduct from './Screens/Products/ViewProduct';
 import SellerOrders from './Screens/Orders/SellerOrders';
 import ViewOrderBuyer from './Screens/Orders/ViewOrderBuyer';
+import ViewOrderSeller from './Screens/Orders/ViewOrderSeller';
+import EnterOrderTracking from './Screens/Orders/EnterOrderTracking';
+import EnterStreamTitle from './Screens/Stream/EnterStreamTitle';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -127,6 +130,21 @@ const MyStack = () => {
           <Stack.Screen
             name="ViewOrderBuyer"
             component={ViewOrderBuyer}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ViewOrderSeller"
+            component={ViewOrderSeller}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="EnterOrderTracking"
+            component={EnterOrderTracking}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="EnterStreamTitle"
+            component={EnterStreamTitle}
             options={{headerShown: false}}
           />
         </Stack.Group>
