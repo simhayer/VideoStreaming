@@ -57,7 +57,7 @@ const StartStreamTab = () => {
     // Remove the item from the current list
     setItems(prevItems => prevItems.filter(i => i.name !== item.name));
     // Add the item to the deletedItems list
-    setDeletedItems(prevDeletedItems => [...prevDeletedItems, item]);
+    setDeletedItems(prevDeletedItems => [...prevDeletedItems, item._id]);
   };
 
   const handleDonePress = async () => {
@@ -89,24 +89,6 @@ const StartStreamTab = () => {
     navigation.goBack();
   };
 
-  // Function to get the icon based on item type
-  const getItemIcon = type => {
-    switch (type) {
-      case 'Clothing':
-        return 'shirt-outline'; // Clothing icon
-      case 'Footwear':
-        return 'footsteps-outline'; // Footwear icon (this is not an Ionicons icon, so you may need to choose another or customize)
-      case 'Accessories':
-        return 'watch-outline'; // Accessory icon
-      case 'Electronics':
-        return 'phone-portrait-outline'; // Electronics icon
-      case 'VideoGames':
-        return 'game-controller-outline'; // Video Games icon
-      default:
-        return 'cube-outline'; // Default icon
-    }
-  };
-
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{alignItems: 'center', marginTop: '2%'}}>
@@ -129,7 +111,7 @@ const StartStreamTab = () => {
             Manage products
           </Text>
         </View>
-        <View style={{height: '70%'}}>
+        <View style={{height: '75%'}}>
           <FlatList
             style={{flex: 1}}
             data={items}

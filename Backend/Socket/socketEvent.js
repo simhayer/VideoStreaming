@@ -70,7 +70,7 @@ module.exports = io => {
 
     socket.on('start-bid', data => {
       console.log('start-bid: ' + data);
-      broadcastService.startBid(data.id);
+      broadcastService.startBid(data.id, data.product);
 
       io.to(data.id).emit('startBid', data);
     });

@@ -145,8 +145,8 @@ function SpeakerView({
         // Convert the file URI to a file object
         const imageFile = {
           uri: thumbnail,
-          type: 'image/jpeg', // Change type based on the image format
-          name: 'thumbnail.jpg', // Use the correct extension based on the image format
+          type: 'image/jpeg',
+          name: 'thumbnail.jpg',
         };
         formData.append('thumbnail', imageFile);
       }
@@ -191,10 +191,6 @@ const StreamScreen = ({route}) => {
 
   const [socketId, setSocketId] = useState(null);
   const [broadcastId, setBroadcastId] = useState(null);
-  const [localCandidates, setLocalCandidates] = useState([]);
-  const [remoteCandidates, setRemoteCandidates] = useState([]);
-  const [stream, setStream] = useState(null);
-  const peer = useRef(null);
   const socket = useRef(null);
   const {userData} = useSelector(state => state.auth);
 
@@ -307,7 +303,7 @@ const StreamScreen = ({route}) => {
       userUsername: 'NA',
       timer: timer,
       startBid: startBid,
-      bidItem: selectedItem,
+      product: selectedItem,
     };
 
     socket.current.emit('start-bid', startbidData);
@@ -380,23 +376,6 @@ const StreamScreen = ({route}) => {
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  const getItemIcon = type => {
-    switch (type) {
-      case 'Clothing':
-        return 'shirt-outline'; // Clothing icon
-      case 'Footwear':
-        return 'footsteps-outline'; // Footwear icon (this is not an Ionicons icon, so you may need to choose another or customize)
-      case 'Accessories':
-        return 'watch-outline'; // Accessory icon
-      case 'Electronics':
-        return 'phone-portrait-outline'; // Electronics icon
-      case 'VideoGames':
-        return 'game-controller-outline'; // Video Games icon
-      default:
-        return 'cube-outline'; // Default icon
-    }
-  };
 
   return meetingId ? (
     <MeetingProvider
@@ -710,74 +689,59 @@ const StreamScreen = ({route}) => {
                     maxHeight: '100%',
                     flex: 1,
                   }}>
-                  {/* <FlatList
-                    ref={scrollViewRef}
-                    data={items1}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({item}) => {
-                      const isSelected = item === selectedItem;
-                      return (
-                        <Pressable
-                          onPress={() => handleItemPress(item)}
-                          style={{
-                            padding: 10,
-                            borderWidth: 1,
-                            marginVertical: 5,
-                            backgroundColor: isSelected ? '#d3d3d3' : 'white', // Highlight selected item
-                          }}>
-                          <Text>{item}</Text>
-                        </Pressable>
-                      );
-                    }}
-                    contentContainerStyle={{
-                      flexGrow: 1,
-                      flexDirection: 'column',
-                      padding: 10,
-                    }}
-                  /> */}
                   <FlatList
                     style={{flex: 1}}
                     data={items}
+                    showsVerticalScrollIndicator={false}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({item}) => {
-                      const isSelected = item.name === selectedItem?.name;
+                      if (!item.imageUrl) return null;
+                      const itemImageFilename = item.imageUrl.split('\\').pop();
+                      const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
+                      const isSelected = item._id === selectedItem?._id;
                       return (
-                        <Pressable
-                          onPress={() => handleItemPress(item)}
+                        <TouchableOpacity
                           style={{
                             flexDirection: 'row',
                             alignItems: 'center',
                             borderWidth: 1,
                             borderColor: 'rgba(0,0,0,0.2)',
-                            borderRadius: 20,
                             marginTop: 10,
-                            paddingVertical: '3%',
-                            paddingHorizontal: '5%',
-                            backgroundColor: isSelected ? '#d3d3d3' : 'white', // Highlight selected item
+                            paddingRight: '3%',
                             justifyContent: 'space-between',
-                          }}>
-                          <Icon
-                            name={getItemIcon(item.type)}
-                            size={40}
-                            color="black"
+                            backgroundColor: isSelected ? '#d3d3d3' : 'white',
+                          }}
+                          onPress={() => handleItemPress(item)}>
+                          <Image
+                            source={{uri: itemImageUrl}}
+                            resizeMode="contain"
+                            style={{width: '20%', height: 100}}
                           />
-                          <Text
-                            style={{
-                              fontWeight: 'bold',
-                              textAlign: 'left',
-                              width: '60%',
-                              maxWidth: '60%',
-                            }}>
-                            {item.name}
-                          </Text>
-                          <Text style={{marginRight: '8%'}}>{item.size}</Text>
-                        </Pressable>
+                          <View style={{width: '70%'}}>
+                            <Text
+                              style={{
+                                fontWeight: 'bold',
+                                textAlign: 'left',
+                                flexWrap: 'wrap',
+                              }}>
+                              {item.name}
+                            </Text>
+                            <Text style={{}}>{item.size}</Text>
+                          </View>
+
+                          <TouchableOpacity
+                            onPress={() => handleDeleteItem(item)}>
+                            <Icon
+                              name="close-circle-outline"
+                              size={25}
+                              color="red"
+                            />
+                          </TouchableOpacity>
+                        </TouchableOpacity>
                       );
                     }}
                     contentContainerStyle={{
-                      flexGrow: 1,
-                      flexDirection: 'column',
-                      padding: 10,
+                      paddingBottom: 10, // Add padding to avoid the last item being cut off
                     }}
                   />
                 </View>

@@ -154,12 +154,12 @@ const StartStreamTab = () => {
               borderRadius: 40,
               marginTop: '10%',
             }}
-            onPress={() => navigation.navigate('ManageProducts')}>
+            onPress={() => navigation.navigate('SellerOrders')}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Icon name="cube-outline" size={35} color="black" />
               <Text
                 style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
-                Orders
+                Orders (Selling)
               </Text>
             </View>
             <Icon name="chevron-forward" size={40} color="black" />

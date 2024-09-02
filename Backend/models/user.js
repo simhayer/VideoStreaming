@@ -69,8 +69,8 @@ const UserSchema = new Mongoose.Schema({
     default: '',
   },
   products: {
-    type: [ProductSchema],
-    default: [],
+    type: [Mongoose.Schema.Types.ObjectId],
+    ref: 'product',
   },
 });
 
@@ -89,8 +89,9 @@ const OrderSchema = new Mongoose.Schema({
     type: Number,
     required: true,
   },
-  products: {
-    type: [ProductSchema],
+  product: {
+    type: Mongoose.Schema.Types.ObjectId,
+    ref: 'product',
     required: true,
   },
   orderDate: {
@@ -110,9 +111,14 @@ const OrderSchema = new Mongoose.Schema({
     type: String,
     required: true,
   },
+  trackingNumber: {
+    type: String,
+    required: false,
+  },
 });
 
 const User = Mongoose.model('user', UserSchema);
 const Order = Mongoose.model('order', OrderSchema);
+const Product = Mongoose.model('product', ProductSchema);
 
-module.exports = {User, Order};
+module.exports = {User, Order, Product};

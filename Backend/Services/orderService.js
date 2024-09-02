@@ -4,7 +4,7 @@ async function handleOrderCreation(
   buyerUsername,
   sellerUsername,
   amount,
-  products,
+  product,
 ) {
   try {
     console.log(
@@ -12,7 +12,7 @@ async function handleOrderCreation(
       buyerUsername,
       sellerUsername,
       amount,
-      products,
+      product,
     );
     // Find the buyer and seller by their usernames
     const buyer = await User.findOne({username: buyerUsername});
@@ -28,7 +28,7 @@ async function handleOrderCreation(
       buyer: buyer._id,
       seller: seller._id,
       amount,
-      products, // Assuming products is passed correctly
+      product, // Assuming products is passed correctly
       status: 'Pending',
       paymentMethod: 'Stripe', // or the appropriate payment method
     });
@@ -63,10 +63,9 @@ const getAllOrdersForBuyer = async (req, res) => {
     console.log('Buyer found:', buyer);
 
     // Find all orders for this buyer
-    const orders = await Order.find({buyer: buyer._id}).populate(
-      'seller',
-      'fullname email username',
-    );
+    const orders = await Order.find({buyer: buyer._id})
+      .populate('seller', 'fullname email username')
+      .populate('product');
 
     console.log('Orders found:', orders);
 
@@ -78,7 +77,8 @@ const getAllOrdersForBuyer = async (req, res) => {
 };
 
 const getAllOrdersForSeller = async (req, res) => {
-  const {sellerUsername} = req.params;
+  console.log('Getting all orders for seller', req.body);
+  const {sellerUsername} = req.body;
   try {
     // Find the seller by username
     const seller = await User.findOne({username: sellerUsername});

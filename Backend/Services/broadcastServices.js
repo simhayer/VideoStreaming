@@ -99,19 +99,24 @@ async function addBid(id, bidAmount, userUsername) {
   if (broadcasters[id] != null) {
     console.log('Updating bid for broadcaster: ' + id);
     console.log('bidAmount: ' + bidAmount);
+
+    const currentProduct = broadcasters[id].curBidDetails.product;
+
     broadcasters[id].curBidDetails = {
       userUsername,
       bidAmount,
+
       bidNo: broadcasters[id].curBidDetails.bidNo + 1,
+      product: currentProduct, // Ensure the product remains the same
     };
+
     return broadcasters[id].curBidDetails;
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
   }
 }
 
-async function startBid(id) {
-  console.log('broadcasters: ' + broadcasters);
+async function startBid(id, product) {
   if (broadcasters[id] != null) {
     console.log('Starting bid for broadcaster: ' + id);
 
@@ -121,37 +126,17 @@ async function startBid(id) {
       userUsername: 'null',
       bidAmount: 0,
       bidNo: 0,
+      product,
     };
+
+    console.log(
+      'broadcasters[id].curBidDetails: ' + broadcasters[id].curBidDetails,
+    );
 
     return ret;
   } else {
     console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
     return 0;
-  }
-}
-
-async function endBid(id) {
-  if (broadcasters[id] != null) {
-    console.log('Ending bid for broadcaster: ' + id);
-    console.log('ret: ' + broadcasters[id].curBidDetails.bidAmount);
-    ret = broadcasters[id].curBidDetails;
-    broadcasters[id].isBidding = false;
-    broadcasters[id].curBidDetails = {};
-
-    stripeService.chargeCustomerOffSession({
-      id,
-      amount: ret.bidAmount,
-      userUsername: ret.userUsername,
-      broadcasterUsername: broadcasters[id].username,
-    });
-
-    //TODO, save order in db
-
-    //todo: send the winner to the client
-    return ret;
-  } else {
-    console.log('\x1b[31m', 'Broadcaster not found: ' + id, '\x1b[0m');
-    return {userUsername: 'null', bidAmount: 0, bidNo: 0};
   }
 }
 
@@ -180,7 +165,7 @@ async function endBid(id) {
       ret.userUsername,
       broadcasters[id].username,
       ret.bidAmount,
-      ret.products, // Assuming this field exists in your curBidDetails object
+      ret.product, // Assuming this field exists in your curBidDetails object
     );
 
     if (orderResult.success) {

@@ -23,8 +23,10 @@ import ManageProducts from './Screens/Products/ManageProducts';
 import AddProduct from './Screens/Products/AddProduct';
 import ContinueOnboarding from './Screens/GetStartedSell/ContinueOnboarding';
 import StartStreamTab from './Screens/StartStreamTab';
-import Orders from './Screens/Orders';
+import Orders from './Screens/Orders/Orders';
 import ViewProduct from './Screens/Products/ViewProduct';
+import SellerOrders from './Screens/Orders/SellerOrders';
+import ViewOrderBuyer from './Screens/Orders/ViewOrderBuyer';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -115,6 +117,16 @@ const MyStack = () => {
           <Stack.Screen
             name="ViewProduct"
             component={ViewProduct}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="SellerOrders"
+            component={SellerOrders}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ViewOrderBuyer"
+            component={ViewOrderBuyer}
             options={{headerShown: false}}
           />
         </Stack.Group>
