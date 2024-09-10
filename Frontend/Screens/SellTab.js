@@ -133,7 +133,7 @@ const StartStreamTab = () => {
             style={{
               color: 'black',
               fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2,
+              fontSize: calculatedFontSize / 2.2,
             }}>
             Sellers Dashboard
           </Text>
@@ -155,13 +155,18 @@ const StartStreamTab = () => {
             }}
             onPress={() => navigation.navigate('ManageProducts')}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="cube-outline" size={35} color="black" />
+              <Icon name="cube-outline" size={30} color="black" />
               <Text
-                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                style={{
+                  color: 'black',
+                  fontWeight: 'bold',
+                  marginLeft: '8%',
+                  fontSize: calculatedFontSize / 2.7,
+                }}>
                 Manage Products
               </Text>
             </View>
-            <Icon name="chevron-forward" size={40} color="black" />
+            <Icon name="chevron-forward" size={30} color="black" />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -180,13 +185,18 @@ const StartStreamTab = () => {
             }}
             onPress={() => navigation.navigate('SellerOrders')}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="cart-outline" size={35} color="black" />
+              <Icon name="cart-outline" size={30} color="black" />
               <Text
-                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                style={{
+                  color: 'black',
+                  fontWeight: 'bold',
+                  marginLeft: '8%',
+                  fontSize: calculatedFontSize / 2.7,
+                }}>
                 Orders (Selling)
               </Text>
             </View>
-            <Icon name="chevron-forward" size={40} color="black" />
+            <Icon name="chevron-forward" size={30} color="black" />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -205,13 +215,18 @@ const StartStreamTab = () => {
             }}
             onPress={() => viewDashboard()}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="cash-outline" size={35} color="black" />
+              <Icon name="cash-outline" size={30} color="black" />
               <Text
-                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
-                View Payments Dashboards
+                style={{
+                  color: 'black',
+                  fontWeight: 'bold',
+                  marginLeft: '8%',
+                  fontSize: calculatedFontSize / 2.8,
+                }}>
+                View payments dashboard
               </Text>
             </View>
-            <Icon name="chevron-forward" size={40} color="black" />
+            <Icon name="chevron-forward" size={30} color="black" />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -230,13 +245,18 @@ const StartStreamTab = () => {
             }}
             onPress={() => navigation.navigate('GetStartedSellRules')}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="alert-circle-outline" size={35} color="black" />
+              <Icon name="alert-circle-outline" size={30} color="black" />
               <Text
-                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                style={{
+                  color: 'black',
+                  fontWeight: 'bold',
+                  marginLeft: '8%',
+                  fontSize: calculatedFontSize / 2.8,
+                }}>
                 Rules and Guidelines
               </Text>
             </View>
-            <Icon name="chevron-forward" size={40} color="black" />
+            <Icon name="chevron-forward" size={30} color="black" />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => startStream()}
@@ -245,7 +265,7 @@ const StartStreamTab = () => {
               paddingHorizontal: '20%',
               backgroundColor: appPink,
               borderRadius: 40,
-              marginTop: '70%',
+              marginTop: '40%',
             }}>
             <Text
               style={{

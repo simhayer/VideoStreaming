@@ -104,3 +104,5 @@ export const clothingSizeOptions = [
   {label: 'XXL', value: 'XXL'},
   {label: 'XXXL', value: 'XXXL'},
 ];
+
+export const GetStreamApiKey = '8ryv3hxy9p2s';

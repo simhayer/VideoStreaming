@@ -18,28 +18,27 @@ import {
 } from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import io from 'socket.io-client';
-import {apiEndpoints, appPink, baseURL, token} from '../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  GetStreamApiKey,
+  token,
+} from '../../Resources/Constants';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import Video from 'react-native-video';
 import axios from 'axios';
 import {
-  LivestreamPlayer,
-  StreamCall,
   StreamVideo,
   StreamVideoClient,
-  User,
-  ViewerLivestream,
 } from '@stream-io/video-react-native-sdk';
 import {CustomLivestreamPlayer} from './CustomLivestreamPlayer';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
-
-const apiKey = '8ryv3hxy9p2s';
 
 const VideoScreen = ({route}) => {
   const {
@@ -151,7 +150,7 @@ const VideoScreen = ({route}) => {
       // Create StreamVideoClient
       //const client = new StreamVideoClient({apiKey, user, token: token});
       const client = StreamVideoClient.getOrCreateInstance({
-        apiKey,
+        apiKey: GetStreamApiKey,
         user,
         token,
       });
@@ -780,7 +779,7 @@ const styles = StyleSheet.create({
     minHeight: 50,
     borderRadius: 5,
     paddingHorizontal: '2%',
-    color: 'black',
+    color: 'white',
     width: '100%',
   },
 });

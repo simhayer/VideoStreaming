@@ -120,24 +120,6 @@ const StartStreamTab = () => {
       .catch(error => {
         console.error('Failed to add product:', response.data);
       });
-
-    //   const response = await axios.post(
-    //     baseURL + apiEndpoints.addProductToUser,
-    //     payload,
-    //   );
-
-    //   if (response.status === 200) {
-    //     console.log('Product added successfully:', response.data);
-    //     navigation.goBack();
-    //     // Handle success (e.g., navigate back, show a success message, etc.)
-    //   } else {
-    //     console.error('Failed to add product:', response.data);
-    //     // Handle failure (e.g., show an error message)
-    //   }
-    // } catch (error) {
-    //   console.error('Error adding product:', error);
-    //   // Handle error (e.g., show an error message)
-    // }
   };
 
   return (
@@ -146,24 +128,33 @@ const StartStreamTab = () => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
+          justifyContent: 'space-between',
           width: '100%',
+          paddingTop: 4,
         }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={40} color="black" />
+          <Icon name="chevron-back" size={35} color="black" />
         </TouchableOpacity>
         <Text
           style={{
             color: 'black',
             fontWeight: 'bold',
             fontSize: calculatedFontSize / 2,
-            marginLeft: '25%',
+            textAlign: 'center',
+            flex: 1,
           }}>
-          Add product
+          Add Product
         </Text>
+        <View style={{width: 35}} />
       </View>
-      <View style={{alignItems: 'center', marginTop: '8%'}}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Icon name="reader-outline" size={40} color="black" />
+      <View style={{alignItems: 'center', marginTop: '4%'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Icon name="reader-outline" size={30} color="black" />
           <TextInput
             value={itemName}
             onChangeText={itemName => setItemName(itemName.trim())}
@@ -172,14 +163,14 @@ const StartStreamTab = () => {
               width: '70%',
               borderBottomWidth: 1,
               borderColor: 'grey',
-              fontSize: calculatedFontSize / 2.3,
-              marginBottom: '2%',
+              fontSize: calculatedFontSize / 2.4,
+              marginBottom: '4%',
               marginLeft: '4%',
             }}
           />
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Icon name="albums-outline" size={40} color="black" />
+          <Icon name="albums-outline" size={30} color="black" />
           <DropDownPicker
             open={typeOpen}
             value={type}
@@ -187,26 +178,31 @@ const StartStreamTab = () => {
             setOpen={setTypeOpen}
             setValue={setType}
             containerStyle={{
-              height: '25%',
               justifyContent: 'center',
               width: '70%',
               marginLeft: '4%',
-            }}
-            labelStyle={{
-              fontWeight: 'bold',
             }}
             dropDownContainerStyle={{
               borderColor: 'black',
             }}
             listItemLabelStyle={{
-              fontWeight: 'bold',
+              marginTop: 0,
+              fontSize: calculatedFontSize / 2.9,
+            }}
+            textStyle={{
+              fontSize: calculatedFontSize / 2.9,
             }}
             zIndex={1000}
           />
         </View>
         {showSizeOption && (
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="filter-outline" size={40} color="black" />
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: '3%',
+            }}>
+            <Icon name="filter-outline" size={30} color="black" />
             <DropDownPicker
               open={sizeOpen}
               value={size}
@@ -216,47 +212,57 @@ const StartStreamTab = () => {
               flatListProps={{nestedScrollEnabled: true}}
               scrollViewProps={{nestedScrollEnabled: true}}
               containerStyle={{
-                height: '25%',
-                maxHeight: '25%',
                 justifyContent: 'center',
                 width: '70%',
                 marginLeft: '4%',
-              }}
-              labelStyle={{
-                fontWeight: 'bold',
               }}
               dropDownContainerStyle={{
                 borderColor: 'black',
               }}
               listItemLabelStyle={{
-                fontWeight: 'bold',
+                marginTop: 0,
+                fontSize: calculatedFontSize / 2.9,
+              }}
+              textStyle={{
+                fontSize: calculatedFontSize / 2.9,
               }}
               zIndex={900}
             />
           </View>
         )}
-        <TouchableOpacity
+        <View
           style={{
-            marginTop: '6%',
-            borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '80%',
             flexDirection: 'row',
-            paddingVertical: '2%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
             alignItems: 'center',
-            borderRadius: 40,
-          }}
-          onPress={handleImageSelection}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
-              Add image
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={40} color="black" />
-        </TouchableOpacity>
+            marginTop: '3%',
+          }}>
+          <View style={{width: 35}} />
+          <TouchableOpacity
+            style={{
+              borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              width: '70%',
+              flexDirection: 'row',
+              paddingVertical: '2%',
+              paddingHorizontal: '4%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderRadius: 40,
+            }}
+            onPress={handleImageSelection}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text
+                style={{
+                  color: 'black',
+                  marginLeft: '10%',
+                  fontSize: calculatedFontSize / 2.9,
+                }}>
+                Add image
+              </Text>
+            </View>
+            <Icon name="chevron-forward" size={30} color="black" />
+          </TouchableOpacity>
+        </View>
         <View
           style={{
             height: '40%',
@@ -276,25 +282,27 @@ const StartStreamTab = () => {
             </View>
           )}
         </View>
-        <TouchableOpacity
-          onPress={addProduct} // Call addProduct on button press
-          style={{
-            backgroundColor: appPink,
-            borderRadius: 40,
-            paddingVertical: '4%',
-            marginHorizontal: '10%',
-            marginTop: 20,
-          }}>
-          <Text
+        <View style={{height: 'auto', marginBottom: 20}}>
+          <TouchableOpacity
+            onPress={addProduct} // Call addProduct on button press
             style={{
-              color: 'white',
-              textAlign: 'center',
-              fontWeight: 'bold',
-              paddingHorizontal: '10%',
+              backgroundColor: appPink,
+              borderRadius: 40,
+              paddingVertical: '4%',
+              marginHorizontal: '10%',
+              marginTop: 20,
             }}>
-            Add
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                paddingHorizontal: '10%',
+              }}>
+              Add
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );

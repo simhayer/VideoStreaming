@@ -58,7 +58,7 @@ export default function AddPaymentMethod() {
               color: 'black',
               fontWeight: 'bold',
               fontSize: calculatedFontSize / 2,
-              marginLeft: '30%',
+              marginLeft: '25%',
             }}>
             Settings
           </Text>
@@ -79,13 +79,18 @@ export default function AddPaymentMethod() {
           }}
           onPress={() => navigation.navigate('EditProfile')}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="person-circle-outline" size={40} color="black" />
+            <Icon name="person-circle-outline" size={30} color="black" />
             <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                marginLeft: '8%',
+                fontSize: calculatedFontSize / 2.7,
+              }}>
               Profile
             </Text>
           </View>
-          <Icon name="chevron-forward" size={40} color="black" />
+          <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -102,13 +107,18 @@ export default function AddPaymentMethod() {
           }}
           onPress={() => navigation.navigate('AddPaymentOrShipping')}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="card-outline" size={40} color="black" />
+            <Icon name="card-outline" size={30} color="black" />
             <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                marginLeft: '10%',
+                fontSize: calculatedFontSize / 2.7,
+              }}>
               Payment and shipping
             </Text>
           </View>
-          <Icon name="chevron-forward" size={40} color="black" />
+          <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -125,13 +135,18 @@ export default function AddPaymentMethod() {
           }}
           onPress={() => navigation.navigate('ManageProducts')}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="cube-outline" size={35} color="black" />
+            <Icon name="cube-outline" size={30} color="black" />
             <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                marginLeft: '10%',
+                fontSize: calculatedFontSize / 2.7,
+              }}>
               Manage Products
             </Text>
           </View>
-          <Icon name="chevron-forward" size={40} color="black" />
+          <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -148,13 +163,18 @@ export default function AddPaymentMethod() {
           }}
           onPress={() => navigation.navigate('Orders')}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="cart-outline" size={35} color="black" />
+            <Icon name="cart-outline" size={30} color="black" />
             <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                marginLeft: '10%',
+                fontSize: calculatedFontSize / 2.7,
+              }}>
               Orders
             </Text>
           </View>
-          <Icon name="chevron-forward" size={40} color="black" />
+          <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
           style={{
@@ -171,13 +191,18 @@ export default function AddPaymentMethod() {
           }}
           onPress={() => onLogoutClick()}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="log-out-outline" size={40} color="black" />
+            <Icon name="log-out-outline" size={30} color="black" />
             <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                marginLeft: '10%',
+                fontSize: calculatedFontSize / 2.6,
+              }}>
               Log out
             </Text>
           </View>
-          <Icon name="chevron-forward" size={40} color="black" />
+          <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>

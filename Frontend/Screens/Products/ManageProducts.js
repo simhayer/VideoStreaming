@@ -96,122 +96,124 @@ const ManageProducts = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{alignItems: 'center', marginTop: '2%'}}>
-        <View
+    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          paddingTop: 4,
+        }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="chevron-back" size={35} color="black" />
+        </TouchableOpacity>
+        <Text
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            width: '100%',
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2,
+            textAlign: 'center',
+            flex: 1,
           }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="chevron-back" size={40} color="black" />
-          </TouchableOpacity>
-          <Text
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2,
-              marginLeft: '22%',
-            }}>
-            Manage products
-          </Text>
-        </View>
-        <View
+          Manage products
+        </Text>
+        <View style={{width: 35}} />
+      </View>
+      <View
+        style={{
+          borderWidth: 1,
+          borderColor: 'rgba(0,0,0,0.2)',
+          width: '95%',
+          borderRadius: 20,
+          justifyContent: 'center',
+          marginTop: '3%',
+          height: 50,
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}>
+        <Icon name="search" size={35} color="grey" />
+        <TextInput
+          style={{width: '70%', marginLeft: '3%'}}
+          placeholder="Search orders..."
+          placeholderTextColor="grey"
+          value={search}
+          onChangeText={setSearch}
+          returnKeyType="send"
+          enterKeyHint="send"
+        />
+        <TouchableOpacity
           style={{
-            borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '95%',
-            borderRadius: 20,
-            height: '6%',
             justifyContent: 'center',
-            marginTop: '3%',
-            minHeight: 50,
-            flexDirection: 'row',
             alignItems: 'center',
           }}>
-          <Icon name="search" size={40} color="grey" />
-          <TextInput
-            style={{width: '70%', marginLeft: '3%'}}
-            placeholder="Search orders..."
-            placeholderTextColor="grey"
-            value={search}
-            onChangeText={setSearch}
-            returnKeyType="send"
-            enterKeyHint="send"
-          />
-          <TouchableOpacity
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Icon name="arrow-up-circle" size={40} color="grey" />
-          </TouchableOpacity>
-        </View>
-        <View style={{height: '65%'}}>
-          <FlatList
-            style={{flex: 1, marginTop: '2%'}}
-            data={filteredItems}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({item}) => {
-              if (!item.imageUrl) return null;
-              const itemImageFilename = item.imageUrl.split('\\').pop();
-              const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
-              return (
-                <TouchableOpacity
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    borderWidth: 1,
-                    borderColor: 'rgba(0,0,0,0.2)',
-                    marginTop: 10,
-                    paddingRight: '3%',
-                    justifyContent: 'space-between',
-                  }}
-                  onPress={() =>
-                    navigation.navigate('ViewProduct', {
-                      name: item.name,
-                      size: item.size,
-                      imageUrl: itemImageUrl,
-                      type: item.type,
-                    })
-                  }>
-                  <Image
-                    source={{uri: itemImageUrl}}
-                    resizeMode="contain"
-                    style={{width: '20%', height: 100}}
-                  />
-                  <View style={{width: '70%'}}>
-                    <Text
-                      style={{
-                        fontWeight: 'bold',
-                        textAlign: 'left',
-                        flexWrap: 'wrap',
-                      }}>
-                      {item.name}
-                    </Text>
-                    <Text style={{}}>{item.size}</Text>
-                  </View>
+          <Icon name="arrow-up-circle" size={35} color="grey" />
+        </TouchableOpacity>
+      </View>
+      <View style={{flex: 1, width: '100%'}}>
+        <FlatList
+          style={{flex: 1, marginTop: '2%'}}
+          data={filteredItems}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({item}) => {
+            if (!item.imageUrl) return null;
+            const itemImageFilename = item.imageUrl.split('\\').pop();
+            const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
+            return (
+              <TouchableOpacity
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  borderWidth: 1,
+                  borderColor: 'rgba(0,0,0,0.2)',
+                  marginTop: 10,
+                  paddingRight: '3%',
+                  justifyContent: 'space-between',
+                }}
+                onPress={() =>
+                  navigation.navigate('ViewProduct', {
+                    name: item.name,
+                    size: item.size,
+                    imageUrl: itemImageUrl,
+                    type: item.type,
+                  })
+                }>
+                <Image
+                  source={{uri: itemImageUrl}}
+                  resizeMode="contain"
+                  style={{width: '20%', height: 100}}
+                />
+                <View style={{width: '70%'}}>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      textAlign: 'left',
+                      flexWrap: 'wrap',
+                    }}>
+                    {item.name}
+                  </Text>
+                  <Text style={{}}>{item.size}</Text>
+                </View>
 
-                  <TouchableOpacity onPress={() => handleDeleteItem(item)}>
-                    <Icon name="close-circle-outline" size={25} color="red" />
-                  </TouchableOpacity>
+                <TouchableOpacity onPress={() => handleDeleteItem(item)}>
+                  <Icon name="close-circle-outline" size={25} color="red" />
                 </TouchableOpacity>
-              );
-            }}
-            contentContainerStyle={{
-              paddingBottom: 10, // Add padding to avoid the last item being cut off
-            }}
-          />
-        </View>
-
+              </TouchableOpacity>
+            );
+          }}
+          contentContainerStyle={{
+            paddingBottom: 10, // Add padding to avoid the last item being cut off
+          }}
+        />
+      </View>
+      <View style={{height: 'auto', marginBottom: 25}}>
         <TouchableOpacity
           onPress={() => navigation.navigate('AddProduct')}
           style={{
             backgroundColor: appPink,
             borderRadius: 40,
-            paddingVertical: '4%',
+            paddingVertical: '3%',
             paddingHorizontal: '10%',
             marginTop: 20,
           }}>
@@ -220,6 +222,7 @@ const ManageProducts = () => {
               color: 'white',
               textAlign: 'center',
               fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.7,
             }}>
             Add item
           </Text>
@@ -229,15 +232,16 @@ const ManageProducts = () => {
           style={{
             backgroundColor: appPink,
             borderRadius: 40,
-            paddingVertical: '4%',
+            paddingVertical: '3%',
             paddingHorizontal: '12%',
-            marginTop: 20,
+            marginTop: 10,
           }}>
           <Text
             style={{
               color: 'white',
               textAlign: 'center',
               fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.7,
             }}>
             Done
           </Text>

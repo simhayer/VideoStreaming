@@ -15,7 +15,13 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import io from 'socket.io-client';
-import {baseURL, apiEndpoints, token, appPink} from '../../Resources/Constants';
+import {
+  baseURL,
+  apiEndpoints,
+  token,
+  appPink,
+  GetStreamApiKey,
+} from '../../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
@@ -25,17 +31,13 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import {
-  role,
   StreamCall,
   StreamVideo,
   StreamVideoClient,
-  User,
 } from '@stream-io/video-react-native-sdk';
-//import { SafeAreaView, Text, StyleSheet, View, Image } from 'react-native';
 import {
   useCall,
   useCallStateHooks,
-  useIncallManager,
   VideoRenderer,
 } from '@stream-io/video-react-native-sdk';
 import InCallManager from 'react-native-incall-manager';
@@ -43,13 +45,8 @@ import InCallManager from 'react-native-incall-manager';
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
-const apiKey = '8ryv3hxy9p2s';
-const callId = 'livestream_7';
-
 const GetStreamSDK = ({route}) => {
-  //const {title, thumbnail} = route.params;
-  const title = 'Untitled';
-  const thumbnail = null;
+  const {title, thumbnail} = route.params;
 
   const [socketId, setSocketId] = useState(null);
   const [broadcastId, setBroadcastId] = useState(null);
@@ -154,7 +151,7 @@ const GetStreamSDK = ({route}) => {
       // Create StreamVideoClient
       //const client = new StreamVideoClient({apiKey, user, token: token});
       const client = StreamVideoClient.getOrCreateInstance({
-        apiKey,
+        apiKey: GetStreamApiKey,
         user,
         token,
       });
@@ -207,10 +204,6 @@ const GetStreamSDK = ({route}) => {
       });
     //}
   };
-
-  // useEffect(() => {
-  //   initializeMeeting();
-  // }, []);
 
   useEffect(() => {
     if (isSocketReady) {
@@ -437,10 +430,13 @@ const GetStreamSDK = ({route}) => {
                                 }}
                               />
                               <View>
-                                <Text style={{fontWeight: 'bold'}}>
+                                <Text
+                                  style={{fontWeight: 'bold', color: 'white'}}>
                                   {item.userUsername}
                                 </Text>
-                                <Text>{item.comment}</Text>
+                                <Text style={{color: 'white'}}>
+                                  {item.comment}
+                                </Text>
                               </View>
                             </View>
                           </Pressable>
@@ -722,7 +718,7 @@ const LivestreamView = () => {
           zIndex: 10,
         }}>
         <Text style={styles.text}>Live: {totalParticipants}</Text>
-        <View style={styles.bottomBar}>
+        {/* <View style={styles.bottomBar}>
           {isCallLive ? (
             <Button onPress={() => call?.stopLive()} title="Stop Live" />
           ) : (
@@ -733,7 +729,7 @@ const LivestreamView = () => {
               title="Go Live"
             />
           )}
-        </View>
+        </View> */}
       </View>
 
       <View style={styles.video}>
