@@ -23,7 +23,7 @@ const StartStreamTab = ({route}) => {
   const [selectedImage, setSelectedImage] = useState('');
 
   const startStream = async () => {
-    navigation.navigate('StreamScreenSDK', {title, thumbnail: selectedImage});
+    navigation.navigate('GetStreamSDK', {title, thumbnail: selectedImage});
   };
 
   const handleImageSelection = () => {

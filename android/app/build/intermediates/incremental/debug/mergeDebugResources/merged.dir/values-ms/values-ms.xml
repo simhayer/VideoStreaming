@@ -148,7 +148,6 @@
     <string name="exo_track_surround_7_point_1">Bunyi keliling 7.1</string>
     <string name="exo_track_unknown">Tidak diketahui</string>
     <string name="exo_track_unknown_name">Tidak diketahui (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"Terperinci"</string>
     <string msgid="5974471714631304645" name="expanded">"Dikembangkan"</string>
     <string name="exposed_dropdown_menu_content_description">Tunjukkan menu lungsur</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Salin pautan"</string>
@@ -248,7 +247,6 @@
     <string gender="unknown" name="state_unselected_description">dinyahpilih</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="stripe_hcaptcha_loading_text">Mengesahkan anda adalah manusia</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">Ringkasan</string>
     <string msgid="2561197295334830845" name="switch_role">"Tukar"</string>
     <string msgid="1672349317127674378" name="tab">"Tab"</string>
@@ -256,7 +254,5 @@
     <string msgid="5946805113151406391" name="template_percent">"Peratus <ns1:g id="PERCENTAGE">%1$d</ns1:g>."</string>
     <string gender="unknown" name="timer_description">Pemasa</string>
     <string gender="unknown" name="toolbar_description">Bar Alat</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"MATI"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"HIDUP"</string>
     <string name="wallet_buy_button_place_holder">Beli dengan Google</string>
 </resources>

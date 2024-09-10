@@ -146,7 +146,6 @@
     <string name="exo_track_surround_7_point_1">7.1-Surround-Sound</string>
     <string name="exo_track_unknown">Unbekannt</string>
     <string name="exo_track_unknown_name">Unbekannt (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"Erweitert"</string>
     <string msgid="5974471714631304645" name="expanded">"Maximiert"</string>
     <string name="exposed_dropdown_menu_content_description">Drop-down-Menü anzeigen</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Link kopieren"</string>
@@ -539,14 +538,11 @@
     <string name="stripe_wallet_unavailable">Nicht verfügbar für diesen Kauf</string>
     <string name="stripe_wallet_update_card">Karte aktualisieren</string>
     <string name="stripe_wallet_update_expired_card_error">Diese Karte ist abgelaufen. Aktualisieren Sie die Kartendaten oder ändern Sie die Zahlungsmethode.</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">Übersicht</string>
     <string msgid="2561197295334830845" name="switch_role">"Wechseln"</string>
     <string msgid="1672349317127674378" name="tab">"Tab"</string>
     <string gender="unknown" name="tablist_description">Tab-Liste</string>
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> Prozent."</string>
     <string gender="unknown" name="toolbar_description">Symbolleiste</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"AUS"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"EIN"</string>
     <string name="wallet_buy_button_place_holder">Über Google kaufen</string>
 </resources>

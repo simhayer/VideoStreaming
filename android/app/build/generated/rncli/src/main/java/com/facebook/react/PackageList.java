@@ -11,20 +11,28 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+// @notifee/react-native
+import io.invertase.notifee.NotifeePackage;
 // @react-native-async-storage/async-storage
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+// @react-native-community/netinfo
+import com.reactnativecommunity.netinfo.NetInfoPackage;
 // @react-native-google-signin/google-signin
 import com.reactnativegooglesignin.RNGoogleSigninPackage;
 // @react-native-masked-view/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// @stream-io/react-native-webrtc
+import com.oney.WebRTCModule.WebRTCModulePackage;
+// @stream-io/video-react-native-sdk
+import com.streamvideo.reactnative.StreamVideoReactNativePackage;
 // @stripe/stripe-react-native
 import com.reactnativestripesdk.StripeSdkPackage;
-// @videosdk.live/react-native-incallmanager
-import live.videosdk.rnincallmanager.InCallManagerPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-image-picker
 import com.imagepicker.ImagePickerPackage;
+// react-native-incall-manager
+import com.zxcpoiu.incallmanager.InCallManagerPackage;
 // react-native-linear-gradient
 import com.BV.LinearGradient.LinearGradientPackage;
 // react-native-randombytes
@@ -39,8 +47,6 @@ import com.horcrux.svg.SvgPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 // react-native-video
 import com.brentvatne.react.ReactVideoPackage;
-// react-native-webrtc
-import com.oney.WebRTCModule.WebRTCModulePackage;
 // react-native-reanimated
 import com.swmansion.reanimated.ReanimatedPackage;
 
@@ -88,13 +94,17 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
+      new NotifeePackage(),
       new AsyncStoragePackage(),
+      new NetInfoPackage(),
       new RNGoogleSigninPackage(),
       new RNCMaskedViewPackage(),
+      new WebRTCModulePackage(),
+      new StreamVideoReactNativePackage(),
       new StripeSdkPackage(),
-      new InCallManagerPackage(),
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
+      new InCallManagerPackage(),
       new LinearGradientPackage(),
       new RandomBytesPackage(),
       new SafeAreaContextPackage(),
@@ -102,7 +112,6 @@ public class PackageList {
       new SvgPackage(),
       new VectorIconsPackage(),
       new ReactVideoPackage(),
-      new WebRTCModulePackage(),
       new ReanimatedPackage()
     ));
   }

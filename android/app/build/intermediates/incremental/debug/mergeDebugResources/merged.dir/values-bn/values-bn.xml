@@ -148,7 +148,6 @@
     <string name="exo_track_surround_7_point_1">7.1 সারাউন্ড সাউন্ড</string>
     <string name="exo_track_unknown">অজানা</string>
     <string name="exo_track_unknown_name">অজানা (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"উন্নত"</string>
     <string msgid="5974471714631304645" name="expanded">"বড় করা হয়েছে"</string>
     <string name="exposed_dropdown_menu_content_description">ড্রপ-ডাউন মেনু দেখুন</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"লিঙ্ক কপি করুন"</string>
@@ -250,7 +249,6 @@
     <string gender="unknown" name="state_unselected_description">আনসিলেক্ট করা হয়েছে</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"৯৯৯+"</string>
     <string name="stripe_hcaptcha_loading_text">আপনাকে যাচাই করা মানুষ</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">সারসংক্ষেপ</string>
     <string msgid="2561197295334830845" name="switch_role">"সুইচ"</string>
     <string msgid="1672349317127674378" name="tab">"ট্যাব"</string>
@@ -258,7 +256,5 @@
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> শতাংশ।"</string>
     <string gender="unknown" name="timer_description">টাইমার</string>
     <string gender="unknown" name="toolbar_description">টুল বার</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"বন্ধ"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"চালু"</string>
     <string name="wallet_buy_button_place_holder">Google ব্যবহার করে কিনুন</string>
 </resources>

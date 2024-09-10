@@ -145,7 +145,6 @@
     <string name="exo_track_surround_7_point_1">ສຽງຮອບທິດທາງ 7.1</string>
     <string name="exo_track_unknown">ບໍ່ຮູ້ຈັກ</string>
     <string name="exo_track_unknown_name">ບໍ່ຮູ້ຈັກ (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"ຂັ້ນສູງ"</string>
     <string msgid="5974471714631304645" name="expanded">"ຂະຫຍາຍແລ້ວ"</string>
     <string name="exposed_dropdown_menu_content_description">ສະແດງເມນູເລື່ອນລົງ</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"ສຳເນົາລິ້ງ"</string>
@@ -234,11 +233,8 @@
     <string gender="unknown" name="state_on_description">ເປີດ</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="stripe_hcaptcha_loading_text">ການພິສູດວ່າທ່ານເປັນມະນຸດ</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string msgid="2561197295334830845" name="switch_role">"ປຸ່ມກົດ"</string>
     <string msgid="1672349317127674378" name="tab">"ແຖບ"</string>
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> ເປີ​ເຊັນ."</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"ປິດ"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ເປີດ"</string>
     <string name="wallet_buy_button_place_holder">ຊື້ໂດຍໃຊ້ Google</string>
 </resources>

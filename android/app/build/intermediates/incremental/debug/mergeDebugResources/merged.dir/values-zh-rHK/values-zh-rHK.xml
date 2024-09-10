@@ -148,7 +148,6 @@
     <string name="exo_track_surround_7_point_1">7.1 環迴立體聲</string>
     <string name="exo_track_unknown">不明</string>
     <string name="exo_track_unknown_name">不明 (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"進階"</string>
     <string msgid="5974471714631304645" name="expanded">"展開咗"</string>
     <string name="exposed_dropdown_menu_content_description">顯示下拉式選單</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"複製連結"</string>
@@ -542,7 +541,6 @@
     <string name="stripe_wallet_unavailable">無法完成這筆訂單</string>
     <string name="stripe_wallet_update_card">更新銀行卡</string>
     <string name="stripe_wallet_update_expired_card_error">該卡已過期。更新您的銀行卡資訊或選擇另一支付方式。</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>，<ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">摘要</string>
     <string msgid="2561197295334830845" name="switch_role">"按鈕裝置"</string>
     <string msgid="1672349317127674378" name="tab">"分頁"</string>
@@ -550,7 +548,5 @@
     <string msgid="5946805113151406391" name="template_percent">"百分之 <ns1:g id="PERCENTAGE">%1$d</ns1:g>。"</string>
     <string gender="unknown" name="timer_description">計時器</string>
     <string gender="unknown" name="toolbar_description">工具列</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"關閉"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"開啟"</string>
     <string name="wallet_buy_button_place_holder">透過 Google 購物</string>
 </resources>

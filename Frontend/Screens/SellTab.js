@@ -214,6 +214,31 @@ const StartStreamTab = () => {
             <Icon name="chevron-forward" size={40} color="black" />
           </TouchableOpacity>
           <TouchableOpacity
+            style={{
+              marginTop: '3%',
+              borderTopWidth: 1,
+              borderBottomWidth: 1,
+              borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              width: '90%',
+              flexDirection: 'row',
+              paddingVertical: '2%',
+              paddingHorizontal: '4%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderRadius: 40,
+            }}
+            onPress={() => navigation.navigate('GetStartedSellRules')}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Icon name="alert-circle-outline" size={35} color="black" />
+              <Text
+                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                Rules and Guidelines
+              </Text>
+            </View>
+            <Icon name="chevron-forward" size={40} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => startStream()}
             style={{
               paddingVertical: '4%',

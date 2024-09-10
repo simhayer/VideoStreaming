@@ -11,8 +11,8 @@ import ResetPassword from './Screens/Authentication/PassowrdHandle/ResetPassword
 import Icon from 'react-native-vector-icons/FontAwesome';
 import EditProfile from './Screens/EditProfile';
 import UsernameCreate from './Screens/Authentication/UsernameCreate';
-import StreamScreenSDK from './Screens/Stream/StreamScreenSDK';
-import VideoScreenSDK from './Screens/VideoScreenSDK';
+//import StreamScreenSDK from './Screens/Stream/StreamScreenSDK';
+//import VideoScreenSDK from './Screens/VideoScreenSDK';
 import GetStartedSell from './Screens/GetStartedSell/GetStartedSell';
 import GetStartedSellRules from './Screens/GetStartedSell/GetStartedSellRules';
 import AddPaymentOrShipping from './Screens/PaymentAndShipping/AddPaymentOrShipping';
@@ -30,6 +30,8 @@ import ViewOrderBuyer from './Screens/Orders/ViewOrderBuyer';
 import ViewOrderSeller from './Screens/Orders/ViewOrderSeller';
 import EnterOrderTracking from './Screens/Orders/EnterOrderTracking';
 import EnterStreamTitle from './Screens/Stream/EnterStreamTitle';
+import GetStreamViewerSDK from './Screens/StreamViewer/GetStreamViewerSDK';
+import GetStreamSDK from './Screens/Stream/GetStreamSDK';
 //import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
@@ -50,16 +52,6 @@ const MyStack = () => {
           <Stack.Screen
             name="EditProfile"
             component={EditProfile}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="StreamScreenSDK"
-            component={StreamScreenSDK}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="VideoScreenSDK"
-            component={VideoScreenSDK}
             options={{headerShown: false}}
           />
           <Stack.Screen
@@ -145,6 +137,16 @@ const MyStack = () => {
           <Stack.Screen
             name="EnterStreamTitle"
             component={EnterStreamTitle}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="GetStreamViewerSDK"
+            component={GetStreamViewerSDK}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="GetStreamSDK"
+            component={GetStreamSDK}
             options={{headerShown: false}}
           />
         </Stack.Group>

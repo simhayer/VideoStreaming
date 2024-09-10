@@ -20,6 +20,7 @@ const broadcastController = require('../Controllers/broadcastController');
 const consumerController = require('../Controllers/consumerController');
 const stripeService = require('../Services/stripeService');
 const orderService = require('../Services/orderService');
+const getStreamService = require('../Services/getStreamService');
 
 //auth routes
 router.route('/register').post(register);
@@ -83,5 +84,11 @@ router.route('/getAllOrdersForBuyer').post(orderService.getAllOrdersForBuyer);
 router.route('/getAllOrdersForSeller').post(orderService.getAllOrdersForSeller);
 router.route('/updateOrderTracking').post(orderService.updateOrderTracking);
 router.route('/markOrderComplete').post(orderService.markOrderComplete);
+
+//getStream
+router.route('/createStreamUser').post(getStreamService.createStreamUser);
+router
+  .route('/queryActiveStreamCalls')
+  .post(getStreamService.queryActiveStreamCalls);
 
 module.exports = router;

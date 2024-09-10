@@ -148,7 +148,6 @@
     <string name="exo_track_surround_7_point_1">Sonido envolvente 7.1</string>
     <string name="exo_track_unknown">Desconocido</string>
     <string name="exo_track_unknown_name">Desconocido (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"Avanzada"</string>
     <string msgid="5974471714631304645" name="expanded">"Desplegado"</string>
     <string name="exposed_dropdown_menu_content_description">Mostrar menú desplegable</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Copiar enlace"</string>
@@ -543,7 +542,6 @@
     <string name="stripe_wallet_unavailable">No disponible para esta compra</string>
     <string name="stripe_wallet_update_card">Actualizar la tarjeta</string>
     <string name="stripe_wallet_update_expired_card_error">Esta tarjeta ha caducado. Actualízala los datos de la tarjeta o elige un método de pago diferente.</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">Resumen</string>
     <string msgid="2561197295334830845" name="switch_role">"Interruptor"</string>
     <string msgid="1672349317127674378" name="tab">"Pestaña"</string>
@@ -551,7 +549,5 @@
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> por cien."</string>
     <string gender="unknown" name="timer_description">Temporizador</string>
     <string gender="unknown" name="toolbar_description">Barra de herramientas</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"DESACTIVADA"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ACTIVADO"</string>
     <string name="wallet_buy_button_place_holder">Comprar con Google</string>
 </resources>

@@ -32,7 +32,6 @@ const ViewOrderSeller = ({route}) => {
   const imageUrl = `${baseURL}/products/${itemImageFilename}`;
 
   const formattedDate = new Date(order.orderDate).toISOString().split('T')[0];
-  const [search, setSearch] = useState('');
 
   const markOrderComplete = async () => {
     setLoading(true);

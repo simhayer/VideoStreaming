@@ -147,7 +147,6 @@
     <string name="exo_track_surround_7_point_1">7.1 surroundsound</string>
     <string name="exo_track_unknown">Ukendt</string>
     <string name="exo_track_unknown_name">Ukendt (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"Avanceret"</string>
     <string msgid="5974471714631304645" name="expanded">"Udvidet"</string>
     <string name="exposed_dropdown_menu_content_description">Vis rullemenuen</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopiér link"</string>
@@ -540,14 +539,11 @@
     <string name="stripe_wallet_unavailable">Ikke tilgængelig for dette køb</string>
     <string name="stripe_wallet_update_card">Opdater kort</string>
     <string name="stripe_wallet_update_expired_card_error">Dette kort er udløbet. Opdater dine kortoplysninger eller vælg en anden betalingsmetode.</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">Oversigt</string>
     <string msgid="2561197295334830845" name="switch_role">"Kontakt"</string>
     <string msgid="1672349317127674378" name="tab">"Fane"</string>
     <string gender="unknown" name="tablist_description">Liste over faner</string>
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> procent."</string>
     <string gender="unknown" name="toolbar_description">Værktøjslinje</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"FRA"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"TIL"</string>
     <string name="wallet_buy_button_place_holder">Køb med Google</string>
 </resources>

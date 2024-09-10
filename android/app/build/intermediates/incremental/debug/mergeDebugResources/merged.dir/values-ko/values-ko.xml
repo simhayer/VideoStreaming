@@ -148,7 +148,6 @@
     <string name="exo_track_surround_7_point_1">7.1 서라운드 사운드</string>
     <string name="exo_track_unknown">알 수 없음</string>
     <string name="exo_track_unknown_name">알 수 없음(%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"고급"</string>
     <string msgid="5974471714631304645" name="expanded">"펼침"</string>
     <string name="exposed_dropdown_menu_content_description">드롭다운 메뉴 표시</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"링크 복사"</string>
@@ -543,7 +542,6 @@
     <string name="stripe_wallet_unavailable">해당 구매에는 사용 불가능</string>
     <string name="stripe_wallet_update_card">카드 업데이트</string>
     <string name="stripe_wallet_update_expired_card_error">이 카드의 유효기간이 만료되었습니다. 카드 정보를 업데이트하거나 다른 결제 방식을 선택하십시오.</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">요약</string>
     <string msgid="2561197295334830845" name="switch_role">"스위치"</string>
     <string msgid="1672349317127674378" name="tab">"탭"</string>
@@ -551,7 +549,5 @@
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g>퍼센트"</string>
     <string gender="unknown" name="timer_description">타이머</string>
     <string gender="unknown" name="toolbar_description">도구 표시줄</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"사용 안함"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"사용"</string>
     <string name="wallet_buy_button_place_holder">Google로 구매</string>
 </resources>

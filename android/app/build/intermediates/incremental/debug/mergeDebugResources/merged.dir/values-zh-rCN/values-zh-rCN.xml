@@ -148,7 +148,6 @@
     <string name="exo_track_surround_7_point_1">7.1 环绕声</string>
     <string name="exo_track_unknown">未知</string>
     <string name="exo_track_unknown_name">未知 (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"高级"</string>
     <string msgid="5974471714631304645" name="expanded">"已展开"</string>
     <string name="exposed_dropdown_menu_content_description">显示下拉菜单</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"复制链接"</string>
@@ -256,7 +255,6 @@
     <string name="stripe_3ds2_hzv_cancel_label">取消</string>
     <string name="stripe_3ds2_hzv_header_label">安全结账</string>
     <string name="stripe_3ds2_processing">正在处理\u2026</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>、<ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">摘要</string>
     <string msgid="2561197295334830845" name="switch_role">"开关"</string>
     <string msgid="1672349317127674378" name="tab">"标签页"</string>
@@ -264,7 +262,5 @@
     <string msgid="5946805113151406391" name="template_percent">"百分之 <ns1:g id="PERCENTAGE">%1$d</ns1:g>。"</string>
     <string gender="unknown" name="timer_description">倒计时</string>
     <string gender="unknown" name="toolbar_description">工具栏</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"关闭"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"开启"</string>
     <string name="wallet_buy_button_place_holder">通过 Google 购买</string>
 </resources>

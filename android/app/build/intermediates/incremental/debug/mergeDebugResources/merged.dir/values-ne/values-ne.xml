@@ -145,7 +145,6 @@
     <string name="exo_track_surround_7_point_1">7.1 सराउन्ड साउन्ड</string>
     <string name="exo_track_unknown">अज्ञात</string>
     <string name="exo_track_unknown_name">अज्ञात (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"उन्नत"</string>
     <string msgid="5974471714631304645" name="expanded">"एक्स्पान्ड गरियो"</string>
     <string name="exposed_dropdown_menu_content_description">ड्रपडाउन मेनु देखाउनुहोस्</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"लिंक प्रतिलिपि गर्नुहोस्"</string>
@@ -234,11 +233,8 @@
     <string gender="unknown" name="state_on_description">अन</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"९९९+"</string>
     <string name="stripe_hcaptcha_loading_text">तपाई मानव हुनुहुन्छ भनेर प्रमाणित गर्दै</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string msgid="2561197295334830845" name="switch_role">"बदल्नुहोस्"</string>
     <string msgid="1672349317127674378" name="tab">"ट्याब"</string>
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> प्रतिशत।"</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"निष्क्रिय पार्नुहोस्‌"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"सक्रिय"</string>
     <string name="wallet_buy_button_place_holder">Google मार्फत किन्नुहोस्</string>
 </resources>

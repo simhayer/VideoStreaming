@@ -62,7 +62,6 @@
     <string msgid="6107532579223922871" name="call_notification_incoming_text">"着信"</string>
     <string msgid="8623827134497363134" name="call_notification_ongoing_text">"通話中"</string>
     <string msgid="59049573811482460" name="call_notification_screening_text">"着信をスクリーニング中"</string>
-    <string name="camera">カメラ</string>
     <string gender="unknown" name="catalyst_dev_menu_header">React Native開発メニュー(%1$s)</string>
     <string gender="unknown" name="catalyst_dev_menu_sub_header">%1$sの実行中</string>
     <string name="character_counter_content_description">入力済み文字数: %1$d/%2$d</string>
@@ -71,11 +70,6 @@
     <string msgid="406453423630273620" name="close_drawer">"ナビゲーションメニューを閉じる"</string>
     <string msgid="7573152094250666567" name="close_sheet">"シートを閉じる"</string>
     <string msgid="5389587048670450460" name="collapsed">"閉じています"</string>
-    <string name="color_picker_cancel">キャンセル</string>
-    <string msgid="1248663997452044787" name="color_picker_default_title">"色の選択"</string>
-    <string name="color_picker_select">選択</string>
-    <string msgid="2883438431173736180" name="color_swatch_description">"色<ns1:g id="COLOR_INDEX">%1$d</ns1:g>"</string>
-    <string msgid="5020921249944943124" name="color_swatch_description_selected">"色<ns1:g id="COLOR_INDEX">%1$d</ns1:g>を選択しました"</string>
     <string gender="unknown" name="combobox_description">コンボボックス</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">有効にする</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text">%1$sの実行には、Google Play開発者サービスの有効化が必要です。</string>
@@ -100,7 +94,6 @@
     <string name="default_notification_channel_name">再生中</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"ポップアップウィンドウ"</string>
     <string msgid="4057925834421392736" name="dialog">"ダイアログ"</string>
-    <string name="dialog_dont_show_again">次回から表示しない</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"プルダウン メニュー"</string>
     <string name="error_icon_content_description">エラー</string>
     <string name="exo_controls_cc_disabled_description">字幕の有効化</string>
@@ -155,7 +148,6 @@
     <string name="exo_track_surround_7_point_1">7.1 サラウンド サウンド</string>
     <string name="exo_track_unknown">不明</string>
     <string name="exo_track_unknown_name">不明（%1$s）</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"詳細設定"</string>
     <string msgid="5974471714631304645" name="expanded">"開いています"</string>
     <string name="exposed_dropdown_menu_content_description">プルダウン メニューを表示</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"リンクをコピー"</string>
@@ -235,50 +227,18 @@
     <string name="mtrl_timepicker_cancel">キャンセル</string>
     <string name="mtrl_timepicker_confirm">OK</string>
     <string msgid="542007171693138492" name="navigation_menu">"ナビゲーションメニュー"</string>
-    <string name="no_device">USBカメラが見つかりません</string>
     <string msgid="6610465462668679431" name="not_selected">"未選択"</string>
     <string msgid="875452955155264703" name="off">"オフ"</string>
     <string msgid="8655164131929253426" name="on">"オン"</string>
     <string name="password_toggle_content_description">パスワードを表示</string>
-    <string name="permission_audio">録音許可がありません。\n音声機能を使用できません。</string>
-    <string name="permission_audio_recording_reason">音声付きで録画するには録音許可が必要です。</string>
-    <string name="permission_audio_recording_request">音声付きで録画するには録音許可が必要です。</string>
-    <string name="permission_audio_streaming_reason">音声付きで配信するには録音許可が必要です。</string>
-    <string name="permission_audio_streaming_request">音声付きで配信するには録音許可が必要です。</string>
-    <string name="permission_camera">内蔵カメラへのアクセス許可がありません。</string>
-    <string name="permission_camera_finish">内蔵カメラへのアクセス許可がありません。\n終了します</string>
-    <string name="permission_camera_reason">内蔵カメラへフォールバックするには内蔵カメラへのアクセス許可が必要です。</string>
-    <string name="permission_camera_request">内蔵カメラへのアクセス許可が必要です</string>
-    <string name="permission_ext_storage">外部ストレージへの書き込み許可がありません。静止画・動画保存できません。</string>
-    <string name="permission_ext_storage_finish">外部ストレージへの書き込みパーミッションがありません。\n終了します。</string>
-    <string name="permission_ext_storage_reason">静止画・動画を保存するには外部ストレージへの書き込み許可が必要です。</string>
-    <string name="permission_ext_storage_request">静止画・動画を保存するには外部ストレージへの書き込み許可が必要です。</string>
-    <string name="permission_hardware_id_request">通話するにはハードウエアID/通話状態へのアクセス許可が必要です。</string>
-    <string name="permission_location">位置情報へのアクセス許可がありません。</string>
-    <string name="permission_location_finish">位置情報へのアクセス許可がありません。\n終了します。</string>
-    <string name="permission_location_reason">位置情報へのアクセス許可が必要です。</string>
-    <string name="permission_location_request">位置情報へのアクセス許可が必要です。</string>
-    <string name="permission_network">ネットワークへのアクセス許可がありません。</string>
-    <string name="permission_network_finish">ネットワークアクセス許可がありません。\n終了します。</string>
-    <string name="permission_network_reason">ストリーミングを行うにははネットワークへのアクセス許可が必要です。</string>
-    <string name="permission_network_request">ストリーミングを行うにはネットワークへのアクセス許可が必要です。</string>
-    <string name="permission_title">アクセス許可について</string>
     <string gender="unknown" name="progressbar_description">進行状況バー</string>
     <string gender="unknown" name="radiogroup_description">ラジオグループ</string>
     <string msgid="5941395253238309765" name="range_end">"範囲の末尾"</string>
     <string msgid="7097486360902471446" name="range_start">"範囲の先頭"</string>
-    <string name="refresh">更新</string>
     <string gender="unknown" name="rn_tab_description">タブ</string>
-    <string name="scale_type_inch">インチ</string>
-    <string name="scale_type_mm">ミリ</string>
-    <string name="scale_type_none">無し</string>
     <string gender="unknown" name="scrollbar_description">スクロールバー</string>
     <string msgid="6264217191555673260" name="search_menu_title">"検索"</string>
-    <string name="select">USB Webカメラを選択してください</string>
     <string msgid="6043586758067023" name="selected">"選択済み"</string>
-    <string name="service_name">バックグラウンドサービス</string>
-    <string name="service_start">開始しました</string>
-    <string name="service_stop">終了しました</string>
     <string gender="unknown" name="spinbutton_description">スピンボタン</string>
     <string gender="unknown" name="state_busy_description">作業中</string>
     <string gender="unknown" name="state_collapsed_description">縮小中</string>
@@ -582,7 +542,6 @@
     <string name="stripe_wallet_unavailable">この購入には利用できません</string>
     <string name="stripe_wallet_update_card">カードを更新</string>
     <string name="stripe_wallet_update_expired_card_error">このカードは有効期限が切れています。カード情報を更新するか、別の決済手段を選択してください。</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>、<ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">概要</string>
     <string msgid="2561197295334830845" name="switch_role">"切り替える"</string>
     <string msgid="1672349317127674378" name="tab">"タブ"</string>
@@ -590,7 +549,5 @@
     <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g>パーセント。"</string>
     <string gender="unknown" name="timer_description">タイマー</string>
     <string gender="unknown" name="toolbar_description">ツールバー</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"OFF"</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ON"</string>
     <string name="wallet_buy_button_place_holder">Googleで購入</string>
 </resources>

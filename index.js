@@ -9,9 +9,6 @@ import {Provider} from 'react-redux';
 import {persistor, store} from './Frontend/Redux/Store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {register} from '@videosdk.live/react-native-sdk';
-
-register();
 
 const Root = () => (
   <GestureHandlerRootView style={{flex: 1}}>

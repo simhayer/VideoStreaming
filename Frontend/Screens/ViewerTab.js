@@ -83,7 +83,7 @@ const ViewerTab = () => {
   ) => {
     socket.emit('watcher', {id: broadcastId});
 
-    navigation.navigate('VideoScreenSDK', {
+    navigation.navigate('GetStreamViewerSDK', {
       streamId: '',
       broadcastId,
       username,

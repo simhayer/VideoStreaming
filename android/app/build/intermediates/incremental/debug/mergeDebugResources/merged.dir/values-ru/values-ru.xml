@@ -154,7 +154,6 @@
     <string name="exo_track_surround_7_point_1">Система объемного звука 7.1</string>
     <string name="exo_track_unknown">Неизвестный трек</string>
     <string name="exo_track_unknown_name">Неизвестно (%1$s)</string>
-    <string msgid="1234962710353108940" name="expand_button_title">"Дополнительно"</string>
     <string msgid="5974471714631304645" name="expanded">"Развернуто"</string>
     <string name="exposed_dropdown_menu_content_description">Показать раскрывающееся меню</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Копировать ссылку"</string>
@@ -549,7 +548,6 @@
     <string name="stripe_wallet_unavailable">Не предусмотрено для этой покупки</string>
     <string name="stripe_wallet_update_card">Обновить реквизиты карты</string>
     <string name="stripe_wallet_update_expired_card_error">Срок действия этой карты истек. Обновите данные карты или выберите другой способ оплаты.</string>
-    <string msgid="5190123168583152844" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
     <string gender="unknown" name="summary_description">Сводка</string>
     <string msgid="2561197295334830845" name="switch_role">"Переключатель"</string>
     <string msgid="1672349317127674378" name="tab">"Вкладка"</string>
@@ -557,7 +555,5 @@
     <string msgid="5946805113151406391" name="template_percent">"Процентов: <ns1:g id="PERCENTAGE">%1$d</ns1:g>."</string>
     <string gender="unknown" name="timer_description">Таймер</string>
     <string gender="unknown" name="toolbar_description">Панель инструментов</string>
-    <string msgid="5138405918326871307" name="v7_preference_off">"ВЫКЛ."</string>
-    <string msgid="27351710992731591" name="v7_preference_on">"ВКЛ."</string>
     <string name="wallet_buy_button_place_holder">Купить через Google</string>
 </resources>
