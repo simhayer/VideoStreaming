@@ -147,7 +147,7 @@ const StartStreamTab = () => {
         </Text>
         <View style={{width: 35}} />
       </View>
-      <View style={{alignItems: 'center', marginTop: '4%'}}>
+      <View style={{alignItems: 'center', marginTop: '4%', flex: 1}}>
         <View
           style={{
             flexDirection: 'row',
@@ -265,8 +265,8 @@ const StartStreamTab = () => {
         </View>
         <View
           style={{
-            height: '40%',
-            width: '50%',
+            flex: 1,
+            width: '65%',
             justifyContent: 'center',
             marginTop: '4%',
           }}>

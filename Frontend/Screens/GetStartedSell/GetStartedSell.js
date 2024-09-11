@@ -20,23 +20,20 @@ const GetStartedSell = () => {
   const navigation = useNavigation();
   const [title, setTitle] = useState('');
 
-  const startStream = async () => {
-    navigation.navigate('StreamScreenSDK', {title});
-  };
-
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{alignItems: 'flex-end'}}>
         <TouchableOpacity
           style={{margin: 12}}
           onPress={() => navigation.navigate('Home')}>
-          <Icon name="close" size={40} color="black" />
+          <Icon name="close" size={35} color="black" />
         </TouchableOpacity>
       </View>
       <View
         style={{
           marginHorizontal: '5%',
           alignItems: 'center',
+          flex: 1,
         }}>
         <Image
           source={require('../../Resources/paid.png')}
@@ -49,11 +46,10 @@ const GetStartedSell = () => {
         />
         <Text
           style={{
-            fontSize: calculatedFontSize / 1.2,
+            fontSize: calculatedFontSize / 2,
             color: 'black',
             fontWeight: 'bold',
             textAlign: 'center',
-            marginHorizontal: '8%',
             marginBottom: '4%',
             marginTop: '4%',
           }}>
@@ -61,28 +57,30 @@ const GetStartedSell = () => {
         </Text>
         <View
           style={{
-            justifyContent: 'space-around',
-            height: '30%',
+            justifyContent: 'space-start',
+            flex: 1,
           }}>
           <Text
             style={{
-              fontSize: calculatedFontSize / 2.5,
+              fontSize: calculatedFontSize / 2.8,
               color: 'black',
               fontWeight: 'bold',
+              marginBottom: 10,
             }}>
             Get started with the fast growing live shopping era!
           </Text>
           <Text
             style={{
-              fontSize: calculatedFontSize / 2.5,
+              fontSize: calculatedFontSize / 2.8,
               color: 'black',
               fontWeight: 'bold',
+              marginBottom: 10,
             }}>
             No subscription fees, No hidden charges, just start selling
           </Text>
           <Text
             style={{
-              fontSize: calculatedFontSize / 2.5,
+              fontSize: calculatedFontSize / 2.8,
               color: 'black',
               fontWeight: 'bold',
             }}>
@@ -97,14 +95,15 @@ const GetStartedSell = () => {
             paddingVertical: '4%',
             backgroundColor: appPink,
             borderRadius: 40,
-            marginTop: '20%',
+            width: 'auto',
+            marginBottom: 40,
           }}>
           <Text
             style={{
               color: 'white',
               flex: 1,
               textAlign: 'center',
-              fontSize: calculatedFontSize / 2.2,
+              fontSize: calculatedFontSize / 2.5,
               fontWeight: 'bold',
             }}>
             Get Started

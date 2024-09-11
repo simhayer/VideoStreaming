@@ -129,135 +129,137 @@ const StartStreamTab = () => {
         </View>
       ) : (
         <View style={{flex: 1, alignItems: 'center', marginTop: '4%'}}>
-          <Text
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.2,
-            }}>
-            Sellers Dashboard
-          </Text>
+          <View style={{flex: 1, alignItems: 'center'}}>
+            <Text
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.2,
+              }}>
+              Sellers Dashboard
+            </Text>
 
-          <TouchableOpacity
-            style={{
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
-              borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              width: '90%',
-              flexDirection: 'row',
-              paddingVertical: '2%',
-              paddingHorizontal: '4%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              borderRadius: 40,
-              marginTop: '10%',
-            }}
-            onPress={() => navigation.navigate('ManageProducts')}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="cube-outline" size={30} color="black" />
-              <Text
-                style={{
-                  color: 'black',
-                  fontWeight: 'bold',
-                  marginLeft: '8%',
-                  fontSize: calculatedFontSize / 2.7,
-                }}>
-                Manage Products
-              </Text>
-            </View>
-            <Icon name="chevron-forward" size={30} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: '3%',
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
-              borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              width: '90%',
-              flexDirection: 'row',
-              paddingVertical: '2%',
-              paddingHorizontal: '4%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              borderRadius: 40,
-            }}
-            onPress={() => navigation.navigate('SellerOrders')}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="cart-outline" size={30} color="black" />
-              <Text
-                style={{
-                  color: 'black',
-                  fontWeight: 'bold',
-                  marginLeft: '8%',
-                  fontSize: calculatedFontSize / 2.7,
-                }}>
-                Orders (Selling)
-              </Text>
-            </View>
-            <Icon name="chevron-forward" size={30} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: '3%',
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
-              borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              width: '90%',
-              flexDirection: 'row',
-              paddingVertical: '2%',
-              paddingHorizontal: '4%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              borderRadius: 40,
-            }}
-            onPress={() => viewDashboard()}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="cash-outline" size={30} color="black" />
-              <Text
-                style={{
-                  color: 'black',
-                  fontWeight: 'bold',
-                  marginLeft: '8%',
-                  fontSize: calculatedFontSize / 2.8,
-                }}>
-                View payments dashboard
-              </Text>
-            </View>
-            <Icon name="chevron-forward" size={30} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: '3%',
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
-              borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              width: '90%',
-              flexDirection: 'row',
-              paddingVertical: '2%',
-              paddingHorizontal: '4%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              borderRadius: 40,
-            }}
-            onPress={() => navigation.navigate('GetStartedSellRules')}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="alert-circle-outline" size={30} color="black" />
-              <Text
-                style={{
-                  color: 'black',
-                  fontWeight: 'bold',
-                  marginLeft: '8%',
-                  fontSize: calculatedFontSize / 2.8,
-                }}>
-                Rules and Guidelines
-              </Text>
-            </View>
-            <Icon name="chevron-forward" size={30} color="black" />
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.2)',
+                width: '90%',
+                flexDirection: 'row',
+                paddingVertical: '2%',
+                paddingHorizontal: '4%',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderRadius: 40,
+                marginTop: '10%',
+              }}
+              onPress={() => navigation.navigate('ManageProducts')}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Icon name="cube-outline" size={30} color="black" />
+                <Text
+                  style={{
+                    color: 'black',
+                    fontWeight: 'bold',
+                    marginLeft: '8%',
+                    fontSize: calculatedFontSize / 2.7,
+                  }}>
+                  Manage Products
+                </Text>
+              </View>
+              <Icon name="chevron-forward" size={30} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginTop: '3%',
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.2)',
+                width: '90%',
+                flexDirection: 'row',
+                paddingVertical: '2%',
+                paddingHorizontal: '4%',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderRadius: 40,
+              }}
+              onPress={() => navigation.navigate('SellerOrders')}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Icon name="cart-outline" size={30} color="black" />
+                <Text
+                  style={{
+                    color: 'black',
+                    fontWeight: 'bold',
+                    marginLeft: '8%',
+                    fontSize: calculatedFontSize / 2.7,
+                  }}>
+                  Orders (Selling)
+                </Text>
+              </View>
+              <Icon name="chevron-forward" size={30} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginTop: '3%',
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.2)',
+                width: '90%',
+                flexDirection: 'row',
+                paddingVertical: '2%',
+                paddingHorizontal: '4%',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderRadius: 40,
+              }}
+              onPress={() => viewDashboard()}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Icon name="cash-outline" size={30} color="black" />
+                <Text
+                  style={{
+                    color: 'black',
+                    fontWeight: 'bold',
+                    marginLeft: '8%',
+                    fontSize: calculatedFontSize / 2.8,
+                  }}>
+                  View payments dashboard
+                </Text>
+              </View>
+              <Icon name="chevron-forward" size={30} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginTop: '3%',
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.2)',
+                width: '90%',
+                flexDirection: 'row',
+                paddingVertical: '2%',
+                paddingHorizontal: '4%',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderRadius: 40,
+              }}
+              onPress={() => navigation.navigate('GetStartedSellRules')}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Icon name="alert-circle-outline" size={30} color="black" />
+                <Text
+                  style={{
+                    color: 'black',
+                    fontWeight: 'bold',
+                    marginLeft: '8%',
+                    fontSize: calculatedFontSize / 2.8,
+                  }}>
+                  Rules and Guidelines
+                </Text>
+              </View>
+              <Icon name="chevron-forward" size={30} color="black" />
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity
             onPress={() => startStream()}
             style={{
@@ -265,7 +267,8 @@ const StartStreamTab = () => {
               paddingHorizontal: '20%',
               backgroundColor: appPink,
               borderRadius: 40,
-              marginTop: '40%',
+              height: 'auto',
+              marginBottom: 40,
             }}>
             <Text
               style={{

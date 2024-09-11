@@ -63,21 +63,16 @@ const StartStreamTab = ({route}) => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View
+      <TouchableOpacity
         style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          width: '100%',
-          marginTop: '3%',
-        }}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={40} color="black" />
-        </TouchableOpacity>
-      </View>
-      <View style={{alignItems: 'center'}}>
+          marginTop: 10,
+        }}
+        onPress={() => navigation.goBack()}>
+        <Icon name="chevron-back" size={40} color="black" />
+      </TouchableOpacity>
+      <View style={{alignItems: 'center', flex: 1}}>
         <TouchableOpacity
           style={{
-            marginTop: '4%',
             borderWidth: 1,
             borderColor: 'rgba(0,0,0,0.2)',
             width: '80%',
@@ -89,20 +84,18 @@ const StartStreamTab = ({route}) => {
             borderRadius: 40,
           }}
           onPress={handleImageSelection}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text
-              style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
-              Add template
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={40} color="black" />
+          <Text style={{color: 'black', fontWeight: 'bold', marginLeft: '5%'}}>
+            Add template
+          </Text>
+          <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
         <View
           style={{
-            height: '70%',
-            width: '80%',
+            flex: 1,
             justifyContent: 'center',
-            marginTop: '4%',
+            marginTop: '8%',
+            width: '75%',
+            marginBottom: '8%',
           }}>
           {selectedImage && (
             <Image
@@ -123,8 +116,8 @@ const StartStreamTab = ({route}) => {
             width: '60%',
             backgroundColor: '#f542a4',
             borderRadius: 40,
-            marginTop: '10%',
             alignItems: 'center',
+            marginBottom: 40,
           }}>
           <Text
             style={{

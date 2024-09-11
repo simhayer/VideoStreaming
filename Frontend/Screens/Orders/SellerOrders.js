@@ -60,42 +60,51 @@ const SellerOrders = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{alignItems: 'center', marginTop: '2%'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          paddingTop: 6,
+        }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="chevron-back" size={35} color="black" />
+        </TouchableOpacity>
+        <Text
+          style={{
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2,
+            textAlign: 'center',
+            flex: 1,
+          }}>
+          Orders
+        </Text>
+        <View style={{width: 35}} />
+      </View>
+      <View style={{alignItems: 'center', flex: 1}}>
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'center',
-            width: '100%',
-          }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="chevron-back" size={40} color="black" />
-          </TouchableOpacity>
-          <Text
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2,
-              marginLeft: '30%',
-            }}>
-            Orders
-          </Text>
-        </View>
-        <View
-          style={{
             borderWidth: 1,
             borderColor: 'rgba(0,0,0,0.2)',
-            width: '95%',
+            marginHorizontal: '2.5%',
             borderRadius: 20,
-            height: '6%',
-            justifyContent: 'center',
-            marginTop: '3%',
-            minHeight: 50,
-            flexDirection: 'row',
+            marginTop: 10,
+            height: 'auto',
+            paddingHorizontal: '3%',
             alignItems: 'center',
           }}>
-          <Icon name="search" size={40} color="grey" />
+          <Icon name="search" size={30} color="grey" />
           <TextInput
-            style={{width: '70%', marginLeft: '3%'}}
+            style={{
+              paddingVertical: 7,
+              minHeight: 25,
+              color: 'black',
+              flex: 1,
+              fontSize: calculatedFontSize / 3,
+            }}
             placeholder="Search orders..."
             placeholderTextColor="grey"
             value={search}
@@ -103,16 +112,12 @@ const SellerOrders = () => {
             returnKeyType="send"
             enterKeyHint="send"
           />
-          <TouchableOpacity
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Icon name="arrow-up-circle" size={40} color="grey" />
+          <TouchableOpacity>
+            <Icon name="arrow-up-circle" size={35} color="grey" />
           </TouchableOpacity>
         </View>
         <FlatList
-          style={{height: '70%', width: '100%', marginTop: '3%'}}
+          style={{width: '100%', flex: 1}}
           data={filteredItems}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => index.toString()}

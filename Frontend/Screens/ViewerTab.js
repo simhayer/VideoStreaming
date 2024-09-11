@@ -24,6 +24,7 @@ import {apiEndpoints, baseURL, token} from '../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const {height: screenHeight} = Dimensions.get('window');
+const calculatedFontSize = screenHeight * 0.05;
 
 const ViewerTab = () => {
   const navigation = useNavigation();
@@ -98,66 +99,54 @@ const ViewerTab = () => {
     <SafeAreaView style={styles.container}>
       <View
         style={{
+          flexDirection: 'row',
           borderWidth: 1,
           borderColor: 'rgba(0,0,0,0.2)',
-          width: '95%',
-          marginLeft: '2.5%',
+          marginHorizontal: '2.5%',
           borderRadius: 20,
-          height: '6%',
-          justifyContent: 'center',
-          marginTop: '3%',
-          minHeight: 50,
+          marginTop: 10,
+          height: 'auto',
+          paddingHorizontal: '3%',
+          alignItems: 'center',
         }}>
-        <View style={styles.commentBox}>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingTop: '1%',
-              marginLeft: '3%',
-            }}>
-            <Icon name="search" size={40} color="grey" />
-          </View>
+        <Icon name="search" size={30} color="grey" />
 
-          <TextInput
-            style={styles.input}
-            placeholder="Search streams..."
-            placeholderTextColor="grey"
-            value={search}
-            onChangeText={setSearch}
-            returnKeyType="send"
-            enterKeyHint="send"
-          />
-          <TouchableOpacity
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingTop: '6%',
-            }}>
-            <Icon name="arrow-up-circle" size={40} color="grey" />
-            <Text></Text>
-          </TouchableOpacity>
-        </View>
+        <TextInput
+          style={{
+            paddingVertical: 7,
+            minHeight: 25,
+            color: 'black',
+            flex: 1,
+            fontSize: calculatedFontSize / 3,
+          }}
+          placeholder="Search streams..."
+          placeholderTextColor="grey"
+          value={search}
+          onChangeText={setSearch}
+          returnKeyType="send"
+          enterKeyHint="send"
+        />
+        <TouchableOpacity>
+          <Icon name="arrow-up-circle" size={35} color="grey" />
+        </TouchableOpacity>
       </View>
       <View
         style={{
-          height: '2%',
+          height: 7,
           borderBottomWidth: 1,
           borderColor: 'rgba(0,0,0,0.2)',
           width: '100%',
           marginBottom: 5,
-        }}></View>
+        }}
+      />
       <FlatList
         data={broadcasts}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => {
-          console.log(item);
           const profilePictureFilename = item.profilePicture.split('/').pop();
           const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
-
           const thumbnailUri = `${baseURL}/thumbnail/${item.thumbnail}`;
-          console.log(profilePictureURL);
-          console.log(thumbnailUri);
+
           return (
             <View
               style={{
@@ -259,15 +248,6 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  commentBox: {
-    flexDirection: 'row',
-    width: '80%',
-  },
-  input: {
-    minHeight: 50,
-    color: 'black',
-    width: '90%',
   },
 });
 

@@ -11,8 +11,6 @@ import ResetPassword from './Screens/Authentication/PassowrdHandle/ResetPassword
 import Icon from 'react-native-vector-icons/FontAwesome';
 import EditProfile from './Screens/EditProfile';
 import UsernameCreate from './Screens/Authentication/UsernameCreate';
-//import StreamScreenSDK from './Screens/Stream/StreamScreenSDK';
-//import VideoScreenSDK from './Screens/VideoScreenSDK';
 import GetStartedSell from './Screens/GetStartedSell/GetStartedSell';
 import GetStartedSellRules from './Screens/GetStartedSell/GetStartedSellRules';
 import AddPaymentOrShipping from './Screens/PaymentAndShipping/AddPaymentOrShipping';
@@ -32,7 +30,6 @@ import EnterOrderTracking from './Screens/Orders/EnterOrderTracking';
 import EnterStreamTitle from './Screens/Stream/EnterStreamTitle';
 import GetStreamViewerSDK from './Screens/StreamViewer/GetStreamViewerSDK';
 import GetStreamSDK from './Screens/Stream/GetStreamSDK';
-//import VideoSDKViewer from './Screens/VideoSDKViewer';
 
 const Stack = createNativeStackNavigator();
 

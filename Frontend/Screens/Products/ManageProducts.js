@@ -122,19 +122,25 @@ const ManageProducts = () => {
       </View>
       <View
         style={{
+          flexDirection: 'row',
           borderWidth: 1,
           borderColor: 'rgba(0,0,0,0.2)',
-          width: '95%',
+          marginHorizontal: '2.5%',
           borderRadius: 20,
-          justifyContent: 'center',
-          marginTop: '3%',
-          height: 50,
-          flexDirection: 'row',
+          marginTop: 10,
+          height: 'auto',
+          paddingHorizontal: '3%',
           alignItems: 'center',
         }}>
-        <Icon name="search" size={35} color="grey" />
+        <Icon name="search" size={30} color="grey" />
         <TextInput
-          style={{width: '70%', marginLeft: '3%'}}
+          style={{
+            paddingVertical: 7,
+            minHeight: 25,
+            color: 'black',
+            flex: 1,
+            fontSize: calculatedFontSize / 3,
+          }}
           placeholder="Search orders..."
           placeholderTextColor="grey"
           value={search}
@@ -142,17 +148,13 @@ const ManageProducts = () => {
           returnKeyType="send"
           enterKeyHint="send"
         />
-        <TouchableOpacity
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+        <TouchableOpacity>
           <Icon name="arrow-up-circle" size={35} color="grey" />
         </TouchableOpacity>
       </View>
       <View style={{flex: 1, width: '100%'}}>
         <FlatList
-          style={{flex: 1, marginTop: '2%'}}
+          style={{flex: 1}}
           data={filteredItems}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item, index) => index.toString()}
@@ -184,7 +186,7 @@ const ManageProducts = () => {
                   resizeMode="contain"
                   style={{width: '20%', height: 100}}
                 />
-                <View style={{width: '70%'}}>
+                <View style={{flex: 1, marginHorizontal: 5}}>
                   <Text
                     style={{
                       fontWeight: 'bold',

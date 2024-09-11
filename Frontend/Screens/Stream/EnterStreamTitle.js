@@ -50,21 +50,24 @@ const EnterStreamTitle = () => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
+          justifyContent: 'space-between',
           width: '100%',
-          marginTop: '3%',
+          marginTop: 10,
         }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={40} color="black" />
+          <Icon name="chevron-back" size={35} color="black" />
         </TouchableOpacity>
         <Text
           style={{
-            fontSize: calculatedFontSize / 2,
-            fontWeight: 'bold',
-            marginLeft: '20%',
             color: 'black',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2,
+            textAlign: 'center',
+            flex: 1,
           }}>
           Enter stream title
         </Text>
+        <View style={{width: 35}} />
       </View>
       <View style={{width: '85%', marginTop: '5%'}}>
         <TextInput
