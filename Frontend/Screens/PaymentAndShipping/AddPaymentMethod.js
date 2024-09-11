@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import {
   Alert,
   Button,
+  Dimensions,
   SafeAreaView,
   Text,
   TouchableOpacity,
@@ -18,6 +19,9 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+
+const {height: screenHeight} = Dimensions.get('window');
+const calculatedFontSize = screenHeight * 0.05;
 
 export default function AddPaymentMethod() {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
@@ -96,10 +100,18 @@ export default function AddPaymentMethod() {
     >
       <SafeAreaView style={{flex: 1}}>
         <View style={{alignItems: 'center', marginTop: '10%'}}>
-          <Text style={{color: 'black', fontWeight: 'bold'}}>
+          <Text
+            style={{
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.9,
+            }}>
             Add payment method
           </Text>
-          <Text>You won't be charged untill you purchase an item</Text>
+          <Text
+            style={{fontSize: calculatedFontSize / 2.7, textAlign: 'center'}}>
+            You won't be charged untill you purchase an item
+          </Text>
           <TouchableOpacity
             style={{
               marginTop: '10%',
@@ -115,13 +127,18 @@ export default function AddPaymentMethod() {
             }}
             onPress={() => onAddCardClick()}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="card-outline" size={40} color="black" />
+              <Icon name="card-outline" size={30} color="black" />
               <Text
-                style={{color: 'black', fontWeight: 'bold', marginLeft: '10%'}}>
+                style={{
+                  color: 'black',
+                  fontWeight: 'bold',
+                  marginLeft: '10%',
+                  fontSize: calculatedFontSize / 2.7,
+                }}>
                 Credit or Debit Card
               </Text>
             </View>
-            <Icon name="chevron-forward" size={40} color="black" />
+            <Icon name="chevron-forward" size={30} color="black" />
           </TouchableOpacity>
         </View>
       </SafeAreaView>

@@ -8,6 +8,7 @@ import {useCallback, useEffect, useState} from 'react';
 import {
   Alert,
   Button,
+  Dimensions,
   SafeAreaView,
   Text,
   TouchableOpacity,
@@ -24,6 +25,9 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
+
+const {height: screenHeight} = Dimensions.get('window');
+const calculatedFontSize = screenHeight * 0.05;
 
 export default function AddAddress({route}) {
   const {address} = route.params;
@@ -82,10 +86,20 @@ export default function AddAddress({route}) {
       <SafeAreaView style={{flex: 1}}>
         <View style={{alignItems: 'center', marginTop: '10%'}}>
           <Text
-            style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>
+            style={{
+              color: 'black',
+              fontWeight: 'bold',
+              textAlign: 'center',
+              fontSize: calculatedFontSize / 2.7,
+            }}>
             Shipping Address
           </Text>
-          <Text style={{textAlign: 'center', marginHorizontal: '4%'}}>
+          <Text
+            style={{
+              textAlign: 'center',
+              marginHorizontal: '4%',
+              fontSize: calculatedFontSize / 2.9,
+            }}>
             Shipping address added here will be used for shipping products. Only
             one shipping address can be added at a time.
           </Text>
@@ -147,17 +161,18 @@ export default function AddAddress({route}) {
                 alignItems: 'center',
               }}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="home-outline" size={40} color="black" />
+                <Icon name="home-outline" size={30} color="black" />
                 <Text
                   style={{
                     color: 'black',
                     fontWeight: 'bold',
                     marginLeft: '10%',
+                    fontSize: calculatedFontSize / 2.7,
                   }}>
                   Add shipping address
                 </Text>
               </View>
-              <Icon name="chevron-forward" size={40} color="black" />
+              <Icon name="chevron-forward" size={30} color="black" />
             </TouchableOpacity>
           )}
 

@@ -92,8 +92,8 @@ const SignUp = () => {
   }, []);
 
   return (
-    <SafeAreaView style={commonStyles.signup}>
-      <View style={{alignItems: 'center', paddingTop: '12%'}}>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{alignItems: 'center', marginTop: 30}}>
         <View style={{width: '85%'}}>
           <TextInput
             ref={inputRef}
@@ -132,14 +132,19 @@ const SignUp = () => {
             secureTextEntry={true}
           />
         </View>
-        <View style={{width: '70%', paddingTop: '2%', alignItems: 'center'}}>
-          <Text style={{color: 'black', textAlign: 'center'}}>
+        <View style={{width: '80%', marginTop: '2%', alignItems: 'center'}}>
+          <Text
+            style={{
+              color: 'black',
+              textAlign: 'center',
+              fontSize: calculatedFontSize / 2.9,
+            }}>
             By clicking continue or sign up you agree to our Terms of Service
             and Privacy Policy
           </Text>
         </View>
         {isError && <Text>{loginError}</Text>}
-        <View style={{width: '85%', alignItems: 'center', paddingTop: '15%'}}>
+        <View style={{width: '85%', alignItems: 'center', marginTop: 20}}>
           <TouchableOpacity
             onPress={() => onSignUpClick(fullname, email, password)}
             style={{

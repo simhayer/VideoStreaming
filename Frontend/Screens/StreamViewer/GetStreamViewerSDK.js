@@ -56,8 +56,8 @@ const VideoScreen = ({route}) => {
   console.log(callId);
   const {userData} = useSelector(state => state.auth);
 
-  //const userUsername = userData?.user?.username;
-  const userUsername = 'simsim';
+  const userUsername = userData?.user?.username;
+  //const userUsername = 'simsim';
   const userEmail = userData?.user?.email;
   const userProfilePicture = userData?.user?.profilePicture;
 
@@ -272,7 +272,7 @@ const VideoScreen = ({route}) => {
     }
   }, []);
 
-  const snapPoints = useMemo(() => ['1%', '25%'], []);
+  const snapPoints = useMemo(() => ['1%', '30%'], []);
 
   const checkPaymentandAddressExist = async email => {
     console.log('Checking payment and address exist');
@@ -323,14 +323,23 @@ const VideoScreen = ({route}) => {
       {/* VideoHere */}
       <StreamVideo client={myClient}>
         <View style={styles.video}>
-          {/* <LivestreamPlayer callType="livestream" callId={callId} /> */}
           <CustomLivestreamPlayer callType="livestream" callId={callId} />
         </View>
       </StreamVideo>
-      <SafeAreaView style={{height: '100%', width: '100%'}}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.inner}>
-            <View style={styles.header}>
+      <SafeAreaView style={{flex: 1}}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1}}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'space-between',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                padding: '2%',
+                zIndex: 1,
+              }}>
               <Image
                 source={{uri: profilePictureURL}}
                 style={styles.profilePicture}
@@ -344,18 +353,23 @@ const VideoScreen = ({route}) => {
                 }}>
                 {username}
               </Text>
-              <Text
+              {/* <Text
                 style={{
                   color: 'white',
                   fontSize: calculatedFontSize / 2.5,
                   marginRight: '2%',
                 }}>
                 Watchers: {watchers}
-              </Text>
+              </Text> */}
               <TouchableOpacity
-                style={styles.closeButton}
+                style={{
+                  backgroundColor: 'red',
+                  borderRadius: 30,
+                  padding: '1.5%',
+                  alignItems: 'center',
+                }}
                 onPress={closeStream}>
-                <Text style={styles.closeButtonText}>X</Text>
+                <Icon name="close" size={20} color="white" />
               </TouchableOpacity>
             </View>
             {showWinner && (
@@ -372,14 +386,13 @@ const VideoScreen = ({route}) => {
                 </Text>
               </View>
             )}
+            <View style={{flex: 1}} />
             <View
               style={{
                 width: '70%',
-                height: '100%',
-                marginTop: '75%',
                 marginLeft: '5%',
                 flex: 1,
-                marginBottom: '2%',
+                marginBottom: 10,
               }}>
               <MaskedView
                 style={{flex: 1}}
@@ -390,6 +403,7 @@ const VideoScreen = ({route}) => {
                   />
                 }>
                 <FlatList
+                  showsVerticalScrollIndicator={false}
                   ref={scrollViewRef}
                   data={curComments}
                   keyExtractor={(item, index) => index.toString()}
@@ -397,12 +411,14 @@ const VideoScreen = ({route}) => {
                     const profilePictureFilename = item.userProfilePicture
                       .split('/')
                       .pop();
+                    const hasProfilePicture =
+                      profilePictureFilename !== 'null' &&
+                      profilePictureFilename !== '';
                     const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
                     return (
                       <Pressable
                         style={{
                           flex: 1,
-                          height: '20%',
                         }}>
                         <View
                           style={{
@@ -411,21 +427,43 @@ const VideoScreen = ({route}) => {
                             alignItems: 'center',
                             marginBottom: '2%',
                           }}>
-                          <Image
-                            source={{uri: profilePictureURL}}
-                            style={{
-                              width: '12%',
-                              height: '80%',
-                              borderRadius: 20,
-                              marginRight: '4%',
-                              marginTop: '1%',
-                            }}
-                          />
+                          {hasProfilePicture && (
+                            <Image
+                              source={{uri: profilePictureURL}}
+                              style={{
+                                width: '12%',
+                                height: '80%',
+                                borderRadius: 20,
+                                marginRight: '4%',
+                                marginTop: '1%',
+                              }}
+                            />
+                          )}
+                          {!hasProfilePicture && (
+                            <View style={{marginRight: '4%'}}>
+                              <Icon
+                                name="person-circle-outline"
+                                size={30}
+                                color="white"
+                              />
+                            </View>
+                          )}
                           <View>
-                            <Text style={{fontWeight: 'bold', color: 'white'}}>
+                            <Text
+                              style={{
+                                fontWeight: 'bold',
+                                color: 'white',
+                                fontSize: calculatedFontSize / 3,
+                              }}>
                               {item.userUsername}
                             </Text>
-                            <Text style={{color: 'white'}}>{item.comment}</Text>
+                            <Text
+                              style={{
+                                color: 'white',
+                                fontSize: calculatedFontSize / 3,
+                              }}>
+                              {item.comment}
+                            </Text>
                           </View>
                         </View>
                       </Pressable>
@@ -442,9 +480,8 @@ const VideoScreen = ({route}) => {
             <View
               style={{
                 width: '100%',
-                height: '5%',
                 justifyContent: 'center',
-                minHeight: 50,
+                minHeight: 35,
               }}>
               <View
                 style={{
@@ -453,10 +490,24 @@ const VideoScreen = ({route}) => {
                   width: '70%',
                   marginLeft: '5%',
                   borderRadius: 20,
+                  justifyContent: 'center',
                 }}>
-                <View style={styles.commentBox}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    opacity: 0.8,
+                    width: '80%',
+                    marginLeft: '4%',
+                  }}>
                   <TextInput
-                    style={styles.input}
+                    style={{
+                      borderRadius: 5,
+                      paddingHorizontal: '2%',
+                      color: 'white',
+                      width: '100%',
+                      fontSize: calculatedFontSize / 2.7,
+                      padding: 5,
+                    }}
                     placeholder="Add a comment..."
                     placeholderTextColor="grey"
                     value={comment}
@@ -469,11 +520,9 @@ const VideoScreen = ({route}) => {
                     style={{
                       justifyContent: 'center',
                       alignItems: 'center',
-                      paddingTop: '6%',
                     }}
                     onPress={handleSendComment}>
-                    <Icon name="arrow-up-circle" size={40} color="grey" />
-                    <Text></Text>
+                    <Icon name="arrow-up-circle" size={35} color="grey" />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -601,7 +650,6 @@ const VideoScreen = ({route}) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'black',
                     textAlign: 'center',
                     fontSize: calculatedFontSize / 3,
                   }}>

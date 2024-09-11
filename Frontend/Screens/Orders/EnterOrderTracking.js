@@ -81,7 +81,7 @@ const EnterOrderTracking = ({route}) => {
         <>
           <View style={{width: '85%'}}>
             <Text
-              style={{fontSize: calculatedFontSize / 1.3, fontWeight: 'bold'}}>
+              style={{fontSize: calculatedFontSize / 1.8, fontWeight: 'bold'}}>
               Enter tracking number
             </Text>
             <TextInput
@@ -91,7 +91,7 @@ const EnterOrderTracking = ({route}) => {
               placeholder={'Tracking number'}
               style={{
                 ...commonStyles.input,
-                fontSize: calculatedFontSize / 2.3,
+                fontSize: calculatedFontSize / 2.5,
                 marginTop: '4%',
               }}
             />
@@ -111,7 +111,7 @@ const EnterOrderTracking = ({route}) => {
             <Text
               style={{
                 color: 'white',
-                fontSize: calculatedFontSize / 2.2,
+                fontSize: calculatedFontSize / 2.5,
                 fontWeight: 'bold',
               }}>
               Update

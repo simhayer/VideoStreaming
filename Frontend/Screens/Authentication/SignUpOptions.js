@@ -16,8 +16,10 @@ import {baseURL, apiEndpoints} from '../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../../Resources/styles';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {appPink} from '../../Resources/Constants';
 
 //TODO
 const {
@@ -61,22 +63,22 @@ const SignUp = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={commonStyles.signupScreens}>
-      <View style={{alignItems: 'center'}}>
+    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+      <View style={{flex: 0.4}} />
+      <View style={{flex: 1, justifyContent: 'flex-end'}}>
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            paddingTop: '37%',
             width: '70%',
             justifyContent: 'center',
           }}>
           {type && type === 'Signup' && (
             <Text
               style={{
-                fontSize: calculatedFontSize / 1.2,
+                fontSize: calculatedFontSize / 1.3,
                 color: '#f542a4',
-                paddingTop: '10',
+                marginTop: '10',
                 fontWeight: 'bold',
               }}>
               Sign up for
@@ -85,9 +87,9 @@ const SignUp = ({route}) => {
           {type && type === 'Login' && (
             <Text
               style={{
-                fontSize: calculatedFontSize / 1.2,
+                fontSize: calculatedFontSize / 1.3,
                 color: '#f542a4',
-                paddingTop: '10',
+                marginTop: '10',
                 fontWeight: 'bold',
               }}>
               Log in for
@@ -97,128 +99,128 @@ const SignUp = ({route}) => {
             style={{
               color: 'black',
               textAlign: 'center',
-              fontSize: calculatedFontSize / 1.2,
-              paddingLeft: '5%',
+              fontSize: calculatedFontSize / 1.3,
+              marginLeft: '5%',
               fontWeight: 'bold',
             }}>
             BARS
           </Text>
         </View>
-        <View style={{width: '80%', paddingTop: '3%', alignItems: 'center'}}>
-          <Text style={{color: 'black', textAlign: 'center'}}>
+        <View style={{width: '80%', marginTop: '3%', alignItems: 'center'}}>
+          <Text
+            style={{
+              color: 'black',
+              textAlign: 'center',
+              fontSize: calculatedFontSize / 2.7,
+            }}>
             Create a profile, select your interest, discover live, search the
             marketplace, and more...
           </Text>
         </View>
-        <View style={{paddingTop: '10%', width: '85%', borderRadius: 5}}>
+      </View>
+      <View style={{marginTop: 20, width: '85%', borderRadius: 5}}>
+        <TouchableOpacity
+          onPress={() => GoogleLogin()}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            backgroundColor: appPink,
+            borderRadius: 40,
+            marginVertical: '2%',
+            paddingVertical: '3%',
+            paddingHorizontal: '5%',
+          }}>
+          <TouchableOpacity>
+            <Icon name="logo-google" size={30} color="black" />
+          </TouchableOpacity>
+          <Text
+            style={{
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.4,
+              textAlign: 'center',
+              flex: 1,
+            }}>
+            Continue with Google
+          </Text>
+          <View style={{width: 35}} />
+        </TouchableOpacity>
+        {Platform.OS === 'ios' && (
           <TouchableOpacity
             onPress={() => GoogleLogin()}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              paddingVertical: '4%',
-              width: '100%',
-              backgroundColor: '#f542a4',
+              justifyContent: 'space-between',
+              backgroundColor: appPink,
               borderRadius: 40,
               marginVertical: '2%',
+              paddingVertical: '3%',
+              paddingHorizontal: '5%',
             }}>
-            <Image
-              source={require('../../Resources/GoogleLogoBlack.png')}
-              style={{
-                height: '100%',
-                width: '26%',
-                resizeMode: 'center',
-              }}
-            />
-            <Text
-              style={{
-                color: 'white',
-                flex: 1, // To make the text fill the available space
-                textAlign: 'left',
-                paddingLeft: '4%',
-                fontSize: calculatedFontSize / 2.2,
-                fontWeight: 'bold',
-              }}>
-              Continue with Google
-            </Text>
-          </TouchableOpacity>
-          {Platform.OS === 'ios' && (
-            <TouchableOpacity
-              onPress={() => onSignUpClick(fullname, email, password)}
-              style={{
-                flexDirection: 'row', // To align items horizontally
-                alignItems: 'center', // To vertically center the items
-                paddingVertical: '4%',
-                width: '100%',
-                backgroundColor: '#f542a4',
-                borderRadius: 40,
-                marginVertical: '2%',
-              }}>
-              <Image
-                source={require('../../Resources/AppleLogo.png')}
-                style={{
-                  height: '100%',
-                  width: '1%',
-                  paddingLeft: '25%',
-                  resizeMode: 'center',
-                }}
-              />
-              <Text
-                style={{
-                  color: 'white',
-                  flex: 1, // To make the text fill the available space
-                  textAlign: 'left',
-                  paddingLeft: '4%',
-                  fontSize: calculatedFontSize / 2.2,
-                  fontWeight: 'bold',
-                }}>
-                Continue with Apple
-              </Text>
+            <TouchableOpacity>
+              <Icon name="logo-apple" size={30} color="black" />
             </TouchableOpacity>
-          )}
-          <TouchableOpacity
-            onPress={() => onContiueWithEmailClick()}
-            style={{
-              flexDirection: 'row', // To align items horizontally
-              alignItems: 'center', // To vertically center the items
-              paddingVertical: '4%',
-              width: '100%',
-              backgroundColor: '#f542a4',
-              borderRadius: 40,
-              marginVertical: '2%',
-            }}>
-            <Image
-              source={require('../../Resources/EmailLogo.png')}
-              style={{
-                height: '100%',
-                width: '26%',
-                resizeMode: 'center',
-              }}
-            />
             <Text
               style={{
                 color: 'white',
-                flex: 1, // To make the text fill the available space
-                textAlign: 'left',
-                paddingLeft: '4%',
-                fontSize: calculatedFontSize / 2.2,
                 fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.4,
+                textAlign: 'center',
+                flex: 1,
               }}>
-              Continue with Email
+              Continue with Apple
             </Text>
+            <View style={{width: 35}} />
           </TouchableOpacity>
-        </View>
-
-        <View
+        )}
+        <TouchableOpacity
+          onPress={() => onContiueWithEmailClick()}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
+            justifyContent: 'space-between',
+            backgroundColor: appPink,
+            borderRadius: 40,
+            marginVertical: '2%',
+            paddingVertical: '3%',
+            paddingHorizontal: '5%',
+          }}>
+          <Icon name="mail" size={30} color="black" />
+          <Text
+            style={{
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.4,
+              textAlign: 'center',
+              flex: 1,
+            }}>
+            Continue with Email
+          </Text>
+          <View style={{width: 35}} />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          flex: 2,
+          justifyContent: 'flex-end',
+          marginBottom: 20,
+          alignItems: 'center',
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
             justifyContent: 'center',
-            paddingTop: Platform.OS === 'IOS' ? '40%' : '55%',
-            width: '70%',
+            alignItems: 'center',
           }}>
           {type && type === 'Signup' && (
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
               <Text
                 style={{
                   fontSize: calculatedFontSize / 2.2,
@@ -281,8 +283,13 @@ const SignUp = ({route}) => {
           )}
         </View>
 
-        <View style={{width: '70%', paddingTop: '3%', alignItems: 'center'}}>
-          <Text style={{color: 'black', textAlign: 'center'}}>
+        <View style={{width: '70%', alignItems: 'center'}}>
+          <Text
+            style={{
+              color: 'black',
+              textAlign: 'center',
+              fontSize: calculatedFontSize / 2.9,
+            }}>
             By clicking continue or sign up you agree to our Terms of Service
             and Privacy Policy
           </Text>

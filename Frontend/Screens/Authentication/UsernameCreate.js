@@ -55,13 +55,12 @@ const UsernameCreate = ({route}) => {
 
   return (
     <SafeAreaView style={commonStyles.signup}>
-      <View style={{alignItems: 'center', paddingTop: '12%'}}>
+      <View style={{alignItems: 'center', marginTop: '12%'}}>
         <View style={{width: '85%'}}>
-          <Text
-            style={{fontSize: calculatedFontSize / 1.3, fontWeight: 'bold'}}>
-            Create a username.
+          <Text style={{fontSize: calculatedFontSize / 2, fontWeight: 'bold'}}>
+            Create a username
           </Text>
-          <Text style={{fontSize: calculatedFontSize / 2.7, paddingTop: '2%'}}>
+          <Text style={{fontSize: calculatedFontSize / 2.7, marginTop: '2%'}}>
             You can always change it later
           </Text>
           <TextInput
@@ -71,15 +70,17 @@ const UsernameCreate = ({route}) => {
             placeholder={'Username'}
             style={{
               ...commonStyles.input,
-              fontSize: calculatedFontSize / 2.3,
-              paddingBottom: '0%',
-              marginBottom: '5%',
-              paddingTop: '10%',
+              fontSize: calculatedFontSize / 2.5,
+              marginTop: 20,
             }}
           />
         </View>
-        {isError && <Text>{errorMessage}</Text>}
-        <View style={{width: '85%', alignItems: 'center', paddingTop: '15%'}}>
+        {isError && (
+          <Text style={{fontSize: calculatedFontSize / 2.9}}>
+            {errorMessage}
+          </Text>
+        )}
+        <View style={{width: '85%', alignItems: 'center', marginTop: 40}}>
           <TouchableOpacity
             onPress={onNextClick}
             style={{

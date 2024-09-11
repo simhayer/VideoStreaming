@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, Dimensions} from 'react-native';
 import {
   Call,
   StreamCall,
@@ -8,6 +8,9 @@ import {
   VideoRenderer,
 } from '@stream-io/video-react-native-sdk';
 import IncallManager from 'react-native-incall-manager';
+
+const {height: screenHeight} = Dimensions.get('window');
+const calculatedFontSize = screenHeight * 0.05;
 
 export const CustomLivestreamPlayer = props => {
   const {callType, callId} = props;
@@ -53,8 +56,24 @@ const CustomLivestreamLayout = () => {
 
   return (
     <SafeAreaView style={styles.flexed}>
-      <View style={styles.flexed}>
-        <Text style={styles.text}>Live: {participantCount}</Text>
+      <View style={{flex: 1}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            marginRight: 50,
+          }}>
+          <Text
+            style={{
+              alignSelf: 'center',
+              color: 'white',
+              marginTop: '4%',
+              fontSize: calculatedFontSize / 2.5,
+              zIndex: 10,
+            }}>
+            Live: {participantCount}
+          </Text>
+        </View>
         <View style={styles.video}>
           {firstParticipant ? (
             <VideoRenderer participant={firstParticipant} />

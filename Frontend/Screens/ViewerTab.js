@@ -160,7 +160,14 @@ const ViewerTab = () => {
                   source={{uri: profilePictureURL}}
                   style={styles.profilePicture}
                 />
-                <Text style={styles.username}>{item.username}</Text>
+                <Text
+                  style={{
+                    fontSize: calculatedFontSize / 2.7,
+                    fontWeight: 'bold',
+                    maxWidth: '48%',
+                  }}>
+                  {item.username}
+                </Text>
               </View>
               <TouchableOpacity
                 key={item.id}
@@ -235,11 +242,6 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 25,
     marginRight: '5%',
-  },
-  username: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    maxWidth: '48%',
   },
   buttonContainer: {
     width: '100%',

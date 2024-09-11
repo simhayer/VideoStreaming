@@ -74,28 +74,32 @@ const ViewOrderSeller = ({route}) => {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
+              justifyContent: 'space-between',
               width: '100%',
+              paddingTop: 4,
             }}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Icon name="chevron-back" size={40} color="black" />
+              <Icon name="chevron-back" size={35} color="black" />
             </TouchableOpacity>
             <Text
               style={{
                 color: 'black',
                 fontWeight: 'bold',
                 fontSize: calculatedFontSize / 2,
-                marginLeft: '25%',
+                textAlign: 'center',
+                flex: 1,
               }}>
               Order details
             </Text>
+            <View style={{width: 35}} />
           </View>
           <View
             style={{
               width: '100%',
-              height: '20%',
+              height: '15%',
               backgroundColor: 'rgba(0,0,0,0.1)',
               flexDirection: 'row',
-              marginTop: '10%',
+              marginTop: 10,
             }}>
             <Image
               source={{uri: imageUrl}}
@@ -127,17 +131,17 @@ const ViewOrderSeller = ({route}) => {
             <TouchableOpacity
               onPress={markOrderComplete}
               style={{
-                paddingVertical: '4%',
+                paddingVertical: '3%',
                 width: '60%',
                 backgroundColor: appPink,
                 borderRadius: 40,
-                marginTop: '8%',
+                marginTop: '6%',
                 alignItems: 'center',
               }}>
               <Text
                 style={{
                   color: 'white',
-                  fontSize: calculatedFontSize / 2.2,
+                  fontSize: calculatedFontSize / 2.5,
                   fontWeight: 'bold',
                 }}>
                 Mark as complete
@@ -148,17 +152,17 @@ const ViewOrderSeller = ({route}) => {
             <TouchableOpacity
               onPress={() => navigation.navigate('EnterOrderTracking', {order})}
               style={{
-                paddingVertical: '4%',
+                paddingVertical: '3%',
                 width: '60%',
                 backgroundColor: appPink,
                 borderRadius: 40,
-                marginTop: '8%',
+                marginTop: '6%',
                 alignItems: 'center',
               }}>
               <Text
                 style={{
                   color: 'white',
-                  fontSize: calculatedFontSize / 2.2,
+                  fontSize: calculatedFontSize / 2.5,
                   fontWeight: 'bold',
                 }}>
                 Enter shipping details
@@ -171,7 +175,7 @@ const ViewOrderSeller = ({route}) => {
                 color: 'black',
                 fontSize: calculatedFontSize / 1.8,
                 fontWeight: 'bold',
-                marginTop: '10%',
+                marginTop: '8%',
               }}>
               Details
             </Text>
@@ -317,6 +321,8 @@ const ViewOrderSeller = ({route}) => {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+                borderBottomWidth: 1,
+                borderBottomColor: 'rgba(0,0,0,0.2)',
                 paddingBottom: '7%',
                 marginTop: '7%',
               }}>
@@ -335,6 +341,31 @@ const ViewOrderSeller = ({route}) => {
                   marginRight: '10%',
                 }}>
                 C$ {order.amount}
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingBottom: '7%',
+                marginTop: '7%',
+              }}>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2.4,
+                  fontWeight: 'bold',
+                }}>
+                Payout
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2.4,
+                  marginRight: '10%',
+                }}>
+                Pending
               </Text>
             </View>
           </View>

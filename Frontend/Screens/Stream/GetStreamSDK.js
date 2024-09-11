@@ -380,13 +380,12 @@ const GetStreamSDK = ({route}) => {
                   </TouchableOpacity>
                 </View>
 
+                <View style={{flex: 1}} />
                 <View
                   style={{
-                    width: '50%',
-                    height: '100%',
-                    marginTop: '75%',
+                    width: '60%',
                     marginLeft: '3%',
-                    flex: 1,
+                    flex: 1.2,
                   }}>
                   <MaskedView
                     style={{flex: 1}}
@@ -397,6 +396,7 @@ const GetStreamSDK = ({route}) => {
                       />
                     }>
                     <FlatList
+                      showsVerticalScrollIndicator={false}
                       ref={scrollViewRef}
                       data={curComments}
                       keyExtractor={(item, index) => index.toString()}
