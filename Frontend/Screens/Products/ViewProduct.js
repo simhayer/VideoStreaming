@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import {apiEndpoints, appPink, baseURL} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {FlatList} from 'react-native-gesture-handler';
 import axios from 'axios'; // Import axios
 import {useSelector} from 'react-redux';
 
@@ -41,7 +40,6 @@ const ViewProduct = ({route}) => {
       );
       if (response.status === 200) {
         console.log('Products removed successfully:', response.data);
-        // Optionally, navigate back or show a success message
       } else {
         console.error('Failed to remove products:', response.data);
       }
@@ -49,34 +47,36 @@ const ViewProduct = ({route}) => {
       console.error('Error removing products:', error);
     }
 
-    // Navigate back or perform another action
     navigation.goBack();
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{alignItems: 'center', marginTop: '2%'}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            width: '100%',
-          }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="chevron-back" size={40} color="black" />
-          </TouchableOpacity>
-        </View>
+    <SafeAreaView style={{flex: 1, marginTop: 10}}>
+      <View>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="chevron-back" size={40} color="black" />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          flex: 1.2,
+          borderWidth: 1,
+          borderColor: 'rgba(0,0,0,0.2)',
+          marginHorizontal: 10,
+        }}>
         <Image
           source={{uri: imageUrl}}
           resizeMode="contain"
-          style={{width: '100%', height: '50%'}}
+          style={{flex: 1, margin: 10}}
         />
+      </View>
+
+      <View style={{flex: 1, margin: 10}}>
         <Text
           style={{
             color: 'black',
             fontWeight: 'bold',
-            fontSize: calculatedFontSize / 2,
-            marginTop: '5%',
+            fontSize: calculatedFontSize / 2.4,
           }}>
           {name}
         </Text>
@@ -84,8 +84,8 @@ const ViewProduct = ({route}) => {
           <Text
             style={{
               color: 'black',
-              fontSize: calculatedFontSize / 2,
-              marginTop: '2%',
+              fontSize: calculatedFontSize / 2.9,
+              marginTop: 10,
             }}>
             Size: {size}
           </Text>
@@ -94,30 +94,31 @@ const ViewProduct = ({route}) => {
         <Text
           style={{
             color: 'black',
-            fontSize: calculatedFontSize / 2,
-            marginTop: '2%',
+            fontSize: calculatedFontSize / 2.9,
+            marginTop: 10,
           }}>
           Type: {type}
         </Text>
-        <TouchableOpacity
-          onPress={handleDeleteItem}
-          style={{
-            backgroundColor: appPink,
-            borderRadius: 40,
-            paddingVertical: '4%',
-            paddingHorizontal: '12%',
-            marginTop: 20,
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            }}>
-            Delete
-          </Text>
-        </TouchableOpacity>
       </View>
+
+      <TouchableOpacity
+        onPress={handleDeleteItem}
+        style={{
+          backgroundColor: appPink,
+          borderRadius: 40,
+          paddingVertical: '4%',
+          marginBottom: 40,
+          marginHorizontal: '30%',
+        }}>
+        <Text
+          style={{
+            color: 'white',
+            textAlign: 'center',
+            fontWeight: 'bold',
+          }}>
+          Delete
+        </Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

@@ -30,6 +30,7 @@ import EnterOrderTracking from './Screens/Orders/EnterOrderTracking';
 import EnterStreamTitle from './Screens/Stream/EnterStreamTitle';
 import GetStreamViewerSDK from './Screens/StreamViewer/GetStreamViewerSDK';
 import GetStreamSDK from './Screens/Stream/GetStreamSDK';
+import ChangeUsername from './Screens/Authentication/ChangeUsername';
 
 const Stack = createNativeStackNavigator();
 
@@ -144,6 +145,11 @@ const MyStack = () => {
           <Stack.Screen
             name="GetStreamSDK"
             component={GetStreamSDK}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ChangeUsername"
+            component={ChangeUsername}
             options={{headerShown: false}}
           />
         </Stack.Group>

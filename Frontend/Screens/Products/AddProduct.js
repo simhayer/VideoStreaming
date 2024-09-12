@@ -152,12 +152,12 @@ const StartStreamTab = () => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
           }}>
           <Icon name="reader-outline" size={30} color="black" />
           <TextInput
             value={itemName}
-            onChangeText={itemName => setItemName(itemName.trim())}
+            onChangeText={itemName => setItemName(itemName)}
             placeholder={'Enter item name'}
             style={{
               width: '70%',
@@ -168,8 +168,14 @@ const StartStreamTab = () => {
               marginLeft: '4%',
             }}
           />
+          <View style={{width: 30}} />
         </View>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
           <Icon name="albums-outline" size={30} color="black" />
           <DropDownPicker
             open={typeOpen}
@@ -194,6 +200,7 @@ const StartStreamTab = () => {
             }}
             zIndex={1000}
           />
+          <View style={{width: 30}} />
         </View>
         {showSizeOption && (
           <View
@@ -201,6 +208,7 @@ const StartStreamTab = () => {
               flexDirection: 'row',
               alignItems: 'center',
               marginTop: '3%',
+              justifyContent: 'space-between',
             }}>
             <Icon name="filter-outline" size={30} color="black" />
             <DropDownPicker
@@ -228,6 +236,7 @@ const StartStreamTab = () => {
               }}
               zIndex={900}
             />
+            <View style={{width: 30}} />
           </View>
         )}
         <View
@@ -235,8 +244,9 @@ const StartStreamTab = () => {
             flexDirection: 'row',
             alignItems: 'center',
             marginTop: '3%',
+            justifyContent: 'space-between',
           }}>
-          <View style={{width: 35}} />
+          <View style={{width: 40}} />
           <TouchableOpacity
             style={{
               borderWidth: 1,
@@ -262,6 +272,7 @@ const StartStreamTab = () => {
             </View>
             <Icon name="chevron-forward" size={30} color="black" />
           </TouchableOpacity>
+          <View style={{width: 30}} />
         </View>
         <View
           style={{
@@ -284,7 +295,7 @@ const StartStreamTab = () => {
         </View>
         <View style={{height: 'auto', marginBottom: 20}}>
           <TouchableOpacity
-            onPress={addProduct} // Call addProduct on button press
+            onPress={addProduct}
             style={{
               backgroundColor: appPink,
               borderRadius: 40,
@@ -297,7 +308,7 @@ const StartStreamTab = () => {
                 color: 'white',
                 textAlign: 'center',
                 fontWeight: 'bold',
-                paddingHorizontal: '10%',
+                paddingHorizontal: '15%',
               }}>
               Add
             </Text>

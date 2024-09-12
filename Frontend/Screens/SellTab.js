@@ -3,7 +3,6 @@ import axios from 'axios';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   AppState,
-  Button,
   SafeAreaView,
   TextInput,
   View,
@@ -12,6 +11,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Linking,
+  StyleSheet,
 } from 'react-native';
 import {apiEndpoints, appPink, baseURL} from '../Resources/Constants';
 import {useDispatch, useSelector} from 'react-redux';
@@ -109,7 +109,6 @@ const StartStreamTab = () => {
     const {accountId, loginLink} = response.data;
 
     if (loginLink && loginLink.url) {
-      //navigation.navigate('Sell');
       Linking.openURL(loginLink.url);
     }
 
@@ -139,127 +138,59 @@ const StartStreamTab = () => {
               Sellers Dashboard
             </Text>
 
-            <TouchableOpacity
+            <View
               style={{
-                borderTopWidth: 1,
-                borderBottomWidth: 1,
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0,0.2)',
-                width: '90%',
                 flexDirection: 'row',
-                paddingVertical: '2%',
-                paddingHorizontal: '4%',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderRadius: 40,
-                marginTop: '10%',
-              }}
-              onPress={() => navigation.navigate('ManageProducts')}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="cube-outline" size={30} color="black" />
-                <Text
-                  style={{
-                    color: 'black',
-                    fontWeight: 'bold',
-                    marginLeft: '8%',
-                    fontSize: calculatedFontSize / 2.7,
-                  }}>
-                  Manage Products
-                </Text>
-              </View>
-              <Icon name="chevron-forward" size={30} color="black" />
-            </TouchableOpacity>
-            <TouchableOpacity
+                marginTop: 20,
+                width: '90%',
+                flex: 1,
+              }}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('ManageProducts')}>
+                <View style={{alignItems: 'center'}}>
+                  <Icon name="cube-outline" size={30} color="black" />
+                  <Text style={styles.buttonText}>Manage Products</Text>
+                </View>
+              </TouchableOpacity>
+              <View style={{flex: 0.5}} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('SellerOrders')}>
+                <View style={{alignItems: 'center'}}>
+                  <Icon name="cart-outline" size={30} color="black" />
+                  <Text style={styles.buttonText}>Orders (Selling)</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+
+            <View
               style={{
-                marginTop: '3%',
-                borderTopWidth: 1,
-                borderBottomWidth: 1,
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0,0.2)',
-                width: '90%',
                 flexDirection: 'row',
-                paddingVertical: '2%',
-                paddingHorizontal: '4%',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderRadius: 40,
-              }}
-              onPress={() => navigation.navigate('SellerOrders')}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="cart-outline" size={30} color="black" />
-                <Text
-                  style={{
-                    color: 'black',
-                    fontWeight: 'bold',
-                    marginLeft: '8%',
-                    fontSize: calculatedFontSize / 2.7,
-                  }}>
-                  Orders (Selling)
-                </Text>
-              </View>
-              <Icon name="chevron-forward" size={30} color="black" />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                marginTop: '3%',
-                borderTopWidth: 1,
-                borderBottomWidth: 1,
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0,0.2)',
+                marginTop: 20,
                 width: '90%',
-                flexDirection: 'row',
-                paddingVertical: '2%',
-                paddingHorizontal: '4%',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderRadius: 40,
-              }}
-              onPress={() => viewDashboard()}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="cash-outline" size={30} color="black" />
-                <Text
-                  style={{
-                    color: 'black',
-                    fontWeight: 'bold',
-                    marginLeft: '8%',
-                    fontSize: calculatedFontSize / 2.8,
-                  }}>
-                  View payments dashboard
-                </Text>
-              </View>
-              <Icon name="chevron-forward" size={30} color="black" />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                marginTop: '3%',
-                borderTopWidth: 1,
-                borderBottomWidth: 1,
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0,0.2)',
-                width: '90%',
-                flexDirection: 'row',
-                paddingVertical: '2%',
-                paddingHorizontal: '4%',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderRadius: 40,
-              }}
-              onPress={() => navigation.navigate('GetStartedSellRules')}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="alert-circle-outline" size={30} color="black" />
-                <Text
-                  style={{
-                    color: 'black',
-                    fontWeight: 'bold',
-                    marginLeft: '8%',
-                    fontSize: calculatedFontSize / 2.8,
-                  }}>
-                  Rules and Guidelines
-                </Text>
-              </View>
-              <Icon name="chevron-forward" size={30} color="black" />
-            </TouchableOpacity>
+                flex: 1,
+              }}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => viewDashboard()}>
+                <View style={{alignItems: 'center'}}>
+                  <Icon name="cash-outline" size={30} color="black" />
+                  <Text style={styles.buttonText}>Payments dashboard</Text>
+                </View>
+              </TouchableOpacity>
+              <View style={{flex: 0.5}} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('GetStartedSellRules')}>
+                <View style={{alignItems: 'center'}}>
+                  <Icon name="alert-circle-outline" size={30} color="black" />
+                  <Text style={styles.buttonText}>Rules and Guidelines</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
+          <View style={{flex: 1}} />
           <TouchableOpacity
             onPress={() => startStream()}
             style={{
@@ -270,20 +201,30 @@ const StartStreamTab = () => {
               height: 'auto',
               marginBottom: 40,
             }}>
-            <Text
-              style={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: calculatedFontSize / 2.5,
-                fontWeight: 'bold',
-              }}>
-              Start Selling
-            </Text>
+            <Text style={styles.buttonText}>Start Selling</Text>
           </TouchableOpacity>
         </View>
       )}
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    flex: 3,
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.2)',
+    paddingVertical: '2%',
+    paddingHorizontal: '4%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+  },
+  buttonText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: calculatedFontSize / 2.7,
+  },
+});
 
 export default StartStreamTab;

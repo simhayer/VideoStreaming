@@ -169,10 +169,15 @@ const authSlice = createSlice({
     builder.addCase(updateUsername.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.userData = {
-        ...state.userData,
-        username: action.payload.user.username,
-      };
+
+      if (state.userData.user.username) {
+        state.userData.user.username = action.payload.user.username;
+      } else {
+        state.userData = {
+          ...state.userData,
+          username: action.payload.user.username,
+        };
+      }
     });
     builder.addCase(updateUsername.rejected, (state, action) => {
       state.isLoading = false;

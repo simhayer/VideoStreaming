@@ -12,7 +12,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {launchImageLibrary} from 'react-native-image-picker';
-import axios from 'axios';
 import {baseURL, apiEndpoints} from '../Resources/Constants';
 import {uploadProfilePicture} from '../Redux/Features/AuthSlice';
 
@@ -66,31 +65,25 @@ const EditProfile = () => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          paddingHorizontal: '2%',
-          paddingVertical: '2%',
-          backgroundColor: '#f5f5f5',
+          justifyContent: 'space-between',
+          paddingTop: 4,
         }}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{paddingRight: '2%'}}>
-          <Icon
-            name="chevron-back"
-            size={calculatedFontSize / 1.6}
-            color="#007BFF"
-          />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="chevron-back" size={35} color="black" />
         </TouchableOpacity>
         <Text
           style={{
-            fontSize: calculatedFontSize / 1.8,
+            color: 'black',
             fontWeight: 'bold',
-            paddingHorizontal: '26%',
+            fontSize: calculatedFontSize / 2,
             textAlign: 'center',
+            flex: 1,
           }}>
-          Edit profile
+          Edit Profile
         </Text>
+        <View style={{width: 35}} />
       </View>
-      <View style={{height: 1, backgroundColor: '#ccc'}} />
-      <View style={{paddingTop: '5%', alignItems: 'center'}}>
+      <View style={{marginTop: 10, alignItems: 'center'}}>
         <TouchableOpacity onPress={handleImagePicker}>
           <Image
             source={
@@ -106,13 +99,43 @@ const EditProfile = () => {
             }}
           />
         </TouchableOpacity>
-        <Button title="Change Profile Picture" onPress={handleImagePicker} />
-        <Text style={{padding: '3%', fontWeight: 'bold'}}>Username</Text>
-        <Text style={{padding: '3%'}}>{username}</Text>
-        <Text style={{padding: '3%', fontWeight: 'bold'}}>Email</Text>
-        <Text style={{padding: '3%'}}>{email}</Text>
-        <Text style={{padding: '3%', fontWeight: 'bold'}}>Full Name</Text>
-        <Text style={{padding: '3%'}}>{fullname}</Text>
+        <TouchableOpacity onPress={handleImagePicker}>
+          <Text
+            style={{
+              marginTop: 5,
+              color: 'blue',
+              fontSize: calculatedFontSize / 2.9,
+            }}>
+            Change picture
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{margin: 20}}>
+        <Text style={{fontWeight: 'bold', fontSize: calculatedFontSize / 2.7}}>
+          Username
+        </Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('ChangeUsername', {email})}>
+          <Text style={{fontSize: calculatedFontSize / 2.7}}>{username}</Text>
+        </TouchableOpacity>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            marginTop: 10,
+            fontSize: calculatedFontSize / 2.7,
+          }}>
+          Email
+        </Text>
+        <Text style={{fontSize: calculatedFontSize / 2.7}}>{email}</Text>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            marginTop: 10,
+            fontSize: calculatedFontSize / 2.7,
+          }}>
+          Full Name
+        </Text>
+        <Text style={{fontSize: calculatedFontSize / 2.7}}>{fullname}</Text>
       </View>
     </SafeAreaView>
   );

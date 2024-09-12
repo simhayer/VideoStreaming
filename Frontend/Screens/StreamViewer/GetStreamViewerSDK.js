@@ -72,8 +72,6 @@ const VideoScreen = ({route}) => {
   const [userBid, setUserBid] = useState(0);
 
   const scrollViewRef = useRef();
-  const screenHeight = Dimensions.get('window').height;
-  const calculatedFontSize = screenHeight * 0.05;
   const [socket, setSocket] = useState(null);
 
   const [timeLeft, setTimeLeft] = useState(0); // Initial time is 0
@@ -193,18 +191,17 @@ const VideoScreen = ({route}) => {
     console.log('In Bid sent:', curBid + 1);
     setUserBid(Number(curBid) + 1);
     //setCurBid(Number(curBid) + 1);
-    if (Number(userBid) > 0) {
-      console.log('Bid sent:', curBid + 1);
 
-      const bidData = {
-        id: broadcastId,
-        bidAmount: Number(curBid) + 1,
-        userUsername,
-      };
-      //setCurBid(Number(curBid) + 1);
-      socket.emit('bid', bidData);
-      //setUserBid(0); // Clear the input after sending the comment
-    }
+    console.log('Bid sent:', curBid + 1);
+
+    const bidData = {
+      id: broadcastId,
+      bidAmount: Number(curBid) + 1,
+      userUsername,
+    };
+    //setCurBid(Number(curBid) + 1);
+    socket.emit('bid', bidData);
+    //setUserBid(0); // Clear the input after sending the comment
   };
 
   const handleSendCustomBid = () => {
@@ -318,6 +315,12 @@ const VideoScreen = ({route}) => {
     ); // You can show a loading indicator here
   }
 
+  const screenTap = () => {
+    Keyboard.dismiss();
+    setIsBidBottomSheetVisible(false);
+    setIsCannotBidBottomSheetVisible(false);
+  };
+
   return (
     <View style={{flex: 1}}>
       {/* VideoHere */}
@@ -327,7 +330,7 @@ const VideoScreen = ({route}) => {
         </View>
       </StreamVideo>
       <SafeAreaView style={{flex: 1}}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1}}>
+        <TouchableWithoutFeedback onPress={screenTap} style={{flex: 1}}>
           <View
             style={{
               flex: 1,
@@ -534,7 +537,7 @@ const VideoScreen = ({route}) => {
                 flexDirection: 'row',
                 height: '4%',
               }}>
-              {isTimerRunning && (
+              {!isTimerRunning && (
                 <Text
                   style={{
                     color: 'white',
@@ -550,9 +553,8 @@ const VideoScreen = ({route}) => {
                 justifyContent: 'flex-end',
                 flexDirection: 'row',
                 marginBottom: 50,
-                height: '3%',
               }}>
-              {isTimerRunning && (
+              {!isTimerRunning && (
                 <Text
                   style={{color: 'red', fontSize: calculatedFontSize / 2.4}}>
                   {timeLeft} s
@@ -560,64 +562,69 @@ const VideoScreen = ({route}) => {
               )}
             </View>
             {!isTimerRunning && (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  height: '6%',
-                  width: '75%',
-                  marginBottom: 20,
-                  marginLeft: '12%',
-                  backgroundColor: 'rgba(128, 128, 128, 0.7)',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 30,
-                }}>
-                <Text
+              <View style={{alignItems: 'center'}}>
+                <View
                   style={{
-                    color: 'white',
-                    fontSize: calculatedFontSize / 2.4,
+                    height: 45,
+                    width: '75%',
+                    marginBottom: 20,
+                    backgroundColor: 'rgba(128, 128, 128, 0.7)',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 30,
                   }}>
-                  Awaiting Next Bid
-                </Text>
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontSize: calculatedFontSize / 2.4,
+                    }}>
+                    Awaiting Next Bid
+                  </Text>
+                </View>
               </View>
             )}
             {isTimerRunning && (
               <View
                 style={{
                   flexDirection: 'row',
-                  height: '6%',
-                  width: '100%',
+                  height: 45,
                   marginBottom: 20,
-                  marginLeft: '5%',
+                  paddingHorizontal: '5%',
                 }}>
                 <TouchableOpacity
                   onPress={() => setIsBidBottomSheetVisible(true)}
                   style={{
-                    height: '100%',
-                    width: '25%',
-                    backgroundColor: '#f542a4',
+                    flex: 2,
+                    backgroundColor: appPink,
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderRadius: 20,
                   }}>
-                  <Text style={{color: 'white', fontWeight: 'bold'}}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontWeight: 'bold',
+                      fontSize: calculatedFontSize / 2.7,
+                    }}>
                     Custom
                   </Text>
                 </TouchableOpacity>
-                <View style={{width: '20%', justifyContent: 'center'}}>
-                  {/* <Text style={{color: 'white'}}>Cur Bid: {curBid}</Text> */}
-                </View>
+                <View style={{flex: 1}} />
                 <TouchableOpacity
                   onPress={handleSendBid}
                   style={{
-                    height: '100%',
-                    width: '45%',
-                    backgroundColor: '#f542a4',
+                    flex: 2,
+                    backgroundColor: appPink,
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderRadius: 20,
                   }}>
-                  <Text style={{color: 'white', fontWeight: 'bold'}}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontWeight: 'bold',
+                      fontSize: calculatedFontSize / 2.7,
+                    }}>
                     Bid {Number(curBid) + 1}
                   </Text>
                 </TouchableOpacity>

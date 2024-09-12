@@ -73,7 +73,7 @@ const EnterStreamTitle = () => {
         <TextInput
           ref={inputRef}
           value={title}
-          onChangeText={title => setTitle(title.trim())}
+          onChangeText={title => setTitle(title)}
           placeholder={'Title'}
           style={{
             ...commonStyles.input,

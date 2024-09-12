@@ -12,11 +12,6 @@ import {
   ImageBackground,
   Image,
 } from 'react-native';
-import {
-  RTCView,
-  RTCPeerConnection,
-  RTCSessionDescription,
-} from 'react-native-webrtc';
 import io from 'socket.io-client';
 import axios from 'axios';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';

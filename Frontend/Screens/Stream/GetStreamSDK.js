@@ -213,7 +213,7 @@ const GetStreamSDK = ({route}) => {
 
   const [timeLeft, setTimeLeft] = useState(0); // Initial time is 0
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const [startBid, setStartBid] = useState('0');
+  const [startBid, setStartBid] = useState();
 
   const [selectedItem, setSelectedItem] = useState(items[0]);
 
@@ -239,7 +239,7 @@ const GetStreamSDK = ({route}) => {
       userBid: 0,
       userUsername: 'NA',
       timer: timer,
-      startBid: startBid,
+      startBid: !startBid ? 0 : startBid,
       product: selectedItem,
     };
 
@@ -247,7 +247,12 @@ const GetStreamSDK = ({route}) => {
     const timeInSeconds = parseInt(timer, 10);
     setTimeLeft(timeInSeconds);
     setIsTimerRunning(true);
-    setCurBid(Number(startBid));
+
+    if (startBid) {
+      setCurBid(Number(startBid));
+    } else {
+      setCurBid(Number(0));
+    }
     setNoOfBids(0);
     //setUserBid(0); // Clear the input after sending the comment
   };
@@ -467,8 +472,8 @@ const GetStreamSDK = ({route}) => {
             <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
               <View
                 style={{
-                  height: '11%',
-                  marginTop: '3%',
+                  height: 'auto',
+                  marginTop: 10,
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                   marginHorizontal: '10%',
@@ -476,10 +481,8 @@ const GetStreamSDK = ({route}) => {
                 }}>
                 <View
                   style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    width: '30%',
                     zIndex: 100,
+                    flex: 1,
                   }}>
                   <DropDownPicker
                     open={open}
@@ -489,37 +492,32 @@ const GetStreamSDK = ({route}) => {
                     setOpen={setOpen}
                     setValue={setTimer}
                     setItems={setTimerOptions}
-                    containerStyle={{
-                      height: '32%',
-                      justifyContent: 'center',
-                      marginTop: '18%',
-                    }}
                     labelStyle={{
                       fontWeight: 'bold',
-                    }}
-                    dropDownContainerStyle={{
-                      //backgroundColor: 'red',
-                      borderColor: 'black',
+                      fontSize: calculatedFontSize / 2.9,
                     }}
                     listItemLabelStyle={{
+                      marginTop: 0,
                       fontWeight: 'bold',
+                      fontSize: calculatedFontSize / 2.9,
                     }}
                     style={{
                       opacity: isTimerRunning ? 0.5 : 1,
                     }}
                   />
                 </View>
+                <View style={{flex: 1}} />
                 <View
                   style={{
-                    width: '32%',
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    flex: 1.1,
                   }}>
                   <Text style={{fontSize: calculatedFontSize / 2}}>$ </Text>
                   <TextInput
                     value={startBid}
-                    placeholder={'Start Bid'}
+                    placeholder={'0'}
                     editable={!isTimerRunning}
                     keyboardType="numeric"
                     onChangeText={text => {
@@ -527,10 +525,9 @@ const GetStreamSDK = ({route}) => {
                       setStartBid(Number(numericValue));
                     }}
                     style={{
-                      //fontSize: calculatedFontSize / 2.3,
+                      fontSize: calculatedFontSize / 2.5,
                       borderWidth: 1,
-                      height: '90%',
-                      width: '100%',
+                      flex: 1,
                       textAlign: 'center',
                       borderRadius: 8,
                       minHeight: 50,
@@ -542,9 +539,10 @@ const GetStreamSDK = ({route}) => {
 
               <View
                 style={{
-                  height: '20%',
+                  height: 'auto',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  marginTop: 10,
                 }}>
                 <TouchableOpacity
                   onPress={() => handleStartBid()}
@@ -555,8 +553,6 @@ const GetStreamSDK = ({route}) => {
                     alignItems: 'center',
                     width: '35%',
                     height: 50,
-                    marginTop: '2%',
-                    marginRight: '2%',
                     borderRadius: 8,
                     opacity: isTimerRunning ? 0.5 : 1,
                   }}>
@@ -573,8 +569,6 @@ const GetStreamSDK = ({route}) => {
               <View
                 style={{
                   flex: 1,
-                  maxHeight: '60%',
-                  height: '60%',
                 }}>
                 {isTimerRunning && (
                   <View

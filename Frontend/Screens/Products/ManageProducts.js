@@ -60,9 +60,7 @@ const ManageProducts = () => {
   );
 
   const handleDeleteItem = item => {
-    // Remove the item from the current list
     setItems(prevItems => prevItems.filter(i => i.name !== item.name));
-    // Add the item to the deletedItems list
     setDeletedItems(prevDeletedItems => [...prevDeletedItems, item._id]);
   };
 
