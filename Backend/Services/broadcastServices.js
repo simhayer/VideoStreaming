@@ -152,10 +152,12 @@ async function endBid(id) {
       return ret;
     }
 
+    const tax = ret.bidAmount * config.TAXRATE;
+
     // Charge the customer
-    stripeService.chargeCustomerOffSession({
+    stripeService.chargeCustomerOffSessionForAccount({
       id,
-      amount: ret.bidAmount,
+      amount: ret.bidAmount + tax,
       userUsername: ret.userUsername,
       broadcasterUsername: broadcasters[id].username,
     });

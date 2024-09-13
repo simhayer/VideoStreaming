@@ -370,6 +370,65 @@ const chargeCustomerOffSession = async ({
   }
 };
 
+const chargeCustomerOffSessionForAccount = async ({
+  id,
+  amount,
+  userUsername,
+  broadcasterUsername,
+}) => {
+  try {
+    console.log('amount:', amount);
+    // Assuming auth.getUserStripeDetails() requires the username instead of email
+    const {email} = await auth.getUserDetailsFromUsername(userUsername);
+    const {stripeUserId} = await auth.getUserStripeDetails(email);
+    console.log('Account ID:', stripeUserId);
+
+    const {email: sellerEmail} = await auth.getUserDetailsFromUsername(
+      broadcasterUsername,
+    );
+    const {stripeConnectedAccountId} = await auth.getUserStripeDetails(
+      sellerEmail,
+    );
+
+    if (!stripeUserId) {
+      return {success: false, error: 'Stripe user ID not found'};
+    }
+
+    const paymentMethods = await stripe.customers.listPaymentMethods(
+      stripeUserId,
+      {
+        limit: 3,
+      },
+    );
+
+    if (paymentMethods.length === 0) {
+      return {success: false, error: 'No payment methods available'};
+    }
+
+    const amountInCents = Math.round(amount * 100);
+
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amountInCents,
+      currency: 'cad',
+      customer: stripeUserId,
+      payment_method: paymentMethods.data[0].id,
+      return_url: 'http://localhost:3000/api/auth/webhook',
+      off_session: true,
+      confirm: true,
+      application_fee_amount: Math.round(amountInCents * config.COMMISIONRATE),
+      transfer_data: {
+        destination: stripeConnectedAccountId,
+      },
+    });
+
+    console.log('PaymentIntent created:', paymentIntent.id);
+    return {success: true, paymentIntentId: paymentIntent.id};
+  } catch (error) {
+    console.error('Error charging customer:', error);
+    return {success: false, error: 'Failed to charge customer'};
+  }
+};
+
 const stripeWebhooks = async (req, res) => {
   console.log('Webhook called');
   let event = req.body;
@@ -424,5 +483,6 @@ module.exports = {
   createStripeLoginLink,
   continueOnboarding,
   chargeCustomerOffSession,
+  chargeCustomerOffSessionForAccount,
   stripeWebhooks,
 };

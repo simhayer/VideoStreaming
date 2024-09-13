@@ -537,7 +537,7 @@ const VideoScreen = ({route}) => {
                 flexDirection: 'row',
                 height: '4%',
               }}>
-              {!isTimerRunning && (
+              {isTimerRunning && (
                 <Text
                   style={{
                     color: 'white',
@@ -554,7 +554,7 @@ const VideoScreen = ({route}) => {
                 flexDirection: 'row',
                 marginBottom: 50,
               }}>
-              {!isTimerRunning && (
+              {isTimerRunning && (
                 <Text
                   style={{color: 'red', fontSize: calculatedFontSize / 2.4}}>
                   {timeLeft} s

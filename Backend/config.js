@@ -6,8 +6,13 @@ const StripePublishableKey =
 const PORT = 3000;
 const SERVER_URL = 'http://localhost:3000';
 
+const TAXRATE = 0.13;
+const COMMISIONRATE = 0.08;
+
 module.exports = {
   StripePublishableKey,
   PORT,
   SERVER_URL,
+  TAXRATE,
+  COMMISIONRATE,
 };
