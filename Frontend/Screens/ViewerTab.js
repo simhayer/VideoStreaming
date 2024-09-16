@@ -11,11 +11,18 @@ import {
   FlatList,
   ImageBackground,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import io from 'socket.io-client';
 import axios from 'axios';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {apiEndpoints, baseURL, token} from '../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  debounce,
+  token,
+} from '../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const {height: screenHeight} = Dimensions.get('window');
@@ -23,13 +30,21 @@ const calculatedFontSize = screenHeight * 0.05;
 
 const ViewerTab = () => {
   const navigation = useNavigation();
-  const [peer, setPeer] = useState(null);
   const [broadcasts, setBroadcasts] = useState([]);
   const [socket, setSocket] = useState(null);
-  const calculatedFontSize = screenHeight * 0.05;
 
   const [search, setSearch] = useState('');
   const [refreshing, setRefreshing] = useState(false);
+  const [isAxiosError, setIsAxiosError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const debouncedSearch = debounce(value => {
+    setSearch(value);
+  }, 300);
+
+  const handleSearchChange = value => {
+    debouncedSearch(value);
+  };
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -43,11 +58,9 @@ const ViewerTab = () => {
     const newSocket = io(baseURL);
     setSocket(newSocket);
 
-    //newSocket.on('candidate-from-server', handleRemoteCandidate);
     newSocket.on('List-update', showList);
 
     return () => {
-      //newSocket.off('candidate-from-server', handleRemoteCandidate);
       newSocket.off('List-update', showList);
       newSocket.close();
     };
@@ -60,12 +73,24 @@ const ViewerTab = () => {
   );
 
   const showList = async () => {
+    setLoading(true);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
     try {
-      console.log('showList');
-      const response = await axios.get(baseURL + apiEndpoints.listbroadcast);
+      console.log('Fetching broadcasts');
+      const response = await axios.get(baseURL + apiEndpoints.listbroadcast, {
+        timeout: 5000, // Set timeout for the request
+        signal: controller.signal, // Attach the AbortController signal
+      });
+      setIsAxiosError(false);
       setBroadcasts(response.data);
     } catch (error) {
-      console.error('Error fetching broadcasts: ', error);
+    } finally {
+      // Clear the timeout once the request is completed or aborted
+      clearTimeout(timeoutId);
+      setLoading(false);
     }
   };
 
@@ -117,7 +142,7 @@ const ViewerTab = () => {
           placeholder="Search streams..."
           placeholderTextColor="grey"
           value={search}
-          onChangeText={setSearch}
+          onChangeText={handleSearchChange}
           returnKeyType="send"
           enterKeyHint="send"
         />
@@ -134,84 +159,142 @@ const ViewerTab = () => {
           marginBottom: 5,
         }}
       />
-      <FlatList
-        data={broadcasts}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => {
-          const profilePictureFilename = item.profilePicture.split('/').pop();
-          const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
-          const thumbnailUri = `${baseURL}/thumbnail/${item.thumbnail}`;
-
-          return (
-            <View
+      {loading ? (
+        <ActivityIndicator
+          size="large"
+          color="grey"
+          style={{marginVertical: 20}}
+        />
+      ) : isAxiosError ? (
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 50,
+          }}>
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2.7,
+              width: '80%',
+              textAlign: 'center',
+            }}>
+            Something went wrong. Press the button to try again.
+          </Text>
+          <TouchableOpacity
+            onPress={showList}
+            style={{
+              backgroundColor: appPink,
+              borderRadius: 40,
+              paddingVertical: '3%',
+              paddingHorizontal: '10%',
+              marginTop: 20,
+            }}>
+            <Text
               style={{
-                width: '48%',
-                height: screenHeight * 0.35,
-                marginBottom: '20%',
-                marginRight: '4%',
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.7,
               }}>
-              <View style={styles.row}>
-                <Image
-                  source={{uri: profilePictureURL}}
-                  style={styles.profilePicture}
-                />
-                <Text
-                  style={{
-                    fontSize: calculatedFontSize / 2.7,
-                    fontWeight: 'bold',
-                    maxWidth: '48%',
-                  }}>
-                  {item.username}
+              Retry
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <FlatList
+          data={broadcasts}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => {
+            const profilePictureFilename = item.profilePicture.split('/').pop();
+            const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+            const thumbnailUri = `${baseURL}/thumbnail/${item.thumbnail}`;
+
+            return (
+              <View
+                style={{
+                  width: '48%',
+                  height: screenHeight * 0.35,
+                  marginBottom: '20%',
+                  marginRight: '4%',
+                }}>
+                <View style={styles.row}>
+                  <Image
+                    source={{uri: profilePictureURL}}
+                    style={styles.profilePicture}
+                  />
+                  <Text
+                    style={{
+                      fontSize: calculatedFontSize / 2.7,
+                      fontWeight: 'bold',
+                      maxWidth: '48%',
+                    }}>
+                    {item.username}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  key={item.id}
+                  title={`Watch ${item.id}`}
+                  style={styles.buttonContainer}
+                  onPress={() =>
+                    watchVideoSDK(
+                      item.id,
+                      item.username,
+                      item.watchers,
+                      profilePictureURL,
+                      item.comments,
+                      item.meetingId,
+                    )
+                  }>
+                  <ImageBackground
+                    source={{uri: thumbnailUri}}
+                    style={{width: '100%', height: '100%', borderRadius: 7}}
+                    imageStyle={{borderRadius: 7}}>
+                    <View
+                      style={{
+                        backgroundColor: 'red',
+                        width: '40%',
+                        height: '9%',
+                        margin: '4%',
+                        borderRadius: 3,
+                        alignItems: 'center',
+                      }}>
+                      <Text
+                        style={{
+                          fontWeight: 'bold',
+                          color: 'white',
+                          fontSize: calculatedFontSize / 2.5,
+                        }}>
+                        Live - {item.watchers}
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                </TouchableOpacity>
+                <Text>{item.title}</Text>
+              </View>
+            );
+          }}
+          numColumns={2}
+          contentContainerStyle={styles.scrollView}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          ListEmptyComponent={() =>
+            !loading && (
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: 50,
+                }}>
+                <Icon name="boat" size={40} color="black" />
+                <Text style={{fontSize: calculatedFontSize / 2.5}}>
+                  No broadcasts found.
                 </Text>
               </View>
-              <TouchableOpacity
-                key={item.id}
-                title={`Watch ${item.id}`}
-                style={styles.buttonContainer}
-                onPress={() =>
-                  watchVideoSDK(
-                    item.id,
-                    item.username,
-                    item.watchers,
-                    profilePictureURL,
-                    item.comments,
-                    item.meetingId,
-                  )
-                }>
-                <ImageBackground
-                  source={{uri: thumbnailUri}}
-                  style={{width: '100%', height: '100%', borderRadius: 7}}
-                  imageStyle={{borderRadius: 7}}>
-                  <View
-                    style={{
-                      backgroundColor: 'red',
-                      width: '40%',
-                      height: '9%',
-                      margin: '4%',
-                      borderRadius: 3,
-                      alignItems: 'center',
-                    }}>
-                    <Text
-                      style={{
-                        fontWeight: 'bold',
-                        color: 'white',
-                        fontSize: calculatedFontSize / 2.5,
-                      }}>
-                      Live - {item.watchers}
-                    </Text>
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
-              <Text>{item.title}</Text>
-            </View>
-          );
-        }}
-        numColumns={2}
-        contentContainerStyle={styles.scrollView}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      />
+            )
+          }
+        />
+      )}
     </SafeAreaView>
   );
 };

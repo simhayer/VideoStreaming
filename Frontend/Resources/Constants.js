@@ -1,9 +1,7 @@
-import {updateUsername} from '../../Backend/middleware/auth';
-import {createStripeConnectedAccountRefreshURL} from '../../Backend/Services/stripeService';
-
 //export const baseURL = 'http://10.0.2.2:3000'; //for android studio
 //export const baseURL = 'http://localhost:3000';   //for actual device
-export const baseURL = 'http://10.0.0.138:3000'; //for android studio
+//export const baseURL = 'http://10.0.0.138:3000'; //for android studio
+export const baseURL = 'http://18.116.26.56:3000'; //for AWS EC2
 //export const baseURL = 'http://192.162.2.118:3000'; //for android studio
 //export const baseURL = 'https://wobble-server.onrender.com'; //for android studio
 
@@ -109,3 +107,15 @@ export const clothingSizeOptions = [
 ];
 
 export const GetStreamApiKey = '8ryv3hxy9p2s';
+
+export const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+};

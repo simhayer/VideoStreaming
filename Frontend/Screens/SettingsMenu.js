@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Screen} from 'react-native-screens';
 import {
   baseURL,
   apiEndpoints,
