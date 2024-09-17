@@ -153,13 +153,15 @@ const authSlice = createSlice({
     builder.addCase(logout.fulfilled, state => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.userData = null;
-      state.isAuthenticated = false;
+      state.userData = null; // Clear user data
+      state.isAuthenticated = false; // Mark user as logged out
     });
     builder.addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.errorMessage = action.payload.message;
+      state.userData = null; // Clear user data, even if error occurs
+      state.isAuthenticated = false; // Mark user as logged out, even if error occurs
     });
 
     // Update Username cases
