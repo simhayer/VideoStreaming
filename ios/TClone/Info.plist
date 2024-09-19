@@ -71,5 +71,14 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>com.googleusercontent.apps.423122273522-f7tikrloftd730mu77nnneb9ik3t74k0</string>
+        </array>
+    </dict>
+</array>
 </dict>
 </plist>
