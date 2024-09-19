@@ -1,64 +1,68 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Alert,
   View,
   Text,
   StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
   Dimensions,
   Platform,
-  Image,
   SafeAreaView,
 } from 'react-native';
-import {baseURL, apiEndpoints} from '../Resources/Constants';
+import {baseURL, apiEndpoints, appPink} from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../../Resources/styles';
 import Icon from 'react-native-vector-icons/Ionicons';
-
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {appPink} from '../../Resources/Constants';
-
-//TODO
-const {
-  // GOOGLE_WEB_CLIENT_ID,
-  GOOGLE_ANDROID_CLIENT_ID,
-  GOOGLE_IOS_CLIENT_ID,
-} = process.env;
-
-//const GOOGLE_ANDROID_CLIENT_ID = "423122273522-adm11brgik1kv9bj2soq8r3ge88rom6g.apps.googleusercontent.com";
-
-GoogleSignin.configure({
-  // webClientId: GOOGLE_WEB_CLIENT_ID,
-  androidClientId: GOOGLE_ANDROID_CLIENT_ID,
-  iosClientId: GOOGLE_IOS_CLIENT_ID,
-  scopes: ['profile', 'email'],
-});
-
-const GoogleLogin = async () => {
-  await GoogleSignin.hasPlayServices();
-  try {
-    const userInfo = await GoogleSignin.signIn();
-    console.log(userInfo);
-    return userInfo;
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 const SignUp = ({route}) => {
   const {type} = route?.params;
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
+  const [clientIds, setClientIds] = useState({});
 
   const onContiueWithEmailClick = () => {
-    if (type && type === 'Login') {
-      navigation.navigate('Login');
-    } else {
-      navigation.navigate('SignUp');
+    navigation.navigate(type === 'Login' ? 'Login' : 'SignUp');
+  };
+
+  const fetchGoogleClientIds = async () => {
+    try {
+      const response = await axios.get(
+        baseURL + apiEndpoints.getGoogleClientId,
+      );
+      setClientIds({
+        android: response.data.googleAndroidClientId,
+        ios: response.data.googleIosClientId,
+      });
+    } catch (error) {
+      console.error('Error fetching Google Client IDs:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchGoogleClientIds();
+  }, []);
+
+  useEffect(() => {
+    if (clientIds.android || clientIds.ios) {
+      GoogleSignin.configure({
+        androidClientId: clientIds.android,
+        iosClientId: clientIds.ios,
+        scopes: ['profile', 'email'],
+      });
+    }
+  }, [clientIds]);
+
+  const GoogleLogin = async () => {
+    await GoogleSignin.hasPlayServices();
+    try {
+      const userInfo = await GoogleSignin.signIn();
+      console.log(userInfo);
+      return userInfo;
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -120,7 +124,7 @@ const SignUp = ({route}) => {
       </View>
       <View style={{marginTop: 20, width: '85%', borderRadius: 5}}>
         <TouchableOpacity
-          onPress={() => GoogleLogin()}
+          onPress={GoogleLogin}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -131,9 +135,7 @@ const SignUp = ({route}) => {
             paddingVertical: '3%',
             paddingHorizontal: '5%',
           }}>
-          <TouchableOpacity>
-            <Icon name="logo-google" size={30} color="black" />
-          </TouchableOpacity>
+          <Icon name="logo-google" size={30} color="black" />
           <Text
             style={{
               color: 'white',
@@ -148,7 +150,7 @@ const SignUp = ({route}) => {
         </TouchableOpacity>
         {Platform.OS === 'ios' && (
           <TouchableOpacity
-            onPress={() => GoogleLogin()}
+            onPress={GoogleLogin}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -176,7 +178,7 @@ const SignUp = ({route}) => {
           </TouchableOpacity>
         )}
         <TouchableOpacity
-          onPress={() => onContiueWithEmailClick()}
+          onPress={onContiueWithEmailClick}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
