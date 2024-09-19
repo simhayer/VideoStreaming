@@ -9,41 +9,52 @@ import {
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
+  ActivityIndicator, // Import ActivityIndicator
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import commonStyles from '../../Resources/styles';
 import {updateUsername} from '../../Redux/Features/AuthSlice';
+import {appPink} from '../../Resources/Constants';
+
+const screenHeight = Dimensions.get('window').height;
+const calculatedFontSize = screenHeight * 0.05;
 
 const UsernameCreate = ({route}) => {
   const {email} = route.params;
   const [username, setUsername] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // State for loading indicator
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
-  const {isError, errorMessage} = useSelector(state => state.auth);
-
-  const screenHeight = Dimensions.get('window').height;
-  const calculatedFontSize = screenHeight * 0.05;
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onNextClick = () => {
     console.log('Username: ', username);
     if (username.length === 0) {
-      //setIsError(true);
-      //setUsernameError('Please provide a username');
+      setIsError(true);
+      setErrorMessage('Please provide a username');
       return;
     }
+
+    setIsLoading(true); // Start loading indicator
 
     const updateParams = {email, username};
     dispatch(updateUsername(updateParams))
       .unwrap()
       .then(() => {
         console.log('Username updated successfully');
+        setIsLoading(false); // Stop loading indicator
         navigation.navigate('Login');
       })
       .catch(err => {
-        console.error('Error:', err);
-        // Handle the error (errorMessage is already set by the Redux state)
+        console.log('Error:', err.data.message);
+        setIsError(true);
+        setErrorMessage(
+          err.data?.message || 'Could not create username. Please try again.',
+        );
+        setIsLoading(false); // Stop loading indicator
       });
   };
 
@@ -69,11 +80,8 @@ const UsernameCreate = ({route}) => {
             value={username}
             onChangeText={username => setUsername(username)}
             placeholder={'Username'}
-            style={{
-              ...commonStyles.input,
-              fontSize: calculatedFontSize / 2.5,
-              marginTop: 20,
-            }}
+            style={styles.input}
+            placeholderTextColor={'gray'}
           />
         </View>
         {isError && (
@@ -82,29 +90,45 @@ const UsernameCreate = ({route}) => {
           </Text>
         )}
         <View style={{width: '85%', alignItems: 'center', marginTop: 40}}>
-          <TouchableOpacity
-            onPress={onNextClick}
-            style={{
-              backgroundColor: '#f542a4',
-              borderRadius: 40,
-              paddingVertical: '4%',
-              alignItems: 'center',
-              width: '100%',
-            }}>
-            <Text
+          {isLoading ? (
+            <ActivityIndicator size="large" color={appPink} />
+          ) : (
+            <TouchableOpacity
+              onPress={onNextClick}
               style={{
-                color: 'white',
-                textAlign: 'left',
-                fontSize: calculatedFontSize / 2.2,
-                fontWeight: 'bold',
+                backgroundColor: appPink,
+                borderRadius: 40,
+                paddingVertical: '4%',
+                alignItems: 'center',
+                width: '100%',
               }}>
-              Next
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  color: 'white',
+                  textAlign: 'left',
+                  fontSize: calculatedFontSize / 2.2,
+                  fontWeight: 'bold',
+                }}>
+                Next
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    width: '100%',
+    borderBottomWidth: 1,
+    borderColor: 'black',
+    fontSize: calculatedFontSize / 2.3,
+    paddingBottom: '0%',
+    marginBottom: '5%',
+    height: 40,
+  },
+});
 
 export default UsernameCreate;

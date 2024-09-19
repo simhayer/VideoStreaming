@@ -9,9 +9,10 @@ import {
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 //import {baseURL, apiEndpoints} from '../Resources/Constants';
-import {baseURL, apiEndpoints} from '../../Resources/Constants';
+import {baseURL, apiEndpoints, appPink} from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
@@ -26,61 +27,54 @@ const SignUp = () => {
 
   const [isError, setIsError] = useState(false);
   const [loginError, setLoginError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSignUpClick = async (fullname, email, password) => {
     if (fullname.length === 0) {
-      //Alert.alert('Login', 'Please provide your email');
       setIsError(true);
       setLoginError('Please provide your name');
       return;
     }
 
     if (email.length === 0) {
-      //Alert.alert('Login', 'Please provide your email');
       setIsError(true);
       setLoginError('Please provide your email');
       return;
     }
 
     if (password.length === 0) {
-      //Alert.alert('Login', 'Please provide your password');
       setIsError(true);
       setLoginError('Please provide your password');
       return;
     }
 
     if (password.length < 6) {
-      //Alert.alert('Login', 'Please provide your password');
       setIsError(true);
       setLoginError('Password cannot be smaller than 6 digits');
       return;
     }
 
+    setIsLoading(true);
+
     try {
       const loginParams = {fullname, email, password};
-      // console.log(loginParams)
-      axios
-        .post(baseURL + apiEndpoints.register, loginParams)
-        .then(res => {
-          console.log(res.data);
-          setIsError(false);
-          setLoginError('');
-          navigation.navigate('UsernameCreate', {email});
-        })
-        .catch(err => {
-          console.log(err);
-          //console.log(err.response);
-          setIsError(true);
-          setLoginError(err.response.data.message);
-          // Alert.alert('Login', 'Could not log you in');
-        });
+      const res = await axios.post(
+        baseURL + apiEndpoints.register,
+        loginParams,
+      );
 
-      // Handle the response or navigate to another screen upon successful login
-    } catch (error) {
-      console.error('Login error:', error);
+      console.log(res.data);
+      setIsError(false);
+      setLoginError('');
+      navigation.navigate('UsernameCreate', {email});
+    } catch (err) {
+      console.log(err);
       setIsError(true);
-      setLoginError('Could not create an account');
-      // Handle the error, such as displaying an error message to the user
+      setLoginError(
+        err.response?.data?.message || 'Could not create an account',
+      );
+    } finally {
+      setIsLoading(false); // This will ensure loading stops
     }
   };
 
@@ -91,21 +85,27 @@ const SignUp = () => {
     inputRef.current.focus();
   }, []);
 
+  useEffect(() => {
+    console.log('Loading state changed:', isLoading);
+  }, [isLoading]);
+
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center', marginTop: 30}}>
-      <View style={{width: '85%'}}>
+    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+      <View style={{width: '85%', marginTop: 30, alignItems: 'center'}}>
         <TextInput
           ref={inputRef}
           value={fullname}
           onChangeText={fullname => setFullname(fullname)}
           placeholder={'Full Name'}
           style={styles.input}
+          placeholderTextColor={'gray'}
         />
         <TextInput
           value={email}
           onChangeText={email => setEmail(email.trim())}
           placeholder={'Email'}
           style={styles.input}
+          placeholderTextColor={'gray'}
         />
 
         <TextInput
@@ -114,6 +114,7 @@ const SignUp = () => {
           placeholder={'Password'}
           style={styles.input}
           secureTextEntry={true}
+          placeholderTextColor={'gray'}
         />
         {isError && (
           <Text style={{fontSize: calculatedFontSize / 2.7}}>{loginError}</Text>
@@ -133,25 +134,29 @@ const SignUp = () => {
       </View>
 
       <View style={{width: '85%', alignItems: 'center', marginTop: 20}}>
-        <TouchableOpacity
-          onPress={() => onSignUpClick(fullname, email, password)}
-          style={{
-            backgroundColor: '#f542a4',
-            borderRadius: 40,
-            paddingVertical: '4%',
-            alignItems: 'center',
-            width: '100%',
-          }}>
-          <Text
+        {isLoading ? (
+          <ActivityIndicator size="large" color={appPink} />
+        ) : (
+          <TouchableOpacity
+            onPress={() => onSignUpClick(fullname, email, password)}
             style={{
-              color: 'white',
-              textAlign: 'left',
-              fontSize: calculatedFontSize / 2.2,
-              fontWeight: 'bold',
+              backgroundColor: appPink,
+              borderRadius: 40,
+              paddingVertical: '4%',
+              alignItems: 'center',
+              width: '100%',
             }}>
-            Signup
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'left',
+                fontSize: calculatedFontSize / 2.2,
+                fontWeight: 'bold',
+              }}>
+              Signup
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );
