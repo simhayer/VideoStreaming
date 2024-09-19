@@ -14,7 +14,9 @@ import {
 import {baseURL, apiEndpoints} from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
-import commonStyles from '../../Resources/styles';
+
+const screenHeight = Dimensions.get('window').height;
+const calculatedFontSize = screenHeight * 0.05;
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -24,9 +26,6 @@ const SignUp = () => {
 
   const [isError, setIsError] = useState(false);
   const [loginError, setLoginError] = useState('');
-
-  const screenHeight = Dimensions.get('window').height;
-  const calculatedFontSize = screenHeight * 0.05;
 
   const onSignUpClick = async (fullname, email, password) => {
     if (fullname.length === 0) {
@@ -93,85 +92,81 @@ const SignUp = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{alignItems: 'center', marginTop: 30}}>
-        <View style={{width: '85%'}}>
-          <TextInput
-            ref={inputRef}
-            value={fullname}
-            onChangeText={fullname => setFullname(fullname)}
-            placeholder={'Full Name'}
-            style={{
-              ...commonStyles.input,
-              fontSize: calculatedFontSize / 2.3,
-              paddingBottom: '0%',
-              marginBottom: '5%',
-            }}
-          />
-          <TextInput
-            value={email}
-            onChangeText={email => setEmail(email.trim())}
-            placeholder={'Email'}
-            style={{
-              ...commonStyles.input,
-              fontSize: calculatedFontSize / 2.3,
-              paddingBottom: '0%',
-              marginBottom: '5%',
-            }}
-          />
+    <SafeAreaView style={{flex: 1, alignItems: 'center', marginTop: 30}}>
+      <View style={{width: '85%'}}>
+        <TextInput
+          ref={inputRef}
+          value={fullname}
+          onChangeText={fullname => setFullname(fullname)}
+          placeholder={'Full Name'}
+          style={styles.input}
+        />
+        <TextInput
+          value={email}
+          onChangeText={email => setEmail(email.trim())}
+          placeholder={'Email'}
+          style={styles.input}
+        />
 
-          <TextInput
-            value={password}
-            onChangeText={password => setPassword(password.trim())}
-            placeholder={'Password'}
-            style={{
-              ...commonStyles.input,
-              fontSize: calculatedFontSize / 2.3,
-              paddingBottom: '0%',
-              marginBottom: '5%',
-            }}
-            secureTextEntry={true}
-          />
-        </View>
+        <TextInput
+          value={password}
+          onChangeText={password => setPassword(password.trim())}
+          placeholder={'Password'}
+          style={styles.input}
+          secureTextEntry={true}
+        />
         {isError && (
           <Text style={{fontSize: calculatedFontSize / 2.7}}>{loginError}</Text>
         )}
-        <View style={{width: '80%', marginTop: '2%', alignItems: 'center'}}>
+      </View>
+
+      <View style={{width: '80%', marginTop: '2%', alignItems: 'center'}}>
+        <Text
+          style={{
+            color: 'black',
+            textAlign: 'center',
+            fontSize: calculatedFontSize / 2.9,
+          }}>
+          By clicking continue or sign up you agree to our Terms of Service and
+          Privacy Policy
+        </Text>
+      </View>
+
+      <View style={{width: '85%', alignItems: 'center', marginTop: 20}}>
+        <TouchableOpacity
+          onPress={() => onSignUpClick(fullname, email, password)}
+          style={{
+            backgroundColor: '#f542a4',
+            borderRadius: 40,
+            paddingVertical: '4%',
+            alignItems: 'center',
+            width: '100%',
+          }}>
           <Text
             style={{
-              color: 'black',
-              textAlign: 'center',
-              fontSize: calculatedFontSize / 2.9,
+              color: 'white',
+              textAlign: 'left',
+              fontSize: calculatedFontSize / 2.2,
+              fontWeight: 'bold',
             }}>
-            By clicking continue or sign up you agree to our Terms of Service
-            and Privacy Policy
+            Signup
           </Text>
-        </View>
-
-        <View style={{width: '85%', alignItems: 'center', marginTop: 20}}>
-          <TouchableOpacity
-            onPress={() => onSignUpClick(fullname, email, password)}
-            style={{
-              backgroundColor: '#f542a4',
-              borderRadius: 40,
-              paddingVertical: '4%',
-              alignItems: 'center',
-              width: '100%',
-            }}>
-            <Text
-              style={{
-                color: 'white',
-                textAlign: 'left',
-                fontSize: calculatedFontSize / 2.2,
-                fontWeight: 'bold',
-              }}>
-              Signup
-            </Text>
-          </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    width: '100%',
+    borderBottomWidth: 1,
+    borderColor: 'black',
+    fontSize: calculatedFontSize / 2.3,
+    paddingBottom: '0%',
+    marginBottom: '5%',
+    height: 40,
+  },
+});
 
 export default SignUp;
