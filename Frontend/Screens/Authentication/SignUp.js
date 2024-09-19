@@ -70,8 +70,9 @@ const SignUp = () => {
         })
         .catch(err => {
           console.log(err);
+          //console.log(err.response);
           setIsError(true);
-          setLoginError('Could not create an account');
+          setLoginError(err.response.data.message);
           // Alert.alert('Login', 'Could not log you in');
         });
 
@@ -132,6 +133,9 @@ const SignUp = () => {
             secureTextEntry={true}
           />
         </View>
+        {isError && (
+          <Text style={{fontSize: calculatedFontSize / 2.7}}>{loginError}</Text>
+        )}
         <View style={{width: '80%', marginTop: '2%', alignItems: 'center'}}>
           <Text
             style={{
@@ -143,7 +147,7 @@ const SignUp = () => {
             and Privacy Policy
           </Text>
         </View>
-        {isError && <Text>{loginError}</Text>}
+
         <View style={{width: '85%', alignItems: 'center', marginTop: 20}}>
           <TouchableOpacity
             onPress={() => onSignUpClick(fullname, email, password)}

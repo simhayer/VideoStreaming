@@ -27,6 +27,7 @@ const UsernameCreate = ({route}) => {
   const calculatedFontSize = screenHeight * 0.05;
 
   const onNextClick = () => {
+    console.log('Username: ', username);
     if (username.length === 0) {
       //setIsError(true);
       //setUsernameError('Please provide a username');
@@ -37,11 +38,11 @@ const UsernameCreate = ({route}) => {
     dispatch(updateUsername(updateParams))
       .unwrap()
       .then(() => {
+        console.log('Username updated successfully');
         navigation.navigate('Login');
-        4;
       })
       .catch(err => {
-        //console.error('Error:', err);
+        console.error('Error:', err);
         // Handle the error (errorMessage is already set by the Redux state)
       });
   };
