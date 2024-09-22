@@ -21,8 +21,6 @@ const ViewProduct = ({route}) => {
   const {name, size, imageUrl, type} = route.params;
   console.log('Route params:', route.params);
   const navigation = useNavigation();
-  const [items, setItems] = useState([]);
-  const [deletedItems, setDeletedItems] = useState([]);
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;

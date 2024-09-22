@@ -8,8 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {logout} from '../Redux/Features/AuthSlice';
+import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink, baseURL} from '../Resources/Constants';
@@ -24,9 +23,18 @@ const Profile = () => {
   const email = userData?.user?.email;
   const username = userData?.user?.username;
   const fullname = userData?.user?.fullname;
+  const isOnboardingStarted = userData?.user.isOnboardingStarted;
 
   const profilePictureURI = userData?.user?.profilePictureURI;
   const [selectedImage] = useState(profilePictureURI);
+
+  const navigateToSellScreen = () => {
+    if (isOnboardingStarted) {
+      navigation.navigate('Sell');
+    } else {
+      navigation.navigate('GetStartedSell');
+    }
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -54,7 +62,7 @@ const Profile = () => {
           <Icon name="menu" size={40} color="black" />
         </TouchableOpacity>
       </View>
-      <View style={{alignItems: 'center', height: '23%'}}>
+      <View style={{alignItems: 'center'}}>
         <Image
           source={
             selectedImage
@@ -62,17 +70,18 @@ const Profile = () => {
               : require('../Resources/user.png')
           }
           style={{
-            height: '40%',
-            width: '17%',
+            height: 50,
+            width: 50,
             borderRadius: 50,
             resizeMode: 'cover',
             marginTop: '8%',
           }}
         />
+        <Icon name="person" size={20} color="black" style={{marginTop: -20}} />
 
         <TouchableOpacity
           style={{
-            marginTop: '7%',
+            marginTop: 20,
             borderWidth: 1,
             borderRadius: 40,
             borderColor: 'rgba(0,0,0,0.2)',
@@ -102,6 +111,7 @@ const Profile = () => {
           color: 'black',
           fontWeight: 'bold',
           marginLeft: '5%',
+          marginTop: 10,
           fontSize: calculatedFontSize / 2.4,
         }}>
         Hello! {fullname}
@@ -114,9 +124,7 @@ const Profile = () => {
           flex: 1,
           marginHorizontal: '5%',
         }}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate('Sell')}>
+        <TouchableOpacity style={styles.button} onPress={navigateToSellScreen}>
           <View style={{alignItems: 'center'}}>
             <Icon name="cash-outline" size={30} color="black" />
             <Text style={styles.buttonText}>Start Selling</Text>

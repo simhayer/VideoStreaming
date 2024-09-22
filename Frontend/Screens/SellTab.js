@@ -61,14 +61,17 @@ const StartStreamTab = () => {
     console.log('Result:', success);
     console.log('Account ID:', accountId);
 
-    setLoading(false); // Stop loading
+    setLoading(false);
 
     if (success) {
       dispatch(setOnboardingChecked());
     }
 
     if (!success) {
-      navigation.navigate('ContinueOnboarding');
+      navigation.reset({
+        index: 1,
+        routes: [{name: 'TabControl'}, {name: 'ContinueOnboarding'}],
+      });
     }
     return {
       success,
@@ -171,9 +174,7 @@ const StartStreamTab = () => {
                 width: '90%',
                 flex: 1,
               }}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => viewDashboard()}>
+              <TouchableOpacity style={styles.button} onPress={viewDashboard}>
                 <View style={{alignItems: 'center'}}>
                   <Icon name="cash-outline" size={30} color="black" />
                   <Text style={styles.buttonText}>Payments dashboard</Text>

@@ -118,7 +118,7 @@ const StartStreamTab = () => {
         navigation.goBack();
       })
       .catch(error => {
-        console.error('Failed to add product:', response.data);
+        console.error('Failed to add product:', error);
       });
   };
 
@@ -147,7 +147,7 @@ const StartStreamTab = () => {
         </Text>
         <View style={{width: 35}} />
       </View>
-      <View style={{alignItems: 'center', marginTop: '4%', flex: 1}}>
+      <View style={{alignItems: 'center', marginTop: 10, flex: 1}}>
         <View
           style={{
             flexDirection: 'row',
@@ -166,6 +166,7 @@ const StartStreamTab = () => {
               fontSize: calculatedFontSize / 2.4,
               marginBottom: '4%',
               marginLeft: '4%',
+              height: 50,
             }}
           />
           <View style={{width: 30}} />
@@ -190,6 +191,7 @@ const StartStreamTab = () => {
             }}
             dropDownContainerStyle={{
               borderColor: 'black',
+              zIndex: 1000,
             }}
             listItemLabelStyle={{
               marginTop: 0,
@@ -226,6 +228,7 @@ const StartStreamTab = () => {
               }}
               dropDownContainerStyle={{
                 borderColor: 'black',
+                zIndex: 900,
               }}
               listItemLabelStyle={{
                 marginTop: 0,
@@ -243,7 +246,7 @@ const StartStreamTab = () => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            marginTop: '3%',
+            marginTop: 15,
             justifyContent: 'space-between',
           }}>
           <View style={{width: 40}} />
@@ -286,11 +289,6 @@ const StartStreamTab = () => {
               source={{uri: selectedImage}}
               style={{flex: 1, resizeMode: 'contain'}}
             />
-          )}
-          {!selectedImage && (
-            <View style={{flex: 1, borderWidth: 1, justifyContent: 'center'}}>
-              <Text style={{textAlign: 'center'}}>No image selected</Text>
-            </View>
           )}
         </View>
         <View style={{height: 'auto', marginBottom: 20}}>

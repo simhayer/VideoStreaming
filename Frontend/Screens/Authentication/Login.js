@@ -9,7 +9,12 @@ import {
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-import {baseURL, apiEndpoints, appPink} from '../../Resources/Constants';
+import {
+  baseURL,
+  apiEndpoints,
+  appPink,
+  errorRed,
+} from '../../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../../Redux/Features/AuthSlice';
@@ -54,7 +59,7 @@ const Login = () => {
       const result = await dispatch(login(loginParams));
       if (
         result.meta.requestStatus === 'rejected' &&
-        result.payload?.status === 401
+        (result.payload?.status === 400 || result.payload?.status === 401)
       ) {
         setIsError(true);
         setLoginError(
@@ -105,7 +110,9 @@ const Login = () => {
       </View>
 
       {isError && (
-        <Text style={{fontSize: calculatedFontSize / 2.9}}>{loginError}</Text>
+        <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
+          {loginError}
+        </Text>
       )}
       <View style={{width: '85%', alignItems: 'center', marginTop: '12%'}}>
         {isLoading ? (

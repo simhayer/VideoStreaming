@@ -7,8 +7,6 @@ export const baseURL = 'https://thebars.duckdns.org'; //for AWS EC2
 //export const baseURL = 'http://192.162.2.118:3000'; //for android studio
 //export const baseURL = 'https://wobble-server.onrender.com'; //for android studio
 
-//export const baseURL = 'https://wobble-server-scmcffqdoq-uc.a.run.app/'; //for android studio
-
 export const apiEndpoints = {
   login: '/api/auth/login',
   register: '/api/auth/register',
@@ -46,6 +44,7 @@ export const token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJkYTIyODY0OS00YmM5LTQxYzctYmI3Yi1jZjA4Y2RlZjNhZmQiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTcyMzY5MTY4MSwiZXhwIjoxNzU1MjI3NjgxfQ.z9HIp4NOtQF0nXAyqPAIvUUcq917rT4WAeglxl5jgxU';
 
 export const appPink = '#f542a4';
+export const errorRed = '#ff0000';
 export const backgroundColor = 'black';
 export const textColor = 'white';
 export const lineColor = 'white';

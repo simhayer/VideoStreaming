@@ -52,10 +52,6 @@ const Orders = () => {
     }, []),
   );
 
-  // useEffect(() => {
-  //   fetchOrders();
-  // }, []);
-
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{alignItems: 'center', marginTop: '2%'}}>
@@ -131,49 +127,20 @@ const Orders = () => {
             contentContainerStyle={{
               paddingBottom: 10, // Add padding to avoid the last item being cut off
             }}
-          />
-        </View>
-        <FlatList
-          style={{height: '70%', width: '100%'}}
-          data={items}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => {
-            return (
+            ListEmptyComponent={() => (
               <View
                 style={{
-                  flexDirection: 'row',
                   alignItems: 'center',
-                  borderWidth: 1,
-                  borderColor: 'rgba(0,0,0,0.2)',
-                  borderRadius: 20,
-                  marginTop: 10,
-                  paddingVertical: '3%',
-                  paddingHorizontal: '5%',
-                  justifyContent: 'space-between',
+                  justifyContent: 'center',
+                  marginTop: 50,
                 }}>
-                <Text style={{fontWeight: 'bold'}}>{item.amount}</Text>
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    textAlign: 'left',
-                    width: '58%',
-                    maxWidth: '58%',
-                  }}>
-                  {item.status}
+                <Text style={{fontSize: calculatedFontSize / 2.5}}>
+                  No orders found
                 </Text>
-                <Text style={{marginRight: '8%'}}>{item.seller.fullname}</Text>
-                <TouchableOpacity onPress={() => handleDeleteItem(item)}>
-                  <Icon name="chevron-forward" size={30} color="black" />
-                </TouchableOpacity>
               </View>
-            );
-          }}
-          contentContainerStyle={{
-            flexGrow: 1,
-            flexDirection: 'column',
-            padding: 10,
-          }}
-        />
+            )}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );

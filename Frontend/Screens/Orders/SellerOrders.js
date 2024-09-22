@@ -168,6 +168,18 @@ const SellerOrders = () => {
           contentContainerStyle={{
             paddingBottom: 10, // Add padding to avoid the last item being cut off
           }}
+          ListEmptyComponent={() => (
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: 50,
+              }}>
+              <Text style={{fontSize: calculatedFontSize / 2.5}}>
+                No orders found
+              </Text>
+            </View>
+          )}
         />
       </View>
     </SafeAreaView>

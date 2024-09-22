@@ -5,12 +5,10 @@ import {
   Text,
   ActivityIndicator,
   View,
-  AppState,
-  BackHandler,
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {Linking} from 'react-native';
@@ -26,7 +24,6 @@ const calculatedFontSize = screenHeight * 0.05;
 
 const CreateConnectedAccount = () => {
   const navigation = useNavigation();
-  const [title, setTitle] = useState('');
   const [accountID, setAccountID] = useState('');
   const [loading, setLoading] = useState(false);
   const {userData} = useSelector(state => state.auth);
@@ -59,67 +56,51 @@ const CreateConnectedAccount = () => {
     };
   };
 
-  useFocusEffect(
-    useCallback(() => {
-      const onBackPress = () => {
-        navigation.navigate('Home');
-        return true; // Prevent default behavior
-      };
-
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
-
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    }, []),
-  );
-
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{alignItems: 'center', marginTop: '3%'}}>
-        <View
+    <SafeAreaView style={{flex: 1, paddingTop: 10}}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <Icon name="chevron-back" size={35} color="black" />
+      </TouchableOpacity>
+      <View style={{alignItems: 'center'}}>
+        <Text
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            width: '50%',
-            width: '100%',
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2,
           }}>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Icon name="chevron-back" size={40} color="black" />
-          </TouchableOpacity>
-          <Text
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2,
-              marginLeft: '12%',
-            }}>
-            Onboarding not complete
-          </Text>
-        </View>
-        <Text style={{marginTop: '5%', textAlign: 'center'}}>
+          Onboarding not complete
+        </Text>
+        <Text style={{marginTop: 20, textAlign: 'center', width: '90%'}}>
           We need more information before you can start selling. You cannot
           selling untill the onboarding is complete
         </Text>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'flex-end',
+          marginBottom: 20,
+          alignItems: 'center',
+        }}>
         <TouchableOpacity
-          onPress={() => continueOnboarding()}
+          onPress={continueOnboarding}
           style={{
             paddingVertical: '4%',
             width: '90%',
             backgroundColor: '#f542a4',
             borderRadius: 40,
-            marginTop: '100%',
           }}>
           <Text
             style={{
               color: 'white',
               textAlign: 'center',
-              fontSize: calculatedFontSize / 2.5,
+              fontSize: calculatedFontSize / 2.7,
               fontWeight: 'bold',
             }}>
-            Continue onboarding/ Manage dashboard
+            Continue onboarding / Manage dashboard
           </Text>
         </TouchableOpacity>
-        <Text style={{marginTop: '5%', textAlign: 'center'}}>
+        <Text style={{marginTop: 20, textAlign: 'center'}}>
           If you have documents/information in verification, check the status
           using the dashboard, or come back later
         </Text>

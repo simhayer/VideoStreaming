@@ -20,7 +20,7 @@ import {appPink} from '../../Resources/Constants';
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
 
-const UsernameCreate = ({route}) => {
+const UsernameCreateForLoggedIn = ({route}) => {
   const {userData} = useSelector(state => state.auth);
 
   const email = userData?.user?.email;
@@ -49,7 +49,7 @@ const UsernameCreate = ({route}) => {
       .then(() => {
         console.log('Username updated successfully');
         setIsLoading(false); // Stop loading indicator
-        navigation.navigate('Login');
+        //navigation.navigate('TabControl');
       })
       .catch(err => {
         console.log('Error:', err.data.message);
@@ -174,4 +174,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UsernameCreate;
+export default UsernameCreateForLoggedIn;

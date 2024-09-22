@@ -1,4 +1,3 @@
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useCallback, useState} from 'react';
 import {
   Dimensions,
@@ -6,16 +5,21 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Pressable,
-  Image,
-  Touchable,
   TextInput,
+  ActivityIndicator,
+  Image,
 } from 'react-native';
-import {apiEndpoints, appPink, baseURL} from '../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  debounce,
+} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatList} from 'react-native-gesture-handler';
 import axios from 'axios'; // Import axios
 import {useSelector} from 'react-redux';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -23,18 +27,29 @@ const calculatedFontSize = screenHeight * 0.05;
 const ManageProducts = () => {
   const navigation = useNavigation();
   const [items, setItems] = useState([]);
-  const [deletedItems, setDeletedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]); // New state for selected items
+  const [selectAll, setSelectAll] = useState(false);
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const filteredItems = items.filter(item =>
     item.name.toLowerCase().includes(search.toLowerCase()),
   );
 
+  const debouncedSearch = debounce(value => {
+    setSearch(value);
+  }, 300);
+
+  const handleSearchChange = value => {
+    debouncedSearch(value);
+  };
+
   // Function to fetch products from the backend
   const fetchProducts = async () => {
+    setLoading(true);
     const payload = {
       email: userEmail,
     };
@@ -50,6 +65,8 @@ const ManageProducts = () => {
       }
     } catch (error) {
       console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,16 +76,21 @@ const ManageProducts = () => {
     }, []),
   );
 
-  const handleDeleteItem = item => {
-    setItems(prevItems => prevItems.filter(i => i.name !== item.name));
-    setDeletedItems(prevDeletedItems => [...prevDeletedItems, item._id]);
+  const toggleSelectItem = item => {
+    if (selectedItems.includes(item._id)) {
+      setSelectedItems(prevSelectedItems =>
+        prevSelectedItems.filter(id => id !== item._id),
+      );
+    } else {
+      setSelectedItems(prevSelectedItems => [...prevSelectedItems, item._id]);
+    }
   };
 
   const handleDonePress = async () => {
-    if (deletedItems.length > 0) {
+    if (selectedItems.length > 0) {
       const payload = {
         email: userEmail,
-        products: deletedItems,
+        products: selectedItems,
       };
 
       try {
@@ -78,7 +100,10 @@ const ManageProducts = () => {
         );
         if (response.status === 200) {
           console.log('Products removed successfully:', response.data);
-          // Optionally, navigate back or show a success message
+          setItems(prevItems =>
+            prevItems.filter(item => !selectedItems.includes(item._id)),
+          );
+          setSelectedItems([]); // Clear selection after deletion
         } else {
           console.error('Failed to remove products:', response.data);
         }
@@ -88,9 +113,15 @@ const ManageProducts = () => {
     } else {
       console.log('No products to delete');
     }
+  };
 
-    // Navigate back or perform another action
-    navigation.goBack();
+  const toggleSelectAll = () => {
+    if (selectAll) {
+      setSelectedItems([]);
+    } else {
+      setSelectedItems(items.map(item => item._id));
+    }
+    setSelectAll(!selectAll);
   };
 
   return (
@@ -116,7 +147,13 @@ const ManageProducts = () => {
           }}>
           Manage products
         </Text>
-        <View style={{width: 35}} />
+        {selectedItems.length > 0 ? (
+          <TouchableOpacity style={{marginRight: 10}} onPress={handleDonePress}>
+            <Icon name="trash-outline" size={35} color="black" />
+          </TouchableOpacity>
+        ) : (
+          <View style={{width: 35, marginRight: 10}} />
+        )}
       </View>
       <View
         style={{
@@ -139,96 +176,114 @@ const ManageProducts = () => {
             flex: 1,
             fontSize: calculatedFontSize / 3,
           }}
-          placeholder="Search orders..."
+          placeholder="Search products..."
           placeholderTextColor="grey"
           value={search}
-          onChangeText={setSearch}
+          onChangeText={handleSearchChange}
           returnKeyType="send"
-          enterKeyHint="send"
         />
-        <TouchableOpacity>
-          <Icon name="arrow-up-circle" size={35} color="grey" />
-        </TouchableOpacity>
       </View>
       <View style={{flex: 1, width: '100%'}}>
-        <FlatList
-          style={{flex: 1}}
-          data={filteredItems}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => {
-            if (!item.imageUrl) return null;
-            const itemImageFilename = item.imageUrl.split('\\').pop();
-            const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
-            return (
-              <TouchableOpacity
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  borderWidth: 1,
-                  borderColor: 'rgba(0,0,0,0.2)',
-                  marginTop: 10,
-                  paddingRight: '3%',
-                  justifyContent: 'space-between',
-                }}
-                onPress={() =>
-                  navigation.navigate('ViewProduct', {
-                    name: item.name,
-                    size: item.size,
-                    imageUrl: itemImageUrl,
-                    type: item.type,
-                  })
-                }>
-                <Image
-                  source={{uri: itemImageUrl}}
-                  resizeMode="contain"
-                  style={{width: '20%', height: 100}}
+        {loading ? (
+          <ActivityIndicator
+            size="large"
+            color="grey"
+            style={{marginVertical: 20}}
+          />
+        ) : (
+          <View style={{flex: 1}}>
+            <View
+              style={{
+                width: '95%',
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'flex-end',
+              }}>
+              <Text style={{fontSize: calculatedFontSize / 2.7}}>
+                Select all
+              </Text>
+              <TouchableOpacity onPress={toggleSelectAll} style={{padding: 3}}>
+                <Icon
+                  name={
+                    selectAll ? 'checkmark-circle-outline' : 'ellipse-outline'
+                  }
+                  size={27}
+                  color="black"
                 />
-                <View style={{flex: 1, marginHorizontal: 5}}>
-                  <Text
-                    style={{
-                      fontWeight: 'bold',
-                      textAlign: 'left',
-                      flexWrap: 'wrap',
-                    }}>
-                    {item.name}
-                  </Text>
-                  <Text style={{}}>{item.size}</Text>
-                </View>
-
-                <TouchableOpacity onPress={() => handleDeleteItem(item)}>
-                  <Icon name="close-circle-outline" size={25} color="red" />
-                </TouchableOpacity>
               </TouchableOpacity>
-            );
-          }}
-          contentContainerStyle={{
-            paddingBottom: 10, // Add padding to avoid the last item being cut off
-          }}
-        />
+            </View>
+            <FlatList
+              style={{flex: 1}}
+              data={filteredItems}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) => {
+                const isSelected = selectedItems.includes(item._id);
+                const itemImageFilename = item.imageUrl.split('\\').pop();
+                const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
+                return (
+                  <TouchableOpacity
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      borderWidth: 1,
+                      borderColor: 'rgba(0,0,0,0.2)', // Highlight selected item
+                      marginTop: 8,
+                      paddingRight: '3%',
+                      justifyContent: 'space-between',
+                      backgroundColor: isSelected
+                        ? 'rgba(0,0,0,0.1)'
+                        : 'transparent', // Highlight selected item
+                    }}
+                    onPress={() =>
+                      navigation.navigate('ViewProduct', {
+                        name: item.name,
+                        size: item.size,
+                        imageUrl: itemImageUrl,
+                        type: item.type,
+                      })
+                    }>
+                    <Image
+                      source={{uri: itemImageUrl}}
+                      resizeMode="contain"
+                      style={{width: '20%', height: 100}}
+                    />
+                    <View style={{flex: 1, marginHorizontal: 5}}>
+                      <Text
+                        style={{
+                          fontWeight: 'bold',
+                          textAlign: 'left',
+                          flexWrap: 'wrap',
+                        }}>
+                        {item.name}
+                      </Text>
+                      <Text>{item.size}</Text>
+                    </View>
+                    <TouchableOpacity
+                      style={{padding: 10}}
+                      onPress={() => toggleSelectItem(item)}>
+                      <Icon
+                        name={
+                          isSelected
+                            ? 'checkmark-circle-outline'
+                            : 'ellipse-outline'
+                        }
+                        size={27}
+                        color="black"
+                      />
+                    </TouchableOpacity>
+                  </TouchableOpacity>
+                );
+              }}
+              contentContainerStyle={{
+                paddingBottom: 10,
+              }}
+            />
+          </View>
+        )}
       </View>
       <View style={{height: 'auto', marginBottom: 25}}>
         <TouchableOpacity
           onPress={() => navigation.navigate('AddProduct')}
-          style={{
-            backgroundColor: appPink,
-            borderRadius: 40,
-            paddingVertical: '3%',
-            paddingHorizontal: '10%',
-            marginTop: 20,
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              textAlign: 'center',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.7,
-            }}>
-            Add item
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleDonePress}
           style={{
             backgroundColor: appPink,
             borderRadius: 40,
@@ -243,7 +298,7 @@ const ManageProducts = () => {
               fontWeight: 'bold',
               fontSize: calculatedFontSize / 2.7,
             }}>
-            Done
+            Add product
           </Text>
         </TouchableOpacity>
       </View>
