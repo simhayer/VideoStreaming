@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
+  ActivityIndicator,
   Button,
   Dimensions,
   Image,
@@ -24,12 +25,14 @@ const GetStartedSell = () => {
   const navigation = useNavigation();
   const [title, setTitle] = useState('');
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const {userData} = useSelector(state => state.auth);
 
   const userEmail = userData?.user?.email;
 
   const startOnboarding = async () => {
+    setLoading(true);
     const payload = {
       email: userEmail,
     };
@@ -47,6 +50,8 @@ const GetStartedSell = () => {
       Linking.openURL(accountLink.url);
       navigation.navigate('Sell');
     }
+
+    setLoading(false);
   };
 
   return (
@@ -140,6 +145,9 @@ const GetStartedSell = () => {
             </Text>
           </View>
         </View>
+        {loading ? (
+          <ActivityIndicator size="large" color={appPink} />
+        ) : (
         <TouchableOpacity
           onPress={() => startOnboarding()}
           style={{
@@ -161,6 +169,7 @@ const GetStartedSell = () => {
             Start Onboarding
           </Text>
         </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );

@@ -1,9 +1,11 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import React, {useMemo, useState} from 'react';
 import {
+  ActivityIndicator,
   Alert,
   Dimensions,
   Image,
+  PermissionsAndroid,
   SafeAreaView,
   Text,
   TextInput,
@@ -17,6 +19,7 @@ import {
   clothingSizeOptions,
   baseURL,
   apiEndpoints,
+  errorRed,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -31,7 +34,7 @@ const StartStreamTab = () => {
   const navigation = useNavigation();
   const [title, setTitle] = useState('');
 
-  const {userData, isLoading} = useSelector(state => state.auth);
+  const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
 
   const [itemName, setItemName] = useState('');
@@ -54,6 +57,11 @@ const StartStreamTab = () => {
 
   const [selectedImage, setSelectedImage] = useState('');
 
+  const [loading, setLoading] = useState(false);
+
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('')
+
   const handleImageSelection = () => {
     const options = {
       mediaType: 'photo',
@@ -63,7 +71,14 @@ const StartStreamTab = () => {
     const optionsArray = [
       {
         text: 'Take Photo',
-        onPress: () => launchCamera(options, handleImageResponse),
+        onPress: async () => {
+          const hasPermission = await requestCameraPermission();
+          if (hasPermission) {
+            launchCamera(options, handleImageResponse);
+          } else {
+            Alert.alert('Camera Permission', 'Permission denied');
+          }
+        },
       },
       {
         text: 'Choose from Library',
@@ -84,13 +99,42 @@ const StartStreamTab = () => {
     } else if (response.error) {
       console.log('ImagePicker Error: ', response.error);
     } else {
-      const uri = response.assets[0].uri;
+      console.log('response', response)
+      const uri = response?.assets[0].uri;
       setSelectedImage(uri);
+    }
+  };
+
+  const requestCameraPermission = async () => {
+    try {
+      if (Platform.OS === 'android') {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: 'Camera Permission',
+            message: 'App needs camera permission to take pictures.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        return granted === PermissionsAndroid.RESULTS.GRANTED;
+      }
+      return true;
+    } catch (err) {
+      console.warn(err);
+      return false;
     }
   };
 
   // Define the addProduct function to send the POST request
   const addProduct = async () => {
+    if (itemName.length === 0) {
+      setIsError(true);
+      setErrorMessage('Please provide an item name');
+      return;
+    }
+    setLoading(true)
     const formData = new FormData();
     formData.append('email', userEmail);
     formData.append('name', itemName);
@@ -119,7 +163,9 @@ const StartStreamTab = () => {
       })
       .catch(error => {
         console.error('Failed to add product:', error);
-      });
+      })
+      
+      setLoading(false);
   };
 
   return (
@@ -148,6 +194,11 @@ const StartStreamTab = () => {
         <View style={{width: 35}} />
       </View>
       <View style={{alignItems: 'center', marginTop: 10, flex: 1}}>
+      {isError && (
+        <View>
+          <Text style={{fontSize: calculatedFontSize/2.7, color:errorRed}}>{errorMessage}</Text>
+        </View>
+      )}
         <View
           style={{
             flexDirection: 'row',
@@ -292,6 +343,9 @@ const StartStreamTab = () => {
           )}
         </View>
         <View style={{height: 'auto', marginBottom: 20}}>
+        {loading ? (
+          <ActivityIndicator size="large" color={appPink} />
+        ) : (
           <TouchableOpacity
             onPress={addProduct}
             style={{
@@ -311,6 +365,7 @@ const StartStreamTab = () => {
               Add
             </Text>
           </TouchableOpacity>
+        )}
         </View>
       </View>
     </SafeAreaView>

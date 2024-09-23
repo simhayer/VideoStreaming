@@ -33,17 +33,22 @@ const ViewerTab = () => {
   const [broadcasts, setBroadcasts] = useState([]);
   const [socket, setSocket] = useState(null);
 
+  const [searchInput, setSearchInput] = useState(''); // Immediate input state
   const [search, setSearch] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [isAxiosError, setIsAxiosError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const debouncedSearch = debounce(value => {
-    setSearch(value);
-  }, 300);
+  const debouncedSearch = useCallback(
+    debounce(value => {
+      setSearch(value);
+    }, 300),
+    []
+  );
 
   const handleSearchChange = value => {
-    debouncedSearch(value);
+    setSearchInput(value); 
+    debouncedSearch(value); 
   };
 
   const onRefresh = useCallback(() => {
@@ -141,7 +146,7 @@ const ViewerTab = () => {
           }}
           placeholder="Search streams..."
           placeholderTextColor="grey"
-          value={search}
+          value={searchInput}
           onChangeText={handleSearchChange}
           returnKeyType="send"
           enterKeyHint="send"

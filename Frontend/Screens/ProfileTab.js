@@ -77,7 +77,6 @@ const Profile = () => {
             marginTop: '8%',
           }}
         />
-        <Icon name="person" size={20} color="black" style={{marginTop: -20}} />
 
         <TouchableOpacity
           style={{

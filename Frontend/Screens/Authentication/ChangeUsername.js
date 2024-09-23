@@ -9,13 +9,14 @@ import {
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import commonStyles from '../../Resources/styles';
 import {updateUsername} from '../../Redux/Features/AuthSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {appPink} from '../../Resources/Constants';
+import {appPink, errorRed} from '../../Resources/Constants';
 
 const ChangeUsername = ({route}) => {
   const {email} = route.params;
@@ -23,30 +24,37 @@ const ChangeUsername = ({route}) => {
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
-  //const {isError, errorMessage} = useSelector(state => state.auth);
-  const isError = false;
-  const errorMessage = '';
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
 
   const onNextClick = () => {
     if (username.length === 0) {
-      //setIsError(true);
-      //setUsernameError('Please provide a username');
+      setIsError(true);
+      setErrorMessage('Please provide a username');
       return;
     }
+
+    setIsLoading(true);
 
     const updateParams = {email, username};
     dispatch(updateUsername(updateParams))
       .unwrap()
       .then(() => {
         console.log('Username updated successfully');
+        setIsLoading(false);
         navigation.navigate('EditProfile');
       })
       .catch(err => {
         console.error('Error:', err);
-        // Handle the error (errorMessage is already set by the Redux state)
+        setIsError(true);
+        setErrorMessage(
+          err.data?.message || 'Could not create username. Please try again.',
+        );
+        setIsLoading(false);
       });
   };
 
@@ -75,15 +83,19 @@ const ChangeUsername = ({route}) => {
             ...commonStyles.input,
             fontSize: calculatedFontSize / 2.5,
             marginTop: 20,
+            marginBottom:5
           }}
         />
       </View>
       {isError && (
-        <Text style={{fontSize: calculatedFontSize / 2.9, alignSelf: 'center'}}>
-          {errorMessage}
-        </Text>
-      )}
+          <Text style={{fontSize: calculatedFontSize / 2.9, color:errorRed, alignSelf:'center'}}>
+            {errorMessage}
+          </Text>
+        )}
       <View style={{marginTop: 40, marginHorizontal: '10%'}}>
+      {isLoading ? (
+            <ActivityIndicator size="large" color={appPink} />
+          ) : (
         <TouchableOpacity
           onPress={onNextClick}
           style={{
@@ -101,6 +113,7 @@ const ChangeUsername = ({route}) => {
             Next
           </Text>
         </TouchableOpacity>
+          )}
       </View>
     </SafeAreaView>
   );

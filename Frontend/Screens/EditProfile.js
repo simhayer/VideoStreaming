@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Button,
   SafeAreaView,
+  StyleSheet,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
@@ -83,7 +84,7 @@ const EditProfile = () => {
         </Text>
         <View style={{width: 35}} />
       </View>
-      <View style={{marginTop: 10, alignItems: 'center'}}>
+      <View style={{marginTop: 30, alignItems: 'center'}}>
         <TouchableOpacity onPress={handleImagePicker}>
           <Image
             source={
@@ -115,6 +116,7 @@ const EditProfile = () => {
           Username
         </Text>
         <TouchableOpacity
+        style={styles.fieldContainer}
           onPress={() => navigation.navigate('ChangeUsername', {email})}>
           <Text style={{fontSize: calculatedFontSize / 2.7}}>{username}</Text>
         </TouchableOpacity>
@@ -126,7 +128,9 @@ const EditProfile = () => {
           }}>
           Email
         </Text>
-        <Text style={{fontSize: calculatedFontSize / 2.7}}>{email}</Text>
+        <View style={styles.fieldContainer}>
+          <Text style={{fontSize: calculatedFontSize / 2.7}}>{email}</Text>
+        </View>
         <Text
           style={{
             fontWeight: 'bold',
@@ -135,10 +139,21 @@ const EditProfile = () => {
           }}>
           Full Name
         </Text>
-        <Text style={{fontSize: calculatedFontSize / 2.7}}>{fullname}</Text>
+        <View style={styles.fieldContainer}>
+          <Text style={{fontSize: calculatedFontSize / 2.7}}>{fullname}</Text>
+        </View>
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  fieldContainer: {
+    borderWidth:1,
+    padding:10,
+    borderRadius:10,
+    marginTop:5
+  },
+})
 
 export default EditProfile;

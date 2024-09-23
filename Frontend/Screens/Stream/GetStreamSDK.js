@@ -11,14 +11,13 @@ import {
   Pressable,
   Keyboard,
   TouchableWithoutFeedback,
-  Button,
+  ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
 import io from 'socket.io-client';
 import {
   baseURL,
   apiEndpoints,
-  token,
   appPink,
   GetStreamApiKey,
 } from '../../Resources/Constants';
@@ -68,6 +67,7 @@ const GetStreamSDK = ({route}) => {
   const [showWinner, setShowWinner] = useState(false);
   const [userBid, setUserBid] = useState(0);
   const [watchers, setWatchers] = useState(0);
+  const [streamError, setStreamError] = useState(false)
 
   const [items, setItems] = useState([]);
 
@@ -144,31 +144,33 @@ const GetStreamSDK = ({route}) => {
       const token = response.data;
 
       const user = {
-        id: userUsername, // Ensure userId is defined somewhere
+        id: userUsername, 
         name: userUsername,
         image: `https://getstream.io/random_png/?id=${userUsername}&name=Santhosh`,
       };
       // Create StreamVideoClient
-      //const client = new StreamVideoClient({apiKey, user, token: token});
       const client = StreamVideoClient.getOrCreateInstance({
         apiKey: GetStreamApiKey,
         user,
         token,
       });
-      setMyClient(client); // Set client in state
+      setMyClient(client); 
 
-      // Create and join the call
       console.log('Socket ID:', socketId);
-      const call = client.call('livestream', socketId); // Ensure callId is defined
-      await call.join({create: true}); // Wait for the join to complete
-      setMyCall(call); // Set call in state
+      const call = client.call('livestream', socketId); 
+      await call.join({create: true}); 
+      setMyCall(call); 
     } catch (error) {
-      console.error('Error creating stream user or joining call:', error);
+      console.error('Error creating stream user or joining call:', error.response.data ?? error);
+      setStreamError(true)
     }
   };
 
   const initializeMeeting = async () => {
     createStreamUser();
+    if(streamError){
+      return;
+    }
 
     const formData = new FormData();
     formData.append('sdp', null);
@@ -201,17 +203,17 @@ const GetStreamSDK = ({route}) => {
       })
       .catch(error => {
         console.error('Error adding broadcast:', error);
+        setStreamError(true);
       });
-    //}
   };
 
   useEffect(() => {
     if (isSocketReady) {
-      initializeMeeting(); // Only start the meeting after the socket is ready
+      initializeMeeting(); 
     }
   }, [isSocketReady]);
 
-  const [timeLeft, setTimeLeft] = useState(0); // Initial time is 0
+  const [timeLeft, setTimeLeft] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [startBid, setStartBid] = useState();
 
@@ -319,20 +321,52 @@ const GetStreamSDK = ({route}) => {
     fetchProducts();
   }, []);
 
+  if (streamError) {
+    return (
+      <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+         <Text style={{fontSize:calculatedFontSize/2.4}}>Something went wrong, please try again later</Text>
+         <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            style={{
+              backgroundColor: appPink,
+              borderRadius: 40,
+              paddingVertical: '4%',
+              alignItems: 'center',
+              width: '60%',
+              marginTop:30
+            }}>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'left',
+                fontSize: calculatedFontSize / 2.2,
+                fontWeight: 'bold',
+              }}>
+              Home
+            </Text>
+          </TouchableOpacity>
+      </SafeAreaView>
+    )
+  }
+
   // Render nothing until myClient and myCall are ready
   if (!myClient || !myCall) {
     return (
-      <SafeAreaView>
-        <Text>Loading...</Text>
+      <SafeAreaView style={{flex:1, justifyContent:'center'}}>
+         <Text style={{fontSize:calculatedFontSize/2.4, alignSelf:'center'}}>Livestream starting...</Text>
+        <ActivityIndicator
+          size="large"
+          color="grey"
+          style={{marginVertical: 20}}
+        />
       </SafeAreaView>
-    ); // You can show a loading indicator here
+    ); 
   }
 
   return (
     <StreamVideo client={myClient} language="en">
       <StreamCall call={myCall}>
         <View style={styles.container}>
-          {/* video here */}
           <View style={styles.video}>
             <LivestreamView />
           </View>

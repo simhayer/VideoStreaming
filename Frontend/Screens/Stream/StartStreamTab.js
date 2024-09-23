@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { appPink, errorRed } from '../../Resources/Constants';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -22,7 +23,15 @@ const StartStreamTab = ({route}) => {
   const navigation = useNavigation();
   const [selectedImage, setSelectedImage] = useState('');
 
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const startStream = async () => {
+    if(selectedImage === ''){
+      setIsError(true)
+      setErrorMessage("Please provide a thumbnail for your stream");
+      return
+    }
     navigation.navigate('GetStreamSDK', {title, thumbnail: selectedImage});
   };
 
@@ -56,6 +65,8 @@ const StartStreamTab = ({route}) => {
     } else if (response.error) {
       console.log('ImagePicker Error: ', response.error);
     } else {
+      setIsError(false)
+      setErrorMessage('')
       const uri = response.assets[0].uri;
       setSelectedImage(uri);
     }
@@ -82,6 +93,8 @@ const StartStreamTab = ({route}) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             borderRadius: 40,
+            marginTop:10,
+            marginBottom:5
           }}
           onPress={handleImageSelection}>
           <Text style={{color: 'black', fontWeight: 'bold', marginLeft: '5%'}}>
@@ -89,13 +102,14 @@ const StartStreamTab = ({route}) => {
           </Text>
           <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
+        {isError && <Text style={{fontSize: calculatedFontSize/2.9, color: errorRed}}>{errorMessage}</Text>}
         <View
           style={{
             flex: 1,
             justifyContent: 'center',
-            marginTop: '8%',
+            marginTop: 5,
             width: '75%',
-            marginBottom: '8%',
+            marginBottom: 10,
           }}>
           {selectedImage && (
             <Image
@@ -103,18 +117,13 @@ const StartStreamTab = ({route}) => {
               style={{flex: 1, resizeMode: 'contain'}}
             />
           )}
-          {!selectedImage && (
-            <View style={{flex: 1, borderWidth: 1, justifyContent: 'center'}}>
-              <Text style={{textAlign: 'center'}}>No template selected</Text>
-            </View>
-          )}
         </View>
         <TouchableOpacity
           onPress={startStream}
           style={{
             paddingVertical: '4%',
             width: '60%',
-            backgroundColor: '#f542a4',
+            backgroundColor: appPink,
             borderRadius: 40,
             alignItems: 'center',
             marginBottom: 40,

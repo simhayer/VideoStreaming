@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../../Resources/styles';
-import {appPink} from '../../Resources/Constants';
+import {appPink, errorRed} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const EnterStreamTitle = () => {
@@ -78,12 +78,13 @@ const EnterStreamTitle = () => {
           style={{
             ...commonStyles.input,
             fontSize: calculatedFontSize / 2.3,
-            marginTop: '4%',
+            marginTop: 15,
+            marginBottom:5
           }}
         />
       </View>
 
-      {isError && <Text>{errorMessage}</Text>}
+      {isError && <Text style={{fontSize: calculatedFontSize/2.9, color: errorRed}}>{errorMessage}</Text>}
       <TouchableOpacity
         onPress={onNextClick}
         style={{

@@ -4,7 +4,7 @@
             "outputFile": "com.tclone.app-mergeDebugResources-100:/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\d41a2e9b490a462d5166979b1fa9fcfa\\transformed\\jetified-payments-core-20.48.6\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\hayer\\.gradle\\caches\\transforms-3\\d41a2e9b490a462d5166979b1fa9fcfa\\transformed\\jetified-payments-core-20.48.6\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\b3627ca143232ec2ceb6e319eb18971d\\transformed\\appcompat-1.6.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\hayer\\.gradle\\caches\\transforms-3\\b3627ca143232ec2ceb6e319eb18971d\\transformed\\appcompat-1.6.1\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

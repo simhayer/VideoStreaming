@@ -46,8 +46,13 @@ const CreateConnectedAccount = () => {
     setAccountID(accountId);
 
     if (loginLink && loginLink.url) {
-      navigation.navigate('Sell');
       Linking.openURL(loginLink.url);
+      
+      setTimeout(() => {
+        navigation.navigate('Sell'); // Navigate after 2 seconds
+      }, 1000); 
+
+      
     }
 
     return {
@@ -97,7 +102,7 @@ const CreateConnectedAccount = () => {
               fontSize: calculatedFontSize / 2.7,
               fontWeight: 'bold',
             }}>
-            Continue onboarding / Manage dashboard
+            Complete onboarding
           </Text>
         </TouchableOpacity>
         <Text style={{marginTop: 20, textAlign: 'center'}}>

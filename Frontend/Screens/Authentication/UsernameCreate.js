@@ -15,7 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import commonStyles from '../../Resources/styles';
 import {updateUsername} from '../../Redux/Features/AuthSlice';
-import {appPink} from '../../Resources/Constants';
+import {appPink, errorRed} from '../../Resources/Constants';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -38,14 +38,14 @@ const UsernameCreate = ({route}) => {
       return;
     }
 
-    setIsLoading(true); // Start loading indicator
+    setIsLoading(true);
 
     const updateParams = {email, username};
     dispatch(updateUsername(updateParams))
       .unwrap()
       .then(() => {
         console.log('Username updated successfully');
-        setIsLoading(false); // Stop loading indicator
+        setIsLoading(false);
         navigation.navigate('Login');
       })
       .catch(err => {
@@ -54,7 +54,7 @@ const UsernameCreate = ({route}) => {
         setErrorMessage(
           err.data?.message || 'Could not create username. Please try again.',
         );
-        setIsLoading(false); // Stop loading indicator
+        setIsLoading(false);
       });
   };
 
@@ -85,7 +85,7 @@ const UsernameCreate = ({route}) => {
           />
         </View>
         {isError && (
-          <Text style={{fontSize: calculatedFontSize / 2.9}}>
+          <Text style={{fontSize: calculatedFontSize / 2.9, color:errorRed}}>
             {errorMessage}
           </Text>
         )}

@@ -8,13 +8,12 @@ import {
   Dimensions,
   TextInput,
   KeyboardAvoidingView,
-  Platform,
   Keyboard,
   TouchableWithoutFeedback,
-  ScrollView,
   Pressable,
   SafeAreaView,
   FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import io from 'socket.io-client';
@@ -82,6 +81,7 @@ const VideoScreen = ({route}) => {
 
   const [myClient, setMyClient] = useState(null);
   const [myCall, setMyCall] = useState(null);
+  const [streamError, setStreamError] = useState(false);
 
   useEffect(() => {
     console.log('useEffect triggered');
@@ -146,7 +146,6 @@ const VideoScreen = ({route}) => {
       };
 
       // Create StreamVideoClient
-      //const client = new StreamVideoClient({apiKey, user, token: token});
       const client = StreamVideoClient.getOrCreateInstance({
         apiKey: GetStreamApiKey,
         user,
@@ -160,6 +159,7 @@ const VideoScreen = ({route}) => {
       setMyCall(call);
     } catch (error) {
       console.error('Error creating stream user or joining call:', error);
+      setStreamError(true)
     }
   };
 
@@ -306,13 +306,45 @@ const VideoScreen = ({route}) => {
     checkPaymentandAddressExist(userEmail);
   }, [userEmail]);
 
-  // Render nothing until myClient and myCall are ready
+  if (streamError) {
+    return (
+      <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+         <Text style={{fontSize:calculatedFontSize/2.4}}>Something went wrong, please try again later</Text>
+         <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            style={{
+              backgroundColor: appPink,
+              borderRadius: 40,
+              paddingVertical: '4%',
+              alignItems: 'center',
+              width: '60%',
+              marginTop:30
+            }}>
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'left',
+                fontSize: calculatedFontSize / 2.2,
+                fontWeight: 'bold',
+              }}>
+              Home
+            </Text>
+          </TouchableOpacity>
+      </SafeAreaView>
+    )
+  }
+
   if (!myClient || !myCall) {
     return (
-      <SafeAreaView>
-        <Text>Loading...</Text>
+      <SafeAreaView style={{flex:1, justifyContent:'center'}}>
+         <Text style={{fontSize:calculatedFontSize/2.4, alignSelf:'center'}}>Livestream starting...</Text>
+        <ActivityIndicator
+          size="large"
+          color="grey"
+          style={{marginVertical: 20}}
+        />
       </SafeAreaView>
-    ); // You can show a loading indicator here
+    ); 
   }
 
   const screenTap = () => {
@@ -323,7 +355,6 @@ const VideoScreen = ({route}) => {
 
   return (
     <View style={{flex: 1}}>
-      {/* VideoHere */}
       <StreamVideo client={myClient}>
         <View style={styles.video}>
           <CustomLivestreamPlayer callType="livestream" callId={callId} />

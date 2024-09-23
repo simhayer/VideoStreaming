@@ -145,7 +145,7 @@ const ManageProducts = () => {
             textAlign: 'center',
             flex: 1,
           }}>
-          Manage products
+          Products
         </Text>
         {selectedItems.length > 0 ? (
           <TouchableOpacity style={{marginRight: 10}} onPress={handleDonePress}>
@@ -218,8 +218,7 @@ const ManageProducts = () => {
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) => {
                 const isSelected = selectedItems.includes(item._id);
-                const itemImageFilename = item.imageUrl.split('\\').pop();
-                const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
+                const itemImageUrl = `${baseURL}/${item.imageUrl}`;
                 return (
                   <TouchableOpacity
                     style={{
@@ -277,6 +276,11 @@ const ManageProducts = () => {
               contentContainerStyle={{
                 paddingBottom: 10,
               }}
+              ListEmptyComponent={(
+                <View style={{alignItems:'center', marginTop:30}}>
+                <Text>No products found</Text>
+                </View>
+              )}
             />
           </View>
         )}
