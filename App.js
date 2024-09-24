@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import MyStack from './Frontend/MyStack';
+import MyStack from './Frontend/MyStack_AllLazy';
 
 const App = () => {
   return (
