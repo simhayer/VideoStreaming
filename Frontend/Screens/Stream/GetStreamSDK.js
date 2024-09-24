@@ -67,7 +67,7 @@ const GetStreamSDK = ({route}) => {
   const [showWinner, setShowWinner] = useState(false);
   const [userBid, setUserBid] = useState(0);
   const [watchers, setWatchers] = useState(0);
-  const [streamError, setStreamError] = useState(false)
+  const [streamError, setStreamError] = useState(false);
 
   const [items, setItems] = useState([]);
 
@@ -144,9 +144,8 @@ const GetStreamSDK = ({route}) => {
       const token = response.data;
 
       const user = {
-        id: userUsername, 
+        id: userUsername,
         name: userUsername,
-        image: `https://getstream.io/random_png/?id=${userUsername}&name=Santhosh`,
       };
       // Create StreamVideoClient
       const client = StreamVideoClient.getOrCreateInstance({
@@ -154,21 +153,24 @@ const GetStreamSDK = ({route}) => {
         user,
         token,
       });
-      setMyClient(client); 
+      setMyClient(client);
 
       console.log('Socket ID:', socketId);
-      const call = client.call('livestream', socketId); 
-      await call.join({create: true}); 
-      setMyCall(call); 
+      const call = client.call('livestream', socketId);
+      await call.join({create: true});
+      setMyCall(call);
     } catch (error) {
-      console.error('Error creating stream user or joining call:', error.response.data ?? error);
-      setStreamError(true)
+      console.error(
+        'Error creating stream user or joining call:',
+        error.response.data ?? error,
+      );
+      setStreamError(true);
     }
   };
 
   const initializeMeeting = async () => {
     createStreamUser();
-    if(streamError){
+    if (streamError) {
       return;
     }
 
@@ -209,7 +211,7 @@ const GetStreamSDK = ({route}) => {
 
   useEffect(() => {
     if (isSocketReady) {
-      initializeMeeting(); 
+      initializeMeeting();
     }
   }, [isSocketReady]);
 
@@ -323,44 +325,49 @@ const GetStreamSDK = ({route}) => {
 
   if (streamError) {
     return (
-      <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-         <Text style={{fontSize:calculatedFontSize/2.4}}>Something went wrong, please try again later</Text>
-         <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}
+      <SafeAreaView
+        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: calculatedFontSize / 2.4}}>
+          Something went wrong, please try again later
+        </Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Home')}
+          style={{
+            backgroundColor: appPink,
+            borderRadius: 40,
+            paddingVertical: '4%',
+            alignItems: 'center',
+            width: '60%',
+            marginTop: 30,
+          }}>
+          <Text
             style={{
-              backgroundColor: appPink,
-              borderRadius: 40,
-              paddingVertical: '4%',
-              alignItems: 'center',
-              width: '60%',
-              marginTop:30
+              color: 'white',
+              textAlign: 'left',
+              fontSize: calculatedFontSize / 2.2,
+              fontWeight: 'bold',
             }}>
-            <Text
-              style={{
-                color: 'white',
-                textAlign: 'left',
-                fontSize: calculatedFontSize / 2.2,
-                fontWeight: 'bold',
-              }}>
-              Home
-            </Text>
-          </TouchableOpacity>
+            Home
+          </Text>
+        </TouchableOpacity>
       </SafeAreaView>
-    )
+    );
   }
 
   // Render nothing until myClient and myCall are ready
   if (!myClient || !myCall) {
     return (
-      <SafeAreaView style={{flex:1, justifyContent:'center'}}>
-         <Text style={{fontSize:calculatedFontSize/2.4, alignSelf:'center'}}>Livestream starting...</Text>
+      <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+        <Text style={{fontSize: calculatedFontSize / 2.4, alignSelf: 'center'}}>
+          Livestream starting...
+        </Text>
         <ActivityIndicator
           size="large"
           color="grey"
           style={{marginVertical: 20}}
         />
       </SafeAreaView>
-    ); 
+    );
   }
 
   return (

@@ -1,16 +1,18 @@
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import React, {useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
   Dimensions,
   Image,
+  Keyboard,
   PermissionsAndroid,
   SafeAreaView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {
   appPink,
@@ -22,36 +24,32 @@ import {
   errorRed,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import DropDownPicker from 'react-native-dropdown-picker';
 import axios from 'axios'; // Import axios
 import {useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
+import {FlatList} from 'react-native-gesture-handler';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 const StartStreamTab = () => {
   const navigation = useNavigation();
-  const [title, setTitle] = useState('');
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
 
   const [itemName, setItemName] = useState('');
-
-  const [typeOpen, setTypeOpen] = useState(false);
   const [type, setType] = useState('');
-
-  const [sizeOpen, setSizeOpen] = useState(false);
   const [size, setSize] = useState('');
 
   const showSizeOption = useMemo(() => {
-    return type === 'Clothing' || type === 'Footwear';
+    return type === 'Clothing' || type === 'Sneakers & Footwear';
   }, [type]);
 
   const sizeOptions = useMemo(() => {
     if (type === 'Clothing') return clothingSizeOptions;
-    if (type === 'Footwear') return shoeSizeOptions;
+    if (type === 'Sneakers & Footwear') return shoeSizeOptions;
     return [];
   }, [type]);
 
@@ -60,7 +58,7 @@ const StartStreamTab = () => {
   const [loading, setLoading] = useState(false);
 
   const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleImageSelection = () => {
     const options = {
@@ -99,7 +97,7 @@ const StartStreamTab = () => {
     } else if (response.error) {
       console.log('ImagePicker Error: ', response.error);
     } else {
-      console.log('response', response)
+      console.log('response', response);
       const uri = response?.assets[0].uri;
       setSelectedImage(uri);
     }
@@ -134,7 +132,7 @@ const StartStreamTab = () => {
       setErrorMessage('Please provide an item name');
       return;
     }
-    setLoading(true)
+    setLoading(true);
     const formData = new FormData();
     formData.append('email', userEmail);
     formData.append('name', itemName);
@@ -163,211 +161,289 @@ const StartStreamTab = () => {
       })
       .catch(error => {
         console.error('Failed to add product:', error);
-      })
-      
-      setLoading(false);
+      });
+
+    setLoading(false);
+  };
+
+  const [isBidBottomSheetVisible, setIsBidBottomSheetVisible] = useState(false);
+
+  const bidBottomSheetRef = useRef(null);
+
+  const handleSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+    if (index === 0) {
+      console.log('Closing bottom sheet');
+      setIsBidBottomSheetVisible(false);
+    }
+  }, []);
+
+  const snapPoints = useMemo(() => ['1%', '40%'], []);
+
+  const handleItemPress = item => {
+    if (bottomSheetOptions === productTypes) setType(item);
+    if (bottomSheetOptions === sizeOptions) setSize(item);
+    setIsBidBottomSheetVisible(false);
+  };
+
+  const [bottomSheetOptions, setBottomSheetOptions] = useState(productTypes);
+
+  const handleProductTypeSelect = () => {
+    setIsBidBottomSheetVisible(true);
+    setBottomSheetOptions(productTypes);
+  };
+
+  const handleClothingSizeSelect = () => {
+    setIsBidBottomSheetVisible(true);
+    setBottomSheetOptions(sizeOptions);
+  };
+
+  const screenTap = () => {
+    Keyboard.dismiss();
+    setIsBidBottomSheetVisible(false);
   };
 
   return (
-    <SafeAreaView style={{flex: 1, paddingTop: '2%'}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          paddingTop: 4,
-        }}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={35} color="black" />
-        </TouchableOpacity>
-        <Text
-          style={{
-            color: 'black',
-            fontWeight: 'bold',
-            fontSize: calculatedFontSize / 2,
-            textAlign: 'center',
-            flex: 1,
-          }}>
-          Add Product
-        </Text>
-        <View style={{width: 35}} />
-      </View>
-      <View style={{alignItems: 'center', marginTop: 10, flex: 1}}>
-      {isError && (
-        <View>
-          <Text style={{fontSize: calculatedFontSize/2.7, color:errorRed}}>{errorMessage}</Text>
-        </View>
-      )}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
-          <Icon name="reader-outline" size={30} color="black" />
-          <TextInput
-            value={itemName}
-            onChangeText={itemName => setItemName(itemName)}
-            placeholder={'Enter item name'}
-            style={{
-              width: '70%',
-              borderBottomWidth: 1,
-              borderColor: 'grey',
-              fontSize: calculatedFontSize / 2.4,
-              marginBottom: '4%',
-              marginLeft: '4%',
-              height: 50,
-            }}
-          />
-          <View style={{width: 30}} />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}>
-          <Icon name="albums-outline" size={30} color="black" />
-          <DropDownPicker
-            open={typeOpen}
-            value={type}
-            items={productTypes}
-            setOpen={setTypeOpen}
-            setValue={setType}
-            containerStyle={{
-              justifyContent: 'center',
-              width: '70%',
-              marginLeft: '4%',
-            }}
-            dropDownContainerStyle={{
-              borderColor: 'black',
-              zIndex: 1000,
-            }}
-            listItemLabelStyle={{
-              marginTop: 0,
-              fontSize: calculatedFontSize / 2.9,
-            }}
-            textStyle={{
-              fontSize: calculatedFontSize / 2.9,
-            }}
-            zIndex={1000}
-          />
-          <View style={{width: 30}} />
-        </View>
-        {showSizeOption && (
+    <SafeAreaView style={{flex: 1, marginTop: 10}}>
+      <TouchableWithoutFeedback onPress={screenTap} style={{flex: 1}}>
+        <View style={{flex: 1}}>
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              marginTop: '3%',
               justifyContent: 'space-between',
+              marginTop: 4,
             }}>
-            <Icon name="filter-outline" size={30} color="black" />
-            <DropDownPicker
-              open={sizeOpen}
-              value={size}
-              items={sizeOptions}
-              setOpen={setSizeOpen}
-              setValue={setSize}
-              flatListProps={{nestedScrollEnabled: true}}
-              scrollViewProps={{nestedScrollEnabled: true}}
-              containerStyle={{
-                justifyContent: 'center',
-                width: '70%',
-                marginLeft: '4%',
-              }}
-              dropDownContainerStyle={{
-                borderColor: 'black',
-                zIndex: 900,
-              }}
-              listItemLabelStyle={{
-                marginTop: 0,
-                fontSize: calculatedFontSize / 2.9,
-              }}
-              textStyle={{
-                fontSize: calculatedFontSize / 2.9,
-              }}
-              zIndex={900}
-            />
-            <View style={{width: 30}} />
-          </View>
-        )}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginTop: 15,
-            justifyContent: 'space-between',
-          }}>
-          <View style={{width: 40}} />
-          <TouchableOpacity
-            style={{
-              borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              width: '70%',
-              flexDirection: 'row',
-              paddingVertical: '2%',
-              paddingHorizontal: '4%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              borderRadius: 40,
-            }}
-            onPress={handleImageSelection}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text
-                style={{
-                  color: 'black',
-                  marginLeft: '10%',
-                  fontSize: calculatedFontSize / 2.9,
-                }}>
-                Add image
-              </Text>
-            </View>
-            <Icon name="chevron-forward" size={30} color="black" />
-          </TouchableOpacity>
-          <View style={{width: 30}} />
-        </View>
-        <View
-          style={{
-            flex: 1,
-            width: '65%',
-            justifyContent: 'center',
-            marginTop: '4%',
-          }}>
-          {selectedImage && (
-            <Image
-              source={{uri: selectedImage}}
-              style={{flex: 1, resizeMode: 'contain'}}
-            />
-          )}
-        </View>
-        <View style={{height: 'auto', marginBottom: 20}}>
-        {loading ? (
-          <ActivityIndicator size="large" color={appPink} />
-        ) : (
-          <TouchableOpacity
-            onPress={addProduct}
-            style={{
-              backgroundColor: appPink,
-              borderRadius: 40,
-              paddingVertical: '4%',
-              marginHorizontal: '10%',
-              marginTop: 20,
-            }}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="chevron-back" size={35} color="black" />
+            </TouchableOpacity>
             <Text
               style={{
-                color: 'white',
-                textAlign: 'center',
+                color: 'black',
                 fontWeight: 'bold',
-                paddingHorizontal: '15%',
+                fontSize: calculatedFontSize / 2,
+                textAlign: 'center',
+                flex: 1,
               }}>
-              Add
+              Add Product
             </Text>
-          </TouchableOpacity>
-        )}
+            <View style={{width: 35}} />
+          </View>
+          <View style={{alignItems: 'center', marginTop: 10, flex: 1}}>
+            {isError && (
+              <View>
+                <Text
+                  style={{fontSize: calculatedFontSize / 2.7, color: errorRed}}>
+                  {errorMessage}
+                </Text>
+              </View>
+            )}
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Icon name="reader-outline" size={30} color="black" />
+              <TextInput
+                value={itemName}
+                onChangeText={itemName => setItemName(itemName)}
+                placeholder={'Enter item name'}
+                style={{
+                  width: '70%',
+                  borderBottomWidth: 1,
+                  borderColor: 'grey',
+                  fontSize: calculatedFontSize / 2.4,
+                  marginBottom: '4%',
+                  marginLeft: '4%',
+                  height: 50,
+                  padding: 0,
+                }}
+              />
+              <View style={{width: 30}} />
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Icon name="albums-outline" size={30} color="black" />
+              <TouchableOpacity
+                style={{
+                  borderWidth: 1,
+                  borderColor: 'rgba(0,0,0,0.2)',
+                  width: '70%',
+                  flexDirection: 'row',
+                  paddingVertical: '2%',
+                  paddingHorizontal: '4%',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  borderRadius: 40,
+                  marginLeft: '4%',
+                }}
+                onPress={handleProductTypeSelect}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text
+                    style={{
+                      color: 'black',
+                      marginLeft: 10,
+                      fontSize: calculatedFontSize / 2.9,
+                    }}>
+                    {type ? type : 'Product type'}
+                  </Text>
+                </View>
+                <Icon name="chevron-down" size={30} color="black" />
+              </TouchableOpacity>
+              <View style={{width: 30}} />
+            </View>
+            {showSizeOption && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: '3%',
+                  justifyContent: 'space-between',
+                }}>
+                <Icon name="filter-outline" size={30} color="black" />
+                <TouchableOpacity
+                  style={{
+                    borderWidth: 1,
+                    borderColor: 'rgba(0,0,0,0.2)',
+                    width: '70%',
+                    flexDirection: 'row',
+                    paddingVertical: '2%',
+                    paddingHorizontal: '4%',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    borderRadius: 40,
+                    marginLeft: '4%',
+                  }}
+                  onPress={handleClothingSizeSelect}>
+                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text
+                      style={{
+                        color: 'black',
+                        marginLeft: 10,
+                        fontSize: calculatedFontSize / 2.9,
+                      }}>
+                      {size ? size : 'Size'}
+                    </Text>
+                  </View>
+                  <Icon name="chevron-down" size={30} color="black" />
+                </TouchableOpacity>
+                <View style={{width: 30}} />
+              </View>
+            )}
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 15,
+                justifyContent: 'space-between',
+              }}>
+              <View style={{width: 40}} />
+              <TouchableOpacity
+                style={{
+                  borderWidth: 1,
+                  borderColor: 'rgba(0,0,0,0.2)',
+                  width: '70%',
+                  flexDirection: 'row',
+                  paddingVertical: '2%',
+                  paddingHorizontal: '4%',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  borderRadius: 40,
+                }}
+                onPress={handleImageSelection}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text
+                    style={{
+                      color: 'black',
+                      marginLeft: '10%',
+                      fontSize: calculatedFontSize / 2.9,
+                    }}>
+                    Add image
+                  </Text>
+                </View>
+                <Icon name="chevron-down" size={30} color="black" />
+              </TouchableOpacity>
+              <View style={{width: 30}} />
+            </View>
+            <View
+              style={{
+                flex: 1,
+                width: '65%',
+                justifyContent: 'center',
+                marginTop: '4%',
+              }}>
+              {selectedImage && (
+                <Image
+                  source={{uri: selectedImage}}
+                  style={{flex: 1, resizeMode: 'contain'}}
+                />
+              )}
+            </View>
+            <View style={{height: 'auto', marginBottom: 20}}>
+              {loading ? (
+                <ActivityIndicator size="large" color={appPink} />
+              ) : (
+                <TouchableOpacity
+                  onPress={addProduct}
+                  style={{
+                    backgroundColor: appPink,
+                    borderRadius: 40,
+                    paddingVertical: '4%',
+                    marginHorizontal: '10%',
+                    marginTop: 20,
+                  }}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      textAlign: 'center',
+                      fontWeight: 'bold',
+                      paddingHorizontal: '15%',
+                    }}>
+                    Add
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
+      {isBidBottomSheetVisible && (
+        <BottomSheet
+          ref={bidBottomSheetRef}
+          snapPoints={snapPoints}
+          index={isBidBottomSheetVisible ? 1 : -1}
+          onChange={handleSheetChanges}>
+          <BottomSheetView style={{flex: 1, marginLeft: 30}}>
+            <FlatList
+              style={{flex: 1}}
+              data={bottomSheetOptions}
+              showsVerticalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) => {
+                return (
+                  <TouchableOpacity
+                    style={{
+                      padding: 12,
+                    }}
+                    onPress={() => handleItemPress(item)}>
+                    <Text style={{fontSize: calculatedFontSize / 2.5}}>
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              }}
+              contentContainerStyle={{
+                paddingBottom: 10,
+              }}
+            />
+          </BottomSheetView>
+        </BottomSheet>
+      )}
     </SafeAreaView>
   );
 };
