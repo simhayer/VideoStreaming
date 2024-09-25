@@ -15,7 +15,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import commonStyles from '../../Resources/styles';
 import {logout, updateUsername} from '../../Redux/Features/AuthSlice';
-import {appPink} from '../../Resources/Constants';
+import {appPink, colors} from '../../Resources/Constants';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;

@@ -20,6 +20,7 @@ import {
   apiEndpoints,
   stripePublishableKey,
   appPink,
+  colors,
 } from '../../Resources/Constants';
 import axios from 'axios';
 import {useSelector} from 'react-redux';

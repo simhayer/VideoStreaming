@@ -21,6 +21,7 @@ import {
   apiEndpoints,
   appPink,
   baseURL,
+  colors,
   GetStreamApiKey,
   token,
 } from '../../Resources/Constants';

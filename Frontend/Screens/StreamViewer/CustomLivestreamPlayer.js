@@ -8,6 +8,7 @@ import {
   VideoRenderer,
 } from '@stream-io/video-react-native-sdk';
 import IncallManager from 'react-native-incall-manager';
+import {colors} from '../../Resources/Constants';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;

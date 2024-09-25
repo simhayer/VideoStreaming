@@ -17,6 +17,7 @@ import commonStyles from '../../../Resources/styles';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../Redux/Features/AuthSlice';
+import {colors} from '../../../Resources/Constants';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');

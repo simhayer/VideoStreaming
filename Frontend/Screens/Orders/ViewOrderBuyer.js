@@ -9,7 +9,12 @@ import {
   Pressable,
   Image,
 } from 'react-native';
-import {apiEndpoints, appPink, baseURL} from '../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  colors,
+} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatList} from 'react-native-gesture-handler';
 import axios from 'axios'; // Import axios

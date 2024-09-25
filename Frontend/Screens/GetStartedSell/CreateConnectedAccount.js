@@ -14,6 +14,7 @@ import {Linking} from 'react-native';
 import {
   apiEndpoints,
   baseURL,
+  colors,
   stripePublishableKey,
 } from '../../Resources/Constants';
 
