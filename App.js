@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import LazyStack from './Frontend/Stacks/LoadingScreenEager';
+import LazyStack from './Frontend/Stacks/LoadingScreen';
 
 const App = () => {
   return (

@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, Animated, Easing, Image} from 'react-native';
+import {View, Animated, Easing, Image} from 'react-native';
 import {useSelector} from 'react-redux';
 
 const LazyStack = () => {
@@ -12,14 +12,19 @@ const LazyStack = () => {
       Animated.loop(
         Animated.timing(scaleValue, {
           toValue: 5, // Keeps growing the logo
-          duration: 7000, // 8 seconds for each loop (slower animation)
+          duration: 7000, // 7 seconds for each loop (slower animation)
           easing: Easing.linear, // Linear easing for continuous growth
           useNativeDriver: true, // Use native driver for performance
         }),
       ).start();
     };
 
-    startAnimation();
+    // Delay animation start by 1 second
+    const timer = setTimeout(() => {
+      startAnimation();
+    }, 1000); // 1 second delay
+
+    return () => clearTimeout(timer); // Clean up the timeout on unmount
   }, []);
 
   const [loading, setLoading] = useState(true);
