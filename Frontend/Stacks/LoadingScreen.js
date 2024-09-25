@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
+import React, {useState, useEffect, useRef} from 'react';
+import {View, Text, Animated, Easing, Image} from 'react-native';
 import {useSelector} from 'react-redux';
 import {appPink} from '../Resources/Constants';
 
@@ -8,7 +8,36 @@ const LazyStack = () => {
   const [LazyComponent, setLazyComponent] = useState(null);
   const {isAuthenticated} = useSelector(state => state.auth);
 
+  // Animation states
+  const scaleValue = useRef(new Animated.Value(1)).current; // Start at normal size (1)
+  const rotateValue = useRef(new Animated.Value(0)).current; // For the rotation
+  const opacityValue = useRef(new Animated.Value(1)).current; // For the fade-out effect
+
   useEffect(() => {
+    const startAnimation = () => {
+      // Continuous scaling animation
+      Animated.loop(
+        Animated.timing(scaleValue, {
+          toValue: 5, // Keeps growing the logo
+          duration: 8000, // 8 seconds for each loop (slower animation)
+          easing: Easing.linear, // Linear easing for continuous growth
+          useNativeDriver: true, // Use native driver for performance
+        }),
+      ).start();
+
+      // Continuous spinning animation
+      Animated.loop(
+        Animated.timing(rotateValue, {
+          toValue: 1, // Completes one full spin
+          duration: 8000, // Match the duration with scaling animation
+          easing: Easing.linear, // Linear easing for continuous spin
+          useNativeDriver: true, // Use native driver for performance
+        }),
+      ).start();
+    };
+
+    startAnimation();
+
     const loadComponent = async () => {
       setLoading(true);
 
@@ -27,12 +56,40 @@ const LazyStack = () => {
       } catch (error) {
         console.error('Error loading component:', error);
       } finally {
-        setLoading(false);
+        // Create a "pop" effect before fading out
+        Animated.sequence([
+          Animated.timing(scaleValue, {
+            toValue: 6, // Pop slightly larger
+            duration: 300, // Quick pop effect (300ms)
+            easing: Easing.out(Easing.ease), // Easing for pop
+            useNativeDriver: true,
+          }),
+          Animated.parallel([
+            Animated.timing(opacityValue, {
+              toValue: 0, // Fade out completely
+              duration: 500, // 0.5-second fade-out
+              useNativeDriver: true,
+            }),
+            Animated.timing(scaleValue, {
+              toValue: 0.5, // Shrink back while fading out
+              duration: 500, // Sync the shrinking with fade-out
+              useNativeDriver: true,
+            }),
+          ]),
+        ]).start(() => {
+          setLoading(false); // Finish loading after animations
+        });
       }
     };
 
     loadComponent();
   }, [isAuthenticated]);
+
+  // Interpolating rotate value to degrees
+  const spin = rotateValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'], // One full rotation
+  });
 
   if (loading) {
     return (
@@ -43,12 +100,23 @@ const LazyStack = () => {
           alignItems: 'center',
           backgroundColor: 'white',
         }}>
-        <ActivityIndicator size="large" color={appPink} />
-        <Text>Loading component...</Text>
+        {/* Animated logo that grows, spins, pops, fades, and shrinks */}
+        <Animated.View
+          style={{
+            transform: [{scale: scaleValue}, {rotate: spin}],
+            opacity: opacityValue, // Fade-out effect
+          }}>
+          <Image
+            source={require('../Resources/BARS_logo_nobackground.png')} // Replace with your logo path
+            style={{width: 200, height: 200}} // Adjust initial size as needed
+            resizeMode="contain"
+          />
+        </Animated.View>
       </View>
     );
   }
 
+  // When loading is finished, display the lazy-loaded component
   return LazyComponent ? (
     <LazyComponent />
   ) : (

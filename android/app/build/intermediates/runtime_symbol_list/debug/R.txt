@@ -4898,7 +4898,9 @@ int layout wallet_test_layout 0x7f0d00b7
 int menu stripe_add_payment_method 0x7f0f0000
 int menu stripe_payment_auth_web_view_menu 0x7f0f0001
 int mipmap ic_launcher 0x7f100000
-int mipmap ic_launcher_round 0x7f100001
+int mipmap ic_launcher_adaptive_back 0x7f100001
+int mipmap ic_launcher_adaptive_fore 0x7f100002
+int mipmap ic_launcher_round 0x7f100003
 int plurals exo_controls_fastforward_by_amount_description 0x7f110000
 int plurals exo_controls_rewind_by_amount_description 0x7f110001
 int plurals mtrl_badge_content_description 0x7f110002
