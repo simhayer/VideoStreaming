@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, Animated, Easing, Image} from 'react-native';
 import {useSelector} from 'react-redux';
-import {appPink} from '../Resources/Constants';
 
 const LazyStack = () => {
   const [loading, setLoading] = useState(true);
@@ -11,23 +10,19 @@ const LazyStack = () => {
   const isSeller = userData?.user?.isSeller;
 
   // Animation states
-  const scaleValue = useRef(new Animated.Value(1)).current; // Start at normal size (1)
-  const opacityValue = useRef(new Animated.Value(1)).current; // For the fade-out effect
+  const scaleValue = useRef(new Animated.Value(1)).current;
+  const opacityValue = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
     const startAnimation = () => {
-      // Delayed start for 1 second
-      setTimeout(() => {
-        // Continuous scaling animation
-        Animated.loop(
-          Animated.timing(scaleValue, {
-            toValue: 5, // Keeps growing the logo
-            duration: 7000, // 8 seconds for each loop (slower animation)
-            easing: Easing.linear, // Linear easing for continuous growth
-            useNativeDriver: true, // Use native driver for performance
-          }),
-        ).start();
-      }, 1000); // 1-second delay before the animation starts
+      Animated.loop(
+        Animated.timing(scaleValue, {
+          toValue: 5, // Keeps growing the logo
+          duration: 7000, // 8 seconds for each loop (slower animation)
+          easing: Easing.linear, // Linear easing for continuous growth
+          useNativeDriver: true, // Use native driver for performance
+        }),
+      ).start();
     };
 
     startAnimation();
@@ -103,7 +98,7 @@ const LazyStack = () => {
             opacity: opacityValue, // Fade-out effect
           }}>
           <Image
-            source={require('../Resources/BARS_logo_nobackground.png')} // Replace with your logo path
+            source={require('../Resources/BARS_logo_nobackground.png')}
             style={{width: 200, height: 200}} // Adjust initial size as needed
             resizeMode="contain"
           />
@@ -116,7 +111,18 @@ const LazyStack = () => {
   return LazyComponent ? (
     <LazyComponent />
   ) : (
-    <Text>Error loading component</Text>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+      }}>
+      <Image
+        source={require('../Resources/BARS_logo_nobackground.png')}
+        style={{width: 200, height: 200}}
+      />
+    </View>
   );
 };
 
