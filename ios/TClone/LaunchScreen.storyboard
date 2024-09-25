@@ -17,9 +17,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="appLogoImageView">
-                                <rect key="frame" x="0.0" y="202" width="375" height="100"/>
-                                <image key="image" name="512"/> <!-- appLogo is the name of your logo image in Assets.xcassets -->
+                                <rect key="frame" x="87.5" y="233.5" width="200" height="200"/> <!-- Initial frame for 200x200 image -->
+                                <image key="image" name="appLogo"/> <!-- Reference to the image set in Images.xcassets -->
                             </imageView>
+                            <constraints>
+                                <!-- Center the image horizontally -->
+                                <constraint firstItem="appLogoImageView" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="centerXConstraint"/>
+                                <!-- Center the image vertically -->
+                                <constraint firstItem="appLogoImageView" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="centerYConstraint"/>
+                                <!-- Set the image width to 200 -->
+                                <constraint firstItem="appLogoImageView" firstAttribute="width" constant="200" id="widthConstraint"/>
+                                <!-- Set the image height to 200 -->
+                                <constraint firstItem="appLogoImageView" firstAttribute="height" constant="200" id="heightConstraint"/>
+                            </constraints>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
