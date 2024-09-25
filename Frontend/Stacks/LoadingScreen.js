@@ -7,89 +7,95 @@ const LazyStack = () => {
   const scaleValue = useRef(new Animated.Value(1)).current;
   const opacityValue = useRef(new Animated.Value(1)).current;
 
-  useEffect(() => {
-    const startAnimation = () => {
-      Animated.loop(
-        Animated.timing(scaleValue, {
-          toValue: 5, // Keeps growing the logo
-          duration: 7000, // 7 seconds for each loop (slower animation)
-          easing: Easing.linear, // Linear easing for continuous growth
-          useNativeDriver: true, // Use native driver for performance
-        }),
-      ).start();
-    };
-
-    // Delay animation start by 1 second
-    const timer = setTimeout(() => {
-      startAnimation();
-    }, 1000); // 1 second delay
-
-    return () => clearTimeout(timer); // Clean up the timeout on unmount
-  }, []);
-
+  // State to control the loading delay
+  const [isDelayed, setIsDelayed] = useState(true);
   const [loading, setLoading] = useState(true);
   const [LazyComponent, setLazyComponent] = useState(null);
+
   const {isAuthenticated} = useSelector(state => state.auth);
   const {userData} = useSelector(state => state.auth);
   const isSeller = userData?.user?.isSeller;
 
   useEffect(() => {
-    const loadComponent = async () => {
-      setLoading(true);
+    // Wait 1 second before starting animation and component loading
+    const timer = setTimeout(() => {
+      setIsDelayed(false);
+    }, 1000); // 1-second delay before starting the animation and loading
 
-      try {
-        if (isAuthenticated) {
-          if (isSeller) {
-            const {default: ImportedComponent} = await import(
-              '../Stacks/LoggedInStackSeller'
-            );
-            setLazyComponent(() => ImportedComponent);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isDelayed) {
+      // Start animation when the delay is over
+      const startAnimation = () => {
+        Animated.loop(
+          Animated.timing(scaleValue, {
+            toValue: 5, // Keeps growing the logo
+            duration: 7000, // 7 seconds for each loop (slower animation)
+            easing: Easing.linear, // Linear easing for continuous growth
+            useNativeDriver: true, // Use native driver for performance
+          }),
+        ).start();
+      };
+      startAnimation();
+
+      const loadComponent = async () => {
+        setLoading(true);
+
+        try {
+          if (isAuthenticated) {
+            if (isSeller) {
+              const {default: ImportedComponent} = await import(
+                '../Stacks/LoggedInStackSeller'
+              );
+              setLazyComponent(() => ImportedComponent);
+            } else {
+              const {default: ImportedComponent} = await import(
+                '../Stacks/LoggedInStack'
+              );
+              setLazyComponent(() => ImportedComponent);
+            }
           } else {
             const {default: ImportedComponent} = await import(
-              '../Stacks/LoggedInStack'
+              '../Stacks/LoggedOutStack'
             );
             setLazyComponent(() => ImportedComponent);
           }
-        } else {
-          const {default: ImportedComponent} = await import(
-            '../Stacks/LoggedOutStack'
-          );
-          setLazyComponent(() => ImportedComponent);
-        }
-      } catch (error) {
-        console.error('Error loading component:', error);
-      } finally {
-        // Ensure the animation finishes only after component is ready
-        Animated.sequence([
-          Animated.timing(scaleValue, {
-            toValue: 6, // Pop slightly larger
-            duration: 300, // Quick pop effect (300ms)
-            easing: Easing.out(Easing.ease), // Easing for pop
-            useNativeDriver: true,
-          }),
-          Animated.parallel([
-            Animated.timing(opacityValue, {
-              toValue: 0, // Fade out completely
-              duration: 500, // 0.5-second fade-out
-              useNativeDriver: true,
-            }),
+        } catch (error) {
+          console.error('Error loading component:', error);
+        } finally {
+          // Ensure the animation finishes only after component is ready
+          Animated.sequence([
             Animated.timing(scaleValue, {
-              toValue: 0.5, // Shrink back while fading out
-              duration: 500, // Sync the shrinking with fade-out
+              toValue: 6, // Pop slightly larger
+              duration: 300, // Quick pop effect (300ms)
+              easing: Easing.out(Easing.ease), // Easing for pop
               useNativeDriver: true,
             }),
-          ]),
-        ]).start(() => {
-          // Only remove the logo and display the next screen when everything is ready
-          setLoading(false);
-        });
-      }
-    };
+            Animated.parallel([
+              Animated.timing(opacityValue, {
+                toValue: 0, // Fade out completely
+                duration: 500, // 0.5-second fade-out
+                useNativeDriver: true,
+              }),
+              Animated.timing(scaleValue, {
+                toValue: 0.5, // Shrink back while fading out
+                duration: 500, // Sync the shrinking with fade-out
+                useNativeDriver: true,
+              }),
+            ]),
+          ]).start(() => {
+            setLoading(false);
+          });
+        }
+      };
 
-    loadComponent();
-  }, [isAuthenticated]);
+      loadComponent();
+    }
+  }, [isDelayed, isAuthenticated]);
 
-  if (loading) {
+  if (loading || isDelayed) {
     return (
       <View
         style={{
