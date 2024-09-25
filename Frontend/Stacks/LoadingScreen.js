@@ -7,33 +7,27 @@ const LazyStack = () => {
   const [loading, setLoading] = useState(true);
   const [LazyComponent, setLazyComponent] = useState(null);
   const {isAuthenticated} = useSelector(state => state.auth);
+  const {userData} = useSelector(state => state.auth);
+  const isSeller = userData?.user?.isSeller;
 
   // Animation states
   const scaleValue = useRef(new Animated.Value(1)).current; // Start at normal size (1)
-  const rotateValue = useRef(new Animated.Value(0)).current; // For the rotation
   const opacityValue = useRef(new Animated.Value(1)).current; // For the fade-out effect
 
   useEffect(() => {
     const startAnimation = () => {
-      // Continuous scaling animation
-      Animated.loop(
-        Animated.timing(scaleValue, {
-          toValue: 5, // Keeps growing the logo
-          duration: 8000, // 8 seconds for each loop (slower animation)
-          easing: Easing.linear, // Linear easing for continuous growth
-          useNativeDriver: true, // Use native driver for performance
-        }),
-      ).start();
-
-      // Continuous spinning animation
-      Animated.loop(
-        Animated.timing(rotateValue, {
-          toValue: 1, // Completes one full spin
-          duration: 8000, // Match the duration with scaling animation
-          easing: Easing.linear, // Linear easing for continuous spin
-          useNativeDriver: true, // Use native driver for performance
-        }),
-      ).start();
+      // Delayed start for 1 second
+      setTimeout(() => {
+        // Continuous scaling animation
+        Animated.loop(
+          Animated.timing(scaleValue, {
+            toValue: 5, // Keeps growing the logo
+            duration: 7000, // 8 seconds for each loop (slower animation)
+            easing: Easing.linear, // Linear easing for continuous growth
+            useNativeDriver: true, // Use native driver for performance
+          }),
+        ).start();
+      }, 1000); // 1-second delay before the animation starts
     };
 
     startAnimation();
@@ -43,10 +37,17 @@ const LazyStack = () => {
 
       try {
         if (isAuthenticated) {
-          const {default: ImportedComponent} = await import(
-            '../Stacks/LoggedInStack'
-          );
-          setLazyComponent(() => ImportedComponent);
+          if (isSeller) {
+            const {default: ImportedComponent} = await import(
+              '../Stacks/LoggedInStackSeller'
+            );
+            setLazyComponent(() => ImportedComponent);
+          } else {
+            const {default: ImportedComponent} = await import(
+              '../Stacks/LoggedInStack'
+            );
+            setLazyComponent(() => ImportedComponent);
+          }
         } else {
           const {default: ImportedComponent} = await import(
             '../Stacks/LoggedOutStack'
@@ -56,7 +57,7 @@ const LazyStack = () => {
       } catch (error) {
         console.error('Error loading component:', error);
       } finally {
-        // Create a "pop" effect before fading out
+        // Ensure the animation finishes only after component is ready
         Animated.sequence([
           Animated.timing(scaleValue, {
             toValue: 6, // Pop slightly larger
@@ -77,19 +78,14 @@ const LazyStack = () => {
             }),
           ]),
         ]).start(() => {
-          setLoading(false); // Finish loading after animations
+          // Only remove the logo and display the next screen when everything is ready
+          setLoading(false);
         });
       }
     };
 
     loadComponent();
   }, [isAuthenticated]);
-
-  // Interpolating rotate value to degrees
-  const spin = rotateValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'], // One full rotation
-  });
 
   if (loading) {
     return (
@@ -100,10 +96,10 @@ const LazyStack = () => {
           alignItems: 'center',
           backgroundColor: 'white',
         }}>
-        {/* Animated logo that grows, spins, pops, fades, and shrinks */}
+        {/* Animated logo that grows, pops, fades, and shrinks */}
         <Animated.View
           style={{
-            transform: [{scale: scaleValue}, {rotate: spin}],
+            transform: [{scale: scaleValue}],
             opacity: opacityValue, // Fade-out effect
           }}>
           <Image
@@ -116,7 +112,7 @@ const LazyStack = () => {
     );
   }
 
-  // When loading is finished, display the lazy-loaded component
+  // When loading is finished, display the lazy-loaded component immediately
   return LazyComponent ? (
     <LazyComponent />
   ) : (
