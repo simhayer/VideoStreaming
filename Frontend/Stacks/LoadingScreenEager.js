@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Animated, Easing, Image} from 'react-native';
-import MyStack from '../MyStack';
+import MyStack from '../MyStack_backup';
 
 const LazyStack = () => {
   // Animation states
