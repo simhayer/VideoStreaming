@@ -1,20 +1,11 @@
-import {StripeProvider, useStripe} from '@stripe/stripe-react-native';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {
-  Alert,
-  Button,
   Dimensions,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  baseURL,
-  apiEndpoints,
-  stripePublishableKey,
-} from '../Resources/Constants';
-import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
@@ -115,34 +106,6 @@ export default function AddPaymentMethod() {
                 fontSize: calculatedFontSize / 2.7,
               }}>
               Payment and shipping
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={30} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            marginTop: '3%',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '100%',
-            flexDirection: 'row',
-            paddingVertical: '2%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-          onPress={() => navigation.navigate('ManageProducts')}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="cube-outline" size={30} color="black" />
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: 'bold',
-                marginLeft: '10%',
-                fontSize: calculatedFontSize / 2.7,
-              }}>
-              Manage Products
             </Text>
           </View>
           <Icon name="chevron-forward" size={30} color="black" />

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, ActivityIndicator} from 'react-native';
 import {useSelector} from 'react-redux';
+import {appPink} from '../Resources/Constants';
 
 const LazyStack = () => {
   const [loading, setLoading] = useState(true);
@@ -9,10 +10,9 @@ const LazyStack = () => {
 
   useEffect(() => {
     const loadComponent = async () => {
-      setLoading(true); // Set loading to true when starting the import
+      setLoading(true);
 
       try {
-        // Lazy load the appropriate stack based on authentication status
         if (isAuthenticated) {
           const {default: ImportedComponent} = await import(
             '../Stacks/LoggedInStack'
@@ -27,27 +27,32 @@ const LazyStack = () => {
       } catch (error) {
         console.error('Error loading component:', error);
       } finally {
-        setLoading(false); // Stop the loading spinner when done
+        setLoading(false);
       }
     };
 
     loadComponent();
-  }, [isAuthenticated]); // Re-run if `isAuthenticated` changes
+  }, [isAuthenticated]);
 
   if (loading) {
-    // Show a loading spinner while the component is being lazy-loaded
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size="large" color="#0000ff" />
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'white',
+        }}>
+        <ActivityIndicator size="large" color={appPink} />
         <Text>Loading component...</Text>
       </View>
     );
   }
 
   return LazyComponent ? (
-    <LazyComponent /> // Render the dynamically loaded stack component
+    <LazyComponent />
   ) : (
-    <Text>Error loading component</Text> // Error handling
+    <Text>Error loading component</Text>
   );
 };
 

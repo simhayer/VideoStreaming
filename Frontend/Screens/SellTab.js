@@ -17,6 +17,7 @@ import {apiEndpoints, appPink, baseURL} from '../Resources/Constants';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {setOnboardingChecked} from '../Redux/Features/NonPersistSlice';
+import {setIsSellerTrue} from '../Redux/Features/AuthSlice';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -30,6 +31,7 @@ const StartStreamTab = () => {
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
+  const isSeller = userData?.user?.isSeller;
 
   const dispatch = useDispatch();
   const {isOnboardingChecked} = useSelector(state => state.NonPersistSlice);
@@ -65,6 +67,11 @@ const StartStreamTab = () => {
 
     if (success) {
       dispatch(setOnboardingChecked());
+      console.log('isSeller:', isSeller);
+      if (!isSeller) {
+        console.log('Setting isSeller to true');
+        dispatch(setIsSellerTrue());
+      }
     }
 
     if (!success) {

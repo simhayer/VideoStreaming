@@ -128,6 +128,11 @@ const authSlice = createSlice({
         state.userData.user.isOnboardingStarted = true;
       }
     },
+    setIsSellerTrue: state => {
+      if (state.userData) {
+        state.userData.user.isSeller = true;
+      }
+    },
   },
   extraReducers: builder => {
     // Login cases
@@ -154,15 +159,15 @@ const authSlice = createSlice({
     builder.addCase(logout.fulfilled, state => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.userData = null; // Clear user data
-      state.isAuthenticated = false; // Mark user as logged out
+      state.userData = null;
+      state.isAuthenticated = false;
     });
     builder.addCase(logout.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.errorMessage = action.payload.message;
-      state.userData = null; // Clear user data, even if error occurs
-      state.isAuthenticated = false; // Mark user as logged out, even if error occurs
+      state.userData = null;
+      state.isAuthenticated = false;
     });
 
     // Update Username cases
@@ -203,4 +208,5 @@ const authSlice = createSlice({
 });
 
 export const {setOnboardingStarted} = authSlice.actions;
+export const {setIsSellerTrue} = authSlice.actions;
 export default authSlice.reducer;

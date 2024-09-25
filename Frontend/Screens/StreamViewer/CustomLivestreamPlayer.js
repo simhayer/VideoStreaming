@@ -12,7 +12,7 @@ import IncallManager from 'react-native-incall-manager';
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
-export const CustomLivestreamPlayer = props => {
+const CustomLivestreamPlayer = props => {
   const {callType, callId} = props;
   const client = useStreamVideoClient();
   const [call, setCall] = useState(null);
@@ -110,3 +110,5 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
 });
+
+export default CustomLivestreamPlayer;

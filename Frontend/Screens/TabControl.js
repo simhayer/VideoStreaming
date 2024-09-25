@@ -2,7 +2,6 @@ import React from 'react';
 import Profile from './ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ViewerTab from './ViewerTab';
-import StartStreamTab from './Stream/StartStreamTab';
 import SellTab from './SellTab';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';

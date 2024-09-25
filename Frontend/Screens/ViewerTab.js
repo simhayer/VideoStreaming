@@ -13,8 +13,6 @@ import {
   Image,
   ActivityIndicator,
 } from 'react-native';
-import io from 'socket.io-client';
-import axios from 'axios';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {
   apiEndpoints,
@@ -24,6 +22,7 @@ import {
   token,
 } from '../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
+import axios from 'axios';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -43,12 +42,12 @@ const ViewerTab = () => {
     debounce(value => {
       setSearch(value);
     }, 300),
-    []
+    [],
   );
 
   const handleSearchChange = value => {
-    setSearchInput(value); 
-    debouncedSearch(value); 
+    setSearchInput(value);
+    debouncedSearch(value);
   };
 
   const onRefresh = useCallback(() => {
@@ -57,18 +56,6 @@ const ViewerTab = () => {
       setRefreshing(false);
       showList();
     }, 1000);
-  }, []);
-
-  useEffect(() => {
-    const newSocket = io(baseURL);
-    setSocket(newSocket);
-
-    newSocket.on('List-update', showList);
-
-    return () => {
-      newSocket.off('List-update', showList);
-      newSocket.close();
-    };
   }, []);
 
   useFocusEffect(
@@ -89,9 +76,11 @@ const ViewerTab = () => {
         timeout: 5000, // Set timeout for the request
         signal: controller.signal, // Attach the AbortController signal
       });
+      console.log('Broadcasts:', response.data);
       setIsAxiosError(false);
       setBroadcasts(response.data);
     } catch (error) {
+      console.error('Error fetching broadcasts:', error);
     } finally {
       // Clear the timeout once the request is completed or aborted
       clearTimeout(timeoutId);
@@ -107,7 +96,7 @@ const ViewerTab = () => {
     comments,
     meetingId,
   ) => {
-    socket.emit('watcher', {id: broadcastId});
+    //socket.emit('watcher', {id: broadcastId});
 
     navigation.navigate('GetStreamViewerSDK', {
       streamId: '',

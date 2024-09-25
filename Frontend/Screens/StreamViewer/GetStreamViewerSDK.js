@@ -26,15 +26,20 @@ import {
 } from '../../Resources/Constants';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MaskedView from '@react-native-masked-view/masked-view';
-import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import axios from 'axios';
 import {
   StreamVideo,
   StreamVideoClient,
 } from '@stream-io/video-react-native-sdk';
-import {CustomLivestreamPlayer} from './CustomLivestreamPlayer';
+
+const CustomLivestreamPlayer = React.lazy(() =>
+  import('./CustomLivestreamPlayer'),
+);
+const MaskedView = React.lazy(() =>
+  import('@react-native-masked-view/masked-view'),
+);
+const LinearGradient = React.lazy(() => import('react-native-linear-gradient'));
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -159,7 +164,7 @@ const VideoScreen = ({route}) => {
       setMyCall(call);
     } catch (error) {
       console.error('Error creating stream user or joining call:', error);
-      setStreamError(true)
+      setStreamError(true);
     }
   };
 
@@ -308,43 +313,48 @@ const VideoScreen = ({route}) => {
 
   if (streamError) {
     return (
-      <SafeAreaView style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-         <Text style={{fontSize:calculatedFontSize/2.4}}>Something went wrong, please try again later</Text>
-         <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}
+      <SafeAreaView
+        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: calculatedFontSize / 2.4}}>
+          Something went wrong, please try again later
+        </Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Home')}
+          style={{
+            backgroundColor: appPink,
+            borderRadius: 40,
+            paddingVertical: '4%',
+            alignItems: 'center',
+            width: '60%',
+            marginTop: 30,
+          }}>
+          <Text
             style={{
-              backgroundColor: appPink,
-              borderRadius: 40,
-              paddingVertical: '4%',
-              alignItems: 'center',
-              width: '60%',
-              marginTop:30
+              color: 'white',
+              textAlign: 'left',
+              fontSize: calculatedFontSize / 2.2,
+              fontWeight: 'bold',
             }}>
-            <Text
-              style={{
-                color: 'white',
-                textAlign: 'left',
-                fontSize: calculatedFontSize / 2.2,
-                fontWeight: 'bold',
-              }}>
-              Home
-            </Text>
-          </TouchableOpacity>
+            Home
+          </Text>
+        </TouchableOpacity>
       </SafeAreaView>
-    )
+    );
   }
 
   if (!myClient || !myCall) {
     return (
-      <SafeAreaView style={{flex:1, justifyContent:'center'}}>
-         <Text style={{fontSize:calculatedFontSize/2.4, alignSelf:'center'}}>Livestream starting...</Text>
+      <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+        <Text style={{fontSize: calculatedFontSize / 2.4, alignSelf: 'center'}}>
+          Livestream starting...
+        </Text>
         <ActivityIndicator
           size="large"
           color="grey"
           style={{marginVertical: 20}}
         />
       </SafeAreaView>
-    ); 
+    );
   }
 
   const screenTap = () => {

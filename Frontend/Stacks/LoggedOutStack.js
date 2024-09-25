@@ -1,15 +1,22 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+//Eager loaded screens
 import SignUpOptions from '../Screens/Authentication/SignUpOptions';
 import Login from '../Screens/Authentication/Login';
-//import ForgetPassword from '../Screens/Authentication/PassowrdHandle/ForgetPassword';
-const ForgetPassword = React.lazy(() =>
-  import('../Screens/Authentication/PassowrdHandle/ForgetPassword'),
-);
-import ForgetCode from '../Screens/Authentication/PassowrdHandle/FrogetCode';
-import ResetPassword from '../Screens/Authentication/PassowrdHandle/ResetPassword';
 import UsernameCreate from '../Screens/Authentication/UsernameCreate';
 import SignUp from '../Screens/Authentication/SignUp';
 import React from 'react';
+
+//Lazy loaded screens
+const ForgetPassword = React.lazy(() =>
+  import('../Screens/Authentication/PassowrdHandle/ForgetPassword'),
+);
+const ForgetCode = React.lazy(() =>
+  import('../Screens/Authentication/PassowrdHandle/FrogetCode'),
+);
+const ResetPassword = React.lazy(() =>
+  import('../Screens/Authentication/PassowrdHandle/ResetPassword'),
+);
 
 const Stack = createNativeStackNavigator();
 

@@ -13,13 +13,14 @@ import {
 } from 'react-native';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { appPink, errorRed } from '../../Resources/Constants';
+import {appPink, errorRed} from '../../Resources/Constants';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
 
 const StartStreamTab = ({route}) => {
-  const {title} = route.params;
+  const {title} = route?.params || {};
+  //const {title} = route.params;
   const navigation = useNavigation();
   const [selectedImage, setSelectedImage] = useState('');
 
@@ -27,11 +28,12 @@ const StartStreamTab = ({route}) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const startStream = async () => {
-    if(selectedImage === ''){
-      setIsError(true)
-      setErrorMessage("Please provide a thumbnail for your stream");
-      return
+    if (selectedImage === '') {
+      setIsError(true);
+      setErrorMessage('Please provide a thumbnail for your stream');
+      return;
     }
+    console.log('Going to GetStreamSDK');
     navigation.navigate('GetStreamSDK', {title, thumbnail: selectedImage});
   };
 
@@ -65,8 +67,8 @@ const StartStreamTab = ({route}) => {
     } else if (response.error) {
       console.log('ImagePicker Error: ', response.error);
     } else {
-      setIsError(false)
-      setErrorMessage('')
+      setIsError(false);
+      setErrorMessage('');
       const uri = response.assets[0].uri;
       setSelectedImage(uri);
     }
@@ -93,8 +95,8 @@ const StartStreamTab = ({route}) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             borderRadius: 40,
-            marginTop:10,
-            marginBottom:5
+            marginTop: 10,
+            marginBottom: 5,
           }}
           onPress={handleImageSelection}>
           <Text style={{color: 'black', fontWeight: 'bold', marginLeft: '5%'}}>
@@ -102,7 +104,11 @@ const StartStreamTab = ({route}) => {
           </Text>
           <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
-        {isError && <Text style={{fontSize: calculatedFontSize/2.9, color: errorRed}}>{errorMessage}</Text>}
+        {isError && (
+          <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
+            {errorMessage}
+          </Text>
+        )}
         <View
           style={{
             flex: 1,
