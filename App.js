@@ -1,10 +1,10 @@
 import {NavigationContainer} from '@react-navigation/native';
-import MyStack from './Frontend/MyStack';
+import LazyStack from './Frontend/Stacks/LoadingScreen';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <MyStack></MyStack>
+      <LazyStack></LazyStack>
     </NavigationContainer>
   );
 };

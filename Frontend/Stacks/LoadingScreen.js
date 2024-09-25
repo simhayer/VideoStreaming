@@ -3,12 +3,6 @@ import {View, Text, Animated, Easing, Image} from 'react-native';
 import {useSelector} from 'react-redux';
 
 const LazyStack = () => {
-  const [loading, setLoading] = useState(true);
-  const [LazyComponent, setLazyComponent] = useState(null);
-  const {isAuthenticated} = useSelector(state => state.auth);
-  const {userData} = useSelector(state => state.auth);
-  const isSeller = userData?.user?.isSeller;
-
   // Animation states
   const scaleValue = useRef(new Animated.Value(1)).current;
   const opacityValue = useRef(new Animated.Value(1)).current;
@@ -26,7 +20,15 @@ const LazyStack = () => {
     };
 
     startAnimation();
+  }, []);
 
+  const [loading, setLoading] = useState(true);
+  const [LazyComponent, setLazyComponent] = useState(null);
+  const {isAuthenticated} = useSelector(state => state.auth);
+  const {userData} = useSelector(state => state.auth);
+  const isSeller = userData?.user?.isSeller;
+
+  useEffect(() => {
     const loadComponent = async () => {
       setLoading(true);
 
