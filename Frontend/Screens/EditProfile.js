@@ -13,7 +13,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {baseURL, apiEndpoints} from '../Resources/Constants';
+import {baseURL, apiEndpoints, colors} from '../Resources/Constants';
 import {uploadProfilePicture} from '../Redux/Features/AuthSlice';
 
 const EditProfile = () => {

@@ -24,6 +24,7 @@ import {
 } from '../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -110,6 +111,39 @@ const ViewerTab = () => {
     });
   };
 
+  const renderSkeleton = () => {
+    return (
+      <SkeletonPlaceholder>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            margin: 10,
+          }}>
+          <View
+            style={{width: '48%', height: screenHeight * 0.35, borderRadius: 7}}
+          />
+          <View
+            style={{width: '48%', height: screenHeight * 0.35, borderRadius: 7}}
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            margin: 10,
+          }}>
+          <View
+            style={{width: '48%', height: screenHeight * 0.35, borderRadius: 7}}
+          />
+          <View
+            style={{width: '48%', height: screenHeight * 0.35, borderRadius: 7}}
+          />
+        </View>
+      </SkeletonPlaceholder>
+    );
+  };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View
@@ -155,11 +189,7 @@ const ViewerTab = () => {
         }}
       />
       {loading ? (
-        <ActivityIndicator
-          size="large"
-          color="grey"
-          style={{marginVertical: 20}}
-        />
+        renderSkeleton()
       ) : isAxiosError ? (
         <View
           style={{
