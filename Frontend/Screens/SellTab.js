@@ -13,7 +13,7 @@ import {
   Linking,
   StyleSheet,
 } from 'react-native';
-import {apiEndpoints, appPink, baseURL} from '../Resources/Constants';
+import {apiEndpoints, appPink, baseURL, colors} from '../Resources/Constants';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {setOnboardingChecked} from '../Redux/Features/NonPersistSlice';
@@ -130,7 +130,12 @@ const StartStreamTab = () => {
 
   return (
     <SafeAreaView
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.background,
+      }}>
       {loading ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <ActivityIndicator size="large" color="grey" />

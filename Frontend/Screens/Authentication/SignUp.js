@@ -12,7 +12,12 @@ import {
   ActivityIndicator,
 } from 'react-native';
 //import {baseURL, apiEndpoints} from '../Resources/Constants';
-import {baseURL, apiEndpoints, appPink} from '../../Resources/Constants';
+import {
+  baseURL,
+  apiEndpoints,
+  appPink,
+  colors,
+} from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
@@ -90,7 +95,12 @@ const SignUp = () => {
   }, [isLoading]);
 
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: colors.background,
+      }}>
       <View style={{width: '85%', marginTop: 30, alignItems: 'center'}}>
         <TextInput
           ref={inputRef}

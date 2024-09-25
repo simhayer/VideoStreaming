@@ -78,7 +78,7 @@ const UsernameCreateForLoggedIn = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={commonStyles.signup}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View style={{alignItems: 'center', marginTop: '12%'}}>
         <View style={{width: '85%'}}>
           <Text

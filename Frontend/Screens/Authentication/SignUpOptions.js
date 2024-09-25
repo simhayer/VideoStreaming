@@ -9,7 +9,12 @@ import {
   Platform,
   SafeAreaView,
 } from 'react-native';
-import {baseURL, apiEndpoints, appPink} from '../../Resources/Constants';
+import {
+  baseURL,
+  apiEndpoints,
+  appPink,
+  colors,
+} from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../../Resources/styles';
@@ -67,7 +72,12 @@ const SignUp = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: colors.background,
+      }}>
       <View style={{flex: 0.4}} />
       <View style={{flex: 1, justifyContent: 'flex-end'}}>
         <View

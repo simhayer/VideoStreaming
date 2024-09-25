@@ -16,7 +16,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import commonStyles from '../../Resources/styles';
 import {updateUsername} from '../../Redux/Features/AuthSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {appPink, errorRed} from '../../Resources/Constants';
+import {appPink, colors, errorRed} from '../../Resources/Constants';
 
 const ChangeUsername = ({route}) => {
   const {email} = route.params;
@@ -66,7 +66,8 @@ const ChangeUsername = ({route}) => {
   }, []);
 
   return (
-    <SafeAreaView style={{marginTop: 4, flex: 1}}>
+    <SafeAreaView
+      style={{marginTop: 4, flex: 1, backgroundColor: colors.background}}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon name="chevron-back" size={35} color="black" />
       </TouchableOpacity>
@@ -83,37 +84,42 @@ const ChangeUsername = ({route}) => {
             ...commonStyles.input,
             fontSize: calculatedFontSize / 2.5,
             marginTop: 20,
-            marginBottom:5
+            marginBottom: 5,
           }}
         />
       </View>
       {isError && (
-          <Text style={{fontSize: calculatedFontSize / 2.9, color:errorRed, alignSelf:'center'}}>
-            {errorMessage}
-          </Text>
-        )}
-      <View style={{marginTop: 40, marginHorizontal: '10%'}}>
-      {isLoading ? (
-            <ActivityIndicator size="large" color={appPink} />
-          ) : (
-        <TouchableOpacity
-          onPress={onNextClick}
+        <Text
           style={{
-            backgroundColor: appPink,
-            borderRadius: 40,
-            paddingVertical: '4%',
-            alignItems: 'center',
+            fontSize: calculatedFontSize / 2.9,
+            color: errorRed,
+            alignSelf: 'center',
           }}>
-          <Text
+          {errorMessage}
+        </Text>
+      )}
+      <View style={{marginTop: 40, marginHorizontal: '10%'}}>
+        {isLoading ? (
+          <ActivityIndicator size="large" color={appPink} />
+        ) : (
+          <TouchableOpacity
+            onPress={onNextClick}
             style={{
-              color: 'white',
-              fontSize: calculatedFontSize / 2.2,
-              fontWeight: 'bold',
+              backgroundColor: appPink,
+              borderRadius: 40,
+              paddingVertical: '4%',
+              alignItems: 'center',
             }}>
-            Next
-          </Text>
-        </TouchableOpacity>
-          )}
+            <Text
+              style={{
+                color: 'white',
+                fontSize: calculatedFontSize / 2.2,
+                fontWeight: 'bold',
+              }}>
+              Next
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );

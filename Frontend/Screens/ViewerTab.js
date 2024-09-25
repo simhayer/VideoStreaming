@@ -18,6 +18,7 @@ import {
   apiEndpoints,
   appPink,
   baseURL,
+  colors,
   debounce,
   token,
 } from '../Resources/Constants';
@@ -110,7 +111,7 @@ const ViewerTab = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View
         style={{
           flexDirection: 'row',

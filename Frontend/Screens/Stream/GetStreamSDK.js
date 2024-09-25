@@ -20,6 +20,7 @@ import {
   apiEndpoints,
   appPink,
   GetStreamApiKey,
+  colors,
 } from '../../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -326,7 +327,12 @@ const GetStreamSDK = ({route}) => {
   if (streamError) {
     return (
       <SafeAreaView
-        style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: colors.background,
+        }}>
         <Text style={{fontSize: calculatedFontSize / 2.4}}>
           Something went wrong, please try again later
         </Text>

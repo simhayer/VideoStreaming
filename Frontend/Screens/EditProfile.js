@@ -61,7 +61,7 @@ const EditProfile = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View
         style={{
           flexDirection: 'row',
@@ -116,7 +116,7 @@ const EditProfile = () => {
           Username
         </Text>
         <TouchableOpacity
-        style={styles.fieldContainer}
+          style={styles.fieldContainer}
           onPress={() => navigation.navigate('ChangeUsername', {email})}>
           <Text style={{fontSize: calculatedFontSize / 2.7}}>{username}</Text>
         </TouchableOpacity>
@@ -149,11 +149,11 @@ const EditProfile = () => {
 
 const styles = StyleSheet.create({
   fieldContainer: {
-    borderWidth:1,
-    padding:10,
-    borderRadius:10,
-    marginTop:5
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 5,
   },
-})
+});
 
 export default EditProfile;

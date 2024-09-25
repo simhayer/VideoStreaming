@@ -68,7 +68,7 @@ const ResetPassword = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={commonStyles.signup}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View style={{paddingTop: '20%', alignItems: 'center'}}>
         <Text style={{padding: '3%'}}>Reset Password</Text>
 

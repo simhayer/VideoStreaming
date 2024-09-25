@@ -21,7 +21,7 @@ const GetStartedSell = () => {
   const [title, setTitle] = useState('');
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View style={{alignItems: 'flex-end'}}>
         <TouchableOpacity
           style={{margin: 12}}

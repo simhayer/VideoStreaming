@@ -15,6 +15,7 @@ import {Linking} from 'react-native';
 import {
   apiEndpoints,
   baseURL,
+  colors,
   stripePublishableKey,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -47,12 +48,10 @@ const CreateConnectedAccount = () => {
 
     if (loginLink && loginLink.url) {
       Linking.openURL(loginLink.url);
-      
+
       setTimeout(() => {
         navigation.navigate('Sell'); // Navigate after 2 seconds
-      }, 1000); 
-
-      
+      }, 1000);
     }
 
     return {
@@ -62,7 +61,8 @@ const CreateConnectedAccount = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, paddingTop: 10}}>
+    <SafeAreaView
+      style={{flex: 1, paddingTop: 10, backgroundColor: colors.background}}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <Icon name="chevron-back" size={35} color="black" />
       </TouchableOpacity>

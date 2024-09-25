@@ -13,6 +13,7 @@ import {
   apiEndpoints,
   appPink,
   baseURL,
+  colors,
   debounce,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -125,7 +126,12 @@ const ManageProducts = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: colors.background,
+      }}>
       <View
         style={{
           flexDirection: 'row',
@@ -276,11 +282,11 @@ const ManageProducts = () => {
               contentContainerStyle={{
                 paddingBottom: 10,
               }}
-              ListEmptyComponent={(
-                <View style={{alignItems:'center', marginTop:30}}>
-                <Text>No products found</Text>
+              ListEmptyComponent={
+                <View style={{alignItems: 'center', marginTop: 30}}>
+                  <Text>No products found</Text>
                 </View>
-              )}
+              }
             />
           </View>
         )}

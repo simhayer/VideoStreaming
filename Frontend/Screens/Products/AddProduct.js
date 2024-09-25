@@ -22,6 +22,7 @@ import {
   baseURL,
   apiEndpoints,
   errorRed,
+  colors,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios'; // Import axios
@@ -204,7 +205,8 @@ const StartStreamTab = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, marginTop: 10}}>
+    <SafeAreaView
+      style={{flex: 1, marginTop: 10, backgroundColor: colors.background}}>
       <TouchableWithoutFeedback onPress={screenTap} style={{flex: 1}}>
         <View style={{flex: 1}}>
           <View

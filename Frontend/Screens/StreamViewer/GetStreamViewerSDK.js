@@ -364,7 +364,7 @@ const VideoScreen = ({route}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <StreamVideo client={myClient}>
         <View style={styles.video}>
           <CustomLivestreamPlayer callType="livestream" callId={callId} />
@@ -815,7 +815,7 @@ const VideoScreen = ({route}) => {
           </BottomSheet>
         )}
       </SafeAreaView>
-    </View>
+    </SafeAreaView>
   );
 };
 

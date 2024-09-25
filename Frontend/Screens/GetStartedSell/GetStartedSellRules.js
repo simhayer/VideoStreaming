@@ -55,7 +55,7 @@ const GetStartedSell = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View
         style={{
           flexDirection: 'row',
@@ -148,27 +148,27 @@ const GetStartedSell = () => {
         {loading ? (
           <ActivityIndicator size="large" color={appPink} />
         ) : (
-        <TouchableOpacity
-          onPress={() => startOnboarding()}
-          style={{
-            flexDirection: 'row',
-            paddingVertical: '4%',
-            backgroundColor: appPink,
-            borderRadius: 40,
-            height: 'auto',
-            marginBottom: 40,
-          }}>
-          <Text
+          <TouchableOpacity
+            onPress={() => startOnboarding()}
             style={{
-              color: 'white',
-              flex: 1,
-              textAlign: 'center',
-              fontSize: calculatedFontSize / 2.5,
-              fontWeight: 'bold',
+              flexDirection: 'row',
+              paddingVertical: '4%',
+              backgroundColor: appPink,
+              borderRadius: 40,
+              height: 'auto',
+              marginBottom: 40,
             }}>
-            Start Onboarding
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                color: 'white',
+                flex: 1,
+                textAlign: 'center',
+                fontSize: calculatedFontSize / 2.5,
+                fontWeight: 'bold',
+              }}>
+              Start Onboarding
+            </Text>
+          </TouchableOpacity>
         )}
       </View>
     </SafeAreaView>

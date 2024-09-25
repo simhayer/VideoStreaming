@@ -70,7 +70,7 @@ const ForgetPassword = () => {
   }, []);
 
   return (
-    <SafeAreaView style={commonStyles.signup}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View style={{alignItems: 'center', paddingTop: '12%'}}>
         <View style={{width: '85%'}}>
           <Text style={{padding: '3%', fontSize: calculatedFontSize / 2.7}}>

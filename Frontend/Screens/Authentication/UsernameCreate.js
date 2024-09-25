@@ -66,7 +66,7 @@ const UsernameCreate = ({route}) => {
   }, []);
 
   return (
-    <SafeAreaView style={commonStyles.signup}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View style={{alignItems: 'center', marginTop: '12%'}}>
         <View style={{width: '85%'}}>
           <Text style={{fontSize: calculatedFontSize / 2, fontWeight: 'bold'}}>
@@ -85,7 +85,7 @@ const UsernameCreate = ({route}) => {
           />
         </View>
         {isError && (
-          <Text style={{fontSize: calculatedFontSize / 2.9, color:errorRed}}>
+          <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
             {errorMessage}
           </Text>
         )}

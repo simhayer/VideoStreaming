@@ -14,7 +14,12 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../../Resources/styles';
 import {updateUsername} from '../../Redux/Features/AuthSlice';
-import {apiEndpoints, appPink, baseURL} from '../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  colors,
+} from '../../Resources/Constants';
 import axios from 'axios';
 
 const EnterOrderTracking = ({route}) => {
@@ -71,7 +76,13 @@ const EnterOrderTracking = ({route}) => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center', marginTop: '12%'}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        marginTop: 10,
+        backgroundColor: colors.background,
+      }}>
       {loading ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <ActivityIndicator size="large" color="grey" />

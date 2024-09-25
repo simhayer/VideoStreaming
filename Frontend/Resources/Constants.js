@@ -45,7 +45,7 @@ export const token =
 
 export const appPink = '#f542a4';
 export const errorRed = '#ff0000';
-export const backgroundColor = 'black';
+export const backgroundColor = 'white';
 export const textColor = 'white';
 export const lineColor = 'white';
 

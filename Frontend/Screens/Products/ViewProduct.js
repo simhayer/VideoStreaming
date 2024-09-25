@@ -9,7 +9,12 @@ import {
   Pressable,
   Image,
 } from 'react-native';
-import {apiEndpoints, appPink, baseURL} from '../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  colors,
+} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios'; // Import axios
 import {useSelector} from 'react-redux';
@@ -49,7 +54,8 @@ const ViewProduct = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, marginTop: 10}}>
+    <SafeAreaView
+      style={{flex: 1, marginTop: 10, backgroundColor: colors.background}}>
       <View>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="chevron-back" size={40} color="black" />

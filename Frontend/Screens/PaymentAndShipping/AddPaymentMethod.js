@@ -98,7 +98,7 @@ export default function AddPaymentMethod() {
       merchantIdentifier="merchant.identifier" // required for Apple Pay
       urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
     >
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
         <View style={{alignItems: 'center', marginTop: '10%'}}>
           <Text
             style={{

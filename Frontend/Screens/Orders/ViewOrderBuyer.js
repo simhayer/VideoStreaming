@@ -31,7 +31,7 @@ const ViewOrderBuyer = ({route}) => {
   const formattedDate = new Date(order.orderDate).toISOString().split('T')[0];
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View style={{alignItems: 'center', marginTop: '2%'}}>
         <View
           style={{

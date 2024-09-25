@@ -14,6 +14,7 @@ import {
   apiEndpoints,
   appPink,
   errorRed,
+  colors,
 } from '../../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -88,7 +89,12 @@ const Login = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: colors.background,
+      }}>
       <View style={{width: '85%', marginTop: 30}}>
         <TextInput
           ref={inputRef}

@@ -53,7 +53,7 @@ const Orders = () => {
   );
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View style={{alignItems: 'center', marginTop: '2%'}}>
         <View
           style={{

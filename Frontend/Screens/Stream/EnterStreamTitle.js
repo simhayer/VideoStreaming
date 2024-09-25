@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../../Resources/styles';
-import {appPink, errorRed} from '../../Resources/Constants';
+import {appPink, colors, errorRed} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const EnterStreamTitle = () => {
@@ -45,7 +45,12 @@ const EnterStreamTitle = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        backgroundColor: colors.background,
+      }}>
       <View
         style={{
           flexDirection: 'row',
@@ -79,12 +84,16 @@ const EnterStreamTitle = () => {
             ...commonStyles.input,
             fontSize: calculatedFontSize / 2.3,
             marginTop: 15,
-            marginBottom:5
+            marginBottom: 5,
           }}
         />
       </View>
 
-      {isError && <Text style={{fontSize: calculatedFontSize/2.9, color: errorRed}}>{errorMessage}</Text>}
+      {isError && (
+        <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
+          {errorMessage}
+        </Text>
+      )}
       <TouchableOpacity
         onPress={onNextClick}
         style={{

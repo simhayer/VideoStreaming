@@ -75,7 +75,7 @@ const StartStreamTab = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <TouchableOpacity
         style={{
           marginTop: 10,

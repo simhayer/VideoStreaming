@@ -17,24 +17,22 @@ const LazyStack = () => {
   const isSeller = userData?.user?.isSeller;
 
   useEffect(() => {
-    // Wait 1 second before starting animation and component loading
     const timer = setTimeout(() => {
       setIsDelayed(false);
-    }, 1000); // 1-second delay before starting the animation and loading
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     if (!isDelayed) {
-      // Start animation when the delay is over
       const startAnimation = () => {
         Animated.loop(
           Animated.timing(scaleValue, {
-            toValue: 5, // Keeps growing the logo
-            duration: 7000, // 7 seconds for each loop (slower animation)
-            easing: Easing.linear, // Linear easing for continuous growth
-            useNativeDriver: true, // Use native driver for performance
+            toValue: 5,
+            duration: 7000,
+            easing: Easing.linear,
+            useNativeDriver: true,
           }),
         ).start();
       };
@@ -65,23 +63,22 @@ const LazyStack = () => {
         } catch (error) {
           console.error('Error loading component:', error);
         } finally {
-          // Ensure the animation finishes only after component is ready
           Animated.sequence([
             Animated.timing(scaleValue, {
-              toValue: 6, // Pop slightly larger
-              duration: 300, // Quick pop effect (300ms)
-              easing: Easing.out(Easing.ease), // Easing for pop
+              toValue: 6,
+              duration: 300,
+              easing: Easing.out(Easing.ease),
               useNativeDriver: true,
             }),
             Animated.parallel([
               Animated.timing(opacityValue, {
-                toValue: 0, // Fade out completely
-                duration: 500, // 0.5-second fade-out
+                toValue: 0,
+                duration: 500,
                 useNativeDriver: true,
               }),
               Animated.timing(scaleValue, {
-                toValue: 0.5, // Shrink back while fading out
-                duration: 500, // Sync the shrinking with fade-out
+                toValue: 0.5,
+                duration: 500,
                 useNativeDriver: true,
               }),
             ]),
@@ -112,7 +109,7 @@ const LazyStack = () => {
           }}>
           <Image
             source={require('../Resources/BARS_logo_nobackground.png')}
-            style={{width: 200, height: 200}} // Adjust initial size as needed
+            style={{width: 200, height: 200}}
             resizeMode="contain"
           />
         </Animated.View>
