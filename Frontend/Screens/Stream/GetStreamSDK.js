@@ -12,6 +12,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ActivityIndicator,
+  Animated,
 } from 'react-native';
 import axios from 'axios';
 import io from 'socket.io-client';
@@ -41,6 +42,7 @@ import {
   VideoRenderer,
 } from '@stream-io/video-react-native-sdk';
 import InCallManager from 'react-native-incall-manager';
+//import Animated from 'react-native-reanimated';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -228,9 +230,31 @@ const GetStreamSDK = ({route}) => {
 
   const bottomSheetRef = useRef(null);
 
-  const handleSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-  }, []);
+  const [isHalfScreen, setIsHalfScreen] = useState(false);
+  const animatedHeight = useRef(new Animated.Value(screenHeight)).current;
+
+  const handleSheetChanges = useCallback(
+    index => {
+      console.log('handleSheetChanges', index);
+      // Step 2: Animate the height when bottom sheet changes
+      if (index > 0) {
+        setIsHalfScreen(true);
+        Animated.timing(animatedHeight, {
+          toValue: screenHeight / 2, // Half screen height
+          duration: 300, // Duration of animation
+          useNativeDriver: false, // `height` doesn't support native driver
+        }).start();
+      } else {
+        setIsHalfScreen(false);
+        Animated.timing(animatedHeight, {
+          toValue: screenHeight, // Full screen height
+          duration: 300,
+          useNativeDriver: false,
+        }).start();
+      }
+    },
+    [animatedHeight],
+  );
 
   const closeStream = () => {
     navigation.goBack();
@@ -284,7 +308,7 @@ const GetStreamSDK = ({route}) => {
     return () => clearInterval(timer);
   }, [isTimerRunning, timeLeft]);
 
-  const snapPoints = useMemo(() => ['8%', '60%'], []);
+  const snapPoints = useMemo(() => ['15%', '50%'], []);
 
   useEffect(() => {
     // Scroll to bottom whenever comments change
@@ -380,9 +404,12 @@ const GetStreamSDK = ({route}) => {
     <StreamVideo client={myClient} language="en">
       <StreamCall call={myCall}>
         <View style={styles.container}>
-          <View style={styles.video}>
+          {/* <View style={styles.video}>
             <LivestreamView />
-          </View>
+          </View> */}
+          <Animated.View style={[styles.video, {height: animatedHeight}]}>
+            <LivestreamView />
+          </Animated.View>
           <SafeAreaView style={{height: '100%', width: '100%'}}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View
@@ -516,7 +543,11 @@ const GetStreamSDK = ({route}) => {
             ref={bottomSheetRef}
             snapPoints={snapPoints}
             onChange={handleSheetChanges}>
-            <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+            <BottomSheetView
+              style={{
+                flexDirection: 'column',
+                flex: 1,
+              }}>
               <View
                 style={{
                   height: 'auto',

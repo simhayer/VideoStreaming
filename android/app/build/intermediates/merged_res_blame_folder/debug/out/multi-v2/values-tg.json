@@ -4,7 +4,7 @@
             "outputFile": "com.tclone.app-mergeDebugResources-100:/values-tg/values-tg.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\928a1cc665f29ff141b1b701d1d27828\\transformed\\jetified-hcaptcha-20.48.6\\res\\values-tg\\values-tg.xml",
+                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\d7ec6ec4225af6b0b5653e196df138d3\\transformed\\hcaptcha-20.48.6\\res\\values-tg\\values-tg.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\ff34738e7fb960ce73fd0d6cf687f2a8\\transformed\\jetified-react-android-0.73.3-debug\\res\\values-tg\\values-tg.xml",
+                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\29e3ad254108b68e1c9cac862efb9ac5\\transformed\\react-android-0.73.3-debug\\res\\values-tg\\values-tg.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",

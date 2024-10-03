@@ -4,6 +4,57 @@
             "outputFile": "com.tclone.app-mergeDebugResources-100:/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\3f15589e28fb1eb19389467c861a8975\\transformed\\play-services-wallet-19.3.0\\res\\values-en-rCA\\values.xml",
+                    "from": {
+                        "startLines": "4,5",
+                        "startColumns": "0,0",
+                        "startOffsets": "206,263",
+                        "endColumns": "56,70",
+                        "endOffsets": "262,333"
+                    },
+                    "to": {
+                        "startLines": "48,63",
+                        "startColumns": "4,4",
+                        "startOffsets": "4564,5779",
+                        "endColumns": "60,74",
+                        "endOffsets": "4620,5849"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\1fea34d355127eba166521e97fd14ba7\\transformed\\ui-release\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,197,279,373,472,558,640,730,819,903,968,1032,1110,1192,1265,1342,1408",
+                        "endColumns": "91,81,93,98,85,81,89,88,83,64,63,77,81,72,76,65,119",
+                        "endOffsets": "192,274,368,467,553,635,725,814,898,963,1027,1105,1187,1260,1337,1403,1523"
+                    },
+                    "to": {
+                        "startLines": "36,37,40,41,43,49,50,51,52,53,54,55,56,58,60,61,62",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3480,3572,3830,3924,4097,4625,4707,4797,4886,4970,5035,5099,5177,5342,5516,5593,5659",
+                        "endColumns": "91,81,93,98,85,81,89,88,83,64,63,77,81,72,76,65,119",
+                        "endOffsets": "3567,3649,3919,4018,4178,4702,4792,4881,4965,5030,5094,5172,5254,5410,5588,5654,5774"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\f33ba24f452a7c7e087f1ff669da8cc9\\transformed\\material3-1.0.1\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,133,207",
+                        "endColumns": "77,73,75",
+                        "endOffsets": "128,202,278"
+                    },
+                    "to": {
+                        "startLines": "38,42,44",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "3654,4023,4183",
+                        "endColumns": "77,73,75",
+                        "endOffsets": "3727,4092,4254"
+                    }
+                },
+                {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\9d667a9639fc442e87b168ab0fee7704\\transformed\\browser-1.7.0\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -18,23 +69,6 @@
                         "startOffsets": "3732,4259,4356,4465",
                         "endColumns": "97,96,108,98",
                         "endOffsets": "3825,4351,4460,4559"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\aa737e766dd158c0274a7486de533736\\transformed\\jetified-play-services-wallet-19.3.0\\res\\values-en-rCA\\values.xml",
-                    "from": {
-                        "startLines": "4,5",
-                        "startColumns": "0,0",
-                        "startOffsets": "206,263",
-                        "endColumns": "56,70",
-                        "endOffsets": "262,333"
-                    },
-                    "to": {
-                        "startLines": "48,63",
-                        "startColumns": "4,4",
-                        "startOffsets": "4564,5779",
-                        "endColumns": "60,74",
-                        "endOffsets": "4620,5849"
                     }
                 },
                 {
@@ -69,40 +103,6 @@
                         "startOffsets": "2762,2858,2960,3059,3158,3262,3364,5415",
                         "endColumns": "95,101,98,98,103,101,115,100",
                         "endOffsets": "2853,2955,3054,3153,3257,3359,3475,5511"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\9f3f54f2a632e145a80aeb33f70904d0\\transformed\\jetified-ui-release\\res\\values-en-rCA\\values-en-rCA.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,197,279,373,472,558,640,730,819,903,968,1032,1110,1192,1265,1342,1408",
-                        "endColumns": "91,81,93,98,85,81,89,88,83,64,63,77,81,72,76,65,119",
-                        "endOffsets": "192,274,368,467,553,635,725,814,898,963,1027,1105,1187,1260,1337,1403,1523"
-                    },
-                    "to": {
-                        "startLines": "36,37,40,41,43,49,50,51,52,53,54,55,56,58,60,61,62",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3480,3572,3830,3924,4097,4625,4707,4797,4886,4970,5035,5099,5177,5342,5516,5593,5659",
-                        "endColumns": "91,81,93,98,85,81,89,88,83,64,63,77,81,72,76,65,119",
-                        "endOffsets": "3567,3649,3919,4018,4178,4702,4792,4881,4965,5030,5094,5172,5254,5410,5588,5654,5774"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\fd81a528cf559d197db18d142ade3f86\\transformed\\jetified-material3-1.0.1\\res\\values-en-rCA\\values-en-rCA.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,133,207",
-                        "endColumns": "77,73,75",
-                        "endOffsets": "128,202,278"
-                    },
-                    "to": {
-                        "startLines": "38,42,44",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "3654,4023,4183",
-                        "endColumns": "77,73,75",
-                        "endOffsets": "3727,4092,4254"
                     }
                 }
             ]

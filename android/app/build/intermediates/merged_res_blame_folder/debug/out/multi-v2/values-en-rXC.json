@@ -55,24 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\fd81a528cf559d197db18d142ade3f86\\transformed\\jetified-material3-1.0.1\\res\\values-en-rXC\\values-en-rXC.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,236,410",
-                        "endColumns": "180,173,178",
-                        "endOffsets": "231,405,584"
-                    },
-                    "to": {
-                        "startLines": "38,42,44",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "7331,8111,8472",
-                        "endColumns": "180,173,178",
-                        "endOffsets": "7507,8280,8646"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\9f3f54f2a632e145a80aeb33f70904d0\\transformed\\jetified-ui-release\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\1fea34d355127eba166521e97fd14ba7\\transformed\\ui-release\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -86,6 +69,23 @@
                         "startOffsets": "6955,7146,7712,7909,8285,9263,9448,9641,9829,10016,10181,10348,10529,10900,11270,11449,11616",
                         "endColumns": "190,184,196,201,186,184,192,187,186,164,166,180,184,165,178,166,237",
                         "endOffsets": "7141,7326,7904,8106,8467,9443,9636,9824,10011,10176,10343,10524,10709,11061,11444,11611,11849"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\f33ba24f452a7c7e087f1ff669da8cc9\\transformed\\material3-1.0.1\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,236,410",
+                        "endColumns": "180,173,178",
+                        "endOffsets": "231,405,584"
+                    },
+                    "to": {
+                        "startLines": "38,42,44",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "7331,8111,8472",
+                        "endColumns": "180,173,178",
+                        "endOffsets": "7507,8280,8646"
                     }
                 }
             ]
