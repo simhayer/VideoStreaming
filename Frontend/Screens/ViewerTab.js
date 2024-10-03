@@ -32,7 +32,6 @@ const calculatedFontSize = screenHeight * 0.05;
 const ViewerTab = () => {
   const navigation = useNavigation();
   const [broadcasts, setBroadcasts] = useState([]);
-  const [socket, setSocket] = useState(null);
 
   const [searchInput, setSearchInput] = useState(''); // Immediate input state
   const [search, setSearch] = useState('');
@@ -44,25 +43,26 @@ const ViewerTab = () => {
   const [page, setPage] = useState(1);
   const [canFetchMore, setCanFetchMore] = useState(true);
 
-  const debouncedSearch = useCallback(
-    debounce(value => {
-      setSearch(value);
-    }, 300),
-    [],
-  );
-
   const handleSearchChange = value => {
     setSearchInput(value);
-    debouncedSearch(value);
+
+    if (value.trim() === '') {
+      console.log('Search input is empty');
+      setSearch('');
+      setPage(1);
+      setCanFetchMore(true);
+      showList(1, '', true);
+    }
   };
 
-  // const onRefresh = useCallback(() => {
-  //   setRefreshing(true);
-  //   setTimeout(() => {
-  //     setRefreshing(false);
-  //     showList();
-  //   }, 1000);
-  // }, []);
+  const triggerSearch = () => {
+    if (searchInput.trim() !== '') {
+      setSearch(searchInput);
+      setPage(1);
+      setCanFetchMore(true);
+      showList(1, searchInput, true);
+    }
+  };
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -78,10 +78,14 @@ const ViewerTab = () => {
     }, []),
   );
 
-  const showList = async (newPage = 1) => {
-    if (!canFetchMore) return; // Prevent further fetching if all data is loaded
+  const showList = async (
+    newPage = 1,
+    searchValue = '',
+    overrideCanFecth = false,
+  ) => {
+    if (!overrideCanFecth && !canFetchMore) return;
 
-    const MIN_LOADING_TIME = 700; // Minimum loading time (1 second)
+    const MIN_LOADING_TIME = 1000; // Minimum loading time (1 second)
     const startLoadingTime = Date.now(); // Record the start time of loading
 
     if (newPage === 1) {
@@ -91,12 +95,12 @@ const ViewerTab = () => {
       setLoadingMore(true);
     }
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const timeoutId = setTimeout(() => controller.abort(), 12000);
 
     try {
       const response = await axios.post(
         baseURL + apiEndpoints.listbroadcast,
-        {page: newPage, limit: 10}, // Send page and limit in the request body
+        {page: newPage, limit: 10, search: searchValue},
         {
           timeout: 7000,
           signal: controller.signal,
@@ -127,15 +131,6 @@ const ViewerTab = () => {
     }
   };
 
-  const renderFooter = () => {
-    if (!loadingMore) return null; // Only show the footer when loading more data
-    return (
-      <View style={styles.footer}>
-        <ActivityIndicator size="large" color={appPink} />
-      </View>
-    );
-  };
-
   const watchVideoSDK = async (
     broadcastId,
     username,
@@ -155,6 +150,94 @@ const ViewerTab = () => {
       comments,
       meetingId,
     });
+  };
+
+  const BroadcastItem = ({item, profilePictureURL, watchVideoSDK, baseURL}) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const profilePictureFilename = item.profilePicture.split('/').pop();
+    const thumbnailUri = `${baseURL}/thumbnail/${item.thumbnail}`;
+
+    return (
+      <View
+        style={{
+          width: '48%',
+          height: screenHeight * 0.35,
+          marginBottom: '20%',
+          marginRight: '4%',
+        }}>
+        <View style={styles.row}>
+          <Image
+            source={
+              profilePictureFilename !== ''
+                ? {uri: profilePictureURL}
+                : require('../Resources/user.png')
+            }
+            style={styles.profilePicture}
+          />
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2.7,
+              fontWeight: 'bold',
+              maxWidth: '48%',
+            }}>
+            {item.username}
+          </Text>
+        </View>
+        <TouchableOpacity
+          key={item.id}
+          title={`Watch ${item.id}`}
+          style={styles.buttonContainer}
+          onPress={() =>
+            watchVideoSDK(
+              item.id,
+              item.username,
+              item.watchers,
+              profilePictureURL,
+              item.comments,
+              item.meetingId,
+            )
+          }>
+          <ImageBackground
+            source={
+              imageLoaded
+                ? {uri: profilePictureURL}
+                : require('../Resources/StreamListThumbnailBlur.png')
+            }
+            style={{width: '100%', height: '100%', borderRadius: 7}}
+            imageStyle={{borderRadius: 7}}
+            onLoadEnd={() => setImageLoaded(true)}>
+            <View
+              style={{
+                backgroundColor: 'red',
+                width: '40%',
+                height: '9%',
+                margin: '4%',
+                borderRadius: 3,
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: 'white',
+                  fontSize: calculatedFontSize / 2.5,
+                }}>
+                Live - {item.watchers}
+              </Text>
+            </View>
+          </ImageBackground>
+        </TouchableOpacity>
+        <Text>{item.title}</Text>
+      </View>
+    );
+  };
+
+  const renderFooter = () => {
+    if (!loadingMore) return null; // Only show the footer when loading more data
+    return (
+      <View style={styles.footer}>
+        <ActivityIndicator size="large" color={appPink} />
+      </View>
+    );
   };
 
   const renderSkeleton = () => {
@@ -218,10 +301,11 @@ const ViewerTab = () => {
           placeholderTextColor="grey"
           value={searchInput}
           onChangeText={handleSearchChange}
+          onSubmitEditing={triggerSearch}
           returnKeyType="send"
-          enterKeyHint="send"
+          enterKeyHint="search"
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={triggerSearch}>
           <Icon name="arrow-up-circle" size={35} color="grey" />
         </TouchableOpacity>
       </View>
@@ -278,70 +362,14 @@ const ViewerTab = () => {
           renderItem={({item}) => {
             const profilePictureFilename = item.profilePicture.split('/').pop();
             const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
-            const thumbnailUri = `${baseURL}/thumbnail/${item.thumbnail}`;
 
             return (
-              <View
-                style={{
-                  width: '48%',
-                  height: screenHeight * 0.35,
-                  marginBottom: '20%',
-                  marginRight: '4%',
-                }}>
-                <View style={styles.row}>
-                  <Image
-                    source={{uri: profilePictureURL}}
-                    style={styles.profilePicture}
-                  />
-                  <Text
-                    style={{
-                      fontSize: calculatedFontSize / 2.7,
-                      fontWeight: 'bold',
-                      maxWidth: '48%',
-                    }}>
-                    {item.username}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  key={item.id}
-                  title={`Watch ${item.id}`}
-                  style={styles.buttonContainer}
-                  onPress={() =>
-                    watchVideoSDK(
-                      item.id,
-                      item.username,
-                      item.watchers,
-                      profilePictureURL,
-                      item.comments,
-                      item.meetingId,
-                    )
-                  }>
-                  <ImageBackground
-                    source={{uri: thumbnailUri}}
-                    style={{width: '100%', height: '100%', borderRadius: 7}}
-                    imageStyle={{borderRadius: 7}}>
-                    <View
-                      style={{
-                        backgroundColor: 'red',
-                        width: '40%',
-                        height: '9%',
-                        margin: '4%',
-                        borderRadius: 3,
-                        alignItems: 'center',
-                      }}>
-                      <Text
-                        style={{
-                          fontWeight: 'bold',
-                          color: 'white',
-                          fontSize: calculatedFontSize / 2.5,
-                        }}>
-                        Live - {item.watchers}
-                      </Text>
-                    </View>
-                  </ImageBackground>
-                </TouchableOpacity>
-                <Text>{item.title}</Text>
-              </View>
+              <BroadcastItem
+                item={item}
+                profilePictureURL={profilePictureURL}
+                watchVideoSDK={watchVideoSDK}
+                baseURL={baseURL}
+              />
             );
           }}
           numColumns={2}

@@ -84,8 +84,11 @@ const Login = () => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    // Focus on the input field when the screen loads
-    inputRef.current.focus();
+    const timer = setTimeout(() => {
+      inputRef.current.focus();
+    }, 300); // Adjust the delay as needed, 300ms is a good start
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
