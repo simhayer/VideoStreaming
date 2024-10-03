@@ -39,6 +39,10 @@ const ViewerTab = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [isAxiosError, setIsAxiosError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+
+  const [page, setPage] = useState(1);
+  const [canFetchMore, setCanFetchMore] = useState(true);
 
   const debouncedSearch = useCallback(
     debounce(value => {
@@ -52,12 +56,20 @@ const ViewerTab = () => {
     debouncedSearch(value);
   };
 
+  // const onRefresh = useCallback(() => {
+  //   setRefreshing(true);
+  //   setTimeout(() => {
+  //     setRefreshing(false);
+  //     showList();
+  //   }, 1000);
+  // }, []);
+
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-      showList();
-    }, 1000);
+    setPage(1);
+    setCanFetchMore(true);
+    showList(1);
+    setTimeout(() => setRefreshing(false), 1000);
   }, []);
 
   useFocusEffect(
@@ -66,28 +78,62 @@ const ViewerTab = () => {
     }, []),
   );
 
-  const showList = async () => {
-    setLoading(true);
+  const showList = async (newPage = 1) => {
+    if (!canFetchMore) return; // Prevent further fetching if all data is loaded
 
+    const MIN_LOADING_TIME = 700; // Minimum loading time (1 second)
+    const startLoadingTime = Date.now(); // Record the start time of loading
+
+    if (newPage === 1) {
+      setBroadcasts([]);
+      setLoading(true);
+    } else {
+      setLoadingMore(true);
+    }
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     try {
-      console.log('Fetching broadcasts');
-      const response = await axios.get(baseURL + apiEndpoints.listbroadcast, {
-        timeout: 5000, // Set timeout for the request
-        signal: controller.signal, // Attach the AbortController signal
-      });
-      console.log('Broadcasts:', response.data);
+      const response = await axios.post(
+        baseURL + apiEndpoints.listbroadcast,
+        {page: newPage, limit: 10}, // Send page and limit in the request body
+        {
+          timeout: 7000,
+          signal: controller.signal,
+        },
+      );
+      setBroadcasts(prev =>
+        newPage === 1 ? response.data : [...prev, ...response.data],
+      );
       setIsAxiosError(false);
-      setBroadcasts(response.data);
+
+      if (response.data.length === 0) {
+        setCanFetchMore(false); // Disable further fetching if no more data
+      }
     } catch (error) {
       console.error('Error fetching broadcasts:', error);
     } finally {
-      // Clear the timeout once the request is completed or aborted
+      const loadingTime = Date.now() - startLoadingTime; // Calculate how long the request took
+      const remainingTime = MIN_LOADING_TIME - loadingTime;
+
+      setTimeout(
+        () => {
+          setLoading(false); // Ensure loading state is set to false after the minimum time
+        },
+        remainingTime > 0 ? remainingTime : 0,
+      );
       clearTimeout(timeoutId);
-      setLoading(false);
+      setLoadingMore(false);
     }
+  };
+
+  const renderFooter = () => {
+    if (!loadingMore) return null; // Only show the footer when loading more data
+    return (
+      <View style={styles.footer}>
+        <ActivityIndicator size="large" color={appPink} />
+      </View>
+    );
   };
 
   const watchVideoSDK = async (
@@ -303,6 +349,13 @@ const ViewerTab = () => {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
+          onEndReached={() => {
+            if (canFetchMore && !loading) {
+              setPage(prev => prev + 1);
+              showList(page + 1);
+            }
+          }}
+          onEndReachedThreshold={0.5}
           ListEmptyComponent={() =>
             !loading && (
               <View
@@ -318,6 +371,7 @@ const ViewerTab = () => {
               </View>
             )
           }
+          ListFooterComponent={renderFooter}
         />
       )}
     </SafeAreaView>

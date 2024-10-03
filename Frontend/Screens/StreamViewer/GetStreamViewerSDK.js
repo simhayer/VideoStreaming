@@ -277,6 +277,13 @@ const VideoScreen = ({route}) => {
 
   const snapPoints = useMemo(() => ['1%', '30%'], []);
 
+  const [viewHeightPercentage, setViewHeightPercentage] = useState('15%');
+
+  const cannotBidSnapPoints = useMemo(
+    () => ['1%', viewHeightPercentage],
+    [viewHeightPercentage],
+  );
+
   const checkPaymentandAddressExist = async email => {
     console.log('Checking payment and address exist');
     const payload = {
@@ -677,7 +684,7 @@ const VideoScreen = ({route}) => {
         {isCannotBidBottomSheetVisible && (
           <BottomSheet
             ref={cannotBidBottomSheetRef}
-            snapPoints={snapPoints}
+            snapPoints={cannotBidSnapPoints}
             index={isCannotBidBottomSheetVisible ? 1 : -1}
             onChange={handleCannotBidSheetChanges}>
             <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
@@ -686,6 +693,13 @@ const VideoScreen = ({route}) => {
                   alignItems: 'center',
                   marginHorizontal: '4%',
                   marginTop: 10,
+                }}
+                onLayout={event => {
+                  const {height} = event.nativeEvent.layout;
+                  if (height === 0) return;
+                  setViewHeightPercentage(
+                    `${((height + 50) / screenHeight) * 100}%`,
+                  );
                 }}>
                 <Text
                   style={{
