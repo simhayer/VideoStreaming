@@ -200,7 +200,7 @@ const ViewerTab = () => {
           <ImageBackground
             source={
               imageLoaded
-                ? {uri: profilePictureURL}
+                ? {uri: thumbnailUri}
                 : require('../Resources/StreamListThumbnailBlur.png')
             }
             style={{width: '100%', height: '100%', borderRadius: 7}}

@@ -85,6 +85,7 @@ const EnterStreamTitle = () => {
             fontSize: calculatedFontSize / 2.3,
             marginTop: 15,
             marginBottom: 5,
+            paddingVertical: 10,
           }}
         />
       </View>

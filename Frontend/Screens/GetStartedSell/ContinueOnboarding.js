@@ -1,9 +1,7 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
-  Button,
   SafeAreaView,
   Text,
-  ActivityIndicator,
   View,
   TouchableOpacity,
   Dimensions,
@@ -12,18 +10,13 @@ import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {Linking} from 'react-native';
-import {
-  apiEndpoints,
-  baseURL,
-  colors,
-  stripePublishableKey,
-} from '../../Resources/Constants';
+import {apiEndpoints, baseURL, colors} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
 
-const CreateConnectedAccount = () => {
+const ContinueOnboarding = () => {
   const navigation = useNavigation();
   const [accountID, setAccountID] = useState('');
   const [loading, setLoading] = useState(false);
@@ -114,4 +107,4 @@ const CreateConnectedAccount = () => {
   );
 };
 
-export default CreateConnectedAccount;
+export default ContinueOnboarding;

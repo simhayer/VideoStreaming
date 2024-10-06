@@ -22,7 +22,6 @@ import {
   appPink,
   baseURL,
   colors,
-  GetStreamApiKey,
   token,
 } from '../../Resources/Constants';
 import {useSelector} from 'react-redux';
@@ -143,17 +142,16 @@ const VideoScreen = ({route}) => {
         payload,
       );
       console.log('Stream user created:', response.data);
-      const token = response.data;
+      const {token, apiKey} = response.data;
 
       const user = {
         id: userUsername, // Ensure userId is defined somewhere
         name: userUsername,
-        image: `https://getstream.io/random_png/?id=${userUsername}&name=Santhosh`,
       };
 
       // Create StreamVideoClient
       const client = StreamVideoClient.getOrCreateInstance({
-        apiKey: GetStreamApiKey,
+        apiKey: apiKey,
         user,
         token,
       });

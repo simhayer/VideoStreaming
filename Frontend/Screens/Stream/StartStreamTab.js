@@ -34,7 +34,22 @@ const StartStreamTab = ({route}) => {
       return;
     }
     console.log('Going to GetStreamSDK');
-    navigation.navigate('GetStreamSDK', {title, thumbnail: selectedImage});
+
+    navigation.reset({
+      index: 1, // The second route (GetStreamSDK) will be the active screen
+      routes: [
+        {
+          name: 'TabControl', // First route is TabControl
+          params: {initialTab: 'Sell'}, // Setting Sell tab as the background
+        },
+        {
+          name: 'GetStreamSDK', // Second route is GetStreamSDK, making it the active screen
+          params: {title, thumbnail: selectedImage}, // Pass the params for GetStreamSDK
+        },
+      ],
+    });
+
+    //navigation.navigate('GetStreamSDK', {title, thumbnail: selectedImage});
   };
 
   const handleImageSelection = () => {

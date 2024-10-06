@@ -108,8 +108,6 @@ export const clothingSizeOptions = [
   'XXXL',
 ];
 
-export const GetStreamApiKey = '8ryv3hxy9p2s';
-
 export const debounce = (func, delay) => {
   let timeoutId;
   return (...args) => {

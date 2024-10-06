@@ -214,7 +214,14 @@ const StartStreamTab = () => {
               height: 'auto',
               marginBottom: 40,
             }}>
-            <Text style={styles.buttonText}>Start Selling</Text>
+            <Text
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.7,
+              }}>
+              Start Selling
+            </Text>
           </TouchableOpacity>
         </View>
       )}

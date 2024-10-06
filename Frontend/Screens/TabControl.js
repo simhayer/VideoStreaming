@@ -1,22 +1,33 @@
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 import Profile from './ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ViewerTab from './ViewerTab';
 import SellTab from './SellTab';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
-const TabControl = () => {
+const TabControl = ({route}) => {
+  const initialTab = route.params?.initialTab || 'Home';
   const Tab = createBottomTabNavigator();
   const navigation = useNavigation();
 
   const {userData} = useSelector(state => state.auth);
   const isOnboardingStarted = userData?.user.isOnboardingStarted;
 
+  useFocusEffect(
+    useCallback(() => {
+      if (initialTab) {
+        // Only navigate to initialTab when TabControl is focused
+        navigation.navigate(initialTab);
+      }
+    }, [initialTab]),
+  );
+
   return (
     <Tab.Navigator
+      initialRouteName={initialTab}
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;

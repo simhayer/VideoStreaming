@@ -12,7 +12,6 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ActivityIndicator,
-  Animated,
 } from 'react-native';
 import axios from 'axios';
 import io from 'socket.io-client';
@@ -20,14 +19,13 @@ import {
   baseURL,
   apiEndpoints,
   appPink,
-  GetStreamApiKey,
   colors,
 } from '../../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import {FlatList} from 'react-native-gesture-handler';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
@@ -36,13 +34,14 @@ import {
   StreamVideo,
   StreamVideoClient,
 } from '@stream-io/video-react-native-sdk';
-import {
-  useCall,
-  useCallStateHooks,
-  VideoRenderer,
-} from '@stream-io/video-react-native-sdk';
-import InCallManager from 'react-native-incall-manager';
-//import Animated from 'react-native-reanimated';
+import LiveStreamView from './LiveStreamView';
+
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  interpolate,
+} from 'react-native-reanimated';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -144,7 +143,7 @@ const GetStreamSDK = ({route}) => {
         payload,
       );
       console.log('Stream user created:', response.data);
-      const token = response.data;
+      const {token, apiKey} = response.data;
 
       const user = {
         id: userUsername,
@@ -152,7 +151,7 @@ const GetStreamSDK = ({route}) => {
       };
       // Create StreamVideoClient
       const client = StreamVideoClient.getOrCreateInstance({
-        apiKey: GetStreamApiKey,
+        apiKey: apiKey,
         user,
         token,
       });
@@ -230,31 +229,46 @@ const GetStreamSDK = ({route}) => {
 
   const bottomSheetRef = useRef(null);
 
-  const [isHalfScreen, setIsHalfScreen] = useState(false);
-  const animatedHeight = useRef(new Animated.Value(screenHeight)).current;
+  const opacityValue = useSharedValue(0);
+  const animatedPosition = useSharedValue(screenHeight);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
-  const handleSheetChanges = useCallback(
-    index => {
-      console.log('handleSheetChanges', index);
-      // Step 2: Animate the height when bottom sheet changes
-      if (index > 0) {
-        setIsHalfScreen(true);
-        Animated.timing(animatedHeight, {
-          toValue: screenHeight / 2, // Half screen height
-          duration: 300, // Duration of animation
-          useNativeDriver: false, // `height` doesn't support native driver
-        }).start();
-      } else {
-        setIsHalfScreen(false);
-        Animated.timing(animatedHeight, {
-          toValue: screenHeight, // Full screen height
-          duration: 300,
-          useNativeDriver: false,
-        }).start();
-      }
+  const handleSheetChanges = useCallback(index => {
+    setIsBottomSheetOpen(index === 1);
+  }, []);
+
+  const handleSheetPositionChange = useCallback(
+    position => {
+      console.log('position:', position);
+      opacityValue.value = withTiming(position === 0 ? 0 : 1, {
+        duration: 300,
+      });
+      animatedPosition.value = position;
     },
-    [animatedHeight],
+    [animatedPosition, opacityValue],
   );
+
+  const animatedVideoStyle = useAnimatedStyle(() => {
+    const videoHeight = interpolate(
+      animatedPosition.value,
+      [screenHeight, screenHeight / 2],
+      [screenHeight, screenHeight / 1.8],
+    );
+    return {
+      height: videoHeight,
+    };
+  });
+
+  const animatedOpacityStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      animatedPosition.value,
+      [screenHeight, screenHeight / 2],
+      [0, 1],
+    );
+    return {
+      opacity: opacity,
+    };
+  });
 
   const closeStream = () => {
     navigation.goBack();
@@ -403,14 +417,11 @@ const GetStreamSDK = ({route}) => {
   return (
     <StreamVideo client={myClient} language="en">
       <StreamCall call={myCall}>
-        <View style={styles.container}>
-          {/* <View style={styles.video}>
-            <LivestreamView />
-          </View> */}
-          <Animated.View style={[styles.video, {height: animatedHeight}]}>
-            <LivestreamView />
+        <View style={{flex: 1}}>
+          <Animated.View style={[styles.video, animatedVideoStyle]}>
+            <LiveStreamView />
           </Animated.View>
-          <SafeAreaView style={{height: '100%', width: '100%'}}>
+          <SafeAreaView style={{flex: 1}}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View
                 style={{
@@ -443,14 +454,6 @@ const GetStreamSDK = ({route}) => {
                       flex: 1,
                     }}>
                     Now Streaming
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontSize: calculatedFontSize / 2.5,
-                      marginRight: '2%',
-                    }}>
-                    Watchers: {watchers}
                   </Text>
                   <TouchableOpacity
                     style={styles.closeButton}
@@ -542,21 +545,34 @@ const GetStreamSDK = ({route}) => {
           <BottomSheet
             ref={bottomSheetRef}
             snapPoints={snapPoints}
-            onChange={handleSheetChanges}>
+            animatedPosition={animatedPosition} // Link the animated position here
+            onChange={handleSheetChanges}
+            onPositionChange={handleSheetPositionChange}>
             <BottomSheetView
               style={{
                 flexDirection: 'column',
                 flex: 1,
               }}>
-              <View
+              <Text
                 style={{
-                  height: 'auto',
-                  marginTop: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginHorizontal: '10%',
-                  zIndex: 100,
+                  fontSize: calculatedFontSize / 2.5,
+                  fontWeight: 'bold',
+                  textAlign: 'center',
                 }}>
+                Bidding Controls
+              </Text>
+              <Animated.View
+                style={[
+                  {
+                    height: 'auto',
+                    marginTop: 10,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginHorizontal: '7%',
+                    zIndex: 100,
+                  },
+                  animatedOpacityStyle, // Apply animated opacity style
+                ]}>
                 <View
                   style={{
                     zIndex: 100,
@@ -564,7 +580,7 @@ const GetStreamSDK = ({route}) => {
                   }}>
                   <DropDownPicker
                     open={open}
-                    disabled={isTimerRunning}
+                    disabled={isTimerRunning || !isBottomSheetOpen}
                     value={timer}
                     items={timerOptions}
                     setOpen={setOpen}
@@ -584,7 +600,7 @@ const GetStreamSDK = ({route}) => {
                     }}
                   />
                 </View>
-                <View style={{flex: 1}} />
+                <View style={{flex: 0.4}} />
                 <View
                   style={{
                     flexDirection: 'row',
@@ -596,7 +612,7 @@ const GetStreamSDK = ({route}) => {
                   <TextInput
                     value={startBid}
                     placeholder={'0'}
-                    editable={!isTimerRunning}
+                    editable={!isTimerRunning && isBottomSheetOpen}
                     keyboardType="numeric"
                     onChangeText={text => {
                       const numericValue = text.replace(/[^0-9]/g, '');
@@ -613,37 +629,7 @@ const GetStreamSDK = ({route}) => {
                     }}
                   />
                 </View>
-              </View>
-
-              <View
-                style={{
-                  height: 'auto',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginTop: 10,
-                }}>
-                <TouchableOpacity
-                  onPress={() => handleStartBid()}
-                  disabled={isTimerRunning}
-                  style={{
-                    backgroundColor: isTimerRunning ? 'grey' : appPink,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '35%',
-                    height: 50,
-                    borderRadius: 8,
-                    opacity: isTimerRunning ? 0.5 : 1,
-                  }}>
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontSize: calculatedFontSize / 2.2,
-                      fontWeight: 'bold',
-                    }}>
-                    Start Bid
-                  </Text>
-                </TouchableOpacity>
-              </View>
+              </Animated.View>
               <View
                 style={{
                   flex: 1,
@@ -758,6 +744,36 @@ const GetStreamSDK = ({route}) => {
                   </View>
                 )}
               </View>
+              <View
+                style={{
+                  height: 'auto',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginTop: 10,
+                  marginBottom: 30,
+                }}>
+                <TouchableOpacity
+                  onPress={() => handleStartBid()}
+                  disabled={isTimerRunning}
+                  style={{
+                    backgroundColor: isTimerRunning ? 'grey' : appPink,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '35%',
+                    height: 50,
+                    borderRadius: 8,
+                    opacity: isTimerRunning ? 0.5 : 1,
+                  }}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontSize: calculatedFontSize / 2.2,
+                      fontWeight: 'bold',
+                    }}>
+                    Start Bid
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </BottomSheetView>
           </BottomSheet>
         </View>
@@ -766,60 +782,7 @@ const GetStreamSDK = ({route}) => {
   );
 };
 
-const LivestreamView = () => {
-  const {useParticipantCount, useLocalParticipant, useIsCallLive} =
-    useCallStateHooks();
-
-  const call = useCall();
-  const totalParticipants = useParticipantCount();
-  const localParticipant = useLocalParticipant();
-  const isCallLive = useIsCallLive();
-
-  useEffect(() => {
-    InCallManager.start({media: 'video'});
-    call?.goLive();
-
-    return () => InCallManager.stop();
-  }, []);
-
-  return (
-    <View style={styles.flexed}>
-      <View
-        style={{
-          width: '100%',
-          zIndex: 10,
-        }}>
-        <Text style={styles.text}>Live: {totalParticipants}</Text>
-        {/* <View style={styles.bottomBar}>
-          {isCallLive ? (
-            <Button onPress={() => call?.stopLive()} title="Stop Live" />
-          ) : (
-            <Button
-              onPress={() => {
-                call?.goLive();
-              }}
-              title="Go Live"
-            />
-          )}
-        </View> */}
-      </View>
-
-      <View style={styles.video}>
-        {localParticipant && (
-          <VideoRenderer
-            participant={localParticipant}
-            trackType="videoTrack"
-          />
-        )}
-      </View>
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   inner: {
     flex: 1,
     justifyContent: 'space-between',
