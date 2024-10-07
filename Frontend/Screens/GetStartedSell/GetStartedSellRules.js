@@ -150,31 +150,35 @@ const GetStartedSell = () => {
             </Text>
           </View>
         </View>
-        {loading ? (
-          <ActivityIndicator size="large" color={appPink} />
-        ) : (
-          <TouchableOpacity
-            onPress={() => startOnboarding()}
-            style={{
-              flexDirection: 'row',
-              paddingVertical: '4%',
-              backgroundColor: appPink,
-              borderRadius: 40,
-              height: 'auto',
-              marginBottom: 40,
-            }}>
-            <Text
+        <View
+          style={{
+            marginBottom: 40,
+          }}>
+          {loading ? (
+            <ActivityIndicator size="large" color={appPink} />
+          ) : (
+            <TouchableOpacity
+              onPress={() => startOnboarding()}
               style={{
-                color: 'white',
-                flex: 1,
-                textAlign: 'center',
-                fontSize: calculatedFontSize / 2.5,
-                fontWeight: 'bold',
+                flexDirection: 'row',
+                paddingVertical: '4%',
+                backgroundColor: appPink,
+                borderRadius: 40,
+                height: 'auto',
               }}>
-              Start Onboarding
-            </Text>
-          </TouchableOpacity>
-        )}
+              <Text
+                style={{
+                  color: 'white',
+                  flex: 1,
+                  textAlign: 'center',
+                  fontSize: calculatedFontSize / 2.5,
+                  fontWeight: 'bold',
+                }}>
+                Start Onboarding
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </SafeAreaView>
   );

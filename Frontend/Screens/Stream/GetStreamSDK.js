@@ -632,6 +632,35 @@ const GetStreamSDK = ({route}) => {
               </Animated.View>
               <View
                 style={{
+                  height: 'auto',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginTop: 10,
+                }}>
+                <TouchableOpacity
+                  onPress={handleStartBid}
+                  disabled={isTimerRunning}
+                  style={{
+                    backgroundColor: isTimerRunning ? 'grey' : appPink,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '35%',
+                    height: 50,
+                    borderRadius: 8,
+                    opacity: isTimerRunning ? 0.5 : 1,
+                  }}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontSize: calculatedFontSize / 2.2,
+                      fontWeight: 'bold',
+                    }}>
+                    Start Bid
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <View
+                style={{
                   flex: 1,
                 }}>
                 {isTimerRunning && (
@@ -690,8 +719,8 @@ const GetStreamSDK = ({route}) => {
                       style={{
                         flexDirection: 'row',
                         justifyContent: 'center',
-                        flex: 1,
                         marginTop: 5,
+                        flex: 1,
                       }}>
                       <FlatList
                         style={{flex: 1}}
@@ -749,36 +778,6 @@ const GetStreamSDK = ({route}) => {
                     </View>
                   </View>
                 )}
-              </View>
-              <View
-                style={{
-                  height: 'auto',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginTop: 10,
-                  marginBottom: 30,
-                }}>
-                <TouchableOpacity
-                  onPress={() => handleStartBid()}
-                  disabled={isTimerRunning}
-                  style={{
-                    backgroundColor: isTimerRunning ? 'grey' : appPink,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '35%',
-                    height: 50,
-                    borderRadius: 8,
-                    opacity: isTimerRunning ? 0.5 : 1,
-                  }}>
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontSize: calculatedFontSize / 2.2,
-                      fontWeight: 'bold',
-                    }}>
-                    Start Bid
-                  </Text>
-                </TouchableOpacity>
               </View>
             </BottomSheetView>
           </BottomSheet>
