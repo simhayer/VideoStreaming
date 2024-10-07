@@ -25,7 +25,7 @@ import {
   colors,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
@@ -62,6 +62,7 @@ const StartStreamTab = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleImageSelection = () => {
+    Keyboard.dismiss();
     const options = {
       mediaType: 'photo',
       quality: 1,
@@ -150,21 +151,23 @@ const StartStreamTab = () => {
       formData.append('productImage', imageFile);
     }
 
-    axios
-      .post(baseURL + apiEndpoints.addProductToUser, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then(response => {
-        console.log('Product added successfully:', response.data);
-        navigation.goBack();
-      })
-      .catch(error => {
-        console.error('Failed to add product:', error);
-      });
+    try {
+      const response = await axios
+        .post(baseURL + apiEndpoints.addProductToUser, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .catch(error => {
+          console.error('Failed to add product:', error);
+        });
 
-    setLoading(false);
+      console.log('Product added successfully:', response.data);
+      navigation.goBack();
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   const [isBidBottomSheetVisible, setIsBidBottomSheetVisible] = useState(false);
@@ -190,17 +193,28 @@ const StartStreamTab = () => {
   const [bottomSheetOptions, setBottomSheetOptions] = useState(productTypes);
 
   const handleProductTypeSelect = () => {
+    Keyboard.dismiss();
+    bidBottomSheetRef.current?.expand();
     setIsBidBottomSheetVisible(true);
     setBottomSheetOptions(productTypes);
   };
 
   const handleClothingSizeSelect = () => {
+    Keyboard.dismiss();
+    bidBottomSheetRef.current?.expand();
     setIsBidBottomSheetVisible(true);
     setBottomSheetOptions(sizeOptions);
   };
 
   const screenTap = () => {
     Keyboard.dismiss();
+    //setIsBidBottomSheetVisible(false);
+
+    bidBottomSheetRef.current?.close();
+  };
+
+  const closeBottomSheet = () => {
+    bidBottomSheetRef.current?.close();
     setIsBidBottomSheetVisible(false);
   };
 
@@ -261,6 +275,7 @@ const StartStreamTab = () => {
                   height: 50,
                   padding: 0,
                 }}
+                onFocus={closeBottomSheet}
               />
               <View style={{width: 30}} />
             </View>

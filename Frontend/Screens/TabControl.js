@@ -16,15 +16,6 @@ const TabControl = ({route}) => {
   const {userData} = useSelector(state => state.auth);
   const isOnboardingStarted = userData?.user.isOnboardingStarted;
 
-  useFocusEffect(
-    useCallback(() => {
-      if (initialTab) {
-        // Only navigate to initialTab when TabControl is focused
-        navigation.navigate(initialTab);
-      }
-    }, [initialTab]),
-  );
-
   return (
     <Tab.Navigator
       initialRouteName={initialTab}

@@ -131,28 +131,19 @@ const ViewerTab = () => {
     }
   };
 
-  const watchVideoSDK = async (
-    broadcastId,
-    username,
-    watchers,
-    profilePictureURL,
-    comments,
-    meetingId,
-  ) => {
-    //socket.emit('watcher', {id: broadcastId});
-
+  const handleWatchVideoSDK = (item, profilePictureURL) => {
     navigation.navigate('GetStreamViewerSDK', {
       streamId: '',
-      broadcastId,
-      username,
-      watchers,
-      profilePictureURL,
-      comments,
-      meetingId,
+      broadcastId: item.id,
+      username: item.username,
+      watchers: item.watchers,
+      profilePictureURL: profilePictureURL,
+      comments: item.comments,
+      meetingId: item.meetingId,
     });
   };
 
-  const BroadcastItem = ({item, profilePictureURL, watchVideoSDK, baseURL}) => {
+  const BroadcastItem = React.memo(({item, profilePictureURL}) => {
     const [imageLoaded, setImageLoaded] = useState(false);
     const profilePictureFilename = item.profilePicture.split('/').pop();
     const thumbnailUri = `${baseURL}/thumbnail/${item.thumbnail}`;
@@ -179,6 +170,7 @@ const ViewerTab = () => {
               fontSize: calculatedFontSize / 2.7,
               fontWeight: 'bold',
               maxWidth: '48%',
+              color: colors.black,
             }}>
             {item.username}
           </Text>
@@ -188,14 +180,7 @@ const ViewerTab = () => {
           title={`Watch ${item.id}`}
           style={styles.buttonContainer}
           onPress={() =>
-            watchVideoSDK(
-              item.id,
-              item.username,
-              item.watchers,
-              profilePictureURL,
-              item.comments,
-              item.meetingId,
-            )
+            handleWatchVideoSDK(item, profilePictureURL, navigation)
           }>
           <ImageBackground
             source={
@@ -214,22 +199,32 @@ const ViewerTab = () => {
                 margin: '4%',
                 borderRadius: 3,
                 alignItems: 'center',
+                justifyContent: 'center',
               }}>
               <Text
                 style={{
                   fontWeight: 'bold',
                   color: 'white',
-                  fontSize: calculatedFontSize / 2.5,
+                  fontSize: calculatedFontSize / 2.7,
                 }}>
                 Live - {item.watchers}
               </Text>
             </View>
           </ImageBackground>
         </TouchableOpacity>
-        <Text>{item.title}</Text>
+        <Text
+          style={{
+            fontSize: calculatedFontSize / 2.6,
+            color: colors.black,
+            fontWeight: 'bold',
+          }}
+          numberOfLines={2}
+          ellipsizeMode="tail">
+          {item.title}
+        </Text>
       </View>
     );
-  };
+  });
 
   const renderFooter = () => {
     if (!loadingMore) return null; // Only show the footer when loading more data
@@ -359,6 +354,7 @@ const ViewerTab = () => {
         <FlatList
           data={broadcasts}
           keyExtractor={item => item.id.toString()}
+          windowSize={10}
           renderItem={({item}) => {
             const profilePictureFilename = item.profilePicture.split('/').pop();
             const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
@@ -367,8 +363,6 @@ const ViewerTab = () => {
               <BroadcastItem
                 item={item}
                 profilePictureURL={profilePictureURL}
-                watchVideoSDK={watchVideoSDK}
-                baseURL={baseURL}
               />
             );
           }}
@@ -400,6 +394,11 @@ const ViewerTab = () => {
             )
           }
           ListFooterComponent={renderFooter}
+          getItemLayout={(data, index) => ({
+            length: screenHeight * 0.35, // Item height
+            offset: screenHeight * 0.35 * index,
+            index,
+          })}
         />
       )}
     </SafeAreaView>
@@ -423,8 +422,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   profilePicture: {
-    width: '15%',
-    height: '100%',
+    width: 20,
+    height: 20,
     borderRadius: 25,
     marginRight: '5%',
   },

@@ -241,10 +241,7 @@ const ManageProducts = () => {
                     }}
                     onPress={() =>
                       navigation.navigate('ViewProduct', {
-                        name: item.name,
-                        size: item.size,
-                        imageUrl: itemImageUrl,
-                        type: item.type,
+                        item,
                       })
                     }>
                     <Image

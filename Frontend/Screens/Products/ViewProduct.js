@@ -23,7 +23,11 @@ const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 const ViewProduct = ({route}) => {
-  const {name, size, imageUrl, type} = route.params;
+  const {item} = route.params;
+
+  const {name, size, type} = item;
+  const itemImageUrl = `${baseURL}/${item.imageUrl}`;
+
   console.log('Route params:', route.params);
   const navigation = useNavigation();
 
@@ -33,7 +37,7 @@ const ViewProduct = ({route}) => {
   const handleDeleteItem = async () => {
     const payload = {
       email: userEmail,
-      products: [{name, size, type, imageUrl}],
+      products: [{name, size, type, itemImageUrl}],
     };
 
     try {
@@ -69,7 +73,7 @@ const ViewProduct = ({route}) => {
           marginHorizontal: 10,
         }}>
         <Image
-          source={{uri: imageUrl}}
+          source={{uri: itemImageUrl}}
           resizeMode="contain"
           style={{flex: 1, margin: 10}}
         />

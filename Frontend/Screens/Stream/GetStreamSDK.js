@@ -20,6 +20,7 @@ import {
   apiEndpoints,
   appPink,
   colors,
+  errorRed,
 } from '../../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
@@ -142,7 +143,6 @@ const GetStreamSDK = ({route}) => {
         baseURL + apiEndpoints.createStreamUser,
         payload,
       );
-      console.log('Stream user created:', response.data);
       const {token, apiKey} = response.data;
 
       const user = {
@@ -677,70 +677,76 @@ const GetStreamSDK = ({route}) => {
                   </View>
                 )}
                 {!isTimerRunning && (
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'center',
-                      maxHeight: '100%',
-                      flex: 1,
-                    }}>
-                    <FlatList
-                      style={{flex: 1}}
-                      data={items}
-                      showsVerticalScrollIndicator={false}
-                      keyExtractor={(item, index) => index.toString()}
-                      renderItem={({item}) => {
-                        if (!item.imageUrl) return null;
-                        const itemImageFilename = item.imageUrl
-                          .split('\\')
-                          .pop();
-                        const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
-                        const isSelected = item._id === selectedItem?._id;
-                        return (
-                          <TouchableOpacity
-                            style={{
-                              flexDirection: 'row',
-                              alignItems: 'center',
-                              borderWidth: 1,
-                              borderColor: 'rgba(0,0,0,0.2)',
-                              marginTop: 10,
-                              paddingRight: '3%',
-                              justifyContent: 'space-between',
-                              backgroundColor: isSelected ? '#d3d3d3' : 'white',
-                            }}
-                            onPress={() => handleItemPress(item)}>
-                            <Image
-                              source={{uri: itemImageUrl}}
-                              resizeMode="contain"
-                              style={{width: '20%', height: 100}}
-                            />
-                            <View style={{width: '70%'}}>
-                              <Text
-                                style={{
-                                  fontWeight: 'bold',
-                                  textAlign: 'left',
-                                  flexWrap: 'wrap',
-                                }}>
-                                {item.name}
-                              </Text>
-                              <Text style={{}}>{item.size}</Text>
-                            </View>
-
+                  <View style={{flex: 1, marginTop: 5}}>
+                    <Text
+                      style={{
+                        alignSelf: 'center',
+                        fontSize: calculatedFontSize / 2.9,
+                        color: errorRed,
+                      }}>
+                      Select an item to start bid
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        flex: 1,
+                        marginTop: 5,
+                      }}>
+                      <FlatList
+                        style={{flex: 1}}
+                        data={items}
+                        showsVerticalScrollIndicator={false}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({item}) => {
+                          if (!item.imageUrl) return null;
+                          const itemImageFilename = item.imageUrl
+                            .split('\\')
+                            .pop();
+                          const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
+                          const isSelected = item._id === selectedItem?._id;
+                          return (
                             <TouchableOpacity
-                              onPress={() => handleDeleteItem(item)}>
-                              <Icon
-                                name="close-circle-outline"
-                                size={25}
-                                color="red"
+                              style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                borderWidth: 1,
+                                borderColor: 'rgba(0,0,0,0.2)',
+                                paddingRight: 25,
+                                justifyContent: 'space-between',
+                                backgroundColor: isSelected
+                                  ? '#d3d3d3'
+                                  : 'white',
+                              }}
+                              onPress={() => handleItemPress(item)}>
+                              <Image
+                                source={{uri: itemImageUrl}}
+                                resizeMode="contain"
+                                style={{width: '20%', height: 50}}
                               />
+                              <View style={{flex: 1}}>
+                                <Text
+                                  style={{
+                                    fontWeight: 'bold',
+                                    textAlign: 'left',
+                                    flexWrap: 'wrap',
+                                    fontSize: calculatedFontSize / 2.7,
+                                  }}>
+                                  {item.name}
+                                </Text>
+                                <Text
+                                  style={{fontSize: calculatedFontSize / 2.9}}>
+                                  {item.size}
+                                </Text>
+                              </View>
                             </TouchableOpacity>
-                          </TouchableOpacity>
-                        );
-                      }}
-                      contentContainerStyle={{
-                        paddingBottom: 10, // Add padding to avoid the last item being cut off
-                      }}
-                    />
+                          );
+                        }}
+                        contentContainerStyle={{
+                          paddingBottom: 10, // Add padding to avoid the last item being cut off
+                        }}
+                      />
+                    </View>
                   </View>
                 )}
               </View>

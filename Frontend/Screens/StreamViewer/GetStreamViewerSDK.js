@@ -74,6 +74,7 @@ const VideoScreen = ({route}) => {
   const [curComments, setCurComments] = useState(comments || []);
   const [curBid, setCurBid] = useState(0);
   const [userBid, setUserBid] = useState(0);
+  const [bidItem, setBidItem] = useState(null);
 
   const scrollViewRef = useRef();
   const [socket, setSocket] = useState(null);
@@ -231,15 +232,17 @@ const VideoScreen = ({route}) => {
       }, 1000);
     } else if (timeLeft === 0) {
       setIsTimerRunning(false);
+      setBidItem(null);
     }
 
     return () => clearInterval(timer);
   }, [isTimerRunning, timeLeft]);
 
   const startBid = data => {
-    const {bidItem, startBid, timer} = data;
+    const {product, startBid, timer} = data;
 
     const timeInSeconds = parseInt(timer, 10);
+    setBidItem(product);
     setTimeLeft(timeInSeconds);
     setIsTimerRunning(true);
     setCurBid(startBid);
@@ -306,6 +309,7 @@ const VideoScreen = ({route}) => {
       console.log('Payment and address do not exist');
       setCanBid(false);
       setIsCannotBidBottomSheetVisible(true);
+      cannotBidBottomSheetRef.current?.expand();
     }
 
     return {
@@ -365,8 +369,9 @@ const VideoScreen = ({route}) => {
 
   const screenTap = () => {
     Keyboard.dismiss();
-    setIsBidBottomSheetVisible(false);
-    setIsCannotBidBottomSheetVisible(false);
+
+    cannotBidBottomSheetRef.current?.close();
+    bidBottomSheetRef.current?.close();
   };
 
   return (
@@ -579,19 +584,43 @@ const VideoScreen = ({route}) => {
             </View>
             <View
               style={{
-                width: '94%',
-                justifyContent: 'flex-end',
-                flexDirection: 'row',
-                height: '4%',
+                minHeight: '4%',
+                justifyContent: 'center',
+                marginHorizontal: 10,
               }}>
               {isTimerRunning && (
-                <Text
+                <View
                   style={{
-                    color: 'white',
-                    fontSize: calculatedFontSize / 1.4,
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
                   }}>
-                  ${curBid}
-                </Text>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('ViewProduct', {
+                        item: bidItem,
+                      })
+                    }
+                    style={{maxWidth: '60%', marginLeft: 20}}>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 2.5,
+                        fontWeight: 'bold',
+                        color: colors.white,
+                      }}
+                      numberOfLines={2}>
+                      {bidItem?.name}
+                    </Text>
+                  </TouchableOpacity>
+                  <Text
+                    style={{
+                      color: colors.white,
+                      fontSize: calculatedFontSize / 1.4,
+                    }}>
+                    ${curBid}
+                  </Text>
+                </View>
               )}
             </View>
             <View
