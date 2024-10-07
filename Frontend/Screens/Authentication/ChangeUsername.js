@@ -58,15 +58,11 @@ const ChangeUsername = ({route}) => {
       });
   };
 
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      inputRef.current.focus();
-    }, 300); // Adjust the delay as needed, 300ms is a good start
-
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   inputRef.current.focus();
+  // }, []);
 
   return (
     <SafeAreaView
@@ -79,7 +75,7 @@ const ChangeUsername = ({route}) => {
           Change username
         </Text>
         <TextInput
-          ref={inputRef}
+          // ref={inputRef}
           value={username}
           onChangeText={username => setUsername(username)}
           placeholder={'Username'}
@@ -89,6 +85,16 @@ const ChangeUsername = ({route}) => {
             marginTop: 20,
             marginBottom: 5,
           }}
+          autoComplete="off"
+          autoCapitalize="none"
+          placeholderTextColor={'gray'}
+          autoCorrect={false}
+          keyboardAppearance="dark"
+          autoFocus={true}
+          returnKeyType="done"
+          textContentType="username"
+          maxLength={30}
+          selectionColor={appPink}
         />
       </View>
       {isError && (

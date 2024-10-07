@@ -55,7 +55,7 @@ const StartStreamTab = ({route}) => {
   const handleImageSelection = () => {
     const options = {
       mediaType: 'photo',
-      quality: 1,
+      quality: 0.5,
     };
 
     const optionsArray = [

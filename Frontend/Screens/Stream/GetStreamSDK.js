@@ -228,8 +228,6 @@ const GetStreamSDK = ({route}) => {
   };
 
   const bottomSheetRef = useRef(null);
-
-  const opacityValue = useSharedValue(0);
   const animatedPosition = useSharedValue(screenHeight);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
@@ -240,33 +238,14 @@ const GetStreamSDK = ({route}) => {
   const handleSheetPositionChange = useCallback(
     position => {
       console.log('position:', position);
-      opacityValue.value = withTiming(position === 0 ? 0 : 1, {
-        duration: 300,
-      });
       animatedPosition.value = position;
     },
-    [animatedPosition, opacityValue],
+    [animatedPosition],
   );
 
   const animatedVideoStyle = useAnimatedStyle(() => {
-    const videoHeight = interpolate(
-      animatedPosition.value,
-      [screenHeight, screenHeight / 2],
-      [screenHeight, screenHeight / 1.8],
-    );
     return {
-      height: videoHeight,
-    };
-  });
-
-  const animatedOpacityStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      animatedPosition.value,
-      [screenHeight, screenHeight / 2],
-      [0, 1],
-    );
-    return {
-      opacity: opacity,
+      height: withTiming(animatedPosition.value, {duration: 10}),
     };
   });
 
@@ -571,7 +550,6 @@ const GetStreamSDK = ({route}) => {
                     marginHorizontal: '7%',
                     zIndex: 100,
                   },
-                  animatedOpacityStyle, // Apply animated opacity style
                 ]}>
                 <View
                   style={{
@@ -596,7 +574,7 @@ const GetStreamSDK = ({route}) => {
                       fontSize: calculatedFontSize / 2.9,
                     }}
                     style={{
-                      opacity: isTimerRunning ? 0.5 : 1,
+                      opacity: isTimerRunning || !isBottomSheetOpen ? 0.5 : 1,
                     }}
                   />
                 </View>
