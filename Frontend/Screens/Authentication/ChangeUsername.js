@@ -58,12 +58,6 @@ const ChangeUsername = ({route}) => {
       });
   };
 
-  // const inputRef = useRef(null);
-
-  // useEffect(() => {
-  //   inputRef.current.focus();
-  // }, []);
-
   return (
     <SafeAreaView
       style={{marginTop: 4, flex: 1, backgroundColor: colors.background}}>
@@ -75,15 +69,17 @@ const ChangeUsername = ({route}) => {
           Change username
         </Text>
         <TextInput
-          // ref={inputRef}
           value={username}
-          onChangeText={username => setUsername(username)}
+          onChangeText={setUsername}
           placeholder={'Username'}
           style={{
-            ...commonStyles.input,
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
             fontSize: calculatedFontSize / 2.5,
             marginTop: 20,
             marginBottom: 5,
+            padding: 5,
           }}
           autoComplete="off"
           autoCapitalize="none"
@@ -95,6 +91,7 @@ const ChangeUsername = ({route}) => {
           textContentType="username"
           maxLength={30}
           selectionColor={appPink}
+          inputMode="text"
         />
       </View>
       {isError && (
@@ -134,4 +131,4 @@ const ChangeUsername = ({route}) => {
   );
 };
 
-export default ChangeUsername;
+export default React.memo(ChangeUsername);
