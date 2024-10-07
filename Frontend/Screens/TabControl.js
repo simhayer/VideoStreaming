@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Profile from './ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ViewerTab from './ViewerTab';
@@ -13,8 +13,16 @@ const TabControl = ({route}) => {
   const Tab = createBottomTabNavigator();
   const navigation = useNavigation();
 
+  const [isOnboardingStarted, setIsOnboardingStarted] = useState(false);
   const {userData} = useSelector(state => state.auth);
-  const isOnboardingStarted = userData?.user.isOnboardingStarted;
+
+  useState(() => {
+    if (userData?.user?.stripeConnectedAccountId !== null) {
+      setIsOnboardingStarted(true);
+    }
+  }, []);
+
+  //const isOnboardingStarted = userData?.user.isOnboardingStarted;
 
   return (
     <Tab.Navigator
