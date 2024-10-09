@@ -79,12 +79,32 @@ const UsernameCreate = ({route}) => {
             You can always change it later
           </Text>
           <TextInput
-            ref={inputRef}
             value={username}
-            onChangeText={username => setUsername(username)}
+            onChangeText={setUsername}
             placeholder={'Username'}
-            style={styles.input}
+            style={{
+              width: '100%',
+              borderBottomWidth: 1,
+              borderColor: 'black',
+              fontSize: calculatedFontSize / 2.5,
+              marginTop: 20,
+              marginBottom: 5,
+              paddingVertical: 10,
+              paddingHorizontal: 5,
+            }}
+            autoComplete="off"
+            autoCapitalize="none"
             placeholderTextColor={'gray'}
+            autoCorrect={false}
+            autoFocus={true}
+            returnKeyType="done"
+            textContentType="username"
+            maxLength={30}
+            selectionColor={appPink}
+            inputMode="text"
+            onSubmitEditing={onNextClick}
+            clearButtonMode="while-editing"
+            keyboardAppearance="light"
           />
         </View>
         {isError && (

@@ -58,6 +58,15 @@ const ChangeUsername = ({route}) => {
         setIsLoading(false);
       });
   };
+  4;
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   return (
     <SafeAreaView
@@ -70,35 +79,24 @@ const ChangeUsername = ({route}) => {
           Change username
         </Text>
         <TextInput
+          ref={inputRef}
           value={username}
           onChangeText={setUsername}
           placeholder={'Username'}
-          style={[
-            {
-              width: '100%',
-              borderBottomWidth: 1,
-              borderColor: 'black',
-              fontSize: calculatedFontSize / 2.5,
-              marginTop: 20,
-              marginBottom: 5,
-              paddingVertical: 10,
-              paddingHorizontal: 5,
-            },
-            Platform.select({
-              ios: {
-                shadowColor: '#000',
-                shadowOffset: {width: 0, height: 2},
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                backgroundColor: 'transparent',
-              },
-            }),
-          ]}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 20,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}
           autoCorrect={false}
-          autoFocus={true}
           returnKeyType="done"
           textContentType="username"
           maxLength={30}
