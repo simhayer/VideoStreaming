@@ -32,8 +32,6 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigation = useNavigation();
-
-  //hooks
   const dispatch = useDispatch();
 
   const onLoginClick = async (email, password) => {
@@ -81,15 +79,18 @@ const Login = () => {
     }
   };
 
-  const inputRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      inputRef.current.focus();
-    }, 300); // Adjust the delay as needed, 300ms is a good start
-
-    return () => clearTimeout(timer);
+    if (emailRef.current) {
+      emailRef.current.focus();
+    }
   }, []);
+
+  const onNextClick = () => {
+    passwordRef.current.focus();
+  };
 
   return (
     <SafeAreaView
@@ -100,24 +101,63 @@ const Login = () => {
       }}>
       <View style={{width: '85%', marginTop: 30}}>
         <TextInput
-          ref={inputRef}
+          ref={emailRef}
           value={email}
-          onChangeText={email => setEmail(email.trim())}
+          onChangeText={setEmail}
           placeholder={'Email'}
-          style={styles.input}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 10,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
+          autoComplete="off"
+          autoCapitalize="none"
           placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="next"
+          textContentType="emailAddress"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onSubmitEditing={onNextClick}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
         />
-
         <TextInput
+          ref={passwordRef}
           value={password}
-          onChangeText={password => setPassword(password.trim())}
+          onChangeText={setPassword}
           placeholder={'Password'}
-          style={styles.input}
-          secureTextEntry={true}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 10,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
+          autoComplete="off"
+          autoCapitalize="none"
           placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="done"
+          textContentType="password"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onSubmitEditing={() => onLoginClick(email, password)}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
+          secureTextEntry={true}
         />
       </View>
-
       {isError && (
         <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
           {loginError}
@@ -163,17 +203,5 @@ const Login = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    width: '100%',
-    borderBottomWidth: 1,
-    borderColor: 'black',
-    fontSize: calculatedFontSize / 2.3,
-    paddingBottom: '0%',
-    marginBottom: '5%',
-    height: 40,
-  },
-});
 
 export default Login;

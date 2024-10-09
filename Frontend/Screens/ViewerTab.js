@@ -334,6 +334,7 @@ const ViewerTab = () => {
           maxLength={30}
           selectionColor={appPink}
           inputMode="text"
+          keyboardAppearance="light"
         />
         <TouchableOpacity onPress={triggerSearch}>
           <Icon name="arrow-up-circle" size={35} color="grey" />

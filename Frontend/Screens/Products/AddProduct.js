@@ -208,14 +208,18 @@ const StartStreamTab = () => {
 
   const screenTap = () => {
     Keyboard.dismiss();
-    //setIsBidBottomSheetVisible(false);
-
     bidBottomSheetRef.current?.close();
   };
 
   const closeBottomSheet = () => {
     bidBottomSheetRef.current?.close();
     setIsBidBottomSheetVisible(false);
+  };
+
+  const nameRef = useRef(null);
+
+  const onNameNextClick = () => {
+    handleProductTypeSelect();
   };
 
   return (
@@ -262,19 +266,33 @@ const StartStreamTab = () => {
               }}>
               <Icon name="reader-outline" size={30} color="black" />
               <TextInput
+                ref={nameRef}
                 value={itemName}
-                onChangeText={itemName => setItemName(itemName)}
-                placeholder={'Enter item name'}
+                onChangeText={setItemName}
+                placeholder={'Product Name'}
                 style={{
                   width: '70%',
                   borderBottomWidth: 1,
-                  borderColor: 'grey',
-                  fontSize: calculatedFontSize / 2.4,
-                  marginBottom: '4%',
-                  marginLeft: '4%',
-                  height: 50,
-                  padding: 0,
+                  borderColor: 'black',
+                  fontSize: calculatedFontSize / 2.5,
+                  marginTop: 10,
+                  marginBottom: 15,
+                  paddingVertical: 10,
+                  paddingHorizontal: 5,
+                  marginLeft: 20,
                 }}
+                autoComplete="off"
+                autoCapitalize="none"
+                placeholderTextColor={'gray'}
+                autoCorrect={false}
+                returnKeyType="next"
+                textContentType="name"
+                maxLength={30}
+                selectionColor={appPink}
+                inputMode="text"
+                onSubmitEditing={onNameNextClick}
+                clearButtonMode="while-editing"
+                keyboardAppearance="light"
                 onFocus={closeBottomSheet}
               />
               <View style={{width: 30}} />
@@ -297,7 +315,7 @@ const StartStreamTab = () => {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   borderRadius: 40,
-                  marginLeft: '4%',
+                  marginLeft: 20,
                 }}
                 onPress={handleProductTypeSelect}>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -334,7 +352,7 @@ const StartStreamTab = () => {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     borderRadius: 40,
-                    marginLeft: '4%',
+                    marginLeft: 20,
                   }}
                   onPress={handleClothingSizeSelect}>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -359,7 +377,7 @@ const StartStreamTab = () => {
                 marginTop: 15,
                 justifyContent: 'space-between',
               }}>
-              <View style={{width: 40}} />
+              <Icon name="image-outline" size={30} color="black" />
               <TouchableOpacity
                 style={{
                   borderWidth: 1,
@@ -371,6 +389,7 @@ const StartStreamTab = () => {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   borderRadius: 40,
+                  marginLeft: 20,
                 }}
                 onPress={handleImageSelection}>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>

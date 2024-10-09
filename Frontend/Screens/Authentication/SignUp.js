@@ -83,16 +83,23 @@ const SignUp = () => {
     }
   };
 
-  const inputRef = useRef(null);
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   useEffect(() => {
-    // Focus on the input field when the screen loads
-    inputRef.current.focus();
+    if (nameRef.current) {
+      nameRef.current.focus();
+    }
   }, []);
 
-  useEffect(() => {
-    console.log('Loading state changed:', isLoading);
-  }, [isLoading]);
+  const onNameNextClick = () => {
+    emailRef.current?.focus();
+  };
+
+  const onEmailNextClick = () => {
+    passwordRef.current?.focus();
+  };
 
   return (
     <SafeAreaView
@@ -103,28 +110,90 @@ const SignUp = () => {
       }}>
       <View style={{width: '85%', marginTop: 30, alignItems: 'center'}}>
         <TextInput
-          ref={inputRef}
+          ref={nameRef}
           value={fullname}
-          onChangeText={fullname => setFullname(fullname)}
+          onChangeText={setFullname}
           placeholder={'Full Name'}
-          style={styles.input}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 10,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
+          autoComplete="off"
+          autoCapitalize="none"
           placeholderTextColor={'gray'}
-        />
-        <TextInput
-          value={email}
-          onChangeText={email => setEmail(email.trim())}
-          placeholder={'Email'}
-          style={styles.input}
-          placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="next"
+          textContentType="name"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onSubmitEditing={onNameNextClick}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
         />
 
         <TextInput
-          value={password}
-          onChangeText={password => setPassword(password.trim())}
-          placeholder={'Password'}
-          style={styles.input}
-          secureTextEntry={true}
+          ref={emailRef}
+          value={email}
+          onChangeText={setEmail}
+          placeholder={'Email'}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 10,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
+          autoComplete="off"
+          autoCapitalize="none"
           placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="next"
+          textContentType="emailAddress"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onSubmitEditing={onEmailNextClick}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
+        />
+        <TextInput
+          ref={passwordRef}
+          value={password}
+          onChangeText={setPassword}
+          placeholder={'Password'}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 10,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
+          autoComplete="off"
+          autoCapitalize="none"
+          placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="done"
+          textContentType="password"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onPress={() => onSignUpClick(fullname, email, password)}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
+          secureTextEntry={true}
         />
         {isError && (
           <Text style={{fontSize: calculatedFontSize / 2.7}}>{loginError}</Text>

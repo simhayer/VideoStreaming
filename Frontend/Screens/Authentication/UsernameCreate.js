@@ -61,11 +61,9 @@ const UsernameCreate = ({route}) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (inputRef.current) {
       inputRef.current.focus();
-    }, 300); // Adjust the delay as needed, 300ms is a good start
-
-    return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
@@ -79,6 +77,7 @@ const UsernameCreate = ({route}) => {
             You can always change it later
           </Text>
           <TextInput
+            ref={inputRef}
             value={username}
             onChangeText={setUsername}
             placeholder={'Username'}
@@ -96,7 +95,6 @@ const UsernameCreate = ({route}) => {
             autoCapitalize="none"
             placeholderTextColor={'gray'}
             autoCorrect={false}
-            autoFocus={true}
             returnKeyType="done"
             textContentType="username"
             maxLength={30}

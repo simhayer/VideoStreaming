@@ -221,7 +221,7 @@ const GetStreamSDK = ({route}) => {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [startBid, setStartBid] = useState();
 
-  const [selectedItem, setSelectedItem] = useState(items[0]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const handleItemPress = item => {
     setSelectedItem(item);
@@ -255,6 +255,10 @@ const GetStreamSDK = ({route}) => {
 
   const handleStartBid = () => {
     console.log('In Start Bid');
+
+    if (!selectedItem) {
+      return;
+    }
 
     const startbidData = {
       id: broadcastId,
@@ -524,7 +528,7 @@ const GetStreamSDK = ({route}) => {
           <BottomSheet
             ref={bottomSheetRef}
             snapPoints={snapPoints}
-            animatedPosition={animatedPosition} // Link the animated position here
+            animatedPosition={animatedPosition}
             onChange={handleSheetChanges}
             onPositionChange={handleSheetPositionChange}>
             <BottomSheetView
@@ -589,13 +593,13 @@ const GetStreamSDK = ({route}) => {
                   <Text style={{fontSize: calculatedFontSize / 2}}>$ </Text>
                   <TextInput
                     value={startBid}
-                    placeholder={'0'}
                     editable={!isTimerRunning && isBottomSheetOpen}
                     keyboardType="numeric"
                     onChangeText={text => {
                       const numericValue = text.replace(/[^0-9]/g, '');
                       setStartBid(Number(numericValue));
                     }}
+                    placeholder={'0'}
                     style={{
                       fontSize: calculatedFontSize / 2.5,
                       borderWidth: 1,
@@ -605,38 +609,19 @@ const GetStreamSDK = ({route}) => {
                       minHeight: 50,
                       opacity: isTimerRunning ? 0.5 : 1,
                     }}
+                    autoComplete="off"
+                    autoCapitalize="none"
+                    placeholderTextColor={'gray'}
+                    autoCorrect={false}
+                    returnKeyType="done"
+                    maxLength={5}
+                    selectionColor={appPink}
+                    inputMode="numeric"
+                    clearButtonMode="while-editing"
+                    keyboardAppearance="light"
                   />
                 </View>
               </Animated.View>
-              <View
-                style={{
-                  height: 'auto',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginTop: 10,
-                }}>
-                <TouchableOpacity
-                  onPress={handleStartBid}
-                  disabled={isTimerRunning}
-                  style={{
-                    backgroundColor: isTimerRunning ? 'grey' : appPink,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '35%',
-                    height: 50,
-                    borderRadius: 8,
-                    opacity: isTimerRunning ? 0.5 : 1,
-                  }}>
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontSize: calculatedFontSize / 2.2,
-                      fontWeight: 'bold',
-                    }}>
-                    Start Bid
-                  </Text>
-                </TouchableOpacity>
-              </View>
               <View
                 style={{
                   flex: 1,
@@ -684,7 +669,7 @@ const GetStreamSDK = ({route}) => {
                   </View>
                 )}
                 {!isTimerRunning && (
-                  <View style={{flex: 1, marginTop: 5}}>
+                  <View style={{flex: 1, marginTop: 10}}>
                     <Text
                       style={{
                         alignSelf: 'center',
@@ -701,16 +686,13 @@ const GetStreamSDK = ({route}) => {
                         flex: 1,
                       }}>
                       <FlatList
-                        style={{flex: 1}}
+                        style={{flex: 1, maxHeight: '100%'}}
                         data={items}
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({item}) => {
                           if (!item.imageUrl) return null;
-                          const itemImageFilename = item.imageUrl
-                            .split('\\')
-                            .pop();
-                          const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
+                          const itemImageUrl = `${baseURL}/${item.imageUrl}`;
                           const isSelected = item._id === selectedItem?._id;
                           return (
                             <TouchableOpacity
@@ -756,6 +738,39 @@ const GetStreamSDK = ({route}) => {
                     </View>
                   </View>
                 )}
+                <View
+                  style={{
+                    height: 'auto',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: 10,
+                  }}>
+                  <TouchableOpacity
+                    onPress={handleStartBid}
+                    disabled={isTimerRunning || selectedItem === null}
+                    style={{
+                      backgroundColor:
+                        isTimerRunning || selectedItem === null
+                          ? 'grey'
+                          : appPink,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '35%',
+                      height: 50,
+                      borderRadius: 8,
+                      marginBottom: 20,
+                      opacity: isTimerRunning ? 0.5 : 1,
+                    }}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontSize: calculatedFontSize / 2.2,
+                        fontWeight: 'bold',
+                      }}>
+                      Start Bid
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </BottomSheetView>
           </BottomSheet>

@@ -40,8 +40,7 @@ const EnterStreamTitle = () => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    // Focus on the input field when the screen loads
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []);
 
   return (
@@ -78,15 +77,29 @@ const EnterStreamTitle = () => {
         <TextInput
           ref={inputRef}
           value={title}
-          onChangeText={title => setTitle(title)}
+          onChangeText={setTitle}
           placeholder={'Title'}
           style={{
-            ...commonStyles.input,
-            fontSize: calculatedFontSize / 2.3,
-            marginTop: 15,
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 10,
             marginBottom: 5,
             paddingVertical: 10,
+            paddingHorizontal: 5,
           }}
+          autoComplete="off"
+          autoCapitalize="none"
+          placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="next"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onSubmitEditing={onNextClick}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
         />
       </View>
 
