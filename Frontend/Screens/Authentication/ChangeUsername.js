@@ -10,6 +10,7 @@ import {
   Dimensions,
   SafeAreaView,
   ActivityIndicator,
+  Platform,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -72,26 +73,40 @@ const ChangeUsername = ({route}) => {
           value={username}
           onChangeText={setUsername}
           placeholder={'Username'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 20,
-            marginBottom: 5,
-            padding: 5,
-          }}
+          style={[
+            {
+              width: '100%',
+              borderBottomWidth: 1,
+              borderColor: 'black',
+              fontSize: calculatedFontSize / 2.5,
+              marginTop: 20,
+              marginBottom: 5,
+              paddingVertical: 10,
+              paddingHorizontal: 5,
+            },
+            Platform.select({
+              ios: {
+                shadowColor: '#000',
+                shadowOffset: {width: 0, height: 2},
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                backgroundColor: 'transparent',
+              },
+            }),
+          ]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}
           autoCorrect={false}
-          keyboardAppearance="dark"
           autoFocus={true}
           returnKeyType="done"
           textContentType="username"
           maxLength={30}
           selectionColor={appPink}
           inputMode="text"
+          onSubmitEditing={onNextClick}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
         />
       </View>
       {isError && (

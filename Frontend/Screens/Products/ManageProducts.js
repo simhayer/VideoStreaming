@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -48,7 +48,6 @@ const ManageProducts = () => {
     debouncedSearch(value);
   };
 
-  // Function to fetch products from the backend
   const fetchProducts = async () => {
     setLoading(true);
     const payload = {
@@ -71,10 +70,27 @@ const ManageProducts = () => {
     }
   };
 
+  const lastTriggeredTimeRef = useRef(null);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
   useFocusEffect(
     useCallback(() => {
-      fetchProducts();
-    }, []),
+      const currentTime = Date.now();
+      const MIN_TRIGGER_INTERVAL = 10000;
+
+      if (isFirstLoad) {
+        fetchProducts();
+        setIsFirstLoad(false);
+        lastTriggeredTimeRef.current = currentTime;
+      } else {
+        const timeSinceLastTrigger = currentTime - lastTriggeredTimeRef.current;
+
+        if (timeSinceLastTrigger >= MIN_TRIGGER_INTERVAL) {
+          fetchProducts();
+          lastTriggeredTimeRef.current = currentTime;
+        }
+      }
+    }, [isFirstLoad]),
   );
 
   const toggleSelectItem = item => {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback, useRef} from 'react';
 import {
   View,
   Text,
@@ -42,27 +42,30 @@ const ViewerTab = () => {
 
   const [page, setPage] = useState(1);
   const [canFetchMore, setCanFetchMore] = useState(true);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleSearchChange = value => {
     setSearchInput(value);
 
-    if (value.trim() === '') {
+    if (value.trim() === '' && hasSearched) {
       console.log('Search input is empty');
       setSearch('');
       setPage(1);
       setCanFetchMore(true);
       showList(1, '', true);
+      setHasSearched(false);
     }
   };
 
-  const triggerSearch = () => {
+  const triggerSearch = useCallback(() => {
     if (searchInput.trim() !== '') {
       setSearch(searchInput);
       setPage(1);
       setCanFetchMore(true);
       showList(1, searchInput, true);
+      setHasSearched(true);
     }
-  };
+  }, [searchInput]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -72,10 +75,27 @@ const ViewerTab = () => {
     setTimeout(() => setRefreshing(false), 1000);
   }, []);
 
+  const lastTriggeredTimeRef = useRef(null);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
   useFocusEffect(
     useCallback(() => {
-      showList();
-    }, []),
+      const currentTime = Date.now();
+      const MIN_TRIGGER_INTERVAL = 10000;
+
+      if (isFirstLoad) {
+        showList();
+        setIsFirstLoad(false);
+        lastTriggeredTimeRef.current = currentTime;
+      } else {
+        const timeSinceLastTrigger = currentTime - lastTriggeredTimeRef.current;
+
+        if (timeSinceLastTrigger >= MIN_TRIGGER_INTERVAL) {
+          showList();
+          lastTriggeredTimeRef.current = currentTime;
+        }
+      }
+    }, [isFirstLoad]),
   );
 
   const showList = async (
@@ -268,6 +288,18 @@ const ViewerTab = () => {
     );
   };
 
+  const renderItem = useCallback(
+    ({item}) => {
+      const profilePictureFilename = item.profilePicture.split('/').pop();
+      const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+
+      return (
+        <BroadcastItem item={item} profilePictureURL={profilePictureURL} />
+      );
+    },
+    [broadcasts],
+  );
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View
@@ -299,6 +331,9 @@ const ViewerTab = () => {
           onSubmitEditing={triggerSearch}
           returnKeyType="send"
           enterKeyHint="search"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
         />
         <TouchableOpacity onPress={triggerSearch}>
           <Icon name="arrow-up-circle" size={35} color="grey" />
@@ -355,17 +390,7 @@ const ViewerTab = () => {
           data={broadcasts}
           keyExtractor={item => item.id.toString()}
           windowSize={10}
-          renderItem={({item}) => {
-            const profilePictureFilename = item.profilePicture.split('/').pop();
-            const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
-
-            return (
-              <BroadcastItem
-                item={item}
-                profilePictureURL={profilePictureURL}
-              />
-            );
-          }}
+          renderItem={renderItem}
           numColumns={2}
           contentContainerStyle={styles.scrollView}
           refreshControl={
