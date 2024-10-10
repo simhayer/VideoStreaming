@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-100:/values-or/values-or.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-97:/values-or/values-or.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\9d667a9639fc442e87b168ab0fee7704\\transformed\\browser-1.7.0\\res\\values-or\\values-or.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-100:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-97:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\db3405a25bbab8b69dc22aba11b05022\\transformed\\material-1.11.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",

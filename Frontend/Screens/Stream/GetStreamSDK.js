@@ -607,7 +607,7 @@ const GetStreamSDK = ({route}) => {
                       textAlign: 'center',
                       borderRadius: 8,
                       minHeight: 50,
-                      opacity: isTimerRunning ? 0.5 : 1,
+                      opacity: isTimerRunning || !isBottomSheetOpen ? 0.5 : 1,
                     }}
                     autoComplete="off"
                     autoCapitalize="none"
@@ -676,7 +676,7 @@ const GetStreamSDK = ({route}) => {
                         fontSize: calculatedFontSize / 2.9,
                         color: errorRed,
                       }}>
-                      Select an item to start bid
+                      Select an item to bid
                     </Text>
                     <View
                       style={{

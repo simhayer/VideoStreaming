@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-100:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-97:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\509e4c503dfa164d2a2ac9bd9a02e3bf\\transformed\\stripe-3ds2-android-6.1.8\\res\\values-night-v8\\values-night-v8.xml",

@@ -30,6 +30,7 @@ import {useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import {FlatList} from 'react-native-gesture-handler';
+import ImageResizer from 'react-native-image-resizer';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -99,9 +100,15 @@ const StartStreamTab = () => {
     } else if (response.error) {
       console.log('ImagePicker Error: ', response.error);
     } else {
-      console.log('response', response);
       const uri = response?.assets[0].uri;
-      setSelectedImage(uri);
+
+      ImageResizer.createResizedImage(uri, 800, 600, 'JPEG', 80)
+        .then(resizedImage => {
+          setSelectedImage(resizedImage.uri); // Set the resized image URI
+        })
+        .catch(err => {
+          console.log('Image Resizing Error: ', err);
+        });
     }
   };
 
@@ -224,7 +231,7 @@ const StartStreamTab = () => {
 
   return (
     <SafeAreaView
-      style={{flex: 1, marginTop: 10, backgroundColor: colors.background}}>
+      style={{flex: 1, paddingTop: 10, backgroundColor: colors.background}}>
       <TouchableWithoutFeedback onPress={screenTap} style={{flex: 1}}>
         <View style={{flex: 1}}>
           <View

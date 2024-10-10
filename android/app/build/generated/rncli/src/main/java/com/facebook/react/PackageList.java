@@ -27,16 +27,20 @@ import com.oney.WebRTCModule.WebRTCModulePackage;
 import com.streamvideo.reactnative.StreamVideoReactNativePackage;
 // @stripe/stripe-react-native
 import com.reactnativestripesdk.StripeSdkPackage;
+// react-native-fast-image
+import com.dylanvann.fastimage.FastImageViewPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-image-picker
 import com.imagepicker.ImagePickerPackage;
+// react-native-image-resizer
+import fr.bamlab.rnimageresizer.ImageResizerPackage;
 // react-native-incall-manager
 import com.zxcpoiu.incallmanager.InCallManagerPackage;
 // react-native-linear-gradient
 import com.BV.LinearGradient.LinearGradientPackage;
-// react-native-randombytes
-import com.bitgo.randombytes.RandomBytesPackage;
+// react-native-reanimated
+import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
@@ -45,10 +49,6 @@ import com.swmansion.rnscreens.RNScreensPackage;
 import com.horcrux.svg.SvgPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
-// react-native-video
-import com.brentvatne.react.ReactVideoPackage;
-// react-native-reanimated
-import com.swmansion.reanimated.ReanimatedPackage;
 
 public class PackageList {
   private Application application;
@@ -102,17 +102,17 @@ public class PackageList {
       new WebRTCModulePackage(),
       new StreamVideoReactNativePackage(),
       new StripeSdkPackage(),
+      new FastImageViewPackage(),
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
+      new ImageResizerPackage(),
       new InCallManagerPackage(),
       new LinearGradientPackage(),
-      new RandomBytesPackage(),
+      new ReanimatedPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
       new SvgPackage(),
-      new VectorIconsPackage(),
-      new ReactVideoPackage(),
-      new ReanimatedPackage()
+      new VectorIconsPackage()
     ));
   }
 }

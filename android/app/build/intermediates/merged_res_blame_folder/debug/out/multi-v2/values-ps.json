@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-100:/values-ps/values-ps.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-97:/values-ps/values-ps.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\d7ec6ec4225af6b0b5653e196df138d3\\transformed\\hcaptcha-20.48.6\\res\\values-ps\\values-ps.xml",

@@ -14,6 +14,7 @@ import {
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink, colors, errorRed} from '../../Resources/Constants';
+import ImageResizer from 'react-native-image-resizer';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -55,7 +56,7 @@ const StartStreamTab = ({route}) => {
   const handleImageSelection = () => {
     const options = {
       mediaType: 'photo',
-      quality: 0.5,
+      quality: 1,
     };
 
     const optionsArray = [
@@ -85,7 +86,15 @@ const StartStreamTab = ({route}) => {
       setIsError(false);
       setErrorMessage('');
       const uri = response.assets[0].uri;
-      setSelectedImage(uri);
+
+      // Resize the image
+      ImageResizer.createResizedImage(uri, 800, 600, 'JPEG', 80)
+        .then(resizedImage => {
+          setSelectedImage(resizedImage.uri); // Set the resized image URI
+        })
+        .catch(err => {
+          console.log('Image Resizing Error: ', err);
+        });
     }
   };
 

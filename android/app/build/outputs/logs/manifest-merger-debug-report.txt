@@ -14,16 +14,15 @@ MERGED from [:react-native-masked-view_masked-view] C:\Users\shayer\Documents\TC
 MERGED from [:stream-io_react-native-webrtc] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stream-io\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-20:12
 MERGED from [:stream-io_video-react-native-sdk] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stream-io\video-react-native-sdk\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:stripe_stripe-react-native] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stripe\stripe-react-native\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-fast-image] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fast-image\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-gesture-handler] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-image-picker] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
 MERGED from [:react-native-incall-manager] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-incall-manager\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-linear-gradient] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-linear-gradient\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:react-native-randombytes] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-randombytes\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-safe-area-context] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-screens] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-svg] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-svg\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-vector-icons] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-vector-icons\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:react-native-video] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-video\android\buildOutput_a15d4dee7fc4eda61b91308cbb6a2e72\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\29e3ad254108b68e1c9cac862efb9ac5\transformed\react-android-0.73.3-debug\AndroidManifest.xml:2:1-24:12
 MERGED from [com.facebook.fresco:flipper-fresco-plugin:3.1.3] C:\Users\shayer\.gradle\caches\transforms-3\24f5484147024ee7887e006f4d090daf\transformed\flipper-fresco-plugin-3.1.3\AndroidManifest.xml:8:1-13:12
@@ -63,6 +62,7 @@ MERGED from [com.google.android.material:material:1.11.0] C:\Users\shayer\.gradl
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\shayer\.gradle\caches\transforms-3\851fba489312e53fe62e8e6c4d051730\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [com.stripe:hcaptcha:20.48.6] C:\Users\shayer\.gradle\caches\transforms-3\d7ec6ec4225af6b0b5653e196df138d3\transformed\hcaptcha-20.48.6\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\shayer\.gradle\caches\transforms-3\b3627ca143232ec2ceb6e319eb18971d\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\125b0eb0ff0bfc0c7d41756313c63765\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:2:1-16:12
 MERGED from [androidx.work:work-runtime:2.8.0] C:\Users\shayer\.gradle\caches\transforms-3\aaf9f1f00356f69b7acfd03c3c45a870\transformed\work-runtime-2.8.0\AndroidManifest.xml:17:1-145:12
 MERGED from [androidx.room:room-runtime:2.5.0] C:\Users\shayer\.gradle\caches\transforms-3\c05ccfaeffae772f708c8a44b278c20d\transformed\room-runtime-2.5.0\AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.sqlite:sqlite-framework:2.3.0] C:\Users\shayer\.gradle\caches\transforms-3\61c41788c0495630508d3535bb52855b\transformed\sqlite-framework-2.3.0\AndroidManifest.xml:17:1-22:12
@@ -113,25 +113,12 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] C:\Users\shayer\.gradl
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\4034dcf40082a0bc73a58db889fd36bf\transformed\lifecycle-livedata-core-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.autofill:autofill:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\209e9c00c790238facf7a05ab3cc9daf\transformed\autofill-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\5b356190bdf4bb7065067fc153a69c6d\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.4.3] C:\Users\shayer\.gradle\caches\transforms-3\14db2628a40fec8abe37adac6383e80c\transformed\media-1.4.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\f1ad4007c9d50652fdaa15828c92907b\transformed\coordinatorlayout-1.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media3:media3-datasource-okhttp:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\c0f349e113a6d4147d848f7bcef95a10\transformed\media3-datasource-okhttp-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-ui:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\c34e50f9241be5d61aef709b678b9259\transformed\media3-ui-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-session:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\dc5e3b75530b50179eeae67d7e038869\transformed\media3-session-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-datasource:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\150efc229759932d4da67c6d5a205c28\transformed\media3-datasource-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-extractor:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\d66b56cb7b48b0076915d4f4ed81543d\transformed\media3-extractor-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-container:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\52661c7a90fed74f291e397d38eb7fe6\transformed\media3-container-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-decoder:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\62eb7ec87876791feabe4d7983e1ec61\transformed\media3-decoder-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-database:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\fa41424825b38000d20774112658209d\transformed\media3-database-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-common:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\b0e7807e11d09eee97da4f400c2f251b\transformed\media3-common-1.3.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\51b1c6f40f6faf26d950a9203c155bcb\transformed\media3-exoplayer-smoothstreaming-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-exoplayer-dash:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\4ad89142ed4e2321b6005df2a972df9b\transformed\media3-exoplayer-dash-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-exoplayer-hls:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\fb78ca6de511a051a53bc4e7830de107\transformed\media3-exoplayer-hls-1.3.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media3:media3-exoplayer:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\aabbf387ddf5a83a84e9f59beb75c7ba\transformed\media3-exoplayer-1.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\27f32e5559bcd43034d6914ede1dc092\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\56c281bcb8243724411ecc33f6c1bde0\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.browser:browser:1.7.0] C:\Users\shayer\.gradle\caches\transforms-3\9d667a9639fc442e87b168ab0fee7704\transformed\browser-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\a293f7f653f0b588e6fae043d6c99347\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.7.0] C:\Users\shayer\.gradle\caches\transforms-3\5131494b4044b43db06162b2a6b70ba2\transformed\media-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\shayer\.gradle\caches\transforms-3\863481f61be096f754a8177e9bb95585\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\shayer\.gradle\caches\transforms-3\3b3ef85d767d9cfdd5b5f673412893f8\transformed\recyclerview-1.3.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\8cc5a63d7b7777c5f8b9e3358a373ce3\transformed\customview-poolingcontainer-1.0.0\AndroidManifest.xml:17:1-23:12
@@ -153,7 +140,6 @@ MERGED from [androidx.customview:customview:1.1.0] C:\Users\shayer\.gradle\cache
 MERGED from [androidx.core:core:1.12.0] C:\Users\shayer\.gradle\caches\transforms-3\37090c8cbd1dedc6ee2ba619cf52b6bb\transformed\core-1.12.0\AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\dd8eb7ca5ad2f48cb0f4659cffb836d9\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\e6f7e3e46273734608644d2e53f4dd6e\transformed\lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\59a829822029e19fe24f7e0f94a906ab\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\9ce83c40d5aee426959e09085b963a3e\transformed\lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\6ad4f0dafd5bc34b01f5a9f90c156af3\transformed\lifecycle-viewmodel-compose-2.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.ui:ui-android:1.5.4] C:\Users\shayer\.gradle\caches\transforms-3\1fea34d355127eba166521e97fd14ba7\transformed\ui-release\AndroidManifest.xml:2:1-7:12
@@ -163,23 +149,25 @@ MERGED from [androidx.fragment:fragment:1.6.2] C:\Users\shayer\.gradle\caches\tr
 MERGED from [androidx.activity:activity:1.8.2] C:\Users\shayer\.gradle\caches\transforms-3\7d09d242d7e63191a3abe6287b4f6441\transformed\activity-1.8.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\shayer\.gradle\caches\transforms-3\f45569f439e8c21fef6e0b02c29760dd\transformed\activity-compose-1.8.2\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\shayer\.gradle\caches\transforms-3\99a4cbc6485dd91aaba2a00a3c5930dd\transformed\activity-ktx-1.8.2\AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\11b5e9594bd6cc197e71a95c8f550a4a\transformed\annotation-experimental-1.3.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\59a829822029e19fe24f7e0f94a906ab\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite:2.3.0] C:\Users\shayer\.gradle\caches\transforms-3\f9c01c14c95306fb86d2b014c5ce3189\transformed\sqlite-2.3.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.facebook.react:hermes-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\dde284ab97e8acd5368c501c01763ec9\transformed\hermes-android-0.73.3-debug\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\3612fa9d31a649e77cbd132a896014b2\transformed\profileinstaller-1.3.0\AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\shayer\.gradle\caches\transforms-3\e4cac9a05c96bced2bed2eaec58491f6\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\9fa77c4d003de09851a41b68a4165087\transformed\tracing-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [:react-native-image-resizer] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-image-resizer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\shayer\.gradle\caches\transforms-3\db80c5d9e7b1b94b7c9a2a7ec3903c65\transformed\exifinterface-1.3.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\078806bd157ae28fc0dc0dff008ec247\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\8e642d0218a62e2463dc98bf97fe4741\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\44b62065e6e9a6cbf43b8b9a1a669526\transformed\gifdecoder-4.12.0\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\shayer\.gradle\caches\transforms-3\5b9668a697a30efe2c2676a2ef171ba3\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\shayer\.gradle\caches\transforms-3\979a69077d8d2f8136a2aee642b6ddd4\transformed\exifinterface-1.3.6\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.databinding:viewbinding:8.3.1] C:\Users\shayer\.gradle\caches\transforms-3\827a2fb169c0c56c6ce11bd288121448\transformed\viewbinding-8.3.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\6fab882c1c4696f4a34c8d66981c3728\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\635c327730b2ff9d6991544b258a04a1\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\d57a71de353d6f615f194fd1f99fb600\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\6119c53d075509c7c00b74ccdeb41c3b\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\shayer\.gradle\caches\transforms-3\aa9b46ad7a81498fbe6a00d0c6850cec\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\833d32d424236eb26cd9ad4e79ea2d15\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.facebook.fbjni:fbjni:0.5.1] C:\Users\shayer\.gradle\caches\transforms-3\0de2bfea6971b7d3af48f10b1621efb4\transformed\fbjni-0.5.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\1a78b9a1837318e9234a5a8e843e20fc\transformed\soloader-0.10.5\AndroidManifest.xml:2:1-17:12
 MERGED from [app.notifee:core:202108261754] C:\Users\shayer\.gradle\caches\transforms-3\3e80747017fc229d1f8caa52ccd54298\transformed\core-202108261754\AndroidManifest.xml:2:1-84:12
@@ -217,10 +205,6 @@ MERGED from [androidx.work:work-runtime:2.8.0] C:\Users\shayer\.gradle\caches\tr
 MERGED from [androidx.work:work-runtime:2.8.0] C:\Users\shayer\.gradle\caches\transforms-3\aaf9f1f00356f69b7acfd03c3c45a870\transformed\work-runtime-2.8.0\AndroidManifest.xml:24:5-79
 MERGED from [com.stripe:stripe-core:20.48.6] C:\Users\shayer\.gradle\caches\transforms-3\3fdf226669e4f4198fbed74eba9d368e\transformed\stripe-core-20.48.6\AndroidManifest.xml:7:5-79
 MERGED from [com.stripe:stripe-core:20.48.6] C:\Users\shayer\.gradle\caches\transforms-3\3fdf226669e4f4198fbed74eba9d368e\transformed\stripe-core-20.48.6\AndroidManifest.xml:7:5-79
-MERGED from [androidx.media3:media3-common:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\b0e7807e11d09eee97da4f400c2f251b\transformed\media3-common-1.3.1\AndroidManifest.xml:22:5-79
-MERGED from [androidx.media3:media3-common:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\b0e7807e11d09eee97da4f400c2f251b\transformed\media3-common-1.3.1\AndroidManifest.xml:22:5-79
-MERGED from [androidx.media3:media3-exoplayer:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\aabbf387ddf5a83a84e9f59beb75c7ba\transformed\media3-exoplayer-1.3.1\AndroidManifest.xml:22:5-79
-MERGED from [androidx.media3:media3-exoplayer:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\aabbf387ddf5a83a84e9f59beb75c7ba\transformed\media3-exoplayer-1.3.1\AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\7c35649087c02bbf9371d1d0cedd1380\transformed\play-services-maps-18.0.2\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\shayer\.gradle\caches\transforms-3\7c35649087c02bbf9371d1d0cedd1380\transformed\play-services-maps-18.0.2\AndroidManifest.xml:23:5-79
 MERGED from [app.notifee:core:202108261754] C:\Users\shayer\.gradle\caches\transforms-3\3e80747017fc229d1f8caa52ccd54298\transformed\core-202108261754\AndroidManifest.xml:11:5-79
@@ -300,6 +284,8 @@ MERGED from [com.google.android.material:material:1.11.0] C:\Users\shayer\.gradl
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\shayer\.gradle\caches\transforms-3\db3405a25bbab8b69dc22aba11b05022\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\shayer\.gradle\caches\transforms-3\851fba489312e53fe62e8e6c4d051730\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\shayer\.gradle\caches\transforms-3\851fba489312e53fe62e8e6c4d051730\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\125b0eb0ff0bfc0c7d41756313c63765\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:10:5-14:19
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\125b0eb0ff0bfc0c7d41756313c63765\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:10:5-14:19
 MERGED from [androidx.work:work-runtime:2.8.0] C:\Users\shayer\.gradle\caches\transforms-3\aaf9f1f00356f69b7acfd03c3c45a870\transformed\work-runtime-2.8.0\AndroidManifest.xml:28:5-143:19
 MERGED from [androidx.work:work-runtime:2.8.0] C:\Users\shayer\.gradle\caches\transforms-3\aaf9f1f00356f69b7acfd03c3c45a870\transformed\work-runtime-2.8.0\AndroidManifest.xml:28:5-143:19
 MERGED from [androidx.room:room-runtime:2.5.0] C:\Users\shayer\.gradle\caches\transforms-3\c05ccfaeffae772f708c8a44b278c20d\transformed\room-runtime-2.5.0\AndroidManifest.xml:23:5-29:19
@@ -420,6 +406,8 @@ MERGED from [:stream-io_video-react-native-sdk] C:\Users\shayer\Documents\TClone
 MERGED from [:stream-io_video-react-native-sdk] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stream-io\video-react-native-sdk\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:stripe_stripe-react-native] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stripe\stripe-react-native\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:stripe_stripe-react-native] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stripe\stripe-react-native\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-fast-image] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fast-image\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-fast-image] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fast-image\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-image-picker] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
@@ -428,8 +416,6 @@ MERGED from [:react-native-incall-manager] C:\Users\shayer\Documents\TClone_GitS
 MERGED from [:react-native-incall-manager] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-incall-manager\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-linear-gradient] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-linear-gradient\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-linear-gradient] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-linear-gradient\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:react-native-randombytes] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-randombytes\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:react-native-randombytes] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-randombytes\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-safe-area-context] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-safe-area-context] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-screens] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
@@ -438,8 +424,6 @@ MERGED from [:react-native-svg] C:\Users\shayer\Documents\TClone_GitStream_new1\
 MERGED from [:react-native-svg] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-svg\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-vector-icons] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-vector-icons\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-vector-icons] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-vector-icons\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:react-native-video] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-video\android\buildOutput_a15d4dee7fc4eda61b91308cbb6a2e72\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:react-native-video] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-video\android\buildOutput_a15d4dee7fc4eda61b91308cbb6a2e72\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\29e3ad254108b68e1c9cac862efb9ac5\transformed\react-android-0.73.3-debug\AndroidManifest.xml:10:5-44
@@ -518,6 +502,8 @@ MERGED from [com.stripe:hcaptcha:20.48.6] C:\Users\shayer\.gradle\caches\transfo
 MERGED from [com.stripe:hcaptcha:20.48.6] C:\Users\shayer\.gradle\caches\transforms-3\d7ec6ec4225af6b0b5653e196df138d3\transformed\hcaptcha-20.48.6\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\shayer\.gradle\caches\transforms-3\b3627ca143232ec2ceb6e319eb18971d\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\shayer\.gradle\caches\transforms-3\b3627ca143232ec2ceb6e319eb18971d\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\125b0eb0ff0bfc0c7d41756313c63765\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\125b0eb0ff0bfc0c7d41756313c63765\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:6:5-8:41
 MERGED from [androidx.work:work-runtime:2.8.0] C:\Users\shayer\.gradle\caches\transforms-3\aaf9f1f00356f69b7acfd03c3c45a870\transformed\work-runtime-2.8.0\AndroidManifest.xml:21:5-44
 MERGED from [androidx.work:work-runtime:2.8.0] C:\Users\shayer\.gradle\caches\transforms-3\aaf9f1f00356f69b7acfd03c3c45a870\transformed\work-runtime-2.8.0\AndroidManifest.xml:21:5-44
 MERGED from [androidx.room:room-runtime:2.5.0] C:\Users\shayer\.gradle\caches\transforms-3\c05ccfaeffae772f708c8a44b278c20d\transformed\room-runtime-2.5.0\AndroidManifest.xml:21:5-44
@@ -618,34 +604,10 @@ MERGED from [androidx.autofill:autofill:1.1.0] C:\Users\shayer\.gradle\caches\tr
 MERGED from [androidx.autofill:autofill:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\209e9c00c790238facf7a05ab3cc9daf\transformed\autofill-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\5b356190bdf4bb7065067fc153a69c6d\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\5b356190bdf4bb7065067fc153a69c6d\transformed\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.4.3] C:\Users\shayer\.gradle\caches\transforms-3\14db2628a40fec8abe37adac6383e80c\transformed\media-1.4.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.4.3] C:\Users\shayer\.gradle\caches\transforms-3\14db2628a40fec8abe37adac6383e80c\transformed\media-1.4.3\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\f1ad4007c9d50652fdaa15828c92907b\transformed\coordinatorlayout-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] C:\Users\shayer\.gradle\caches\transforms-3\f1ad4007c9d50652fdaa15828c92907b\transformed\coordinatorlayout-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.media3:media3-datasource-okhttp:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\c0f349e113a6d4147d848f7bcef95a10\transformed\media3-datasource-okhttp-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-datasource-okhttp:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\c0f349e113a6d4147d848f7bcef95a10\transformed\media3-datasource-okhttp-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-ui:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\c34e50f9241be5d61aef709b678b9259\transformed\media3-ui-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-ui:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\c34e50f9241be5d61aef709b678b9259\transformed\media3-ui-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-session:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\dc5e3b75530b50179eeae67d7e038869\transformed\media3-session-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-session:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\dc5e3b75530b50179eeae67d7e038869\transformed\media3-session-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-datasource:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\150efc229759932d4da67c6d5a205c28\transformed\media3-datasource-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-datasource:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\150efc229759932d4da67c6d5a205c28\transformed\media3-datasource-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-extractor:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\d66b56cb7b48b0076915d4f4ed81543d\transformed\media3-extractor-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-extractor:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\d66b56cb7b48b0076915d4f4ed81543d\transformed\media3-extractor-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-container:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\52661c7a90fed74f291e397d38eb7fe6\transformed\media3-container-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-container:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\52661c7a90fed74f291e397d38eb7fe6\transformed\media3-container-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-decoder:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\62eb7ec87876791feabe4d7983e1ec61\transformed\media3-decoder-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-decoder:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\62eb7ec87876791feabe4d7983e1ec61\transformed\media3-decoder-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-database:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\fa41424825b38000d20774112658209d\transformed\media3-database-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-database:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\fa41424825b38000d20774112658209d\transformed\media3-database-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-common:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\b0e7807e11d09eee97da4f400c2f251b\transformed\media3-common-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-common:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\b0e7807e11d09eee97da4f400c2f251b\transformed\media3-common-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\51b1c6f40f6faf26d950a9203c155bcb\transformed\media3-exoplayer-smoothstreaming-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-smoothstreaming:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\51b1c6f40f6faf26d950a9203c155bcb\transformed\media3-exoplayer-smoothstreaming-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-dash:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\4ad89142ed4e2321b6005df2a972df9b\transformed\media3-exoplayer-dash-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-dash:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\4ad89142ed4e2321b6005df2a972df9b\transformed\media3-exoplayer-dash-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-hls:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\fb78ca6de511a051a53bc4e7830de107\transformed\media3-exoplayer-hls-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer-hls:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\fb78ca6de511a051a53bc4e7830de107\transformed\media3-exoplayer-hls-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\aabbf387ddf5a83a84e9f59beb75c7ba\transformed\media3-exoplayer-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media3:media3-exoplayer:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\aabbf387ddf5a83a84e9f59beb75c7ba\transformed\media3-exoplayer-1.3.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\27f32e5559bcd43034d6914ede1dc092\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\27f32e5559bcd43034d6914ede1dc092\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\56c281bcb8243724411ecc33f6c1bde0\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -654,8 +616,6 @@ MERGED from [androidx.browser:browser:1.7.0] C:\Users\shayer\.gradle\caches\tran
 MERGED from [androidx.browser:browser:1.7.0] C:\Users\shayer\.gradle\caches\transforms-3\9d667a9639fc442e87b168ab0fee7704\transformed\browser-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\a293f7f653f0b588e6fae043d6c99347\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\a293f7f653f0b588e6fae043d6c99347\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.7.0] C:\Users\shayer\.gradle\caches\transforms-3\5131494b4044b43db06162b2a6b70ba2\transformed\media-1.7.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.media:media:1.7.0] C:\Users\shayer\.gradle\caches\transforms-3\5131494b4044b43db06162b2a6b70ba2\transformed\media-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\shayer\.gradle\caches\transforms-3\863481f61be096f754a8177e9bb95585\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:5:5-44
 MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\shayer\.gradle\caches\transforms-3\863481f61be096f754a8177e9bb95585\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:5:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\shayer\.gradle\caches\transforms-3\3b3ef85d767d9cfdd5b5f673412893f8\transformed\recyclerview-1.3.2\AndroidManifest.xml:20:5-44
@@ -698,8 +658,6 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\shayer\.gradle
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\dd8eb7ca5ad2f48cb0f4659cffb836d9\transformed\lifecycle-runtime-2.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\e6f7e3e46273734608644d2e53f4dd6e\transformed\lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\e6f7e3e46273734608644d2e53f4dd6e\transformed\lifecycle-viewmodel-ktx-2.7.0\AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\59a829822029e19fe24f7e0f94a906ab\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\59a829822029e19fe24f7e0f94a906ab\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\9ce83c40d5aee426959e09085b963a3e\transformed\lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\9ce83c40d5aee426959e09085b963a3e\transformed\lifecycle-viewmodel-savedstate-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\6ad4f0dafd5bc34b01f5a9f90c156af3\transformed\lifecycle-viewmodel-compose-2.7.0\AndroidManifest.xml:5:5-44
@@ -718,8 +676,8 @@ MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\shayer\.gradle\c
 MERGED from [androidx.activity:activity-compose:1.8.2] C:\Users\shayer\.gradle\caches\transforms-3\f45569f439e8c21fef6e0b02c29760dd\transformed\activity-compose-1.8.2\AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\shayer\.gradle\caches\transforms-3\99a4cbc6485dd91aaba2a00a3c5930dd\transformed\activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity-ktx:1.8.2] C:\Users\shayer\.gradle\caches\transforms-3\99a4cbc6485dd91aaba2a00a3c5930dd\transformed\activity-ktx-1.8.2\AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\11b5e9594bd6cc197e71a95c8f550a4a\transformed\annotation-experimental-1.3.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\shayer\.gradle\caches\transforms-3\11b5e9594bd6cc197e71a95c8f550a4a\transformed\annotation-experimental-1.3.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\59a829822029e19fe24f7e0f94a906ab\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] C:\Users\shayer\.gradle\caches\transforms-3\59a829822029e19fe24f7e0f94a906ab\transformed\lifecycle-runtime-ktx-2.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.3.0] C:\Users\shayer\.gradle\caches\transforms-3\f9c01c14c95306fb86d2b014c5ce3189\transformed\sqlite-2.3.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.3.0] C:\Users\shayer\.gradle\caches\transforms-3\f9c01c14c95306fb86d2b014c5ce3189\transformed\sqlite-2.3.0\AndroidManifest.xml:20:5-44
 MERGED from [com.facebook.react:hermes-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\dde284ab97e8acd5368c501c01763ec9\transformed\hermes-android-0.73.3-debug\AndroidManifest.xml:5:5-44
@@ -730,6 +688,10 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\shayer\.gradle\cac
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\shayer\.gradle\caches\transforms-3\e4cac9a05c96bced2bed2eaec58491f6\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.tracing:tracing:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\9fa77c4d003de09851a41b68a4165087\transformed\tracing-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.1.0] C:\Users\shayer\.gradle\caches\transforms-3\9fa77c4d003de09851a41b68a4165087\transformed\tracing-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [:react-native-image-resizer] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-image-resizer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-image-resizer] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-image-resizer\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\shayer\.gradle\caches\transforms-3\db80c5d9e7b1b94b7c9a2a7ec3903c65\transformed\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\shayer\.gradle\caches\transforms-3\db80c5d9e7b1b94b7c9a2a7ec3903c65\transformed\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\078806bd157ae28fc0dc0dff008ec247\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\078806bd157ae28fc0dc0dff008ec247\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\8e642d0218a62e2463dc98bf97fe4741\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
@@ -738,8 +700,6 @@ MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] C:\Users\shayer\.gradl
 MERGED from [com.github.bumptech.glide:gifdecoder:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\44b62065e6e9a6cbf43b8b9a1a669526\transformed\gifdecoder-4.12.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\shayer\.gradle\caches\transforms-3\5b9668a697a30efe2c2676a2ef171ba3\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\shayer\.gradle\caches\transforms-3\5b9668a697a30efe2c2676a2ef171ba3\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\shayer\.gradle\caches\transforms-3\979a69077d8d2f8136a2aee642b6ddd4\transformed\exifinterface-1.3.6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\shayer\.gradle\caches\transforms-3\979a69077d8d2f8136a2aee642b6ddd4\transformed\exifinterface-1.3.6\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.databinding:viewbinding:8.3.1] C:\Users\shayer\.gradle\caches\transforms-3\827a2fb169c0c56c6ce11bd288121448\transformed\viewbinding-8.3.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.databinding:viewbinding:8.3.1] C:\Users\shayer\.gradle\caches\transforms-3\827a2fb169c0c56c6ce11bd288121448\transformed\viewbinding-8.3.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\6fab882c1c4696f4a34c8d66981c3728\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
@@ -752,6 +712,8 @@ MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\shayer\.gradle\caches\tr
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\shayer\.gradle\caches\transforms-3\6119c53d075509c7c00b74ccdeb41c3b\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\shayer\.gradle\caches\transforms-3\aa9b46ad7a81498fbe6a00d0c6850cec\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\shayer\.gradle\caches\transforms-3\aa9b46ad7a81498fbe6a00d0c6850cec\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\833d32d424236eb26cd9ad4e79ea2d15\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\shayer\.gradle\caches\transforms-3\833d32d424236eb26cd9ad4e79ea2d15\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
 MERGED from [com.facebook.fbjni:fbjni:0.5.1] C:\Users\shayer\.gradle\caches\transforms-3\0de2bfea6971b7d3af48f10b1621efb4\transformed\fbjni-0.5.1\AndroidManifest.xml:5:5-44
 MERGED from [com.facebook.fbjni:fbjni:0.5.1] C:\Users\shayer\.gradle\caches\transforms-3\0de2bfea6971b7d3af48f10b1621efb4\transformed\fbjni-0.5.1\AndroidManifest.xml:5:5-44
 MERGED from [com.facebook.soloader:soloader:0.10.5] C:\Users\shayer\.gradle\caches\transforms-3\1a78b9a1837318e9234a5a8e843e20fc\transformed\soloader-0.10.5\AndroidManifest.xml:7:5-9:41
@@ -1098,6 +1060,12 @@ ADDED from [com.stripe:stripe-3ds2-android:6.1.8] C:\Users\shayer\.gradle\caches
 		ADDED from [com.stripe:stripe-3ds2-android:6.1.8] C:\Users\shayer\.gradle\caches\transforms-3\509e4c503dfa164d2a2ac9bd9a02e3bf\transformed\stripe-3ds2-android-6.1.8\AndroidManifest.xml:11:13-51
 	android:name
 		ADDED from [com.stripe:stripe-3ds2-android:6.1.8] C:\Users\shayer\.gradle\caches\transforms-3\509e4c503dfa164d2a2ac9bd9a02e3bf\transformed\stripe-3ds2-android-6.1.8\AndroidManifest.xml:9:13-81
+meta-data#com.bumptech.glide.integration.okhttp3.OkHttpGlideModule
+ADDED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\125b0eb0ff0bfc0c7d41756313c63765\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:11:9-13:43
+	android:value
+		ADDED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\125b0eb0ff0bfc0c7d41756313c63765\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:13:13-40
+	android:name
+		ADDED from [com.github.bumptech.glide:okhttp3-integration:4.12.0] C:\Users\shayer\.gradle\caches\transforms-3\125b0eb0ff0bfc0c7d41756313c63765\transformed\okhttp3-integration-4.12.0\AndroidManifest.xml:12:13-84
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from [androidx.work:work-runtime:2.8.0] C:\Users\shayer\.gradle\caches\transforms-3\aaf9f1f00356f69b7acfd03c3c45a870\transformed\work-runtime-2.8.0\AndroidManifest.xml:25:5-81
 MERGED from [app.notifee:core:202108261754] C:\Users\shayer\.gradle\caches\transforms-3\3e80747017fc229d1f8caa52ccd54298\transformed\core-202108261754\AndroidManifest.xml:12:5-81

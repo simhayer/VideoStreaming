@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-100:/values-pt-rBR/values-pt-rBR.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-97:/values-pt-rBR/values-pt-rBR.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\1fea34d355127eba166521e97fd14ba7\\transformed\\ui-release\\res\\values-pt-rBR\\values-pt-rBR.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-100:/values-so/values-so.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-97:/values-so/values-so.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\29e3ad254108b68e1c9cac862efb9ac5\\transformed\\react-android-0.73.3-debug\\res\\values-so\\values-so.xml",

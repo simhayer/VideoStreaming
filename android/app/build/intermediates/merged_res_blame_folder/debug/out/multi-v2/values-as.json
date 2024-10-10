@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.tclone.app-mergeDebugResources-100:/values-as/values-as.xml",
+            "outputFile": "com.tclone.app-mergeDebugResources-97:/values-as/values-as.xml",
             "map": [
                 {
                     "source": "C:\\Users\\shayer\\.gradle\\caches\\transforms-3\\ad8ea00be98f23207d5c7600d8887e77\\transformed\\play-services-base-18.3.0\\res\\values-as\\values.xml",

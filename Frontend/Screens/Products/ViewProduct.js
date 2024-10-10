@@ -6,8 +6,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Pressable,
-  Image,
 } from 'react-native';
 import {
   apiEndpoints,
@@ -16,8 +14,9 @@ import {
   colors,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import {useSelector} from 'react-redux';
+import FastImage from 'react-native-fast-image';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -72,10 +71,10 @@ const ViewProduct = ({route}) => {
           borderColor: 'rgba(0,0,0,0.2)',
           marginHorizontal: 10,
         }}>
-        <Image
+        <FastImage
           source={{uri: itemImageUrl}}
-          resizeMode="contain"
           style={{flex: 1, margin: 10}}
+          resizeMode={FastImage.resizeMode.contain}
         />
       </View>
 
