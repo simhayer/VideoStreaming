@@ -99,18 +99,15 @@ const ManageProducts = () => {
     }, [isFirstLoad]),
   );
 
-  const toggleSelectItem = useCallback(
-    item => {
-      if (selectedItems.includes(item._id)) {
-        setSelectedItems(prevSelectedItems =>
-          prevSelectedItems.filter(id => id !== item._id),
-        );
+  const toggleSelectItem = item => {
+    setSelectedItems(prevSelectedItems => {
+      if (prevSelectedItems.includes(item._id)) {
+        return prevSelectedItems.filter(id => id !== item._id);
       } else {
-        setSelectedItems(prevSelectedItems => [...prevSelectedItems, item._id]);
+        return [...prevSelectedItems, item._id];
       }
-    },
-    [selectedItems],
-  );
+    });
+  };
 
   const handleDonePress = async () => {
     if (selectedItems.length > 0) {
@@ -156,56 +153,48 @@ const ManageProducts = () => {
 
     return (
       <TouchableOpacity
+        activeOpacity={0.8}
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.2)', // Highlight selected item
-          marginTop: 8,
-          paddingRight: '3%',
-          justifyContent: 'space-between',
-          backgroundColor: isSelected ? 'rgba(0,0,0,0.1)' : 'transparent', // Highlight selected item
+          borderRadius: 12,
+          borderWidth: isSelected ? 2 : 1,
+          borderColor: isSelected ? '#4CAF50' : 'rgba(0, 0, 0, 0.1)',
+          backgroundColor: isSelected ? 'rgba(76, 175, 80, 0.1)' : 'white',
+          marginVertical: 6,
+          padding: 12,
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          elevation: 2,
         }}
-        onPress={() =>
-          navigation.navigate('ViewProduct', {
-            item,
-          })
-        }>
+        onPress={() => navigation.navigate('ViewProduct', {item})}>
         <FastImage
           source={{uri: itemImageUrl}}
-          style={{width: '20%', height: 100}}
-          resizeMode={FastImage.resizeMode.contain}
+          style={{width: 80, height: 80, borderRadius: 8}}
+          resizeMode={FastImage.resizeMode.cover}
         />
-        <View style={{flex: 1, marginHorizontal: 5}}>
-          <Text
-            style={{
-              fontWeight: 'bold',
-              textAlign: 'left',
-              flexWrap: 'wrap',
-            }}>
+        <View style={{flex: 1, marginHorizontal: 12}}>
+          <Text style={{fontWeight: '600', fontSize: 16}} numberOfLines={1}>
             {item.name}
           </Text>
-          <Text>{item.size}</Text>
+          <Text style={{color: 'gray', marginTop: 4}}>{item.size}</Text>
         </View>
-        <TouchableOpacity
-          style={{padding: 10}}
-          onPress={() => toggleSelectItem(item)}>
+        <TouchableOpacity onPress={() => toggleSelectItem(item)}>
           <Icon
             name={isSelected ? 'checkmark-circle-outline' : 'ellipse-outline'}
-            size={27}
-            color="black"
+            size={30}
+            color={isSelected ? '#4CAF50' : 'black'}
           />
         </TouchableOpacity>
       </TouchableOpacity>
     );
   });
 
-  const renderItem = useCallback(
-    ({item}) => {
-      return <ProductItem item={item} />;
-    },
-    [items],
-  );
+  const renderItem = ({item}) => {
+    return <ProductItem item={item} />;
+  };
 
   return (
     <SafeAreaView
@@ -213,92 +202,109 @@ const ManageProducts = () => {
         flex: 1,
         alignItems: 'center',
         backgroundColor: colors.background,
+        paddingHorizontal: 7,
       }}>
+      {/* Header Section */}
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
           width: '100%',
-          paddingTop: 4,
+          paddingTop: 8,
+          marginBottom: 10,
         }}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={35} color="black" />
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{padding: 5}}>
+          <Icon name="chevron-back" size={30} color="black" />
         </TouchableOpacity>
         <Text
           style={{
             color: 'black',
             fontWeight: 'bold',
-            fontSize: calculatedFontSize / 2,
+            fontSize: calculatedFontSize / 1.8,
             textAlign: 'center',
             flex: 1,
           }}>
           Products
         </Text>
         {selectedItems.length > 0 ? (
-          <TouchableOpacity style={{marginRight: 10}} onPress={handleDonePress}>
-            <Icon name="trash-outline" size={35} color="black" />
+          <TouchableOpacity
+            style={{padding: 5, marginRight: 10}}
+            onPress={handleDonePress}>
+            <Icon name="trash-outline" size={30} color="black" />
           </TouchableOpacity>
         ) : (
-          <View style={{width: 35, marginRight: 10}} />
+          <View style={{width: 40, marginRight: 10}} />
         )}
       </View>
+
+      {/* Search Bar */}
       <View
         style={{
           flexDirection: 'row',
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.2)',
-          marginHorizontal: '2.5%',
-          borderRadius: 20,
-          marginTop: 10,
-          height: 'auto',
-          paddingHorizontal: '3%',
           alignItems: 'center',
+          borderWidth: 1,
+          borderColor: 'rgba(0,0,0,0.1)',
+          borderRadius: 12,
+          paddingHorizontal: 10,
+          marginBottom: 4,
+          backgroundColor: '#f9f9f9', // Subtle background for better visibility
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          elevation: 2,
+          height: 50,
+          width: '100%',
         }}>
-        <Icon name="search" size={30} color="grey" />
+        <Icon name="search" size={24} color="gray" />
         <TextInput
           value={inputValue}
           onChangeText={handleSearchChange}
           placeholder="Search products..."
           style={{
-            paddingVertical: 7,
-            minHeight: 25,
+            paddingLeft: 10,
             color: 'black',
             flex: 1,
-            fontSize: calculatedFontSize / 3,
+            fontSize: calculatedFontSize / 2.5,
           }}
           autoComplete="off"
           autoCapitalize="none"
-          placeholderTextColor={'gray'}
+          placeholderTextColor="gray"
           autoCorrect={false}
-          returnKeyType="next"
-          maxLength={30}
+          returnKeyType="search"
           selectionColor={appPink}
-          inputMode="text"
           clearButtonMode="while-editing"
           keyboardAppearance="light"
         />
       </View>
+
+      {/* Main Content */}
       <View style={{flex: 1, width: '100%'}}>
         {loading ? (
           <ActivityIndicator
             size="large"
-            color="grey"
+            color={appPink}
             style={{marginVertical: 20}}
           />
         ) : (
           <View style={{flex: 1}}>
+            {/* Select All Section */}
             <View
               style={{
                 width: '95%',
-                alignItems: 'center',
+                alignSelf: 'center',
                 flexDirection: 'row',
                 justifyContent: 'flex-end',
+                alignItems: 'center',
+                marginBottom: 3,
               }}>
               <Text style={{fontSize: calculatedFontSize / 2.7}}>
                 Select all
               </Text>
-              <TouchableOpacity onPress={toggleSelectAll} style={{padding: 3}}>
+              <TouchableOpacity onPress={toggleSelectAll} style={{padding: 5}}>
                 <Icon
                   name={
                     selectAll ? 'checkmark-circle-outline' : 'ellipse-outline'
@@ -308,41 +314,51 @@ const ManageProducts = () => {
                 />
               </TouchableOpacity>
             </View>
+
+            {/* Product List */}
             <FlatList
+              showsVerticalScrollIndicator={false}
               style={{flex: 1}}
               data={filteredItems}
               keyExtractor={(item, index) => index.toString()}
               renderItem={renderItem}
-              contentContainerStyle={{
-                paddingBottom: 10,
-              }}
+              extraData={selectedItems}
+              contentContainerStyle={{paddingBottom: 20}}
               ListEmptyComponent={
-                <View style={{alignItems: 'center', marginTop: 30}}>
-                  <Text>No products found</Text>
+                <View style={{alignItems: 'center', marginTop: 50}}>
+                  <Text style={{fontSize: 18, color: 'gray'}}>
+                    No products found
+                  </Text>
                 </View>
               }
             />
           </View>
         )}
       </View>
-      <View style={{height: 'auto', marginBottom: 25}}>
+
+      {/* Add Product Button */}
+      <View style={{width: '100%', alignItems: 'center', marginBottom: 20}}>
         <TouchableOpacity
           onPress={() => navigation.navigate('AddProduct')}
           style={{
             backgroundColor: appPink,
-            borderRadius: 40,
-            paddingVertical: '3%',
-            paddingHorizontal: '12%',
-            marginTop: 10,
+            borderRadius: 30,
+            paddingVertical: 12,
+            paddingHorizontal: 32,
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.2,
+            shadowRadius: 5,
+            elevation: 3,
           }}>
           <Text
             style={{
               color: 'white',
               textAlign: 'center',
               fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.7,
+              fontSize: calculatedFontSize / 2.5,
             }}>
-            Add product
+            Add Product
           </Text>
         </TouchableOpacity>
       </View>

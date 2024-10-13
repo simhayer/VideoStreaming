@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, SafeAreaView, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  Dimensions,
+  ActivityIndicator,
+} from 'react-native';
 import {
   Call,
   StreamCall,
@@ -79,7 +86,10 @@ const CustomLivestreamLayout = () => {
           {firstParticipant ? (
             <VideoRenderer participant={firstParticipant} />
           ) : (
-            <Text style={styles.text}>The host hasn't joined yet</Text>
+            <View
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <ActivityIndicator size="large" color="white" />
+            </View>
           )}
         </View>
       </View>

@@ -37,6 +37,7 @@ export const apiEndpoints = {
   createStreamUser: '/api/auth/createStreamUser',
   queryActiveStreamCalls: '/api/auth/queryActiveStreamCalls',
   getGoogleClientId: '/api/auth/getGoogleClientId',
+  getUserDetailsFromUsername: '/api/auth/getUserDetailsFromUsername',
   // Add more API endpoints as needed
 };
 

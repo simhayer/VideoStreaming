@@ -14,6 +14,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import commonStyles from '../../Resources/styles';
 import {updateUsername} from '../../Redux/Features/AuthSlice';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
   apiEndpoints,
   appPink,
@@ -55,6 +56,7 @@ const EnterOrderTracking = ({route}) => {
       });
 
     order.trackingNumber = trackingNumber;
+    order.status = 'Shipped';
 
     if (response.status === 200) {
       setLoading(false);
@@ -71,7 +73,6 @@ const EnterOrderTracking = ({route}) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
-    // Focus on the input field when the screen loads
     inputRef.current.focus();
   }, []);
 
@@ -80,31 +81,66 @@ const EnterOrderTracking = ({route}) => {
       style={{
         flex: 1,
         alignItems: 'center',
-        marginTop: 10,
+        paddingTop: 10,
         backgroundColor: colors.background,
       }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          paddingTop: 4,
+        }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="chevron-back" size={35} color="black" />
+        </TouchableOpacity>
+        <Text
+          style={{
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2,
+            textAlign: 'center',
+            flex: 1,
+          }}>
+          Order tracking
+        </Text>
+        <View style={{width: 35}} />
+      </View>
       {loading ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size="large" color="grey" />
+          <ActivityIndicator size="large" color={appPink} />
           <Text>Updating...</Text>
         </View>
       ) : (
         <>
           <View style={{width: '85%'}}>
-            <Text
-              style={{fontSize: calculatedFontSize / 1.8, fontWeight: 'bold'}}>
-              Enter tracking number
-            </Text>
             <TextInput
               ref={inputRef}
               value={trackingNumber}
               onChangeText={trackingNumber => setTrackingNumber(trackingNumber)}
               placeholder={'Tracking number'}
               style={{
-                ...commonStyles.input,
+                width: '100%',
+                borderBottomWidth: 1,
+                borderColor: 'black',
                 fontSize: calculatedFontSize / 2.5,
-                marginTop: '4%',
+                marginTop: 20,
+                marginBottom: 5,
+                paddingVertical: 10,
+                paddingHorizontal: 5,
               }}
+              autoComplete="off"
+              autoCapitalize="none"
+              placeholderTextColor={'gray'}
+              autoCorrect={false}
+              returnKeyType="send"
+              maxLength={30}
+              selectionColor={appPink}
+              inputMode="text"
+              clearButtonMode="while-editing"
+              keyboardAppearance="light"
+              onSubmitEditing={onUpdateClick}
             />
           </View>
 

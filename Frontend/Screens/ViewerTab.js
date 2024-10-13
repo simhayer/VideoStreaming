@@ -214,18 +214,17 @@ const ViewerTab = () => {
             <View
               style={{
                 backgroundColor: 'red',
-                width: '40%',
-                height: '9%',
-                margin: '4%',
-                borderRadius: 3,
-                alignItems: 'center',
-                justifyContent: 'center',
+                paddingHorizontal: 8,
+                paddingVertical: 4,
+                borderRadius: 5,
+                alignSelf: 'flex-start',
+                margin: 8,
               }}>
               <Text
                 style={{
-                  fontWeight: 'bold',
                   color: 'white',
-                  fontSize: calculatedFontSize / 2.7,
+                  fontWeight: 'bold',
+                  fontSize: calculatedFontSize / 2.8,
                 }}>
                 Live - {item.watchers}
               </Text>
@@ -305,48 +304,48 @@ const ViewerTab = () => {
       <View
         style={{
           flexDirection: 'row',
+          alignItems: 'center',
+          marginHorizontal: 10,
+          marginTop: 16,
           borderWidth: 1,
           borderColor: 'rgba(0,0,0,0.2)',
-          marginHorizontal: '2.5%',
-          borderRadius: 20,
-          marginTop: 10,
-          height: 'auto',
-          paddingHorizontal: '3%',
-          alignItems: 'center',
+          borderRadius: 12,
+          paddingHorizontal: 10,
+          backgroundColor: 'white',
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
         }}>
-        <Icon name="search" size={30} color="grey" />
-
+        <Icon name="search" size={24} color="grey" />
         <TextInput
           style={{
-            paddingVertical: 7,
-            minHeight: 25,
-            color: 'black',
             flex: 1,
             fontSize: calculatedFontSize / 3,
+            paddingVertical: 10,
+            paddingHorizontal: 8,
+            color: 'black',
           }}
           placeholder="Search streams..."
           placeholderTextColor="grey"
           value={searchInput}
           onChangeText={handleSearchChange}
           onSubmitEditing={triggerSearch}
-          returnKeyType="send"
-          enterKeyHint="search"
+          returnKeyType="search"
           maxLength={30}
           selectionColor={appPink}
-          inputMode="text"
           keyboardAppearance="light"
         />
-        <TouchableOpacity onPress={triggerSearch}>
-          <Icon name="arrow-up-circle" size={35} color="grey" />
+        <TouchableOpacity onPress={triggerSearch} activeOpacity={0.8}>
+          <Icon name="arrow-up-circle" size={30} color="grey" />
         </TouchableOpacity>
       </View>
       <View
         style={{
-          height: 7,
-          borderBottomWidth: 1,
-          borderColor: 'rgba(0,0,0,0.2)',
-          width: '100%',
-          marginBottom: 5,
+          height: 1,
+          backgroundColor: 'rgba(0,0,0,0.1)',
+          marginVertical: 8,
+          marginHorizontal: 10,
         }}
       />
       {loading ? (
@@ -370,17 +369,16 @@ const ViewerTab = () => {
             onPress={showList}
             style={{
               backgroundColor: appPink,
-              borderRadius: 40,
-              paddingVertical: '3%',
-              paddingHorizontal: '10%',
-              marginTop: 20,
-            }}>
+              borderRadius: 30,
+              paddingVertical: 12,
+              paddingHorizontal: 24,
+            }}
+            activeOpacity={0.8}>
             <Text
               style={{
                 color: 'white',
-                textAlign: 'center',
-                fontWeight: 'bold',
                 fontSize: calculatedFontSize / 2.7,
+                fontWeight: 'bold',
               }}>
               Retry
             </Text>

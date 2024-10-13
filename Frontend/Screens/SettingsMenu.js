@@ -32,141 +32,76 @@ export default function AddPaymentMethod() {
     dispatch(logout(logoutParams));
   };
 
+  const renderSettingOption = (iconName, label, onPress) => (
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingVertical: 14,
+        paddingHorizontal: 16,
+        borderBottomWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+        backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        marginBottom: 8,
+        borderRadius: 12,
+      }}
+      activeOpacity={0.8}>
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <Icon name={iconName} size={28} color="black" />
+        <Text
+          style={{
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2.7,
+            marginLeft: 12,
+          }}>
+          {label}
+        </Text>
+      </View>
+      <Icon name="chevron-forward" size={24} color="black" />
+    </TouchableOpacity>
+  );
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
-      <View style={{alignItems: 'center', marginTop: '3%'}}>
-        <View
+      {/* Header Section */}
+      <View style={{flexDirection: 'row', alignItems: 'center', padding: 4}}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{padding: 5}}>
+          <Icon name="chevron-back" size={30} color="black" />
+        </TouchableOpacity>
+        <Text
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            width: '100%',
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2,
+            textAlign: 'center',
+            flex: 1,
           }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="chevron-back" size={40} color="black" />
-          </TouchableOpacity>
-          <Text
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2,
-              marginLeft: '25%',
-            }}>
-            Settings
-          </Text>
-        </View>
+          Settings
+        </Text>
+        <View style={{width: 40}} />
+      </View>
 
-        <TouchableOpacity
-          style={{
-            marginTop: '7%',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '100%',
-            flexDirection: 'row',
-            paddingVertical: '2%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-          onPress={() => navigation.navigate('EditProfile')}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="person-circle-outline" size={30} color="black" />
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: 'bold',
-                marginLeft: '8%',
-                fontSize: calculatedFontSize / 2.7,
-              }}>
-              Profile
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={30} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            marginTop: '3%',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '100%',
-            flexDirection: 'row',
-            paddingVertical: '2%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-          onPress={() => navigation.navigate('AddPaymentOrShipping')}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="card-outline" size={30} color="black" />
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: 'bold',
-                marginLeft: '10%',
-                fontSize: calculatedFontSize / 2.7,
-              }}>
-              Payment and shipping
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={30} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            marginTop: '3%',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '100%',
-            flexDirection: 'row',
-            paddingVertical: '2%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-          onPress={() => navigation.navigate('Orders')}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="cart-outline" size={30} color="black" />
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: 'bold',
-                marginLeft: '10%',
-                fontSize: calculatedFontSize / 2.7,
-              }}>
-              Orders
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={30} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            marginTop: '3%',
-            borderTopWidth: 1,
-            borderBottomWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            width: '100%',
-            flexDirection: 'row',
-            paddingVertical: '2%',
-            paddingHorizontal: '4%',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-          onPress={() => onLogoutClick()}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="log-out-outline" size={30} color="black" />
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: 'bold',
-                marginLeft: '10%',
-                fontSize: calculatedFontSize / 2.6,
-              }}>
-              Log out
-            </Text>
-          </View>
-          <Icon name="chevron-forward" size={30} color="black" />
-        </TouchableOpacity>
+      {/* Settings Options */}
+      <View style={{marginTop: 20, width: '100%'}}>
+        {renderSettingOption('person-circle-outline', 'Profile', () =>
+          navigation.navigate('EditProfile'),
+        )}
+        {renderSettingOption('card-outline', 'Payment and Shipping', () =>
+          navigation.navigate('AddPaymentOrShipping'),
+        )}
+        {renderSettingOption('cart-outline', 'Orders', () =>
+          navigation.navigate('Orders'),
+        )}
+        {renderSettingOption('log-out-outline', 'Log out', onLogoutClick)}
       </View>
     </SafeAreaView>
   );

@@ -9,6 +9,8 @@ import {
   Pressable,
   Image,
   TextInput,
+  ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import {
   apiEndpoints,
@@ -20,6 +22,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatList} from 'react-native-gesture-handler';
 import axios from 'axios'; // Import axios
 import {useSelector} from 'react-redux';
+import FastImage from 'react-native-fast-image';
+import {debounce} from 'lodash';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -31,10 +35,27 @@ const SellerOrders = () => {
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
   const userUsername = userData?.user?.username;
+  const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const [inputValue, setInputValue] = useState('');
   const [search, setSearch] = useState('');
+
+  const debouncedSearch = useCallback(
+    debounce(value => {
+      setSearch(value);
+    }, 300),
+    [],
+  );
+
+  const handleSearchChange = value => {
+    setInputValue(value);
+    debouncedSearch(value);
+  };
 
   // Function to fetch orders from the backend
   const fetchOrders = async () => {
+    setLoading(true);
     const payload = {
       sellerUsername: userUsername,
     };
@@ -50,31 +71,41 @@ const SellerOrders = () => {
       }
     } catch (error) {
       console.error('Error fetching orders:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  useFocusEffect(
-    useCallback(() => {
-      fetchOrders();
-    }, []),
-  );
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
   const filteredItems = items.filter(item =>
     item.product.name.toLowerCase().includes(search.toLowerCase()),
   );
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchOrders();
+    setTimeout(() => setRefreshing(false), 1000);
+  }, []);
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
+      {/* Header Section */}
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
           width: '100%',
-          paddingTop: 6,
+          paddingTop: 10,
+          paddingHorizontal: 0,
         }}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={35} color="black" />
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{padding: 5}}>
+          <Icon name="chevron-back" size={30} color="black" />
         </TouchableOpacity>
         <Text
           style={{
@@ -86,106 +117,131 @@ const SellerOrders = () => {
           }}>
           Orders
         </Text>
-        <View style={{width: 35}} />
+        <View style={{width: 30, margin: 5}} />
       </View>
-      <View style={{alignItems: 'center', flex: 1}}>
-        <View
+
+      {/* Search Bar */}
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginHorizontal: '2.5%',
+          marginTop: 12,
+          borderWidth: 1,
+          borderColor: 'rgba(0, 0, 0, 0.2)',
+          borderRadius: 12,
+          paddingHorizontal: 10,
+          backgroundColor: 'white',
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+        }}>
+        <Icon name="search" size={24} color="grey" />
+        <TextInput
+          value={inputValue}
+          onChangeText={handleSearchChange}
+          placeholder="Search orders..."
           style={{
-            flexDirection: 'row',
-            borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            marginHorizontal: '2.5%',
-            borderRadius: 20,
-            marginTop: 10,
-            height: 'auto',
-            paddingHorizontal: '3%',
-            alignItems: 'center',
-          }}>
-          <Icon name="search" size={30} color="grey" />
-          <TextInput
-            style={{
-              paddingVertical: 7,
-              minHeight: 25,
-              color: 'black',
-              flex: 1,
-              fontSize: calculatedFontSize / 3,
-            }}
-            placeholder="Search orders..."
-            placeholderTextColor="grey"
-            value={search}
-            onChangeText={setSearch}
-            returnKeyType="send"
-            enterKeyHint="send"
+            flex: 1,
+            fontSize: calculatedFontSize / 3,
+            paddingVertical: 10,
+            paddingHorizontal: 8,
+            color: 'black',
+          }}
+          placeholderTextColor="gray"
+          autoCorrect={false}
+          returnKeyType="search"
+          selectionColor={appPink}
+          clearButtonMode="while-editing"
+        />
+        <TouchableOpacity activeOpacity={0.8}>
+          <Icon name="arrow-up-circle" size={30} color="grey" />
+        </TouchableOpacity>
+      </View>
+
+      {/* Content Section */}
+      <View style={{flex: 1, alignItems: 'center', marginTop: 10}}>
+        {loading ? (
+          <ActivityIndicator
+            size="large"
+            color={appPink}
+            style={{marginVertical: 20}}
           />
-          <TouchableOpacity>
-            <Icon name="arrow-up-circle" size={35} color="grey" />
-          </TouchableOpacity>
-        </View>
-        <FlatList
-          style={{width: '100%', flex: 1}}
-          data={filteredItems}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => {
-            if (!item.product.imageUrl) return null;
-            const itemImageFilename = item.product.imageUrl.split('\\').pop();
-            const itemImageUrl = `${baseURL}/products/${itemImageFilename}`;
-
-            return (
-              <TouchableOpacity
+        ) : (
+          <FlatList
+            style={{width: '100%'}}
+            data={filteredItems}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            contentContainerStyle={{
+              paddingBottom: 20,
+              paddingHorizontal: '2.5%',
+            }}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+            ListEmptyComponent={() => (
+              <View
                 style={{
-                  flexDirection: 'row',
                   alignItems: 'center',
-                  borderWidth: 1,
-                  borderColor: 'rgba(0,0,0,0.2)',
-                  marginTop: 10,
-                  paddingRight: '3%',
-                  justifyContent: 'space-between',
-                }}
-                onPress={() =>
-                  navigation.navigate('ViewOrderSeller', {
-                    order: item,
-                  })
-                }>
-                <Image
-                  source={{uri: itemImageUrl}}
-                  resizeMode="contain"
-                  style={{width: '20%', height: 100}}
-                />
-                <View style={{width: '70%'}}>
-                  <Text
-                    style={{
-                      fontWeight: 'bold',
-                      textAlign: 'left',
-                      flexWrap: 'wrap',
-                    }}>
-                    {item.product.name}
-                  </Text>
-                  <Text style={{}}>{item.status}</Text>
-                </View>
+                  justifyContent: 'center',
+                  marginTop: 50,
+                }}>
+                <Text style={{fontSize: calculatedFontSize / 2.5}}>
+                  No orders found
+                </Text>
+              </View>
+            )}
+            renderItem={({item}) => {
+              if (!item.product.imageUrl) return null;
+              const itemImageFilename = item.product.imageUrl.split('\\').pop();
+              const itemImageUrl = `${baseURL}/${itemImageFilename}`;
 
-                <TouchableOpacity onPress={() => handleDeleteItem(item)}>
+              return (
+                <TouchableOpacity
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    borderWidth: 1,
+                    borderColor: 'rgba(0, 0, 0, 0.2)',
+                    borderRadius: 12,
+                    marginBottom: 12,
+                    padding: 10,
+                    backgroundColor: 'white',
+                    shadowColor: '#000',
+                    shadowOffset: {width: 0, height: 2},
+                    shadowOpacity: 0.1,
+                    shadowRadius: 4,
+                  }}
+                  activeOpacity={0.8}
+                  onPress={() =>
+                    navigation.navigate('ViewOrderSeller', {order: item})
+                  }>
+                  <FastImage
+                    source={{uri: itemImageUrl}}
+                    style={{width: 80, height: 80, borderRadius: 10}}
+                    resizeMode={FastImage.resizeMode.contain}
+                  />
+                  <View style={{flex: 1, marginLeft: 10}}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: calculatedFontSize / 2.5,
+                        marginBottom: 4,
+                      }}>
+                      {item.product.name}
+                    </Text>
+                    <Text style={{fontSize: calculatedFontSize / 2.8}}>
+                      {item.status}
+                    </Text>
+                  </View>
                   <Icon name="chevron-forward" size={25} color="black" />
                 </TouchableOpacity>
-              </TouchableOpacity>
-            );
-          }}
-          contentContainerStyle={{
-            paddingBottom: 10, // Add padding to avoid the last item being cut off
-          }}
-          ListEmptyComponent={() => (
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginTop: 50,
-              }}>
-              <Text style={{fontSize: calculatedFontSize / 2.5}}>
-                No orders found
-              </Text>
-            </View>
-          )}
-        />
+              );
+            }}
+          />
+        )}
       </View>
     </SafeAreaView>
   );

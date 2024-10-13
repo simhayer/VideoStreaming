@@ -100,71 +100,111 @@ const StartStreamTab = ({route}) => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
+      {/* Back Button */}
       <TouchableOpacity
+        onPress={() => navigation.goBack()}
         style={{
           marginTop: 10,
-        }}
-        onPress={() => navigation.goBack()}>
-        <Icon name="chevron-back" size={40} color="black" />
+          marginLeft: 0,
+          padding: 5, // Ensures better touch target
+        }}>
+        <Icon name="chevron-back" size={35} color="black" />
       </TouchableOpacity>
-      <View style={{alignItems: 'center', flex: 1}}>
+
+      {/* Main Content */}
+      <View style={{flex: 1, alignItems: 'center'}}>
+        {/* Add Template Button */}
         <TouchableOpacity
+          onPress={handleImageSelection}
           style={{
             borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
+            borderColor: 'rgba(0, 0, 0, 0.2)',
             width: '80%',
             flexDirection: 'row',
-            paddingVertical: '2%',
-            paddingHorizontal: '4%',
+            paddingVertical: 12,
+            paddingHorizontal: 16,
             justifyContent: 'space-between',
             alignItems: 'center',
-            borderRadius: 40,
-            marginTop: 10,
-            marginBottom: 5,
+            borderRadius: 30, // Softer corner radius
+            marginTop: 20,
+            marginBottom: 8,
+            backgroundColor: 'white',
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.1,
+            shadowRadius: 4,
           }}
-          onPress={handleImageSelection}>
-          <Text style={{color: 'black', fontWeight: 'bold', marginLeft: '5%'}}>
-            Add template
+          activeOpacity={0.8}>
+          <Text
+            style={{
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: 16,
+              marginLeft: 10,
+            }}>
+            Add Template
           </Text>
           <Icon name="chevron-forward" size={30} color="black" />
         </TouchableOpacity>
+
+        {/* Error Message */}
         {isError && (
-          <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2.9,
+              color: errorRed,
+              marginTop: 5,
+            }}>
             {errorMessage}
           </Text>
         )}
+
+        {/* Image Container */}
         <View
           style={{
             flex: 1,
             justifyContent: 'center',
-            marginTop: 5,
+            alignItems: 'center',
+            marginTop: 10,
             width: '75%',
-            marginBottom: 10,
+            marginBottom: 20,
           }}>
           {selectedImage && (
             <Image
               source={{uri: selectedImage}}
-              style={{flex: 1, resizeMode: 'contain'}}
+              style={{
+                width: '100%',
+                height: '100%',
+                resizeMode: 'contain',
+                borderRadius: 12,
+              }}
             />
           )}
         </View>
+
+        {/* Continue to Stream Button */}
         <TouchableOpacity
           onPress={startStream}
           style={{
-            paddingVertical: '4%',
             width: '60%',
             backgroundColor: appPink,
-            borderRadius: 40,
+            borderRadius: 30,
+            paddingVertical: 14,
             alignItems: 'center',
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
             marginBottom: 40,
-          }}>
+          }}
+          activeOpacity={0.8}>
           <Text
             style={{
               color: 'white',
-              fontSize: calculatedFontSize / 2.2,
               fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.2,
             }}>
-            Continue to stream
+            Continue to Stream
           </Text>
         </TouchableOpacity>
       </View>

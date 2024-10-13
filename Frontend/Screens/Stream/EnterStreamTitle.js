@@ -88,6 +88,7 @@ const EnterStreamTitle = () => {
             marginBottom: 5,
             paddingVertical: 10,
             paddingHorizontal: 5,
+            borderRadius: 8,
           }}
           autoComplete="off"
           autoCapitalize="none"
@@ -104,7 +105,13 @@ const EnterStreamTitle = () => {
       </View>
 
       {isError && (
-        <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
+        <Text
+          style={{
+            fontSize: calculatedFontSize / 2.8,
+            color: errorRed,
+            marginTop: 10,
+            textAlign: 'center',
+          }}>
           {errorMessage}
         </Text>
       )}
@@ -112,12 +119,17 @@ const EnterStreamTitle = () => {
         onPress={onNextClick}
         style={{
           backgroundColor: appPink,
-          borderRadius: 40,
-          paddingVertical: '4%',
+          borderRadius: 30,
+          paddingVertical: 14,
           alignItems: 'center',
           width: '80%',
-          marginTop: '10%',
-        }}>
+          marginTop: '12%',
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.2,
+          shadowRadius: 4, // Subtle shadow for elevation
+        }}
+        activeOpacity={0.8}>
         <Text
           style={{
             color: 'white',

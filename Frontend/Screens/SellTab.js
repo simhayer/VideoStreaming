@@ -135,90 +135,120 @@ const StartStreamTab = () => {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: colors.background,
+        paddingHorizontal: 7, // Added padding for consistent spacing
       }}>
       {loading ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
           <ActivityIndicator size="large" color="grey" />
-          <Text>Checking Onboarding Status...</Text>
+          <Text
+            style={{
+              marginTop: 10,
+              color: 'black',
+              fontSize: calculatedFontSize / 2.5,
+            }}>
+            Checking Onboarding Status...
+          </Text>
         </View>
       ) : (
-        <View style={{flex: 1, alignItems: 'center', marginTop: '4%'}}>
-          <View style={{flex: 1, alignItems: 'center'}}>
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: 'bold',
-                fontSize: calculatedFontSize / 2.2,
-              }}>
-              Sellers Dashboard
-            </Text>
+        <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
+          {/* Dashboard Title */}
+          <Text
+            style={{
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2,
+              marginTop: 20,
+            }}>
+            Sellers Dashboard
+          </Text>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                marginTop: 20,
-                width: '90%',
-                flex: 1,
-              }}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('ManageProducts')}>
-                <View style={{alignItems: 'center'}}>
-                  <Icon name="cube-outline" size={30} color="black" />
-                  <Text style={styles.buttonText}>Manage Products</Text>
-                </View>
-              </TouchableOpacity>
-              <View style={{flex: 0.5}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('SellerOrders')}>
-                <View style={{alignItems: 'center'}}>
-                  <Icon name="cart-outline" size={30} color="black" />
-                  <Text style={styles.buttonText}>Orders (Selling)</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
+          {/* Button Grid Section */}
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 20,
+              width: '90%',
+              flex: 1,
+            }}>
+            <TouchableOpacity
+              style={[styles.button, {flex: 1, marginRight: 8}]}
+              onPress={() => navigation.navigate('ManageProducts')}
+              activeOpacity={0.8}>
+              <View style={{alignItems: 'center'}}>
+                <Icon name="cube-outline" size={30} color="black" />
+                <Text style={styles.buttonText}>Manage Products</Text>
+              </View>
+            </TouchableOpacity>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                marginTop: 20,
-                width: '90%',
-                flex: 1,
-              }}>
-              <TouchableOpacity style={styles.button} onPress={viewDashboard}>
-                <View style={{alignItems: 'center'}}>
-                  <Icon name="cash-outline" size={30} color="black" />
-                  <Text style={styles.buttonText}>Payments dashboard</Text>
-                </View>
-              </TouchableOpacity>
-              <View style={{flex: 0.5}} />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('GetStartedSellRules')}>
-                <View style={{alignItems: 'center'}}>
-                  <Icon name="alert-circle-outline" size={30} color="black" />
-                  <Text style={styles.buttonText}>Rules and Guidelines</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              style={[styles.button, {flex: 1, marginLeft: 8}]}
+              onPress={() => navigation.navigate('SellerOrders')}
+              activeOpacity={0.8}>
+              <View style={{alignItems: 'center'}}>
+                <Icon name="cart-outline" size={30} color="black" />
+                <Text style={styles.buttonText}>Orders (Selling)</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-          <View style={{flex: 1}} />
+
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 20,
+              width: '90%',
+              flex: 1,
+            }}>
+            <TouchableOpacity
+              style={[styles.button, {flex: 1, marginRight: 8}]}
+              onPress={viewDashboard}
+              activeOpacity={0.8}>
+              <View style={{alignItems: 'center'}}>
+                <Icon name="cash-outline" size={30} color="black" />
+                <Text style={styles.buttonText}>Payments Dashboard</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.button, {flex: 1, marginLeft: 8}]}
+              onPress={() => navigation.navigate('GetStartedSellRules')}
+              activeOpacity={0.8}>
+              <View style={{alignItems: 'center'}}>
+                <Icon name="alert-circle-outline" size={30} color="black" />
+                <Text style={styles.buttonText}>Rules & Guidelines</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          {/* Spacer to push the button down */}
+          <View style={{flex: 2}} />
+
+          {/* Start Selling Button */}
           <TouchableOpacity
             onPress={() => startStream()}
             style={{
-              paddingVertical: '4%',
-              paddingHorizontal: '20%',
+              paddingVertical: 16,
+              paddingHorizontal: 32,
               backgroundColor: appPink,
-              borderRadius: 40,
-              height: 'auto',
+              borderRadius: 30,
+              shadowColor: '#000',
+              shadowOffset: {width: 0, height: 2},
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
               marginBottom: 40,
-            }}>
+            }}
+            activeOpacity={0.8}>
             <Text
               style={{
                 color: 'white',
                 fontWeight: 'bold',
-                fontSize: calculatedFontSize / 2.7,
+                fontSize: calculatedFontSize / 2.5,
               }}>
               Start Selling
             </Text>

@@ -19,11 +19,12 @@ import EnterStreamTitle from '../Screens/Stream/EnterStreamTitle';
 import ManageProducts from '../Screens/Products/ManageProducts';
 import AddProduct from '../Screens/Products/AddProduct';
 import ViewProduct from '../Screens/Products/ViewProduct';
+import ViewOrderBuyer from '../Screens/Orders/ViewOrderBuyer';
 
 //Actually lazy load the screens
 //const GetStreamSDK = lazy(() => import('../Screens/Stream/GetStreamSDK'));
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
-const EditProfile = React.lazy(() => import('../Screens/EditProfile'));
+const EditProfile = React.lazy(() => import('../Screens/Profile/EditProfile'));
 const EnterOrderTracking = lazy(() =>
   import('../Screens/Orders/EnterOrderTracking'),
 );
@@ -36,6 +37,7 @@ const AddAddress = React.lazy(() =>
 const AddPaymentMethod = React.lazy(() =>
   import('../Screens/PaymentAndShipping/AddPaymentMethod'),
 );
+const ViewProfile = React.lazy(() => import('../Screens/Profile/ViewProfile'));
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +47,7 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="TabControl" component={TabControl} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="Orders" component={Orders} />
+      <Stack.Screen name="ViewOrderBuyer" component={ViewOrderBuyer} />
       <Stack.Screen name="ManageProducts" component={ManageProducts} />
       <Stack.Screen name="AddProduct" component={AddProduct} />
       <Stack.Screen name="ViewProduct" component={ViewProduct} />
@@ -70,6 +73,7 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />
       <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />
       <Stack.Screen name="EnterOrderTracking" component={EnterOrderTracking} />
+      <Stack.Screen name="ViewProfile" component={ViewProfile} />
     </Stack.Navigator>
   );
 };

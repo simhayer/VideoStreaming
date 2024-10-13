@@ -58,41 +58,61 @@ const ViewProduct = ({route}) => {
 
   return (
     <SafeAreaView
-      style={{flex: 1, marginTop: 10, backgroundColor: colors.background}}>
-      <View>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={40} color="black" />
+      style={{
+        flex: 1,
+        paddingTop: 10,
+        backgroundColor: colors.background,
+        paddingHorizontal: 7, // Added consistent padding
+      }}>
+      {/* Back Button */}
+      <View style={{marginBottom: 10}}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{padding: 5}}>
+          <Icon name="chevron-back" size={35} color="black" />
         </TouchableOpacity>
       </View>
+
+      {/* Image Section */}
       <View
         style={{
           flex: 1.2,
           borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.2)',
-          marginHorizontal: 10,
+          borderColor: 'rgba(0, 0, 0, 0.1)',
+          borderRadius: 12,
+          marginBottom: 12,
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          overflow: 'hidden',
+          padding: 20,
         }}>
         <FastImage
           source={{uri: itemImageUrl}}
-          style={{flex: 1, margin: 10}}
+          style={{flex: 1, width: '100%'}}
           resizeMode={FastImage.resizeMode.contain}
         />
       </View>
 
-      <View style={{flex: 1, margin: 10}}>
+      {/* Details Section */}
+      <View style={{flex: 1, marginBottom: 20}}>
         <Text
           style={{
             color: 'black',
             fontWeight: 'bold',
-            fontSize: calculatedFontSize / 2.4,
+            fontSize: calculatedFontSize / 2,
+            marginBottom: 8,
           }}>
           {name}
         </Text>
+
         {size && (
           <Text
             style={{
               color: 'black',
-              fontSize: calculatedFontSize / 2.9,
-              marginTop: 10,
+              fontSize: calculatedFontSize / 2.8,
+              marginBottom: 8,
             }}>
             Size: {size}
           </Text>
@@ -101,27 +121,35 @@ const ViewProduct = ({route}) => {
         <Text
           style={{
             color: 'black',
-            fontSize: calculatedFontSize / 2.9,
-            marginTop: 10,
+            fontSize: calculatedFontSize / 2.8,
+            marginBottom: 12,
           }}>
           Type: {type}
         </Text>
       </View>
 
+      {/* Delete Button */}
       <TouchableOpacity
         onPress={handleDeleteItem}
         style={{
           backgroundColor: appPink,
-          borderRadius: 40,
-          paddingVertical: '4%',
-          marginBottom: 40,
-          marginHorizontal: '30%',
+          borderRadius: 30,
+          paddingVertical: 12,
+          paddingHorizontal: 40,
+          alignSelf: 'center',
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.2,
+          shadowRadius: 5,
+          elevation: 3, // Elevated button for better visibility
+          marginBottom: 30,
         }}>
         <Text
           style={{
             color: 'white',
             textAlign: 'center',
             fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2.5,
           }}>
           Delete
         </Text>
