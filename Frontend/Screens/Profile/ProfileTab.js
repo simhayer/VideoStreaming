@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink, baseURL, colors} from '../../Resources/Constants';
 
@@ -19,12 +19,15 @@ const calculatedFontSize = screenHeight * 0.05;
 const Profile = () => {
   const navigation = useNavigation();
   const {userData, isLoading} = useSelector(state => state.auth);
+  console.log('User data:', userData);
 
   const username = userData?.user?.username;
   const fullname = userData?.user?.fullname;
   const isOnboardingStarted = userData?.user?.isOnboardingStarted;
+  const profilePicture = userData?.user?.profilePicture;
+  const profilePictureFilename = profilePicture?.split('/').pop();
+  const profilePictureURI = `${baseURL}/profilePicture/${profilePictureFilename}`;
 
-  const profilePictureURI = userData?.user?.profilePictureURI;
   const [selectedImage] = useState(profilePictureURI);
 
   const navigateToSellScreen = () => {
