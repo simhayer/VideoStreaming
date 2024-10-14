@@ -31,7 +31,7 @@ const SignUp = () => {
   const [googleSignInLoading, setGoogleSignInLoading] = useState(false);
 
   const onContiueWithEmailClick = () => {
-    navigation.navigate('Login', clientIds);
+    navigation.navigate('SignUp');
   };
 
   const fetchGoogleClientIds = async () => {

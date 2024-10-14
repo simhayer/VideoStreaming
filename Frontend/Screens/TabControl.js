@@ -15,14 +15,13 @@ const TabControl = ({route}) => {
 
   const [isOnboardingStarted, setIsOnboardingStarted] = useState(false);
   const {userData} = useSelector(state => state.auth);
+  console.log('userData:', userData);
 
   useState(() => {
-    if (userData?.user?.stripeConnectedAccountId !== null) {
-      setIsOnboardingStarted(true);
+    if (userData?.user?.isOnboardingStarted !== null) {
+      setIsOnboardingStarted(userData?.user?.isOnboardingStarted);
     }
-  }, []);
-
-  //const isOnboardingStarted = userData?.user.isOnboardingStarted;
+  }, [userData]);
 
   return (
     <Tab.Navigator
@@ -77,9 +76,6 @@ const TabControl = ({route}) => {
               navigation.navigate('GetStartedSell'); // Redirect to onboarding
             }
           },
-        }}
-        options={{
-          tabBarBadge: !isOnboardingStarted ? '!' : undefined, // Badge to indicate action required
         }}
       />
       <Tab.Screen name="Profile" component={Profile} />
