@@ -30,7 +30,8 @@ const ViewProduct = React.lazy(() =>
 //Actually lazy load the screens
 //const GetStreamSDK = lazy(() => import('../Screens/Stream/GetStreamSDK'));
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
-const EditProfile = React.lazy(() => import('./../Screens/EditProfile'));
+//const EditProfile = React.lazy(() => import('../../Screens/EditProfile'));
+const EditProfile = React.lazy(() => import('../Screens/Profile/EditProfile'));
 const EnterOrderTracking = lazy(() =>
   import('../Screens/Orders/EnterOrderTracking'),
 );

@@ -2,6 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 //Eager loaded screens
 import SignUpOptions from '../Screens/Authentication/SignUpOptions';
+import LoginOptions from '../Screens/Authentication/LoginOptions';
 import Login from '../Screens/Authentication/Login';
 import UsernameCreate from '../Screens/Authentication/UsernameCreate';
 import SignUp from '../Screens/Authentication/SignUp';
@@ -23,11 +24,8 @@ const Stack = createNativeStackNavigator();
 const LoggedOutStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen
-        name="SignUpOptions"
-        component={SignUpOptions}
-        initialParams={{type: 'Signup'}}
-      />
+      <Stack.Screen name="SignUpOptions" component={SignUpOptions} />
+      <Stack.Screen name="LoginOptions" component={LoginOptions} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="UsernameCreate" component={UsernameCreate} />
       <Stack.Screen name="Login" component={Login} />

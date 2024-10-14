@@ -17,19 +17,21 @@ import {
 } from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
-import commonStyles from '../../Resources/styles';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import AuthButton from './AuthButton';
+import {useDispatch} from 'react-redux';
+import {googleLogin} from '../../Redux/Features/AuthSlice';
 
-const SignUp = ({route}) => {
-  const {type} = route?.params;
+const SignUp = () => {
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
   const [clientIds, setClientIds] = useState({});
+  const dispatch = useDispatch();
+  const [googleSignInLoading, setGoogleSignInLoading] = useState(false);
 
   const onContiueWithEmailClick = () => {
-    navigation.navigate(type === 'Login' ? 'Login' : 'SignUp');
+    navigation.navigate('Login', clientIds);
   };
 
   const fetchGoogleClientIds = async () => {
@@ -61,13 +63,37 @@ const SignUp = ({route}) => {
   }, [clientIds]);
 
   const GoogleLogin = async () => {
-    await GoogleSignin.hasPlayServices();
+    setGoogleSignInLoading(true);
     try {
+      await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo);
-      return userInfo;
+
+      console.log('Google Login Success:', userInfo);
+
+      const {email, name, photo} = userInfo.user;
+
+      const response = await axios.post(
+        baseURL + apiEndpoints.handleGoogleSignin,
+        {
+          email,
+          name,
+          profilePicture: photo,
+        },
+      );
+
+      console.log('Login successful:', response.data);
+
+      const params = {
+        user: response.data.user,
+      };
+      dispatch(googleLogin(params));
+
+      return response.data;
     } catch (error) {
-      console.log(error);
+      console.error('Google Login Failed:', error);
+      throw error;
+    } finally {
+      setGoogleSignInLoading(false);
     }
   };
 
@@ -87,28 +113,15 @@ const SignUp = ({route}) => {
             width: '70%',
             justifyContent: 'center',
           }}>
-          {type && type === 'Signup' && (
-            <Text
-              style={{
-                fontSize: calculatedFontSize / 1.3,
-                color: '#f542a4',
-                marginTop: '10',
-                fontWeight: 'bold',
-              }}>
-              Sign up for
-            </Text>
-          )}
-          {type && type === 'Login' && (
-            <Text
-              style={{
-                fontSize: calculatedFontSize / 1.3,
-                color: '#f542a4',
-                marginTop: '10',
-                fontWeight: 'bold',
-              }}>
-              Log in for
-            </Text>
-          )}
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 1.3,
+              color: '#f542a4',
+              marginTop: '10',
+              fontWeight: 'bold',
+            }}>
+            Sign up for
+          </Text>
           <Text
             style={{
               color: 'black',
@@ -133,85 +146,24 @@ const SignUp = ({route}) => {
         </View>
       </View>
       <View style={{marginTop: 20, width: '85%', borderRadius: 5}}>
-        <TouchableOpacity
+        <AuthButton
+          iconName="logo-google"
+          text="Continue with Google"
           onPress={GoogleLogin}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            backgroundColor: appPink,
-            borderRadius: 40,
-            marginVertical: '2%',
-            paddingVertical: '3%',
-            paddingHorizontal: '5%',
-          }}>
-          <Icon name="logo-google" size={30} color="black" />
-          <Text
-            style={{
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.4,
-              textAlign: 'center',
-              flex: 1,
-            }}>
-            Continue with Google
-          </Text>
-          <View style={{width: 35}} />
-        </TouchableOpacity>
-        {Platform.OS === 'ios' && (
-          <TouchableOpacity
+          loading={googleSignInLoading}
+        />
+        {/* {Platform.OS === 'ios' && (
+          <AuthButton
+            iconName="logo-apple"
+            text="Continue with Apple"
             onPress={GoogleLogin}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              backgroundColor: appPink,
-              borderRadius: 40,
-              marginVertical: '2%',
-              paddingVertical: '3%',
-              paddingHorizontal: '5%',
-            }}>
-            <TouchableOpacity>
-              <Icon name="logo-apple" size={30} color="black" />
-            </TouchableOpacity>
-            <Text
-              style={{
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: calculatedFontSize / 2.4,
-                textAlign: 'center',
-                flex: 1,
-              }}>
-              Continue with Apple
-            </Text>
-            <View style={{width: 35}} />
-          </TouchableOpacity>
-        )}
-        <TouchableOpacity
+          />
+        )} */}
+        <AuthButton
+          iconName="mail"
+          text="Continue with Email"
           onPress={onContiueWithEmailClick}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            backgroundColor: appPink,
-            borderRadius: 40,
-            marginVertical: '2%',
-            paddingVertical: '3%',
-            paddingHorizontal: '5%',
-          }}>
-          <Icon name="mail" size={30} color="black" />
-          <Text
-            style={{
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.4,
-              textAlign: 'center',
-              flex: 1,
-            }}>
-            Continue with Email
-          </Text>
-          <View style={{width: 35}} />
-        </TouchableOpacity>
+        />
       </View>
       <View
         style={{
@@ -226,73 +178,35 @@ const SignUp = ({route}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          {type && type === 'Signup' && (
-            <View
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
+                fontSize: calculatedFontSize / 2.2,
+                color: 'black',
+                fontWeight: 'bold',
               }}>
+              Already have an Account?
+            </Text>
+
+            <TouchableOpacity
+              onPress={() => navigation.navigate('LoginOptions')}
+              style={{padding: 10, borderRadius: 5}}>
               <Text
                 style={{
-                  fontSize: calculatedFontSize / 2.2,
-                  color: 'black',
-                  fontWeight: 'bold',
-                }}>
-                Already have an Account?
-              </Text>
-
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('SignUpOptions', {type: 'Login'})
-                }
-                style={{padding: 10, borderRadius: 5}}>
-                <Text
-                  style={{
-                    color: '#f542a4',
-                    textAlign: 'center',
-                    fontSize: calculatedFontSize / 2.2,
-                    fontWeight: 'bold',
-                  }}>
-                  Log In
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          {type && type === 'Login' && (
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Text
-                style={{
-                  fontSize: calculatedFontSize / 2.2,
-                  color: 'black',
-                  fontWeight: 'bold',
+                  color: '#f542a4',
                   textAlign: 'center',
+                  fontSize: calculatedFontSize / 2.2,
+                  fontWeight: 'bold',
                 }}>
-                Don't have an Account?
+                Log In
               </Text>
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('SignUpOptions', {type: 'Signup'})
-                }
-                style={{padding: 10, borderRadius: 5}}>
-                <Text
-                  style={{
-                    color: '#f542a4',
-                    textAlign: 'center',
-                    fontSize: calculatedFontSize / 2.2,
-                    fontWeight: 'bold',
-                  }}>
-                  Sign Up
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={{width: '70%', alignItems: 'center'}}>

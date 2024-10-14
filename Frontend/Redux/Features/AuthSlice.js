@@ -12,6 +12,29 @@ const initialState = {
   errorMessage: '',
 };
 
+export const googleLogin = createAsyncThunk(
+  'auth/googleLogin',
+  async (params, thunkApi) => {
+    try {
+      console.log('Google login params:', params);
+      const user = params.user;
+      console.log('User:', user);
+      if (user) {
+        return {user};
+      } else {
+        return thunkApi.rejectWithValue({
+          message: 'User data missing in response',
+        });
+      }
+    } catch (error) {
+      console.error('Google Login Failed:', error);
+      return thunkApi.rejectWithValue({
+        message: error.response?.data?.message || 'Google Login failed',
+      });
+    }
+  },
+);
+
 // Login
 export const login = createAsyncThunk(
   'auth/login',
@@ -146,6 +169,23 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
     });
     builder.addCase(login.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.errorMessage = action.payload.message;
+      state.isAuthenticated = false;
+    });
+
+    // Handle Google login
+    builder.addCase(googleLogin.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(googleLogin.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.userData = action.payload;
+      state.isAuthenticated = true;
+    });
+    builder.addCase(googleLogin.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.errorMessage = action.payload.message;
