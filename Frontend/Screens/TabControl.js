@@ -15,7 +15,6 @@ const TabControl = ({route}) => {
 
   const [isOnboardingStarted, setIsOnboardingStarted] = useState(false);
   const {userData} = useSelector(state => state.auth);
-  console.log('userData:', userData);
 
   useState(() => {
     if (userData?.user?.isOnboardingStarted !== null) {

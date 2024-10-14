@@ -167,6 +167,11 @@ const authSlice = createSlice({
       state.isSuccess = true;
       state.userData = action.payload;
       state.isAuthenticated = true;
+
+      const {stripeConnectedAccountId} = action.payload.user;
+      state.userData.user.isOnboardingStarted = stripeConnectedAccountId
+        ? true
+        : false;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.isLoading = false;

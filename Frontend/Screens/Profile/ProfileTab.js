@@ -19,9 +19,7 @@ const calculatedFontSize = screenHeight * 0.05;
 const Profile = () => {
   const navigation = useNavigation();
   const {userData, isLoading} = useSelector(state => state.auth);
-  console.log('User data:', userData);
 
-  const email = userData?.user?.email;
   const username = userData?.user?.username;
   const fullname = userData?.user?.fullname;
   const isOnboardingStarted = userData?.user?.isOnboardingStarted;

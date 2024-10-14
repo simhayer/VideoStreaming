@@ -236,7 +236,7 @@ const ManageProducts = () => {
             <Icon name="trash-outline" size={30} color="black" />
           </TouchableOpacity>
         ) : (
-          <View style={{width: 40, marginRight: 10}} />
+          <View style={{width: 35, marginRight: 10}} />
         )}
       </View>
 

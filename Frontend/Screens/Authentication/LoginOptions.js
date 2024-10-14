@@ -33,7 +33,7 @@ const LoginOptions = ({route}) => {
   const [googleSignInLoading, setGoogleSignInLoading] = useState(false);
 
   const onContiueWithEmailClick = () => {
-    navigation.navigate('SignUp');
+    navigation.navigate('Login');
   };
 
   const fetchGoogleClientIds = async () => {

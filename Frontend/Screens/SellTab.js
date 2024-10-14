@@ -144,7 +144,7 @@ const StartStreamTab = () => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <ActivityIndicator size="large" color="grey" />
+          <ActivityIndicator size="large" color={appPink} />
           <Text
             style={{
               marginTop: 10,
