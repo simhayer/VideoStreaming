@@ -26,17 +26,19 @@ import {
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import {FlatList} from 'react-native-gesture-handler';
 import ImageResizer from 'react-native-image-resizer';
+import {addProduct} from '../../Redux/Features/ProductsSlice';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 const StartStreamTab = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
@@ -135,13 +137,12 @@ const StartStreamTab = () => {
   };
 
   // Define the addProduct function to send the POST request
-  const addProduct = async () => {
-    if (itemName.length === 0) {
-      setIsError(true);
-      setErrorMessage('Please provide an item name');
+  const handleAddProduct = () => {
+    if (!itemName) {
+      setErrorMessage('Please provide a product name.');
       return;
     }
-    setLoading(true);
+
     const formData = new FormData();
     formData.append('email', userEmail);
     formData.append('name', itemName);
@@ -149,32 +150,25 @@ const StartStreamTab = () => {
     formData.append('type', type);
 
     if (selectedImage) {
-      // Convert the file URI to a file object
-      const imageFile = {
+      formData.append('productImage', {
         uri: selectedImage,
-        type: 'image/jpeg', // Change type based on the image format
-        name: 'productImage.jpg', // Use the correct extension based on the image format
-      };
-      formData.append('productImage', imageFile);
+        type: 'image/jpeg',
+        name: 'productImage.jpg',
+      });
     }
 
-    try {
-      const response = await axios
-        .post(baseURL + apiEndpoints.addProductToUser, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        .catch(error => {
-          console.error('Failed to add product:', error);
-        });
-
-      console.log('Product added successfully:', response.data);
-      navigation.goBack();
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
+    setLoading(true);
+    dispatch(addProduct(formData))
+      .unwrap()
+      .then(() => {
+        console.log('Product added successfully');
+        navigation.goBack();
+      })
+      .catch(error => {
+        console.error('Failed to add product:', error);
+        setErrorMessage('Failed to add product.');
+      })
+      .finally(() => setLoading(false));
   };
 
   const [isBidBottomSheetVisible, setIsBidBottomSheetVisible] = useState(false);
@@ -432,7 +426,7 @@ const StartStreamTab = () => {
                 <ActivityIndicator size="large" color={appPink} />
               ) : (
                 <TouchableOpacity
-                  onPress={addProduct}
+                  onPress={handleAddProduct}
                   style={{
                     backgroundColor: appPink,
                     borderRadius: 40,

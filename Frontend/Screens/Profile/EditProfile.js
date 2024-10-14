@@ -30,9 +30,9 @@ const EditProfile = () => {
 
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
+  const localProfilePictureURI = userData?.user?.localProfilePictureURI;
 
-  const profilePictureURI = userData?.user?.profilePictureURI;
-  const [selectedImage, setSelectedImage] = useState(profilePictureURI);
+  const [selectedImage, setSelectedImage] = useState(localProfilePictureURI);
 
   const handleImagePicker = () => {
     const options = {

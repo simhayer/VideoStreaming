@@ -15,15 +15,16 @@ MERGED from [:stream-io_react-native-webrtc] C:\Users\shayer\Documents\TClone_Gi
 MERGED from [:stream-io_video-react-native-sdk] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stream-io\video-react-native-sdk\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:stripe_stripe-react-native] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stripe\stripe-react-native\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-fast-image] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fast-image\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-fs] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fs\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-gesture-handler] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-image-picker] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
 MERGED from [:react-native-incall-manager] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-incall-manager\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-linear-gradient] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-linear-gradient\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-safe-area-context] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-screens] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-svg] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-svg\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-vector-icons] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-vector-icons\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\29e3ad254108b68e1c9cac862efb9ac5\transformed\react-android-0.73.3-debug\AndroidManifest.xml:2:1-24:12
 MERGED from [com.facebook.fresco:flipper-fresco-plugin:3.1.3] C:\Users\shayer\.gradle\caches\transforms-3\24f5484147024ee7887e006f4d090daf\transformed\flipper-fresco-plugin-3.1.3\AndroidManifest.xml:8:1-13:12
 MERGED from [com.facebook.fresco:flipper:3.1.3] C:\Users\shayer\.gradle\caches\transforms-3\441392e26c7d85ebca69ae170ff9196b\transformed\flipper-3.1.3\AndroidManifest.xml:2:1-7:12
@@ -408,6 +409,8 @@ MERGED from [:stripe_stripe-react-native] C:\Users\shayer\Documents\TClone_GitSt
 MERGED from [:stripe_stripe-react-native] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stripe\stripe-react-native\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-fast-image] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fast-image\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-fast-image] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fast-image\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-fs] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fs\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-fs] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fs\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-gesture-handler\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-image-picker] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
@@ -416,6 +419,8 @@ MERGED from [:react-native-incall-manager] C:\Users\shayer\Documents\TClone_GitS
 MERGED from [:react-native-incall-manager] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-incall-manager\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-linear-gradient] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-linear-gradient\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-linear-gradient] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-linear-gradient\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-safe-area-context] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-safe-area-context] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-safe-area-context\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-screens] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-screens\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
@@ -424,8 +429,6 @@ MERGED from [:react-native-svg] C:\Users\shayer\Documents\TClone_GitStream_new1\
 MERGED from [:react-native-svg] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-svg\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-vector-icons] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-vector-icons\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:react-native-vector-icons] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-vector-icons\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:react-native-reanimated] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-reanimated\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\29e3ad254108b68e1c9cac862efb9ac5\transformed\react-android-0.73.3-debug\AndroidManifest.xml:10:5-44
 MERGED from [com.facebook.react:react-android:0.73.3] C:\Users\shayer\.gradle\caches\transforms-3\29e3ad254108b68e1c9cac862efb9ac5\transformed\react-android-0.73.3-debug\AndroidManifest.xml:10:5-44
 MERGED from [com.facebook.fresco:flipper-fresco-plugin:3.1.3] C:\Users\shayer\.gradle\caches\transforms-3\24f5484147024ee7887e006f4d090daf\transformed\flipper-fresco-plugin-3.1.3\AndroidManifest.xml:11:5-44
@@ -762,6 +765,12 @@ ADDED from [:stream-io_react-native-webrtc] C:\Users\shayer\Documents\TClone_Git
 		ADDED from [:stream-io_react-native-webrtc] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stream-io\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-60
 	android:name
 		ADDED from [:stream-io_react-native-webrtc] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\@stream-io\react-native-webrtc\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-72
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:react-native-fs] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fs\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from [:react-native-fs] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-fs\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:7:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+IMPLIED from C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\android\app\src\debug\AndroidManifest.xml:2:1-9:12 reason: com.rnfs requested WRITE_EXTERNAL_STORAGE
 provider#com.imagepicker.ImagePickerProvider
 ADDED from [:react-native-image-picker] C:\Users\shayer\Documents\TClone_GitStream_new1\VideoStreaming\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
 	android:grantUriPermissions

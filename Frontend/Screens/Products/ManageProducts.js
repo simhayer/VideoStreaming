@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -7,7 +7,6 @@ import {
   View,
   TextInput,
   ActivityIndicator,
-  Image,
 } from 'react-native';
 import {
   apiEndpoints,
@@ -16,19 +15,22 @@ import {
   colors,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {FlatList} from 'react-native-gesture-handler';
-import axios from 'axios'; // Import axios
-import {useSelector} from 'react-redux';
+import {FlatList, RefreshControl} from 'react-native-gesture-handler';
+import {useDispatch, useSelector} from 'react-redux';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import {debounce} from 'lodash';
+import {
+  deleteProducts,
+  fetchProducts,
+} from '../../Redux/Features/ProductsSlice';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 const ManageProducts = () => {
   const navigation = useNavigation();
-  const [items, setItems] = useState([]);
+  //const [items, setItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
 
@@ -37,6 +39,11 @@ const ManageProducts = () => {
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [search, setSearch] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const {items, reduxLoading} = useSelector(state => state.products);
 
   const filteredItems = items.filter(item =>
     item.name.toLowerCase().includes(search.toLowerCase()),
@@ -54,50 +61,12 @@ const ManageProducts = () => {
     debouncedSearch(value);
   };
 
-  const fetchProducts = async () => {
-    setLoading(true);
-    const payload = {
-      email: userEmail,
-    };
-    try {
-      const response = await axios.post(
-        baseURL + apiEndpoints.getUserProducts,
-        payload,
-      );
-      if (response.status === 200) {
-        setItems(response.data.products);
-      } else {
-        console.error('Failed to fetch products:', response.data);
-      }
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (items.length === 0) {
+      dispatch(fetchProducts(userEmail));
+      console.log('items:', items);
     }
-  };
-
-  const lastTriggeredTimeRef = useRef(null);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-
-  useFocusEffect(
-    useCallback(() => {
-      const currentTime = Date.now();
-      const MIN_TRIGGER_INTERVAL = 10000;
-
-      if (isFirstLoad) {
-        fetchProducts();
-        setIsFirstLoad(false);
-        lastTriggeredTimeRef.current = currentTime;
-      } else {
-        const timeSinceLastTrigger = currentTime - lastTriggeredTimeRef.current;
-
-        if (timeSinceLastTrigger >= MIN_TRIGGER_INTERVAL) {
-          fetchProducts();
-          lastTriggeredTimeRef.current = currentTime;
-        }
-      }
-    }, [isFirstLoad]),
-  );
+  }, [dispatch, items, userEmail]);
 
   const toggleSelectItem = item => {
     setSelectedItems(prevSelectedItems => {
@@ -109,33 +78,21 @@ const ManageProducts = () => {
     });
   };
 
-  const handleDonePress = async () => {
-    if (selectedItems.length > 0) {
-      const payload = {
-        email: userEmail,
-        products: selectedItems,
-      };
-
-      try {
-        const response = await axios.post(
-          baseURL + apiEndpoints.removeProductsFromUser,
-          payload,
-        );
-        if (response.status === 200) {
-          console.log('Products removed successfully:', response.data);
-          setItems(prevItems =>
-            prevItems.filter(item => !selectedItems.includes(item._id)),
-          );
-          setSelectedItems([]); // Clear selection after deletion
-        } else {
-          console.error('Failed to remove products:', response.data);
-        }
-      } catch (error) {
-        console.error('Error removing products:', error);
-      }
-    } else {
+  const handleDonePress = () => {
+    if (selectedItems.length === 0) {
       console.log('No products to delete');
+      return;
     }
+
+    dispatch(deleteProducts({email: userEmail, products: selectedItems}))
+      .unwrap()
+      .then(() => {
+        console.log('Products deleted successfully');
+        setSelectedItems([]); // Clear selection after deletion
+      })
+      .catch(error => {
+        console.error('Failed to delete products:', error);
+      });
   };
 
   const toggleSelectAll = () => {
@@ -146,6 +103,12 @@ const ManageProducts = () => {
     }
     setSelectAll(!selectAll);
   };
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    dispatch(fetchProducts(userEmail));
+    setTimeout(() => setRefreshing(false), 1000);
+  }, []);
 
   const ProductItem = React.memo(({item}) => {
     const isSelected = selectedItems.includes(item._id);
@@ -171,9 +134,10 @@ const ManageProducts = () => {
         }}
         onPress={() => navigation.navigate('ViewProduct', {item})}>
         <FastImage
-          source={{uri: itemImageUrl}}
+          source={{uri: item.localImagePath}}
           style={{width: 80, height: 80, borderRadius: 8}}
           resizeMode={FastImage.resizeMode.cover}
+          defaultSource={require('../../Resources/StreamListThumbnailBlur.png')}
         />
         <View style={{flex: 1, marginHorizontal: 12}}>
           <Text style={{fontWeight: '600', fontSize: 16}} numberOfLines={1}>
@@ -282,8 +246,8 @@ const ManageProducts = () => {
       </View>
 
       {/* Main Content */}
-      <View style={{flex: 1, width: '100%'}}>
-        {loading ? (
+      <View style={{flex: 1, width: '100%', paddingBottom: 20}}>
+        {reduxLoading ? (
           <ActivityIndicator
             size="large"
             color={appPink}
@@ -299,7 +263,6 @@ const ManageProducts = () => {
                 flexDirection: 'row',
                 justifyContent: 'flex-end',
                 alignItems: 'center',
-                marginBottom: 3,
               }}>
               <Text style={{fontSize: calculatedFontSize / 2.7}}>
                 Select all
@@ -330,6 +293,9 @@ const ManageProducts = () => {
                     No products found
                   </Text>
                 </View>
+              }
+              refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
               }
             />
           </View>

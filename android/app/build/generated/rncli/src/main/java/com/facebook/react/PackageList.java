@@ -29,6 +29,8 @@ import com.streamvideo.reactnative.StreamVideoReactNativePackage;
 import com.reactnativestripesdk.StripeSdkPackage;
 // react-native-fast-image
 import com.dylanvann.fastimage.FastImageViewPackage;
+// react-native-fs
+import com.rnfs.RNFSPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-image-picker
@@ -103,6 +105,7 @@ public class PackageList {
       new StreamVideoReactNativePackage(),
       new StripeSdkPackage(),
       new FastImageViewPackage(),
+      new RNFSPackage(),
       new RNGestureHandlerPackage(),
       new ImagePickerPackage(),
       new ImageResizerPackage(),

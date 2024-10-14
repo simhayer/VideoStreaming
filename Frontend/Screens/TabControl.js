@@ -16,7 +16,7 @@ const TabControl = ({route}) => {
   const [isOnboardingStarted, setIsOnboardingStarted] = useState(false);
   const {userData} = useSelector(state => state.auth);
 
-  useState(() => {
+  useEffect(() => {
     if (userData?.user?.isOnboardingStarted !== null) {
       setIsOnboardingStarted(userData?.user?.isOnboardingStarted);
     }
@@ -56,7 +56,7 @@ const TabControl = ({route}) => {
         tabBarStyle: {
           backgroundColor: 'white',
           paddingVertical: 5,
-          height: 60, // Adjusted height for better touch area
+          minHeight: 60, // Adjusted height for better touch area
           shadowColor: '#000',
           shadowOffset: {width: 0, height: 2},
           shadowOpacity: 0.1,

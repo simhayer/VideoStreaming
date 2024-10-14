@@ -62,7 +62,7 @@ const ViewProduct = ({route}) => {
         flex: 1,
         paddingTop: 10,
         backgroundColor: colors.background,
-        paddingHorizontal: 7, // Added consistent padding
+        paddingHorizontal: 0, // Added consistent padding
       }}>
       {/* Back Button */}
       <View style={{marginBottom: 10}}>
@@ -87,16 +87,17 @@ const ViewProduct = ({route}) => {
           shadowRadius: 4,
           overflow: 'hidden',
           padding: 20,
+          marginHorizontal: 10,
         }}>
         <FastImage
-          source={{uri: itemImageUrl}}
+          source={{uri: item.localImagePath}}
           style={{flex: 1, width: '100%'}}
           resizeMode={FastImage.resizeMode.contain}
         />
       </View>
 
       {/* Details Section */}
-      <View style={{flex: 1, marginBottom: 20}}>
+      <View style={{flex: 1, marginBottom: 20, marginHorizontal: 10}}>
         <Text
           style={{
             color: 'black',

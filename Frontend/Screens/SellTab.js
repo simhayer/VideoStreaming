@@ -201,7 +201,7 @@ const StartStreamTab = () => {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-between',
-              marginTop: 20,
+              marginTop: 15,
               width: '90%',
               flex: 1,
             }}>
@@ -274,6 +274,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     fontSize: calculatedFontSize / 2.7,
+    textAlign: 'center',
   },
 });
 

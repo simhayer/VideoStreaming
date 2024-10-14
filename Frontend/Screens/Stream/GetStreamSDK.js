@@ -23,7 +23,7 @@ import {
   errorRed,
 } from '../../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatList} from 'react-native-gesture-handler';
@@ -43,12 +43,15 @@ import Animated, {
   withTiming,
   interpolate,
 } from 'react-native-reanimated';
+import {fetchProducts} from '../../Redux/Features/ProductsSlice';
+import FastImage from 'react-native-fast-image';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 const GetStreamSDK = ({route}) => {
   const {title, thumbnail} = route.params;
+  const dispatch = useDispatch();
 
   const [socketId, setSocketId] = useState(null);
   const [broadcastId, setBroadcastId] = useState(null);
@@ -71,9 +74,7 @@ const GetStreamSDK = ({route}) => {
   const [userBid, setUserBid] = useState(0);
   const [watchers, setWatchers] = useState(0);
   const [streamError, setStreamError] = useState(false);
-
-  const [items, setItems] = useState([]);
-
+  const {items, reduxLoading} = useSelector(state => state.products);
   const navigation = useNavigation();
 
   const [meetingId, setMeetingId] = useState(null);
@@ -322,28 +323,35 @@ const GetStreamSDK = ({route}) => {
     {label: '30s', value: '30s'},
   ]);
 
-  const fetchProducts = async () => {
-    const payload = {
-      email: userEmail,
-    };
-    try {
-      const response = await axios.post(
-        baseURL + apiEndpoints.getUserProducts,
-        payload,
-      );
-      if (response.status === 200) {
-        setItems(response.data.products);
-      } else {
-        console.error('Failed to fetch products:', response.data);
-      }
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    }
-  };
+  // const fetchProducts = async () => {
+  //   const payload = {
+  //     email: userEmail,
+  //   };
+  //   try {
+  //     const response = await axios.post(
+  //       baseURL + apiEndpoints.getUserProducts,
+  //       payload,
+  //     );
+  //     if (response.status === 200) {
+  //       setItems(response.data.products);
+  //     } else {
+  //       console.error('Failed to fetch products:', response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching products:', error);
+  //   }
+  // };
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (items.length === 0) {
+      dispatch(fetchProducts(userEmail));
+      console.log('items:', items);
+    }
+  }, [dispatch, items, userEmail]);
 
   if (streamError) {
     return (
@@ -541,6 +549,7 @@ const GetStreamSDK = ({route}) => {
                   fontSize: calculatedFontSize / 2.5,
                   fontWeight: 'bold',
                   textAlign: 'center',
+                  color: appPink,
                 }}>
                 Bidding Controls
               </Text>
@@ -708,12 +717,18 @@ const GetStreamSDK = ({route}) => {
                                   : 'white',
                               }}
                               onPress={() => handleItemPress(item)}>
-                              <Image
-                                source={{uri: itemImageUrl}}
-                                resizeMode="contain"
-                                style={{width: '20%', height: 50}}
+                              <FastImage
+                                source={{uri: item.localImagePath}}
+                                style={{
+                                  width: 45,
+                                  height: 45,
+                                  borderRadius: 8,
+                                  margin: 5,
+                                  marginLeft: 10,
+                                }}
+                                resizeMode={FastImage.resizeMode.cover}
                               />
-                              <View style={{flex: 1}}>
+                              <View style={{flex: 1, marginLeft: 10}}>
                                 <Text
                                   style={{
                                     fontWeight: 'bold',

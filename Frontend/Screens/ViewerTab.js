@@ -81,7 +81,7 @@ const ViewerTab = () => {
   useFocusEffect(
     useCallback(() => {
       const currentTime = Date.now();
-      const MIN_TRIGGER_INTERVAL = 10000;
+      const MIN_TRIGGER_INTERVAL = 20000;
 
       if (isFirstLoad) {
         showList();
@@ -115,7 +115,7 @@ const ViewerTab = () => {
       setLoadingMore(true);
     }
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 12000);
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
 
     try {
       const response = await axios.post(

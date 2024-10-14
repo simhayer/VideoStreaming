@@ -23,7 +23,10 @@
 
     <uses-feature
         android:name="android.hardware.usb.host"
-        android:required="false" /> <!-- See https://developer.android.com/training/package-visibility/declaring for more details. -->
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- See https://developer.android.com/training/package-visibility/declaring for more details. -->
     <queries>
 
         <!-- Added to check the default browser that will host the AuthFlow. -->
