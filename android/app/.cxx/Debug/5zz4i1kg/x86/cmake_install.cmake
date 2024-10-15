@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/shayer/Documents/TClone_new/VideoStreaming/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup
+# Install script for directory: C:/Users/shayer/Documents/BARS_new/VideoStreaming/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,12 +44,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/shayer/Documents/TClone_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/rnasyncstorage_autolinked_build/cmake_install.cmake")
-  include("C:/Users/shayer/Documents/TClone_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/RNImagePickerSpec_autolinked_build/cmake_install.cmake")
-  include("C:/Users/shayer/Documents/TClone_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/safeareacontext_autolinked_build/cmake_install.cmake")
-  include("C:/Users/shayer/Documents/TClone_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/rnscreens_autolinked_build/cmake_install.cmake")
-  include("C:/Users/shayer/Documents/TClone_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/rnsvg_autolinked_build/cmake_install.cmake")
-  include("C:/Users/shayer/Documents/TClone_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/RNVectorIconsSpec_autolinked_build/cmake_install.cmake")
+  include("C:/Users/shayer/Documents/BARS_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/rnasyncstorage_autolinked_build/cmake_install.cmake")
+  include("C:/Users/shayer/Documents/BARS_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/RNImagePickerSpec_autolinked_build/cmake_install.cmake")
+  include("C:/Users/shayer/Documents/BARS_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/safeareacontext_autolinked_build/cmake_install.cmake")
+  include("C:/Users/shayer/Documents/BARS_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/rnscreens_autolinked_build/cmake_install.cmake")
+  include("C:/Users/shayer/Documents/BARS_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/rnsvg_autolinked_build/cmake_install.cmake")
+  include("C:/Users/shayer/Documents/BARS_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/RNVectorIconsSpec_autolinked_build/cmake_install.cmake")
 
 endif()
 
@@ -61,5 +61,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/shayer/Documents/TClone_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/shayer/Documents/BARS_new/VideoStreaming/android/app/.cxx/Debug/5zz4i1kg/x86/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

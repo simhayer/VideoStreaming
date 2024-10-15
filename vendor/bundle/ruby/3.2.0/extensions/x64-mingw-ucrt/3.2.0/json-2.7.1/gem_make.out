@@ -1,16 +1,16 @@
-current directory: C:/Users/hayer/Documents/Native_Project/AweP2/TClone/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
+current directory: C:/Users/hayer/Documents/Native_Project/AweP2/BARS/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
 C:/Ruby32-x64/bin/ruby.exe extconf.rb
 creating Makefile
 
-current directory: C:/Users/hayer/Documents/Native_Project/AweP2/TClone/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
+current directory: C:/Users/hayer/Documents/Native_Project/AweP2/BARS/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
 make DESTDIR\= sitearchdir\=./.gem.20240129-13040-c2q3w1 sitelibdir\=./.gem.20240129-13040-c2q3w1 clean
 
-current directory: C:/Users/hayer/Documents/Native_Project/AweP2/TClone/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
+current directory: C:/Users/hayer/Documents/Native_Project/AweP2/BARS/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
 make DESTDIR\= sitearchdir\=./.gem.20240129-13040-c2q3w1 sitelibdir\=./.gem.20240129-13040-c2q3w1
 make: Nothing to be done for 'all'.
 
-current directory: C:/Users/hayer/Documents/Native_Project/AweP2/TClone/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
+current directory: C:/Users/hayer/Documents/Native_Project/AweP2/BARS/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
 make DESTDIR\= sitearchdir\=./.gem.20240129-13040-c2q3w1 sitelibdir\=./.gem.20240129-13040-c2q3w1 install
 
-current directory: C:/Users/hayer/Documents/Native_Project/AweP2/TClone/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
+current directory: C:/Users/hayer/Documents/Native_Project/AweP2/BARS/vendor/bundle/ruby/3.2.0/gems/json-2.7.1/ext/json
 make DESTDIR\= sitearchdir\=./.gem.20240129-13040-c2q3w1 sitelibdir\=./.gem.20240129-13040-c2q3w1 clean

@@ -1,4 +1,4 @@
-                        -HC:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup
+                        -HC:\Users\shayer\Documents\BARS_new\VideoStreaming\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup
 -DCMAKE_SYSTEM_NAME=Android
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 -DCMAKE_SYSTEM_VERSION=21
@@ -9,14 +9,14 @@
 -DCMAKE_ANDROID_NDK=C:\Users\shayer\AppData\Local\Android\Sdk\ndk\25.1.8937393
 -DCMAKE_TOOLCHAIN_FILE=C:\Users\shayer\AppData\Local\Android\Sdk\ndk\25.1.8937393\build\cmake\android.toolchain.cmake
 -DCMAKE_MAKE_PROGRAM=C:\Users\shayer\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.exe
--DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\build\intermediates\cxx\Debug\5zz4i1kg\obj\x86_64
--DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\build\intermediates\cxx\Debug\5zz4i1kg\obj\x86_64
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\shayer\Documents\BARS_new\VideoStreaming\android\app\build\intermediates\cxx\Debug\5zz4i1kg\obj\x86_64
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\Users\shayer\Documents\BARS_new\VideoStreaming\android\app\build\intermediates\cxx\Debug\5zz4i1kg\obj\x86_64
 -DCMAKE_BUILD_TYPE=Debug
--DCMAKE_FIND_ROOT_PATH=C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\.cxx\Debug\5zz4i1kg\prefab\x86_64\prefab
--BC:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\.cxx\Debug\5zz4i1kg\x86_64
+-DCMAKE_FIND_ROOT_PATH=C:\Users\shayer\Documents\BARS_new\VideoStreaming\android\app\.cxx\Debug\5zz4i1kg\prefab\x86_64\prefab
+-BC:\Users\shayer\Documents\BARS_new\VideoStreaming\android\app\.cxx\Debug\5zz4i1kg\x86_64
 -GNinja
--DPROJECT_BUILD_DIR=C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\build
--DREACT_ANDROID_DIR=C:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native\ReactAndroid
+-DPROJECT_BUILD_DIR=C:\Users\shayer\Documents\BARS_new\VideoStreaming\android\app\build
+-DREACT_ANDROID_DIR=C:\Users\shayer\Documents\BARS_new\VideoStreaming\node_modules\react-native\ReactAndroid
 -DANDROID_STL=c++_shared
 -DANDROID_USE_LEGACY_TOOLCHAIN_FILE=ON
                         Build command args: []

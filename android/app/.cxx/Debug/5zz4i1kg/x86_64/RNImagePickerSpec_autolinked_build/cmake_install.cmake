@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/shayer/Documents/TClone_new/VideoStreaming/node_modules/react-native-image-picker/android/build/generated/source/codegen/jni
+# Install script for directory: C:/Users/shayer/Documents/BARS_new/VideoStreaming/node_modules/react-native-image-picker/android/build/generated/source/codegen/jni
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -170,7 +170,7 @@ rule CXX_SHARED_LIBRARY_LINKER__react_codegen_RNVectorIconsSpec_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\Users\shayer\AppData\Local\Android\Sdk\cmake\3.22.1\bin\cmake.exe --regenerate-during-build -SC:\Users\shayer\Documents\TClone_new\VideoStreaming\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup -BC:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\.cxx\Debug\5zz4i1kg\armeabi-v7a
+  command = C:\Users\shayer\AppData\Local\Android\Sdk\cmake\3.22.1\bin\cmake.exe --regenerate-during-build -SC:\Users\shayer\Documents\BARS_new\VideoStreaming\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup -BC:\Users\shayer\Documents\BARS_new\VideoStreaming\android\app\.cxx\Debug\5zz4i1kg\armeabi-v7a
   description = Re-running CMake...
   generator = 1
 
@@ -179,7 +179,7 @@ rule RERUN_CMAKE
 # Rule for re-checking globbed directories.
 
 rule VERIFY_GLOBS
-  command = C:\Users\shayer\AppData\Local\Android\Sdk\cmake\3.22.1\bin\cmake.exe -P C:\Users\shayer\Documents\TClone_new\VideoStreaming\android\app\.cxx\Debug\5zz4i1kg\armeabi-v7a\CMakeFiles\VerifyGlobs.cmake
+  command = C:\Users\shayer\AppData\Local\Android\Sdk\cmake\3.22.1\bin\cmake.exe -P C:\Users\shayer\Documents\BARS_new\VideoStreaming\android\app\.cxx\Debug\5zz4i1kg\armeabi-v7a\CMakeFiles\VerifyGlobs.cmake
   description = Re-checking globbed directories...
   generator = 1
 

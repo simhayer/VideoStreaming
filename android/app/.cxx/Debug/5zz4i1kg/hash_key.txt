@@ -7,7 +7,7 @@
 #   - $HASH is the hash value computed from this text.
 #   - $CMAKE is the path to CMake 3.22.1.
 #   - $NINJA is the path to Ninja.
--HC:/Users/shayer/Documents/TClone_new/VideoStreaming/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup
+-HC:/Users/shayer/Documents/BARS_new/VideoStreaming/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup
 -DCMAKE_SYSTEM_NAME=Android
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 -DCMAKE_SYSTEM_VERSION=21
@@ -25,6 +25,6 @@
 -B$PROJECT/app/.cxx/Debug/$HASH/$ABI
 -GNinja
 -DPROJECT_BUILD_DIR=$PROJECT/app/build
--DREACT_ANDROID_DIR=C:/Users/shayer/Documents/TClone_new/VideoStreaming/node_modules/react-native/ReactAndroid
+-DREACT_ANDROID_DIR=C:/Users/shayer/Documents/BARS_new/VideoStreaming/node_modules/react-native/ReactAndroid
 -DANDROID_STL=c++_shared
 -DANDROID_USE_LEGACY_TOOLCHAIN_FILE=ON
