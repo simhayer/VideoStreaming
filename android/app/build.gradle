@@ -52,9 +52,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.tclone"
+    namespace "com.hayersimrat.bars"
     defaultConfig {
-        applicationId "com.tclone"
+        applicationId "com.hayersimrat.bars"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -708,155 +708,155 @@ const VideoScreen = ({route}) => {
             )}
           </View>
         </TouchableWithoutFeedback>
-        {isCannotBidBottomSheetVisible && (
-          <BottomSheet
-            ref={cannotBidBottomSheetRef}
-            snapPoints={cannotBidSnapPoints}
-            index={isCannotBidBottomSheetVisible ? 1 : -1}
-            onChange={handleCannotBidSheetChanges}>
-            <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-              <View
+      </SafeAreaView>
+      {isCannotBidBottomSheetVisible && (
+        <BottomSheet
+          ref={cannotBidBottomSheetRef}
+          snapPoints={cannotBidSnapPoints}
+          index={isCannotBidBottomSheetVisible ? 1 : -1}
+          onChange={handleCannotBidSheetChanges}>
+          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+            <View
+              style={{
+                alignItems: 'center',
+                marginHorizontal: '4%',
+                marginTop: 10,
+              }}
+              onLayout={event => {
+                const {height} = event.nativeEvent.layout;
+                if (height === 0) return;
+                setViewHeightPercentage(
+                  `${((height + 50) / screenHeight) * 100}%`,
+                );
+              }}>
+              <Text
                 style={{
-                  alignItems: 'center',
-                  marginHorizontal: '4%',
-                  marginTop: 10,
-                }}
-                onLayout={event => {
-                  const {height} = event.nativeEvent.layout;
-                  if (height === 0) return;
-                  setViewHeightPercentage(
-                    `${((height + 50) / screenHeight) * 100}%`,
-                  );
+                  color: 'black',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  fontSize: calculatedFontSize / 2.8,
+                }}>
+                For placing a bid, you need to add payment and shipping
+                information
+              </Text>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: calculatedFontSize / 3,
+                }}>
+                You will not be charged until your bid is accepted. All bids
+                placed are final.
+              </Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('AddPaymentOrShipping')}
+                style={{
+                  paddingVertical: '2%',
+                  width: '100%',
+                  backgroundColor: appPink,
+                  borderRadius: 40,
+                  marginTop: '6%',
+                  justifyContent: 'center',
                 }}>
                 <Text
                   style={{
-                    color: 'black',
-                    fontWeight: 'bold',
+                    color: 'white',
                     textAlign: 'center',
-                    fontSize: calculatedFontSize / 2.8,
+                    fontSize: calculatedFontSize / 2.2,
+                    fontWeight: 'bold',
                   }}>
-                  For placing a bid, you need to add payment and shipping
-                  information
+                  Add Info
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </BottomSheetView>
+        </BottomSheet>
+      )}
+      {isBidBottomSheetVisible && (
+        <BottomSheet
+          ref={bidBottomSheetRef}
+          snapPoints={snapPoints}
+          index={isBidBottomSheetVisible ? 1 : -1}
+          onChange={handleSheetChanges}>
+          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+            <View style={{flexDirection: 'column', marginTop: 2}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    fontSize: calculatedFontSize / 2,
+                  }}>
+                  Current Bid:{'     '}
                 </Text>
                 <Text
                   style={{
-                    textAlign: 'center',
-                    fontSize: calculatedFontSize / 3,
+                    fontSize: calculatedFontSize / 1.4,
                   }}>
-                  You will not be charged until your bid is accepted. All bids
-                  placed are final.
+                  ${curBid}
                 </Text>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('AddPaymentOrShipping')}
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  minHeight: 40,
+                }}>
+                <Text
                   style={{
-                    paddingVertical: '2%',
-                    width: '100%',
-                    backgroundColor: appPink,
-                    borderRadius: 40,
-                    marginTop: '6%',
-                    justifyContent: 'center',
+                    fontSize: calculatedFontSize / 1.4,
                   }}>
-                  <Text
-                    style={{
-                      color: 'white',
-                      textAlign: 'center',
-                      fontSize: calculatedFontSize / 2.2,
-                      fontWeight: 'bold',
-                    }}>
-                    Add Info
-                  </Text>
+                  ${' '}
+                </Text>
+                <TextInput
+                  placeholder="Enter Bid"
+                  keyboardType="numeric"
+                  maxLength={5}
+                  textAlign="center"
+                  value={userBid}
+                  onChangeText={text => {
+                    const numericValue = text.replace(/[^0-9]/g, '');
+                    setUserBid(numericValue);
+                  }}
+                  style={{
+                    width: '30%',
+                    borderBottomWidth: 1,
+                    textAlign: 'center',
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={handleSendCustomBid}
+                  disabled={userBid <= curBid}
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginLeft: '10%',
+                    marginTop: '2%',
+                    opacity: userBid <= curBid ? 0.5 : 1,
+                  }}>
+                  <Icon
+                    name="arrow-up-circle"
+                    size={40}
+                    color={userBid <= curBid ? 'gray' : '#f542a4'}
+                  />
                 </TouchableOpacity>
               </View>
-            </BottomSheetView>
-          </BottomSheet>
-        )}
-        {isBidBottomSheetVisible && (
-          <BottomSheet
-            ref={bidBottomSheetRef}
-            snapPoints={snapPoints}
-            index={isBidBottomSheetVisible ? 1 : -1}
-            onChange={handleSheetChanges}>
-            <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-              <View style={{flexDirection: 'column', marginTop: 2}}>
-                <View
+              <View style={{alignItems: 'center'}}>
+                <Text
                   style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    color: 'red',
+                    marginTop: '5%',
                   }}>
-                  <Text
-                    style={{
-                      fontSize: calculatedFontSize / 2,
-                    }}>
-                    Current Bid:{'     '}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: calculatedFontSize / 1.4,
-                    }}>
-                    ${curBid}
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    minHeight: 40,
-                  }}>
-                  <Text
-                    style={{
-                      fontSize: calculatedFontSize / 1.4,
-                    }}>
-                    ${' '}
-                  </Text>
-                  <TextInput
-                    placeholder="Enter Bid"
-                    keyboardType="numeric"
-                    maxLength={5}
-                    textAlign="center"
-                    value={userBid}
-                    onChangeText={text => {
-                      const numericValue = text.replace(/[^0-9]/g, '');
-                      setUserBid(numericValue);
-                    }}
-                    style={{
-                      width: '30%',
-                      borderBottomWidth: 1,
-                      textAlign: 'center',
-                    }}
-                  />
-                  <TouchableOpacity
-                    onPress={handleSendCustomBid}
-                    disabled={userBid <= curBid}
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginLeft: '10%',
-                      marginTop: '2%',
-                      opacity: userBid <= curBid ? 0.5 : 1,
-                    }}>
-                    <Icon
-                      name="arrow-up-circle"
-                      size={40}
-                      color={userBid <= curBid ? 'gray' : '#f542a4'}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <View style={{alignItems: 'center'}}>
-                  <Text
-                    style={{
-                      color: 'red',
-                      marginTop: '5%',
-                    }}>
-                    Time Left: {timeLeft} s
-                  </Text>
-                </View>
+                  Time Left: {timeLeft} s
+                </Text>
               </View>
-            </BottomSheetView>
-          </BottomSheet>
-        )}
-      </SafeAreaView>
+            </View>
+          </BottomSheetView>
+        </BottomSheet>
+      )}
     </SafeAreaView>
   );
 };
