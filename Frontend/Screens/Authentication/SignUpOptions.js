@@ -64,6 +64,9 @@ const SignUp = () => {
 
   const GoogleLogin = async () => {
     setGoogleSignInLoading(true);
+    if (!clientIds) {
+      fetchGoogleClientIds();
+    }
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();

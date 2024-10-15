@@ -16,7 +16,7 @@ const initialState = {
 
 export const googleLogin = createAsyncThunk(
   'auth/googleLogin',
-  async (params, thunkApi) => {
+  async (params, {dispatch, rejectWithValue}) => {
     try {
       const user = params.user;
       if (user) {
