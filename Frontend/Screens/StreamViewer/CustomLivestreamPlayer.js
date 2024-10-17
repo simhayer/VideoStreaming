@@ -69,7 +69,7 @@ const CustomLivestreamLayout = () => {
           style={{
             flexDirection: 'row',
             justifyContent: 'flex-end',
-            marginRight: 50,
+            marginRight: 60,
           }}>
           <Text
             style={{

@@ -30,6 +30,7 @@ const ViewProduct = React.lazy(() =>
 //Actually lazy load the screens
 //const GetStreamSDK = lazy(() => import('../Screens/Stream/GetStreamSDK'));
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
+import ViewProfile from '../Screens/Profile/ViewProfile';
 //const EditProfile = React.lazy(() => import('../../Screens/EditProfile'));
 const EditProfile = React.lazy(() => import('../Screens/Profile/EditProfile'));
 const EnterOrderTracking = lazy(() =>
@@ -87,7 +88,7 @@ const LoggedInStack = () => {
       />
       <Stack.Screen name="ContinueOnboarding" component={ContinueOnboarding} />
       <Stack.Screen name="GetStreamViewerSDK" component={GetStreamViewerSDK} />
-
+      <Stack.Screen name="ViewProfile" component={ViewProfile} />
       {/* Conditionally load the SellerOrders screen */}
       {isSeller && (
         <>

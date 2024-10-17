@@ -23,7 +23,7 @@ import axios from 'axios';
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
 
-const Profile = ({route}) => {
+const ViewProfile = ({route}) => {
   const navigation = useNavigation();
 
   username = route.params.username;
@@ -141,4 +141,4 @@ const Profile = ({route}) => {
   );
 };
 
-export default Profile;
+export default ViewProfile;

@@ -321,6 +321,30 @@ const VideoScreen = ({route}) => {
     checkPaymentandAddressExist(userEmail);
   }, [userEmail]);
 
+  const [controlsBottomSheetVisible, setControlsBottomSheetVisible] =
+    useState(false);
+
+  const controlsBottomSheetRef = useRef(null);
+
+  const [controlsHeightPercentage, setControlsHeightPercentage] =
+    useState('15%');
+
+  const controlsSnapPoints = useMemo(() => ['1%', '50%'], []);
+
+  const onControlsPressed = () => {
+    setControlsBottomSheetVisible(true);
+    controlsBottomSheetRef.current?.expand();
+  };
+
+  const handleContolsSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+    if (index === 0) {
+      console.log('Closing bottom sheet');
+      //todo:get this function to work
+      setControlsBottomSheetVisible(false);
+    }
+  }, []);
+
   if (streamError) {
     return (
       <SafeAreaView
@@ -372,6 +396,11 @@ const VideoScreen = ({route}) => {
 
     cannotBidBottomSheetRef.current?.close();
     bidBottomSheetRef.current?.close();
+    controlsBottomSheetRef.current?.close();
+  };
+
+  const closeControls = () => {
+    controlsBottomSheetRef.current?.close();
   };
 
   return (
@@ -395,19 +424,32 @@ const VideoScreen = ({route}) => {
                 padding: '2%',
                 zIndex: 1,
               }}>
-              <Image
-                source={{uri: profilePictureURL}}
-                style={styles.profilePicture}
-              />
-              <Text
+              <TouchableOpacity
                 style={{
-                  color: 'white',
-                  fontSize: calculatedFontSize / 2.5,
-                  fontWeight: 'bold',
-                  flex: 1,
-                }}>
-                {username}
-              </Text>
+                  padding: 1,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingRight: 20,
+                }}
+                onPress={() =>
+                  navigation.navigate('ViewProfile', {username: username})
+                }>
+                <Image
+                  source={{uri: profilePictureURL}}
+                  style={styles.profilePicture}
+                />
+
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: calculatedFontSize / 2.5,
+                    fontWeight: 'bold',
+                    marginLeft: 10,
+                  }}>
+                  {username}
+                </Text>
+              </TouchableOpacity>
+              <View style={{flex: 1}}></View>
               {/* <Text
                 style={{
                   color: 'white',
@@ -424,7 +466,7 @@ const VideoScreen = ({route}) => {
                   alignItems: 'center',
                 }}
                 onPress={closeStream}>
-                <Icon name="close" size={20} color="white" />
+                <Icon name="close" size={22} color="white" />
               </TouchableOpacity>
             </View>
             {showWinner && (
@@ -535,15 +577,17 @@ const VideoScreen = ({route}) => {
             <View
               style={{
                 width: '100%',
-                justifyContent: 'center',
+                justifyContent: 'space-between',
                 minHeight: 35,
+                flexDirection: 'row',
+                alignItems: 'center',
               }}>
               <View
                 style={{
                   borderWidth: 1,
                   borderColor: 'grey',
                   width: '70%',
-                  marginLeft: '5%',
+                  marginLeft: '4%',
                   borderRadius: 20,
                   justifyContent: 'center',
                 }}>
@@ -564,7 +608,7 @@ const VideoScreen = ({route}) => {
                       padding: 5,
                     }}
                     placeholder="Add a comment..."
-                    placeholderTextColor="grey"
+                    placeholderTextColor="white"
                     value={comment}
                     onChangeText={handleCommentChange}
                     returnKeyType="send"
@@ -580,6 +624,13 @@ const VideoScreen = ({route}) => {
                     <Icon name="arrow-up-circle" size={35} color="grey" />
                   </TouchableOpacity>
                 </View>
+              </View>
+              <View style={{marginRight: 10}}>
+                <TouchableOpacity
+                  style={{padding: 5}}
+                  onPress={onControlsPressed}>
+                  <Icon name="ellipsis-horizontal" size={35} color="white" />
+                </TouchableOpacity>
               </View>
             </View>
             <View
@@ -857,6 +908,116 @@ const VideoScreen = ({route}) => {
           </BottomSheetView>
         </BottomSheet>
       )}
+      {controlsBottomSheetVisible && (
+        <BottomSheet
+          ref={controlsBottomSheetRef}
+          snapPoints={controlsSnapPoints}
+          index={controlsBottomSheetVisible ? 1 : -1}
+          onChange={handleContolsSheetChanges}>
+          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginHorizontal: '3%',
+                marginTop: 10,
+              }}>
+              <View style={{width: 30}} />
+              <TouchableOpacity
+                style={{
+                  padding: 1,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingRight: 20,
+                  justifyContent: 'center',
+                }}
+                onPress={() =>
+                  navigation.navigate('ViewProfile', {username: username})
+                }>
+                <Image
+                  source={{uri: profilePictureURL}}
+                  style={styles.profilePicture}
+                />
+
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: calculatedFontSize / 2.5,
+                    fontWeight: 'bold',
+                    marginLeft: 10,
+                  }}>
+                  {username}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                  borderRadius: 30,
+                  padding: 5,
+                  alignItems: 'center',
+                }}
+                onPress={closeControls}>
+                <Icon name="chevron-down" size={22} color="white" />
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                height: 1,
+                backgroundColor: 'rgba(0,0,0,0.1)',
+                marginVertical: 8,
+                marginHorizontal: 10,
+              }}
+            />
+            <TouchableOpacity
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 10,
+              }}
+              onPress={() =>
+                navigation.navigate('ViewProfile', {username: username})
+              }>
+              <View style={styles.controlsIconStyle}>
+                <Icon name="person-circle-outline" size={25} color="white" />
+              </View>
+              <Text style={styles.controlsTextStyle}>View Profile</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 10,
+              }}>
+              <View style={styles.controlsIconStyle}>
+                <Icon name="ban" size={25} color="white" />
+              </View>
+              <Text style={styles.controlsTextStyle}>Block</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 10,
+              }}>
+              <View
+                style={{
+                  backgroundColor: 'grey',
+                  borderRadius: 30,
+                  padding: 7,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginLeft: '5%',
+                  paddingBottom: 9,
+                  paddingHorizontal: 9,
+                }}>
+                <Icon name="warning" size={25} color="white" />
+              </View>
+              <Text style={styles.controlsTextStyle}>Report seller</Text>
+            </TouchableOpacity>
+          </BottomSheetView>
+        </BottomSheet>
+      )}
     </SafeAreaView>
   );
 };
@@ -876,8 +1037,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   profilePicture: {
-    width: '8%',
-    height: '100%',
+    width: 30,
+    height: 30,
     borderRadius: 25,
     marginRight: '1%',
   },
@@ -917,6 +1078,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: '2%',
     color: 'white',
     width: '100%',
+  },
+  controlsTextStyle: {
+    marginLeft: '5%',
+    fontSize: calculatedFontSize / 2.1,
+    color: 'black',
+    fontWeight: '700',
+  },
+  controlsIconStyle: {
+    backgroundColor: 'grey',
+    borderRadius: 30,
+    padding: 9,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: '5%',
   },
 });
 
