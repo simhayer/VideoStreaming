@@ -16,6 +16,7 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import {baseURL, apiEndpoints, colors} from '../../Resources/Constants';
 //import {uploadProfilePicture} from '../Redux/Features/AuthSlice';
 import {uploadProfilePicture} from '../../Redux/Features/AuthSlice';
+import ImageResizer from 'react-native-image-resizer';
 
 const EditProfile = () => {
   const {userData} = useSelector(state => state.auth);
@@ -47,15 +48,26 @@ const EditProfile = () => {
         console.log('ImagePicker Error: ', response.error);
       } else {
         const uri = response.assets[0].uri;
-        setSelectedImage(uri);
-        const updateParams = {email: userData.user.email, uri};
-        dispatch(uploadProfilePicture(updateParams))
-          .unwrap()
-          .then(() => {
-            console.log('Profile picture updated successfully');
+
+        // Resize the image
+        ImageResizer.createResizedImage(uri, 800, 600, 'JPEG', 80)
+          .then(resizedImage => {
+            setSelectedImage(resizedImage.uri);
+            const updateParams = {
+              email: userData.user.email,
+              uri: resizedImage.uri,
+            };
+            dispatch(uploadProfilePicture(updateParams))
+              .unwrap()
+              .then(() => {
+                console.log('Profile picture updated successfully');
+              })
+              .catch(err => {
+                console.error('Error:', err);
+              });
           })
           .catch(err => {
-            console.error('Error:', err);
+            console.log('Image Resizing Error: ', err);
           });
       }
     });

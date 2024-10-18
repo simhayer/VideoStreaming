@@ -511,7 +511,7 @@ const VideoScreen = ({route}) => {
                     const hasProfilePicture =
                       profilePictureFilename !== 'null' &&
                       profilePictureFilename !== '';
-                    const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+                    const profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
                     return (
                       <Pressable
                         style={{

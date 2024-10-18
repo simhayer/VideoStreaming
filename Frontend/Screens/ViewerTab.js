@@ -290,7 +290,10 @@ const ViewerTab = () => {
   const renderItem = useCallback(
     ({item}) => {
       const profilePictureFilename = item.profilePicture.split('/').pop();
-      const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+      console.log('Profile picture filename:', profilePictureFilename);
+      const profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
+
+      console.log('Profile picture URL:', profilePictureURL);
 
       return (
         <BroadcastItem item={item} profilePictureURL={profilePictureURL} />

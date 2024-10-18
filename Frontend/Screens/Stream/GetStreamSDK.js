@@ -160,7 +160,16 @@ const GetStreamSDK = ({route}) => {
 
       console.log('Socket ID:', socketId);
       const call = client.call('livestream', socketId);
-      await call.join({create: true});
+      await call.join({
+        create: true,
+        data: {
+          settings_override: {
+            audio: {mic_default_on: true, access_request_enabled: true},
+            video: {access_request_enabled: true},
+          },
+        },
+      });
+      //await call.join({create: true});
       setMyCall(call);
     } catch (error) {
       console.error(
@@ -477,7 +486,7 @@ const GetStreamSDK = ({route}) => {
                         const profilePictureFilename = item.userProfilePicture
                           .split('/')
                           .pop();
-                        const profilePictureURL = `${baseURL}/profilePicture/${profilePictureFilename}`;
+                        const profilePictureURL = `${baseURL}profilePicture/thumbnail${profilePictureFilename}`;
                         return (
                           <Pressable
                             style={{
