@@ -1,7 +1,9 @@
 import {useState} from 'react';
 import {
   Dimensions,
+  Linking,
   SafeAreaView,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -9,8 +11,16 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-import {logout} from '../Redux/Features/AuthSlice';
-import {colors} from '../Resources/Constants';
+import {deleteUser, logout} from '../Redux/Features/AuthSlice';
+import {
+  apiEndpoints,
+  baseURL,
+  colors,
+  errorRed,
+  PrivacyPolicyLink,
+  TermsAndConditionsLink,
+} from '../Resources/Constants';
+import axios from 'axios';
 
 export default function AddPaymentMethod() {
   const dispatch = useDispatch();
@@ -30,6 +40,30 @@ export default function AddPaymentMethod() {
     };
 
     dispatch(logout(logoutParams));
+  };
+
+  const redirectToTermsAndConditions = () => {
+    Linking.openURL(TermsAndConditionsLink);
+  };
+
+  const redirectToPrivacyPolicy = () => {
+    Linking.openURL(PrivacyPolicyLink);
+  };
+
+  const onDeleteAccountClick = async () => {
+    console.log('Email from redux, ', userEmail);
+    const deleteParams = {
+      email: userEmail,
+    };
+
+    try {
+      setLoading(true);
+      dispatch(deleteUser(deleteParams));
+    } catch (error) {
+      console.log('Error deleting account, ', error.response.data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const renderSettingOption = (iconName, label, onPress) => (
@@ -87,7 +121,7 @@ export default function AddPaymentMethod() {
       </View>
 
       {/* Settings Options */}
-      <View style={{marginTop: 20, width: '100%'}}>
+      <ScrollView style={{marginTop: 20, width: '100%'}}>
         {renderSettingOption('person-circle-outline', 'Profile', () =>
           navigation.navigate('EditProfile'),
         )}
@@ -97,8 +131,42 @@ export default function AddPaymentMethod() {
         {renderSettingOption('cart-outline', 'Orders', () =>
           navigation.navigate('Orders'),
         )}
+        {renderSettingOption(
+          'lock-closed-outline',
+          'Privacy policy',
+          redirectToPrivacyPolicy,
+        )}
+        {renderSettingOption(
+          'newspaper-outline',
+          'Terms and Conditions',
+          redirectToTermsAndConditions,
+        )}
+        {renderSettingOption('chatbox-outline', 'Contact Us', () =>
+          navigation.navigate('ContactUs'),
+        )}
         {renderSettingOption('log-out-outline', 'Log out', onLogoutClick)}
-      </View>
+        <TouchableOpacity
+          onPress={onDeleteAccountClick}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            paddingVertical: 14,
+            paddingHorizontal: 16,
+            marginBottom: 8,
+          }}
+          activeOpacity={0.8}>
+          <Text
+            style={{
+              color: errorRed,
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.7,
+              marginLeft: 12,
+            }}>
+            Delete Account
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 }

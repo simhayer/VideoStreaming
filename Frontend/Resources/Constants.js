@@ -1,8 +1,8 @@
-//export const baseURL = 'http://10.0.2.2:3000'; //for android studio
+export const baseURL = 'http://10.0.2.2:3000'; //for android studio
 //export const baseURL = 'http://localhost:3000';   //for actual device
 //export const baseURL = 'http://10.0.0.138:3000'; //for android studio
 //export const baseURL = 'http://18.116.26.56:3000'; //for AWS EC2
-export const baseURL = 'https://thebars.duckdns.org'; //for AWS EC2
+//export const baseURL = 'https://thebars.duckdns.org'; //for AWS EC2
 
 //export const baseURL = 'http://192.162.2.118:3000'; //for android studio
 //export const baseURL = 'https://wobble-server.onrender.com'; //for android studio
@@ -39,6 +39,9 @@ export const apiEndpoints = {
   getGoogleClientId: '/api/auth/getGoogleClientId',
   getUserDetailsFromUsername: '/api/auth/getUserDetailsFromUsername',
   handleGoogleSignin: '/api/auth/handleGoogleSignin',
+  addUserToBlocked: '/api/auth/addUserToBlocked',
+  createStreamUserForJoining: '/api/auth/createStreamUserForJoining',
+  deleteUser: '/api/auth/deleteUser',
   // Add more API endpoints as needed
 };
 
@@ -109,6 +112,12 @@ export const clothingSizeOptions = [
   'XXL',
   'XXXL',
 ];
+
+export const TermsAndConditionsLink =
+  'https://www.freeprivacypolicy.com/live/1e51c7b4-9c6c-497b-8743-1dfe3abed22b';
+
+export const PrivacyPolicyLink =
+  'https://www.freeprivacypolicy.com/live/2ab31078-9cdc-43ca-8cf8-323db1cf9b83';
 
 export const debounce = (func, delay) => {
   let timeoutId;

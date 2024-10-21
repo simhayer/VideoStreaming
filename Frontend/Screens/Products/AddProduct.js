@@ -36,7 +36,7 @@ import {addProduct} from '../../Redux/Features/ProductsSlice';
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
-const StartStreamTab = () => {
+const AddProduct = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -485,4 +485,4 @@ const StartStreamTab = () => {
   );
 };
 
-export default StartStreamTab;
+export default AddProduct;

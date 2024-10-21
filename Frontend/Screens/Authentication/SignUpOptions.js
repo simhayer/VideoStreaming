@@ -8,12 +8,15 @@ import {
   Dimensions,
   Platform,
   SafeAreaView,
+  Linking,
 } from 'react-native';
 import {
   baseURL,
   apiEndpoints,
   appPink,
   colors,
+  TermsAndConditionsLink,
+  PrivacyPolicyLink,
 } from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
@@ -29,6 +32,14 @@ const SignUp = () => {
   const [clientIds, setClientIds] = useState({});
   const dispatch = useDispatch();
   const [googleSignInLoading, setGoogleSignInLoading] = useState(false);
+
+  const redirectToTermsAndConditions = () => {
+    Linking.openURL(TermsAndConditionsLink);
+  };
+
+  const redirectToPrivacyPolicy = () => {
+    Linking.openURL(PrivacyPolicyLink);
+  };
 
   const onContiueWithEmailClick = () => {
     navigation.navigate('SignUp');
@@ -212,15 +223,34 @@ const SignUp = () => {
           </View>
         </View>
 
-        <View style={{width: '70%', alignItems: 'center'}}>
+        <View style={{width: '70%', justifyContent: 'center'}}>
           <Text
             style={{
               color: 'black',
               textAlign: 'center',
               fontSize: calculatedFontSize / 2.9,
+              flexWrap: 'wrap',
             }}>
-            By clicking continue or sign up you agree to our Terms of Service
-            and Privacy Policy
+            By clicking continue or sign up you agree to our{' '}
+            <Text
+              style={{
+                color: appPink,
+                textAlign: 'center',
+                fontSize: calculatedFontSize / 2.9,
+              }}
+              onPress={redirectToTermsAndConditions}>
+              Terms and Conditions
+            </Text>{' '}
+            and{' '}
+            <Text
+              style={{
+                color: appPink,
+                textAlign: 'center',
+                fontSize: calculatedFontSize / 2.9,
+              }}
+              onPress={redirectToPrivacyPolicy}>
+              Privacy Policy
+            </Text>
           </Text>
         </View>
       </View>

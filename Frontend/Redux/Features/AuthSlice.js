@@ -118,6 +118,33 @@ export const logout = createAsyncThunk(
   },
 );
 
+// Delete User
+export const deleteUser = createAsyncThunk(
+  'auth/deleteUser',
+  async (params, thunkApi) => {
+    console.log('DeleteUser params:', params);
+    try {
+      const response = await axios.post(
+        baseURL + apiEndpoints.deleteUser,
+        params,
+      );
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return thunkApi.rejectWithValue({
+          message: 'Delete failed',
+          status: error.response.status,
+          data: error.response.data,
+        });
+      } else {
+        return thunkApi.rejectWithValue({
+          message: 'Delete failed',
+        });
+      }
+    }
+  },
+);
+
 // Update Username
 export const updateUsername = createAsyncThunk(
   'auth/updateUsername',
@@ -320,6 +347,32 @@ const authSlice = createSlice({
       state.userData = null;
       state.isAuthenticated = false;
       state.userData.user.localProfilePictureURI = null;
+    });
+
+    // Delete User cases
+    builder.addCase(deleteUser.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteUser.fulfilled, state => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.userData = null;
+      state.isAuthenticated = false;
+
+      try {
+        // Clear profile picture URI from AsyncStorage
+        AsyncStorage.removeItem('profilePicturePath');
+
+        // Clear image cache
+        clearImageCache();
+      } catch (error) {
+        console.error('Error during logout cleanup:', error);
+      }
+    });
+    builder.addCase(deleteUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.errorMessage = action.payload.message;
     });
 
     // Update Username cases

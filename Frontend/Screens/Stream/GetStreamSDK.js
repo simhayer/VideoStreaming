@@ -164,8 +164,11 @@ const GetStreamSDK = ({route}) => {
         create: true,
         data: {
           settings_override: {
-            audio: {mic_default_on: true, access_request_enabled: true},
-            video: {access_request_enabled: true},
+            audio: {
+              mic_default_on: true,
+              access_request_enabled: true,
+              default_device: 'speaker',
+            },
           },
         },
       });

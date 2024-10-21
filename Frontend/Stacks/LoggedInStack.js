@@ -45,6 +45,15 @@ const AddAddress = React.lazy(() =>
 const AddPaymentMethod = React.lazy(() =>
   import('./../Screens/PaymentAndShipping/AddPaymentMethod'),
 );
+const ReportSellerOptions = React.lazy(() =>
+  import('../Screens/Controls/Report/ReportSellerOptions'),
+);
+const ReportSeller = React.lazy(() =>
+  import('../Screens/Controls/Report/ReportSeller'),
+);
+const ContactUs = React.lazy(() =>
+  import('../Screens/Controls/Other/ContactUs'),
+);
 
 const Stack = createNativeStackNavigator();
 
@@ -89,6 +98,12 @@ const LoggedInStack = () => {
       <Stack.Screen name="ContinueOnboarding" component={ContinueOnboarding} />
       <Stack.Screen name="GetStreamViewerSDK" component={GetStreamViewerSDK} />
       <Stack.Screen name="ViewProfile" component={ViewProfile} />
+      <Stack.Screen
+        name="ReportSellerOptions"
+        component={ReportSellerOptions}
+      />
+      <Stack.Screen name="ReportSeller" component={ReportSeller} />
+      <Stack.Screen name="ContactUs" component={ContactUs} />
       {/* Conditionally load the SellerOrders screen */}
       {isSeller && (
         <>

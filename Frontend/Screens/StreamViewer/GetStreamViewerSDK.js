@@ -136,10 +136,11 @@ const VideoScreen = ({route}) => {
     try {
       const payload = {
         username: userUsername,
+        sellerUsername: username,
       };
 
       const response = await axios.post(
-        baseURL + apiEndpoints.createStreamUser,
+        baseURL + apiEndpoints.createStreamUserForJoining,
         payload,
       );
       console.log('Stream user created:', response.data);
@@ -164,6 +165,11 @@ const VideoScreen = ({route}) => {
       setMyCall(call);
     } catch (error) {
       console.error('Error creating stream user or joining call:', error);
+      console.log(
+        'Error creating stream user or joining call:',
+        error.response.data.error,
+      );
+      console.log('Error creating stream user or joining call:', error.error);
       setStreamError(true);
     }
   };
@@ -326,9 +332,6 @@ const VideoScreen = ({route}) => {
 
   const controlsBottomSheetRef = useRef(null);
 
-  const [controlsHeightPercentage, setControlsHeightPercentage] =
-    useState('15%');
-
   const controlsSnapPoints = useMemo(() => ['1%', '50%'], []);
 
   const onControlsPressed = () => {
@@ -344,6 +347,24 @@ const VideoScreen = ({route}) => {
       setControlsBottomSheetVisible(false);
     }
   }, []);
+
+  const onBlockUser = async () => {
+    console.log('Blocking user:', username);
+    const payload = {
+      blockedUsername: username,
+      username: userUsername,
+    };
+
+    const response = await axios
+      .post(baseURL + apiEndpoints.addUserToBlocked, payload)
+      .catch(error => {
+        console.error('Error blocking user:', error);
+        return;
+      });
+
+    console.log('Response:', response.data);
+    navigation.navigate('Home');
+  };
 
   if (streamError) {
     return (
@@ -988,7 +1009,8 @@ const VideoScreen = ({route}) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 marginTop: 10,
-              }}>
+              }}
+              onPress={onBlockUser}>
               <View style={styles.controlsIconStyle}>
                 <Icon name="ban" size={25} color="white" />
               </View>
@@ -999,7 +1021,12 @@ const VideoScreen = ({route}) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 marginTop: 10,
-              }}>
+              }}
+              onPress={() =>
+                navigation.navigate('ReportSellerOptions', {
+                  sellerUsername: username,
+                })
+              }>
               <View
                 style={{
                   backgroundColor: 'grey',

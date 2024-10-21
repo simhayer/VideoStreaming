@@ -38,6 +38,15 @@ const AddPaymentMethod = React.lazy(() =>
   import('../Screens/PaymentAndShipping/AddPaymentMethod'),
 );
 const ViewProfile = React.lazy(() => import('../Screens/Profile/ViewProfile'));
+const ReportSellerOptions = React.lazy(() =>
+  import('../Screens/Controls/Report/ReportSellerOptions'),
+);
+const ReportSeller = React.lazy(() =>
+  import('../Screens/Controls/Report/ReportSeller'),
+);
+const ContactUs = React.lazy(() =>
+  import('../Screens/Controls/Other/ContactUs'),
+);
 
 const Stack = createNativeStackNavigator();
 
@@ -74,6 +83,9 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />
       <Stack.Screen name="EnterOrderTracking" component={EnterOrderTracking} />
       <Stack.Screen name="ViewProfile" component={ViewProfile} />
+      <Stack.Screen name="ReportSeller" component={ReportSellerOptions} />
+      <Stack.Screen name="ReportSellerOptions" component={ReportSeller} />
+      <Stack.Screen name="ContactUs" component={ContactUs} />
     </Stack.Navigator>
   );
 };
