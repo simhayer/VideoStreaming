@@ -42,6 +42,7 @@ export const apiEndpoints = {
   addUserToBlocked: '/api/auth/addUserToBlocked',
   createStreamUserForJoining: '/api/auth/createStreamUserForJoining',
   deleteUser: '/api/auth/deleteUser',
+  createReportUser: '/api/auth/createReportUser',
   // Add more API endpoints as needed
 };
 

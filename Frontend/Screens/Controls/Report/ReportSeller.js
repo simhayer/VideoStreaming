@@ -11,10 +11,17 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-import {appPink, colors} from '../../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  colors,
+} from '../../../Resources/Constants';
+import axios from 'axios';
 
-export default function ReportSeller() {
-  const dispatch = useDispatch();
+export default function ReportSeller({route}) {
+  const sellerUsername = route.params.sellerUsername;
+  const label = route.params.label;
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const screenHeight = Dimensions.get('window').height;
@@ -28,7 +35,20 @@ export default function ReportSeller() {
     setLoading(true);
 
     try {
-      // API call to report seller
+      try {
+        const response = await axios.post(
+          `${baseURL}${apiEndpoints.createReportUser}`,
+          {
+            email: userEmail,
+            description: label + description,
+            reportedUserEmail: sellerUsername,
+          },
+        );
+
+        console.log('Response from reporting seller: ', response.data);
+      } catch (error) {
+        console.log('Error reporting seller: ', error);
+      }
     } catch (error) {
       console.log('Error reporting seller: ', error);
     }
@@ -54,6 +74,8 @@ export default function ReportSeller() {
           Description
         </Text>
         <TextInput
+          ref={inputRef}
+          value={description}
           style={{
             width: '90%',
             borderWidth: 1,
@@ -74,7 +96,7 @@ export default function ReportSeller() {
           selectionColor={appPink}
           numberOfLines={8}
           multiline={true}
-          maxLength={500}
+          maxLength={200}
         />
       </View>
       <View

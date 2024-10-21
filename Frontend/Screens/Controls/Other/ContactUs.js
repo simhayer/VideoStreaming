@@ -11,7 +11,13 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
-import {appPink, colors} from '../../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  colors,
+} from '../../../Resources/Constants';
+import axios from 'axios';
 
 export default function ContactUs() {
   const dispatch = useDispatch();
@@ -23,6 +29,7 @@ export default function ContactUs() {
   const {userData} = useSelector(state => state.auth);
 
   const userEmail = userData?.user?.email;
+  const [description, setDescription] = useState('');
 
   const [requestSent, setRequestSent] = useState(false);
 
@@ -31,6 +38,16 @@ export default function ContactUs() {
 
     try {
       // API call to report seller
+      const response = await axios.post(
+        `${baseURL}${apiEndpoints.createReportUser}`,
+        {
+          email: userEmail,
+          description: description,
+          reportedUserEmail: 'BARS',
+        },
+      );
+
+      console.log('Response from reporting seller: ', response.data);
     } catch (error) {
       console.log('Error reporting seller: ', error);
     }
@@ -83,6 +100,8 @@ export default function ContactUs() {
 
         <TextInput
           ref={inputRef}
+          value={description}
+          onChangeText={setDescription}
           style={{
             width: '90%',
             borderWidth: 1,
@@ -103,7 +122,7 @@ export default function ContactUs() {
           selectionColor={appPink}
           numberOfLines={8}
           multiline={true}
-          maxLength={500}
+          maxLength={200}
         />
       </View>
 

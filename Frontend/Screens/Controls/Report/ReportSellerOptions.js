@@ -11,8 +11,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../../Resources/Constants';
 
-export default function ReportSellerOptions() {
+export default function ReportSellerOptions({route}) {
   const dispatch = useDispatch();
+  const sellerUsername = route.params.sellerUsername;
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const screenHeight = Dimensions.get('window').height;
@@ -24,7 +25,9 @@ export default function ReportSellerOptions() {
 
   const renderSettingOption = (label, details) => (
     <TouchableOpacity
-      onPress={() => navigation.navigate('ReportSeller')}
+      onPress={() =>
+        navigation.navigate('ReportSeller', {label, sellerUsername})
+      }
       style={{
         flexDirection: 'row',
         alignItems: 'center',
