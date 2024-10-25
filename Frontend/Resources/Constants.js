@@ -1,8 +1,9 @@
-export const baseURL = 'http://10.0.2.2:3000'; //for android studio
+//export const baseURL = 'http://10.0.2.2:3000'; //for android studio
 //export const baseURL = 'http://localhost:3000';   //for actual device
 //export const baseURL = 'http://10.0.0.138:3000'; //for android studio
 //export const baseURL = 'http://18.116.26.56:3000'; //for AWS EC2
 //export const baseURL = 'https://thebars.duckdns.org'; //for AWS EC2
+export const baseURL = 'https://thebarss.com'; //for AWS EC2
 
 //export const baseURL = 'http://192.162.2.118:3000'; //for android studio
 //export const baseURL = 'https://wobble-server.onrender.com'; //for android studio
@@ -119,6 +120,8 @@ export const TermsAndConditionsLink =
 
 export const PrivacyPolicyLink =
   'https://www.freeprivacypolicy.com/live/2ab31078-9cdc-43ca-8cf8-323db1cf9b83';
+
+export const EULA = 'https://portal.termshub.io/bezggj8kie/mobile_eula/';
 
 export const debounce = (func, delay) => {
   let timeoutId;

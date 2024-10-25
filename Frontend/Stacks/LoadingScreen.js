@@ -43,17 +43,17 @@ const LazyStack = () => {
 
         try {
           if (isAuthenticated) {
-            if (isSeller) {
-              const {default: ImportedComponent} = await import(
-                '../Stacks/LoggedInStackSeller'
-              );
-              setLazyComponent(() => ImportedComponent);
-            } else {
-              const {default: ImportedComponent} = await import(
-                '../Stacks/LoggedInStack'
-              );
-              setLazyComponent(() => ImportedComponent);
-            }
+            // if (isSeller) {
+            const {default: ImportedComponent} = await import(
+              '../Stacks/LoggedInStackSeller'
+            );
+            setLazyComponent(() => ImportedComponent);
+            // } else {
+            //   const {default: ImportedComponent} = await import(
+            //     '../Stacks/LoggedInStack'
+            //   );
+            //   setLazyComponent(() => ImportedComponent);
+            // }
           } else {
             const {default: ImportedComponent} = await import(
               '../Stacks/LoggedOutStack'

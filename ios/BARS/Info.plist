@@ -19,9 +19,9 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera permission description</string>
+	<string>Bars need camera access to stream live, add profile photo, or product images</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone permission description</string>
+	<string>Bars need camera access to stream live</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
