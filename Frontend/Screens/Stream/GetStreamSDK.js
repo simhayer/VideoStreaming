@@ -21,6 +21,7 @@ import {
   appPink,
   colors,
   errorRed,
+  baseURLNoApi,
 } from '../../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -85,7 +86,8 @@ const GetStreamSDK = ({route}) => {
   const [isSocketReady, setIsSocketReady] = useState(false);
 
   useEffect(() => {
-    socket.current = io(baseURL, {
+    socket.current = io(baseURLNoApi, {
+      path: '/api/socket.io',
       transports: ['websocket'],
     });
 
@@ -135,6 +137,7 @@ const GetStreamSDK = ({route}) => {
   }, []);
 
   const createStreamUser = async () => {
+    console.log('Creating stream user...');
     try {
       const payload = {
         username: userUsername,
@@ -145,6 +148,9 @@ const GetStreamSDK = ({route}) => {
         payload,
       );
       const {token, apiKey} = response.data;
+
+      console.log('Token:', token);
+      console.log('API Key:', apiKey);
 
       const user = {
         id: userUsername,
@@ -225,6 +231,7 @@ const GetStreamSDK = ({route}) => {
   };
 
   useEffect(() => {
+    console.log('Socket ready:', isSocketReady);
     if (isSocketReady) {
       initializeMeeting();
     }

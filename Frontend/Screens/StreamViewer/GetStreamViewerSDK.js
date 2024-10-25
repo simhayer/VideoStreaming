@@ -21,6 +21,7 @@ import {
   apiEndpoints,
   appPink,
   baseURL,
+  baseURLNoApi,
   colors,
   token,
 } from '../../Resources/Constants';
@@ -91,7 +92,11 @@ const VideoScreen = ({route}) => {
 
   useEffect(() => {
     console.log('useEffect triggered');
-    const newSocket = io(baseURL);
+    const newSocket = io(baseURLNoApi, {
+      path: '/api/socket.io',
+      transports: ['websocket'],
+    });
+
     setSocket(newSocket);
 
     newSocket.emit('joinStream', broadcastId);
