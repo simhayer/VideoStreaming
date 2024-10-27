@@ -81,7 +81,7 @@ const ViewerTab = () => {
   useFocusEffect(
     useCallback(() => {
       const currentTime = Date.now();
-      const MIN_TRIGGER_INTERVAL = 20000;
+      const MIN_TRIGGER_INTERVAL = 30000;
 
       if (isFirstLoad) {
         showList();

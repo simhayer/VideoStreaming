@@ -199,6 +199,7 @@ const VideoScreen = ({route}) => {
       };
       socket.emit('comment', commentData);
       setComment(''); // Clear the input after sending the comment
+      Keyboard.dismiss();
       //setCurComments([...curComments, commentData]); // Add the comment to the comments list
     }
   };
@@ -276,6 +277,11 @@ const VideoScreen = ({route}) => {
     }
   }, []);
 
+  const showBidBottomSheet = () => {
+    setIsBidBottomSheetVisible(true);
+    bidBottomSheetRef.current?.expand();
+  };
+
   const cannotBidBottomSheetRef = useRef(null);
 
   const handleCannotBidSheetChanges = useCallback(index => {
@@ -342,6 +348,34 @@ const VideoScreen = ({route}) => {
   const onControlsPressed = () => {
     setControlsBottomSheetVisible(true);
     controlsBottomSheetRef.current?.expand();
+  };
+
+  const [
+    shippingAndTaxesBottomSheetVisible,
+    setShippingAndTaxesBottomSheetVisible,
+  ] = useState(false);
+
+  const shippingAndTaxesBottomSheetRef = useRef(null);
+
+  const shippingAndTaxesSnapPoints = useMemo(() => ['1%', '40%'], []);
+
+  const onShippingAndTaxesPressed = () => {
+    setShippingAndTaxesBottomSheetVisible(true);
+    shippingAndTaxesBottomSheetRef.current?.expand();
+  };
+
+  const handleShippingAndTaxesSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+    if (index === 0) {
+      console.log('Closing bottom sheet');
+
+      setShippingAndTaxesBottomSheetVisible(false);
+    }
+  }, []);
+
+  const showShippingAndTaxesBottomSheet = () => {
+    setShippingAndTaxesBottomSheetVisible(true);
+    shippingAndTaxesBottomSheetRef.current?.expand();
   };
 
   const handleContolsSheetChanges = useCallback(index => {
@@ -423,6 +457,7 @@ const VideoScreen = ({route}) => {
     cannotBidBottomSheetRef.current?.close();
     bidBottomSheetRef.current?.close();
     controlsBottomSheetRef.current?.close();
+    shippingAndTaxesBottomSheetRef.current?.close();
   };
 
   const closeControls = () => {
@@ -604,52 +639,59 @@ const VideoScreen = ({route}) => {
               style={{
                 width: '100%',
                 justifyContent: 'space-between',
-                minHeight: 35,
+                minHeight: 50,
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
               <View
                 style={{
+                  flexDirection: 'row',
+                  width: '80%',
+                  marginLeft: '4%',
                   borderWidth: 1,
                   borderColor: 'grey',
                   width: '70%',
                   marginLeft: '4%',
-                  borderRadius: 20,
+                  borderRadius: 25,
                   justifyContent: 'center',
+                  paddingLeft: '6%',
+                  paddingRight: '4%',
+                  elevation: 3,
+                  opacity: 0.8,
+                  shadowColor: '#000', // Shadow for iOS
+                  shadowOpacity: 0.1,
+                  shadowRadius: 5,
+                  shadowOffset: {width: 0, height: 2},
                 }}>
-                <View
+                <TextInput
                   style={{
-                    flexDirection: 'row',
-                    opacity: 0.8,
-                    width: '80%',
-                    marginLeft: '4%',
-                  }}>
-                  <TextInput
-                    style={{
-                      borderRadius: 5,
-                      paddingHorizontal: '2%',
-                      color: 'white',
-                      width: '100%',
-                      fontSize: calculatedFontSize / 2.7,
-                      padding: 5,
-                    }}
-                    placeholder="Add a comment..."
-                    placeholderTextColor="white"
-                    value={comment}
-                    onChangeText={handleCommentChange}
-                    returnKeyType="send"
-                    enterKeyHint="send"
-                    onSubmitEditing={handleSendComment}
-                  />
-                  <TouchableOpacity
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                    onPress={handleSendComment}>
-                    <Icon name="arrow-up-circle" size={35} color="grey" />
-                  </TouchableOpacity>
-                </View>
+                    borderRadius: 5,
+                    paddingHorizontal: '2%',
+                    color: 'white',
+                    width: '100%',
+                    fontSize: calculatedFontSize / 2.7,
+                    padding: 5,
+                  }}
+                  placeholder="Add a comment..."
+                  placeholderTextColor="#ccc"
+                  value={comment}
+                  onChangeText={handleCommentChange}
+                  returnKeyType="send"
+                  enterKeyHint="send"
+                  onSubmitEditing={handleSendComment}
+                  autoComplete="off"
+                  selectionColor={appPink}
+                  clearButtonMode="while-editing"
+                  keyboardAppearance="light"
+                />
+                <TouchableOpacity
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                  onPress={handleSendComment}>
+                  <Icon name="arrow-up-circle" size={35} color="white" />
+                </TouchableOpacity>
               </View>
               <View style={{marginRight: 10}}>
                 <TouchableOpacity
@@ -714,6 +756,11 @@ const VideoScreen = ({route}) => {
                 </Text>
               )}
             </View>
+            <TouchableOpacity
+              style={{marginLeft: '4%', marginBottom: 10}}
+              onPress={showShippingAndTaxesBottomSheet}>
+              <Text style={{color: 'white'}}>Shipping and Taxes</Text>
+            </TouchableOpacity>
             {!isTimerRunning && (
               <View style={{alignItems: 'center'}}>
                 <View
@@ -744,43 +791,73 @@ const VideoScreen = ({route}) => {
                   marginBottom: 20,
                   paddingHorizontal: '5%',
                 }}>
-                <TouchableOpacity
-                  onPress={() => setIsBidBottomSheetVisible(true)}
+                <View
                   style={{
-                    flex: 2,
-                    backgroundColor: appPink,
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    borderColor: appPink,
+                    flex: 4,
+                    padding: 3,
+                    borderWidth: 1,
                     borderRadius: 20,
                   }}>
-                  <Text
+                  <TouchableOpacity
+                    onPress={showBidBottomSheet}
                     style={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      fontSize: calculatedFontSize / 2.7,
-                    }}>
-                    Custom
-                  </Text>
-                </TouchableOpacity>
+                      flex: 1,
+                      backgroundColor: appPink,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 20,
+                      shadowColor: '#000',
+                      shadowOffset: {width: 0, height: 2},
+                      shadowOpacity: 0.2,
+                      shadowRadius: 5,
+                      elevation: 5,
+                    }}
+                    activeOpacity={0.8}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: calculatedFontSize / 2.7,
+                      }}>
+                      Custom
+                    </Text>
+                  </TouchableOpacity>
+                </View>
                 <View style={{flex: 1}} />
-                <TouchableOpacity
-                  onPress={handleSendBid}
+                <View
                   style={{
-                    flex: 2,
-                    backgroundColor: appPink,
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    borderColor: appPink,
+                    flex: 4,
+                    padding: 3,
+                    borderWidth: 1,
                     borderRadius: 20,
                   }}>
-                  <Text
+                  <TouchableOpacity
+                    onPress={handleSendBid}
                     style={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      fontSize: calculatedFontSize / 2.7,
-                    }}>
-                    Bid {Number(curBid) + 1}
-                  </Text>
-                </TouchableOpacity>
+                      flex: 1,
+                      backgroundColor: appPink,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 20,
+                      shadowColor: '#000',
+                      shadowOffset: {width: 0, height: 2},
+                      shadowOpacity: 0.2,
+                      shadowRadius: 5,
+                      elevation: 5,
+                    }}
+                    activeOpacity={0.8}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: calculatedFontSize / 2.7,
+                      }}>
+                      Bid {Number(curBid) + 1}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             )}
           </View>
@@ -902,7 +979,17 @@ const VideoScreen = ({route}) => {
                     width: '30%',
                     borderBottomWidth: 1,
                     textAlign: 'center',
+                    fontSize: calculatedFontSize / 2.5,
+                    minHeight: 50,
                   }}
+                  autoComplete="off"
+                  autoCapitalize="none"
+                  placeholderTextColor={'gray'}
+                  autoCorrect={false}
+                  returnKeyType="done"
+                  selectionColor={appPink}
+                  clearButtonMode="while-editing"
+                  keyboardAppearance="light"
                 />
                 <TouchableOpacity
                   onPress={handleSendCustomBid}
@@ -1047,6 +1134,78 @@ const VideoScreen = ({route}) => {
               </View>
               <Text style={styles.controlsTextStyle}>Report seller</Text>
             </TouchableOpacity>
+          </BottomSheetView>
+        </BottomSheet>
+      )}
+      {shippingAndTaxesBottomSheetVisible && (
+        <BottomSheet
+          ref={shippingAndTaxesBottomSheetRef}
+          snapPoints={shippingAndTaxesSnapPoints}
+          index={shippingAndTaxesBottomSheetVisible ? 1 : -1}
+          onChange={handleShippingAndTaxesSheetChanges}>
+          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+            {/* <Text style={{fontSize: calculatedFontSize / 2.4}}>
+              Shipping and Taxes
+            </Text> */}
+
+            <View
+              style={{
+                marginHorizontal: '5%',
+                marginTop: 20,
+              }}>
+              <Text
+                style={{
+                  fontSize: calculatedFontSize / 2.4,
+                  color: colors.black,
+                  marginTop: 5,
+                  fontWeight: 'bold',
+                }}>
+                Shipping
+              </Text>
+              {isTimerRunning && (
+                <Text
+                  style={{
+                    fontSize: calculatedFontSize / 2.7,
+                    color: colors.black,
+                    marginTop: 5,
+                  }}>
+                  🇨🇦 Shipping fee for this item : $ {bidItem?.shippingFee}
+                </Text>
+              )}
+              <Text
+                style={{
+                  fontSize: calculatedFontSize / 2.9,
+                  color: colors.black,
+                  marginTop: 10,
+                }}>
+                Shipping fee is not included in the bid price. Items bought from
+                the same seller in the same session will be bundled together to
+                get a minimum shipping fee
+              </Text>
+            </View>
+
+            <View
+              style={{
+                marginHorizontal: '5%',
+                marginTop: 20,
+              }}>
+              <Text
+                style={{
+                  fontSize: calculatedFontSize / 2.4,
+                  color: colors.black,
+                  fontWeight: 'bold',
+                }}>
+                Taxes
+              </Text>
+              <Text
+                style={{
+                  fontSize: calculatedFontSize / 2.9,
+                  color: colors.black,
+                  marginTop: 5,
+                }}>
+                Standard sales tax will be applied to the total order amount
+              </Text>
+            </View>
           </BottomSheetView>
         </BottomSheet>
       )}

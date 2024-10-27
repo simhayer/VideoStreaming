@@ -239,7 +239,7 @@ const GetStreamSDK = ({route}) => {
 
   const [timeLeft, setTimeLeft] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
-  const [startBid, setStartBid] = useState();
+  const [startBid, setStartBid] = useState(0);
 
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -265,7 +265,7 @@ const GetStreamSDK = ({route}) => {
 
   const animatedVideoStyle = useAnimatedStyle(() => {
     return {
-      height: withTiming(animatedPosition.value, {duration: 10}),
+      height: withTiming(animatedPosition.value + 10, {duration: 10}),
     };
   });
 
@@ -496,7 +496,8 @@ const GetStreamSDK = ({route}) => {
                         const profilePictureFilename = item.userProfilePicture
                           .split('/')
                           .pop();
-                        const profilePictureURL = `${baseURL}profilePicture/thumbnail${profilePictureFilename}`;
+
+                        const profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
                         return (
                           <Pressable
                             style={{
