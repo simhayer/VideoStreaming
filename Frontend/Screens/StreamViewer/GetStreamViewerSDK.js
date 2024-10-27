@@ -357,12 +357,7 @@ const VideoScreen = ({route}) => {
 
   const shippingAndTaxesBottomSheetRef = useRef(null);
 
-  const shippingAndTaxesSnapPoints = useMemo(() => ['1%', '40%'], []);
-
-  const onShippingAndTaxesPressed = () => {
-    setShippingAndTaxesBottomSheetVisible(true);
-    shippingAndTaxesBottomSheetRef.current?.expand();
-  };
+  const shippingAndTaxesSnapPoints = useMemo(() => ['1%', '35%'], []);
 
   const handleShippingAndTaxesSheetChanges = useCallback(index => {
     console.log('handleSheetChanges', index);

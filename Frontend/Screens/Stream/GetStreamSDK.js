@@ -68,7 +68,7 @@ const GetStreamSDK = ({route}) => {
   const scrollViewRef = useRef();
   const [curComments, setCurComments] = useState([]);
   const [comment, setComment] = useState('');
-  const [curBid, setCurBid] = useState(0);
+  const [curBid, setCurBid] = useState('');
   const [noOfBids, setNoOfBids] = useState(0);
   const [curBidWinner, setCurBidWinner] = useState('');
   const [showWinner, setShowWinner] = useState(false);

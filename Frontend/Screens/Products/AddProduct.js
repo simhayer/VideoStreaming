@@ -57,6 +57,8 @@ const AddProduct = () => {
     return [];
   }, [type]);
 
+  const [shippingFee, setShippingFee] = useState('');
+
   const [selectedImage, setSelectedImage] = useState('');
 
   const [loading, setLoading] = useState(false);
@@ -148,6 +150,7 @@ const AddProduct = () => {
     formData.append('name', itemName);
     formData.append('size', size);
     formData.append('type', type);
+    formData.append('shippingFee', shippingFee);
 
     if (selectedImage) {
       formData.append('productImage', {
@@ -371,6 +374,51 @@ const AddProduct = () => {
                 <View style={{width: 30}} />
               </View>
             )}
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Icon name="bag-outline" size={30} color="black" />
+              <Text
+                style={{
+                  fontSize: calculatedFontSize / 2.2,
+                  marginLeft: 20,
+                  color: 'grey',
+                }}>
+                $
+              </Text>
+              <TextInput
+                value={shippingFee}
+                onChangeText={setShippingFee}
+                placeholder={'Shipping Fee'}
+                style={{
+                  width: '66%',
+                  borderBottomWidth: 1,
+                  borderColor: 'black',
+                  fontSize: calculatedFontSize / 2.5,
+                  marginTop: 10,
+                  marginBottom: 15,
+                  paddingVertical: 10,
+                  paddingHorizontal: 5,
+                  marginLeft: 10,
+                }}
+                autoComplete="off"
+                autoCapitalize="none"
+                placeholderTextColor={'gray'}
+                autoCorrect={false}
+                returnKeyType="next"
+                maxLength={5}
+                selectionColor={appPink}
+                inputMode="numeric"
+                clearButtonMode="while-editing"
+                keyboardAppearance="light"
+                keyboardType="numeric"
+                onFocus={closeBottomSheet}
+              />
+              <View style={{width: 30}} />
+            </View>
             <View
               style={{
                 flexDirection: 'row',

@@ -37,6 +37,7 @@ const ViewOrderBuyer = ({route}) => {
   const imageUrl = `${baseURL}/${itemImageFilename}`;
 
   const formattedDate = new Date(order.orderDate).toISOString().split('T')[0];
+  const [showDetails, setShowDetails] = useState(false);
 
   const renderOrderDetail = (label, value, onPress) => (
     <View style={styles.ListItem}>
@@ -52,6 +53,32 @@ const ViewOrderBuyer = ({route}) => {
       )}
     </View>
   );
+
+  const orderAmountDetails = () => {
+    return (
+      <View style={styles.ListItem}>
+        <Text style={styles.ListItemNameText}>Total</Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={styles.ListItemValueText}>C$ {order.amount}</Text>
+          {showDetails ? (
+            <TouchableOpacity onPress={() => setShowDetails(false)}>
+              <Icon name="chevron-down" size={20} color="black" />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={() => setShowDetails(true)}>
+              <Icon name="chevron-forward" size={20} color="black" />
+            </TouchableOpacity>
+          )}
+          {showDetails && (
+            <View>
+              <Text>Bid Amount</Text>
+              <Text>{order.amount}</Text>
+            </View>
+          )}
+        </View>
+      </View>
+    );
+  };
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
@@ -158,7 +185,13 @@ const ViewOrderBuyer = ({route}) => {
               {renderOrderDetail('Status', order.status)}
               {renderOrderDetail('Order Date', formattedDate)}
               {renderOrderDetail('Payment', order.paymentMethod)}
-              {renderOrderDetail('Amount', `C$ ${order.amount}`)}
+              {/* {renderOrderDetail('Bid Amount', `C$ ${order.amount}`)}
+              {renderOrderDetail(
+                'Shipping and Tax',
+                `C$ ${order.product.shippingFee}`,
+              )} */}
+              {/* {renderOrderDetail('Total', `C$ ${order.amount}`)} */}
+              {orderAmountDetails()}
               {renderOrderDetail('Payout', 'Pending')}
             </View>
           </ScrollView>

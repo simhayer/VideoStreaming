@@ -24,10 +24,10 @@ const calculatedFontSize = screenHeight * 0.05;
 const ViewProduct = ({route}) => {
   const {item} = route.params;
 
-  const {name, size, type} = item;
+  const {name, size, type, shippingFee} = item;
   const itemImageUrl = `${baseURL}/${item.imageUrl}`;
 
-  console.log('Route params:', route.params);
+  //console.log('Route params:', route.params);
   const navigation = useNavigation();
 
   const {userData} = useSelector(state => state.auth);
@@ -126,6 +126,15 @@ const ViewProduct = ({route}) => {
             marginBottom: 12,
           }}>
           Type: {type}
+        </Text>
+
+        <Text
+          style={{
+            color: 'black',
+            fontSize: calculatedFontSize / 2.8,
+            marginBottom: 12,
+          }}>
+          Shipping Fee (CAD) : $ {shippingFee}
         </Text>
       </View>
 
