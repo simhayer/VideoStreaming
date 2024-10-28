@@ -168,6 +168,22 @@ const VideoScreen = ({route}) => {
       // Create and join the call
       const call = client.call('livestream', callId);
       await call.join();
+      await call.join({
+        create: false,
+        data: {
+          settings_override: {
+            audio: {
+              mic_default_on: false,
+              access_request_enabled: false,
+              default_device: 'speaker',
+            },
+            video: {
+              camera_default_on: false,
+              access_request_enabled: false,
+            },
+          },
+        },
+      });
       setMyCall(call);
     } catch (error) {
       console.error('Error creating stream user or joining call:', error);
@@ -583,7 +599,7 @@ const VideoScreen = ({route}) => {
                         }}>
                         <View
                           style={{
-                            width: '100%',
+                            width: '90%',
                             flexDirection: 'row',
                             alignItems: 'center',
                             marginBottom: '2%',
@@ -643,13 +659,11 @@ const VideoScreen = ({route}) => {
                     flexGrow: 1,
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
-                    marginRight: '4%',
                   }}
                 />
               </MaskedView>
             </View>
             <KeyboardAvoidingView
-              style={{flex: 1}}
               behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
               keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset for iOS if needed
             >
@@ -745,6 +759,10 @@ const VideoScreen = ({route}) => {
                         fontSize: calculatedFontSize / 2.5,
                         fontWeight: 'bold',
                         color: colors.white,
+                        textShadowColor: '#000', // Shadow color
+                        textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                        textShadowRadius: 3, // Shadow blur
+                        elevation: 5,
                       }}
                       numberOfLines={2}>
                       {bidItem?.name}
@@ -769,7 +787,14 @@ const VideoScreen = ({route}) => {
               }}>
               {isTimerRunning && (
                 <Text
-                  style={{color: 'red', fontSize: calculatedFontSize / 2.4}}>
+                  style={{
+                    color: 'red',
+                    fontSize: calculatedFontSize / 2.4,
+                    textShadowColor: '#000', // Shadow color
+                    textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                    textShadowRadius: 3, // Shadow blur
+                    elevation: 5,
+                  }}>
                   {timeLeft} s
                 </Text>
               )}
