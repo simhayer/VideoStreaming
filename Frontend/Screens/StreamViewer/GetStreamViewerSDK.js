@@ -614,6 +614,10 @@ const VideoScreen = ({route}) => {
                               style={{
                                 color: 'white',
                                 fontSize: calculatedFontSize / 3,
+                                textShadowColor: '#000', // Shadow color
+                                textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                                textShadowRadius: 3, // Shadow blur
+                                elevation: 5,
                               }}>
                               {item.userUsername}
                             </Text>
@@ -622,6 +626,11 @@ const VideoScreen = ({route}) => {
                                 color: 'white',
                                 fontSize: calculatedFontSize / 3,
                                 fontWeight: 'bold',
+                                textShadowColor: '#000', // Shadow color
+                                textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                                textShadowRadius: 3, // Shadow blur
+                                elevation: 5,
+                                flexWrap: 'wrap',
                               }}>
                               {item.comment}
                             </Text>
@@ -634,6 +643,7 @@ const VideoScreen = ({route}) => {
                     flexGrow: 1,
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
+                    marginRight: '4%',
                   }}
                 />
               </MaskedView>
