@@ -64,7 +64,23 @@ const Profile = () => {
 
       {/* Profile Section */}
       <View style={{alignItems: 'center', marginTop: '8%'}}>
-        <FastImage
+        {/* <FastImage
+          source={
+            selectedImage
+              ? {uri: selectedImage}
+              : require('../../Resources/user.png')
+          }
+          style={{
+            height: 80,
+            width: 80,
+            borderRadius: 40,
+            resizeMode: 'cover',
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0.1)',
+          }}
+        /> */}
+
+        <Image
           source={
             selectedImage
               ? {uri: selectedImage}

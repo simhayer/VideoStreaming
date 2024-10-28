@@ -56,26 +56,61 @@ const ViewOrderBuyer = ({route}) => {
 
   const orderAmountDetails = () => {
     return (
-      <View style={styles.ListItem}>
-        <Text style={styles.ListItemNameText}>Total</Text>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={styles.ListItemValueText}>C$ {order.amount}</Text>
-          {showDetails ? (
-            <TouchableOpacity onPress={() => setShowDetails(false)}>
-              <Icon name="chevron-down" size={20} color="black" />
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={() => setShowDetails(true)}>
-              <Icon name="chevron-forward" size={20} color="black" />
-            </TouchableOpacity>
-          )}
-          {showDetails && (
-            <View>
-              <Text>Bid Amount</Text>
-              <Text>{order.amount}</Text>
-            </View>
-          )}
+      <View>
+        <View style={styles.ListItem}>
+          <Text style={styles.ListItemNameText}>Total</Text>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.ListItemValueText}>C$ {order.amount}</Text>
+            {showDetails ? (
+              <TouchableOpacity
+                style={{padding: 4}}
+                onPress={() => setShowDetails(false)}>
+                <Icon name="chevron-down" size={20} color="black" />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={{padding: 4}}
+                onPress={() => setShowDetails(true)}>
+                <Icon name="chevron-forward" size={20} color="black" />
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
+        {showDetails && (
+          <View style={{}}>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+                Bid Amount
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2.9,
+                  minWidth: 60,
+                }}>
+                {' '}
+                $ {order.amount}
+              </Text>
+            </View>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+                Shipping and Tax
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2.9,
+                  minWidth: 60,
+                }}>
+                {' '}
+                $ {order.product.shippingFee}
+              </Text>
+            </View>
+          </View>
+        )}
       </View>
     );
   };

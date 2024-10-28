@@ -33,6 +33,7 @@ import {
   StreamVideo,
   StreamVideoClient,
 } from '@stream-io/video-react-native-sdk';
+import demo4 from '../../Resources/demo4.jpg';
 
 const CustomLivestreamPlayer = React.lazy(() =>
   import('./CustomLivestreamPlayer'),
@@ -174,7 +175,6 @@ const VideoScreen = ({route}) => {
         'Error creating stream user or joining call:',
         error.response.data.error,
       );
-      console.log('Error creating stream user or joining call:', error.error);
       setStreamError(true);
     }
   };
@@ -462,8 +462,16 @@ const VideoScreen = ({route}) => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <StreamVideo client={myClient}>
-        <View style={styles.video}>
+        {/* <View style={styles.video}>
+          <Image source={demo} resizeMode="contain" />
           <CustomLivestreamPlayer callType="livestream" callId={callId} />
+        </View> */}
+        <View style={styles.video}>
+          <Image
+            source={demo4}
+            resizeMode="stretch"
+            style={{width: '100%', height: '100%'}}
+          />
         </View>
       </StreamVideo>
       <SafeAreaView style={{flex: 1}}>
@@ -604,7 +612,6 @@ const VideoScreen = ({route}) => {
                           <View>
                             <Text
                               style={{
-                                fontWeight: 'bold',
                                 color: 'white',
                                 fontSize: calculatedFontSize / 3,
                               }}>
@@ -614,6 +621,7 @@ const VideoScreen = ({route}) => {
                               style={{
                                 color: 'white',
                                 fontSize: calculatedFontSize / 3,
+                                fontWeight: 'bold',
                               }}>
                               {item.comment}
                             </Text>
@@ -644,7 +652,7 @@ const VideoScreen = ({route}) => {
                   width: '80%',
                   marginLeft: '4%',
                   borderWidth: 1,
-                  borderColor: 'grey',
+                  borderColor: 'white',
                   width: '70%',
                   marginLeft: '4%',
                   borderRadius: 25,
@@ -652,7 +660,6 @@ const VideoScreen = ({route}) => {
                   paddingLeft: '6%',
                   paddingRight: '4%',
                   elevation: 3,
-                  opacity: 0.8,
                   shadowColor: '#000', // Shadow for iOS
                   shadowOpacity: 0.1,
                   shadowRadius: 5,
@@ -791,7 +798,7 @@ const VideoScreen = ({route}) => {
                     borderColor: appPink,
                     flex: 4,
                     padding: 3,
-                    borderWidth: 1,
+                    borderWidth: 2,
                     borderRadius: 20,
                   }}>
                   <TouchableOpacity
@@ -825,7 +832,7 @@ const VideoScreen = ({route}) => {
                     borderColor: appPink,
                     flex: 4,
                     padding: 3,
-                    borderWidth: 1,
+                    borderWidth: 2,
                     borderRadius: 20,
                   }}>
                   <TouchableOpacity
