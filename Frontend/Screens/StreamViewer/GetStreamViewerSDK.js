@@ -530,19 +530,28 @@ const VideoScreen = ({route}) => {
                     fontSize: calculatedFontSize / 2.5,
                     fontWeight: 'bold',
                     marginLeft: 10,
+                    textShadowColor: '#000', // Shadow color
+                    textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                    textShadowRadius: 3, // Shadow blur
+                    elevation: 5,
                   }}>
                   {username}
                 </Text>
               </TouchableOpacity>
               <View style={{flex: 1}}></View>
-              {/* <Text
+              <Text
                 style={{
                   color: 'white',
                   fontSize: calculatedFontSize / 2.5,
                   marginRight: '2%',
+                  textShadowColor: '#000', // Shadow color
+                  textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                  textShadowRadius: 3, // Shadow blur
+                  elevation: 5,
                 }}>
-                Watchers: {watchers}
-              </Text> */}
+                {/* Live: {watchers} */}
+                Live: 38
+              </Text>
               <TouchableOpacity
                 style={{
                   backgroundColor: 'red',
@@ -777,6 +786,10 @@ const VideoScreen = ({route}) => {
                     style={{
                       color: colors.white,
                       fontSize: calculatedFontSize / 1.4,
+                      textShadowColor: '#000', // Shadow color
+                      textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                      textShadowRadius: 3, // Shadow blur
+                      elevation: 5,
                     }}>
                     ${curBid}
                   </Text>
@@ -835,7 +848,7 @@ const VideoScreen = ({route}) => {
               <View
                 style={{
                   flexDirection: 'row',
-                  height: 45,
+                  height: 50,
                   marginBottom: 20,
                   paddingHorizontal: '5%',
                 }}>
@@ -856,10 +869,10 @@ const VideoScreen = ({route}) => {
                       justifyContent: 'center',
                       borderRadius: 20,
                       shadowColor: '#000',
-                      shadowOffset: {width: 0, height: 2},
-                      shadowOpacity: 0.2,
-                      shadowRadius: 5,
-                      elevation: 5,
+                      shadowOffset: {width: 0, height: 3},
+                      shadowOpacity: 0.3,
+                      shadowRadius: 6,
+                      elevation: 7,
                     }}
                     activeOpacity={0.8}>
                     <Text
@@ -890,10 +903,10 @@ const VideoScreen = ({route}) => {
                       justifyContent: 'center',
                       borderRadius: 20,
                       shadowColor: '#000',
-                      shadowOffset: {width: 0, height: 2},
-                      shadowOpacity: 0.2,
-                      shadowRadius: 5,
-                      elevation: 5,
+                      shadowOffset: {width: 0, height: 3},
+                      shadowOpacity: 0.3,
+                      shadowRadius: 6,
+                      elevation: 7,
                     }}
                     activeOpacity={0.8}>
                     <Text
