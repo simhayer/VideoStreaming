@@ -167,7 +167,7 @@ const VideoScreen = ({route}) => {
 
       // Create and join the call
       const call = client.call('livestream', callId);
-      await call.join();
+      // await call.join();
       await call.join({
         create: false,
         data: {
@@ -180,6 +180,11 @@ const VideoScreen = ({route}) => {
             video: {
               camera_default_on: false,
               access_request_enabled: false,
+              target_resolution: {
+                width: 1920,
+                height: 1080,
+                bitrate: 3000000,
+              },
             },
           },
         },
