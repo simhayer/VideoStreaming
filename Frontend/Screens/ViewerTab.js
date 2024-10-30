@@ -173,7 +173,7 @@ const ViewerTab = () => {
         style={{
           width: '48%',
           height: screenHeight * 0.35,
-          marginBottom: 105,
+          marginBottom: '23%',
           marginRight: '4%',
         }}>
         <View style={styles.row}>
