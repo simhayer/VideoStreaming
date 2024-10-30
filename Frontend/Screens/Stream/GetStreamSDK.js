@@ -342,28 +342,9 @@ const GetStreamSDK = ({route}) => {
     {label: '30s', value: '30s'},
   ]);
 
-  // const fetchProducts = async () => {
-  //   const payload = {
-  //     email: userEmail,
-  //   };
-  //   try {
-  //     const response = await axios.post(
-  //       baseURL + apiEndpoints.getUserProducts,
-  //       payload,
-  //     );
-  //     if (response.status === 200) {
-  //       setItems(response.data.products);
-  //     } else {
-  //       console.error('Failed to fetch products:', response.data);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching products:', error);
-  //   }
-  // };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
 
   useEffect(() => {
     if (items.length === 0) {
@@ -450,6 +431,10 @@ const GetStreamSDK = ({route}) => {
                       style={{
                         color: 'red',
                         fontSize: calculatedFontSize / 2.3,
+                        textShadowColor: '#000', // Shadow color
+                        textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                        textShadowRadius: 3, // Shadow blur
+                        elevation: 5,
                       }}>
                       {curBidWinner} won the bid!
                     </Text>
@@ -462,6 +447,10 @@ const GetStreamSDK = ({route}) => {
                       fontSize: calculatedFontSize / 2.5,
                       fontWeight: 'bold',
                       flex: 1,
+                      textShadowColor: '#000', // Shadow color
+                      textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                      textShadowRadius: 3, // Shadow blur
+                      elevation: 5,
                     }}>
                     Now Streaming
                   </Text>
@@ -506,7 +495,7 @@ const GetStreamSDK = ({route}) => {
                             }}>
                             <View
                               style={{
-                                width: '100%',
+                                width: '90%',
                                 flexDirection: 'row',
                                 alignItems: 'center',
                                 marginBottom: '2%',
@@ -524,10 +513,27 @@ const GetStreamSDK = ({route}) => {
                               />
                               <View>
                                 <Text
-                                  style={{fontWeight: 'bold', color: 'white'}}>
+                                  style={{
+                                    color: 'white',
+                                    fontSize: calculatedFontSize / 3,
+                                    textShadowColor: '#000', // Shadow color
+                                    textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                                    textShadowRadius: 3, // Shadow blur
+                                    elevation: 5,
+                                  }}>
                                   {item.userUsername}
                                 </Text>
-                                <Text style={{color: 'white'}}>
+                                <Text
+                                  style={{
+                                    color: 'white',
+                                    fontSize: calculatedFontSize / 3,
+                                    fontWeight: 'bold',
+                                    textShadowColor: '#000', // Shadow color
+                                    textShadowOffset: {width: 1, height: 1}, // Shadow offset
+                                    textShadowRadius: 3, // Shadow blur
+                                    elevation: 5,
+                                    flexWrap: 'wrap',
+                                  }}>
                                   {item.comment}
                                 </Text>
                               </View>

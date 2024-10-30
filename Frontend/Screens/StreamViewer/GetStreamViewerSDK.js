@@ -23,7 +23,6 @@ import {
   baseURL,
   baseURLNoApi,
   colors,
-  token,
 } from '../../Resources/Constants';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -33,7 +32,6 @@ import {
   StreamVideo,
   StreamVideoClient,
 } from '@stream-io/video-react-native-sdk';
-import demo4 from '../../Resources/demo4.jpg';
 
 const CustomLivestreamPlayer = React.lazy(() =>
   import('./CustomLivestreamPlayer'),
@@ -483,16 +481,8 @@ const VideoScreen = ({route}) => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <StreamVideo client={myClient}>
-        {/* <View style={styles.video}>
-          <Image source={demo} resizeMode="contain" />
-          <CustomLivestreamPlayer callType="livestream" callId={callId} />
-        </View> */}
         <View style={styles.video}>
-          <Image
-            source={demo4}
-            resizeMode="stretch"
-            style={{width: '100%', height: '100%'}}
-          />
+          <CustomLivestreamPlayer callType="livestream" callId={callId} />
         </View>
       </StreamVideo>
       <SafeAreaView style={{flex: 1}}>
@@ -570,6 +560,10 @@ const VideoScreen = ({route}) => {
                   top: '15%',
                   alignItems: 'center',
                   width: '100%',
+                  textShadowColor: '#000',
+                  textShadowOffset: {width: 1, height: 1},
+                  textShadowRadius: 3,
+                  elevation: 5,
                 }}>
                 <Text
                   style={{color: 'red', fontSize: calculatedFontSize / 2.3}}>

@@ -233,13 +233,14 @@ const ViewerTab = () => {
         </TouchableOpacity>
         <Text
           style={{
-            fontSize: calculatedFontSize / 2.6,
+            fontSize: calculatedFontSize / 2.8,
             color: colors.black,
             fontWeight: 'bold',
+            marginVertical: 1,
           }}
           numberOfLines={2}
           ellipsizeMode="tail">
-          {item.title}
+          {item.title.toUpperCase()}
         </Text>
       </View>
     );
