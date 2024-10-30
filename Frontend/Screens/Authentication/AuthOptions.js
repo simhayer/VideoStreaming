@@ -28,6 +28,7 @@ import {useDispatch} from 'react-redux';
 import {googleLogin} from '../../Redux/Features/AuthSlice';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import SignUpOptions from './SignUpOptions';
+import AuthBottomSheetStack from './AuthBottomSheet';
 
 const AuthOptions = () => {
   const screenHeight = Dimensions.get('window').height;
@@ -135,6 +136,24 @@ const AuthOptions = () => {
     signupBottomSheetRef.current?.expand();
   };
 
+  const [LoginBottomSheetVisible, setLoginBottomSheetVisible] = useState(false);
+
+  const loginBottomSheetRef = useRef(null);
+
+  const handleLoginSheetChanges = useCallback(index => {
+    console.log('handleSheetChanges', index);
+    if (index === 0) {
+      console.log('Closing bottom sheet');
+
+      setLoginBottomSheetVisible(false);
+    }
+  }, []);
+
+  const showLoginBottomSheet = () => {
+    setLoginBottomSheetVisible(true);
+    loginBottomSheetRef.current?.expand;
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -194,7 +213,7 @@ const AuthOptions = () => {
             <AuthButton
               iconName="mail"
               text="Login"
-              onPress={() => navigation.navigate('LoginOptions')}
+              onPress={showLoginBottomSheet}
             />
           </Animated.View>
         </View>
@@ -207,7 +226,24 @@ const AuthOptions = () => {
           index={SignUpBottomSheetVisible ? 1 : -1}
           onChange={handleSignUpSheetChanges}>
           <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-            <SignUpOptions />
+            {/* Pass the initialRoute to be 'SignUpOptions' */}
+            <AuthBottomSheetStack
+              route={{params: {initialRoute: 'SignUpOptions'}}}
+            />
+          </BottomSheetView>
+        </BottomSheet>
+      )}
+      {LoginBottomSheetVisible && (
+        <BottomSheet
+          ref={loginBottomSheetRef}
+          snapPoints={signUpSnapPoints}
+          index={LoginBottomSheetVisible ? 1 : -1}
+          onChange={handleLoginSheetChanges}>
+          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
+            {/* Pass the initialRoute to be 'LoginOptions' */}
+            <AuthBottomSheetStack
+              route={{params: {initialRoute: 'LoginOptions'}}}
+            />
           </BottomSheetView>
         </BottomSheet>
       )}

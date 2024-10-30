@@ -18,6 +18,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../Redux/Features/AuthSlice';
 import {colors} from '../../../Resources/Constants';
+//import {colors} from '../../../Resources/Constants';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
@@ -71,7 +72,7 @@ const ForgetPassword = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{alignItems: 'center', paddingTop: '12%'}}>
         <View style={{width: '85%'}}>
           <Text style={{padding: '3%', fontSize: calculatedFontSize / 2.7}}>

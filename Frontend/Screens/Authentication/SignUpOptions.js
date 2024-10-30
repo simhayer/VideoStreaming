@@ -25,7 +25,7 @@ import AuthButton from './AuthButton';
 import {useDispatch} from 'react-redux';
 import {googleLogin} from '../../Redux/Features/AuthSlice';
 
-const SignUp = () => {
+const SignUpOptions = () => {
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
@@ -258,4 +258,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpOptions;
