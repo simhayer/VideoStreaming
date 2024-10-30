@@ -95,7 +95,7 @@ const EnterStreamTitle = () => {
           placeholderTextColor={'gray'}
           autoCorrect={false}
           returnKeyType="next"
-          maxLength={30}
+          maxLength={40}
           selectionColor={appPink}
           inputMode="text"
           onSubmitEditing={onNextClick}
