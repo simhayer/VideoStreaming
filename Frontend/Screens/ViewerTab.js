@@ -173,7 +173,7 @@ const ViewerTab = () => {
         style={{
           width: '48%',
           height: screenHeight * 0.35,
-          marginBottom: '20%',
+          marginBottom: 105,
           marginRight: '4%',
         }}>
         <View style={styles.row}>
@@ -224,7 +224,7 @@ const ViewerTab = () => {
                 style={{
                   color: 'white',
                   fontWeight: 'bold',
-                  fontSize: calculatedFontSize / 2.8,
+                  fontSize: calculatedFontSize / 2.9,
                 }}>
                 Live - {item.watchers}
               </Text>

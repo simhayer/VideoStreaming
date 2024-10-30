@@ -90,10 +90,7 @@ const EnterStreamTitle = () => {
             paddingHorizontal: 5,
             borderRadius: 8,
           }}
-          autoComplete="off"
-          autoCapitalize="none"
           placeholderTextColor={'gray'}
-          autoCorrect={false}
           returnKeyType="next"
           maxLength={40}
           selectionColor={appPink}
