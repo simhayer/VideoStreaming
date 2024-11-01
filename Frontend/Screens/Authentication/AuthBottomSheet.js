@@ -5,16 +5,23 @@ import SignUp from './SignUp';
 import Login from './Login';
 import React from 'react';
 
-const AuthBottomSheetStack = ({route}) => {
+const Stack = createNativeStackNavigator();
+
+const AuthBottomSheetStack = ({route, setCanGoBack}) => {
   const {initialRoute} = route.params; // Get initialRoute from passed params
-  const Stack = createNativeStackNavigator();
 
   return (
     <Stack.Navigator
-      initialRouteName={initialRoute} // Set the initial route dynamically
+      initialRouteName={initialRoute}
       screenOptions={{
         headerShown: false,
-        presentation: 'modal', // ensures modal-like navigation
+        presentation: 'modal',
+      }}
+      screenListeners={{
+        state: e => {
+          const routeCount = e.data.state.routes.length;
+          setCanGoBack(routeCount > 1); // Update "can go back" status
+        },
       }}>
       <Stack.Screen name="SignUpOptions" component={SignUpOptions} />
       <Stack.Screen name="LoginOptions" component={LoginOptions} />

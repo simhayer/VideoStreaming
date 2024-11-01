@@ -25,9 +25,9 @@ const AuthButton = ({iconName, text, onPress, loading}) => {
       onPress={onPress}
       style={styles.buttonContainer}
       activeOpacity={0.8}>
-      <Icon name={iconName} size={30} color="black" />
+      {iconName && <Icon name={iconName} size={30} color="black" />}
       <Text style={styles.buttonText}>{text}</Text>
-      <View style={{width: 30}} />
+      {iconName && <View style={{width: 30}} />}
     </TouchableOpacity>
   );
 };
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 4,
+    minHeight: 60,
   },
   buttonText: {
     color: 'white',

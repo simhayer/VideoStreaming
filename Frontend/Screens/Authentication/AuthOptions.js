@@ -11,6 +11,7 @@ import {
   Linking,
   ImageBackground,
   Image,
+  Keyboard,
 } from 'react-native';
 import {
   baseURL,
@@ -21,7 +22,7 @@ import {
   PrivacyPolicyLink,
 } from '../../Resources/Constants';
 import axios from 'axios';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useNavigationState} from '@react-navigation/native';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AuthButton from './AuthButton';
 import {useDispatch} from 'react-redux';
@@ -29,6 +30,7 @@ import {googleLogin} from '../../Redux/Features/AuthSlice';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import SignUpOptions from './SignUpOptions';
 import AuthBottomSheetStack from './AuthBottomSheet';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const AuthOptions = () => {
   const screenHeight = Dimensions.get('window').height;
@@ -120,39 +122,38 @@ const AuthOptions = () => {
 
   const signupBottomSheetRef = useRef(null);
 
-  const signUpSnapPoints = useMemo(() => ['1%', '90%'], []);
+  const signUpSnapPoints = useMemo(() => ['1%', '97%'], []);
 
   const handleSignUpSheetChanges = useCallback(index => {
     console.log('handleSheetChanges', index);
     if (index === 0) {
       console.log('Closing bottom sheet');
-
+      Keyboard.dismiss();
       setSignUpBottomSheetVisible(false);
     }
   }, []);
 
+  const [initialRoute, setInitialRoute] = useState('SignUpOptions'); // Default to SignUpOptions
+
   const showSignUpBottomSheet = () => {
+    setInitialRoute('SignUpOptions');
     setSignUpBottomSheetVisible(true);
     signupBottomSheetRef.current?.expand();
   };
 
-  const [LoginBottomSheetVisible, setLoginBottomSheetVisible] = useState(false);
-
-  const loginBottomSheetRef = useRef(null);
-
-  const handleLoginSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-    if (index === 0) {
-      console.log('Closing bottom sheet');
-
-      setLoginBottomSheetVisible(false);
-    }
-  }, []);
-
   const showLoginBottomSheet = () => {
-    setLoginBottomSheetVisible(true);
-    loginBottomSheetRef.current?.expand;
+    setInitialRoute('LoginOptions');
+    setSignUpBottomSheetVisible(true);
+    signupBottomSheetRef.current?.expand();
   };
+
+  const closeBottomSheet = () => {
+    Keyboard.dismiss();
+    signupBottomSheetRef.current?.close();
+    setSignUpBottomSheetVisible(false);
+  };
+
+  const [canGoBack, setCanGoBack] = useState(false);
 
   return (
     <SafeAreaView
@@ -189,33 +190,32 @@ const AuthOptions = () => {
             {BARS.split('').map((letter, index) => (
               <Animated.Text
                 key={index}
-                style={[styles.animatedLetter, {opacity: animatedBars[index]}]}>
+                style={{
+                  opacity: animatedBars[index],
+                  fontSize: 40,
+                  color: 'black',
+                  fontWeight: 'bold',
+                }}>
                 {letter}
               </Animated.Text>
             ))}
           </View>
           <View style={{marginTop: '3%', alignItems: 'center'}}>
             <Text style={styles.description}>
-              Create a profile, select your interest, discover live, search the
-              marketplace, and more...
+              Step into the Live Marketplace – Where Every Bid Counts!
             </Text>
           </View>
         </View>
 
         <View style={styles.footer}>
-          <Animated.View style={{marginTop: 20, width: '85%', borderRadius: 5}}>
+          <View style={{marginTop: 20, width: '85%', borderRadius: 5}}>
             <AuthButton
-              iconName="logo-google"
-              text="Singup"
+              text="Signup"
               onPress={showSignUpBottomSheet}
               loading={googleSignInLoading}
             />
-            <AuthButton
-              iconName="mail"
-              text="Login"
-              onPress={showLoginBottomSheet}
-            />
-          </Animated.View>
+            <AuthButton text="Login" onPress={showLoginBottomSheet} />
+          </View>
         </View>
       </View>
 
@@ -224,25 +224,20 @@ const AuthOptions = () => {
           ref={signupBottomSheetRef}
           snapPoints={signUpSnapPoints}
           index={SignUpBottomSheetVisible ? 1 : -1}
-          onChange={handleSignUpSheetChanges}>
+          onChange={handleSignUpSheetChanges}
+          style={{
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: -4},
+            shadowOpacity: 0.3,
+            shadowRadius: 10,
+            elevation: 10,
+          }}>
+          <NavigationHeader onClose={closeBottomSheet} canGoBack={canGoBack} />
+
           <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-            {/* Pass the initialRoute to be 'SignUpOptions' */}
             <AuthBottomSheetStack
-              route={{params: {initialRoute: 'SignUpOptions'}}}
-            />
-          </BottomSheetView>
-        </BottomSheet>
-      )}
-      {LoginBottomSheetVisible && (
-        <BottomSheet
-          ref={loginBottomSheetRef}
-          snapPoints={signUpSnapPoints}
-          index={LoginBottomSheetVisible ? 1 : -1}
-          onChange={handleLoginSheetChanges}>
-          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-            {/* Pass the initialRoute to be 'LoginOptions' */}
-            <AuthBottomSheetStack
-              route={{params: {initialRoute: 'LoginOptions'}}}
+              route={{params: {initialRoute: initialRoute}}}
+              setCanGoBack={setCanGoBack}
             />
           </BottomSheetView>
         </BottomSheet>
@@ -251,10 +246,37 @@ const AuthOptions = () => {
   );
 };
 
+const NavigationHeader = ({onClose, canGoBack}) => {
+  const navigation = useNavigation();
+
+  return (
+    <View>
+      {canGoBack ? (
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.navButton}>
+          <Icon name="chevron-back" size={22} color="black" />
+        </TouchableOpacity>
+      ) : (
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            marginRight: 10,
+          }}>
+          <TouchableOpacity onPress={onClose} style={styles.navButton}>
+            <Text style={{color: 'black', fontSize: 16}}>Close</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   animatedLetter: {
     fontSize: 40,
-    color: '#f542a4',
+    color: appPink,
     fontWeight: 'bold',
   },
   description: {
@@ -290,6 +312,10 @@ const styles = StyleSheet.create({
   },
   link: {
     color: appPink,
+  },
+  navButton: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
 });
 
