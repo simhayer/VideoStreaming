@@ -15,7 +15,7 @@ const AuthBottomSheetStack = ({route, setCanGoBack}) => {
       initialRouteName={initialRoute}
       screenOptions={{
         headerShown: false,
-        presentation: 'modal',
+        presentation: 'card',
       }}
       screenListeners={{
         state: e => {
