@@ -3,11 +3,9 @@ import {View, Animated, Easing, Image} from 'react-native';
 import {useSelector} from 'react-redux';
 
 const LazyStack = () => {
-  // Animation states
   const scaleValue = useRef(new Animated.Value(1)).current;
-  const opacityValue = useRef(new Animated.Value(1)).current;
+  const opacityValue = useRef(new Animated.Value(0)).current;
 
-  // State to control the loading delay
   const [isDelayed, setIsDelayed] = useState(true);
   const [loading, setLoading] = useState(true);
   const [LazyComponent, setLazyComponent] = useState(null);
@@ -43,20 +41,13 @@ const LazyStack = () => {
 
         try {
           if (isAuthenticated) {
-            // if (isSeller) {
             const {default: ImportedComponent} = await import(
               '../Stacks/LoggedInStackSeller'
             );
             setLazyComponent(() => ImportedComponent);
-            // } else {
-            //   const {default: ImportedComponent} = await import(
-            //     '../Stacks/LoggedInStack'
-            //   );
-            //   setLazyComponent(() => ImportedComponent);
-            // }
           } else {
             const {default: ImportedComponent} = await import(
-              '../Stacks/LoggedOutStack'
+              '../Screens/Authentication/AuthOptions'
             );
             setLazyComponent(() => ImportedComponent);
           }
@@ -84,6 +75,12 @@ const LazyStack = () => {
             ]),
           ]).start(() => {
             setLoading(false);
+            // Trigger fade-in after loading is done
+            Animated.timing(opacityValue, {
+              toValue: 1,
+              duration: 500, // Adjust duration as needed for a smooth fade-in
+              useNativeDriver: true,
+            }).start();
           });
         }
       };
@@ -117,9 +114,11 @@ const LazyStack = () => {
     );
   }
 
-  // When loading is finished, display the lazy-loaded component immediately
+  // When loading is finished, apply the fade-in effect to LazyComponent
   return LazyComponent ? (
-    <LazyComponent />
+    <Animated.View style={{flex: 1, opacity: opacityValue}}>
+      <LazyComponent />
+    </Animated.View>
   ) : (
     <View
       style={{

@@ -122,14 +122,18 @@ const AuthOptions = () => {
 
   const signupBottomSheetRef = useRef(null);
 
-  const signUpSnapPoints = useMemo(() => ['1%', '97%'], []);
+  const signUpSnapPoints = useMemo(() => ['1%', '90%'], []);
 
   const handleSignUpSheetChanges = useCallback(index => {
     console.log('handleSheetChanges', index);
     if (index === 0) {
       console.log('Closing bottom sheet');
       Keyboard.dismiss();
-      setSignUpBottomSheetVisible(false);
+      try {
+        navigation.popToTop();
+      } catch {}
+
+      signupBottomSheetRef.current?.close();
     }
   }, []);
 
@@ -148,9 +152,10 @@ const AuthOptions = () => {
   };
 
   const closeBottomSheet = () => {
+    navigation.popToTop();
     Keyboard.dismiss();
     signupBottomSheetRef.current?.close();
-    setSignUpBottomSheetVisible(false);
+    //setSignUpBottomSheetVisible(false);
   };
 
   const [canGoBack, setCanGoBack] = useState(false);
@@ -202,8 +207,9 @@ const AuthOptions = () => {
           </View>
           <View style={{marginTop: '3%', alignItems: 'center'}}>
             <Text style={styles.description}>
-              Step into the Live Marketplace – Where Every Bid Counts!
+              Step into the Live Marketplace
             </Text>
+            <Text style={styles.description}>Where Every Bid Counts!</Text>
           </View>
         </View>
 
@@ -249,13 +255,17 @@ const AuthOptions = () => {
 const NavigationHeader = ({onClose, canGoBack}) => {
   const navigation = useNavigation();
 
+  const handleBackPress = () => {
+    try {
+      navigation.goBack();
+    } catch {}
+  };
+
   return (
     <View>
       {canGoBack ? (
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.navButton}>
-          <Icon name="chevron-back" size={22} color="black" />
+        <TouchableOpacity onPress={handleBackPress} style={styles.navButton}>
+          <Icon name="chevron-back" size={25} color="black" />
         </TouchableOpacity>
       ) : (
         <View
