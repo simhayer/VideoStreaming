@@ -234,9 +234,35 @@ const SellerOrders = () => {
                       }}>
                       {item.product.name}
                     </Text>
-                    <Text style={{fontSize: calculatedFontSize / 2.8}}>
-                      ${item.amount}
-                    </Text>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                      }}>
+                      <Text style={{fontSize: calculatedFontSize / 2.8}}>
+                        ${item.amount}
+                      </Text>
+                      {item.status === 'Completed' && (
+                        <View
+                          style={{
+                            marginLeft: '10%',
+                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                            paddingVertical: 2,
+                            paddingHorizontal: 5,
+                            borderRadius: 5,
+                          }}>
+                          <Text
+                            style={{
+                              fontSize: calculatedFontSize / 2.9,
+                              fontWeight: 'bold',
+
+                              color: 'green',
+                            }}>
+                            SOLD
+                          </Text>
+                        </View>
+                      )}
+                    </View>
                   </View>
                   <Icon name="chevron-forward" size={25} color="black" />
                 </TouchableOpacity>
