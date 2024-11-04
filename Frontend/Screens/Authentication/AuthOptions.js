@@ -103,7 +103,7 @@ const AuthOptions = () => {
           resizeMode="contain"
           style={{height: '55%', width: '100%'}}></Image>
 
-        <View style={{flex: 0.4}} />
+        <View style={{flex: 0.3}} />
         <View style={{}}>
           <View
             style={{
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 2,
     justifyContent: 'flex-end',
-    marginBottom: 60,
+    marginBottom: 50,
     alignItems: 'center',
   },
 });
