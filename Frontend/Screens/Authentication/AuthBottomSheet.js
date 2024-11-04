@@ -18,7 +18,7 @@ const ResetPassword = React.lazy(() =>
   import('./PassowrdHandle/ResetPassword'),
 );
 
-const AuthBottomSheetStack = ({initialRouteName, onClose}) => {
+const AuthBottomSheetStack = ({initialRouteName, onClose, clientIds}) => {
   const Stack = createNativeStackNavigator();
 
   const closeHeaderOptions = {
@@ -63,11 +63,13 @@ const AuthBottomSheetStack = ({initialRouteName, onClose}) => {
           name="SignUpOptions"
           component={SignUpOptions}
           options={closeHeaderOptions}
+          initialParams={{clientIds}}
         />
         <Stack.Screen
           name="LoginOptions"
           component={LoginOptions}
           options={closeHeaderOptions}
+          initialParams={{clientIds}}
         />
         <Stack.Screen
           name="SignUp"

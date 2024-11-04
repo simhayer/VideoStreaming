@@ -2,11 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  TextInput,
   TouchableOpacity,
   Dimensions,
-  Platform,
   SafeAreaView,
   Linking,
 } from 'react-native';
@@ -20,18 +17,16 @@ import {
 } from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AuthButton from './AuthButton';
 import {useDispatch} from 'react-redux';
 import {googleLogin} from '../../Redux/Features/AuthSlice';
 
 const LoginOptions = ({route}) => {
-  // clientIds = route.params;
+  clientIds = route.params;
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
-  const [clientIds, setClientIds] = useState({});
   const dispatch = useDispatch();
   const [googleSignInLoading, setGoogleSignInLoading] = useState(false);
 
@@ -47,34 +42,9 @@ const LoginOptions = ({route}) => {
     navigation.navigate('Login');
   };
 
-  const fetchGoogleClientIds = async () => {
-    try {
-      const response = await axios.get(
-        baseURL + apiEndpoints.getGoogleClientId,
-      );
-      setClientIds({
-        android: response.data.googleAndroidClientId,
-        ios: response.data.googleIosClientId,
-      });
-    } catch (error) {
-      console.error('Error fetching Google Client IDs:', error);
-    }
-  };
-
-  useEffect(() => {
-    if (clientIds.android || clientIds.ios) {
-      GoogleSignin.configure({
-        androidClientId: clientIds.android,
-        iosClientId: clientIds.ios,
-        scopes: ['profile', 'email'],
-      });
-    }
-  }, [clientIds]);
-
   const GoogleLogin = async () => {
-    setClientIds(clientIds);
-    if (!clientIds?.android) {
-      fetchGoogleClientIds();
+    if (!clientIds) {
+      return;
     }
     setGoogleSignInLoading(true);
     try {

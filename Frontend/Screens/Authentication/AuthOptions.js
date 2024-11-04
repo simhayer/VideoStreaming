@@ -9,16 +9,24 @@ import {
   Image,
   Keyboard,
 } from 'react-native';
-import {appPink, colors} from '../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  colors,
+} from '../../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
 import AuthButton from './AuthButton';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import AuthBottomSheetStack from './AuthBottomSheet';
+import axios from 'axios';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 const AuthOptions = () => {
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
+  const [clientIds, setClientIds] = useState({});
 
   // Animated values for each letter
   const signUpFor = 'Welcome to ';
@@ -90,6 +98,34 @@ const AuthOptions = () => {
     signupBottomSheetRef.current?.close();
     //setSignUpBottomSheetVisible(false);
   };
+
+  const fetchGoogleClientIds = async () => {
+    try {
+      const response = await axios.get(
+        baseURL + apiEndpoints.getGoogleClientId,
+      );
+      setClientIds({
+        android: response.data.googleAndroidClientId,
+        ios: response.data.googleIosClientId,
+      });
+    } catch (error) {
+      console.error('Error fetching Google Client IDs:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchGoogleClientIds();
+  }, []);
+
+  useEffect(() => {
+    if (clientIds.android || clientIds.ios) {
+      GoogleSignin.configure({
+        androidClientId: clientIds.android,
+        iosClientId: clientIds.ios,
+        scopes: ['profile', 'email'],
+      });
+    }
+  }, [clientIds]);
 
   return (
     <SafeAreaView
@@ -175,6 +211,7 @@ const AuthOptions = () => {
               key={initialRoute} // Add key to force re-render
               initialRouteName={initialRoute} // Pass initialRoute here directly
               onClose={closeBottomSheet}
+              clientIds={clientIds}
             />
           </BottomSheetView>
         </BottomSheet>

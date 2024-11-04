@@ -25,11 +25,12 @@ import AuthButton from './AuthButton';
 import {useDispatch} from 'react-redux';
 import {googleLogin} from '../../Redux/Features/AuthSlice';
 
-const SignUpOptions = () => {
+const SignUpOptions = ({route}) => {
+  clientIds = route.params;
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
-  const [clientIds, setClientIds] = useState({});
+  //const [clientIds, setClientIds] = useState({});
   const dispatch = useDispatch();
   const [googleSignInLoading, setGoogleSignInLoading] = useState(false);
 
@@ -45,38 +46,10 @@ const SignUpOptions = () => {
     navigation.navigate('SignUp');
   };
 
-  const fetchGoogleClientIds = async () => {
-    try {
-      const response = await axios.get(
-        baseURL + apiEndpoints.getGoogleClientId,
-      );
-      setClientIds({
-        android: response.data.googleAndroidClientId,
-        ios: response.data.googleIosClientId,
-      });
-    } catch (error) {
-      console.error('Error fetching Google Client IDs:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchGoogleClientIds();
-  }, []);
-
-  useEffect(() => {
-    if (clientIds.android || clientIds.ios) {
-      GoogleSignin.configure({
-        androidClientId: clientIds.android,
-        iosClientId: clientIds.ios,
-        scopes: ['profile', 'email'],
-      });
-    }
-  }, [clientIds]);
-
   const GoogleLogin = async () => {
     setGoogleSignInLoading(true);
     if (!clientIds) {
-      fetchGoogleClientIds();
+      return;
     }
     try {
       await GoogleSignin.hasPlayServices();
