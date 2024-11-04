@@ -125,14 +125,12 @@ const AuthOptions = () => {
   const signUpSnapPoints = useMemo(() => ['1%', '90%'], []);
 
   const handleSignUpSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
     if (index === 0) {
-      console.log('Closing bottom sheet');
       Keyboard.dismiss();
       try {
         navigation.popToTop();
       } catch {}
-
+      setInitialRoute(null);
       signupBottomSheetRef.current?.close();
     }
   }, []);
@@ -205,7 +203,12 @@ const AuthOptions = () => {
               </Animated.Text>
             ))}
           </View>
-          <View style={{marginTop: '3%', alignItems: 'center'}}>
+          <View
+            style={{
+              marginTop: '3%',
+              alignItems: 'center',
+              marginHorizontal: '8%',
+            }}>
             <Text style={styles.description}>
               Step into the Live Marketplace
             </Text>
@@ -242,7 +245,8 @@ const AuthOptions = () => {
 
           <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
             <AuthBottomSheetStack
-              route={{params: {initialRoute: initialRoute}}}
+              key={initialRoute} // Add key to force re-render
+              initialRouteName={initialRoute} // Pass initialRoute here directly
               setCanGoBack={setCanGoBack}
             />
           </BottomSheetView>

@@ -5,6 +5,7 @@ import {
   Button,
   Dimensions,
   Image,
+  PermissionsAndroid,
   SafeAreaView,
   Text,
   TextInput,
@@ -62,7 +63,14 @@ const StartStreamTab = ({route}) => {
     const optionsArray = [
       {
         text: 'Take Photo',
-        onPress: () => launchCamera(options, handleImageResponse),
+        onPress: async () => {
+          const hasPermission = await requestCameraPermission();
+          if (hasPermission) {
+            launchCamera(options, handleImageResponse);
+          } else {
+            Alert.alert('Camera Permission', 'Permission denied');
+          }
+        },
       },
       {
         text: 'Choose from Library',
@@ -83,11 +91,8 @@ const StartStreamTab = ({route}) => {
     } else if (response.error) {
       console.log('ImagePicker Error: ', response.error);
     } else {
-      setIsError(false);
-      setErrorMessage('');
-      const uri = response.assets[0].uri;
+      const uri = response?.assets[0].uri;
 
-      // Resize the image
       ImageResizer.createResizedImage(uri, 800, 600, 'JPEG', 80)
         .then(resizedImage => {
           setSelectedImage(resizedImage.uri); // Set the resized image URI
@@ -95,6 +100,28 @@ const StartStreamTab = ({route}) => {
         .catch(err => {
           console.log('Image Resizing Error: ', err);
         });
+    }
+  };
+
+  const requestCameraPermission = async () => {
+    try {
+      if (Platform.OS === 'android') {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: 'Camera Permission',
+            message: 'App needs camera permission to take pictures.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          },
+        );
+        return granted === PermissionsAndroid.RESULTS.GRANTED;
+      }
+      return true;
+    } catch (err) {
+      console.warn(err);
+      return false;
     }
   };
 

@@ -5,6 +5,7 @@ import SignUp from './SignUp';
 import Login from './Login';
 import UsernameCreate from './UsernameCreate';
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 
 //Lazy loaded screens
 const ForgetPassword = React.lazy(() =>
@@ -15,33 +16,33 @@ const ResetPassword = React.lazy(() =>
   import('./PassowrdHandle/ResetPassword'),
 );
 
-const Stack = createNativeStackNavigator();
-
-const AuthBottomSheetStack = ({route, setCanGoBack}) => {
-  const {initialRoute} = route.params; // Get initialRoute from passed params
+const AuthBottomSheetStack = ({initialRouteName, setCanGoBack}) => {
+  const Stack = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator
-      initialRouteName={initialRoute}
-      screenOptions={{
-        headerShown: false,
-        presentation: 'card',
-      }}
-      screenListeners={{
-        state: e => {
-          const routeCount = e.data.state.routes.length;
-          setCanGoBack(routeCount > 1); // Update "can go back" status
-        },
-      }}>
-      <Stack.Screen name="SignUpOptions" component={SignUpOptions} />
-      <Stack.Screen name="LoginOptions" component={LoginOptions} />
-      <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="UsernameCreate" component={UsernameCreate} />
-      <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
-      <Stack.Screen name="ForgetCode" component={ForgetCode} />
-      <Stack.Screen name="ResetPassword" component={ResetPassword} />
-    </Stack.Navigator>
+    <NavigationContainer independent={true}>
+      <Stack.Navigator
+        initialRouteName={initialRouteName}
+        screenOptions={{
+          headerShown: false,
+          presentation: 'card',
+        }}
+        screenListeners={{
+          state: e => {
+            const routeCount = e.data.state.routes.length;
+            setCanGoBack(routeCount > 1); // Update "can go back" status
+          },
+        }}>
+        <Stack.Screen name="SignUpOptions" component={SignUpOptions} />
+        <Stack.Screen name="LoginOptions" component={LoginOptions} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="UsernameCreate" component={UsernameCreate} />
+        <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+        <Stack.Screen name="ForgetCode" component={ForgetCode} />
+        <Stack.Screen name="ResetPassword" component={ResetPassword} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

@@ -118,7 +118,7 @@ const LoginOptions = ({route}) => {
         backgroundColor: colors.background,
       }}>
       <View style={{flex: 0.4}} />
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+      <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
         <View
           style={{
             flexDirection: 'row',
@@ -153,8 +153,8 @@ const LoginOptions = ({route}) => {
               textAlign: 'center',
               fontSize: calculatedFontSize / 2.7,
             }}>
-            Create a profile, select your interest, discover live, search the
-            marketplace, and more...
+            Welcome Back! Log in to Rejoin the Action — Your Next Live Bid
+            Awaits!
           </Text>
         </View>
       </View>

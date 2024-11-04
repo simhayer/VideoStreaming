@@ -119,7 +119,7 @@ const SignUpOptions = () => {
         backgroundColor: colors.background,
       }}>
       <View style={{flex: 0.4}} />
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+      <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
         <View
           style={{
             flexDirection: 'row',
@@ -154,8 +154,8 @@ const SignUpOptions = () => {
               textAlign: 'center',
               fontSize: calculatedFontSize / 2.7,
             }}>
-            Create a profile, select your interest, discover live, search the
-            marketplace, and more...
+            Create Account to Start Bidding Live — Explore Real-Time Auctions,
+            Exclusive Deals, and more...
           </Text>
         </View>
       </View>
