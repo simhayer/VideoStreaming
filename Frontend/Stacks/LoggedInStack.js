@@ -15,6 +15,7 @@ import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
 // Lazily load the group of onboarding-related screens
 const StartStreamTab = lazy(() => import('../Screens/Stream/StartStreamTab'));
 const SellerOrders = lazy(() => import('../Screens/Orders/SellerOrders'));
+const SellerOrdersNew = lazy(() => import('../Screens/Orders/SellerOrdersNew'));
 const ViewOrderSeller = lazy(() => import('../Screens/Orders/ViewOrderSeller'));
 const EnterStreamTitle = lazy(() =>
   import('../Screens/Stream/EnterStreamTitle'),
@@ -70,6 +71,7 @@ const LoggedInStack = () => {
       import('../Screens/Stream/EnterStreamTitle');
       import('../Screens/Products/AddProduct');
       import('../Screens/Products/ViewProduct');
+      import('../Screens/Stream/SellerOrdersNew');
     }
   }, [isSeller]);
 
@@ -109,6 +111,7 @@ const LoggedInStack = () => {
         <>
           <Stack.Screen name="StartStreamTab" component={StartStreamTab} />
           <Stack.Screen name="SellerOrders" component={SellerOrders} />
+
           <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
           <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />
           <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />

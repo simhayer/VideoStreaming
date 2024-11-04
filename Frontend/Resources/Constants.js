@@ -47,6 +47,8 @@ export const apiEndpoints = {
   deleteUser: '/auth/deleteUser',
   createReportUser: '/auth/createReportUser',
   triggerTransferForOrder: '/auth/triggerTransferForOrder',
+  getAllOrdersForSellerGroupedByStatus:
+    '/auth/getAllOrdersForSellerGroupedByStatus',
   // Add more API endpoints as needed
 };
 

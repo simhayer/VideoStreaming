@@ -188,7 +188,7 @@ const StartStreamTab = () => {
 
             <TouchableOpacity
               style={[styles.button, {flex: 1, marginLeft: 8}]}
-              onPress={() => navigation.navigate('SellerOrders')}
+              onPress={() => navigation.navigate('SellerOrdersNew')}
               activeOpacity={0.8}>
               <View style={{alignItems: 'center'}}>
                 <Icon name="cart-outline" size={30} color="black" />

@@ -16,6 +16,8 @@ import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink, colors, errorRed} from '../../Resources/Constants';
 import ImageResizer from 'react-native-image-resizer';
+import {useDispatch} from 'react-redux';
+import {resetOrders} from '../../Redux/Features/OrdersSlice';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -29,6 +31,8 @@ const StartStreamTab = ({route}) => {
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const dispatch = useDispatch();
+
   const startStream = async () => {
     if (selectedImage === '') {
       setIsError(true);
@@ -36,6 +40,8 @@ const StartStreamTab = ({route}) => {
       return;
     }
     console.log('Going to GetStreamSDK');
+
+    dispatch(resetOrders());
 
     navigation.reset({
       index: 1, // The second route (GetStreamSDK) will be the active screen
