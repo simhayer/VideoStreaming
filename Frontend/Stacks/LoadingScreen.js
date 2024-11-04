@@ -24,17 +24,34 @@ const LazyStack = () => {
 
   useEffect(() => {
     if (!isDelayed) {
-      const startAnimation = () => {
+      // Start zoom-in and zoom-out animation
+      const startZoomAnimation = () => {
         Animated.loop(
-          Animated.timing(scaleValue, {
-            toValue: 5,
-            duration: 7000,
-            easing: Easing.linear,
-            useNativeDriver: true,
-          }),
+          Animated.sequence([
+            Animated.timing(scaleValue, {
+              toValue: 1.2,
+              duration: 1000,
+              easing: Easing.inOut(Easing.ease),
+              useNativeDriver: true,
+            }),
+            Animated.timing(scaleValue, {
+              toValue: 1,
+              duration: 1000,
+              easing: Easing.inOut(Easing.ease),
+              useNativeDriver: true,
+            }),
+          ]),
         ).start();
       };
-      startAnimation();
+
+      startZoomAnimation();
+
+      // Set opacity to fade in the logo initially
+      Animated.timing(opacityValue, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
 
       const loadComponent = async () => {
         setLoading(true);
@@ -55,12 +72,6 @@ const LazyStack = () => {
           console.error('Error loading component:', error);
         } finally {
           Animated.sequence([
-            Animated.timing(scaleValue, {
-              toValue: 6,
-              duration: 300,
-              easing: Easing.out(Easing.ease),
-              useNativeDriver: true,
-            }),
             Animated.parallel([
               Animated.timing(opacityValue, {
                 toValue: 0,
@@ -102,7 +113,7 @@ const LazyStack = () => {
         <Animated.View
           style={{
             transform: [{scale: scaleValue}],
-            opacity: opacityValue, // Fade-out effect
+            opacity: opacityValue,
           }}>
           <Image
             source={require('../Resources/BARS_logo_nobackground.png')}

@@ -13,7 +13,6 @@ import ContinueOnboarding from '../Screens/GetStartedSell/ContinueOnboarding';
 import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
 
 import StartStreamTab from '../Screens/Stream/StartStreamTab';
-import SellerOrders from '../Screens/Orders/SellerOrders';
 import SellerOrdersNew from '../Screens/Orders/SellerOrdersNew';
 import ViewOrderSeller from '../Screens/Orders/ViewOrderSeller';
 import EnterStreamTitle from '../Screens/Stream/EnterStreamTitle';
@@ -78,7 +77,6 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="GetStreamViewerSDK" component={GetStreamViewerSDK} />
 
       <Stack.Screen name="StartStreamTab" component={StartStreamTab} />
-      <Stack.Screen name="SellerOrders" component={SellerOrders} />
       <Stack.Screen name="SellerOrdersNew" component={SellerOrdersNew} />
       <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
       <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />

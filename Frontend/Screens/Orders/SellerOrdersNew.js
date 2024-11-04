@@ -144,14 +144,14 @@ const SellerOrders = () => {
             key={status}
             onPress={() => setSelectedStatus(status)}
             style={{
-              paddingHorizontal: 15,
+              paddingHorizontal: 5,
               paddingVertical: 8,
               borderRadius: 20,
               backgroundColor: selectedStatus === status ? appPink : 'white',
-              marginRight: 10,
               minHeight: 50,
               justifyContent: 'center',
               alignItems: 'center',
+              flex: 1,
             }}>
             <Text
               style={{
