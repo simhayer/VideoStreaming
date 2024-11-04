@@ -3,45 +3,25 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Dimensions,
   SafeAreaView,
   Animated,
-  Easing,
-  Linking,
-  ImageBackground,
   Image,
   Keyboard,
 } from 'react-native';
-import {
-  baseURL,
-  apiEndpoints,
-  appPink,
-  colors,
-  TermsAndConditionsLink,
-  PrivacyPolicyLink,
-} from '../../Resources/Constants';
-import axios from 'axios';
-import {useNavigation, useNavigationState} from '@react-navigation/native';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {appPink, colors} from '../../Resources/Constants';
+import {useNavigation} from '@react-navigation/native';
 import AuthButton from './AuthButton';
-import {useDispatch} from 'react-redux';
-import {googleLogin} from '../../Redux/Features/AuthSlice';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import SignUpOptions from './SignUpOptions';
 import AuthBottomSheetStack from './AuthBottomSheet';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const AuthOptions = () => {
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
-  const [clientIds, setClientIds] = useState({});
-  const dispatch = useDispatch();
-  const [googleSignInLoading, setGoogleSignInLoading] = useState(false);
 
   // Animated values for each letter
-  const signUpFor = 'Welcome to  ';
+  const signUpFor = 'Welcome to ';
   const BARS = 'BARS';
 
   const [animatedLetters, setAnimatedLetters] = useState(
@@ -70,52 +50,6 @@ const AuthOptions = () => {
       animateText(animatedBars); // Animate 'BARS' after 'Sign up for'
     }, signUpFor.length * 100);
   }, []);
-
-  const fetchGoogleClientIds = async () => {
-    try {
-      const response = await axios.get(
-        baseURL + apiEndpoints.getGoogleClientId,
-      );
-      setClientIds({
-        android: response.data.googleAndroidClientId,
-        ios: response.data.googleIosClientId,
-      });
-    } catch (error) {
-      console.error('Error fetching Google Client IDs:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchGoogleClientIds();
-  }, []);
-
-  useEffect(() => {
-    if (clientIds.android || clientIds.ios) {
-      GoogleSignin.configure({
-        androidClientId: clientIds.android,
-        iosClientId: clientIds.ios,
-        scopes: ['profile', 'email'],
-      });
-    }
-  }, [clientIds]);
-
-  const GoogleLogin = async () => {
-    setGoogleSignInLoading(true);
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      const {email, name, photo} = userInfo.user;
-      const response = await axios.post(
-        baseURL + apiEndpoints.handleGoogleSignin,
-        {email, name, profilePicture: photo},
-      );
-      dispatch(googleLogin({user: response.data.user}));
-    } catch (error) {
-      console.error('Google Login Failed:', error);
-    } finally {
-      setGoogleSignInLoading(false);
-    }
-  };
 
   const [SignUpBottomSheetVisible, setSignUpBottomSheetVisible] =
     useState(false);
@@ -150,13 +84,12 @@ const AuthOptions = () => {
   };
 
   const closeBottomSheet = () => {
-    navigation.popToTop();
+    console.log('Closing bottom sheet');
+    //navigation.popToTop();
     Keyboard.dismiss();
     signupBottomSheetRef.current?.close();
     //setSignUpBottomSheetVisible(false);
   };
-
-  const [canGoBack, setCanGoBack] = useState(false);
 
   return (
     <SafeAreaView
@@ -218,11 +151,7 @@ const AuthOptions = () => {
 
         <View style={styles.footer}>
           <View style={{marginTop: 20, width: '85%', borderRadius: 5}}>
-            <AuthButton
-              text="Signup"
-              onPress={showSignUpBottomSheet}
-              loading={googleSignInLoading}
-            />
+            <AuthButton text="Signup" onPress={showSignUpBottomSheet} />
             <AuthButton text="Login" onPress={showLoginBottomSheet} />
           </View>
         </View>
@@ -241,49 +170,16 @@ const AuthOptions = () => {
             shadowRadius: 10,
             elevation: 10,
           }}>
-          <NavigationHeader onClose={closeBottomSheet} canGoBack={canGoBack} />
-
           <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
             <AuthBottomSheetStack
               key={initialRoute} // Add key to force re-render
               initialRouteName={initialRoute} // Pass initialRoute here directly
-              setCanGoBack={setCanGoBack}
+              onClose={closeBottomSheet}
             />
           </BottomSheetView>
         </BottomSheet>
       )}
     </SafeAreaView>
-  );
-};
-
-const NavigationHeader = ({onClose, canGoBack}) => {
-  const navigation = useNavigation();
-
-  const handleBackPress = () => {
-    try {
-      navigation.goBack();
-    } catch {}
-  };
-
-  return (
-    <View>
-      {canGoBack ? (
-        <TouchableOpacity onPress={handleBackPress} style={styles.navButton}>
-          <Icon name="chevron-back" size={25} color="black" />
-        </TouchableOpacity>
-      ) : (
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            marginRight: 10,
-          }}>
-          <TouchableOpacity onPress={onClose} style={styles.navButton}>
-            <Text style={{color: 'black', fontSize: 16}}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      )}
-    </View>
   );
 };
 
@@ -303,33 +199,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 60,
     alignItems: 'center',
-  },
-  footerText: {
-    fontSize: 14,
-    color: 'black',
-    fontWeight: 'bold',
-  },
-  loginButton: {
-    padding: 10,
-    borderRadius: 5,
-  },
-  loginText: {
-    color: '#f542a4',
-    fontWeight: 'bold',
-  },
-  terms: {
-    color: 'black',
-    textAlign: 'center',
-    fontSize: 12,
-    flexWrap: 'wrap',
-    width: '70%',
-  },
-  link: {
-    color: appPink,
-  },
-  navButton: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
   },
 });
 
