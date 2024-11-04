@@ -108,11 +108,8 @@ const LazyStack = () => {
     );
   }
 
-  // When loading is finished, apply the fade-in effect to LazyComponent
   return LazyComponent ? (
-    <Animated.View style={{flex: 1, opacity: opacityValue}}>
-      <LazyComponent />
-    </Animated.View>
+    <LazyComponent />
   ) : (
     <View
       style={{
