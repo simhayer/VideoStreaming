@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 
 const LazyStack = () => {
   const scaleValue = useRef(new Animated.Value(1)).current;
-  const opacityValue = useRef(new Animated.Value(0)).current;
+  const opacityValue = useRef(new Animated.Value(1)).current;
 
   const [isDelayed, setIsDelayed] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -24,34 +24,17 @@ const LazyStack = () => {
 
   useEffect(() => {
     if (!isDelayed) {
-      // Start zoom-in and zoom-out animation
-      const startZoomAnimation = () => {
+      const startAnimation = () => {
         Animated.loop(
-          Animated.sequence([
-            Animated.timing(scaleValue, {
-              toValue: 1.2,
-              duration: 1000,
-              easing: Easing.inOut(Easing.ease),
-              useNativeDriver: true,
-            }),
-            Animated.timing(scaleValue, {
-              toValue: 1,
-              duration: 1000,
-              easing: Easing.inOut(Easing.ease),
-              useNativeDriver: true,
-            }),
-          ]),
+          Animated.timing(scaleValue, {
+            toValue: 5,
+            duration: 7000,
+            easing: Easing.linear,
+            useNativeDriver: true,
+          }),
         ).start();
       };
-
-      startZoomAnimation();
-
-      // Set opacity to fade in the logo initially
-      Animated.timing(opacityValue, {
-        toValue: 1,
-        duration: 500,
-        useNativeDriver: true,
-      }).start();
+      startAnimation();
 
       const loadComponent = async () => {
         setLoading(true);
@@ -72,6 +55,12 @@ const LazyStack = () => {
           console.error('Error loading component:', error);
         } finally {
           Animated.sequence([
+            Animated.timing(scaleValue, {
+              toValue: 6,
+              duration: 300,
+              easing: Easing.out(Easing.ease),
+              useNativeDriver: true,
+            }),
             Animated.parallel([
               Animated.timing(opacityValue, {
                 toValue: 0,
@@ -86,12 +75,6 @@ const LazyStack = () => {
             ]),
           ]).start(() => {
             setLoading(false);
-            // Trigger fade-in after loading is done
-            Animated.timing(opacityValue, {
-              toValue: 1,
-              duration: 500, // Adjust duration as needed for a smooth fade-in
-              useNativeDriver: true,
-            }).start();
           });
         }
       };
@@ -113,7 +96,7 @@ const LazyStack = () => {
         <Animated.View
           style={{
             transform: [{scale: scaleValue}],
-            opacity: opacityValue,
+            opacity: opacityValue, // Fade-out effect
           }}>
           <Image
             source={require('../Resources/BARS_logo_nobackground.png')}
