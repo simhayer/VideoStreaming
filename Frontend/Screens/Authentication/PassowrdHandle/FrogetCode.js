@@ -1,43 +1,42 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   View,
   Text,
-  StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
   SafeAreaView,
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
-import {baseURL, apiEndpoints} from '../../../Resources/Constants';
+import {
+  baseURL,
+  apiEndpoints,
+  appPink,
+  errorRed,
+} from '../../../Resources/Constants';
 import axios from 'axios';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-import commonStyles from '../../../Resources/styles';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../Redux/Features/AuthSlice';
-import {backgroundColor} from '../../../Resources/Constants';
-//import colors from '../../../Resources/Constants';
 
 const ForgetCode = ({route}) => {
   const [code, setCode] = useState('');
   const {email} = route.params;
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState('');
   const navigation = useNavigation();
+  const screenHeight = Dimensions.get('window').height;
+  const calculatedFontSize = screenHeight * 0.05;
 
-  //hooks
-  const dispatch = useDispatch();
-  const {userData, isLoading} = useSelector(state => state.auth);
+  const [isError, setIsError] = useState(false);
+  const [loginError, setLoginError] = useState('');
 
-  const onConfirmClick = async code => {
+  const [loading, setLoading] = useState(false);
+
+  const onConfirmClick = async () => {
     if (code.length === 0) {
-      Alert.alert('Login', 'Please provide your email');
+      setIsError(true);
+      setLoginError('Please provide your email');
       return;
     }
-
-    //const loginParams = { email, password };
+    setLoading(true);
     const forgetParams = {
       email: email,
       resetCode: code,
@@ -48,46 +47,125 @@ const ForgetCode = ({route}) => {
       axios
         .post(baseURL + apiEndpoints.forgetCodeCheck, forgetParams)
         .then(res => {
-          console.log(res.data);
+          //console.log(res.data);
           navigation.navigate('ResetPassword', {email});
         })
         .catch(err => {
           console.log(err);
-          Alert.alert('Forget', 'Could not confirm the code, please try again');
+          setIsError(true);
+          setLoginError('Could not confirm the code, please try again');
         });
 
       // Handle the response or navigate to another screen upon successful login
     } catch (error) {
-      console.error('Forget error:', error);
-      // Handle the error, such as displaying an error message to the user
+      setIsError(true);
+      setLoginError('Could not confirm the code, please try again');
+    } finally {
+      setLoading(false);
     }
   };
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus on the input field when the screen loads
+    inputRef.current.focus();
+  }, []);
+
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-      <View style={{paddingTop: '20%', alignItems: 'center'}}>
-        <Text style={{padding: '3%'}}>
+    <SafeAreaView
+      style={{flex: 1, backgroundColor: 'white', alignItems: 'center'}}>
+      <View style={{width: '85%', marginTop: 10, alignItems: 'center'}}>
+        <Text style={{fontSize: calculatedFontSize / 2.7, color: 'black'}}>
           Enter your code you recieved in your email
         </Text>
 
         <TextInput
+          ref={inputRef}
           value={code}
-          onChangeText={code => setCode(code.trim())}
+          onChangeText={setCode}
           placeholder={'Code'}
-          style={commonStyles.input}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 20,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
+          autoComplete="off"
+          autoCapitalize="none"
+          placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="next"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onSubmitEditing={onConfirmClick}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
         />
-        <TouchableOpacity
-          isloading={isLoading}
-          onPress={() => onConfirmClick(code)}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Confirm</Text>
-        </TouchableOpacity>
-        <Text>Dont have an Account?</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Signup</Text>
-        </TouchableOpacity>
+        {isError && (
+          <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
+            {loginError}
+          </Text>
+        )}
+        <View style={{width: '85%', alignItems: 'center', marginTop: '12%'}}>
+          {loading ? (
+            <ActivityIndicator size="large" color={appPink} />
+          ) : (
+            <TouchableOpacity
+              onPress={onConfirmClick}
+              style={{
+                backgroundColor: appPink,
+                borderRadius: 40,
+                paddingVertical: '4%',
+                alignItems: 'center',
+                width: '100%',
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                  textAlign: 'left',
+                  fontSize: calculatedFontSize / 2.2,
+                  fontWeight: 'bold',
+                }}>
+                Send Email
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2.5,
+              color: 'black',
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}>
+            Don't have an Account?
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SignUpOptions')}
+            style={{padding: 10, borderRadius: 5}}>
+            <Text
+              style={{
+                color: appPink,
+                textAlign: 'center',
+                fontSize: calculatedFontSize / 2.5,
+                fontWeight: 'bold',
+              }}>
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );

@@ -1,47 +1,50 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   View,
   Text,
-  StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
   SafeAreaView,
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
-import {baseURL, apiEndpoints} from '../../../Resources/Constants';
+import {
+  baseURL,
+  apiEndpoints,
+  appPink,
+  errorRed,
+} from '../../../Resources/Constants';
 import axios from 'axios';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-import commonStyles from '../../../Resources/styles';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {login} from '../Redux/Features/AuthSlice';
 
 const ResetPassword = ({route}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const {email} = route.params;
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState('');
   const navigation = useNavigation();
+  const screenHeight = Dimensions.get('window').height;
+  const calculatedFontSize = screenHeight * 0.05;
 
-  //hooks
-  const dispatch = useDispatch();
-  const {userData, isLoading} = useSelector(state => state.auth);
+  const [isError, setIsError] = useState(false);
+  const [loginError, setLoginError] = useState('');
+
+  const [loading, setLoading] = useState(false);
 
   const onResetClick = async () => {
     if (email.length === 0) {
-      Alert.alert('Login', 'Something went wrong');
+      setIsError(true);
+      setLoginError('Please provide your email');
       return;
     }
 
     if (password != confirmPassword) {
-      Alert.alert('Login', 'Password do no match');
+      setIsError(true);
+      setLoginError('Password do no match');
       return;
     }
 
-    //const loginParams = { email, password };
+    setLoading(true);
     const forgetParams = {
       email: email,
       password: password,
@@ -57,49 +60,157 @@ const ResetPassword = ({route}) => {
         })
         .catch(err => {
           console.log(err);
-          Alert.alert('Forget', 'Could not update password');
+          setIsError(true);
+          setLoginError('Could not update password');
         });
-
-      // Handle the response or navigate to another screen upon successful login
     } catch (error) {
-      console.error('Update error:', error);
-      // Handle the error, such as displaying an error message to the user
+      setIsError(true);
+      setLoginError('Could not update password');
+    } finally {
+      setLoading(false);
     }
   };
 
+  const passwordRef = useRef(null);
+  const newPasswordRef = useRef(null);
+
+  useEffect(() => {
+    if (passwordRef.current) {
+      passwordRef.current.focus();
+    }
+  }, []);
+
+  const onNextClick = () => {
+    newPasswordRef.current.focus();
+  };
+
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-      <View style={{paddingTop: '20%', alignItems: 'center'}}>
-        <Text style={{padding: '3%'}}>Reset Password</Text>
+    <SafeAreaView
+      style={{flex: 1, backgroundColor: 'white', alignItems: 'center'}}>
+      <View style={{width: '85%', marginTop: 10, alignItems: 'center'}}>
+        <Text style={{fontSize: calculatedFontSize / 2.7, color: 'black'}}>
+          Reset Password
+        </Text>
 
         <TextInput
+          ref={passwordRef}
           value={password}
-          onChangeText={password => setPassword(password.trim())}
+          onChangeText={setPassword}
           placeholder={'Password'}
-          style={commonStyles.input}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 10,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
+          autoComplete="off"
+          autoCapitalize="none"
+          placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="done"
+          textContentType="password"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onSubmitEditing={onNextClick}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
           secureTextEntry={true}
         />
         <TextInput
+          ref={newPasswordRef}
           value={confirmPassword}
-          onChangeText={confirmPassword =>
-            setConfirmPassword(confirmPassword.trim())
-          }
-          placeholder={'Re-enter Password'}
-          style={commonStyles.input}
+          onChangeText={setConfirmPassword}
+          placeholder={'Password'}
+          style={{
+            width: '100%',
+            borderBottomWidth: 1,
+            borderColor: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginTop: 10,
+            marginBottom: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 5,
+          }}
+          autoComplete="off"
+          autoCapitalize="none"
+          placeholderTextColor={'gray'}
+          autoCorrect={false}
+          returnKeyType="done"
+          textContentType="password"
+          maxLength={30}
+          selectionColor={appPink}
+          inputMode="text"
+          onSubmitEditing={onResetClick}
+          clearButtonMode="while-editing"
+          keyboardAppearance="light"
           secureTextEntry={true}
         />
-        <TouchableOpacity
-          isloading={isLoading}
-          onPress={() => onResetClick()}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Reset</Text>
-        </TouchableOpacity>
-        <Text>Dont have an Account?</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
-          style={{padding: 10, backgroundColor: 'blue', borderRadius: 5}}>
-          <Text style={{color: 'white', textAlign: 'center'}}>Signup</Text>
-        </TouchableOpacity>
+        {isError && (
+          <Text style={{fontSize: calculatedFontSize / 2.9, color: errorRed}}>
+            {loginError}
+          </Text>
+        )}
+
+        <View style={{width: '85%', alignItems: 'center', marginTop: '12%'}}>
+          {loading ? (
+            <ActivityIndicator size="large" color={appPink} />
+          ) : (
+            <TouchableOpacity
+              onPress={onResetClick}
+              style={{
+                backgroundColor: appPink,
+                borderRadius: 40,
+                paddingVertical: '4%',
+                alignItems: 'center',
+                width: '100%',
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                  textAlign: 'left',
+                  fontSize: calculatedFontSize / 2.2,
+                  fontWeight: 'bold',
+                }}>
+                Reset
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2.5,
+              color: 'black',
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}>
+            Don't have an Account?
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SignUpOptions')}
+            style={{padding: 10, borderRadius: 5}}>
+            <Text
+              style={{
+                color: appPink,
+                textAlign: 'center',
+                fontSize: calculatedFontSize / 2.5,
+                fontWeight: 'bold',
+              }}>
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
