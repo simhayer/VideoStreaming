@@ -10,7 +10,7 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import {baseURL, apiEndpoints} from '../Resources/Constants';
+import {baseURL, apiEndpoints} from '../../../Resources/Constants';
 import axios from 'axios';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import commonStyles from '../../../Resources/styles';

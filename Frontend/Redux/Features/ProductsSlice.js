@@ -63,9 +63,8 @@ export const addProduct = createAsyncThunk(
       );
 
       const product = response.data.product;
-      const localImagePath = await saveImageLocally(
-        `${baseURL}/${product.imageUrl}`,
-      );
+      const localImage = await saveImageLocally(product.imageUrl);
+      const localImagePath = `file://${localImage}`;
 
       return {...product, localImagePath};
     } catch (error) {

@@ -9,14 +9,13 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import {baseURL, apiEndpoints} from '../Resources/Constants';
+import {baseURL, apiEndpoints} from '../../../Resources/Constants';
 import axios from 'axios';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import commonStyles from '../../../Resources/styles';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {login} from '../Redux/Features/AuthSlice';
-import {colors} from '../../../Resources/Constants';
 
 const ResetPassword = ({route}) => {
   const [password, setPassword] = useState('');
@@ -69,7 +68,7 @@ const ResetPassword = ({route}) => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{paddingTop: '20%', alignItems: 'center'}}>
         <Text style={{padding: '3%'}}>Reset Password</Text>
 

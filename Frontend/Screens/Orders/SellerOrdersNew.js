@@ -29,6 +29,7 @@ const SellerOrders = () => {
   const [inputValue, setInputValue] = useState('');
   const [search, setSearch] = useState('');
   const [refreshing, setRefreshing] = useState(false);
+  const [filteredItems, setFilteredItems] = useState([]);
 
   const statusTabs = ['Pending', 'Shipped', 'Completed', 'Cancelled'];
 
@@ -41,7 +42,7 @@ const SellerOrders = () => {
     if (orders.length === 0) {
       dispatch(fetchOrdersSeller(userUsername));
     }
-  }, [dispatch, orders, userUsername]);
+  }, []);
 
   const debouncedSearch = useCallback(
     debounce(value => {
@@ -55,14 +56,19 @@ const SellerOrders = () => {
     debouncedSearch(value);
   };
 
-  const filteredItems =
-    orders
-      .find(item => item._id === selectedStatus)
-      ?.orders.filter(
-        order =>
-          order.product &&
-          order.product.name.toLowerCase().includes(search.toLowerCase()),
-      ) || [];
+  useFocusEffect(
+    useCallback(() => {
+      const filtered =
+        orders
+          .find(item => item._id === selectedStatus)
+          ?.orders.filter(
+            order =>
+              order.product &&
+              order.product.name.toLowerCase().includes(search.toLowerCase()),
+          ) || [];
+      setFilteredItems(filtered);
+    }, [orders, selectedStatus, search]),
+  );
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -255,7 +261,6 @@ const SellerOrders = () => {
                             style={{
                               fontSize: calculatedFontSize / 2.9,
                               fontWeight: 'bold',
-
                               color: 'green',
                             }}>
                             SOLD

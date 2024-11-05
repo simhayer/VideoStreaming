@@ -22,12 +22,15 @@ import {
   colors,
 } from '../../Resources/Constants';
 import axios from 'axios';
+import {markOrderShippedAction} from '../../Redux/Features/OrdersSlice';
+import {useDispatch} from 'react-redux';
 
 const EnterOrderTracking = ({route}) => {
   const {order} = route.params;
   const [trackingNumber, setTrackingNumber] = useState('');
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -59,9 +62,14 @@ const EnterOrderTracking = ({route}) => {
     order.status = 'Shipped';
 
     if (response.status === 200) {
+      dispatch(markOrderShippedAction({orderId: order._id}));
       setLoading(false);
       navigation.navigate('ViewOrderSeller', {
-        order,
+        order: {
+          ...order,
+          status: 'Shipped',
+          trackingNumber,
+        },
       });
     } else {
       console.error('Error updating order tracking:', response.data);

@@ -18,8 +18,9 @@ import {
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios'; // Import axios
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
+import {markOrderCompleteAction} from '../../Redux/Features/OrdersSlice';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -34,6 +35,8 @@ const ViewOrderSeller = ({route}) => {
 
   const itemImageFilename = order.product.imageUrl.split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
+  const [orderStatus, setOrderStatus] = useState(order.status);
+  const dispatch = useDispatch();
 
   const formattedDate = new Date(order.orderDate).toISOString().split('T')[0];
 
@@ -51,13 +54,28 @@ const ViewOrderSeller = ({route}) => {
       });
 
     order.status = 'complete';
+    setOrderStatus('complete');
 
-    if (response.status === 200) {
+    if (response?.status === 200) {
+      dispatch(markOrderCompleteAction({orderId: order._id}));
       setLoading(false);
     } else {
-      console.error('Error marking as complete:', response.data);
+      console.error('Error marking as complete:', response?.data);
     }
   };
+
+  const EnterOrderShipping = () => {
+    navigation.navigate('EnterOrderTracking', {order});
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      // Update the status if a new status is passed when navigating back
+      if (route.params?.order?.status) {
+        setOrderStatus(route.params.order.status);
+      }
+    }, [route.params?.order?.status]),
+  );
 
   const ActionButton = ({text, onPress, backgroundColor}) => (
     <TouchableOpacity
@@ -103,132 +121,129 @@ const ViewOrderSeller = ({route}) => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
-      {loading ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ActivityIndicator size="large" color="grey" />
-          <Text style={{marginTop: 10, fontSize: calculatedFontSize / 2.5}}>
-            Updating...
+      <View style={{flex: 1}}>
+        {/* Header Section */}
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            paddingTop: 8,
+            paddingHorizontal: 0,
+          }}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{padding: 5}}>
+            <Icon name="chevron-back" size={30} color="black" />
+          </TouchableOpacity>
+          <Text
+            style={{
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 1.8,
+              textAlign: 'center',
+              flex: 1,
+            }}>
+            Order Details
           </Text>
+          <View style={{width: 30}} />
         </View>
-      ) : (
-        <View style={{flex: 1}}>
-          {/* Header Section */}
+
+        {/* Order Summary Section */}
+        <ScrollView
+          style={{marginTop: 10, flex: 1}}
+          contentContainerStyle={{alignItems: 'center', paddingBottom: 150}}>
           <View
             style={{
+              width: '90%',
+              height: 120,
+              backgroundColor: 'rgba(0,0,0,0.05)',
+              borderRadius: 12,
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-              paddingTop: 8,
-              paddingHorizontal: 0,
+              padding: 10,
+              marginBottom: 20,
             }}>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={{padding: 5}}>
-              <Icon name="chevron-back" size={30} color="black" />
-            </TouchableOpacity>
-            <Text
+            <FastImage
+              source={{uri: imageUrl}}
               style={{
-                color: 'black',
-                fontWeight: 'bold',
-                fontSize: calculatedFontSize / 1.8,
-                textAlign: 'center',
-                flex: 1,
-              }}>
-              Order Details
-            </Text>
-            <View style={{width: 30}} />
-          </View>
-
-          {/* Order Summary Section */}
-          <ScrollView
-            style={{marginTop: 10, flex: 1}}
-            contentContainerStyle={{alignItems: 'center', paddingBottom: 150}}>
-            <View
-              style={{
-                width: '90%',
-                height: 120,
-                backgroundColor: 'rgba(0,0,0,0.05)',
-                borderRadius: 12,
-                flexDirection: 'row',
-                alignItems: 'center',
-                padding: 10,
-                marginBottom: 20,
-              }}>
-              <FastImage
-                source={{uri: imageUrl}}
+                width: '30%',
+                height: '100%',
+                borderRadius: 10,
+              }}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+            <View style={{marginLeft: 16, flex: 1}}>
+              <Text
                 style={{
-                  width: '30%',
-                  height: '100%',
-                  borderRadius: 10,
-                }}
-                resizeMode={FastImage.resizeMode.contain}
-              />
-              <View style={{marginLeft: 16, flex: 1}}>
+                  color: 'black',
+                  fontWeight: 'bold',
+                  fontSize: calculatedFontSize / 2.3,
+                  marginBottom: 4,
+                }}>
+                {order.product.name}
+              </Text>
+              {order.product.size && (
                 <Text
                   style={{
                     color: 'black',
-                    fontWeight: 'bold',
-                    fontSize: calculatedFontSize / 2.3,
-                    marginBottom: 4,
+                    fontSize: calculatedFontSize / 2.8,
                   }}>
-                  {order.product.name}
+                  Size: {order.product.size}
                 </Text>
-                {order.product.size && (
-                  <Text
-                    style={{
-                      color: 'black',
-                      fontSize: calculatedFontSize / 2.8,
-                    }}>
-                    Size: {order.product.size}
-                  </Text>
-                )}
-              </View>
+              )}
             </View>
+          </View>
 
-            {/* Action Button (Status-Based) */}
-            {order.status === 'Shipped' ? (
+          {/* Action Button (Status-Based) */}
+          {orderStatus === 'Shipped' ? (
+            loading ? (
+              <ActivityIndicator
+                size="large"
+                color={appPink}
+                style={{marginTop: 20}}
+              />
+            ) : (
               <ActionButton
                 text="Mark as complete"
                 onPress={markOrderComplete}
                 backgroundColor={appPink}
               />
-            ) : order.status === 'Pending' ? (
-              <ActionButton
-                text="Enter shipping details"
-                onPress={() =>
-                  navigation.navigate('EnterOrderTracking', {order})
-                }
-                backgroundColor={appPink}
-              />
-            ) : null}
+            )
+          ) : orderStatus === 'Pending' ? (
+            <ActionButton
+              text="Enter shipping details"
+              onPress={EnterOrderShipping}
+              backgroundColor={appPink}
+            />
+          ) : null}
 
-            {/* Order Details Section */}
-            <View style={{width: '90%', marginTop: 20}}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontSize: calculatedFontSize / 1.8,
-                  fontWeight: 'bold',
-                  marginBottom: 10,
-                }}>
-                Details
-              </Text>
-              {renderOrderDetail('Buyer', order.buyer.username, () =>
-                navigation.navigate('ViewProfile', {
-                  username: order.buyer.username,
-                }),
-              )}
-              {renderOrderDetail('Tracking number', order.trackingNumber)}
-              {renderOrderDetail('Status', order.status)}
-              {renderOrderDetail('Order Date', formattedDate)}
-              {renderOrderDetail('Payment', order.paymentMethod)}
-              {renderOrderDetail('Amount', `C$ ${order.amount}`)}
-              {renderOrderDetail('Payout', 'Pending')}
-            </View>
-          </ScrollView>
-        </View>
-      )}
+          {/* Order Details Section */}
+          <View style={{width: '90%', marginTop: 20}}>
+            <Text
+              style={{
+                color: 'black',
+                fontSize: calculatedFontSize / 1.8,
+                fontWeight: 'bold',
+                marginBottom: 10,
+              }}>
+              Details
+            </Text>
+            {renderOrderDetail('Buyer', order.buyer.username, () =>
+              navigation.navigate('ViewProfile', {
+                username: order.buyer.username,
+              }),
+            )}
+            {renderOrderDetail('Tracking number', order.trackingNumber)}
+            {renderOrderDetail('Status', orderStatus)}
+            {renderOrderDetail('Order Date', formattedDate)}
+            {renderOrderDetail('Payment', order.paymentMethod)}
+            {renderOrderDetail('Amount', `C$ ${order.amount}`)}
+            {renderOrderDetail('Payout', 'Pending')}
+          </View>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

@@ -26,16 +26,13 @@ export const fetchOrdersSeller = createAsyncThunk(
   'orders/fetchOrdersSeller',
   async (userUsername, {rejectWithValue}) => {
     try {
-      console.log('Fetching orders for seller:', userUsername);
       const response = await axios.post(
         `${baseURL}${apiEndpoints.getAllOrdersForSellerGroupedByStatus}`,
         {sellerUsername: userUsername},
       );
       if (response.status === 200) {
-        // Map over orders grouped by status
         const orders = await Promise.all(
           response.data.orders.map(async statusGroup => {
-            // Map each order within the grouped status
             const updatedOrders = await Promise.all(
               statusGroup.orders.map(async order => {
                 if (order.product && order.product.imageUrl) {
@@ -49,7 +46,7 @@ export const fetchOrdersSeller = createAsyncThunk(
             );
             return {
               ...statusGroup,
-              orders: updatedOrders, // Assign updated orders with local image paths
+              orders: updatedOrders,
             };
           }),
         );
@@ -66,7 +63,7 @@ export const fetchOrdersSeller = createAsyncThunk(
 const ordersSlice = createSlice({
   name: 'orders',
   initialState: {
-    orders: [], // Updated to orders for clarity
+    orders: [],
     loading: false,
     reduxLoading: false,
     needSellerUpdate: true,
@@ -79,6 +76,90 @@ const ordersSlice = createSlice({
       state.loading = false;
       state.reduxLoading = false;
       state.needSellerUpdate = true;
+    },
+    markOrderCompleteAction(state, action) {
+      const {orderId} = action.payload;
+
+      let completedOrder;
+
+      // Find and remove the order from its current status group
+      state.orders.forEach(statusGroup => {
+        const index = statusGroup.orders.findIndex(
+          order => order._id === orderId,
+        );
+        if (index !== -1) {
+          // Capture the order and update its status to complete
+          completedOrder = {...statusGroup.orders[index], status: 'complete'};
+          // Remove the order from its current group
+          statusGroup.orders.splice(index, 1);
+        }
+      });
+
+      // If the order was found, add it to the "Completed" group
+      if (completedOrder) {
+        const completedGroup = state.orders.find(
+          group => group._id === 'Completed',
+        );
+
+        if (completedGroup) {
+          // Add to existing "Completed" group
+          completedGroup.orders.push(completedOrder);
+        } else {
+          // If "Completed" group does not exist, create it
+          state.orders.push({
+            _id: 'Completed',
+            orders: [completedOrder],
+          });
+        }
+      } else {
+        console.log('Order not found in any group');
+      }
+    },
+    markOrderShippedAction(state, action) {
+      const {orderId} = action.payload;
+
+      // Find the order in the current groups and update status to shipped
+      let shippedOrder;
+      const updatedGroups = state.orders.map(statusGroup => {
+        const orderIndex = statusGroup.orders.findIndex(
+          order => order._id === orderId,
+        );
+
+        if (orderIndex !== -1) {
+          shippedOrder = {...statusGroup.orders[orderIndex], status: 'Shipped'};
+          return {
+            ...statusGroup,
+            orders: statusGroup.orders.filter(order => order._id !== orderId),
+          };
+        }
+        return statusGroup;
+      });
+
+      // If order was found, update state accordingly
+      if (shippedOrder) {
+        const shippedGroupIndex = updatedGroups.findIndex(
+          group => group._id === 'Shipped',
+        );
+
+        if (shippedGroupIndex !== -1) {
+          // Add to existing "Shipped" group
+          updatedGroups[shippedGroupIndex] = {
+            ...updatedGroups[shippedGroupIndex],
+            orders: [...updatedGroups[shippedGroupIndex].orders, shippedOrder],
+          };
+        } else {
+          // Create "Shipped" group if it doesn't exist
+          updatedGroups.push({
+            _id: 'Shipped',
+            orders: [shippedOrder],
+          });
+        }
+      } else {
+        console.log('Order not found in any group');
+      }
+
+      // Replace state.orders with the updated groups
+      state.orders = updatedGroups;
     },
   },
   extraReducers: builder => {
@@ -100,5 +181,6 @@ const ordersSlice = createSlice({
   },
 });
 
-export const {resetOrders} = ordersSlice.actions; // Fixed typo from productsSlice to ordersSlice
+export const {resetOrders, markOrderCompleteAction, markOrderShippedAction} =
+  ordersSlice.actions;
 export default ordersSlice.reducer;

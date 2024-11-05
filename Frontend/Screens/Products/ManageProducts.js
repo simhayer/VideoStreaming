@@ -64,9 +64,8 @@ const ManageProducts = () => {
   useEffect(() => {
     if (items.length === 0) {
       dispatch(fetchProducts(userEmail));
-      console.log('items:', items);
     }
-  }, [dispatch, items, userEmail]);
+  }, []);
 
   const toggleSelectItem = item => {
     setSelectedItems(prevSelectedItems => {
