@@ -94,16 +94,13 @@ const StartStreamTab = () => {
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
-      if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        checkStripeOnboarding();
-      }
       setAppState(nextAppState);
     });
 
     return () => {
       subscription.remove();
     };
-  }, [appState, isOnboardingChecked]);
+  }, []);
 
   const viewDashboard = async () => {
     const payload = {

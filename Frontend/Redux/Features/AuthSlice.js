@@ -346,7 +346,16 @@ const authSlice = createSlice({
       state.errorMessage = action.payload.message;
       state.userData = null;
       state.isAuthenticated = false;
-      state.userData.user.localProfilePictureURI = null;
+      //state.userData.user.localProfilePictureURI = null;
+      try {
+        // Clear profile picture URI from AsyncStorage
+        AsyncStorage.removeItem('profilePicturePath');
+
+        // Clear image cache
+        clearImageCache();
+      } catch (error) {
+        console.error('Error during logout cleanup:', error);
+      }
     });
 
     // Delete User cases
