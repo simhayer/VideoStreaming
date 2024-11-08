@@ -3,6 +3,7 @@ import Profile from './Profile/ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ViewerTab from './ViewerTab';
 import SellTab from './SellTab';
+import GetStartedSell from './GetStartedSell/GetStartedSell';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
@@ -65,7 +66,7 @@ const TabControl = ({route}) => {
         headerShown: false, // Hide header for a cleaner tab view
       })}>
       <Tab.Screen name="Home" component={ViewerTab} />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Sell"
         component={SellTab}
         listeners={{
@@ -76,7 +77,12 @@ const TabControl = ({route}) => {
             }
           },
         }}
-      />
+      /> */}
+      {isOnboardingStarted ? (
+        <Tab.Screen name="Sell" component={SellTab} />
+      ) : (
+        <Tab.Screen name="Sell" component={GetStartedSell} />
+      )}
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );

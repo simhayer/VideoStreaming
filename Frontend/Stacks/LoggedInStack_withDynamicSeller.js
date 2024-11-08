@@ -8,24 +8,27 @@ import Orders from '../Screens/Orders/Orders';
 import AddPaymentOrShipping from '../Screens/PaymentAndShipping/AddPaymentOrShipping';
 import SettingsMenu from '../Screens/SettingsMenu';
 import GetStartedSell from '../Screens/GetStartedSell/GetStartedSell';
-import GetStartedSellRulesWithContinue from '../Screens/GetStartedSell/GetStartedSellRulesWithContinue';
 import GetStartedSellRules from '../Screens/GetStartedSell/GetStartedSellRules';
 import ContinueOnboarding from '../Screens/GetStartedSell/ContinueOnboarding';
 import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
 
-import StartStreamTab from '../Screens/Stream/StartStreamTab';
-import SellerOrdersNew from '../Screens/Orders/SellerOrdersNew';
-import ViewOrderSeller from '../Screens/Orders/ViewOrderSeller';
-import EnterStreamTitle from '../Screens/Stream/EnterStreamTitle';
-import ManageProducts from '../Screens/Products/ManageProducts';
-import AddProduct from '../Screens/Products/AddProduct';
-import ViewProduct from '../Screens/Products/ViewProduct';
-import ViewOrderBuyer from '../Screens/Orders/ViewOrderBuyer';
+// Lazily load the group of onboarding-related screens
+const StartStreamTab = lazy(() => import('../Screens/Stream/StartStreamTab'));
+const SellerOrders = lazy(() => import('../Screens/Orders/SellerOrders'));
+const ViewOrderSeller = lazy(() => import('../Screens/Orders/ViewOrderSeller'));
+const EnterStreamTitle = lazy(() =>
+  import('../Screens/Stream/EnterStreamTitle'),
+);
+const ManageProducts = React.lazy(() =>
+  import('../Screens/Products/ManageProducts'),
+);
+const AddProduct = React.lazy(() => import('../Screens/Products/AddProduct'));
+const ViewProduct = React.lazy(() => import('../Screens/Products/ViewProduct'));
 
 //Actually lazy load the screens
 //const GetStreamSDK = lazy(() => import('../Screens/Stream/GetStreamSDK'));
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
-const EditProfile = React.lazy(() => import('../Screens/Profile/EditProfile'));
+const EditProfile = React.lazy(() => import('../Screens/EditProfile'));
 const EnterOrderTracking = lazy(() =>
   import('../Screens/Orders/EnterOrderTracking'),
 );
@@ -38,26 +41,31 @@ const AddAddress = React.lazy(() =>
 const AddPaymentMethod = React.lazy(() =>
   import('../Screens/PaymentAndShipping/AddPaymentMethod'),
 );
-const ViewProfile = React.lazy(() => import('../Screens/Profile/ViewProfile'));
-const ReportSellerOptions = React.lazy(() =>
-  import('../Screens/Controls/Report/ReportSellerOptions'),
-);
-const ReportSeller = React.lazy(() =>
-  import('../Screens/Controls/Report/ReportSeller'),
-);
-const ContactUs = React.lazy(() =>
-  import('../Screens/Controls/Other/ContactUs'),
-);
 
 const Stack = createNativeStackNavigator();
 
-const LoggedInStackSeller = () => {
+const LoggedInStack = () => {
+  const {userData} = useSelector(state => state.auth);
+  const isSeller = userData?.user?.isSeller;
+
+  useEffect(() => {
+    if (isSeller) {
+      // Preloaded Seller screens
+      import('../Screens/Stream/StartStreamTab');
+      import('../Screens/Orders/SellerOrders');
+      import('../Screens/Orders/ViewOrderSeller');
+      import('../Screens/Stream/EnterStreamTitle');
+      import('../Screens/Products/AddProduct');
+      import('../Screens/Products/ViewProduct');
+    }
+  }, [isSeller]);
+
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
+      {/* Eager-loaded screens */}
       <Stack.Screen name="TabControl" component={TabControl} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen name="Orders" component={Orders} />
-      <Stack.Screen name="ViewOrderBuyer" component={ViewOrderBuyer} />
       <Stack.Screen name="ManageProducts" component={ManageProducts} />
       <Stack.Screen name="AddProduct" component={AddProduct} />
       <Stack.Screen name="ViewProduct" component={ViewProduct} />
@@ -71,28 +79,28 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="ChangeUsername" component={ChangeUsername} />
       <Stack.Screen name="GetStartedSell" component={GetStartedSell} />
       <Stack.Screen
-        name="GetStartedSellRulesWithContinue"
-        component={GetStartedSellRulesWithContinue}
-      />
-      <Stack.Screen
         name="GetStartedSellRules"
         component={GetStartedSellRules}
       />
       <Stack.Screen name="ContinueOnboarding" component={ContinueOnboarding} />
       <Stack.Screen name="GetStreamViewerSDK" component={GetStreamViewerSDK} />
 
-      <Stack.Screen name="StartStreamTab" component={StartStreamTab} />
-      <Stack.Screen name="SellerOrdersNew" component={SellerOrdersNew} />
-      <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
-      <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />
-      <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />
-      <Stack.Screen name="EnterOrderTracking" component={EnterOrderTracking} />
-      <Stack.Screen name="ViewProfile" component={ViewProfile} />
-      <Stack.Screen name="ReportSeller" component={ReportSellerOptions} />
-      <Stack.Screen name="ReportSellerOptions" component={ReportSeller} />
-      <Stack.Screen name="ContactUs" component={ContactUs} />
+      {/* Conditionally load the SellerOrders screen */}
+      {isSeller && (
+        <>
+          <Stack.Screen name="StartStreamTab" component={StartStreamTab} />
+          <Stack.Screen name="SellerOrders" component={SellerOrders} />
+          <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
+          <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />
+          <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />
+          <Stack.Screen
+            name="EnterOrderTracking"
+            component={EnterOrderTracking}
+          />
+        </>
+      )}
     </Stack.Navigator>
   );
 };
 
-export default LoggedInStackSeller;
+export default LoggedInStack;

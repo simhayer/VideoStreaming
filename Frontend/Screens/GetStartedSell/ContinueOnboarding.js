@@ -12,7 +12,12 @@ import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import {Linking} from 'react-native';
-import {apiEndpoints, baseURL, colors} from '../../Resources/Constants';
+import {
+  apiEndpoints,
+  appPink,
+  baseURL,
+  colors,
+} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const screenHeight = Dimensions.get('window').height;
@@ -27,6 +32,7 @@ const ContinueOnboarding = () => {
   const userEmail = userData?.user?.email;
 
   const continueOnboarding = async () => {
+    setLoading(true);
     const payload = {
       email: userEmail,
     };
@@ -35,6 +41,7 @@ const ContinueOnboarding = () => {
       .post(baseURL + apiEndpoints.continueOnboarding, payload)
       .catch(error => {
         console.error('Error adding broadcast:', error);
+        setLoading(false);
       });
 
     const {accountId, loginLink} = response.data;
@@ -48,6 +55,8 @@ const ContinueOnboarding = () => {
         navigation.navigate('Sell'); // Navigate after 2 seconds
       }, 1000);
     }
+
+    setLoading(false);
 
     return {
       accountId,
@@ -73,25 +82,26 @@ const ContinueOnboarding = () => {
           We need more information before you can start selling. You cannot
           start selling until the onboarding is complete.
         </Text>
-
-        {/* Optional Loading Indicator */}
-        {/* <ActivityIndicator
-          size="large"
-          color="#f542a4"
-          style={{marginVertical: 20}}
-        /> */}
       </View>
 
       {/* Footer Section */}
       <View style={styles.footer}>
-        <TouchableOpacity
-          onPress={continueOnboarding}
-          style={styles.continueButton}
-          activeOpacity={0.8}>
-          <Text style={styles.continueButtonText(calculatedFontSize)}>
-            Complete Onboarding
-          </Text>
-        </TouchableOpacity>
+        {loading ? (
+          <ActivityIndicator
+            size="large"
+            color={appPink}
+            style={{marginBottom: 10}}
+          />
+        ) : (
+          <TouchableOpacity
+            onPress={continueOnboarding}
+            style={styles.continueButton}
+            activeOpacity={0.8}>
+            <Text style={styles.continueButtonText(calculatedFontSize)}>
+              Complete Onboarding
+            </Text>
+          </TouchableOpacity>
+        )}
 
         <Text style={styles.infoText}>
           If your documents are under verification, check the status in the

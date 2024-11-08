@@ -8,6 +8,7 @@ import Orders from './../Screens/Orders/Orders';
 import AddPaymentOrShipping from './../Screens/PaymentAndShipping/AddPaymentOrShipping';
 import SettingsMenu from './../Screens/SettingsMenu';
 import GetStartedSell from '../Screens/GetStartedSell/GetStartedSell';
+import GetStartedSellRulesWithContinue from '../Screens/GetStartedSell/GetStartedSellRulesWithContinue';
 import GetStartedSellRules from '../Screens/GetStartedSell/GetStartedSellRules';
 import ContinueOnboarding from '../Screens/GetStartedSell/ContinueOnboarding';
 import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
@@ -94,6 +95,10 @@ const LoggedInStack = () => {
       <Stack.Screen
         name="GetStartedSellRules"
         component={GetStartedSellRules}
+      />
+      <Stack.Screen
+        name="GetStartedSellRulesWithContinue"
+        component={GetStartedSellRulesWithContinue}
       />
       <Stack.Screen name="ContinueOnboarding" component={ContinueOnboarding} />
       <Stack.Screen name="GetStreamViewerSDK" component={GetStreamViewerSDK} />

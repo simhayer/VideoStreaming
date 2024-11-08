@@ -26,7 +26,7 @@ import {setOnboardingStarted} from '../../Redux/Features/AuthSlice';
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
-const GetStartedSell = () => {
+const GetStartedSellWithContinue = () => {
   const navigation = useNavigation();
   const [title, setTitle] = useState('');
   const dispatch = useDispatch();
@@ -150,9 +150,38 @@ const GetStartedSell = () => {
             </Text>
           </View>
         </View>
+        <View
+          style={{
+            marginBottom: 40,
+          }}>
+          {loading ? (
+            <ActivityIndicator size="large" color={appPink} />
+          ) : (
+            <TouchableOpacity
+              onPress={() => startOnboarding()}
+              style={{
+                flexDirection: 'row',
+                paddingVertical: '4%',
+                backgroundColor: appPink,
+                borderRadius: 40,
+                height: 'auto',
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                  flex: 1,
+                  textAlign: 'center',
+                  fontSize: calculatedFontSize / 2.5,
+                  fontWeight: 'bold',
+                }}>
+                Start Onboarding
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
     </SafeAreaView>
   );
 };
 
-export default GetStartedSell;
+export default GetStartedSellWithContinue;

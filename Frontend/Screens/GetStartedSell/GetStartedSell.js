@@ -89,7 +89,7 @@ const GetStartedSell = () => {
         </View>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('GetStartedSellRules')}
+          onPress={() => navigation.navigate('GetStartedSellRulesWithContinue')}
           style={{
             flexDirection: 'row',
             paddingVertical: '4%',
