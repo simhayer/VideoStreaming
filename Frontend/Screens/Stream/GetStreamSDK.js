@@ -12,6 +12,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   ActivityIndicator,
+  BackHandler,
 } from 'react-native';
 import axios from 'axios';
 import io from 'socket.io-client';
@@ -270,8 +271,28 @@ const GetStreamSDK = ({route}) => {
   });
 
   const closeStream = () => {
+    myCall?.endCall();
+    socket.current.disconnect();
     navigation.goBack();
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      // Handle back button press on Android
+      const onBackPress = () => {
+        closeStream();
+        navigation.goBack();
+        return true;
+      };
+
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      // Cleanup when the component is unfocused or unmounted
+      return () => {
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+      };
+    }, []),
+  );
 
   const handleStartBid = () => {
     console.log('In Start Bid');
@@ -351,7 +372,7 @@ const GetStreamSDK = ({route}) => {
       dispatch(fetchProducts(userEmail));
       console.log('items:', items);
     }
-  }, [dispatch, items, userEmail]);
+  }, []);
 
   if (streamError) {
     return (

@@ -225,6 +225,11 @@ const VideoScreen = ({route}) => {
 
   const handleSendBid = () => {
     console.log('In Bid sent:', curBid + 1);
+
+    checkPaymentandAddressExist(userEmail);
+    if (!canBid) {
+      return;
+    }
     setUserBid(Number(curBid) + 1);
     //setCurBid(Number(curBid) + 1);
 
@@ -297,6 +302,10 @@ const VideoScreen = ({route}) => {
   }, []);
 
   const showBidBottomSheet = () => {
+    checkPaymentandAddressExist(userEmail);
+    if (!canBid) {
+      return;
+    }
     setIsBidBottomSheetVisible(true);
     bidBottomSheetRef.current?.expand();
   };
