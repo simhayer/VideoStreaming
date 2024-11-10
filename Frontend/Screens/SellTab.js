@@ -4,7 +4,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {
   AppState,
   SafeAreaView,
-  TextInput,
   View,
   ActivityIndicator,
   Text,

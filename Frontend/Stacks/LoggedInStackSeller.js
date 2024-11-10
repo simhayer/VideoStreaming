@@ -1,6 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useSelector} from 'react-redux';
-import React, {Suspense, lazy, useEffect} from 'react';
+import React, {lazy} from 'react';
 
 // Eager-loaded screens
 import TabControl from '../Screens/TabControl';
@@ -23,7 +22,6 @@ import ViewProduct from '../Screens/Products/ViewProduct';
 import ViewOrderBuyer from '../Screens/Orders/ViewOrderBuyer';
 
 //Actually lazy load the screens
-//const GetStreamSDK = lazy(() => import('../Screens/Stream/GetStreamSDK'));
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
 const EditProfile = React.lazy(() => import('../Screens/Profile/EditProfile'));
 const EnterOrderTracking = lazy(() =>

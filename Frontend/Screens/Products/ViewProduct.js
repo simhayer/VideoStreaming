@@ -1,5 +1,5 @@
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import React, {useCallback, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React from 'react';
 import {
   Dimensions,
   SafeAreaView,

@@ -2,13 +2,10 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
-  Button,
   Dimensions,
-  Image,
   Linking,
   SafeAreaView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -8,16 +8,11 @@ import {
   TextInput,
   ActivityIndicator,
 } from 'react-native';
-import {
-  apiEndpoints,
-  appPink,
-  baseURL,
-  colors,
-} from '../../Resources/Constants';
+import {appPink, baseURL, colors} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatList, RefreshControl} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import {debounce} from 'lodash';
 import {

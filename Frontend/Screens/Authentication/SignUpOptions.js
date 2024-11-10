@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  TextInput,
   TouchableOpacity,
   Dimensions,
-  Platform,
   SafeAreaView,
   Linking,
 } from 'react-native';

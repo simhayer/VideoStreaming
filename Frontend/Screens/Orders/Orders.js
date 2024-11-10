@@ -1,4 +1,4 @@
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   Dimensions,
@@ -6,8 +6,6 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Pressable,
-  Image,
   TextInput,
   RefreshControl,
   ActivityIndicator,

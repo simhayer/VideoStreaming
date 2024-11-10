@@ -1,19 +1,16 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   View,
   Text,
   StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
   ActivityIndicator, // Import ActivityIndicator
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import commonStyles from '../../Resources/styles';
+import {useDispatch} from 'react-redux';
 import {updateUsername} from '../../Redux/Features/AuthSlice';
 import {appPink, colors, errorRed} from '../../Resources/Constants';
 

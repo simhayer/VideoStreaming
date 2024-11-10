@@ -17,7 +17,6 @@ const LivestreamView = () => {
   const call = useCall();
   const totalParticipants = useParticipantCount();
   const localParticipant = useLocalParticipant();
-  const isCallLive = useIsCallLive();
 
   useEffect(() => {
     InCallManager.start({media: 'video'});

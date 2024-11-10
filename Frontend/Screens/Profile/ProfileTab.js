@@ -9,10 +9,9 @@ import {
   View,
 } from 'react-native';
 import {useSelector} from 'react-redux';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {appPink, baseURL, colors} from '../../Resources/Constants';
-import FastImage from 'react-native-fast-image';
+import {colors} from '../../Resources/Constants';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;

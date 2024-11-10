@@ -1,25 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   View,
   Text,
-  StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
-  ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import commonStyles from '../../Resources/styles';
 import {appPink, colors, errorRed} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const EnterStreamTitle = () => {
   const [title, setTitle] = useState('');
   const navigation = useNavigation();
-  const [loading, setLoading] = useState(false);
 
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');

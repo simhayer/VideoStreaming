@@ -11,8 +11,6 @@ const LazyStack = () => {
   const [LazyComponent, setLazyComponent] = useState(null);
 
   const {isAuthenticated} = useSelector(state => state.auth);
-  const {userData} = useSelector(state => state.auth);
-  const isSeller = userData?.user?.isSeller;
 
   useEffect(() => {
     const timer = setTimeout(() => {

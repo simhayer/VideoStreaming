@@ -1,6 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useSelector} from 'react-redux';
-import React, {Suspense, lazy, useEffect} from 'react';
+import React, {lazy, useEffect} from 'react';
 
 // Eager-loaded screens
 import TabControl from '../Screens/TabControl';

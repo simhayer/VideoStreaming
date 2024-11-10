@@ -15,7 +15,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import io from 'socket.io-client';
 import {
   apiEndpoints,

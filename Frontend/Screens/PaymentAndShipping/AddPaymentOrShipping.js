@@ -1,20 +1,12 @@
+import {StripeProvider, useStripe} from '@stripe/stripe-react-native';
+import {useCallback, useState} from 'react';
 import {
-  AddressSheet,
-  AddressSheetError,
-  StripeProvider,
-  useStripe,
-} from '@stripe/stripe-react-native';
-import {useCallback, useEffect, useState} from 'react';
-import {
-  Alert,
-  Button,
   Dimensions,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Screen} from 'react-native-screens';
 import {
   baseURL,
   apiEndpoints,

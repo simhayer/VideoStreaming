@@ -2,22 +2,15 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-import {
-  baseURL,
-  apiEndpoints,
-  appPink,
-  errorRed,
-  colors,
-} from '../../Resources/Constants';
+import {appPink, errorRed, colors} from '../../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {login} from '../../Redux/Features/AuthSlice';
 
 const screenHeight = Dimensions.get('window').height;

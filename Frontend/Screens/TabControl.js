@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Profile from './Profile/ProfileTab';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ViewerTab from './ViewerTab';
@@ -6,13 +6,12 @@ import SellTab from './SellTab';
 import GetStartedSell from './GetStartedSell/GetStartedSell';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
 const TabControl = ({route}) => {
   const initialTab = route.params?.initialTab || 'Home';
   const Tab = createBottomTabNavigator();
-  const navigation = useNavigation();
 
   const [isOnboardingStarted, setIsOnboardingStarted] = useState(false);
   const {userData} = useSelector(state => state.auth);
@@ -66,18 +65,6 @@ const TabControl = ({route}) => {
         headerShown: false, // Hide header for a cleaner tab view
       })}>
       <Tab.Screen name="Home" component={ViewerTab} />
-      {/* <Tab.Screen
-        name="Sell"
-        component={SellTab}
-        listeners={{
-          tabPress: e => {
-            if (!isOnboardingStarted) {
-              e.preventDefault(); // Prevent tab change
-              navigation.navigate('GetStartedSell'); // Redirect to onboarding
-            }
-          },
-        }}
-      /> */}
       {isOnboardingStarted ? (
         <Tab.Screen name="Sell" component={SellTab} />
       ) : (

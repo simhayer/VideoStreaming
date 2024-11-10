@@ -19,13 +19,10 @@ import {
   productTypes,
   shoeSizeOptions,
   clothingSizeOptions,
-  baseURL,
-  apiEndpoints,
   errorRed,
   colors,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';

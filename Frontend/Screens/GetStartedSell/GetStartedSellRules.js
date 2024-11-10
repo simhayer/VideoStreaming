@@ -1,23 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
-  ActivityIndicator,
-  Button,
   Dimensions,
-  Image,
   Linking,
   SafeAreaView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  apiEndpoints,
-  appPink,
-  baseURL,
-  colors,
-} from '../../Resources/Constants';
+import {apiEndpoints, baseURL, colors} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';

@@ -1,17 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   View,
   Text,
   StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
-//import {baseURL, apiEndpoints} from '../Resources/Constants';
 import {
   baseURL,
   apiEndpoints,

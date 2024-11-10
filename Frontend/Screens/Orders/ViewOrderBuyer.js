@@ -1,23 +1,16 @@
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import React, {useCallback, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
 import {
   Dimensions,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
-  Pressable,
-  Image,
   ScrollView,
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
-import {
-  apiEndpoints,
-  appPink,
-  baseURL,
-  colors,
-} from '../../Resources/Constants';
+import {appPink, baseURL, colors} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';

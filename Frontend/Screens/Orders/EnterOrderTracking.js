@@ -1,19 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   View,
   Text,
-  StyleSheet,
   TextInput,
-  Button,
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import commonStyles from '../../Resources/styles';
-import {updateUsername} from '../../Redux/Features/AuthSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
   apiEndpoints,

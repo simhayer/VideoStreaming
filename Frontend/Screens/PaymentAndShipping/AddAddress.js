@@ -2,19 +2,16 @@ import {
   AddressSheet,
   AddressSheetError,
   StripeProvider,
-  useStripe,
 } from '@stripe/stripe-react-native';
-import {useCallback, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
   Alert,
-  Button,
   Dimensions,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Screen} from 'react-native-screens';
 import {
   baseURL,
   apiEndpoints,
@@ -25,14 +22,13 @@ import {
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 export default function AddAddress({route}) {
   const {address} = route.params;
-  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const [addressSheetVisible, setAddressSheetVisible] = useState(false);
 

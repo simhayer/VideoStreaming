@@ -13,14 +13,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {deleteUser, logout} from '../Redux/Features/AuthSlice';
 import {
-  apiEndpoints,
-  baseURL,
   colors,
   errorRed,
   PrivacyPolicyLink,
   TermsAndConditionsLink,
 } from '../Resources/Constants';
-import axios from 'axios';
 
 export default function AddPaymentMethod() {
   const dispatch = useDispatch();
