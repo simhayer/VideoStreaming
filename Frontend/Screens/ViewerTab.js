@@ -14,14 +14,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {
-  apiEndpoints,
-  appPink,
-  baseURL,
-  colors,
-  debounce,
-  token,
-} from '../Resources/Constants';
+import {apiEndpoints, appPink, baseURL, colors} from '../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
@@ -81,7 +74,7 @@ const ViewerTab = () => {
   useFocusEffect(
     useCallback(() => {
       const currentTime = Date.now();
-      const MIN_TRIGGER_INTERVAL = 30000;
+      const MIN_TRIGGER_INTERVAL = 50000;
 
       if (isFirstLoad) {
         showList();
@@ -400,6 +393,7 @@ const ViewerTab = () => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
           onEndReached={() => {
+            if (broadcasts.length < 4) return;
             if (canFetchMore && !loading) {
               setPage(prev => prev + 1);
               showList(page + 1);
