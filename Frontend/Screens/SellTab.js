@@ -23,8 +23,6 @@ const calculatedFontSize = screenHeight * 0.05;
 
 const StartStreamTab = () => {
   const navigation = useNavigation();
-  const [title, setTitle] = useState('');
-  const [canSell, setCanSell] = useState(false);
   const [loading, setLoading] = useState(false);
   const [appState, setAppState] = useState(AppState.currentState);
 
@@ -36,7 +34,7 @@ const StartStreamTab = () => {
   const {isOnboardingChecked} = useSelector(state => state.NonPersistSlice);
 
   const startStream = async () => {
-    navigation.navigate('EnterStreamTitle', {title});
+    navigation.navigate('EnterStreamTitle');
   };
 
   const checkStripeOnboarding = async () => {
@@ -227,7 +225,7 @@ const StartStreamTab = () => {
 
           {/* Start Selling Button */}
           <TouchableOpacity
-            onPress={() => startStream()}
+            onPress={startStream}
             style={{
               paddingVertical: 16,
               paddingHorizontal: 32,

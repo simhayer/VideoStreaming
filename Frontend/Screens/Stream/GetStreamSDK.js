@@ -37,7 +37,6 @@ import {
   StreamVideoClient,
 } from '@stream-io/video-react-native-sdk';
 import LiveStreamView from './LiveStreamView';
-
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -66,15 +65,13 @@ const GetStreamSDK = ({route}) => {
 
   const scrollViewRef = useRef();
   const [curComments, setCurComments] = useState([]);
-  const [comment, setComment] = useState('');
   const [curBid, setCurBid] = useState('');
   const [noOfBids, setNoOfBids] = useState(0);
   const [curBidWinner, setCurBidWinner] = useState('');
   const [showWinner, setShowWinner] = useState(false);
-  const [userBid, setUserBid] = useState(0);
   const [watchers, setWatchers] = useState(0);
   const [streamError, setStreamError] = useState(false);
-  const {items, reduxLoading} = useSelector(state => state.products);
+  const {items} = useSelector(state => state.products);
   const navigation = useNavigation();
 
   const [meetingId, setMeetingId] = useState(null);
