@@ -54,7 +54,8 @@ export const googleLogin = createAsyncThunk(
 export const appleLogin = createAsyncThunk(
   'auth/appleLogin',
   async (params, thunkApi) => {
-    return response.data;
+    const user = params.user;
+    return {user};
   },
 );
 

@@ -102,11 +102,28 @@ const LoginOptions = ({route}) => {
       // use credentialState response to ensure the user is authenticated
       if (credentialState === appleAuth.State.AUTHORIZED) {
         // user is authenticated
-        const params = {
-          user: appleAuthRequestResponse,
-        };
+        // Extract necessary fields from appleAuthRequestResponse
+        const {fullName, email} = appleAuthRequestResponse;
 
-        dispatch(appleLogin(params));
+        const response = await axios.post(
+          baseURL + apiEndpoints.handleGoogleSignin,
+          {
+            email,
+            fullName: fullName
+              ? `${fullName.givenName || ''} ${
+                  fullName.familyName || ''
+                }`.trim()
+              : null,
+            profilePicture: '',
+          },
+        );
+
+        const params = {
+          user: response.data.user,
+        };
+        dispatch(googleLogin(params));
+
+        return response.data;
       }
 
       return response.data;
