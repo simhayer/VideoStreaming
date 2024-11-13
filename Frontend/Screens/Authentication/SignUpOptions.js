@@ -22,6 +22,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AuthButton from './AuthButton';
 import {useDispatch} from 'react-redux';
 import {appleLogin, googleLogin} from '../../Redux/Features/AuthSlice';
+import appleAuth from '@invertase/react-native-apple-authentication';
 
 const SignUpOptions = ({route}) => {
   clientIds = route.params;

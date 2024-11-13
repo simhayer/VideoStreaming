@@ -105,9 +105,9 @@ const LoginOptions = ({route}) => {
         const params = {
           user: appleAuthRequestResponse,
         };
-      }
 
-      dispatch(appleLogin(params));
+        dispatch(appleLogin(params));
+      }
 
       return response.data;
     } catch (error) {
