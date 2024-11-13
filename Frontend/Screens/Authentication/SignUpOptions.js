@@ -6,6 +6,7 @@ import {
   Dimensions,
   SafeAreaView,
   Linking,
+  Platform,
 } from 'react-native';
 import {
   baseURL,
@@ -20,7 +21,7 @@ import {useNavigation} from '@react-navigation/native';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AuthButton from './AuthButton';
 import {useDispatch} from 'react-redux';
-import {googleLogin} from '../../Redux/Features/AuthSlice';
+import {appleLogin, googleLogin} from '../../Redux/Features/AuthSlice';
 
 const SignUpOptions = ({route}) => {
   clientIds = route.params;
@@ -30,6 +31,7 @@ const SignUpOptions = ({route}) => {
   //const [clientIds, setClientIds] = useState({});
   const dispatch = useDispatch();
   const [googleSignInLoading, setGoogleSignInLoading] = useState(false);
+  const [appleSignInLoading, setAppleSignInLoading] = useState(false);
 
   const redirectToTermsAndConditions = () => {
     Linking.openURL(TermsAndConditionsLink);
@@ -80,6 +82,41 @@ const SignUpOptions = ({route}) => {
       setGoogleSignInLoading(false);
     }
   };
+
+  async function onAppleButtonPress() {
+    try {
+      setAppleSignInLoading(true);
+      // performs login request
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        // Note: it appears putting FULL_NAME first is important, see issue #293
+        requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
+      });
+
+      // get current authentication state for user
+      // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
+      const credentialState = await appleAuth.getCredentialStateForUser(
+        appleAuthRequestResponse.user,
+      );
+
+      // use credentialState response to ensure the user is authenticated
+      if (credentialState === appleAuth.State.AUTHORIZED) {
+        // user is authenticated
+        const params = {
+          user: appleAuthRequestResponse,
+        };
+
+        dispatch(appleLogin(params));
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error('Google Login Failed:', error);
+      throw error;
+    } finally {
+      setAppleSignInLoading(false);
+    }
+  }
 
   return (
     <SafeAreaView
@@ -136,13 +173,14 @@ const SignUpOptions = ({route}) => {
           onPress={GoogleLogin}
           loading={googleSignInLoading}
         />
-        {/* {Platform.OS === 'ios' && (
+        {Platform.OS === 'ios' && (
           <AuthButton
             iconName="logo-apple"
             text="Continue with Apple"
-            onPress={GoogleLogin}
+            onPress={onAppleButtonPress}
+            loading={appleSignInLoading}
           />
-        )} */}
+        )}
         <AuthButton
           iconName="mail"
           text="Continue with Email"

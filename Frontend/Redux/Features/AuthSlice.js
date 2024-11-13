@@ -51,6 +51,13 @@ export const googleLogin = createAsyncThunk(
   },
 );
 
+export const appleLogin = createAsyncThunk(
+  'auth/appleLogin',
+  async (params, thunkApi) => {
+    return response.data;
+  },
+);
+
 // Login
 export const login = createAsyncThunk(
   'auth/login',
@@ -314,6 +321,23 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
     });
     builder.addCase(googleLogin.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.errorMessage = action.payload.message;
+      state.isAuthenticated = false;
+    });
+
+    // Handle Apple login
+    builder.addCase(appleLogin.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(appleLogin.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.userData = action.payload;
+      state.isAuthenticated = true;
+    });
+    builder.addCase(appleLogin.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.errorMessage = action.payload.message;
