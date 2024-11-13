@@ -106,7 +106,7 @@ const LoginOptions = ({route}) => {
         const {fullName, email} = appleAuthRequestResponse;
 
         const response = await axios.post(
-          baseURL + apiEndpoints.handleGoogleSignin,
+          baseURL + apiEndpoints.handleAppleSignin,
           {
             email,
             fullName: fullName

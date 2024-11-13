@@ -42,6 +42,7 @@ export const apiEndpoints = {
   getGoogleClientId: '/auth/getGoogleClientId',
   getUserDetailsFromUsername: '/auth/getUserDetailsFromUsername',
   handleGoogleSignin: '/auth/handleGoogleSignin',
+  handleAppleSignin: '/auth/handleAppleSignin',
   addUserToBlocked: '/auth/addUserToBlocked',
   createStreamUserForJoining: '/auth/createStreamUserForJoining',
   deleteUser: '/auth/deleteUser',
