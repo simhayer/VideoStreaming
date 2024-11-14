@@ -104,7 +104,7 @@ const SignUpOptions = ({route}) => {
       if (credentialState === appleAuth.State.AUTHORIZED) {
         // user is authenticated
         // Extract necessary fields from appleAuthRequestResponse
-        const {fullName, email} = appleAuthRequestResponse;
+        const {fullName, email, identityToken} = appleAuthRequestResponse;
 
         const response = await axios.post(
           baseURL + apiEndpoints.handleAppleSignin,
@@ -116,6 +116,7 @@ const SignUpOptions = ({route}) => {
                 }`.trim()
               : null,
             profilePicture: '',
+            userId: identityToken,
           },
         );
 
