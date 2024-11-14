@@ -43,6 +43,7 @@
 		956A7C3290E9CB30C8D0E082 /* Pods-BARS-BARSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BARS-BARSTests.release.xcconfig"; path = "Target Support Files/Pods-BARS-BARSTests/Pods-BARS-BARSTests.release.xcconfig"; sourceTree = "<group>"; };
 		A441BA02BE5B57041C79C68F /* Pods-BARS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BARS.release.xcconfig"; path = "Target Support Files/Pods-BARS/Pods-BARS.release.xcconfig"; sourceTree = "<group>"; };
 		A555208AAB50C433E7BAC1F9 /* Pods-BARS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BARS.debug.xcconfig"; path = "Target Support Files/Pods-BARS/Pods-BARS.debug.xcconfig"; sourceTree = "<group>"; };
+		C75202152CE474EE0013C2F5 /* BARS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = BARS.entitlements; path = BARS/BARS.entitlements; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -86,6 +87,7 @@
 		13B07FAE1A68108700A75B9A /* BARS */ = {
 			isa = PBXGroup;
 			children = (
+				C75202152CE474EE0013C2F5 /* BARS.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -472,6 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = BARS/BARS.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J3392SQG66;
 				ENABLE_BITCODE = NO;
@@ -501,6 +504,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = BARS/BARS.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = J3392SQG66;
 				INFOPLIST_FILE = BARS/Info.plist;
@@ -592,10 +596,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -664,10 +665,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
