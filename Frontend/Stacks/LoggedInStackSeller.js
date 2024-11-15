@@ -12,10 +12,12 @@ import GetStartedSellRules from '../Screens/GetStartedSell/GetStartedSellRules';
 import ContinueOnboarding from '../Screens/GetStartedSell/ContinueOnboarding';
 import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
 
-import StartStreamTab from '../Screens/Stream/StartStreamTab';
 import SellerOrdersNew from '../Screens/Orders/SellerOrdersNew';
 import ViewOrderSeller from '../Screens/Orders/ViewOrderSeller';
 import EnterStreamTitle from '../Screens/Stream/EnterStreamTitle';
+import SelectProducts from '../Screens/Stream/SelectProducts';
+import SelectThumbnail from '../Screens/Stream/SelectThumbnail';
+import SetScheduleTime from '../Screens/Stream/SetScheduleTime';
 import ManageProducts from '../Screens/Products/ManageProducts';
 import AddProduct from '../Screens/Products/AddProduct';
 import ViewProduct from '../Screens/Products/ViewProduct';
@@ -79,10 +81,12 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="ContinueOnboarding" component={ContinueOnboarding} />
       <Stack.Screen name="GetStreamViewerSDK" component={GetStreamViewerSDK} />
 
-      <Stack.Screen name="StartStreamTab" component={StartStreamTab} />
       <Stack.Screen name="SellerOrdersNew" component={SellerOrdersNew} />
       <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
       <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />
+      <Stack.Screen name="SelectProducts" component={SelectProducts} />
+      <Stack.Screen name="SelectThumbnail" component={SelectThumbnail} />
+      <Stack.Screen name="SetScheduleTime" component={SetScheduleTime} />
       <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />
       <Stack.Screen name="EnterOrderTracking" component={EnterOrderTracking} />
       <Stack.Screen name="ViewProfile" component={ViewProfile} />

@@ -20,8 +20,8 @@ import {resetOrders} from '../../Redux/Features/OrdersSlice';
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
 
-const StartStreamTab = ({route}) => {
-  const {title} = route?.params || {};
+const SelectThumbnail = ({route}) => {
+  const {title, type, selectedItems} = route?.params || {};
   //const {title} = route.params;
   const navigation = useNavigation();
   const [selectedImage, setSelectedImage] = useState('');
@@ -56,6 +56,15 @@ const StartStreamTab = ({route}) => {
     });
 
     //navigation.navigate('GetStreamSDK', {title, thumbnail: selectedImage});
+  };
+
+  const continueSchedule = () => {
+    navigation.navigate('SetScheduleTime', {
+      title,
+      type,
+      thumbnail: selectedImage,
+      selectedItems,
+    });
   };
 
   const handleImageSelection = () => {
@@ -213,34 +222,60 @@ const StartStreamTab = ({route}) => {
           )}
         </View>
 
-        {/* Continue to Stream Button */}
-        <TouchableOpacity
-          onPress={startStream}
-          style={{
-            width: '60%',
-            backgroundColor: appPink,
-            borderRadius: 30,
-            paddingVertical: 14,
-            alignItems: 'center',
-            shadowColor: '#000',
-            shadowOffset: {width: 0, height: 2},
-            shadowOpacity: 0.2,
-            shadowRadius: 4,
-            marginBottom: 40,
-          }}
-          activeOpacity={0.8}>
-          <Text
+        {type === 'stream' ? (
+          <TouchableOpacity
+            onPress={startStream}
             style={{
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.2,
-            }}>
-            Continue to Stream
-          </Text>
-        </TouchableOpacity>
+              width: '60%',
+              backgroundColor: appPink,
+              borderRadius: 30,
+              paddingVertical: 14,
+              alignItems: 'center',
+              shadowColor: '#000',
+              shadowOffset: {width: 0, height: 2},
+              shadowOpacity: 0.2,
+              shadowRadius: 4,
+              marginBottom: 40,
+            }}
+            activeOpacity={0.8}>
+            <Text
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.2,
+              }}>
+              Continue to Stream
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={continueSchedule}
+            style={{
+              width: '60%',
+              backgroundColor: appPink,
+              borderRadius: 30,
+              paddingVertical: 14,
+              alignItems: 'center',
+              shadowColor: '#000',
+              shadowOffset: {width: 0, height: 2},
+              shadowOpacity: 0.2,
+              shadowRadius: 4,
+              marginBottom: 40,
+            }}
+            activeOpacity={0.8}>
+            <Text
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.2,
+              }}>
+              Continue
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );
 };
 
-export default StartStreamTab;
+export default SelectThumbnail;

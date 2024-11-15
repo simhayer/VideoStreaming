@@ -11,7 +11,8 @@ import {useNavigation} from '@react-navigation/native';
 import {appPink, colors, errorRed} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const EnterStreamTitle = () => {
+const EnterStreamTitle = ({route}) => {
+  const {type} = route.params;
   const [title, setTitle] = useState('');
   const navigation = useNavigation();
 
@@ -28,7 +29,7 @@ const EnterStreamTitle = () => {
       return;
     }
 
-    navigation.navigate('StartStreamTab', {title});
+    navigation.navigate('SelectProducts', {title, type});
   };
 
   const inputRef = useRef(null);

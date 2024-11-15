@@ -34,7 +34,11 @@ const StartStreamTab = () => {
   const {isOnboardingChecked} = useSelector(state => state.NonPersistSlice);
 
   const startStream = async () => {
-    navigation.navigate('EnterStreamTitle');
+    navigation.navigate('EnterStreamTitle', {type: 'stream'});
+  };
+
+  const scheduleStream = async () => {
+    navigation.navigate('EnterStreamTitle', {type: 'schedule'});
   };
 
   const checkStripeOnboarding = async () => {
@@ -228,7 +232,7 @@ const StartStreamTab = () => {
             onPress={startStream}
             style={{
               paddingVertical: 16,
-              paddingHorizontal: 32,
+              width: '60%',
               backgroundColor: appPink,
               borderRadius: 30,
               shadowColor: '#000',
@@ -236,6 +240,7 @@ const StartStreamTab = () => {
               shadowOpacity: 0.2,
               shadowRadius: 5,
               marginBottom: 40,
+              alignItems: 'center',
             }}
             activeOpacity={0.8}>
             <Text
@@ -245,6 +250,39 @@ const StartStreamTab = () => {
                 fontSize: calculatedFontSize / 2.5,
               }}>
               Start Selling
+            </Text>
+          </TouchableOpacity>
+
+          <Text
+            style={{
+              color: 'black',
+              fontSize: calculatedFontSize / 2.8,
+              marginBottom: 10,
+            }}>
+            Want to schedule a session for later?
+          </Text>
+          <TouchableOpacity
+            onPress={scheduleStream}
+            style={{
+              paddingVertical: 16,
+              width: '60%',
+              backgroundColor: appPink,
+              borderRadius: 30,
+              shadowColor: '#000',
+              shadowOffset: {width: 0, height: 2},
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
+              marginBottom: 40,
+              alignItems: 'center',
+            }}
+            activeOpacity={0.8}>
+            <Text
+              style={{
+                color: 'white',
+                fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.5,
+              }}>
+              Schedule Live Stream
             </Text>
           </TouchableOpacity>
         </View>

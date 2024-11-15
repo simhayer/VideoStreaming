@@ -358,10 +358,6 @@ const GetStreamSDK = ({route}) => {
     {label: '30s', value: '30s'},
   ]);
 
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
-
   useEffect(() => {
     if (items.length === 0) {
       dispatch(fetchProducts(userEmail));

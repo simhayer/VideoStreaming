@@ -14,12 +14,14 @@ import ContinueOnboarding from '../Screens/GetStartedSell/ContinueOnboarding';
 import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
 
 // Lazily load the group of onboarding-related screens
-const StartStreamTab = lazy(() => import('../Screens/Stream/StartStreamTab'));
 const SellerOrdersNew = lazy(() => import('../Screens/Orders/SellerOrdersNew'));
 const ViewOrderSeller = lazy(() => import('../Screens/Orders/ViewOrderSeller'));
 const EnterStreamTitle = lazy(() =>
   import('../Screens/Stream/EnterStreamTitle'),
 );
+const SelectProducts = lazy(() => import('../Screens/Stream/SelectProducts'));
+const SelectThumbnail = lazy(() => import('../Screens/Stream/SelectThumbnail'));
+const SetScheduleTime = lazy(() => import('../Screens/Stream/SetScheduleTime'));
 const ManageProducts = React.lazy(() =>
   import('./../Screens/Products/ManageProducts'),
 );
@@ -65,12 +67,14 @@ const LoggedInStack = () => {
   useEffect(() => {
     if (isSeller) {
       // Preloaded Seller screens
-      import('../Screens/Stream/StartStreamTab');
       import('../Screens/Orders/ViewOrderSeller');
       import('../Screens/Stream/EnterStreamTitle');
+      import('../Screens/Stream/SelectProducts');
       import('../Screens/Products/AddProduct');
       import('../Screens/Products/ViewProduct');
       import('../Screens/Stream/SellerOrdersNew');
+      import('../Screens/Stream/SelectThumbnail');
+      import('../Screens/Stream/SetScheduleTime');
     }
   }, [isSeller]);
 
@@ -112,11 +116,13 @@ const LoggedInStack = () => {
       {/* Conditionally load the SellerOrders screen */}
       {isSeller && (
         <>
-          <Stack.Screen name="StartStreamTab" component={StartStreamTab} />
           <Stack.Screen name="SellerOrdersNew" component={SellerOrdersNew} />
 
           <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
           <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />
+          <Stack.Screen name="SelectProducts" component={SelectProducts} />
+          <Stack.Screen name="SelectThumbnail" component={SelectThumbnail} />
+          <Stack.Screen name="SetScheduleTime" component={SetScheduleTime} />
           <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />
           <Stack.Screen
             name="EnterOrderTracking"
