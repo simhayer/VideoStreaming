@@ -7,6 +7,7 @@ import {
   Dimensions,
   SafeAreaView,
   FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {appPink, baseURL, colors, errorRed} from '../../Resources/Constants';
@@ -26,7 +27,7 @@ const SelectProducts = ({route}) => {
 
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
-  const {items} = useSelector(state => state.products);
+  const {items, reduxLoading} = useSelector(state => state.products);
 
   const {userData} = useSelector(state => state.auth);
 
@@ -150,58 +151,66 @@ const SelectProducts = ({route}) => {
           justifyContent: 'center',
           flex: 1,
         }}>
-        <FlatList
-          style={{flex: 1, maxHeight: '100%'}}
-          data={items}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item}) => {
-            if (!item.imageUrl) return null;
-            const isSelected = selectedItems.includes(item._id);
-            return (
-              <TouchableOpacity
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  borderWidth: 1,
-                  borderColor: 'rgba(0,0,0,0.2)',
-                  paddingRight: 25,
-                  justifyContent: 'space-between',
-                  backgroundColor: isSelected ? '#d3d3d3' : 'white',
-                }}
-                onPress={() => toggleSelectItem(item)}>
-                <FastImage
-                  source={{uri: item.localImagePath}}
+        {reduxLoading ? (
+          <ActivityIndicator
+            size="large"
+            color={appPink}
+            style={{marginVertical: 20}}
+          />
+        ) : (
+          <FlatList
+            style={{flex: 1, maxHeight: '100%'}}
+            data={items}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => {
+              if (!item.imageUrl) return null;
+              const isSelected = selectedItems.includes(item._id);
+              return (
+                <TouchableOpacity
                   style={{
-                    width: 45,
-                    height: 45,
-                    borderRadius: 8,
-                    margin: 5,
-                    marginLeft: 10,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    borderWidth: 1,
+                    borderColor: 'rgba(0,0,0,0.2)',
+                    paddingRight: 25,
+                    justifyContent: 'space-between',
+                    backgroundColor: isSelected ? '#d3d3d3' : 'white',
                   }}
-                  resizeMode={FastImage.resizeMode.cover}
-                />
-                <View style={{flex: 1, marginLeft: 10}}>
-                  <Text
+                  onPress={() => toggleSelectItem(item)}>
+                  <FastImage
+                    source={{uri: item.localImagePath}}
                     style={{
-                      fontWeight: 'bold',
-                      textAlign: 'left',
-                      flexWrap: 'wrap',
-                      fontSize: calculatedFontSize / 2.7,
-                    }}>
-                    {item.name}
-                  </Text>
-                  <Text style={{fontSize: calculatedFontSize / 2.9}}>
-                    {item.size}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-          contentContainerStyle={{
-            paddingBottom: 10, // Add padding to avoid the last item being cut off
-          }}
-        />
+                      width: 45,
+                      height: 45,
+                      borderRadius: 8,
+                      margin: 5,
+                      marginLeft: 10,
+                    }}
+                    resizeMode={FastImage.resizeMode.cover}
+                  />
+                  <View style={{flex: 1, marginLeft: 10}}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        textAlign: 'left',
+                        flexWrap: 'wrap',
+                        fontSize: calculatedFontSize / 2.7,
+                      }}>
+                      {item.name}
+                    </Text>
+                    <Text style={{fontSize: calculatedFontSize / 2.9}}>
+                      {item.size}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+            contentContainerStyle={{
+              paddingBottom: 10, // Add padding to avoid the last item being cut off
+            }}
+          />
+        )}
       </View>
       <TouchableOpacity
         onPress={onNextClick}

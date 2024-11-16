@@ -35,21 +35,23 @@ const SetScheduleTime = ({route}) => {
 
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [addingStream, setAddingStream] = useState(false);
 
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
 
   const onNextClick = async () => {
-    navigation.navigate('SelectProducts', {title, type, date});
-  };
+    if (date < Date.now()) {
+      setIsError(true);
+      setErrorMessage('Please select a future date and time');
+      return;
+    }
 
-  const addScheduledStream = async () => {
     const formData = new FormData();
     formData.append('username', username);
-    formData.append('profilePicture', profilePicture);
     formData.append('title', title || 'Untitled');
-    formData.append('type', type || 'stream');
-    formData.append('selectedItems', selectedItems.join(','));
+    formData.append('products', selectedItems.join(','));
+    formData.append('datetime', date.toISOString());
 
     // Check if a thumbnail is selected
     if (thumbnail) {
@@ -62,17 +64,19 @@ const SetScheduleTime = ({route}) => {
       formData.append('thumbnail', imageFile);
     }
 
+    console.log('Adding stream schedule:', formData);
+
     axios
-      .post(baseURL + apiEndpoints.addBroadcast, formData, {
+      .post(baseURL + apiEndpoints.addScheduledStream, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       })
       .then(response => {
-        console.log('Broadcast added:', response.data);
+        console.log('Stream Schedule added:', response.data);
       })
       .catch(error => {
-        console.error('Error adding broadcast:', error);
+        console.error('Error adding stream schedule:', error);
       });
   };
 

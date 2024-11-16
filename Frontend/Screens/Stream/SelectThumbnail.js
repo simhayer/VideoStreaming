@@ -59,6 +59,12 @@ const SelectThumbnail = ({route}) => {
   };
 
   const continueSchedule = () => {
+    if (selectedImage === '') {
+      setIsError(true);
+      setErrorMessage('Please provide a thumbnail for your stream');
+      return;
+    }
+    console.log('Going to SetScheduleTime');
     navigation.navigate('SetScheduleTime', {
       title,
       type,
@@ -68,6 +74,7 @@ const SelectThumbnail = ({route}) => {
   };
 
   const handleImageSelection = () => {
+    setIsError(false);
     const options = {
       mediaType: 'photo',
       quality: 1,
