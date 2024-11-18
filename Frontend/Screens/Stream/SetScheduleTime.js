@@ -40,6 +40,28 @@ const SetScheduleTime = ({route}) => {
   const [addingStream, setAddingStream] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const [tempDate, setTempDate] = useState(new Date());
+
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || tempDate;
+    setTempDate(currentDate);
+  };
+
+  const onConfirmDate = () => {
+    setDate(tempDate);
+    setShowDatePicker(false);
+  };
+
+  const onTimeChange = (event, selectedTime) => {
+    const currentTime = selectedTime || tempDate;
+    setTempDate(currentTime);
+  };
+
+  const onConfirmTime = () => {
+    setDate(tempDate);
+    setShowTimePicker(false);
+  };
+
   const onNextClick = async () => {
     if (date < Date.now()) {
       setIsError(true);
@@ -84,17 +106,17 @@ const SetScheduleTime = ({route}) => {
     }
   };
 
-  const onDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(false);
-    setDate(currentDate);
-  };
+  // const onDateChange = (event, selectedDate) => {
+  //   const currentDate = selectedDate || date;
+  //   setShowDatePicker(false);
+  //   setDate(currentDate);
+  // };
 
-  const onTimeChange = (event, selectedTime) => {
-    const currentTime = selectedTime || date;
-    setShowTimePicker(false);
-    setDate(currentTime);
-  };
+  // const onTimeChange = (event, selectedTime) => {
+  //   const currentTime = selectedTime || date;
+  //   setShowTimePicker(false);
+  //   setDate(currentTime);
+  // };
 
   const onShowDatePicker = () => {
     setShowTimePicker(false);
@@ -159,32 +181,46 @@ const SetScheduleTime = ({route}) => {
           </TouchableOpacity>
 
           {showDatePicker && (
-            <DateTimePicker
-              value={date}
-              mode="date"
-              display="spinner"
-              onChange={onDateChange}
-              minimumDate={new Date(Date.now())}
-              maximumDate={new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}
-              textColor="black"
-              themeVariant="dark"
-            />
+            <View style={styles.pickerWrapper}>
+              <DateTimePicker
+                value={tempDate}
+                mode="date"
+                display="spinner"
+                onChange={onDateChange}
+                minimumDate={new Date(Date.now())}
+                maximumDate={new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}
+                textColor="black"
+                themeVariant="dark"
+              />
+              <TouchableOpacity
+                style={styles.confirmButton}
+                onPress={onConfirmDate}>
+                <Text style={styles.confirmButtonText}>Set Date</Text>
+              </TouchableOpacity>
+            </View>
           )}
 
           {showTimePicker && (
-            <DateTimePicker
-              value={date}
-              mode="time"
-              display="spinner"
-              onChange={onTimeChange}
-              minimumDate={
-                date.toDateString() === new Date().toDateString()
-                  ? new Date()
-                  : null
-              }
-              textColor="black"
-              themeVariant="dark"
-            />
+            <View style={styles.pickerWrapper}>
+              <DateTimePicker
+                value={tempDate}
+                mode="time"
+                display="spinner"
+                onChange={onTimeChange}
+                minimumDate={
+                  tempDate.toDateString() === new Date().toDateString()
+                    ? new Date()
+                    : null
+                }
+                textColor="black"
+                themeVariant="dark"
+              />
+              <TouchableOpacity
+                style={styles.confirmButton}
+                onPress={onConfirmTime}>
+                <Text style={styles.confirmButtonText}>Set Time</Text>
+              </TouchableOpacity>
+            </View>
           )}
         </>
       )}
@@ -271,6 +307,21 @@ const styles = StyleSheet.create({
     fontSize: calculatedFontSize / 2.5,
     fontWeight: 'bold',
     marginTop: 10,
+  },
+  pickerWrapper: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  confirmButton: {
+    backgroundColor: appPink,
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  confirmButtonText: {
+    color: 'white',
+    fontSize: calculatedFontSize / 2.8,
+    fontWeight: 'bold',
   },
 });
 
