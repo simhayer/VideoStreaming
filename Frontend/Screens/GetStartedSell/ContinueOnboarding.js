@@ -19,6 +19,7 @@ import {
   colors,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
+import FastImage from 'react-native-fast-image';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -72,6 +73,16 @@ const ContinueOnboarding = () => {
         style={styles.backButton}>
         <Icon name="chevron-back" size={35} color="black" />
       </TouchableOpacity>
+
+      <FastImage
+        source={require('../../Resources/onboardingIncomplete.png')}
+        style={{
+          height: '30%',
+          resizeMode: 'center',
+          marginTop: 20,
+        }}
+        resizeMode="contain"
+      />
 
       {/* Main Content */}
       <View style={styles.content}>
@@ -128,7 +139,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     paddingHorizontal: 16,
-    marginBottom: 70,
+    marginBottom: 110,
   },
   heading: fontSize => ({
     color: 'black',

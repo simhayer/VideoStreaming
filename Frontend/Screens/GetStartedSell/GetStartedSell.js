@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {appPink, colors} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
+import FastImage from 'react-native-fast-image';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -35,7 +36,7 @@ const GetStartedSell = () => {
           alignItems: 'center',
           flex: 1,
         }}>
-        <Image
+        <FastImage
           source={require('../../Resources/paid.png')}
           style={{
             height: '30%',
