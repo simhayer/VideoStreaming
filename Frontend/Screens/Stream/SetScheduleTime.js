@@ -45,6 +45,9 @@ const SetScheduleTime = ({route}) => {
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || tempDate;
     setTempDate(currentDate);
+    if (Platform.OS === 'android') {
+      onConfirmDate();
+    }
   };
 
   const onConfirmDate = () => {
@@ -55,6 +58,9 @@ const SetScheduleTime = ({route}) => {
   const onTimeChange = (event, selectedTime) => {
     const currentTime = selectedTime || tempDate;
     setTempDate(currentTime);
+    if (Platform.OS === 'android') {
+      onConfirmTime();
+    }
   };
 
   const onConfirmTime = () => {
@@ -105,18 +111,6 @@ const SetScheduleTime = ({route}) => {
       setErrorMessage('Failed to add stream. Please try again.');
     }
   };
-
-  // const onDateChange = (event, selectedDate) => {
-  //   const currentDate = selectedDate || date;
-  //   setShowDatePicker(false);
-  //   setDate(currentDate);
-  // };
-
-  // const onTimeChange = (event, selectedTime) => {
-  //   const currentTime = selectedTime || date;
-  //   setShowTimePicker(false);
-  //   setDate(currentTime);
-  // };
 
   const onShowDatePicker = () => {
     setShowTimePicker(false);
@@ -192,11 +186,13 @@ const SetScheduleTime = ({route}) => {
                 textColor="black"
                 themeVariant="dark"
               />
-              <TouchableOpacity
-                style={styles.confirmButton}
-                onPress={onConfirmDate}>
-                <Text style={styles.confirmButtonText}>Set Date</Text>
-              </TouchableOpacity>
+              {Platform.OS === 'ios' && (
+                <TouchableOpacity
+                  style={styles.confirmButton}
+                  onPress={onConfirmDate}>
+                  <Text style={styles.confirmButtonText}>Set Date</Text>
+                </TouchableOpacity>
+              )}
             </View>
           )}
 
@@ -215,11 +211,13 @@ const SetScheduleTime = ({route}) => {
                 textColor="black"
                 themeVariant="dark"
               />
-              <TouchableOpacity
-                style={styles.confirmButton}
-                onPress={onConfirmTime}>
-                <Text style={styles.confirmButtonText}>Set Time</Text>
-              </TouchableOpacity>
+              {Platform.OS === 'ios' && (
+                <TouchableOpacity
+                  style={styles.confirmButton}
+                  onPress={onConfirmTime}>
+                  <Text style={styles.confirmButtonText}>Set Time</Text>
+                </TouchableOpacity>
+              )}
             </View>
           )}
         </>
