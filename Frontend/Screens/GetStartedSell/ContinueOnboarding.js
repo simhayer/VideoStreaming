@@ -7,6 +7,7 @@ import {
   Dimensions,
   StyleSheet,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
@@ -73,15 +74,6 @@ const ContinueOnboarding = () => {
         style={styles.backButton}>
         <Icon name="chevron-back" size={35} color="black" />
       </TouchableOpacity>
-
-      <FastImage
-        source={require('../../Resources/onboardingIncomplete.png')}
-        style={{
-          height: '30%',
-          marginTop: 20,
-        }}
-        resizeMode={FastImage.resizeMode.contain}
-      />
 
       {/* Main Content */}
       <View style={styles.content}>

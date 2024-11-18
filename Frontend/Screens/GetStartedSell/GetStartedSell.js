@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   Dimensions,
+  Image,
   SafeAreaView,
   Text,
   TouchableOpacity,
@@ -33,12 +34,12 @@ const GetStartedSell = () => {
           alignItems: 'center',
           flex: 1,
         }}>
-        <FastImage
+        <Image
           source={require('../../Resources/paid.png')}
           style={{
             height: '30%',
           }}
-          resizeMode={FastImage.resizeMode.contain}
+          resizeMode="contain"
         />
         <Text
           style={{
