@@ -151,6 +151,27 @@ const ListScheduledStreams = ({search, hasSearched}) => {
     const profilePictureFilename = item.profilePicture.split('/').pop();
     const thumbnailUri = `${baseURL}/thumbnail/${item.thumbnail}`;
 
+    const now = new Date();
+    const diff = new Date(item.date) - now; // Time difference in milliseconds
+
+    if (diff <= 0) {
+      return null; // Stream has started
+    }
+
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
+    const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+
+    var timeLeftString = ``;
+
+    if (days > 0) {
+      timeLeftString = `In ${days} day${days > 1 ? 's' : ''}`;
+    } else if (hours > 0) {
+      timeLeftString = `In ${hours} hour${hours > 1 ? 's' : ''}`;
+    } else if (minutes > 0) {
+      timeLeftString = `In ${minutes} minute${minutes > 1 ? 's' : ''}`;
+    }
+
     return (
       <View
         style={{
@@ -209,7 +230,7 @@ const ListScheduledStreams = ({search, hasSearched}) => {
                   fontWeight: 'bold',
                   fontSize: calculatedFontSize / 2.9,
                 }}>
-                Live - {new Date(item.date).toISOString().slice(0, 10)}
+                {timeLeftString}
               </Text>
             </View>
           </ImageBackground>

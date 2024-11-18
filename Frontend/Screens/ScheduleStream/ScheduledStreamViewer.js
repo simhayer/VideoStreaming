@@ -44,6 +44,13 @@ const CountdownTimer = ({streamDate}) => {
   };
 
   useEffect(() => {
+    // Perform the initial calculation immediately
+    const timeLeft = calculateCountdown();
+    if (timeLeft) {
+      setCountdown(timeLeft);
+    }
+
+    // Set up the interval for subsequent updates
     const interval = setInterval(() => {
       const timeLeft = calculateCountdown();
       if (timeLeft) {

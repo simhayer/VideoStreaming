@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,8 @@ import {
   Dimensions,
   SafeAreaView,
   Platform,
+  ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {useNavigation} from '@react-navigation/native';
@@ -20,25 +22,24 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import {useSelector} from 'react-redux';
 
+const screenHeight = Dimensions.get('window').height;
+const calculatedFontSize = screenHeight * 0.05;
+
 const SetScheduleTime = ({route}) => {
-  const {title, type, thumbnail, selectedItems} = route.params;
+  const {title, thumbnail, selectedItems} = route.params;
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
 
   const {userData} = useSelector(state => state.auth);
-
   const username = userData?.user?.username;
-  const profilePicture = userData?.user?.profilePicture;
 
   const navigation = useNavigation();
 
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [addingStream, setAddingStream] = useState(false);
-
-  const screenHeight = Dimensions.get('window').height;
-  const calculatedFontSize = screenHeight * 0.05;
+  const [success, setSuccess] = useState(false);
 
   const onNextClick = async () => {
     if (date < Date.now()) {
@@ -47,15 +48,16 @@ const SetScheduleTime = ({route}) => {
       return;
     }
 
+    setAddingStream(true);
+    setIsError(false);
+
     const formData = new FormData();
     formData.append('username', username);
     formData.append('title', title || 'Untitled');
     formData.append('products', selectedItems.join(','));
     formData.append('datetime', date.toISOString());
 
-    // Check if a thumbnail is selected
     if (thumbnail) {
-      // Convert the file URI to a file object
       const imageFile = {
         uri: thumbnail,
         type: 'image/jpeg',
@@ -64,20 +66,27 @@ const SetScheduleTime = ({route}) => {
       formData.append('thumbnail', imageFile);
     }
 
-    console.log('Adding stream schedule:', formData);
-
-    axios
-      .post(baseURL + apiEndpoints.addScheduledStream, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+    try {
+      const response = await axios.post(
+        baseURL + apiEndpoints.addScheduledStream,
+        formData,
+        {
+          headers: {'Content-Type': 'multipart/form-data'},
         },
-      })
-      .then(response => {
-        console.log('Stream Schedule added:', response.data);
-      })
-      .catch(error => {
-        console.error('Error adding stream schedule:', error);
-      });
+      );
+
+      setAddingStream(false);
+      setSuccess(true);
+
+      setTimeout(() => {
+        setSuccess(false);
+        navigation.navigate('Sell'); // Replace 'Home' with your home screen route name
+      }, 2000);
+    } catch (error) {
+      setAddingStream(false);
+      setIsError(true);
+      setErrorMessage('Failed to add stream. Please try again.');
+    }
   };
 
   const onDateChange = (event, selectedDate) => {
@@ -99,142 +108,157 @@ const SetScheduleTime = ({route}) => {
         alignItems: 'center',
         backgroundColor: colors.background,
       }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '100%',
-          marginTop: 10,
-        }}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={35} color="black" />
-        </TouchableOpacity>
-      </View>
-      <Text
-        style={{
-          color: 'black',
-          fontSize: calculatedFontSize / 2.8,
-          marginTop: 20,
-        }}>
-        Set the time for the live
-      </Text>
-      <View style={{width: '85%', marginTop: '5%'}}>
-        {/* Date Picker Button */}
-        <TouchableOpacity
-          onPress={() => setShowDatePicker(true)}
-          style={{
-            marginTop: 20,
-            padding: 15,
-            borderRadius: 10,
-            backgroundColor: '#f0f0f0',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              color: 'black',
-              fontSize: calculatedFontSize / 2.8,
-            }}>
-            Select Date
-          </Text>
-        </TouchableOpacity>
-        {/* Time Picker Button */}
-        <TouchableOpacity
-          onPress={() => setShowTimePicker(true)}
-          style={{
-            marginTop: 10,
-            padding: 15,
-            borderRadius: 10,
-            backgroundColor: '#f0f0f0',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              color: 'black',
-              fontSize: calculatedFontSize / 2.8,
-            }}>
-            Select Time
-          </Text>
-        </TouchableOpacity>
-        {/* Display Selected Date and Time */}
-        <Text
-          style={{
-            color: 'grey',
-            fontSize: calculatedFontSize / 2.9,
-            textAlign: 'center',
-            marginTop: 20,
-          }}>
-          Selected Date: {date.toDateString()}
-        </Text>
-        <Text
-          style={{
-            color: 'grey',
-            fontSize: calculatedFontSize / 2.9,
-            textAlign: 'center',
-            marginTop: 1,
-          }}>
-          Selected Date: {date.toLocaleTimeString()}
-        </Text>
-      </View>
+      {addingStream && (
+        <View style={styles.overlay}>
+          <ActivityIndicator size="large" color={appPink} />
+          <Text style={styles.overlayText}>Adding Stream...</Text>
+        </View>
+      )}
 
-      {isError && (
-        <Text
-          style={{
-            fontSize: calculatedFontSize / 2.8,
-            color: errorRed,
-            marginTop: 10,
-            textAlign: 'center',
-          }}>
-          {errorMessage}
-        </Text>
+      {success && (
+        <View style={styles.overlay}>
+          <Icon name="checkmark-circle" size={70} color="green" />
+          <Text style={styles.overlayText}>Stream Added Successfully!</Text>
+        </View>
       )}
-      <TouchableOpacity
-        onPress={onNextClick}
-        style={{
-          backgroundColor: appPink,
-          borderRadius: 30,
-          paddingVertical: 14,
-          alignItems: 'center',
-          width: '80%',
-          marginTop: '12%',
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.2,
-          shadowRadius: 4,
-        }}
-        activeOpacity={0.8}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: calculatedFontSize / 2.2,
-            fontWeight: 'bold',
-          }}>
-          Next
-        </Text>
-      </TouchableOpacity>
-      {/* Date Picker */}
-      {showDatePicker && (
-        <DateTimePicker
-          value={date}
-          mode="date"
-          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-          onChange={onDateChange}
-          minimumDate={Date.now()}
-          maximumDate={Date.now() + 7 * 24 * 60 * 60 * 1000}
-        />
-      )}
-      {/* Time Picker */}
-      {showTimePicker && (
-        <DateTimePicker
-          value={date}
-          mode="time"
-          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-          onChange={onTimeChange}
-          minimumDate={Date.now()}
-        />
+
+      {!addingStream && !success && (
+        <>
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Icon name="chevron-back" size={35} color="black" />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.title}>Set the time for the live</Text>
+          <View style={styles.pickerContainer}>
+            <TouchableOpacity
+              onPress={() => setShowDatePicker(true)}
+              style={styles.pickerButton}>
+              <Text style={styles.pickerButtonText}>Select Date</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setShowTimePicker(true)}
+              style={styles.pickerButton}>
+              <Text style={styles.pickerButtonText}>Select Time</Text>
+            </TouchableOpacity>
+            <Text style={styles.selectedDateText}>
+              Selected Date: {date.toDateString()}
+            </Text>
+            <Text style={styles.selectedDateText}>
+              Selected Time: {date.toLocaleTimeString()}
+            </Text>
+          </View>
+
+          {isError && <Text style={styles.errorText}>{errorMessage}</Text>}
+
+          <TouchableOpacity
+            onPress={onNextClick}
+            style={styles.nextButton}
+            activeOpacity={0.8}>
+            <Text style={styles.nextButtonText}>Next</Text>
+          </TouchableOpacity>
+
+          {showDatePicker && (
+            <DateTimePicker
+              value={date}
+              mode="date"
+              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+              onChange={onDateChange}
+              minimumDate={Date.now()}
+              maximumDate={Date.now() + 7 * 24 * 60 * 60 * 1000}
+            />
+          )}
+
+          {showTimePicker && (
+            <DateTimePicker
+              value={date}
+              mode="time"
+              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+              onChange={onTimeChange}
+              minimumDate={Date.now()}
+            />
+          )}
+        </>
       )}
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 10,
+  },
+  title: {
+    color: 'black',
+    fontSize: calculatedFontSize / 2.8,
+    marginTop: 20,
+  },
+  pickerContainer: {
+    width: '85%',
+    marginTop: '5%',
+  },
+  pickerButton: {
+    marginTop: 20,
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: '#f0f0f0',
+    alignItems: 'center',
+  },
+  pickerButtonText: {
+    color: 'black',
+    fontSize: calculatedFontSize / 2.8,
+  },
+  selectedDateText: {
+    color: 'grey',
+    fontSize: calculatedFontSize / 2.9,
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  errorText: {
+    fontSize: calculatedFontSize / 2.8,
+    color: errorRed,
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  nextButton: {
+    backgroundColor: appPink,
+    borderRadius: 30,
+    paddingVertical: 14,
+    alignItems: 'center',
+    width: '80%',
+    marginTop: '12%',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  nextButtonText: {
+    color: 'white',
+    fontSize: calculatedFontSize / 2.2,
+    fontWeight: 'bold',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    zIndex: 1000,
+    opacity: 0.8,
+  },
+  overlayText: {
+    color: 'white',
+    fontSize: calculatedFontSize / 2.5,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+});
 
 export default SetScheduleTime;

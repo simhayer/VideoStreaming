@@ -40,17 +40,19 @@ const SelectProducts = ({route}) => {
     setSelectedItems(prevSelectedItems => {
       if (prevSelectedItems.includes(item._id)) {
         return prevSelectedItems.filter(id => id !== item._id);
-      } else {
+      } else if (prevSelectedItems.length < 10) {
         return [...prevSelectedItems, item._id];
+      } else {
+        return prevSelectedItems;
       }
     });
   };
 
   const toggleSelectAll = () => {
     if (selectAll) {
-      setSelectedItems([]);
+      setSelectedItems([]); // Deselect all items
     } else {
-      setSelectedItems(items.map(item => item._id));
+      setSelectedItems(items.slice(0, 10).map(item => item._id)); // Select up to 10 items
     }
     setSelectAll(!selectAll);
   };
@@ -64,12 +66,6 @@ const SelectProducts = ({route}) => {
 
     navigation.navigate('SelectThumbnail', {title, type, selectedItems});
   };
-
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
 
   useEffect(() => {
     if (items.length === 0) {
@@ -110,29 +106,46 @@ const SelectProducts = ({route}) => {
           color: 'black',
           fontSize: calculatedFontSize / 2.8,
           marginTop: 20,
+          marginHorizontal: 20,
+          textAlign: 'center',
         }}>
-        Select items that you will be selling in this live
+        Select upto 10 items that you will be selling in this live
       </Text>
       {/* Select All Section */}
-      <TouchableOpacity
-        onPress={toggleSelectAll}
+      <View
         style={{
-          padding: 5,
-          width: '95%',
-          alignSelf: 'center',
           flexDirection: 'row',
-          justifyContent: 'flex-end',
+          width: '100%',
+          justifyContent: 'space-between',
           alignItems: 'center',
+          paddingHorizontal: 10,
         }}>
-        <Text style={{fontSize: calculatedFontSize / 2.7, marginRight: 5}}>
-          Select all
+        <Text
+          style={{
+            fontSize: calculatedFontSize / 2.7,
+            marginRight: 5,
+          }}>
+          {selectedItems.length}/10 items selected
         </Text>
-        <Icon
-          name={selectAll ? 'checkmark-circle-outline' : 'ellipse-outline'}
-          size={27}
-          color="black"
-        />
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={toggleSelectAll}
+          style={{
+            padding: 5,
+            alignSelf: 'center',
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+          }}>
+          <Text style={{fontSize: calculatedFontSize / 2.7, marginRight: 5}}>
+            Select all
+          </Text>
+          <Icon
+            name={selectAll ? 'checkmark-circle-outline' : 'ellipse-outline'}
+            size={27}
+            color="black"
+          />
+        </TouchableOpacity>
+      </View>
       {isError && (
         <Text
           style={{
