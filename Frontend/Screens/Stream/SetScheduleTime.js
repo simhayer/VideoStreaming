@@ -11,6 +11,9 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+import Icon from 'react-native-vector-icons/Ionicons';
+import axios from 'axios';
 import {
   apiEndpoints,
   appPink,
@@ -18,9 +21,6 @@ import {
   colors,
   errorRed,
 } from '../../Resources/Constants';
-import Icon from 'react-native-vector-icons/Ionicons';
-import axios from 'axios';
-import {useSelector} from 'react-redux';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -30,7 +30,6 @@ const SetScheduleTime = ({route}) => {
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
-
   const {userData} = useSelector(state => state.auth);
   const username = userData?.user?.username;
 
@@ -67,20 +66,16 @@ const SetScheduleTime = ({route}) => {
     }
 
     try {
-      const response = await axios.post(
-        baseURL + apiEndpoints.addScheduledStream,
-        formData,
-        {
-          headers: {'Content-Type': 'multipart/form-data'},
-        },
-      );
+      await axios.post(baseURL + apiEndpoints.addScheduledStream, formData, {
+        headers: {'Content-Type': 'multipart/form-data'},
+      });
 
       setAddingStream(false);
       setSuccess(true);
 
       setTimeout(() => {
         setSuccess(false);
-        navigation.navigate('Sell'); // Replace 'Home' with your home screen route name
+        navigation.navigate('Sell');
       }, 2000);
     } catch (error) {
       setAddingStream(false);
@@ -104,20 +99,15 @@ const SetScheduleTime = ({route}) => {
   const onShowDatePicker = () => {
     setShowTimePicker(false);
     setShowDatePicker(true);
-  }
+  };
 
   const onShowTimePicker = () => {
     setShowDatePicker(false);
     setShowTimePicker(true);
-  }
+  };
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor: colors.background,
-      }}>
+    <SafeAreaView style={styles.container}>
       {addingStream && (
         <View style={styles.overlay}>
           <ActivityIndicator size="large" color={appPink} />
@@ -172,13 +162,12 @@ const SetScheduleTime = ({route}) => {
             <DateTimePicker
               value={date}
               mode="date"
-              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+              display="spinner"
               onChange={onDateChange}
-              textColor='black'
-              accentColor='grey'
-              themeVariant= 'dark'
               minimumDate={new Date(Date.now())}
               maximumDate={new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}
+              textColor="black"
+              themeVariant="dark"
             />
           )}
 
@@ -186,12 +175,15 @@ const SetScheduleTime = ({route}) => {
             <DateTimePicker
               value={date}
               mode="time"
-              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-              textColor='black'
-              accentColor='grey'
-              themeVariant= 'dark'
+              display="spinner"
               onChange={onTimeChange}
-              minimumDate={new Date(Date.now())}
+              minimumDate={
+                date.toDateString() === new Date().toDateString()
+                  ? new Date()
+                  : null
+              }
+              textColor="black"
+              themeVariant="dark"
             />
           )}
         </>
@@ -201,6 +193,11 @@ const SetScheduleTime = ({route}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: colors.background,
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',

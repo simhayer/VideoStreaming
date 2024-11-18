@@ -7,7 +7,6 @@ import {
   Dimensions,
   StyleSheet,
   ActivityIndicator,
-  Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
@@ -20,14 +19,12 @@ import {
   colors,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import FastImage from 'react-native-fast-image';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
 
 const ContinueOnboarding = () => {
   const navigation = useNavigation();
-  const [accountID, setAccountID] = useState('');
   const [loading, setLoading] = useState(false);
   const {userData} = useSelector(state => state.auth);
 
@@ -47,8 +44,6 @@ const ContinueOnboarding = () => {
       });
 
     const {accountId, loginLink} = response.data;
-
-    setAccountID(accountId);
 
     if (loginLink && loginLink.url) {
       Linking.openURL(loginLink.url);
