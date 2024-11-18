@@ -11,6 +11,7 @@ import GetStartedSellRulesWithContinue from '../Screens/GetStartedSell/GetStarte
 import GetStartedSellRules from '../Screens/GetStartedSell/GetStartedSellRules';
 import ContinueOnboarding from '../Screens/GetStartedSell/ContinueOnboarding';
 import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
+import ScheduledStreamViewer from '../Screens/ScheduleStream/ScheduledStreamViewer';
 
 import SellerOrdersNew from '../Screens/Orders/SellerOrdersNew';
 import ViewOrderSeller from '../Screens/Orders/ViewOrderSeller';
@@ -80,6 +81,10 @@ const LoggedInStackSeller = () => {
       />
       <Stack.Screen name="ContinueOnboarding" component={ContinueOnboarding} />
       <Stack.Screen name="GetStreamViewerSDK" component={GetStreamViewerSDK} />
+      <Stack.Screen
+        name="ScheduledStreamViewer"
+        component={ScheduledStreamViewer}
+      />
 
       <Stack.Screen name="SellerOrdersNew" component={SellerOrdersNew} />
       <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
