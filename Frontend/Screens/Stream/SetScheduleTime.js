@@ -164,8 +164,11 @@ const SetScheduleTime = ({route}) => {
               mode="date"
               display={Platform.OS === 'ios' ? 'spinner' : 'default'}
               onChange={onDateChange}
-              minimumDate={Date.now()}
-              maximumDate={Date.now() + 7 * 24 * 60 * 60 * 1000}
+              textColor='black'
+              accentColor='grey'
+              themeVariant= 'dark'
+              minimumDate={new Date(Date.now())}
+              maximumDate={new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}
             />
           )}
 
@@ -174,8 +177,11 @@ const SetScheduleTime = ({route}) => {
               value={date}
               mode="time"
               display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+              textColor='black'
+              accentColor='grey'
+              themeVariant= 'dark'
               onChange={onTimeChange}
-              minimumDate={Date.now()}
+              minimumDate={new Date(Date.now())}
             />
           )}
         </>
