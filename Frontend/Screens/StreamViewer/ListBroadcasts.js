@@ -8,8 +8,6 @@ import {
   SafeAreaView,
   RefreshControl,
   FlatList,
-  ImageBackground,
-  Image,
   ActivityIndicator,
 } from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
@@ -19,9 +17,9 @@ import {
   baseURL,
   colors,
 } from '../../Resources/Constants';
-import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import FastImage from 'react-native-fast-image';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -165,7 +163,7 @@ const ListBroadcasts = ({search, hasSearched}) => {
           marginRight: '4%',
         }}>
         <View style={styles.row}>
-          <Image
+          <FastImage
             source={
               profilePictureFilename !== ''
                 ? {uri: profilePictureURL}
@@ -190,7 +188,7 @@ const ListBroadcasts = ({search, hasSearched}) => {
           onPress={() =>
             handleWatchVideoSDK(item, profilePictureURL, navigation)
           }>
-          <ImageBackground
+          <FastImage
             source={
               imageLoaded
                 ? {uri: thumbnailUri}
@@ -217,7 +215,7 @@ const ListBroadcasts = ({search, hasSearched}) => {
                 Live - {new Date(item.date).toISOString().slice(0, 10)}
               </Text>
             </View>
-          </ImageBackground>
+          </FastImage>
         </TouchableOpacity>
         <Text
           style={{
@@ -351,16 +349,23 @@ const ListBroadcasts = ({search, hasSearched}) => {
           onEndReachedThreshold={0.5}
           ListEmptyComponent={() =>
             !loading && (
-              <View
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: 50,
-                }}>
-                <Icon name="boat" size={40} color="black" />
-                <Text style={{fontSize: calculatedFontSize / 2.5}}>
-                  No streams scheduled.
+              <View style={styles.emptyContainer}>
+                <FastImage
+                  source={require('../../Resources/emptyListIllustration.png')} // Replace with your illustration
+                  style={styles.emptyImage}
+                  resizeMode="contain"
+                />
+                <Text style={styles.emptyTitle}>No Streams Found</Text>
+                <Text style={styles.emptySubtitle}>
+                  Try searching with different keywords or check the upcoming
+                  tab for scheduled streams.
                 </Text>
+                <TouchableOpacity
+                  onPress={onRefresh}
+                  style={styles.emptyButton}
+                  activeOpacity={0.8}>
+                  <Text style={styles.emptyButtonText}>Refresh</Text>
+                </TouchableOpacity>
               </View>
             )
           }
@@ -405,6 +410,45 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  emptyContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 50,
+    paddingHorizontal: 20,
+  },
+  emptyImage: {
+    width: 150,
+    height: 150,
+    marginBottom: 20,
+  },
+  emptyTitle: {
+    fontSize: calculatedFontSize / 2.3,
+    fontWeight: 'bold',
+    color: colors.black,
+    textAlign: 'center',
+  },
+  emptySubtitle: {
+    fontSize: calculatedFontSize / 2.7,
+    color: colors.gray,
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  emptyButton: {
+    backgroundColor: appPink,
+    borderRadius: 30,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  emptyButtonText: {
+    color: 'white',
+    fontSize: calculatedFontSize / 2.7,
+    fontWeight: 'bold',
   },
 });
 

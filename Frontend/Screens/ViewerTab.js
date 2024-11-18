@@ -86,7 +86,11 @@ const ViewerTab = () => {
           keyboardAppearance="light"
         />
         <TouchableOpacity onPress={triggerSearch} activeOpacity={0.8}>
-          <Icon name="arrow-up-circle" size={30} color="grey" />
+          <Icon
+            name="arrow-up-circle"
+            size={30}
+            color={searchInput == '' ? 'grey' : 'black'}
+          />
         </TouchableOpacity>
       </View>
 

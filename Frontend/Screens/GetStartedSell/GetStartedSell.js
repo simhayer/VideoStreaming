@@ -38,8 +38,7 @@ const GetStartedSell = () => {
         <Image
           source={require('../../Resources/paid.png')}
           style={{
-            width: '40%',
-            height: '20%',
+            height: '30%',
             resizeMode: 'center',
           }}
           resizeMode="contain"
