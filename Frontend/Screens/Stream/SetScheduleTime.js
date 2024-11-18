@@ -101,6 +101,16 @@ const SetScheduleTime = ({route}) => {
     setDate(currentTime);
   };
 
+  const onShowDatePicker = () => {
+    setShowTimePicker(false);
+    setShowDatePicker(true);
+  }
+
+  const onShowTimePicker = () => {
+    setShowDatePicker(false);
+    setShowTimePicker(true);
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -132,12 +142,12 @@ const SetScheduleTime = ({route}) => {
           <Text style={styles.title}>Set the time for the live</Text>
           <View style={styles.pickerContainer}>
             <TouchableOpacity
-              onPress={() => setShowDatePicker(true)}
+              onPress={onShowDatePicker}
               style={styles.pickerButton}>
               <Text style={styles.pickerButtonText}>Select Date</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => setShowTimePicker(true)}
+              onPress={onShowTimePicker}
               style={styles.pickerButton}>
               <Text style={styles.pickerButtonText}>Select Time</Text>
             </TouchableOpacity>
