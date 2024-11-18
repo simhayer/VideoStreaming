@@ -1,12 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
-  Button,
   Dimensions,
-  Image,
   SafeAreaView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -40,9 +37,8 @@ const GetStartedSell = () => {
           source={require('../../Resources/paid.png')}
           style={{
             height: '30%',
-            resizeMode: 'center',
           }}
-          resizeMode="contain"
+          resizeMode={FastImage.resizeMode.contain}
         />
         <Text
           style={{

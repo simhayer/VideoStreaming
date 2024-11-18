@@ -78,10 +78,9 @@ const ContinueOnboarding = () => {
         source={require('../../Resources/onboardingIncomplete.png')}
         style={{
           height: '30%',
-          resizeMode: 'center',
           marginTop: 20,
         }}
-        resizeMode="contain"
+        resizeMode={FastImage.resizeMode.contain}
       />
 
       {/* Main Content */}
