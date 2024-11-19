@@ -169,6 +169,7 @@ const ListBroadcasts = ({search, hasSearched}) => {
                 ? {uri: profilePictureURL}
                 : require('../../Resources/user.png')
             }
+            defaultSource={require('../../Resources/user.png')}
             style={styles.profilePicture}
           />
           <Text
@@ -277,10 +278,11 @@ const ListBroadcasts = ({search, hasSearched}) => {
   const renderItem = useCallback(
     ({item}) => {
       const profilePictureFilename = item.profilePicture.split('/').pop();
-      console.log('Profile picture filename:', profilePictureFilename);
-      const profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
+      var profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
 
-      console.log('Profile picture URL:', profilePictureURL);
+      if (item.profilePicture.includes('googleusercontent')) {
+        profilePictureURL = item.profilePicture;
+      }
 
       return (
         <BroadcastItem item={item} profilePictureURL={profilePictureURL} />

@@ -37,7 +37,6 @@ const ListScheduledStreams = ({search, hasSearched}) => {
   const [canFetchMore, setCanFetchMore] = useState(true);
 
   useEffect(() => {
-    console.log('Search:', search);
     if (search.trim() === '' && hasSearched) {
       console.log('Search input is empty');
       setPage(1);
@@ -185,6 +184,7 @@ const ListScheduledStreams = ({search, hasSearched}) => {
                 ? {uri: profilePictureURL}
                 : require('../../Resources/user.png')
             }
+            defaultSource={require('../../Resources/user.png')}
             style={styles.profilePicture}
           />
           <Text
@@ -293,10 +293,11 @@ const ListScheduledStreams = ({search, hasSearched}) => {
   const renderItem = useCallback(
     ({item}) => {
       const profilePictureFilename = item.profilePicture.split('/').pop();
-      console.log('Profile picture filename:', profilePictureFilename);
-      const profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
+      var profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
 
-      console.log('Profile picture URL:', profilePictureURL);
+      if (item.profilePicture.includes('googleusercontent')) {
+        profilePictureURL = item.profilePicture;
+      }
 
       return (
         <BroadcastItem item={item} profilePictureURL={profilePictureURL} />
@@ -306,8 +307,7 @@ const ListScheduledStreams = ({search, hasSearched}) => {
   );
 
   return (
-    <SafeAreaView
-      style={{flex: 1, backgroundColor: colors.background, paddingTop: 10}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       {loading ? (
         renderSkeleton()
       ) : isAxiosError ? (
@@ -405,6 +405,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'space-between',
     paddingHorizontal: '3%',
+    marginTop: 10,
   },
   row: {
     flexDirection: 'row',

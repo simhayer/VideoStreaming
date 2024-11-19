@@ -107,10 +107,13 @@ const ScheduledStreamViewer = ({route}) => {
 
   const renderItem = useCallback(({item}) => {
     if (!item.imageUrl) return null;
+    const imageUri = `${baseURL}/thumbnail/${item.imageUrl}`;
+    console.log(imageUri);
+
     return (
       <View style={styles.listItem}>
         <FastImage
-          source={{uri: item.localImagePath}}
+          source={{uri: imageUri}}
           style={styles.itemImage}
           resizeMode={FastImage.resizeMode.cover}
         />
@@ -278,7 +281,7 @@ const styles = StyleSheet.create({
   },
   itemContent: {
     flex: 1,
-    marginLeft: 15,
+    marginLeft: 20,
   },
   itemTitle: {
     fontSize: calculatedFontSize / 2.5,
