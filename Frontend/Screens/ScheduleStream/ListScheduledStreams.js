@@ -373,8 +373,8 @@ const ListScheduledStreams = ({search, hasSearched}) => {
                 />
                 <Text style={styles.emptyTitle}>No Streams Found</Text>
                 <Text style={styles.emptySubtitle}>
-                  Try searching with different keywords or check the upcoming
-                  tab for scheduled streams.
+                  Try searching with different keywords or check the Live tab
+                  for currently active streams.
                 </Text>
                 <TouchableOpacity
                   onPress={onRefresh}
