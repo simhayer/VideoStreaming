@@ -34,6 +34,12 @@ const StartStreamTab = () => {
   const {isOnboardingChecked} = useSelector(state => state.NonPersistSlice);
 
   const startStream = async () => {
+    console.log('Starting stream...');
+    var onboarding = checkStripeOnboarding();
+    if (!onboarding) {
+      return;
+    }
+
     navigation.navigate('EnterStreamTitle', {type: 'stream'});
   };
 
@@ -80,11 +86,10 @@ const StartStreamTab = () => {
         index: 1,
         routes: [{name: 'TabControl'}, {name: 'ContinueOnboarding'}],
       });
+
+      return false;
     }
-    return {
-      success,
-      accountId,
-    };
+    return true;
   };
 
   useFocusEffect(

@@ -41,10 +41,12 @@ const ViewerTab = () => {
   }, [searchInput]);
 
   const renderListBroadcasts = useCallback(() => {
+    console.log('Rendering ListBroadcasts');
     return <ListBroadcasts search={search} hasSearched={hasSearched} />;
   }, [search, hasSearched]);
 
   const renderListScheduledStreams = useCallback(() => {
+    console.log('Rendering ListScheduledStreams');
     return <ListScheduledStreams search={search} hasSearched={hasSearched} />;
   }, [search, hasSearched]);
 

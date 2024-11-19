@@ -213,7 +213,7 @@ const ListBroadcasts = ({search, hasSearched}) => {
                   fontWeight: 'bold',
                   fontSize: calculatedFontSize / 2.9,
                 }}>
-                Live - {new Date(item.date).toISOString().slice(0, 10)}
+                Live - 0
               </Text>
             </View>
           </FastImage>
