@@ -30,6 +30,19 @@ const ViewProduct = React.lazy(() =>
   import('./../Screens/Products/ViewProduct'),
 );
 
+const ManageListings = React.lazy(() =>
+  import('./../Screens/Listing/ManageListings'),
+);
+const SelectProductForListing = React.lazy(() =>
+  import('./../Screens/Listing/SelectProductForListing'),
+);
+const SubmitListing = React.lazy(() =>
+  import('./../Screens/Listing/SubmitListing'),
+);
+const ViewListingSeller = React.lazy(() =>
+  import('./../Screens/Listing/ViewListingSeller'),
+);
+
 //Actually lazy load the screens
 //const GetStreamSDK = lazy(() => import('../Screens/Stream/GetStreamSDK'));
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
@@ -75,6 +88,10 @@ const LoggedInStack = () => {
       import('../Screens/Stream/SellerOrdersNew');
       import('../Screens/Stream/SelectThumbnail');
       import('../Screens/Stream/SetScheduleTime');
+      import('../Screens/Listing/ManageListings');
+      import('../Screens/Listing/SelectProductForListing');
+      import('../Screens/Listings/SubmitListing');
+      import('../Screens/Listings/ViewListingSeller');
     }
   }, [isSeller]);
 
@@ -127,6 +144,16 @@ const LoggedInStack = () => {
           <Stack.Screen
             name="EnterOrderTracking"
             component={EnterOrderTracking}
+          />
+          <Stack.Screen name="ManageListings" component={ManageListings} />
+          <Stack.Screen
+            name="SelectProductForListing"
+            component={SelectProductForListing}
+          />
+          <Stack.Screen name="SubmitListing" component={SubmitListing} />
+          <Stack.Screen
+            name="ViewListingSeller"
+            component={ViewListingSeller}
           />
         </>
       )}

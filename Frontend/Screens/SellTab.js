@@ -229,8 +229,37 @@ const StartStreamTab = () => {
             </TouchableOpacity>
           </View>
 
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 15,
+              width: '90%',
+              flex: 1,
+            }}>
+            <TouchableOpacity
+              style={[styles.button, {flex: 1, marginRight: 8}]}
+              onPress={() => navigation.navigate('ManageListings')}
+              activeOpacity={0.8}>
+              <View style={{alignItems: 'center'}}>
+                <Icon name="albums-outline" size={30} color="black" />
+                <Text style={styles.buttonText}>Listings</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.button, {flex: 1, marginLeft: 8}]}
+              onPress={() => navigation.navigate('GetStartedSellRules')}
+              activeOpacity={0.8}>
+              <View style={{alignItems: 'center'}}>
+                <Icon name="alert-circle-outline" size={30} color="black" />
+                <Text style={styles.buttonText}>Rules & Guidelines</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
           {/* Spacer to push the button down */}
-          <View style={{flex: 2}} />
+          <View style={{flex: 1}} />
 
           {/* Start Selling Button */}
           <TouchableOpacity

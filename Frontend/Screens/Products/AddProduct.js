@@ -282,10 +282,7 @@ const AddProduct = () => {
                   paddingHorizontal: 5,
                   marginLeft: 20,
                 }}
-                autoComplete="off"
-                autoCapitalize="none"
                 placeholderTextColor={'gray'}
-                autoCorrect={false}
                 returnKeyType="next"
                 textContentType="name"
                 maxLength={30}

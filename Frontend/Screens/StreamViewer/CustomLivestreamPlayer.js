@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {
-  Call,
   StreamCall,
   useCallStateHooks,
   useStreamVideoClient,
