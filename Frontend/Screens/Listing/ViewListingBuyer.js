@@ -98,7 +98,7 @@ const ViewListingBuyer = ({route}) => {
       {/* Image Section */}
       <View
         style={{
-          flex: 1.2,
+          flex: 1,
           borderWidth: 1,
           borderColor: 'rgba(0, 0, 0, 0.1)',
           borderRadius: 12,
@@ -119,77 +119,108 @@ const ViewListingBuyer = ({route}) => {
       </View>
 
       {/* Details Section */}
-      <View style={{flex: 1, marginBottom: 20, marginHorizontal: 10}}>
+      <View style={{flex: 1, marginBottom: 20, marginHorizontal: '4%'}}>
         <Text
           style={{
             color: 'black',
             fontWeight: 'bold',
             fontSize: calculatedFontSize / 2,
-            marginBottom: 8,
+            marginTop: 10,
           }}>
           {name}
         </Text>
 
         {size && (
-          <Text
+          <View
             style={{
-              color: 'black',
-              fontSize: calculatedFontSize / 2.8,
-              marginBottom: 8,
+              marginTop: 20,
+              borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              width: '100%',
+              flexDirection: 'row',
+              paddingVertical: '3%',
+              paddingHorizontal: '4%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}>
-            Size: {size}
-          </Text>
+            <Text
+              style={{
+                color: 'black',
+                fontSize: calculatedFontSize / 2.8,
+              }}>
+              Size
+            </Text>
+            <Text
+              style={{
+                color: 'black',
+                fontSize: calculatedFontSize / 2.8,
+              }}>
+              {size}
+            </Text>
+          </View>
         )}
 
-        <Text
+        <View
           style={{
-            color: 'black',
-            fontSize: calculatedFontSize / 2.8,
-            marginBottom: 12,
+            marginTop: 20,
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            paddingVertical: '3%',
+            paddingHorizontal: '4%',
           }}>
-          Type: {type}
-        </Text>
+          <View>
+            <Text style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
+              Buy Now
+            </Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2,
+                  fontWeight: 'bold',
+                }}>
+                $
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 1.6,
+                  fontWeight: 'bold',
+                }}>
+                {listing.price}
+              </Text>
+            </View>
+          </View>
 
-        <Text
-          style={{
-            color: 'black',
-            fontSize: calculatedFontSize / 1.8,
-            marginBottom: 8,
-          }}>
-          ${listing.price}
-        </Text>
-      </View>
-
-      {/* Delete Button */}
-      {loading ? (
-        <ActivityIndicator size="large" color={appPink} />
-      ) : (
-        <TouchableOpacity
-          onPress={handleBuyNow}
-          style={{
-            backgroundColor: appPink,
-            borderRadius: 30,
-            paddingVertical: 12,
-            paddingHorizontal: 40,
-            alignSelf: 'center',
-            shadowColor: '#000',
-            shadowOffset: {width: 0, height: 2},
-            shadowOpacity: 0.2,
-            shadowRadius: 5,
-            elevation: 3, // Elevated button for better visibility
-            marginBottom: 30,
-          }}>
-          <Text
+          {/* Buy Button */}
+          <TouchableOpacity
+            onPress={handleBuyNow}
             style={{
-              color: 'white',
-              textAlign: 'center',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.5,
+              backgroundColor: appPink,
+              borderRadius: 30,
+              paddingVertical: 12,
+              paddingHorizontal: 40,
+              alignSelf: 'center',
+              shadowColor: '#000',
+              shadowOffset: {width: 0, height: 2},
+              shadowOpacity: 0.2,
+              shadowRadius: 5,
+              elevation: 3, // Elevated button for better visibility
+              marginBottom: 10,
+              width: '60%',
             }}>
-            Buy Now
-          </Text>
-        </TouchableOpacity>
-      )}
+            <Text
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.5,
+              }}>
+              Buy Now
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };

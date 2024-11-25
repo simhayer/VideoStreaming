@@ -31,15 +31,18 @@ const Checkout = ({route}) => {
   product = listing.product;
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const navigation = useNavigation();
-  const price = listing.price;
 
-  const [shipping, setShipping] = useState('');
-  const [quantity, setQuantity] = useState('');
+  const price = listing.price;
+  const shipping = product.shippingFee;
+  const tax = price * 0.13;
+  const subTotal = price + shipping + tax;
 
   const {userData} = useSelector(state => state.auth);
   const address = userData?.user?.address;
   const userEmail = userData?.user?.email;
   const [loading, setLoading] = useState(false);
+
+  const [showPriceDetails, setShowPriceDetails] = useState(false);
 
   const itemImageFilename = product.imageUrl.split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
@@ -48,7 +51,7 @@ const Checkout = ({route}) => {
   const fetchPaymentSheetParams = async () => {
     const payload = {
       email: userEmail,
-      amount: price,
+      amount: subTotal,
     };
 
     const response = await axios
@@ -186,15 +189,33 @@ const Checkout = ({route}) => {
                 </View>
               </View>
             </View>
-            <View style={{marginHorizontal: '5%'}}>
-              <Text style={{color: 'black', fontSize: calculatedFontSize / 2}}>
-                ${price}
+            <View style={{paddingHorizontal: '4%', marginTop: 20}}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
+                Buy Now
               </Text>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: calculatedFontSize / 2,
+                    fontWeight: 'bold',
+                  }}>
+                  $
+                </Text>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: calculatedFontSize / 1.6,
+                    fontWeight: 'bold',
+                  }}>
+                  {price}
+                </Text>
+              </View>
             </View>
-
             <View
               style={{
-                marginTop: 10,
+                marginTop: 20,
                 borderTopWidth: 1,
                 borderBottomWidth: 1,
                 borderColor: 'rgba(0,0,0,0.2)',
@@ -205,7 +226,7 @@ const Checkout = ({route}) => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
               }}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Icon name="home-outline" size={25} color="black" />
                 <Text
                   style={{
@@ -231,7 +252,66 @@ const Checkout = ({route}) => {
                 </Text>
               </TouchableOpacity>
             </View>
-
+          </ScrollView>
+          <View
+            style={{
+              borderTopWidth: 2,
+              borderColor: 'rgba(0,0,0,0.1)',
+              paddingHorizontal: '4%',
+              paddingTop: 10,
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.6}}>
+                Subtotal
+              </Text>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: calculatedFontSize / 2.2,
+                    marginRight: 10,
+                    fontWeight: 'bold',
+                  }}>
+                  ${subTotal}
+                </Text>
+                {showPriceDetails ? (
+                  <TouchableOpacity
+                    style={{padding: 2}}
+                    onPress={() => setShowPriceDetails(false)}>
+                    <Icon name="chevron-down" size={25} color="black" />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    style={{padding: 2}}
+                    onPress={() => setShowPriceDetails(true)}>
+                    <Icon name="chevron-up" size={25} color="black" />
+                  </TouchableOpacity>
+                )}
+              </View>
+            </View>
+            <Text>Includes taxes, and shipping fees. </Text>
+            {showPriceDetails && (
+              <View>
+                <View style={styles.ListItem}>
+                  <Text style={styles.ListItemNameText}>Item Price</Text>
+                  <Text style={styles.ListItemValueText}>${price}</Text>
+                </View>
+                <View style={styles.ListItem}>
+                  <Text style={styles.ListItemNameText}>Shipping</Text>
+                  <Text style={styles.ListItemValueText}>+${shipping}</Text>
+                </View>
+                <View style={styles.ListItem}>
+                  <Text style={styles.ListItemNameText}>Tax</Text>
+                  <Text style={styles.ListItemValueText}>+${tax}</Text>
+                </View>
+              </View>
+            )}
             <TouchableOpacity
               onPress={onSubmit}
               style={{
@@ -240,12 +320,12 @@ const Checkout = ({route}) => {
                 paddingVertical: 14,
                 alignItems: 'center',
                 marginHorizontal: '10%',
-                marginTop: 40,
+                marginTop: 20,
                 shadowColor: '#000',
                 shadowOffset: {width: 0, height: 2},
                 shadowOpacity: 0.2,
                 shadowRadius: 4, // Subtle shadow for elevation
-                marginBottom: 40,
+                marginBottom: 20,
               }}
               activeOpacity={0.8}>
               <Text
@@ -257,7 +337,7 @@ const Checkout = ({route}) => {
                 Checkout
               </Text>
             </TouchableOpacity>
-          </ScrollView>
+          </View>
         </View>
       )}
     </SafeAreaView>
@@ -272,16 +352,15 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.1)',
-    marginBottom: 10,
+    borderStyle: 'dotted',
   },
   ListItemNameText: {
     color: 'black',
-    fontSize: calculatedFontSize / 2.4,
-    fontWeight: 'bold',
+    fontSize: calculatedFontSize / 2.6,
   },
   ListItemValueText: {
     color: 'black',
-    fontSize: calculatedFontSize / 2.4,
+    fontSize: calculatedFontSize / 2.6,
   },
 });
 
