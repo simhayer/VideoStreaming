@@ -1,8 +1,8 @@
-export const baseURL = 'http://10.0.2.2:3000/api'; //for android studio
-export const baseURLNoApi = 'http://10.0.2.2:3000'; //for AWS EC2
+//export const baseURL = 'http://10.0.2.2:3000/api'; //for android studio
+//export const baseURLNoApi = 'http://10.0.2.2:3000'; //for AWS EC2
 //export const baseURL = 'http://localhost:3000';   //for actual device
-//export const baseURL = 'http://10.12.75.127:3000/api'; //for android studio
-//export const baseURLNoApi = 'http://10.12.75.127:3000'; //for AWS EC2
+export const baseURL = 'http://10.12.76.161:3000/api'; //for android studio
+export const baseURLNoApi = 'http://10.12.76.161:3000'; //for AWS EC2
 //export const baseURL = 'http://18.116.26.56:3000'; //for AWS EC2
 //export const baseURL = 'https://thebars.duckdns.org'; //for AWS EC2
 //export const baseURL = 'https://thebarss.com/api'; //for AWS EC2
@@ -24,8 +24,9 @@ export const apiEndpoints = {
   updateUsername: '/auth/updateUsername',
   updateProfilePicture: '/auth/updateProfilePicture',
   paymentSheet: '/auth/paymentSheet',
+  createPaymentIntent: '/auth/createPaymentIntent',
   checkStripePaymentPresent: '/auth/checkStripePaymentandAddressPresent',
-  updateStripeCustomerAddress: '/auth/updateStripeCustomerAddress',
+  updateCustomerAddress: '/auth/updateCustomerAddress',
   addProductToUser: '/auth/addProductToUser',
   removeProductsFromUser: '/auth/removeProductsFromUser',
   getUserProducts: '/auth/getUserProducts',
@@ -56,6 +57,7 @@ export const apiEndpoints = {
   handleListingCreation: '/auth/handleListingCreation',
   getListingsByUser: '/auth/getListingsByUser',
   deleteListings: '/auth/deleteListings',
+  getAllListingsByPage: '/auth/getAllListingsByPage',
   // Add more API endpoints as needed
 };
 

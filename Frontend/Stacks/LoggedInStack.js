@@ -12,6 +12,9 @@ import GetStartedSellRulesWithContinue from '../Screens/GetStartedSell/GetStarte
 import GetStartedSellRules from '../Screens/GetStartedSell/GetStartedSellRules';
 import ContinueOnboarding from '../Screens/GetStartedSell/ContinueOnboarding';
 import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
+import ListListings from '../Screens/Listing/ListListings';
+import ViewListingBuyer from '../Screens/Listing/ViewListingBuyer';
+import Checkout from '../Screens/Listing/Checkout';
 
 // Lazily load the group of onboarding-related screens
 const SellerOrdersNew = lazy(() => import('../Screens/Orders/SellerOrdersNew'));
@@ -104,6 +107,9 @@ const LoggedInStack = () => {
       <Stack.Screen name="ManageProducts" component={ManageProducts} />
       <Stack.Screen name="AddProduct" component={AddProduct} />
       <Stack.Screen name="ViewProduct" component={ViewProduct} />
+      <Stack.Screen name="ViewListingBuyer" component={ViewListingBuyer} />
+      <Stack.Screen name="ListListings" component={ListListings} />
+      <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen
         name="AddPaymentOrShipping"
         component={AddPaymentOrShipping}

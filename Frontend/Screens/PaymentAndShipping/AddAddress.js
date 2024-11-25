@@ -19,8 +19,8 @@ import {
   appPink,
   colors,
 } from '../../Resources/Constants';
-import axios from 'axios';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {updateUserAddress} from '../../Redux/Features/AuthSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 
@@ -28,13 +28,15 @@ const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 export default function AddAddress({route}) {
-  const {address} = route.params;
+  //const {address} = route.params;
   const navigation = useNavigation();
   const [addressSheetVisible, setAddressSheetVisible] = useState(false);
+  const dispatch = useDispatch();
 
   const [addressExist, setAddressExist] = useState(false);
 
   const {userData} = useSelector(state => state.auth);
+  const address = userData?.user?.address;
 
   const userEmail = userData?.user?.email;
 
@@ -52,20 +54,9 @@ export default function AddAddress({route}) {
       },
     };
 
-    try {
-      const response = await axios.post(
-        baseURL + apiEndpoints.updateStripeCustomerAddress,
-        payload,
-      );
-      if (response.data.success) {
-        console.log('Address updated:');
-        navigation.navigate('AddPaymentOrShipping');
-      } else {
-        console.error('Failed to update address:');
-      }
-    } catch (error) {
-      console.error('Error updating address:', error);
-    }
+    dispatch(updateUserAddress(payload));
+
+    navigation.navigate('AddPaymentOrShipping');
   };
 
   useEffect(() => {

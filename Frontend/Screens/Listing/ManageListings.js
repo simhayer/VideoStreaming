@@ -143,7 +143,7 @@ const ManageListings = () => {
 
   const ProductItem = React.memo(({item}) => {
     const isSelected = selectedItems.includes(item._id);
-    const itemImageUrl = `${baseURL}/${item.imageUrl}`;
+    const itemImageUrl = `${baseURL}/${item.product.imageUrl}`;
 
     return (
       <TouchableOpacity
@@ -167,7 +167,7 @@ const ManageListings = () => {
           navigation.navigate('ViewListingSeller', {listing: item})
         }>
         <FastImage
-          source={{uri: item.product.localImagePath}}
+          source={{uri: itemImageUrl}}
           style={{width: 80, height: 80, borderRadius: 8}}
           resizeMode={FastImage.resizeMode.cover}
           defaultSource={require('../../Resources/StreamListThumbnailBlur.png')}

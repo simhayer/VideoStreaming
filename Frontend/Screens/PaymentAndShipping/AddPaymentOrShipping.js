@@ -23,16 +23,14 @@ const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 export default function AddPaymentOrShipping() {
-  const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
-  const [addressSheetVisible, setAddressSheetVisible] = useState(false);
 
   const [paymentMethodExist, setPaymentMethodExist] = useState(false);
-  const [addressExist, setAddressExist] = useState(false);
-  const [address, setAddress] = useState(null);
 
   const {userData} = useSelector(state => state.auth);
+  const address = userData?.user?.address;
+  const addressExist = address != null;
 
   const userEmail = userData?.user?.email;
 
@@ -51,11 +49,6 @@ export default function AddPaymentOrShipping() {
 
     if (paymentPresent) {
       setPaymentMethodExist(true);
-    }
-
-    if (address != null) {
-      setAddressExist(true);
-      setAddress(address);
     }
 
     return {

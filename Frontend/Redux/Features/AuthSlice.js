@@ -180,6 +180,32 @@ export const updateUsername = createAsyncThunk(
   },
 );
 
+export const updateUserAddress = createAsyncThunk(
+  'auth/updateUserAddress',
+  async (params, thunkApi) => {
+    try {
+      const response = await axios.post(
+        baseURL + apiEndpoints.updateCustomerAddress,
+        params,
+      );
+      console.log('Update address response:', response.data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return thunkApi.rejectWithValue({
+          message: 'Update address failed',
+          status: error.response.status,
+          data: error.response.data,
+        });
+      } else {
+        return thunkApi.rejectWithValue({
+          message: 'Update address failed',
+        });
+      }
+    }
+  },
+);
+
 export const uploadProfilePicture = createAsyncThunk(
   'auth/uploadProfilePicture',
   async (params, {dispatch, rejectWithValue}) => {
@@ -432,6 +458,24 @@ const authSlice = createSlice({
       }
     });
     builder.addCase(updateUsername.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.errorMessage = action.payload.message;
+    });
+
+    // Update User Address cases
+    builder.addCase(updateUserAddress.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateUserAddress.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+
+      if (state.userData) {
+        state.userData.user.address = action.payload.user.address;
+      }
+    });
+    builder.addCase(updateUserAddress.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.errorMessage = action.payload.message;

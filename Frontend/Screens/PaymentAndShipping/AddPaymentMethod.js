@@ -55,7 +55,7 @@ export default function AddPaymentMethod() {
       await fetchPaymentSheetParams();
 
     const {error} = await initPaymentSheet({
-      merchantDisplayName: 'Example, Inc.',
+      merchantDisplayName: 'Bars',
       customerId: customer,
       customerEphemeralKeySecret: ephemeralKey,
       setupIntentClientSecret: setupIntent,

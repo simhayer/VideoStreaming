@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
+import ListListings from './Listing/ListListings';
 
 const TabControl = ({route}) => {
   const initialTab = route.params?.initialTab || 'Home';
@@ -37,6 +38,8 @@ const TabControl = ({route}) => {
             iconName = focused ? 'videocam' : 'videocam-outline';
           } else if (route.name === 'Sell') {
             iconName = focused ? 'add-circle' : 'add-circle-outline';
+          } else if (route.name === 'Shop') {
+            iconName = focused ? 'storefront' : 'storefront-outline';
           }
 
           return (
@@ -65,6 +68,7 @@ const TabControl = ({route}) => {
         headerShown: false, // Hide header for a cleaner tab view
       })}>
       <Tab.Screen name="Home" component={ViewerTab} />
+      <Tab.Screen name="Shop" component={ListListings} />
       {isOnboardingStarted ? (
         <Tab.Screen name="Sell" component={SellTab} />
       ) : (

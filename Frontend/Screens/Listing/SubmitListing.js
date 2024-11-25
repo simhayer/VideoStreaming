@@ -38,6 +38,7 @@ const SubmitListing = ({route}) => {
 
   const itemImageFilename = product.imageUrl.split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
+  const itemImageUrl = `${baseURL}/${product.imageUrl}`;
 
   const onSubmit = async () => {
     setLoading(true);
@@ -161,7 +162,7 @@ const SubmitListing = ({route}) => {
                 marginBottom: 20,
               }}>
               <FastImage
-                source={{uri: product.localImagePath}}
+                source={{uri: itemImageUrl}}
                 style={{
                   width: '30%',
                   height: '100%',

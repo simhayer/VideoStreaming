@@ -39,6 +39,7 @@ const ViewListingSeller = ({route}) => {
 
   const itemImageFilename = product.imageUrl.split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
+  const itemImageUrl = `${baseURL}/${product.imageUrl}`;
 
   const onSubmit = async () => {
     setLoading(true);
@@ -162,11 +163,11 @@ const ViewListingSeller = ({route}) => {
                 marginBottom: 20,
               }}>
               <FastImage
-                source={{uri: product.localImagePath}}
+                source={{uri: itemImageUrl}}
                 style={{
                   width: '30%',
                   height: '100%',
-                  borderRadius: 10,
+                  borderRadius: 7,
                 }}
                 resizeMode={FastImage.resizeMode.contain}
               />

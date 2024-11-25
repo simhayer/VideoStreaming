@@ -27,6 +27,9 @@ import ManageListings from '../Screens/Listing/ManageListings';
 import SelectProductForListing from '../Screens/Listing/SelectProductForListing';
 import SubmitListing from '../Screens/Listing/SubmitListing';
 import ViewListingSeller from '../Screens/Listing/ViewListingSeller';
+import ListListings from '../Screens/Listing/ListListings';
+import ViewListingBuyer from '../Screens/Listing/ViewListingBuyer';
+import Checkout from '../Screens/Listing/Checkout';
 
 //Actually lazy load the screens
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
@@ -73,6 +76,9 @@ const LoggedInStackSeller = () => {
       />
       <Stack.Screen name="SubmitListing" component={SubmitListing} />
       <Stack.Screen name="ViewListingSeller" component={ViewListingSeller} />
+      <Stack.Screen name="ListListings" component={ListListings} />
+      <Stack.Screen name="ViewListingBuyer" component={ViewListingBuyer} />
+      <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen
         name="AddPaymentOrShipping"
         component={AddPaymentOrShipping}
