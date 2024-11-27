@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -18,6 +18,8 @@ import {
   colors,
 } from '../../Resources/Constants';
 import axios from 'axios';
+import ListScheduledStreamsForSeller from '../ScheduleStream/ListScheduledStreamsForSeller';
+import ListListingsForASeller from '../Listing/ListListingsForASeller';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -33,7 +35,6 @@ const ViewProfile = ({route}) => {
   const email = userData?.user?.email;
   const [fullname, setFullname] = useState('');
   const [profilePictureURI, setProfilePictureURI] = useState('');
-  const [selectedImage] = useState(profilePictureURI);
 
   useEffect(() => {
     getUserDetailsFromUsername();
@@ -47,12 +48,18 @@ const ViewProfile = ({route}) => {
     };
     try {
       const response = await axios.post(
-        baseURL + apiEndpoints.getUserDetailsFromUsername,
+        baseURL + apiEndpoints.getUserSellerPageDetails,
         payload,
       );
       if (response.status === 200) {
-        setFullname(response.data.fullname);
-        setProfilePictureURI(`${baseURL}/${response.data.profilePicture}`);
+        const user = response.data.user;
+        setFullname(user.fullname);
+        const profilePictureFilename = user.profilePicture.split('/').pop();
+        setProfilePictureURI(
+          `${baseURL}/profilePicture/${profilePictureFilename}`,
+        );
+        console.log('User:', user);
+        console.log('Scheduled Streams:', user.scheduledStreams);
       } else {
         console.error('Failed to fetch products:', response.data);
       }
@@ -62,6 +69,28 @@ const ViewProfile = ({route}) => {
       setLoading(false);
     }
   };
+
+  const [selectedStatus, setSelectedStatus] = useState('Shop');
+
+  const statusTabs = ['Shop', 'Shows'];
+
+  useEffect(() => {
+    if (selectedStatus === 'Shop') {
+      // Do something
+    } else {
+      // Do something
+    }
+  }, [selectedStatus]);
+
+  const renderListScheduledStreams = useCallback(() => {
+    console.log('Rendering ListScheduledStreams');
+    return <ListScheduledStreamsForSeller username={username} />;
+  }, [username]);
+
+  const renderListListings = useCallback(() => {
+    console.log('Rendering ListListings');
+    return <ListListingsForASeller username={username} />;
+  }, [username]);
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
@@ -108,8 +137,8 @@ const ViewProfile = ({route}) => {
           {/* Profile Image */}
           <Image
             source={
-              selectedImage
-                ? {uri: selectedImage}
+              profilePictureURI
+                ? {uri: profilePictureURI}
                 : require('../../Resources/user.png')
             }
             style={{
@@ -134,6 +163,44 @@ const ViewProfile = ({route}) => {
             }}>
             {fullname}
           </Text>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              paddingHorizontal: 10,
+              borderBottomWidth: 2,
+              borderColor: 'rgba(0,0,0,0.1)',
+            }}>
+            {statusTabs.map(status => (
+              <TouchableOpacity
+                key={status}
+                onPress={() => setSelectedStatus(status)}
+                style={{
+                  marginHorizontal: 20,
+                  backgroundColor: 'white',
+                  minHeight: 40,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flex: 1,
+                  borderBottomWidth: selectedStatus === status ? 2 : 0,
+                  borderColor: selectedStatus === status ? 'black' : 'grey',
+                }}>
+                <Text
+                  style={{
+                    color: selectedStatus === status ? 'black' : 'grey',
+                    fontWeight: 'bold',
+                    fontSize: calculatedFontSize / 2.9,
+                  }}>
+                  {status}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* Content Section */}
+          {selectedStatus === 'Shop'
+            ? renderListListings()
+            : renderListScheduledStreams()}
         </View>
       )}
     </SafeAreaView>

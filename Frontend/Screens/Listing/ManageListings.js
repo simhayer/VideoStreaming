@@ -16,14 +16,10 @@ import {
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FlatList, RefreshControl} from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import {debounce} from 'lodash';
-import {
-  deleteProducts,
-  fetchProducts,
-} from '../../Redux/Features/ProductsSlice';
 import axios from 'axios';
 
 const {height: screenHeight} = Dimensions.get('window');
@@ -41,18 +37,24 @@ const ManageListings = () => {
   const [search, setSearch] = useState('');
   const [refreshing, setRefreshing] = useState(false);
 
-  const dispatch = useDispatch();
-
   const [items, setItems] = useState([]);
-  const [reduxLoading, setReduxLoading] = useState(false);
-
   const [selectedStatus, setSelectedStatus] = useState('Active');
 
   const statusTabs = ['Active', 'Inactive'];
 
-  const filteredItems = (items || []).filter(item =>
-    item.product.name.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filteredItems = items.filter(item => {
+    if (selectedStatus === 'Active') {
+      return (
+        item.status === 'Active' &&
+        item.product.name.toLowerCase().includes(search.toLowerCase())
+      );
+    } else {
+      return (
+        item.status === 'Inactive' &&
+        item.product.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+  });
 
   const debouncedSearch = useCallback(
     debounce(value => {

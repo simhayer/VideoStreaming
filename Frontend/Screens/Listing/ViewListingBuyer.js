@@ -19,6 +19,7 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import {set} from 'lodash';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -30,13 +31,12 @@ const ViewListingBuyer = ({route}) => {
   const {name, size, type, shippingFee} = product;
   const itemImageUrl = `${baseURL}/${product.imageUrl}`;
 
+  const sellerUsername = listing.user.username;
+  const profilePictureFilename = listing.user.profilePicture.split('/').pop();
+  var profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
+
   //console.log('Route params:', route.params);
   const navigation = useNavigation();
-
-  const [loading, setLoading] = useState(false);
-  const [paymentMethodExist, setPaymentMethodExist] = useState(false);
-  const [addressExist, setAddressExist] = useState(false);
-  const [address, setAddress] = useState(null);
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
@@ -47,132 +47,103 @@ const ViewListingBuyer = ({route}) => {
     navigation.navigate('Checkout', {listing});
   };
 
-  const checkPaymentandAddressExist = async email => {
-    setLoading(true);
-    const payload = {
-      email: email,
-    };
-
-    const response = await axios
-      .post(baseURL + apiEndpoints.checkStripePaymentPresent, payload)
-      .catch(error => {
-        console.error('Error checking payment present:', error);
-      });
-
-    const {paymentPresent, address} = response.data;
-
-    if (paymentPresent) {
-      setPaymentMethodExist(true);
-    }
-
-    if (address != null) {
-      setAddressExist(true);
-      setAddress(address);
-    }
-
-    setLoading(false);
-
-    return {
-      paymentPresent,
-      address,
-    };
-  };
-
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        paddingTop: 10,
         backgroundColor: colors.background,
-        paddingHorizontal: 0, // Added consistent padding
+        paddingHorizontal: 10, // Consistent padding
       }}>
-      {/* Back Button */}
-      <View style={{marginBottom: 10}}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{padding: 5}}>
-          <Icon name="chevron-back" size={35} color="black" />
-        </TouchableOpacity>
-      </View>
-
-      {/* Image Section */}
-      <View
-        style={{
-          flex: 1,
-          borderWidth: 1,
-          borderColor: 'rgba(0, 0, 0, 0.1)',
-          borderRadius: 12,
-          marginBottom: 12,
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          overflow: 'hidden',
-          padding: 20,
-          marginHorizontal: 10,
+      <ScrollView
+        contentContainerStyle={{
+          paddingBottom: 20, // Add padding for proper scroll behavior
         }}>
-        <FastImage
-          source={{uri: itemImageUrl}}
-          style={{flex: 1, width: '100%'}}
-          resizeMode={FastImage.resizeMode.contain}
-        />
-      </View>
-
-      {/* Details Section */}
-      <View style={{flex: 1, marginBottom: 20, marginHorizontal: '4%'}}>
-        <Text
-          style={{
-            color: 'black',
-            fontWeight: 'bold',
-            fontSize: calculatedFontSize / 2,
-            marginTop: 10,
-          }}>
-          {name}
-        </Text>
-
-        {size && (
-          <View
+        {/* Back Button */}
+        <View style={{marginBottom: 10}}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
             style={{
-              marginTop: 20,
-              borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              width: '100%',
-              flexDirection: 'row',
-              paddingVertical: '3%',
-              paddingHorizontal: '4%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
+              padding: 5,
+              alignSelf: 'flex-start',
             }}>
-            <Text
-              style={{
-                color: 'black',
-                fontSize: calculatedFontSize / 2.8,
-              }}>
-              Size
-            </Text>
-            <Text
-              style={{
-                color: 'black',
-                fontSize: calculatedFontSize / 2.8,
-              }}>
-              {size}
-            </Text>
-          </View>
-        )}
+            <Icon name="chevron-back" size={35} color="black" />
+          </TouchableOpacity>
+        </View>
 
+        {/* Image Section */}
         <View
           style={{
-            marginTop: 20,
             borderWidth: 1,
-            borderColor: 'rgba(0,0,0,0.2)',
-            paddingVertical: '3%',
-            paddingHorizontal: '4%',
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+            borderRadius: 12,
+            marginBottom: 12,
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.1,
+            shadowRadius: 4,
+            overflow: 'hidden',
+            padding: 20,
+            marginHorizontal: 10,
+            aspectRatio: 1.5, // Maintain proportional image height
           }}>
-          <View>
+          <FastImage
+            source={{uri: itemImageUrl}}
+            style={{width: '100%', height: '100%'}}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+        </View>
+
+        {/* Details Section */}
+        <View style={{marginHorizontal: 10}}>
+          <Text
+            style={{
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2,
+              marginBottom: 10,
+            }}>
+            {name}
+          </Text>
+
+          {size && (
+            <View
+              style={{
+                marginBottom: 20,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.2)',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 10,
+                borderRadius: 8, // Rounded corners for consistency
+              }}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
+                Size
+              </Text>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
+                {size}
+              </Text>
+            </View>
+          )}
+
+          <View
+            style={{
+              borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              padding: 10,
+              borderRadius: 8,
+              marginBottom: 20,
+            }}>
             <Text style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
               Buy Now
             </Text>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 5,
+              }}>
               <Text
                 style={{
                   color: 'black',
@@ -186,41 +157,85 @@ const ViewListingBuyer = ({route}) => {
                   color: 'black',
                   fontSize: calculatedFontSize / 1.6,
                   fontWeight: 'bold',
+                  marginLeft: 5,
                 }}>
                 {listing.price}
               </Text>
             </View>
+            <TouchableOpacity
+              onPress={handleBuyNow}
+              style={{
+                backgroundColor: appPink,
+                borderRadius: 30,
+                paddingVertical: 12,
+                paddingHorizontal: 20,
+                alignSelf: 'center',
+                shadowColor: '#000',
+                shadowOffset: {width: 0, height: 2},
+                shadowOpacity: 0.2,
+                shadowRadius: 5,
+                elevation: 3,
+                marginTop: 15,
+              }}>
+              <Text
+                style={{
+                  color: 'white',
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  fontSize: calculatedFontSize / 2.5,
+                }}>
+                Buy Now
+              </Text>
+            </TouchableOpacity>
           </View>
 
-          {/* Buy Button */}
-          <TouchableOpacity
-            onPress={handleBuyNow}
+          <View
             style={{
-              backgroundColor: appPink,
-              borderRadius: 30,
-              paddingVertical: 12,
-              paddingHorizontal: 40,
-              alignSelf: 'center',
-              shadowColor: '#000',
-              shadowOffset: {width: 0, height: 2},
-              shadowOpacity: 0.2,
-              shadowRadius: 5,
-              elevation: 3, // Elevated button for better visibility
-              marginBottom: 10,
-              width: '60%',
+              borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.2)',
+              padding: 10,
+              borderRadius: 8,
+              marginBottom: 20,
+              justifyContent: 'center',
             }}>
-            <Text
-              style={{
-                color: 'white',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                fontSize: calculatedFontSize / 2.5,
-              }}>
-              Buy Now
+            <Text style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
+              Seller
             </Text>
-          </TouchableOpacity>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginTop: 5,
+              }}>
+              <FastImage
+                source={{uri: profilePictureURL}}
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: 25,
+                  marginLeft: 5,
+                }}
+              />
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('ViewProfile', {
+                    username: sellerUsername,
+                  })
+                }>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: calculatedFontSize / 1.8,
+                    fontWeight: 'bold',
+                    marginLeft: 20,
+                  }}>
+                  {sellerUsername}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

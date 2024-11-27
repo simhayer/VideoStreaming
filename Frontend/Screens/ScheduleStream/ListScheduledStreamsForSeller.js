@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useRef, useEffect} from 'react';
+import React, {useState, useCallback, useRef, useEffect, memo} from 'react';
 import {
   View,
   Text,
@@ -25,96 +25,37 @@ import ListScheduledStreamItem from './ListScheduledStreamItem';
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
-const ListScheduledStreams = ({search, hasSearched}) => {
+const ListScheduledStreamsForSeller = memo(({username}) => {
   const navigation = useNavigation();
   const [broadcasts, setBroadcasts] = useState([]);
-
-  const [refreshing, setRefreshing] = useState(false);
   const [isAxiosError, setIsAxiosError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
-
-  const [page, setPage] = useState(1);
-  const [canFetchMore, setCanFetchMore] = useState(true);
 
   useEffect(() => {
-    if (search.trim() === '' && hasSearched) {
-      console.log('Search input is empty');
-      setPage(1);
-      setCanFetchMore(true);
-      showList(1, '', true);
-    }
-
-    if (search.trim() !== '') {
-      setPage(1);
-      setCanFetchMore(true);
-      showList(1, search, true);
-    }
-  }, [search]);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    setPage(1);
-    setCanFetchMore(true);
-    showList(1, search, true);
-    setTimeout(() => setRefreshing(false), 1000);
+    showList();
   }, []);
 
-  const lastTriggeredTimeRef = useRef(null);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-
-  useFocusEffect(
-    useCallback(() => {
-      const currentTime = Date.now();
-      const MIN_TRIGGER_INTERVAL = 50000;
-
-      if (isFirstLoad) {
-        showList();
-        setIsFirstLoad(false);
-        lastTriggeredTimeRef.current = currentTime;
-      } else {
-        const timeSinceLastTrigger = currentTime - lastTriggeredTimeRef.current;
-
-        if (timeSinceLastTrigger >= MIN_TRIGGER_INTERVAL) {
-          showList();
-          lastTriggeredTimeRef.current = currentTime;
-        }
-      }
-    }, [isFirstLoad]),
-  );
-
-  const showList = async (
-    newPage = 1,
-    searchValue = search,
-    overrideCanFecth = false,
-  ) => {
-    if (!overrideCanFecth && !canFetchMore) return;
-
+  const showList = async () => {
     const MIN_LOADING_TIME = 1000; // Minimum loading time (1 second)
     const startLoadingTime = Date.now(); // Record the start time of loading
 
-    if (newPage === 1) {
-      setBroadcasts([]);
-      setLoading(true);
-    } else {
-      setLoadingMore(true);
-    }
+    setBroadcasts([]);
+    setLoading(true);
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 20000);
 
     try {
       const response = await axios.post(
-        baseURL + apiEndpoints.listScheduledStream,
-        {page: newPage, limit: 10, search: searchValue},
+        baseURL + apiEndpoints.fetchScheduledStreamsForProfile,
+        {username},
         {
           timeout: 7000,
           signal: controller.signal,
         },
       );
 
-      setBroadcasts(prev =>
-        newPage === 1 ? response.data : [...prev, ...response.data],
-      );
+      setBroadcasts(response.data);
       setIsAxiosError(false);
 
       if (response.data.length === 0) {
@@ -133,7 +74,6 @@ const ListScheduledStreams = ({search, hasSearched}) => {
         remainingTime > 0 ? remainingTime : 0,
       );
       clearTimeout(timeoutId);
-      setLoadingMore(false);
     }
   };
 
@@ -145,15 +85,6 @@ const ListScheduledStreams = ({search, hasSearched}) => {
       />
     );
   });
-
-  const renderFooter = () => {
-    if (!loadingMore) return null; // Only show the footer when loading more data
-    return (
-      <View style={styles.footer}>
-        <ActivityIndicator size="large" color={appPink} />
-      </View>
-    );
-  };
 
   const renderSkeleton = () => {
     return (
@@ -250,17 +181,6 @@ const ListScheduledStreams = ({search, hasSearched}) => {
           renderItem={renderItem}
           numColumns={2}
           contentContainerStyle={styles.scrollView}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-          onEndReached={() => {
-            if (broadcasts.length < 8) return;
-            if (canFetchMore && !loading) {
-              setPage(prev => prev + 1);
-              showList(page + 1);
-            }
-          }}
-          onEndReachedThreshold={0.5}
           ListEmptyComponent={() =>
             !loading && (
               <View style={styles.emptyContainer}>
@@ -274,16 +194,9 @@ const ListScheduledStreams = ({search, hasSearched}) => {
                   Try searching with different keywords or check the Live tab
                   for currently active streams.
                 </Text>
-                <TouchableOpacity
-                  onPress={onRefresh}
-                  style={styles.emptyButton}
-                  activeOpacity={0.8}>
-                  <Text style={styles.emptyButtonText}>Refresh</Text>
-                </TouchableOpacity>
               </View>
             )
           }
-          ListFooterComponent={renderFooter}
           getItemLayout={(data, index) => ({
             length: screenHeight * 0.35, // Item height
             offset: screenHeight * 0.35 * index,
@@ -293,7 +206,7 @@ const ListScheduledStreams = ({search, hasSearched}) => {
       )}
     </SafeAreaView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -346,4 +259,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListScheduledStreams;
+export default React.memo(ListScheduledStreamsForSeller);

@@ -191,54 +191,6 @@ const StartStreamTab = () => {
 
             <TouchableOpacity
               style={[styles.button, {flex: 1, marginLeft: 8}]}
-              onPress={() => navigation.navigate('SellerOrdersNew')}
-              activeOpacity={0.8}>
-              <View style={{alignItems: 'center'}}>
-                <Icon name="cart-outline" size={30} color="black" />
-                <Text style={styles.buttonText}>Orders (Selling)</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 15,
-              width: '90%',
-              flex: 1,
-            }}>
-            <TouchableOpacity
-              style={[styles.button, {flex: 1, marginRight: 8}]}
-              onPress={viewDashboard}
-              activeOpacity={0.8}>
-              <View style={{alignItems: 'center'}}>
-                <Icon name="cash-outline" size={30} color="black" />
-                <Text style={styles.buttonText}>Payments Dashboard</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[styles.button, {flex: 1, marginLeft: 8}]}
-              onPress={() => navigation.navigate('GetStartedSellRules')}
-              activeOpacity={0.8}>
-              <View style={{alignItems: 'center'}}>
-                <Icon name="alert-circle-outline" size={30} color="black" />
-                <Text style={styles.buttonText}>Rules & Guidelines</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 15,
-              width: '90%',
-              flex: 1,
-            }}>
-            <TouchableOpacity
-              style={[styles.button, {flex: 1, marginRight: 8}]}
               onPress={() => navigation.navigate('ManageListings')}
               activeOpacity={0.8}>
               <View style={{alignItems: 'center'}}>
@@ -246,9 +198,46 @@ const StartStreamTab = () => {
                 <Text style={styles.buttonText}>Listings</Text>
               </View>
             </TouchableOpacity>
+          </View>
 
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 15,
+              width: '90%',
+              flex: 1,
+            }}>
+            <TouchableOpacity
+              style={[styles.button, {flex: 1, marginRight: 8}]}
+              onPress={() => navigation.navigate('SellerOrdersNew')}
+              activeOpacity={0.8}>
+              <View style={{alignItems: 'center'}}>
+                <Icon name="cart-outline" size={30} color="black" />
+                <Text style={styles.buttonText}>Orders (Selling)</Text>
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity
               style={[styles.button, {flex: 1, marginLeft: 8}]}
+              onPress={viewDashboard}
+              activeOpacity={0.8}>
+              <View style={{alignItems: 'center'}}>
+                <Icon name="cash-outline" size={30} color="black" />
+                <Text style={styles.buttonText}>Payments Dashboard</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 15,
+              width: '90%',
+              flex: 1,
+            }}>
+            <TouchableOpacity
+              style={[styles.button, {flex: 1, marginRight: 8}]}
               onPress={() => navigation.navigate('GetStartedSellRules')}
               activeOpacity={0.8}>
               <View style={{alignItems: 'center'}}>
@@ -256,6 +245,12 @@ const StartStreamTab = () => {
                 <Text style={styles.buttonText}>Rules & Guidelines</Text>
               </View>
             </TouchableOpacity>
+
+            <View
+              style={[
+                styles.button,
+                {flex: 1, marginLeft: 8, borderWidth: 0},
+              ]}></View>
           </View>
 
           {/* Spacer to push the button down */}

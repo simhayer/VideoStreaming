@@ -9,7 +9,6 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
-  TextInput,
 } from 'react-native';
 import {
   apiEndpoints,
@@ -21,7 +20,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import axios from 'axios';
-import {PaymentSheet, useStripe} from '@stripe/stripe-react-native';
+import {useStripe} from '@stripe/stripe-react-native';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -41,7 +40,6 @@ const Checkout = ({route}) => {
   const address = userData?.user?.address;
   const userEmail = userData?.user?.email;
   const [loading, setLoading] = useState(false);
-
   const [showPriceDetails, setShowPriceDetails] = useState(false);
 
   const itemImageFilename = product.imageUrl.split('\\').pop();
@@ -213,45 +211,86 @@ const Checkout = ({route}) => {
                 </Text>
               </View>
             </View>
-            <View
-              style={{
-                marginTop: 20,
-                borderTopWidth: 1,
-                borderBottomWidth: 1,
-                borderColor: 'rgba(0,0,0,0.2)',
-                width: '100%',
-                flexDirection: 'row',
-                paddingVertical: '3%',
-                paddingHorizontal: '4%',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="home-outline" size={25} color="black" />
-                <Text
-                  style={{
-                    color: 'black',
-                    marginLeft: '10%',
-                  }}>
-                  {address.line1}
-                  {address.line2 ? `, ${address.line2}` : ''}, {address.city}
-                </Text>
-              </View>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('AddAddress', {address});
+            {address ? (
+              <View
+                style={{
+                  marginTop: 20,
+                  borderTopWidth: 1,
+                  borderBottomWidth: 1,
+                  borderColor: 'rgba(0,0,0,0.2)',
+                  width: '100%',
+                  flexDirection: 'row',
+                  paddingVertical: '3%',
+                  paddingHorizontal: '4%',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}>
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    color: 'grey',
-                    fontSize: calculatedFontSize / 2.8,
-                    padding: 2,
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Icon name="home-outline" size={25} color="black" />
+                  <Text
+                    style={{
+                      color: 'black',
+                      marginLeft: '12%',
+                    }}>
+                    {address.line1}
+                    {address.line2 ? `, ${address.line2}` : ''}, {address.city}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('AddAddress', {address});
                   }}>
-                  EDIT
-                </Text>
-              </TouchableOpacity>
-            </View>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      color: 'grey',
+                      fontSize: calculatedFontSize / 2.8,
+                      padding: 2,
+                    }}>
+                    EDIT
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <View
+                style={{
+                  marginTop: 20,
+                  borderTopWidth: 1,
+                  borderBottomWidth: 1,
+                  borderColor: 'rgba(0,0,0,0.2)',
+                  width: '100%',
+                  flexDirection: 'row',
+                  paddingVertical: '3%',
+                  paddingHorizontal: '4%',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Icon name="home-outline" size={25} color="black" />
+                  <Text
+                    style={{
+                      color: 'black',
+                      marginLeft: '12%',
+                    }}>
+                    Address
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('AddAddress', {address});
+                  }}>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      color: 'grey',
+                      fontSize: calculatedFontSize / 2.8,
+                      padding: 2,
+                    }}>
+                    ADD
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </ScrollView>
           <View
             style={{
@@ -295,7 +334,9 @@ const Checkout = ({route}) => {
                 )}
               </View>
             </View>
-            <Text>Includes taxes, and shipping fees. </Text>
+            <Text style={{color: 'grey', fontSize: calculatedFontSize / 3}}>
+              Includes taxes, and shipping fees.{' '}
+            </Text>
             {showPriceDetails && (
               <View>
                 <View style={styles.ListItem}>
@@ -352,15 +393,15 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.1)',
-    borderStyle: 'dotted',
+    borderStyle: 'dashed',
   },
   ListItemNameText: {
     color: 'black',
-    fontSize: calculatedFontSize / 2.6,
+    fontSize: calculatedFontSize / 2.8,
   },
   ListItemValueText: {
     color: 'black',
-    fontSize: calculatedFontSize / 2.6,
+    fontSize: calculatedFontSize / 2.8,
   },
 });
 
