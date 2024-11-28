@@ -205,7 +205,7 @@ const ViewListingBuyer = ({route}) => {
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
-                marginTop: 5,
+                marginTop: 10,
               }}>
               <FastImage
                 source={{uri: profilePictureURL}}

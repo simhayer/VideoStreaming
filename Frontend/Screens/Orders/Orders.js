@@ -79,7 +79,7 @@ const Orders = () => {
   }, []);
 
   const filteredItems = items.filter(item =>
-    item.product.name.toLowerCase().includes(search.toLowerCase()),
+    item.product?.name.toLowerCase().includes(search.toLowerCase()),
   );
 
   const onRefresh = useCallback(() => {

@@ -35,6 +35,7 @@ export const apiEndpoints = {
     '/auth/checkStripeConnectedAccountOnboardingComplete',
   createStripeLoginLink: '/auth/createStripeLoginLink',
   continueOnboarding: '/auth/continueOnboarding',
+  createOrder: '/auth/createOrder',
   getAllOrdersForBuyer: '/auth/getAllOrdersForBuyer',
   getAllOrdersForSeller: '/auth/getAllOrdersForSeller',
   updateOrderTracking: '/auth/updateOrderTracking',

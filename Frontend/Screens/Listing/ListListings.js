@@ -176,8 +176,8 @@ const ListListings = () => {
         style={{
           width: '48%',
           aspectRatio: 1,
-          marginBottom: '23%',
           marginRight: '4%',
+          marginBottom: '18%',
         }}>
         <TouchableOpacity
           key={item._id}
@@ -395,11 +395,11 @@ const ListListings = () => {
               )
             }
             ListFooterComponent={renderFooter}
-            getItemLayout={(data, index) => ({
-              length: screenHeight * 0.35, // Item height
-              offset: screenHeight * 0.35 * index,
-              index,
-            })}
+            // getItemLayout={(data, index) => ({
+            //   length: screenHeight * 0.35, // Item height
+            //   offset: screenHeight * 0.35 * index,
+            //   index,
+            // })}
           />
         </View>
       )}
@@ -413,21 +413,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flexGrow: 1,
-    justifyContent: 'space-between',
     paddingHorizontal: '3%',
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: '4%',
-    height: '9%',
-    width: '100%',
-  },
-  profilePicture: {
-    width: 20,
-    height: 20,
-    borderRadius: 25,
-    marginRight: '5%',
   },
   buttonContainer: {
     width: '100%',

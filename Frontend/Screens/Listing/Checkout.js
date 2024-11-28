@@ -41,6 +41,7 @@ const Checkout = ({route}) => {
   const userEmail = userData?.user?.email;
   const [loading, setLoading] = useState(false);
   const [showPriceDetails, setShowPriceDetails] = useState(false);
+  const [paymentId, setPaymentId] = useState('');
 
   const itemImageFilename = product.imageUrl.split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
@@ -58,8 +59,8 @@ const Checkout = ({route}) => {
         console.error('Error adding broadcast:', error);
       });
 
-    const {setupIntent, ephemeralKey, customer} = response.data;
-
+    const {setupIntent, ephemeralKey, customer, paymentId} = response.data;
+    setPaymentId(paymentId);
     return {
       setupIntent,
       ephemeralKey,
@@ -70,6 +71,8 @@ const Checkout = ({route}) => {
   const initializePaymentSheet = async () => {
     const {setupIntent, ephemeralKey, customer} =
       await fetchPaymentSheetParams();
+
+    console.log('openPaymentSheet:', setupIntent, ephemeralKey, customer);
 
     const {error} = await initPaymentSheet({
       merchantDisplayName: 'Bars',
@@ -94,13 +97,62 @@ const Checkout = ({route}) => {
   };
 
   const openPaymentSheet = async () => {
+    console.log('Opening payment sheet');
+    if (!paymentId) {
+      console.log('Payment ID not found');
+      return;
+    }
     const {error} = await presentPaymentSheet();
+
+    console.log('Error:', error);
 
     if (error) {
       console.log('Card add failed');
     } else {
       console.log('card added');
-      navigation.navigate('AddPaymentOrShipping');
+
+      setLoading(true);
+
+      const payload = {
+        buyerUsername: userData.user.username,
+        sellerUsername: listing.user.username,
+        amount: subTotal,
+        product: product,
+        address: address,
+        productPrice: price,
+        shippingFee: shipping,
+        tax: tax,
+        paymentId: paymentId,
+      };
+
+      try {
+        const response = await axios
+          .post(baseURL + apiEndpoints.createOrder, payload)
+          .catch(error => {
+            console.error('Error adding broadcast:', error);
+          });
+
+        const order = response.data.order;
+        //navigation.navigate('ViewOrderBuyer', order);
+
+        navigation.reset({
+          index: 1, // The second route (GetStreamSDK) will be the active screen
+          routes: [
+            {
+              name: 'TabControl', // First route is TabControl
+              params: {initialTab: 'Shop'}, // Setting Sell tab as the background
+            },
+            {
+              name: 'ViewOrderBuyer', // Second route is GetStreamSDK, making it the active screen
+              params: order, // Pass the params for GetStreamSDK
+            },
+          ],
+        });
+      } catch (error) {
+        console.error('Error adding broadcast:', error);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -109,7 +161,7 @@ const Checkout = ({route}) => {
   }, []);
 
   const onSubmit = () => {
-    initializePaymentSheet();
+    //initializePaymentSheet();
     openPaymentSheet();
   };
 

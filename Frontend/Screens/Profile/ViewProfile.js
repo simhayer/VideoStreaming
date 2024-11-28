@@ -58,8 +58,6 @@ const ViewProfile = ({route}) => {
         setProfilePictureURI(
           `${baseURL}/profilePicture/${profilePictureFilename}`,
         );
-        console.log('User:', user);
-        console.log('Scheduled Streams:', user.scheduledStreams);
       } else {
         console.error('Failed to fetch products:', response.data);
       }
@@ -73,14 +71,6 @@ const ViewProfile = ({route}) => {
   const [selectedStatus, setSelectedStatus] = useState('Shop');
 
   const statusTabs = ['Shop', 'Shows'];
-
-  useEffect(() => {
-    if (selectedStatus === 'Shop') {
-      // Do something
-    } else {
-      // Do something
-    }
-  }, [selectedStatus]);
 
   const renderListScheduledStreams = useCallback(() => {
     console.log('Rendering ListScheduledStreams');
