@@ -453,15 +453,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.1)',
-    borderStyle: 'dashed',
   },
   ListItemNameText: {
     color: 'black',
-    fontSize: calculatedFontSize / 2.8,
+    fontSize: calculatedFontSize / 2.9,
   },
   ListItemValueText: {
     color: 'black',
-    fontSize: calculatedFontSize / 2.8,
+    fontSize: calculatedFontSize / 2.9,
   },
 });
 

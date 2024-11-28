@@ -74,6 +74,7 @@ const ViewListingBuyer = ({route}) => {
         <View
           style={{
             borderWidth: 1,
+            width: '100%',
             borderColor: 'rgba(0, 0, 0, 0.1)',
             borderRadius: 12,
             marginBottom: 12,
@@ -83,7 +84,6 @@ const ViewListingBuyer = ({route}) => {
             shadowRadius: 4,
             overflow: 'hidden',
             padding: 20,
-            marginHorizontal: 10,
             aspectRatio: 1.5, // Maintain proportional image height
           }}>
           <FastImage

@@ -86,7 +86,7 @@ export default function AddPaymentMethod() {
   }, []);
 
   const onAddCardClick = () => {
-    initializePaymentSheet();
+    //initializePaymentSheet();
     openPaymentSheet();
   };
 

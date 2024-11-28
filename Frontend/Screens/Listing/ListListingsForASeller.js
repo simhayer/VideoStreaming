@@ -91,7 +91,7 @@ const ListListingsForASeller = ({username}) => {
         style={{
           width: '48%',
           aspectRatio: 1,
-          marginBottom: '23%',
+          marginBottom: '18%',
           marginRight: '4%',
         }}>
         <TouchableOpacity
@@ -240,7 +240,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flexGrow: 1,
-    justifyContent: 'space-between',
     paddingHorizontal: '3%',
   },
   buttonContainer: {
