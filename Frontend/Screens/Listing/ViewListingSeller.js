@@ -41,83 +41,33 @@ const ViewListingSeller = ({route}) => {
   const imageUrl = `${baseURL}/${itemImageFilename}`;
   const itemImageUrl = `${baseURL}/${product.imageUrl}`;
 
-  const onSubmit = async () => {
-    setLoading(true);
+  const [markActiveLoading, setMarkActiveLoading] = useState(false);
+
+  const onMarkAsInactive = async () => {
+    //setLoading(true);
+    setMarkActiveLoading(true);
 
     try {
       const payload = {
-        email: userEmail,
-        price: price,
-        shipping: shipping,
-        quantity: quantity,
-        productId: product._id,
+        listingId: listing._id,
       };
 
       const response = await axios
-        .post(baseURL + apiEndpoints.handleListingCreation, payload)
+        .post(baseURL + apiEndpoints.markListingAsInactive, payload)
         .catch(error => {
           console.error('Error submitting listing:', error);
         });
 
       if (response?.status === 200) {
-        navigation.goBack();
+        listing.status = listing.status === 'Active' ? 'Inactive' : 'Active';
+        //navigation.goBack();
       }
     } catch (error) {
       console.error('Error submitting listing:', error);
     } finally {
-      setLoading(false);
+      //setLoading(false);
+      setMarkActiveLoading(false);
     }
-  };
-
-  const InputField = ({
-    iconName,
-    value,
-    onChangeText,
-    placeholder,
-    maxLength = 10,
-  }) => {
-    return (
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: 15,
-        }}>
-        <Icon name={iconName} size={30} color="black" />
-        <Text
-          style={{
-            fontSize: 18,
-            marginLeft: 20,
-            color: 'grey',
-          }}>
-          $
-        </Text>
-        <TextInput
-          value={value}
-          onChangeText={onChangeText}
-          placeholder={placeholder}
-          style={{
-            width: '66%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: 16,
-            marginLeft: 10,
-            paddingVertical: 10,
-          }}
-          autoComplete="off"
-          autoCapitalize="none"
-          placeholderTextColor={'gray'}
-          autoCorrect={false}
-          returnKeyType="next"
-          maxLength={maxLength}
-          selectionColor="pink"
-          keyboardType="numeric"
-          clearButtonMode="while-editing"
-          keyboardAppearance="light"
-        />
-      </View>
-    );
   };
 
   return (
@@ -139,12 +89,38 @@ const ViewListingSeller = ({route}) => {
               width: '100%',
               paddingTop: 8,
               paddingHorizontal: 0,
+              justifyContent: 'space-between',
             }}>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
               style={{padding: 5}}>
               <Icon name="chevron-back" size={30} color="black" />
             </TouchableOpacity>
+            {listing.status === 'Active' ? (
+              <View
+                style={{
+                  borderWidth: 1,
+                  padding: 3,
+                  borderRadius: 5,
+                  borderColor: '#4CAF50',
+                  backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                  marginRight: 10,
+                }}>
+                <Text>{listing.status}</Text>
+              </View>
+            ) : (
+              <View
+                style={{
+                  borderWidth: 1,
+                  padding: 3,
+                  borderRadius: 5,
+                  borderColor: '#FF5722',
+                  backgroundColor: 'rgba(255, 87, 34, 0.1)',
+                  marginRight: 10,
+                }}>
+                <Text>{listing.status}</Text>
+              </View>
+            )}
           </View>
 
           {/* Product summary Section */}
@@ -193,50 +169,103 @@ const ViewListingSeller = ({route}) => {
               </View>
             </View>
 
-            {InputField({
-              iconName: 'pricetag-outline',
-              value: price,
-              onChangeText: setPrice,
-              placeholder: 'Price',
-            })}
-            {InputField({
-              iconName: 'car-outline',
-              value: shipping,
-              onChangeText: setShipping,
-              placeholder: 'Shipping',
-            })}
-            {InputField({
-              iconName: 'cube-outline',
-              value: quantity,
-              onChangeText: setQuantity,
-              placeholder: 'Quantity',
-            })}
-
-            <TouchableOpacity
-              onPress={onSubmit}
+            <View
               style={{
-                backgroundColor: appPink,
-                borderRadius: 30,
-                paddingVertical: 14,
-                alignItems: 'center',
-                width: '80%',
-                marginTop: 40,
-                shadowColor: '#000',
-                shadowOffset: {width: 0, height: 2},
-                shadowOpacity: 0.2,
-                shadowRadius: 4, // Subtle shadow for elevation
-                marginBottom: 40,
-              }}
-              activeOpacity={0.8}>
+                marginBottom: 20,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.2)',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 10,
+                width: '90%',
+                borderRadius: 8, // Rounded corners for consistency
+              }}>
               <Text
-                style={{
-                  color: 'white',
-                  fontSize: calculatedFontSize / 2.2,
-                  fontWeight: 'bold',
-                }}>
-                Submit
+                style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
+                Quantity left
               </Text>
-            </TouchableOpacity>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: calculatedFontSize / 2.8,
+                    marginRight: 15,
+                  }}>
+                  {listing.quantity}
+                </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('EditListingQuantity', {listing});
+                  }}>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      color: 'grey',
+                      fontSize: calculatedFontSize / 2.8,
+                      padding: 2,
+                    }}>
+                    EDIT
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <View
+              style={{
+                marginBottom: 20,
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.2)',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 10,
+                width: '90%',
+                borderRadius: 8, // Rounded corners for consistency
+              }}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
+                Items sold
+              </Text>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.8}}>
+                {listing.sold}
+              </Text>
+            </View>
+
+            {markActiveLoading ? (
+              <View
+                style={{
+                  alignItems: 'center',
+                  marginTop: 40,
+                }}>
+                <ActivityIndicator size="medium" color={appPink} />
+              </View>
+            ) : (
+              <TouchableOpacity
+                onPress={onMarkAsInactive}
+                style={{
+                  backgroundColor: appPink,
+                  borderRadius: 30,
+                  paddingVertical: 14,
+                  alignItems: 'center',
+                  width: '80%',
+                  marginTop: 40,
+                  shadowColor: '#000',
+                  shadowOffset: {width: 0, height: 2},
+                  shadowOpacity: 0.2,
+                  shadowRadius: 4, // Subtle shadow for elevation
+                  marginBottom: 40,
+                }}
+                activeOpacity={0.8}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: calculatedFontSize / 2.2,
+                    fontWeight: 'bold',
+                  }}>
+                  Mark as {listing.status === 'Active' ? 'Inactive' : 'Active'}
+                </Text>
+              </TouchableOpacity>
+            )}
           </ScrollView>
         </View>
       )}

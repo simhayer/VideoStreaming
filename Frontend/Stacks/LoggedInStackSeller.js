@@ -29,6 +29,7 @@ import SubmitListing from '../Screens/Listing/SubmitListing';
 import ViewListingSeller from '../Screens/Listing/ViewListingSeller';
 import ListListings from '../Screens/Listing/ListListings';
 import ViewListingBuyer from '../Screens/Listing/ViewListingBuyer';
+import EditListingQuantity from '../Screens/Listing/EditListingQuantity';
 import Checkout from '../Screens/Listing/Checkout';
 
 //Actually lazy load the screens
@@ -78,6 +79,10 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="ViewListingSeller" component={ViewListingSeller} />
       <Stack.Screen name="ListListings" component={ListListings} />
       <Stack.Screen name="ViewListingBuyer" component={ViewListingBuyer} />
+      <Stack.Screen
+        name="EditListingQuantity"
+        component={EditListingQuantity}
+      />
       <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen
         name="AddPaymentOrShipping"

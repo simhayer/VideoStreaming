@@ -117,12 +117,13 @@ const Checkout = ({route}) => {
         buyerUsername: userData.user.username,
         sellerUsername: listing.user.username,
         amount: subTotal,
-        product: product,
-        address: address,
+        productId: product._id,
+        addressId: address._id,
         productPrice: price,
         shippingFee: shipping,
         tax: tax,
         paymentId: paymentId,
+        listingId: listing._id,
       };
 
       try {

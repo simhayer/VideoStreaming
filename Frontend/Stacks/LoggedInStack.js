@@ -45,6 +45,9 @@ const SubmitListing = React.lazy(() =>
 const ViewListingSeller = React.lazy(() =>
   import('./../Screens/Listing/ViewListingSeller'),
 );
+const EditListingQuantity = React.lazy(() =>
+  import('./../Screens/Listing/EditListingQuantity'),
+);
 
 //Actually lazy load the screens
 //const GetStreamSDK = lazy(() => import('../Screens/Stream/GetStreamSDK'));
@@ -95,6 +98,7 @@ const LoggedInStack = () => {
       import('../Screens/Listing/SelectProductForListing');
       import('../Screens/Listings/SubmitListing');
       import('../Screens/Listings/ViewListingSeller');
+      import('../Screens/Listings/EditListingQuantity');
     }
   }, [isSeller]);
 
@@ -160,6 +164,10 @@ const LoggedInStack = () => {
           <Stack.Screen
             name="ViewListingSeller"
             component={ViewListingSeller}
+          />
+          <Stack.Screen
+            name="EditListingQuantity"
+            component={EditListingQuantity}
           />
         </>
       )}

@@ -35,6 +35,8 @@ const ViewListingBuyer = ({route}) => {
   const profilePictureFilename = listing.user.profilePicture.split('/').pop();
   var profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
 
+  const showQuantity = listing.quantity <= 10;
+
   //console.log('Route params:', route.params);
   const navigation = useNavigation();
 
@@ -104,6 +106,18 @@ const ViewListingBuyer = ({route}) => {
             }}>
             {name}
           </Text>
+
+          {showQuantity && (
+            <View
+              style={{
+                marginBottom: 10,
+              }}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.6}}>
+                Only {listing.quantity} left in stock !
+              </Text>
+            </View>
+          )}
 
           {size && (
             <View
