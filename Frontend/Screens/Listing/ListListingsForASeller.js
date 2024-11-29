@@ -178,7 +178,11 @@ const ListListingsForASeller = ({username}) => {
 
   return (
     <SafeAreaView
-      style={{flex: 1, backgroundColor: colors.background, marginVertical: 10}}>
+      style={{
+        flex: 1,
+        backgroundColor: colors.background,
+        marginVertical: 10,
+      }}>
       {loading ? (
         renderSkeleton()
       ) : isAxiosError ? (

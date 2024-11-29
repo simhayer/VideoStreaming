@@ -57,13 +57,13 @@ const ViewOrderBuyer = ({route}) => {
             <Text style={styles.ListItemValueText}>C$ {order.amount}</Text>
             {showDetails ? (
               <TouchableOpacity
-                style={{padding: 4}}
+                style={{padding: 2}}
                 onPress={() => setShowDetails(false)}>
                 <Icon name="chevron-down" size={20} color="black" />
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
-                style={{padding: 4}}
+                style={{padding: 2}}
                 onPress={() => setShowDetails(true)}>
                 <Icon name="chevron-forward" size={20} color="black" />
               </TouchableOpacity>
@@ -75,7 +75,7 @@ const ViewOrderBuyer = ({route}) => {
             <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
               <Text
                 style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
-                Bid Amount
+                Item Price
               </Text>
               <Text
                 style={{
@@ -84,7 +84,7 @@ const ViewOrderBuyer = ({route}) => {
                   minWidth: 60,
                 }}>
                 {' '}
-                $ {order.amount}
+                $ {order.productPrice}
               </Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
@@ -99,7 +99,22 @@ const ViewOrderBuyer = ({route}) => {
                   minWidth: 60,
                 }}>
                 {' '}
-                $ {order.product.shippingFee}
+                $ {order.shippingFee}
+              </Text>
+            </View>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+                Tax
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2.9,
+                  minWidth: 60,
+                }}>
+                {' '}
+                $ {order.tax}
               </Text>
             </View>
           </View>
@@ -204,7 +219,7 @@ const ViewOrderBuyer = ({route}) => {
                 }}>
                 Details
               </Text>
-              {renderOrderDetail('Buyer', order.seller.username, () =>
+              {renderOrderDetail('Seller', order.seller.username, () =>
                 navigation.navigate('ViewProfile', {
                   username: order.seller.username,
                 }),
@@ -213,12 +228,6 @@ const ViewOrderBuyer = ({route}) => {
               {renderOrderDetail('Status', order.status)}
               {renderOrderDetail('Order Date', formattedDate)}
               {renderOrderDetail('Payment', order.paymentMethod)}
-              {/* {renderOrderDetail('Bid Amount', `C$ ${order.amount}`)}
-              {renderOrderDetail(
-                'Shipping and Tax',
-                `C$ ${order.product.shippingFee}`,
-              )} */}
-              {/* {renderOrderDetail('Total', `C$ ${order.amount}`)} */}
               {orderAmountDetails()}
               {renderOrderDetail('Payout', 'Pending')}
             </View>

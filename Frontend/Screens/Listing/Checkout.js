@@ -15,6 +15,7 @@ import {
   appPink,
   baseURL,
   colors,
+  errorRed,
   stripePublishableKey,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -22,6 +23,7 @@ import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import axios from 'axios';
 import {StripeProvider, useStripe} from '@stripe/stripe-react-native';
+import {set} from 'lodash';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -47,6 +49,7 @@ const Checkout = ({route}) => {
   const itemImageFilename = product.imageUrl.split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
   const itemImageUrl = `${baseURL}/${product.imageUrl}`;
+  const [showAddressError, setShowAddressError] = useState(false);
 
   const fetchPaymentSheetParams = async () => {
     const payload = {
@@ -163,7 +166,17 @@ const Checkout = ({route}) => {
 
   const onSubmit = () => {
     //initializePaymentSheet();
+    if (!address) {
+      setShowAddressError(true);
+      return;
+    }
+
     openPaymentSheet();
+  };
+
+  const onAddressAdd = () => {
+    setShowAddressError(false);
+    navigation.navigate('AddAddress', {address});
   };
 
   return (
@@ -270,6 +283,17 @@ const Checkout = ({route}) => {
                   </Text>
                 </View>
               </View>
+              {showAddressError && (
+                <Text
+                  style={{
+                    marginTop: 20,
+                    paddingHorizontal: '4%',
+                    color: errorRed,
+                    fontSize: calculatedFontSize / 3,
+                  }}>
+                  Add your address to proceed
+                </Text>
+              )}
               {address ? (
                 <View
                   style={{
@@ -335,10 +359,7 @@ const Checkout = ({route}) => {
                       Address
                     </Text>
                   </View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('AddAddress', {address});
-                    }}>
+                  <TouchableOpacity onPress={onAddressAdd}>
                     <Text
                       style={{
                         fontWeight: 'bold',

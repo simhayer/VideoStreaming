@@ -57,10 +57,6 @@ const ListScheduledStreamsForSeller = memo(({username}) => {
 
       setBroadcasts(response.data);
       setIsAxiosError(false);
-
-      if (response.data.length === 0) {
-        setCanFetchMore(false); // Disable further fetching if no more data
-      }
     } catch (error) {
       console.error('Error fetching broadcasts:', error);
     } finally {

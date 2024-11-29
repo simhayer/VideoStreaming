@@ -235,6 +235,19 @@ const ViewOrderSeller = ({route}) => {
                 username: order.buyer.username,
               }),
             )}
+            <View style={styles.ListItem}>
+              <View>
+                <Text style={styles.ListItemNameText}>Shipping details</Text>
+                <Text style={styles.ListItemValueText}>
+                  {order.address.line1}
+                  {order.address.line2 ? `, ${order.address.line2}` : ''},{' '}
+                  {order.address.city}, {order.address.state}{' '}
+                </Text>
+                <Text style={styles.ListItemValueText}>
+                  {order.address.country}, {order.address.postal_code}
+                </Text>
+              </View>
+            </View>
             {renderOrderDetail('Tracking number', order.trackingNumber)}
             {renderOrderDetail('Status', orderStatus)}
             {renderOrderDetail('Order Date', formattedDate)}

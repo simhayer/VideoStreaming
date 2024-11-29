@@ -123,70 +123,71 @@ const ViewProfile = ({route}) => {
           <ActivityIndicator size="large" color={appPink} />
         </View>
       ) : (
-        <View style={{flex: 1, alignItems: 'center'}}>
-          {/* Profile Image */}
-          <Image
-            source={
-              profilePictureURI
-                ? {uri: profilePictureURI}
-                : require('../../Resources/user.png')
-            }
-            style={{
-              height: 100,
-              width: 100,
-              borderRadius: 50,
-              resizeMode: 'cover',
-              marginTop: '10%',
-              borderWidth: 1,
-              borderColor: 'rgba(0,0,0,0.1)',
-              backgroundColor: 'white',
-            }}
-          />
+        <View style={{flex: 1}}>
+          <View style={{alignItems: 'center'}}>
+            {/* Profile Image */}
+            <Image
+              source={
+                profilePictureURI
+                  ? {uri: profilePictureURI}
+                  : require('../../Resources/user.png')
+              }
+              style={{
+                height: 100,
+                width: 100,
+                borderRadius: 50,
+                resizeMode: 'cover',
+                marginTop: '10%',
+                borderWidth: 1,
+                borderColor: 'rgba(0,0,0,0.1)',
+                backgroundColor: 'white',
+              }}
+            />
 
-          {/* Full Name */}
-          <Text
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.2,
-              marginTop: 20,
-            }}>
-            {fullname}
-          </Text>
+            {/* Full Name */}
+            <Text
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                fontSize: calculatedFontSize / 2.2,
+                marginTop: 20,
+              }}>
+              {fullname}
+            </Text>
 
-          <View
-            style={{
-              flexDirection: 'row',
-              paddingHorizontal: 10,
-              borderBottomWidth: 2,
-              borderColor: 'rgba(0,0,0,0.1)',
-            }}>
-            {statusTabs.map(status => (
-              <TouchableOpacity
-                key={status}
-                onPress={() => setSelectedStatus(status)}
-                style={{
-                  marginHorizontal: 20,
-                  backgroundColor: 'white',
-                  minHeight: 40,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flex: 1,
-                  borderBottomWidth: selectedStatus === status ? 2 : 0,
-                  borderColor: selectedStatus === status ? 'black' : 'grey',
-                }}>
-                <Text
+            <View
+              style={{
+                flexDirection: 'row',
+                paddingHorizontal: 10,
+                borderBottomWidth: 2,
+                borderColor: 'rgba(0,0,0,0.1)',
+              }}>
+              {statusTabs.map(status => (
+                <TouchableOpacity
+                  key={status}
+                  onPress={() => setSelectedStatus(status)}
                   style={{
-                    color: selectedStatus === status ? 'black' : 'grey',
-                    fontWeight: 'bold',
-                    fontSize: calculatedFontSize / 2.9,
+                    marginHorizontal: 20,
+                    backgroundColor: 'white',
+                    minHeight: 40,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flex: 1,
+                    borderBottomWidth: selectedStatus === status ? 2 : 0,
+                    borderColor: selectedStatus === status ? 'black' : 'grey',
                   }}>
-                  {status}
-                </Text>
-              </TouchableOpacity>
-            ))}
+                  <Text
+                    style={{
+                      color: selectedStatus === status ? 'black' : 'grey',
+                      fontWeight: 'bold',
+                      fontSize: calculatedFontSize / 2.9,
+                    }}>
+                    {status}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
-
           {/* Content Section */}
           {selectedStatus === 'Shop'
             ? renderListListings()
