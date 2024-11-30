@@ -9,6 +9,7 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
+  Linking,
 } from 'react-native';
 import {
   apiEndpoints,
@@ -35,6 +36,7 @@ const ViewOrderSeller = ({route}) => {
 
   const itemImageFilename = order.product.imageUrl.split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
+  const hasShippingDetails = order.shippingCompany && order.trackingNumber;
   const [orderStatus, setOrderStatus] = useState(order.status);
   const dispatch = useDispatch();
 
@@ -76,6 +78,10 @@ const ViewOrderSeller = ({route}) => {
       }
     }, [route.params?.order?.status]),
   );
+
+  const openTrackingLink = () => {
+    Linking.openURL(order.trackingLink);
+  };
 
   const ActionButton = ({text, onPress, backgroundColor}) => (
     <TouchableOpacity
@@ -197,27 +203,38 @@ const ViewOrderSeller = ({route}) => {
           </View>
 
           {/* Action Button (Status-Based) */}
-          {orderStatus === 'Shipped' ? (
-            loading ? (
+          {orderStatus === 'Shipped' &&
+            (loading ? (
               <ActivityIndicator
                 size="large"
                 color={appPink}
                 style={{marginTop: 20}}
               />
             ) : (
-              <ActionButton
-                text="Mark as complete"
-                onPress={markOrderComplete}
-                backgroundColor={appPink}
-              />
-            )
-          ) : orderStatus === 'Pending' ? (
-            <ActionButton
-              text="Enter shipping details"
-              onPress={EnterOrderShipping}
-              backgroundColor={appPink}
-            />
-          ) : null}
+              <View style={{width: '100%', alignItems: 'center'}}>
+                <ActionButton
+                  text="Mark as complete"
+                  onPress={markOrderComplete}
+                  backgroundColor={appPink}
+                />
+                <Text
+                  style={{
+                    marginTop: 10,
+                    color: 'black',
+                    fontSize: 12,
+                    textAlign: 'center',
+                    marginHorizontal: 20,
+                  }}>
+                  Mark the order as complete once the buyer receives the item
+                </Text>
+              </View>
+            ))}
+
+          <ActionButton
+            text="Edit shipping details"
+            onPress={EnterOrderShipping}
+            backgroundColor={appPink}
+          />
 
           {/* Order Details Section */}
           <View style={{width: '90%', marginTop: 20}}>
@@ -238,17 +255,53 @@ const ViewOrderSeller = ({route}) => {
             <View style={styles.ListItem}>
               <View>
                 <Text style={styles.ListItemNameText}>Shipping details</Text>
-                <Text style={styles.ListItemValueText}>
+                <Text style={styles.AddressText}>
                   {order.address.line1}
                   {order.address.line2 ? `, ${order.address.line2}` : ''},{' '}
                   {order.address.city}, {order.address.state}{' '}
                 </Text>
-                <Text style={styles.ListItemValueText}>
+                <Text style={styles.AddressText}>
                   {order.address.country}, {order.address.postal_code}
                 </Text>
               </View>
             </View>
-            {renderOrderDetail('Tracking number', order.trackingNumber)}
+            <View style={styles.ListItem}>
+              <View>
+                <Text style={styles.ListItemNameText}>Tracking details</Text>
+                {!hasShippingDetails ? (
+                  <Text style={styles.AddressText}>Add tracking details</Text>
+                ) : (
+                  <View>
+                    <Text style={styles.AddressText}>
+                      {order.shippingCompany ? order.shippingCompany : 'N/A'}
+                    </Text>
+                    <Text style={styles.AddressText}>
+                      {order.trackingNumber ? order.trackingNumber : 'N/A'}
+                    </Text>
+                    {order.trackingLink && (
+                      <TouchableOpacity
+                        onPress={openTrackingLink}
+                        style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text
+                          style={[
+                            styles.AddressText,
+                            {
+                              color: appPink,
+                              textDecorationLine: 'underline',
+                              marginRight: 5,
+                            },
+                          ]}>
+                          Track order
+                        </Text>
+                        <View style={{marginTop: 2}}>
+                          <Icon name="open-outline" size={20} color={appPink} />
+                        </View>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                )}
+              </View>
+            </View>
             {renderOrderDetail('Status', orderStatus)}
             {renderOrderDetail('Order Date', formattedDate)}
             {renderOrderDetail('Payment', order.paymentMethod)}
@@ -279,6 +332,11 @@ const styles = StyleSheet.create({
   ListItemValueText: {
     color: 'black',
     fontSize: calculatedFontSize / 2.4,
+  },
+  AddressText: {
+    marginTop: 3,
+    color: 'black',
+    fontSize: calculatedFontSize / 2.7,
   },
 });
 

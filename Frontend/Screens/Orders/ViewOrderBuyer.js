@@ -9,6 +9,7 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
+  Linking,
 } from 'react-native';
 import {appPink, baseURL, colors} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -25,12 +26,17 @@ const ViewOrderBuyer = ({route}) => {
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
   const [loading, setLoading] = useState(false);
+  const hasShippingDetails = order.shippingCompany && order.trackingNumber;
 
   const itemImageFilename = order.product.imageUrl.split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
 
   const formattedDate = new Date(order.orderDate).toISOString().split('T')[0];
   const [showDetails, setShowDetails] = useState(false);
+
+  const openTrackingLink = () => {
+    Linking.openURL(order.trackingLink);
+  };
 
   const renderOrderDetail = (label, value, onPress) => (
     <View style={styles.ListItem}>
@@ -90,7 +96,7 @@ const ViewOrderBuyer = ({route}) => {
             <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
               <Text
                 style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
-                Shipping and Tax
+                Shipping
               </Text>
               <Text
                 style={{
@@ -224,7 +230,48 @@ const ViewOrderBuyer = ({route}) => {
                   username: order.seller.username,
                 }),
               )}
-              {renderOrderDetail('Tracking number', order.trackingNumber)}
+              <View style={styles.ListItem}>
+                <View>
+                  <Text style={styles.ListItemNameText}>Tracking details</Text>
+                  {!hasShippingDetails ? (
+                    <Text style={styles.AddressText}>Not available yet</Text>
+                  ) : (
+                    <View>
+                      <Text style={styles.AddressText}>
+                        {order.shippingCompany ? order.shippingCompany : 'N/A'}
+                      </Text>
+                      <Text style={styles.AddressText}>
+                        Tracking Number -{' '}
+                        {order.trackingNumber ? order.trackingNumber : 'N/A'}
+                      </Text>
+                      {order.trackingLink && (
+                        <TouchableOpacity
+                          onPress={openTrackingLink}
+                          style={{flexDirection: 'row', alignItems: 'center'}}>
+                          <Text
+                            style={[
+                              styles.AddressText,
+                              {
+                                color: appPink,
+                                textDecorationLine: 'underline',
+                                marginRight: 5,
+                              },
+                            ]}>
+                            Track order
+                          </Text>
+                          <View style={{marginTop: 2}}>
+                            <Icon
+                              name="open-outline"
+                              size={20}
+                              color={appPink}
+                            />
+                          </View>
+                        </TouchableOpacity>
+                      )}
+                    </View>
+                  )}
+                </View>
+              </View>
               {renderOrderDetail('Status', order.status)}
               {renderOrderDetail('Order Date', formattedDate)}
               {renderOrderDetail('Payment', order.paymentMethod)}

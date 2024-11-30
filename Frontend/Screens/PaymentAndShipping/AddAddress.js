@@ -96,13 +96,20 @@ export default function AddAddress({route}) {
               style={{
                 marginTop: '10%',
               }}>
-              <Text>Current shipping address</Text>
+              <Text
+                style={{
+                  fontSize: calculatedFontSize / 2.8,
+                  color: 'black',
+                  marginLeft: 10,
+                }}>
+                Current shipping address
+              </Text>
               <TouchableOpacity
                 onPress={() => {
                   setAddressSheetVisible(true);
                 }}
                 style={{
-                  marginTop: '1%',
+                  marginTop: 15,
                   borderTopWidth: 1,
                   borderBottomWidth: 1,
                   borderColor: 'rgba(0,0,0,0.2)',
@@ -115,16 +122,28 @@ export default function AddAddress({route}) {
                 }}>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <Icon name="home-outline" size={40} color="black" />
-                  <Text
-                    style={{
-                      color: 'black',
-                      fontWeight: 'bold',
-                      marginLeft: '10%',
-                    }}>
-                    {address.line1}
-                    {address.line2 ? `, ${address.line2}` : ''}, {address.city},{' '}
-                    {address.state}, {address.postal_code}, {address.country}
-                  </Text>
+                  <View>
+                    <Text
+                      style={{
+                        color: 'black',
+                        fontWeight: 'bold',
+                        marginLeft: '10%',
+                        maxWidth: '100%',
+                      }}>
+                      {address.line1}
+                      {address.line2 ? `, ${address.line2}` : ''},{' '}
+                      {address.city}
+                    </Text>
+                    <Text
+                      style={{
+                        color: 'black',
+                        fontWeight: 'bold',
+                        marginLeft: '10%',
+                        maxWidth: '100%',
+                      }}>
+                      {address.state}, {address.postal_code}, {address.country}
+                    </Text>
+                  </View>
                 </View>
                 <Icon name="chevron-forward" size={40} color="black" />
               </TouchableOpacity>
@@ -137,7 +156,7 @@ export default function AddAddress({route}) {
                 setAddressSheetVisible(true);
               }}
               style={{
-                marginTop: '10%',
+                marginTop: 15,
                 borderTopWidth: 1,
                 borderBottomWidth: 1,
                 borderColor: 'rgba(0,0,0,0.2)',
@@ -168,6 +187,13 @@ export default function AddAddress({route}) {
             appearance={{
               colors: {
                 primary: appPink,
+                secondaryText: '#000000',
+                primaryText: '#000000',
+                placeholderText: '#808080',
+                componentBackground: '#ffffff',
+                componentDivider: '#808080',
+                componentBorder: '#808080',
+                componentText: '#000000',
                 background: '#ffffff',
               },
             }}

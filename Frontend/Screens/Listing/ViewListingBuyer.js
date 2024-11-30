@@ -35,7 +35,7 @@ const ViewListingBuyer = ({route}) => {
   const profilePictureFilename = listing.user.profilePicture.split('/').pop();
   var profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
 
-  const showQuantity = listing.quantity <= 10;
+  const showQuantity = listing.quantity <= 30;
 
   //console.log('Route params:', route.params);
   const navigation = useNavigation();
@@ -73,26 +73,28 @@ const ViewListingBuyer = ({route}) => {
         </View>
 
         {/* Image Section */}
-        <View
-          style={{
-            borderWidth: 1,
-            width: '100%',
-            borderColor: 'rgba(0, 0, 0, 0.1)',
-            borderRadius: 12,
-            marginBottom: 12,
-            shadowColor: '#000',
-            shadowOffset: {width: 0, height: 2},
-            shadowOpacity: 0.1,
-            shadowRadius: 4,
-            overflow: 'hidden',
-            padding: 20,
-            aspectRatio: 1.5, // Maintain proportional image height
-          }}>
-          <FastImage
-            source={{uri: itemImageUrl}}
-            style={{width: '100%', height: '100%'}}
-            resizeMode={FastImage.resizeMode.contain}
-          />
+        <View style={{marginHorizontal: 10}}>
+          <View
+            style={{
+              borderWidth: 1,
+              width: '100%',
+              borderColor: 'rgba(0, 0, 0, 0.1)',
+              borderRadius: 12,
+              marginBottom: 12,
+              shadowColor: '#000',
+              shadowOffset: {width: 0, height: 2},
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              overflow: 'hidden',
+              padding: 20,
+              aspectRatio: 1.5, // Maintain proportional image height
+            }}>
+            <FastImage
+              source={{uri: itemImageUrl}}
+              style={{width: '100%', height: '100%'}}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+          </View>
         </View>
 
         {/* Details Section */}
