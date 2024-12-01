@@ -1,24 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React from 'react';
 import {
-  ActivityIndicator,
   Dimensions,
   SafeAreaView,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  apiEndpoints,
-  appPink,
-  baseURL,
-  colors,
-} from '../../Resources/Constants';
+import {appPink, baseURL, colors, errorRed} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import axios from 'axios';
 import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
-import {set} from 'lodash';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const {height: screenHeight} = Dimensions.get('window');
@@ -36,6 +28,7 @@ const ViewListingBuyer = ({route}) => {
   var profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
 
   const showQuantity = listing.quantity <= 30;
+  const outOfStock = listing.quantity <= 0;
 
   //console.log('Route params:', route.params);
   const navigation = useNavigation();
@@ -114,10 +107,17 @@ const ViewListingBuyer = ({route}) => {
               style={{
                 marginBottom: 10,
               }}>
-              <Text
-                style={{color: 'black', fontSize: calculatedFontSize / 2.6}}>
-                Only {listing.quantity} left in stock !
-              </Text>
+              {outOfStock ? (
+                <Text
+                  style={{color: errorRed, fontSize: calculatedFontSize / 2.6}}>
+                  Out of stock
+                </Text>
+              ) : (
+                <Text
+                  style={{color: errorRed, fontSize: calculatedFontSize / 2.6}}>
+                  Only {listing.quantity} left in stock !
+                </Text>
+              )}
             </View>
           )}
 
@@ -180,8 +180,9 @@ const ViewListingBuyer = ({route}) => {
             </View>
             <TouchableOpacity
               onPress={handleBuyNow}
+              disabled={outOfStock}
               style={{
-                backgroundColor: appPink,
+                backgroundColor: outOfStock ? 'grey' : appPink,
                 borderRadius: 30,
                 paddingVertical: 12,
                 paddingHorizontal: 20,
