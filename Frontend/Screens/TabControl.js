@@ -11,7 +11,7 @@ import {useSelector} from 'react-redux';
 import ListListings from './Listing/ListListings';
 
 const TabControl = ({route}) => {
-  const initialTab = route.params?.initialTab || 'Home';
+  const initialTab = route.params?.initialTab || 'Shop';
   const Tab = createBottomTabNavigator();
 
   const [isOnboardingStarted, setIsOnboardingStarted] = useState(false);

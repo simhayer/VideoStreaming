@@ -56,7 +56,8 @@ export default function AddAddress({route}) {
 
     dispatch(updateUserAddress(payload));
 
-    navigation.navigate('AddPaymentOrShipping');
+    //navigation.navigate('AddPaymentOrShipping');
+    navigation.goBack();
   };
 
   useEffect(() => {
