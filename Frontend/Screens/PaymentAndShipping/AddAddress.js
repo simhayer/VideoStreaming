@@ -12,11 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  stripePublishableKey,
-  appPink,
-  colors,
-} from '../../Resources/Constants';
+import {stripePublishableKey, appPink, colors} from '../../Resources/Constants';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateUserAddress} from '../../Redux/Features/AuthSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -26,8 +22,6 @@ const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 export default function AddAddress({route}) {
-  //const {address} = route.params;
-  const {prevScreen} = route.params;
   const navigation = useNavigation();
   const [addressSheetVisible, setAddressSheetVisible] = useState(false);
   const dispatch = useDispatch();
@@ -56,9 +50,8 @@ export default function AddAddress({route}) {
     dispatch(updateUserAddress(payload));
 
     setTimeout(() => {
-      navigation.goBack()
-  }, 300);
-
+      navigation.goBack();
+    }, 300);
   };
 
   useEffect(() => {
@@ -197,6 +190,16 @@ export default function AddAddress({route}) {
                 componentBorder: '#808080',
                 componentText: '#000000',
                 background: '#ffffff',
+              },
+            }}
+            defaultValues={{
+              address: {
+                line1: address?.line1,
+                line2: address?.line2,
+                city: address?.city,
+                state: address?.state,
+                postalCode: address?.postal_code,
+                country: address?.country,
               },
             }}
             visible={addressSheetVisible}
