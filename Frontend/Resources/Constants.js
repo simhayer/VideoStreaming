@@ -5,8 +5,8 @@
 //export const baseURLNoApi = 'http://10.12.72.168:3000'; //for AWS EC2
 //export const baseURL = 'http://18.116.26.56:3000'; //for AWS EC2
 //export const baseURL = 'https://thebars.duckdns.org'; //for AWS EC2
-export const baseURL = 'https://thebarss.com/api'; //for AWS EC2
-export const baseURLNoApi = 'https://thebarss.com'; //for AWS EC2
+//export const baseURL = 'https://thebarss.com/api'; //for AWS EC2
+//export const baseURLNoApi = 'https://thebarss.com'; //for AWS EC2
 
 //export const baseURL = 'http://192.162.2.118:3000'; //for android studio
 //export const baseURL = 'https://wobble-server.onrender.com'; //for android studio

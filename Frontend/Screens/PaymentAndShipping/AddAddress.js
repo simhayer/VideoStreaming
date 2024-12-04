@@ -60,6 +60,16 @@ export default function AddAddress({route}) {
     }
   }, [address]);
 
+  const handleAddressSheetOpen = () => {
+    // Ensure the AddressSheet is closed before reopening
+    setAddressSheetVisible(false);
+
+    // Delay opening to ensure state reset completes
+    setTimeout(() => {
+      setAddressSheetVisible(true);
+    }, 50); // Adjust delay if necessary
+  };
+
   return (
     <StripeProvider
       publishableKey={stripePublishableKey}
@@ -100,9 +110,7 @@ export default function AddAddress({route}) {
                 Current shipping address
               </Text>
               <TouchableOpacity
-                onPress={() => {
-                  setAddressSheetVisible(true);
-                }}
+                onPress={handleAddressSheetOpen}
                 style={{
                   marginTop: 15,
                   borderTopWidth: 1,
@@ -190,6 +198,7 @@ export default function AddAddress({route}) {
                 componentBorder: '#808080',
                 componentText: '#000000',
                 background: '#ffffff',
+                icon: '#000000',
               },
             }}
             defaultValues={{
