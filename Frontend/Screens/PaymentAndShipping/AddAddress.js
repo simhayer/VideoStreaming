@@ -13,8 +13,6 @@ import {
   View,
 } from 'react-native';
 import {
-  baseURL,
-  apiEndpoints,
   stripePublishableKey,
   appPink,
   colors,
@@ -29,6 +27,7 @@ const calculatedFontSize = screenHeight * 0.05;
 
 export default function AddAddress({route}) {
   //const {address} = route.params;
+  const {prevScreen} = route.params;
   const navigation = useNavigation();
   const [addressSheetVisible, setAddressSheetVisible] = useState(false);
   const dispatch = useDispatch();
@@ -56,8 +55,10 @@ export default function AddAddress({route}) {
 
     dispatch(updateUserAddress(payload));
 
-    //navigation.navigate('AddPaymentOrShipping');
-    navigation.goBack();
+    setTimeout(() => {
+      navigation.goBack()
+  }, 300);
+
   };
 
   useEffect(() => {
