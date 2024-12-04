@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import {ScrollView} from 'react-native-gesture-handler';
+import ImageViewing from 'react-native-image-viewing';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -29,6 +30,8 @@ const ViewListingBuyer = ({route}) => {
 
   const showQuantity = listing.quantity <= 30;
   const outOfStock = listing.quantity <= 0;
+
+  const [isImageViewerVisible, setImageViewerVisible] = useState(false);
 
   //console.log('Route params:', route.params);
   const navigation = useNavigation();
@@ -67,27 +70,31 @@ const ViewListingBuyer = ({route}) => {
 
         {/* Image Section */}
         <View style={{marginHorizontal: 10}}>
-          <View
-            style={{
-              borderWidth: 1,
-              width: '100%',
-              borderColor: 'rgba(0, 0, 0, 0.1)',
-              borderRadius: 12,
-              marginBottom: 12,
-              shadowColor: '#000',
-              shadowOffset: {width: 0, height: 2},
-              shadowOpacity: 0.1,
-              shadowRadius: 4,
-              overflow: 'hidden',
-              padding: 20,
-              aspectRatio: 1.5, // Maintain proportional image height
-            }}>
-            <FastImage
-              source={{uri: itemImageUrl}}
-              style={{width: '100%', height: '100%'}}
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          </View>
+          <TouchableOpacity
+            onPress={() => setImageViewerVisible(true)} // Open the image viewer
+          >
+            <View
+              style={{
+                borderWidth: 1,
+                width: '100%',
+                borderColor: 'rgba(0, 0, 0, 0.1)',
+                borderRadius: 12,
+                marginBottom: 12,
+                shadowColor: '#000',
+                shadowOffset: {width: 0, height: 2},
+                shadowOpacity: 0.1,
+                shadowRadius: 4,
+                overflow: 'hidden',
+                padding: 20,
+                aspectRatio: 1.5,
+              }}>
+              <FastImage
+                source={{uri: itemImageUrl}}
+                style={{width: '100%', height: '100%'}}
+                resizeMode={FastImage.resizeMode.contain}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
 
         {/* Details Section */}
@@ -252,6 +259,15 @@ const ViewListingBuyer = ({route}) => {
             </View>
           </View>
         </View>
+
+        {/* Image Viewer Modal */}
+        <ImageViewing
+          images={[{uri: itemImageUrl}]}
+          imageIndex={0}
+          backgroundColor="transparent"
+          visible={isImageViewerVisible}
+          onRequestClose={() => setImageViewerVisible(false)}
+        />
       </ScrollView>
     </SafeAreaView>
   );

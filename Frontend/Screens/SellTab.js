@@ -33,6 +33,8 @@ const StartStreamTab = () => {
   const dispatch = useDispatch();
   const {isOnboardingChecked} = useSelector(state => state.NonPersistSlice);
 
+  const [onboardingCheckError, setOnboardingCheckError] = useState(false);
+
   const startStream = async () => {
     console.log('Starting stream...');
     var onboarding = checkStripeOnboarding();
@@ -51,44 +53,48 @@ const StartStreamTab = () => {
     if (isOnboardingChecked) {
       return;
     }
+
+    setOnboardingCheckError(false);
     setLoading(true); // Start loading
     const payload = {
       email: userEmail,
     };
 
-    const response = await axios
-      .post(
+    try {
+      const response = await axios.post(
         baseURL + apiEndpoints.checkStripeConnectedAccountOnboardingComplete,
         payload,
-      )
-      .catch(error => {
-        console.error('Error checking onboarding:', error);
-      });
+      );
 
-    const {success, accountId} = response.data;
+      const {success, accountId} = response.data;
 
-    console.log('Result:', success);
-    console.log('Account ID:', accountId);
+      console.log('Result:', success);
+      console.log('Account ID:', accountId);
 
-    setLoading(false);
+      setLoading(false);
 
-    if (success) {
-      dispatch(setOnboardingChecked());
-      console.log('isSeller:', isSeller);
-      if (!isSeller) {
-        console.log('Setting isSeller to true');
-        dispatch(setIsSellerTrue());
+      if (success) {
+        dispatch(setOnboardingChecked());
+        console.log('isSeller:', isSeller);
+        if (!isSeller) {
+          console.log('Setting isSeller to true');
+          dispatch(setIsSellerTrue());
+        }
       }
+      if (!success) {
+        navigation.reset({
+          index: 1,
+          routes: [{name: 'TabControl'}, {name: 'ContinueOnboarding'}],
+        });
+
+        return false;
+      }
+    } catch (error) {
+      console.error('Error checking onboarding:', error);
+      setOnboardingCheckError(true);
+      setLoading(false);
     }
 
-    if (!success) {
-      navigation.reset({
-        index: 1,
-        routes: [{name: 'TabControl'}, {name: 'ContinueOnboarding'}],
-      });
-
-      return false;
-    }
     return true;
   };
 
@@ -131,6 +137,43 @@ const StartStreamTab = () => {
     };
   };
 
+  if (loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <ActivityIndicator size="large" color={appPink} />
+        <Text
+          style={{
+            marginTop: 10,
+            color: 'black',
+            fontSize: calculatedFontSize / 2.5,
+          }}>
+          Checking Onboarding Status...
+        </Text>
+      </View>
+    );
+  }
+
+  if (onboardingCheckError) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text
+          style={{
+            color: 'black',
+            fontSize: calculatedFontSize / 2.5,
+            marginHorizontal: 30,
+            textAlign: 'center',
+          }}>
+          Error checking onboarding status. Please try again later.
+        </Text>
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -140,7 +183,7 @@ const StartStreamTab = () => {
         backgroundColor: colors.background,
         paddingHorizontal: 7, // Added padding for consistent spacing
       }}>
-      {loading ? (
+      {/* {loading ? (
         <View
           style={{
             flex: 1,
@@ -157,165 +200,165 @@ const StartStreamTab = () => {
             Checking Onboarding Status...
           </Text>
         </View>
-      ) : (
-        <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
-          {/* Dashboard Title */}
-          <Text
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2,
-              marginTop: 20,
-            }}>
-            Sellers Dashboard
-          </Text>
+      ) : ( */}
+      <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
+        {/* Dashboard Title */}
+        <Text
+          style={{
+            color: 'black',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2,
+            marginTop: 20,
+          }}>
+          Sellers Dashboard
+        </Text>
 
-          {/* Button Grid Section */}
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 20,
-              width: '90%',
-              flex: 1,
-            }}>
-            <TouchableOpacity
-              style={[styles.button, {flex: 1, marginRight: 8}]}
-              onPress={() => navigation.navigate('ManageProducts')}
-              activeOpacity={0.8}>
-              <View style={{alignItems: 'center'}}>
-                <Icon name="cube-outline" size={30} color="black" />
-                <Text style={styles.buttonText}>Manage Products</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[styles.button, {flex: 1, marginLeft: 8}]}
-              onPress={() => navigation.navigate('ManageListings')}
-              activeOpacity={0.8}>
-              <View style={{alignItems: 'center'}}>
-                <Icon name="albums-outline" size={30} color="black" />
-                <Text style={styles.buttonText}>Listings</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 15,
-              width: '90%',
-              flex: 1,
-            }}>
-            <TouchableOpacity
-              style={[styles.button, {flex: 1, marginRight: 8}]}
-              onPress={() => navigation.navigate('SellerOrdersNew')}
-              activeOpacity={0.8}>
-              <View style={{alignItems: 'center'}}>
-                <Icon name="cart-outline" size={30} color="black" />
-                <Text style={styles.buttonText}>Orders (Selling)</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, {flex: 1, marginLeft: 8}]}
-              onPress={viewDashboard}
-              activeOpacity={0.8}>
-              <View style={{alignItems: 'center'}}>
-                <Icon name="cash-outline" size={30} color="black" />
-                <Text style={styles.buttonText}>Payments Dashboard</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 15,
-              width: '90%',
-              flex: 1,
-            }}>
-            <TouchableOpacity
-              style={[styles.button, {flex: 1, marginRight: 8}]}
-              onPress={() => navigation.navigate('GetStartedSellRules')}
-              activeOpacity={0.8}>
-              <View style={{alignItems: 'center'}}>
-                <Icon name="alert-circle-outline" size={30} color="black" />
-                <Text style={styles.buttonText}>Rules & Guidelines</Text>
-              </View>
-            </TouchableOpacity>
-
-            <View
-              style={[
-                styles.button,
-                {flex: 1, marginLeft: 8, borderWidth: 0},
-              ]}></View>
-          </View>
-
-          {/* Spacer to push the button down */}
-          <View style={{flex: 1}} />
-
-          {/* Start Selling Button */}
+        {/* Button Grid Section */}
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 20,
+            width: '90%',
+            flex: 1,
+          }}>
           <TouchableOpacity
-            onPress={startStream}
-            style={{
-              paddingVertical: 16,
-              width: '60%',
-              backgroundColor: appPink,
-              borderRadius: 30,
-              shadowColor: '#000',
-              shadowOffset: {width: 0, height: 2},
-              shadowOpacity: 0.2,
-              shadowRadius: 5,
-              marginBottom: 40,
-              alignItems: 'center',
-            }}
+            style={[styles.button, {flex: 1, marginRight: 8}]}
+            onPress={() => navigation.navigate('ManageProducts')}
             activeOpacity={0.8}>
-            <Text
-              style={{
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: calculatedFontSize / 2.5,
-              }}>
-              Start Selling
-            </Text>
+            <View style={{alignItems: 'center'}}>
+              <Icon name="cube-outline" size={30} color="black" />
+              <Text style={styles.buttonText}>Manage Products</Text>
+            </View>
           </TouchableOpacity>
 
-          <Text
-            style={{
-              color: 'black',
-              fontSize: calculatedFontSize / 2.8,
-              marginBottom: 10,
-            }}>
-            Want to schedule a session for later?
-          </Text>
           <TouchableOpacity
-            onPress={scheduleStream}
-            style={{
-              paddingVertical: 16,
-              width: '60%',
-              backgroundColor: appPink,
-              borderRadius: 30,
-              shadowColor: '#000',
-              shadowOffset: {width: 0, height: 2},
-              shadowOpacity: 0.2,
-              shadowRadius: 5,
-              marginBottom: 40,
-              alignItems: 'center',
-            }}
+            style={[styles.button, {flex: 1, marginLeft: 8}]}
+            onPress={() => navigation.navigate('ManageListings')}
             activeOpacity={0.8}>
-            <Text
-              style={{
-                color: 'white',
-                fontWeight: 'bold',
-                fontSize: calculatedFontSize / 2.5,
-              }}>
-              Schedule Live Stream
-            </Text>
+            <View style={{alignItems: 'center'}}>
+              <Icon name="albums-outline" size={30} color="black" />
+              <Text style={styles.buttonText}>Listings</Text>
+            </View>
           </TouchableOpacity>
         </View>
-      )}
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 15,
+            width: '90%',
+            flex: 1,
+          }}>
+          <TouchableOpacity
+            style={[styles.button, {flex: 1, marginRight: 8}]}
+            onPress={() => navigation.navigate('SellerOrdersNew')}
+            activeOpacity={0.8}>
+            <View style={{alignItems: 'center'}}>
+              <Icon name="cart-outline" size={30} color="black" />
+              <Text style={styles.buttonText}>Orders (Selling)</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, {flex: 1, marginLeft: 8}]}
+            onPress={viewDashboard}
+            activeOpacity={0.8}>
+            <View style={{alignItems: 'center'}}>
+              <Icon name="cash-outline" size={30} color="black" />
+              <Text style={styles.buttonText}>Payments Dashboard</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 15,
+            width: '90%',
+            flex: 1,
+          }}>
+          <TouchableOpacity
+            style={[styles.button, {flex: 1, marginRight: 8}]}
+            onPress={() => navigation.navigate('GetStartedSellRules')}
+            activeOpacity={0.8}>
+            <View style={{alignItems: 'center'}}>
+              <Icon name="alert-circle-outline" size={30} color="black" />
+              <Text style={styles.buttonText}>Rules & Guidelines</Text>
+            </View>
+          </TouchableOpacity>
+
+          <View
+            style={[
+              styles.button,
+              {flex: 1, marginLeft: 8, borderWidth: 0},
+            ]}></View>
+        </View>
+
+        {/* Spacer to push the button down */}
+        <View style={{flex: 1}} />
+
+        {/* Start Selling Button */}
+        <TouchableOpacity
+          onPress={startStream}
+          style={{
+            paddingVertical: 16,
+            width: '60%',
+            backgroundColor: appPink,
+            borderRadius: 30,
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.2,
+            shadowRadius: 5,
+            marginBottom: 40,
+            alignItems: 'center',
+          }}
+          activeOpacity={0.8}>
+          <Text
+            style={{
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.5,
+            }}>
+            Start Selling
+          </Text>
+        </TouchableOpacity>
+
+        <Text
+          style={{
+            color: 'black',
+            fontSize: calculatedFontSize / 2.8,
+            marginBottom: 10,
+          }}>
+          Want to schedule a session for later?
+        </Text>
+        <TouchableOpacity
+          onPress={scheduleStream}
+          style={{
+            paddingVertical: 16,
+            width: '60%',
+            backgroundColor: appPink,
+            borderRadius: 30,
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.2,
+            shadowRadius: 5,
+            marginBottom: 40,
+            alignItems: 'center',
+          }}
+          activeOpacity={0.8}>
+          <Text
+            style={{
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.5,
+            }}>
+            Schedule Live Stream
+          </Text>
+        </TouchableOpacity>
+      </View>
+      {/* )} */}
     </SafeAreaView>
   );
 };

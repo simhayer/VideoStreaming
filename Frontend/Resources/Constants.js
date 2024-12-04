@@ -91,8 +91,13 @@ export const colors = {
   blackContent: 'black',
 };
 
+//test key
+// export const stripePublishableKey =
+//   'pk_test_51PqQlpD4UkX571U3JIaxfkmVEVWLFA7OVrDB2zeyn2jiS5HScEiO8sCGeMZ9S06g2tF0r7tRZiL49A4p6DYD6Jg300nCoKfNXY';
+
+//live key
 export const stripePublishableKey =
-  'pk_test_51PqQlpD4UkX571U3JIaxfkmVEVWLFA7OVrDB2zeyn2jiS5HScEiO8sCGeMZ9S06g2tF0r7tRZiL49A4p6DYD6Jg300nCoKfNXY';
+  'pk_live_51PqQlpD4UkX571U3cMfKXqOoy0R3C2Ko7886zA2NgGu2X9rCDyiwxhfYJds7lV6JTkBGkJOfF5VF8CJ0VBbhgYrv00ujP1Q17h';
 
 export const productTypes = [
   'Clothing',
