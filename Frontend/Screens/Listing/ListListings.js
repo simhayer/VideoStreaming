@@ -167,8 +167,8 @@ const ListListings = () => {
   };
 
   const ListingItem = React.memo(({item, profilePictureURL}) => {
+    if (item.product == null) return null;
     const [imageLoaded, setImageLoaded] = useState(false);
-    const profilePictureFilename = item.user.profilePicture.split('/').pop();
     const thumbnailUri = `${baseURL}/${item.product.imageUrl}`;
 
     return (
@@ -200,7 +200,6 @@ const ListListings = () => {
           style={{
             fontSize: calculatedFontSize / 2.8,
             color: colors.black,
-            fontWeight: 'bold',
             marginVertical: 1,
           }}
           numberOfLines={2}

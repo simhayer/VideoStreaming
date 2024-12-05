@@ -59,7 +59,7 @@ const SubmitListing = ({route}) => {
         });
 
       if (response?.status === 200) {
-        navigation.goBack();
+        navigation.navigate('Sell');
       }
     } catch (error) {
       console.error('Error submitting listing:', error);

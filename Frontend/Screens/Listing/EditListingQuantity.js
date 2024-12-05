@@ -17,15 +17,12 @@ import {
   colors,
 } from '../../Resources/Constants';
 import axios from 'axios';
-import {markOrderShippedAction} from '../../Redux/Features/OrdersSlice';
-import {useDispatch} from 'react-redux';
 
 const EditListingQuantity = ({route}) => {
   const {listing} = route.params;
   const [quantity, setQuantity] = useState('');
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
 
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
