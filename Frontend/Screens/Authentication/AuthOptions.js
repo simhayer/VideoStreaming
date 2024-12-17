@@ -22,9 +22,10 @@ import AuthBottomSheetStack from './AuthBottomSheet';
 import axios from 'axios';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
+const screenHeight = Dimensions.get('window').height;
+const calculatedFontSize = screenHeight * 0.05;
+
 const AuthOptions = () => {
-  const screenHeight = Dimensions.get('window').height;
-  const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
   const [clientIds, setClientIds] = useState({});
 
@@ -164,7 +165,7 @@ const AuthOptions = () => {
                 key={index}
                 style={{
                   opacity: animatedBars[index],
-                  fontSize: 40,
+                  fontSize: calculatedFontSize/1.1,
                   color: 'black',
                   fontWeight: 'bold',
                 }}>
@@ -222,14 +223,15 @@ const AuthOptions = () => {
 
 const styles = StyleSheet.create({
   animatedLetter: {
-    fontSize: 40,
+    fontSize:calculatedFontSize/1.1,
     color: appPink,
     fontWeight: 'bold',
   },
   description: {
     color: 'black',
     textAlign: 'center',
-    fontSize: 14,
+    fontSize:calculatedFontSize/2.8
+
   },
   footer: {
     flex: 2,

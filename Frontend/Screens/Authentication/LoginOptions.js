@@ -24,10 +24,11 @@ import {useDispatch} from 'react-redux';
 import {appleLogin, googleLogin} from '../../Redux/Features/AuthSlice';
 import appleAuth from '@invertase/react-native-apple-authentication';
 
+const screenHeight = Dimensions.get('window').height;
+  const calculatedFontSize = screenHeight * 0.05;
+
 const LoginOptions = ({route}) => {
   clientIds = route.params;
-  const screenHeight = Dimensions.get('window').height;
-  const calculatedFontSize = screenHeight * 0.05;
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [googleSignInLoading, setGoogleSignInLoading] = useState(false);

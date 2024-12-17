@@ -5,9 +5,13 @@ import {
   View,
   StyleSheet,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../../Resources/Constants';
+
+const screenHeight = Dimensions.get('window').height;
+const calculatedFontSize = screenHeight * 0.05;
 
 const AuthButton = ({iconName, text, onPress, loading}) => {
   if (loading) {
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize:calculatedFontSize/2.2,
     flex: 1,
     textAlign: 'center',
   },

@@ -87,7 +87,7 @@ const ListListings = () => {
   useFocusEffect(
     useCallback(() => {
       const currentTime = Date.now();
-      const MIN_TRIGGER_INTERVAL = 50000;
+      const MIN_TRIGGER_INTERVAL = 100000;
 
       if (isFirstLoad) {
         showList();
@@ -198,7 +198,7 @@ const ListListings = () => {
         </TouchableOpacity>
         <Text
           style={{
-            fontSize: calculatedFontSize / 2.8,
+            fontSize: calculatedFontSize / 3.1,
             color: colors.black,
             marginVertical: 1,
           }}
@@ -413,6 +413,7 @@ const styles = StyleSheet.create({
   scrollView: {
     flexGrow: 1,
     paddingHorizontal: '3%',
+    paddingBottom: 20
   },
   buttonContainer: {
     width: '100%',
