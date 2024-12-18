@@ -549,7 +549,7 @@ const VideoScreen = ({route}) => {
                   elevation: 5,
                 }}>
                 {/* Live: {watchers} */}
-                Live: 38
+                {/* Live: 38 */}
               </Text>
               <TouchableOpacity
                 style={{
@@ -585,7 +585,7 @@ const VideoScreen = ({route}) => {
               style={{
                 width: '70%',
                 marginLeft: '5%',
-                flex: 1,
+                flex: 2,
                 marginBottom: 10,
               }}>
               <MaskedView
@@ -680,7 +680,7 @@ const VideoScreen = ({route}) => {
                 />
               </MaskedView>
             </View>
-            <KeyboardAvoidingView
+            <KeyboardAvoidingView 
               behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
               keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset for iOS if needed
             >
@@ -752,14 +752,12 @@ const VideoScreen = ({route}) => {
             </KeyboardAvoidingView>
             <View
               style={{
-                minHeight: '4%',
-                justifyContent: 'center',
                 marginHorizontal: 10,
+                flex:0.3
               }}>
               {isTimerRunning && (
                 <View
                   style={{
-                    flex: 1,
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
@@ -770,10 +768,10 @@ const VideoScreen = ({route}) => {
                         item: bidItem,
                       })
                     }
-                    style={{maxWidth: '60%', marginLeft: 20}}>
+                    style={{maxWidth: '60%', marginLeft: 10, marginTop:10}}>
                     <Text
                       style={{
-                        fontSize: calculatedFontSize / 2.5,
+                        fontSize: calculatedFontSize / 2.9,
                         fontWeight: 'bold',
                         color: colors.white,
                         textShadowColor: '#000', // Shadow color
@@ -788,7 +786,7 @@ const VideoScreen = ({route}) => {
                   <Text
                     style={{
                       color: colors.white,
-                      fontSize: calculatedFontSize / 1.4,
+                      fontSize: calculatedFontSize / 1.6,
                       textShadowColor: '#000', // Shadow color
                       textShadowOffset: {width: 1, height: 1}, // Shadow offset
                       textShadowRadius: 3, // Shadow blur
@@ -804,7 +802,7 @@ const VideoScreen = ({route}) => {
                 width: '96%',
                 justifyContent: 'flex-end',
                 flexDirection: 'row',
-                marginBottom: 50,
+                marginBottom: 30,
               }}>
               {isTimerRunning && (
                 <Text

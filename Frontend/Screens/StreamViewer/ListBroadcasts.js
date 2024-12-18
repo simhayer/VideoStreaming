@@ -213,14 +213,14 @@ const ListBroadcasts = ({search, hasSearched}) => {
                   fontWeight: 'bold',
                   fontSize: calculatedFontSize / 2.9,
                 }}>
-                Live - 0
+                Live - {item.watchers}
               </Text>
             </View>
           </FastImage>
         </TouchableOpacity>
         <Text
           style={{
-            fontSize: calculatedFontSize / 2.8,
+            fontSize: calculatedFontSize / 3.1,
             color: colors.black,
             fontWeight: 'bold',
             marginVertical: 1,

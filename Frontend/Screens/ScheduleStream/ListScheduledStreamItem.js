@@ -114,7 +114,7 @@ const ListScheduledStreamItem = ({item, profilePictureURL}) => {
       </TouchableOpacity>
       <Text
         style={{
-          fontSize: calculatedFontSize / 2.8,
+          fontSize: calculatedFontSize / 3.1,
           color: colors.black,
           fontWeight: 'bold',
           marginVertical: 1,

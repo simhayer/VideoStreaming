@@ -57,15 +57,19 @@ android {
         applicationId "com.hayersimrat.bars"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
+        versionCode 4
         versionName "1.1"
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            // storeFile file('debug.keystore')
+            // storePassword 'android'
+            // keyAlias 'androiddebugkey'
+            // keyPassword 'android'
+            storeFile file('upload1-keystore.jks')
+            storePassword 'barsshopping'
+            keyAlias 'upload1'
+            keyPassword 'barsshopping'
         }
         release{
             storeFile file('upload1-keystore.jks')
