@@ -121,7 +121,7 @@ const ListScheduledStreamItem = ({item, profilePictureURL}) => {
         }}
         numberOfLines={2}
         ellipsizeMode="tail">
-        {item.title.toUpperCase()}
+        {item.title}
       </Text>
     </View>
   );

@@ -227,7 +227,7 @@ const ListBroadcasts = ({search, hasSearched}) => {
           }}
           numberOfLines={2}
           ellipsizeMode="tail">
-          {item.title.toUpperCase()}
+          {item.title}
         </Text>
       </View>
     );
