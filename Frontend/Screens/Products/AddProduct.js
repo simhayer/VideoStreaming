@@ -1,4 +1,4 @@
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {
   ActivityIndicator,
@@ -285,7 +285,7 @@ const AddProduct = () => {
                 placeholderTextColor={'gray'}
                 returnKeyType="next"
                 textContentType="name"
-                maxLength={30}
+                maxLength={40}
                 selectionColor={appPink}
                 inputMode="text"
                 onSubmitEditing={onNameNextClick}

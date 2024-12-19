@@ -69,11 +69,15 @@ export default function AddPaymentOrShipping() {
       merchantIdentifier="merchant.identifier" // required for Apple Pay
       urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
     >
-      <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
+      <SafeAreaView
+        style={{flex: 1, backgroundColor: colors.background, paddingTop: 20}}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="chevron-back" size={35} color="black" />
+        </TouchableOpacity>
         <View
           style={{
             alignItems: 'center',
-            marginTop: '10%',
+            marginTop: '5%',
             marginHorizontal: '5%',
           }}>
           <Text

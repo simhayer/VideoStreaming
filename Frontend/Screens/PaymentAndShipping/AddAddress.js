@@ -76,17 +76,12 @@ export default function AddAddress({route}) {
       merchantIdentifier="merchant.identifier" // required for Apple Pay
       urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
     >
-      <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
+      <SafeAreaView
+        style={{flex: 1, backgroundColor: colors.background, paddingTop: 20}}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="chevron-back" size={35} color="black" />
+        </TouchableOpacity>
         <View style={{alignItems: 'center', marginTop: '10%'}}>
-          <Text
-            style={{
-              color: 'black',
-              fontWeight: 'bold',
-              textAlign: 'center',
-              fontSize: calculatedFontSize / 2.7,
-            }}>
-            Shipping Address
-          </Text>
           <Text
             style={{
               textAlign: 'center',
@@ -103,9 +98,10 @@ export default function AddAddress({route}) {
               }}>
               <Text
                 style={{
-                  fontSize: calculatedFontSize / 2.8,
+                  fontSize: calculatedFontSize / 2.9,
                   color: 'black',
                   marginLeft: 10,
+                  fontWeight:'600'
                 }}>
                 Current shipping address
               </Text>
