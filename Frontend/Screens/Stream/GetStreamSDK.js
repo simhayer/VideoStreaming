@@ -199,7 +199,7 @@ const GetStreamSDK = ({route}) => {
     return () => {
       console.log('Cleaning up call...');
       call
-        .leave()
+        .endCall()
         .then(() => console.log('Call left successfully'))
         .catch(() => console.error('Failed to leave the call'));
       setMyCall(undefined);

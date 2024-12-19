@@ -163,10 +163,23 @@ const VideoScreen = ({route}) => {
       });
       setMyClient(client); // Set client in state
 
-      // Create and join the call
-      const call = client.call('livestream', callId);
-      // await call.join();
-      await call.join({
+    } catch (error) {
+      console.error('Error creating stream user or joining call:', error);
+      console.log(
+        'Error creating stream user or joining call:',
+        error.response.data.error,
+      );
+      setStreamError(true);
+    }
+  };
+
+  useEffect(() => {
+      if (!myClient || !callId) return;
+  
+      console.log('Initializing call...');
+      const call = myClient.call('livestream', callId);
+  
+      call.join({
         create: false,
         data: {
           settings_override: {
@@ -186,17 +199,26 @@ const VideoScreen = ({route}) => {
             },
           },
         },
-      });
-      setMyCall(call);
-    } catch (error) {
-      console.error('Error creating stream user or joining call:', error);
-      console.log(
-        'Error creating stream user or joining call:',
-        error.response.data.error,
-      );
-      setStreamError(true);
-    }
-  };
+      })
+        .then(() => {
+          console.log('Call joined successfully');
+          setMyCall(call);
+        })
+        .catch(error => {
+          setStreamError(true);
+          console.error('Failed to join the call:', error);
+        });
+  
+      return () => {
+        console.log('Cleaning up call...');
+        call
+          .leave()
+          .then(() => console.log('Call left successfully'))
+          .catch(() => console.error('Failed to leave the call'));
+          socket.disconnect();
+        setMyCall(undefined);
+      };
+    }, [myClient, callId]);
 
   const closeStream = () => {
     navigation.goBack();

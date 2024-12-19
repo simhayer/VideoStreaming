@@ -78,7 +78,7 @@ const CustomLivestreamLayout = () => {
               fontSize: calculatedFontSize / 2.5,
               zIndex: 10,
             }}>
-            Live: {participantCount}
+            Live: {participantCount - 2}
           </Text>
         </View>
         <View style={styles.video}>
