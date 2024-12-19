@@ -1,4 +1,3 @@
-import {StripeProvider, useStripe} from '@stripe/stripe-react-native';
 import {useCallback, useState} from 'react';
 import {
   Dimensions,
@@ -10,7 +9,6 @@ import {
 import {
   baseURL,
   apiEndpoints,
-  stripePublishableKey,
   appPink,
   colors,
 } from '../../Resources/Constants';
@@ -64,11 +62,6 @@ export default function AddPaymentOrShipping() {
   );
 
   return (
-    <StripeProvider
-      publishableKey={stripePublishableKey}
-      merchantIdentifier="merchant.identifier" // required for Apple Pay
-      urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
-    >
       <SafeAreaView
         style={{flex: 1, backgroundColor: colors.background, paddingTop: 20}}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -85,7 +78,7 @@ export default function AddPaymentOrShipping() {
               color: 'black',
               fontWeight: 'bold',
               textAlign: 'center',
-              fontSize: calculatedFontSize / 2.7,
+              fontSize: calculatedFontSize / 2.8,
             }}>
             We need the following information to process for you to start
             bidding
@@ -179,6 +172,5 @@ export default function AddPaymentOrShipping() {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
-    </StripeProvider>
   );
 }
