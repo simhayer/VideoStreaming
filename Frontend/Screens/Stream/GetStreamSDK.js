@@ -44,6 +44,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import {fetchProducts} from '../../Redux/Features/ProductsSlice';
 import FastImage from 'react-native-fast-image';
+import inCallManager from 'react-native-incall-manager';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -73,8 +74,6 @@ const GetStreamSDK = ({route}) => {
   const [streamError, setStreamError] = useState(false);
   const {items} = useSelector(state => state.products);
   const navigation = useNavigation();
-
-  const [meetingId, setMeetingId] = useState(null);
 
   const [myClient, setMyClient] = useState(null);
   const [myCall, setMyCall] = useState(null);
@@ -161,8 +160,23 @@ const GetStreamSDK = ({route}) => {
       setMyClient(client);
 
       console.log('Socket ID:', socketId);
-      const call = client.call('livestream', socketId);
-      await call.join({
+    } catch (error) {
+      console.error(
+        'Error creating stream user or joining call:',
+        error.response.data ?? error,
+      );
+      setStreamError(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!myClient || !socketId) return;
+
+    console.log('Initializing call...');
+    const call = myClient.call('livestream', socketId);
+
+    call
+      .join({
         create: true,
         data: {
           settings_override: {
@@ -173,17 +187,24 @@ const GetStreamSDK = ({route}) => {
             },
           },
         },
+      })
+      .then(() => {
+        console.log('Call joined successfully');
+        setMyCall(call);
+      })
+      .catch(error => {
+        console.error('Failed to join the call:', error);
       });
-      //await call.join({create: true});
-      setMyCall(call);
-    } catch (error) {
-      console.error(
-        'Error creating stream user or joining call:',
-        error.response.data ?? error,
-      );
-      setStreamError(true);
-    }
-  };
+
+    return () => {
+      console.log('Cleaning up call...');
+      call
+        .leave()
+        .then(() => console.log('Call left successfully'))
+        .catch(() => console.error('Failed to leave the call'));
+      setMyCall(undefined);
+    };
+  }, [myClient, socketId]);
 
   const initializeMeeting = async () => {
     createStreamUser();
@@ -198,7 +219,6 @@ const GetStreamSDK = ({route}) => {
     formData.append('username', username);
     formData.append('profilePicture', profilePicture);
     formData.append('title', title || 'Untitled');
-    formData.append('meetingId', meetingId);
 
     // Check if a thumbnail is selected
     if (thumbnail) {
@@ -265,18 +285,20 @@ const GetStreamSDK = ({route}) => {
     };
   });
 
-  const closeStream = () => {
-    myCall?.endCall();
-    socket.current.disconnect();
+  const closeStream = async () => {
+    inCallManager.stop();
+    await myCall?.endCall();
+    await socket.current.disconnect();
     navigation.goBack();
   };
 
   useFocusEffect(
     useCallback(() => {
       // Handle back button press on Android
-      const onBackPress = () => {
-        closeStream();
-        navigation.goBack();
+      const onBackPress = async () => {
+        console.log('Back pressed');
+        await closeStream();
+        //navigation.goBack();
         return true;
       };
 
@@ -476,7 +498,6 @@ const GetStreamSDK = ({route}) => {
                 <View style={{flex: 1}} />
                 <View
                   style={{
-                    width: '60%',
                     marginLeft: '3%',
                     flex: 1.2,
                   }}>
@@ -504,30 +525,32 @@ const GetStreamSDK = ({route}) => {
                             style={{
                               flex: 1,
                               height: '20%',
+                              width: '70%',
                             }}>
                             <View
                               style={{
-                                width: '90%',
                                 flexDirection: 'row',
                                 alignItems: 'center',
                                 marginBottom: '2%',
                               }}>
-                              <Image
+                              <FastImage
                                 source={{uri: profilePictureURL}}
                                 style={{
-                                  width: '15%',
-                                  height: '80%',
+                                  width: 30,
+                                  height: 30,
                                   borderRadius: 15,
-                                  marginRight: '4%',
+                                  marginRight: '5%',
                                   marginLeft: '5%',
-                                  marginBottom: '2%',
+                                  marginTop: '3%',
+                                  alignSelf: 'flex-start',
                                 }}
+                                resizeMode={FastImage.resizeMode.cover}
                               />
                               <View>
                                 <Text
                                   style={{
                                     color: 'white',
-                                    fontSize: calculatedFontSize / 3,
+                                    fontSize: calculatedFontSize / 3.1,
                                     textShadowColor: '#000', // Shadow color
                                     textShadowOffset: {width: 1, height: 1}, // Shadow offset
                                     textShadowRadius: 3, // Shadow blur
@@ -538,8 +561,8 @@ const GetStreamSDK = ({route}) => {
                                 <Text
                                   style={{
                                     color: 'white',
-                                    fontSize: calculatedFontSize / 3,
-                                    fontWeight: 'bold',
+                                    fontSize: calculatedFontSize / 3.1,
+                                    fontWeight: '600',
                                     textShadowColor: '#000', // Shadow color
                                     textShadowOffset: {width: 1, height: 1}, // Shadow offset
                                     textShadowRadius: 3, // Shadow blur
@@ -682,8 +705,16 @@ const GetStreamSDK = ({route}) => {
                       borderColor: appPink,
                       borderRadius: 8,
                       alignItems: 'center',
-                      justifyContent: 'center',
+                      justifyContent: 'space-between',
+                      paddingVertical: 20,
                     }}>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 2.2,
+                        color: 'black',
+                      }}>
+                      {selectedItem?.name}
+                    </Text>
                     <View
                       style={{
                         flexDirection: 'row',
@@ -692,27 +723,27 @@ const GetStreamSDK = ({route}) => {
                       }}>
                       <Text
                         style={{
-                          fontSize: calculatedFontSize / 2,
+                          fontSize: calculatedFontSize / 2.2,
+                          color: 'black',
                         }}>
-                        Highest Bid :{'     '}
+                        Highest Bid :{' '}
                       </Text>
                       <Text
                         style={{
-                          fontSize: calculatedFontSize / 1.4,
+                          fontSize: calculatedFontSize / 1.8,
+                          color: 'black',
                         }}>
                         ${curBid}
                       </Text>
                     </View>
                     <Text
                       style={{
-                        marginTop: '10%',
-                        fontSize: calculatedFontSize / 2,
+                        fontSize: calculatedFontSize / 2.2,
+                        color: 'black',
                       }}>
                       No of bids : {noOfBids}
                     </Text>
-                    <Text style={{color: 'red', marginTop: '10%'}}>
-                      {timeLeft} seconds left
-                    </Text>
+                    <Text style={{color: 'red'}}>{timeLeft} seconds left</Text>
                   </View>
                 )}
                 {!isTimerRunning && (
@@ -720,7 +751,7 @@ const GetStreamSDK = ({route}) => {
                     <Text
                       style={{
                         alignSelf: 'center',
-                        fontSize: calculatedFontSize / 2.9,
+                        fontSize: calculatedFontSize / 3,
                         color: errorRed,
                       }}>
                       Select an item to bid
@@ -772,12 +803,13 @@ const GetStreamSDK = ({route}) => {
                                     fontWeight: 'bold',
                                     textAlign: 'left',
                                     flexWrap: 'wrap',
-                                    fontSize: calculatedFontSize / 2.7,
+                                    fontSize: calculatedFontSize / 2.8,
+                                    color: 'black',
                                   }}>
                                   {item.name}
                                 </Text>
                                 <Text
-                                  style={{fontSize: calculatedFontSize / 2.9}}>
+                                  style={{fontSize: calculatedFontSize / 3}}>
                                   {item.size}
                                 </Text>
                               </View>

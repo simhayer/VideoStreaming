@@ -42,7 +42,7 @@ const LivestreamView = () => {
               fontSize: calculatedFontSize / 2.5,
               zIndex: 10,
             }}>
-            Live: {totalParticipants}
+            Live: {totalParticipants - 1}
           </Text>
         </View>
         <View style={styles.video}>

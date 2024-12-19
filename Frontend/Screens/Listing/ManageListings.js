@@ -108,6 +108,7 @@ const ManageListings = () => {
     }
 
     const payload = {
+      email: userEmail,
       listingIds: selectedItems,
     };
 

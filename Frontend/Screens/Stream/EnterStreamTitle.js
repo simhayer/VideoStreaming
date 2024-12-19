@@ -29,6 +29,11 @@ const EnterStreamTitle = ({route}) => {
       return;
     }
 
+    if(type === 'stream'){
+      navigation.navigate('SelectThumbnail', {title, type});
+      return;
+    }
+
     navigation.navigate('SelectProducts', {title, type});
   };
 

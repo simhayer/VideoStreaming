@@ -8,15 +8,13 @@ import {
   View,
 } from 'react-native';
 import {
-  apiEndpoints,
   appPink,
-  baseURL,
   colors,
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
-import axios from 'axios';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
+import { deleteProducts } from '../../Redux/Features/ProductsSlice';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -25,36 +23,30 @@ const ViewProduct = ({route}) => {
   const {item} = route.params;
 
   const {name, size, type, shippingFee} = item;
-  const itemImageUrl = `${baseURL}/${item.imageUrl}`;
 
-  //console.log('Route params:', route.params);
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
 
   const handleDeleteItem = async () => {
-    const payload = {
-      email: userEmail,
-      products: [{name, size, type, itemImageUrl}],
-    };
-
-    try {
-      const response = await axios.post(
-        baseURL + apiEndpoints.removeProductsFromUser,
-        payload,
-      );
-      if (response.status === 200) {
-        console.log('Products removed successfully:', response.data);
-      } else {
-        console.error('Failed to remove products:', response.data);
-      }
-    } catch (error) {
-      console.error('Error removing products:', error);
-    }
+    
+    dispatch(deleteProducts({email: userEmail, products: [item._id]}))
+      .unwrap()
+      .then(() => {
+        console.log('Products deleted successfully');
+      })
+      .catch(error => {
+        console.error('Failed to delete products:', error);
+      });
 
     navigation.goBack();
   };
+
+  const handleListProduct = async () =>{
+    navigation.navigate('SubmitListing', {product:item})
+  }
 
   return (
     <SafeAreaView
@@ -137,6 +129,33 @@ const ViewProduct = ({route}) => {
           Shipping Fee (CAD) : $ {shippingFee}
         </Text>
       </View>
+
+      {/* Delete Button */}
+      <TouchableOpacity
+        onPress={handleListProduct}
+        style={{
+          backgroundColor: appPink,
+          borderRadius: 30,
+          paddingVertical: 12,
+          paddingHorizontal: 40,
+          alignSelf: 'center',
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.2,
+          shadowRadius: 5,
+          elevation: 3, // Elevated button for better visibility
+          marginBottom: 30,
+        }}>
+        <Text
+          style={{
+            color: 'white',
+            textAlign: 'center',
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2.5,
+          }}>
+          List item
+        </Text>
+      </TouchableOpacity>
 
       {/* Delete Button */}
       <TouchableOpacity

@@ -17,6 +17,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {setOnboardingChecked} from '../Redux/Features/NonPersistSlice';
 import {setIsSellerTrue} from '../Redux/Features/AuthSlice';
+import { use } from 'react';
+import inCallManager from 'react-native-incall-manager';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -321,7 +323,7 @@ const StartStreamTab = () => {
               fontWeight: 'bold',
               fontSize: calculatedFontSize / 2.5,
             }}>
-            Start Selling
+            Go Live
           </Text>
         </TouchableOpacity>
 
