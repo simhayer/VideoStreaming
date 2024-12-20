@@ -285,7 +285,7 @@ const AddProduct = () => {
                 placeholderTextColor={'gray'}
                 returnKeyType="next"
                 textContentType="name"
-                maxLength={40}
+                maxLength={50}
                 selectionColor={appPink}
                 inputMode="text"
                 onSubmitEditing={onNameNextClick}

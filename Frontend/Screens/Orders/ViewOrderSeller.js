@@ -41,6 +41,7 @@ const ViewOrderSeller = ({route}) => {
   const dispatch = useDispatch();
 
   const formattedDate = new Date(order.orderDate).toISOString().split('T')[0];
+  const [showDetails, setShowDetails] = useState(false);
 
   const markOrderComplete = async () => {
     setLoading(true);
@@ -124,6 +125,82 @@ const ViewOrderSeller = ({route}) => {
       )}
     </View>
   );
+
+  const orderAmountDetails = () => {
+    return (
+      <View>
+        <View style={styles.ListItem}>
+          <Text style={styles.ListItemNameText}>Total</Text>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.ListItemValueText}>C$ {order.amount}</Text>
+            {showDetails ? (
+              <TouchableOpacity
+                style={{padding: 2}}
+                onPress={() => setShowDetails(false)}>
+                <Icon name="chevron-down" size={20} color="black" />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={{padding: 2}}
+                onPress={() => setShowDetails(true)}>
+                <Icon name="chevron-forward" size={20} color="black" />
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+        {showDetails && (
+          <View style={{}}>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+                Item Price
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2.9,
+                  minWidth: 60,
+                }}>
+                {' '}
+                $ {order.productPrice}
+              </Text>
+            </View>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+                Shipping
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2.9,
+                  minWidth: 60,
+                }}>
+                {' '}
+                $ {order.shippingFee}
+              </Text>
+            </View>
+            <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+              <Text
+                style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+                Tax
+              </Text>
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 2.9,
+                  minWidth: 60,
+                }}>
+                {' '}
+                $ {order.tax}
+              </Text>
+            </View>
+          </View>
+        )}
+      </View>
+    );
+  };
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
@@ -305,7 +382,7 @@ const ViewOrderSeller = ({route}) => {
             {renderOrderDetail('Status', orderStatus)}
             {renderOrderDetail('Order Date', formattedDate)}
             {renderOrderDetail('Payment', order.paymentMethod)}
-            {renderOrderDetail('Amount', `C$ ${order.amount}`)}
+            {orderAmountDetails()}
             {renderOrderDetail('Payout', 'Pending')}
           </View>
         </ScrollView>

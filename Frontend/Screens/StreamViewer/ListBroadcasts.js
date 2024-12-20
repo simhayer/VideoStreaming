@@ -158,7 +158,7 @@ const ListBroadcasts = ({search, hasSearched}) => {
       <View
         style={{
           width: '48%',
-          height: screenHeight * 0.35,
+          height: screenHeight * 0.32,
           marginBottom: '23%',
           marginRight: '4%',
         }}>
@@ -174,8 +174,8 @@ const ListBroadcasts = ({search, hasSearched}) => {
           />
           <Text
             style={{
-              fontSize: calculatedFontSize / 2.7,
-              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.8,
+              fontWeight: '800',
               maxWidth: '48%',
               color: colors.black,
             }}>
@@ -201,8 +201,8 @@ const ListBroadcasts = ({search, hasSearched}) => {
             <View
               style={{
                 backgroundColor: 'red',
-                paddingHorizontal: 8,
-                paddingVertical: 4,
+                paddingHorizontal: 10,
+                paddingVertical: 3,
                 borderRadius: 5,
                 alignSelf: 'flex-start',
                 margin: 8,
@@ -211,18 +211,19 @@ const ListBroadcasts = ({search, hasSearched}) => {
                 style={{
                   color: 'white',
                   fontWeight: 'bold',
-                  fontSize: calculatedFontSize / 2.9,
+                  fontSize: calculatedFontSize / 3.1,
+                  textAlign: 'center',
                 }}>
-                Live - {item.watchers}
+                Live • {item.watchers} 
               </Text>
             </View>
           </FastImage>
         </TouchableOpacity>
         <Text
           style={{
-            fontSize: calculatedFontSize / 3.1,
+            fontSize: calculatedFontSize / 2.9,
             color: colors.black,
-            fontWeight: 'bold',
+            fontWeight: '700',
             marginVertical: 1,
           }}
           numberOfLines={2}
@@ -252,10 +253,10 @@ const ListBroadcasts = ({search, hasSearched}) => {
             margin: 10,
           }}>
           <View
-            style={{width: '48%', height: screenHeight * 0.35, borderRadius: 7}}
+            style={{width: '48%', height: screenHeight * 0.32, borderRadius: 7}}
           />
           <View
-            style={{width: '48%', height: screenHeight * 0.35, borderRadius: 7}}
+            style={{width: '48%', height: screenHeight * 0.32, borderRadius: 7}}
           />
         </View>
         <View
@@ -265,10 +266,10 @@ const ListBroadcasts = ({search, hasSearched}) => {
             margin: 10,
           }}>
           <View
-            style={{width: '48%', height: screenHeight * 0.35, borderRadius: 7}}
+            style={{width: '48%', height: screenHeight * 0.32, borderRadius: 7}}
           />
           <View
-            style={{width: '48%', height: screenHeight * 0.35, borderRadius: 7}}
+            style={{width: '48%', height: screenHeight * 0.32, borderRadius: 7}}
           />
         </View>
       </SkeletonPlaceholder>
@@ -373,8 +374,8 @@ const ListBroadcasts = ({search, hasSearched}) => {
           }
           ListFooterComponent={renderFooter}
           getItemLayout={(data, index) => ({
-            length: screenHeight * 0.35, // Item height
-            offset: screenHeight * 0.35 * index,
+            length: screenHeight * 0.32, // Item height
+            offset: screenHeight * 0.32 * index,
             index,
           })}
         />
@@ -395,13 +396,13 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '4%',
+    marginBottom: '1%',
     height: '9%',
     width: '100%',
   },
   profilePicture: {
-    width: 20,
-    height: 20,
+    width: 22,
+    height: 22,
     borderRadius: 25,
     marginRight: '5%',
   },

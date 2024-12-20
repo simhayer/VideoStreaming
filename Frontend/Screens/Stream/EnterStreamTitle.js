@@ -92,7 +92,7 @@ const EnterStreamTitle = ({route}) => {
           }}
           placeholderTextColor={'gray'}
           returnKeyType="next"
-          maxLength={40}
+          maxLength={60}
           selectionColor={appPink}
           inputMode="text"
           onSubmitEditing={onNextClick}
