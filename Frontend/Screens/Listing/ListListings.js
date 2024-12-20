@@ -175,14 +175,16 @@ const ListListings = () => {
       <View
         style={{
           width: '48%',
-          aspectRatio: 1,
           marginRight: '4%',
-          marginBottom: '18%',
+          marginBottom: '4%',
         }}>
         <TouchableOpacity
           key={item._id}
           title={`Watch ${item._id}`}
-          style={styles.buttonContainer}
+          style={{
+            flex:1,
+            borderRadius: 7,
+          }}
           onPress={() =>
             handleViewListing(item, profilePictureURL, navigation)
           }>
@@ -192,15 +194,23 @@ const ListListings = () => {
                 ? {uri: thumbnailUri}
                 : require('../../Resources/StreamListThumbnailBlur.png')
             }
-            style={{width: '100%', height: '100%', borderRadius: 7}}
+            style={{
+              borderRadius: 7,
+              borderWidth: 1,
+              borderColor: 'rgba(0,0,0,0.07)',
+              aspectRatio: 1,
+              width: '100%',
+            }}
             imageStyle={{borderRadius: 7}}
-            onLoadEnd={() => setImageLoaded(true)}></FastImage>
-        </TouchableOpacity>
+            onLoadEnd={() => setImageLoaded(true)}
+          />
+        
         <Text
           style={{
             fontSize: calculatedFontSize / 3.1,
             color: colors.black,
             marginVertical: 1,
+            marginTop: 5,
           }}
           numberOfLines={2}
           ellipsizeMode="tail">
@@ -210,13 +220,14 @@ const ListListings = () => {
           style={{
             fontSize: calculatedFontSize / 2.2,
             color: colors.black,
-            fontWeight: 'bold',
+            fontWeight: '600',
             marginVertical: 1,
           }}
           numberOfLines={2}
           ellipsizeMode="tail">
           ${item.price}
         </Text>
+        </TouchableOpacity>
       </View>
     );
   });
@@ -413,15 +424,7 @@ const styles = StyleSheet.create({
   scrollView: {
     flexGrow: 1,
     paddingHorizontal: '3%',
-    paddingBottom: 20
-  },
-  buttonContainer: {
-    width: '100%',
-    height: '100%',
-    marginBottom: '2%',
-    borderRadius: 7,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingBottom: 20,
   },
   emptyContainer: {
     alignItems: 'center',

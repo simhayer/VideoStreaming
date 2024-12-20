@@ -23,7 +23,6 @@ import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import axios from 'axios';
 import {StripeProvider, useStripe} from '@stripe/stripe-react-native';
-import {set} from 'lodash';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -34,10 +33,10 @@ const Checkout = ({route}) => {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const navigation = useNavigation();
 
-  const price = listing.price;
-  const shipping = product.shippingFee;
-  const tax = price * 0.13;
-  const subTotal = price + shipping + tax;
+  const price = parseFloat((listing.price).toFixed(2));
+  const shipping = parseFloat((product.shippingFee).toFixed(2));
+  const tax = parseFloat((price * 0.13).toFixed(2));
+  const subTotal = parseFloat((price + shipping + tax).toFixed(2));
 
   const {userData} = useSelector(state => state.auth);
   const address = userData?.user?.address;
