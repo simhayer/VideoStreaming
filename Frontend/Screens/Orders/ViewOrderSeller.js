@@ -126,6 +126,66 @@ const ViewOrderSeller = ({route}) => {
     </View>
   );
 
+  const renderPaymentDetail = () => (
+    <View>
+      <View style={styles.ListItem}>
+        <Text style={styles.ListItemNameText}>Payment</Text>
+        {order.paymentStatus === 'Pending' ? (
+          <Text style={styles.ListItemValueText}>Pending</Text>
+        ) : order.paymentStatus === 'Success' ? (
+          <View
+            style={{
+              backgroundColor: 'rgba(76, 175, 80, 0.1)',
+              paddingVertical: 2,
+              paddingHorizontal: 5,
+              borderRadius: 5,
+            }}>
+            <Text
+              style={{
+                fontSize: calculatedFontSize / 2.9,
+                fontWeight: 'bold',
+                color: 'green',
+              }}>
+              SUCCESS
+            </Text>
+          </View>
+        ) : (
+          <View
+            style={{
+              backgroundColor: 'rgba(255, 0, 0, 0.1)',
+              paddingVertical: 2,
+              paddingHorizontal: 5,
+              borderRadius: 5,
+            }}>
+            <Text
+              style={{
+                fontSize: calculatedFontSize / 2.9,
+                fontWeight: 'bold',
+                color: 'red',
+              }}>
+              FAILED
+            </Text>
+          </View>
+        )}
+      </View>
+      {order.paymentStatus === 'Pending' ? (
+        <Text style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+          User payment pending, we will update the status once payment is
+          received
+        </Text>
+      ) : order.paymentStatus === 'Success' ? (
+        <Text style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+          User payment successful, please proceed with the order
+        </Text>
+      ) : (
+        <Text style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+          User payment failed, user will be notified to retry payment. Order
+          will be cancelled if payment is not received within 36 hours
+        </Text>
+      )}
+    </View>
+  );
+
   const orderAmountDetails = () => {
     return (
       <View>
@@ -381,7 +441,7 @@ const ViewOrderSeller = ({route}) => {
             </View>
             {renderOrderDetail('Status', orderStatus)}
             {renderOrderDetail('Order Date', formattedDate)}
-            {renderOrderDetail('Payment', order.paymentMethod)}
+            {renderPaymentDetail()}
             {orderAmountDetails()}
             {renderOrderDetail('Payout', 'Pending')}
           </View>

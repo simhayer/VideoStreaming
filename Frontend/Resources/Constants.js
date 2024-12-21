@@ -1,12 +1,12 @@
 //export const baseURL = 'http://10.0.2.2:3000/api'; //for android studio
 //export const baseURLNoApi = 'http://10.0.2.2:3000'; //for AWS EC2
 //export const baseURL = 'http://localhost:3000';   //for actual device
-//export const baseURL = 'http://10.0.0.134:3000/api'; //for android studio
-//export const baseURLNoApi = 'http://10.0.0.134:3000'; //for AWS EC2
+export const baseURL = 'http://10.0.0.134:3000/api'; //for android studio
+export const baseURLNoApi = 'http://10.0.0.134:3000'; //for AWS EC2
 //export const baseURL = 'http://18.116.26.56:3000'; //for AWS EC2
 //export const baseURL = 'https://thebars.duckdns.org'; //for AWS EC2
-export const baseURL = 'https://thebarss.com/api'; //for AWS EC2
-export const baseURLNoApi = 'https://thebarss.com'; //for AWS EC2
+//export const baseURL = 'https://thebarss.com/api'; //for AWS EC2
+//export const baseURLNoApi = 'https://thebarss.com'; //for AWS EC2
 
 //export const baseURL = 'http://192.162.2.118:3000'; //for android studio
 //export const baseURL = 'https://wobble-server.onrender.com'; //for android studio
@@ -65,6 +65,7 @@ export const apiEndpoints = {
   getListingsForProfile: '/auth/getListingsForProfile',
   markListingAsInactive: '/auth/markListingAsInactive',
   editListingQuantity: '/auth/editListingQuantity',
+  updateOrderForRetriedPayment: '/auth/updateOrderForRetriedPayment',
   // Add more API endpoints as needed
 };
 
@@ -92,12 +93,12 @@ export const colors = {
 };
 
 //test key
-// export const stripePublishableKey =
-//   'pk_test_51PqQlpD4UkX571U3JIaxfkmVEVWLFA7OVrDB2zeyn2jiS5HScEiO8sCGeMZ9S06g2tF0r7tRZiL49A4p6DYD6Jg300nCoKfNXY';
+export const stripePublishableKey =
+  'pk_test_51PqQlpD4UkX571U3JIaxfkmVEVWLFA7OVrDB2zeyn2jiS5HScEiO8sCGeMZ9S06g2tF0r7tRZiL49A4p6DYD6Jg300nCoKfNXY';
 
 //live key
-export const stripePublishableKey =
-  'pk_live_51PqQlpD4UkX571U3cMfKXqOoy0R3C2Ko7886zA2NgGu2X9rCDyiwxhfYJds7lV6JTkBGkJOfF5VF8CJ0VBbhgYrv00ujP1Q17h';
+// export const stripePublishableKey =
+//   'pk_live_51PqQlpD4UkX571U3cMfKXqOoy0R3C2Ko7886zA2NgGu2X9rCDyiwxhfYJds7lV6JTkBGkJOfF5VF8CJ0VBbhgYrv00ujP1Q17h';
 
 export const productTypes = [
   'Clothing',

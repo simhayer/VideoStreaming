@@ -132,7 +132,7 @@ const Checkout = ({route}) => {
         const response = await axios
           .post(baseURL + apiEndpoints.createOrder, payload)
           .catch(error => {
-            console.error('Error adding broadcast:', error);
+            console.error('Error creating order:', error);
           });
 
         const order = response.data.order;
