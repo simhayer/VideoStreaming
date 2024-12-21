@@ -478,7 +478,6 @@ const ViewOrderBuyer = ({route}) => {
                 {renderOrderDetail('Order Date', formattedDate)}
                 {renderPaymentDetail()}
                 {orderAmountDetails()}
-                {renderOrderDetail('Payout', 'Pending')}
               </View>
             </ScrollView>
           </View>
@@ -506,6 +505,11 @@ const styles = StyleSheet.create({
   ListItemValueText: {
     color: 'black',
     fontSize: calculatedFontSize / 2.4,
+  },
+  AddressText: {
+    marginTop: 3,
+    color: 'black',
+    fontSize: calculatedFontSize / 2.7,
   },
 });
 

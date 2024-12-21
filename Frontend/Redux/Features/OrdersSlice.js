@@ -116,50 +116,49 @@ const ordersSlice = createSlice({
       }
     },
     markOrderShippedAction(state, action) {
-      const {orderId} = action.payload;
+      const {orderId, trackingNumber, shippingCompany, trackingLink} =
+        action.payload;
 
-      // Find the order in the current groups and update status to shipped
-      let shippedOrder;
-      const updatedGroups = state.orders.map(statusGroup => {
-        const orderIndex = statusGroup.orders.findIndex(
+      let shippedOrder = null;
+
+      // Update groups
+      state.orders = state.orders.map(group => {
+        const orderIndex = group.orders.findIndex(
           order => order._id === orderId,
         );
 
         if (orderIndex !== -1) {
-          shippedOrder = {...statusGroup.orders[orderIndex], status: 'Shipped'};
-          return {
-            ...statusGroup,
-            orders: statusGroup.orders.filter(order => order._id !== orderId),
+          shippedOrder = {
+            ...group.orders[orderIndex],
+            status: 'Shipped',
+            trackingNumber,
+            shippingCompany,
+            trackingLink,
           };
+
+          // Remove the order from the current group
+          group.orders.splice(orderIndex, 1); // Mutate the draft directly
         }
-        return statusGroup;
+
+        return group;
       });
 
-      // If order was found, update state accordingly
       if (shippedOrder) {
-        const shippedGroupIndex = updatedGroups.findIndex(
+        const shippedGroup = state.orders.find(
           group => group._id === 'Shipped',
         );
 
-        if (shippedGroupIndex !== -1) {
-          // Add to existing "Shipped" group
-          updatedGroups[shippedGroupIndex] = {
-            ...updatedGroups[shippedGroupIndex],
-            orders: [...updatedGroups[shippedGroupIndex].orders, shippedOrder],
-          };
+        if (shippedGroup) {
+          shippedGroup.orders.push(shippedOrder); // Add directly
         } else {
-          // Create "Shipped" group if it doesn't exist
-          updatedGroups.push({
+          state.orders.push({
             _id: 'Shipped',
             orders: [shippedOrder],
           });
         }
       } else {
-        console.log('Order not found in any group');
+        console.error('Order not found in any group');
       }
-
-      // Replace state.orders with the updated groups
-      state.orders = updatedGroups;
     },
   },
   extraReducers: builder => {

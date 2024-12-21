@@ -358,7 +358,7 @@ const ViewOrderSeller = ({route}) => {
                   style={{
                     marginTop: 10,
                     color: 'black',
-                    fontSize: 12,
+                    fontSize: calculatedFontSize / 2.8,
                     textAlign: 'center',
                     marginHorizontal: 20,
                   }}>
@@ -413,6 +413,7 @@ const ViewOrderSeller = ({route}) => {
                       {order.shippingCompany ? order.shippingCompany : 'N/A'}
                     </Text>
                     <Text style={styles.AddressText}>
+                      Tracking Number -{' '}
                       {order.trackingNumber ? order.trackingNumber : 'N/A'}
                     </Text>
                     {order.trackingLink && (
@@ -443,7 +444,10 @@ const ViewOrderSeller = ({route}) => {
             {renderOrderDetail('Order Date', formattedDate)}
             {renderPaymentDetail()}
             {orderAmountDetails()}
-            {renderOrderDetail('Payout', 'Pending')}
+            {renderOrderDetail('Payout', order.payout ?? 'Pending')}
+            <Text style={{color: 'black', fontSize: calculatedFontSize / 2.9}}>
+              Payout will be processed once the order is marked as complete
+            </Text>
           </View>
         </ScrollView>
       </View>

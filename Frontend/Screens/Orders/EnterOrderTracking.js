@@ -73,10 +73,27 @@ const EnterOrderTracking = ({route}) => {
       if (response.status === 200) {
         order.trackingNumber = trackingNumber;
         order.status = 'Shipped';
-        dispatch(markOrderShippedAction({orderId: order._id}));
+        order.shippingCompany = trackingType;
+        if (trackingLink) {
+          order.trackingLink = trackingLink;
+        }
+        dispatch(
+          markOrderShippedAction({
+            orderId: order._id,
+            trackingNumber,
+            shippingCompany: trackingType,
+            trackingLink,
+          }),
+        );
         setLoading(false);
         navigation.navigate('ViewOrderSeller', {
-          order: {...order, status: 'Shipped', trackingNumber},
+          order: {
+            ...order,
+            status: 'Shipped',
+            trackingNumber,
+            trackingLink,
+            shippingCompany: trackingType,
+          },
         });
       } else {
         throw new Error(

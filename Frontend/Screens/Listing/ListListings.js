@@ -87,7 +87,7 @@ const ListListings = () => {
   useFocusEffect(
     useCallback(() => {
       const currentTime = Date.now();
-      const MIN_TRIGGER_INTERVAL = 100000;
+      const MIN_TRIGGER_INTERVAL = 500000;
 
       if (isFirstLoad) {
         showList();
@@ -182,7 +182,7 @@ const ListListings = () => {
           key={item._id}
           title={`Watch ${item._id}`}
           style={{
-            flex:1,
+            flex: 1,
             borderRadius: 7,
           }}
           onPress={() =>
@@ -204,29 +204,29 @@ const ListListings = () => {
             imageStyle={{borderRadius: 7}}
             onLoadEnd={() => setImageLoaded(true)}
           />
-        
-        <Text
-          style={{
-            fontSize: calculatedFontSize / 3.1,
-            color: colors.black,
-            marginVertical: 1,
-            marginTop: 5,
-          }}
-          numberOfLines={2}
-          ellipsizeMode="tail">
-          {item.product.name}
-        </Text>
-        <Text
-          style={{
-            fontSize: calculatedFontSize / 2.2,
-            color: colors.black,
-            fontWeight: '600',
-            marginVertical: 1,
-          }}
-          numberOfLines={2}
-          ellipsizeMode="tail">
-          ${item.price}
-        </Text>
+
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 3.1,
+              color: colors.black,
+              marginVertical: 1,
+              marginTop: 5,
+            }}
+            numberOfLines={2}
+            ellipsizeMode="tail">
+            {item.product.name}
+          </Text>
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2.2,
+              color: colors.black,
+              fontWeight: '600',
+              marginVertical: 1,
+            }}
+            numberOfLines={2}
+            ellipsizeMode="tail">
+            ${item.price}
+          </Text>
         </TouchableOpacity>
       </View>
     );
