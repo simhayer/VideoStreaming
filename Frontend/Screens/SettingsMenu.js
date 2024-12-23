@@ -29,6 +29,7 @@ export default function AddPaymentMethod() {
   const {userData} = useSelector(state => state.auth);
 
   const userEmail = userData?.user?.email;
+  const isAdmin = userData?.user?.isAdmin;
 
   const onLogoutClick = async () => {
     console.log('Email from redux, ', userEmail);
@@ -119,6 +120,11 @@ export default function AddPaymentMethod() {
 
       {/* Settings Options */}
       <ScrollView style={{marginTop: 20, width: '100%'}}>
+        {isAdmin &&
+          renderSettingOption('lock-closed-outline', 'Admin Controls', () =>
+            navigation.navigate('AdminDashboard'),
+          )}
+
         {renderSettingOption('person-circle-outline', 'Profile', () =>
           navigation.navigate('EditProfile'),
         )}

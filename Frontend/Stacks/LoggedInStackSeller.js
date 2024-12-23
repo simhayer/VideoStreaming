@@ -34,6 +34,7 @@ import Checkout from '../Screens/Listing/Checkout';
 
 //Actually lazy load the screens
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
+import {useSelector} from 'react-redux';
 const EditProfile = React.lazy(() => import('../Screens/Profile/EditProfile'));
 const EnterOrderTracking = lazy(() =>
   import('../Screens/Orders/EnterOrderTracking'),
@@ -58,9 +59,17 @@ const ContactUs = React.lazy(() =>
   import('../Screens/Controls/Other/ContactUs'),
 );
 
+//admin screens
+const AdminDashboard = React.lazy(() =>
+  import('../Screens/Admin/AdminDashboard'),
+);
+
 const Stack = createNativeStackNavigator();
 
 const LoggedInStackSeller = () => {
+  const {userData} = useSelector(state => state.auth);
+  const isAdmin = userData?.user?.isAdmin;
+
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="TabControl" component={TabControl} />
@@ -120,6 +129,10 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="ReportSeller" component={ReportSellerOptions} />
       <Stack.Screen name="ReportSellerOptions" component={ReportSeller} />
       <Stack.Screen name="ContactUs" component={ContactUs} />
+
+      {isAdmin && (
+        <Stack.Screen name="AdminDashboard" component={AdminDashboard} />
+      )}
     </Stack.Navigator>
   );
 };

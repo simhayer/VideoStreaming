@@ -17,8 +17,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {setOnboardingChecked} from '../Redux/Features/NonPersistSlice';
 import {setIsSellerTrue} from '../Redux/Features/AuthSlice';
-import { use } from 'react';
-import inCallManager from 'react-native-incall-manager';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -185,24 +183,6 @@ const StartStreamTab = () => {
         backgroundColor: colors.background,
         paddingHorizontal: 7, // Added padding for consistent spacing
       }}>
-      {/* {loading ? (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <ActivityIndicator size="large" color={appPink} />
-          <Text
-            style={{
-              marginTop: 10,
-              color: 'black',
-              fontSize: calculatedFontSize / 2.5,
-            }}>
-            Checking Onboarding Status...
-          </Text>
-        </View>
-      ) : ( */}
       <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
         {/* Dashboard Title */}
         <Text

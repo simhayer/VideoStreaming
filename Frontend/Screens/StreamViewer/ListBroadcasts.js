@@ -139,7 +139,6 @@ const ListBroadcasts = ({search, hasSearched}) => {
 
   const handleWatchVideoSDK = (item, profilePictureURL) => {
     navigation.navigate('GetStreamViewerSDK', {
-      streamId: '',
       broadcastId: item.id,
       username: item.username,
       watchers: item.watchers,
@@ -214,7 +213,7 @@ const ListBroadcasts = ({search, hasSearched}) => {
                   fontSize: calculatedFontSize / 3.1,
                   textAlign: 'center',
                 }}>
-                Live • {item.watchers} 
+                Live • {item.watchers}
               </Text>
             </View>
           </FastImage>

@@ -10,9 +10,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
-  Pressable,
   SafeAreaView,
-  FlatList,
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
@@ -24,29 +22,22 @@ import {
   baseURLNoApi,
   colors,
 } from '../../Resources/Constants';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import axios from 'axios';
-import {
-  StreamVideo,
-  StreamVideoClient,
-} from '@stream-io/video-react-native-sdk';
-
-const CustomLivestreamPlayer = React.lazy(() =>
-  import('./CustomLivestreamPlayer'),
-);
-const MaskedView = React.lazy(() =>
-  import('@react-native-masked-view/masked-view'),
-);
-const LinearGradient = React.lazy(() => import('react-native-linear-gradient'));
+import {StreamVideo} from '@stream-io/video-react-native-sdk';
+import {useStreamClient} from './StreamClientSetup';
+import fetchApiKey from './FetchApiKey';
+import CustomLivestreamPlayer from './CustomLivestreamPlayer';
+import useStreamCall from './UseStreamCall';
+import CommentSection from './CommentSection';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 const VideoScreen = ({route}) => {
   const {
-    streamId,
     broadcastId,
     username,
     watchers,
@@ -59,9 +50,9 @@ const VideoScreen = ({route}) => {
 
   console.log(callId);
   const {userData} = useSelector(state => state.auth);
+  const dispatch = useDispatch();
 
   const userUsername = userData?.user?.username;
-  //const userUsername = 'simsim';
   const userEmail = userData?.user?.email;
   const userProfilePicture = userData?.user?.profilePicture;
 
@@ -85,9 +76,11 @@ const VideoScreen = ({route}) => {
   const [curBidWinner, setCurBidWinner] = useState('');
   const [showWinner, setShowWinner] = useState(false);
 
-  const [myClient, setMyClient] = useState(null);
-  const [myCall, setMyCall] = useState(null);
+  const myClient = useStreamClient();
+  const myCall = useStreamCall(myClient, broadcastId, setStreamError);
   const [streamError, setStreamError] = useState(false);
+
+  const apiKey = useSelector(state => state.NonPersistSlice.apiKey);
 
   useEffect(() => {
     console.log('useEffect triggered');
@@ -127,98 +120,18 @@ const VideoScreen = ({route}) => {
     });
 
     return () => {
-      console.log('Cleaning up socket connection');
-      newSocket.close();
+      if (newSocket) {
+        newSocket.disconnect(); // Ensure proper cleanup
+        console.log('Socket disconnected');
+      }
     };
   }, [broadcastId]);
 
   useEffect(() => {
-    createStreamUser();
-  }, []);
-
-  const createStreamUser = async () => {
-    try {
-      const payload = {
-        username: userUsername,
-        sellerUsername: username,
-      };
-
-      const response = await axios.post(
-        baseURL + apiEndpoints.createStreamUserForJoining,
-        payload,
-      );
-      console.log('Stream user created:', response.data);
-      const {token, apiKey} = response.data;
-
-      const user = {
-        id: userUsername, // Ensure userId is defined somewhere
-        name: userUsername,
-      };
-
-      // Create StreamVideoClient
-      const client = StreamVideoClient.getOrCreateInstance({
-        apiKey: apiKey,
-        user,
-        token,
-      });
-      setMyClient(client); // Set client in state
-
-    } catch (error) {
-      console.error('Error creating stream user or joining call:', error);
-      console.log(
-        'Error creating stream user or joining call:',
-        error.response.data.error,
-      );
-      setStreamError(true);
+    if (!apiKey) {
+      fetchApiKey(dispatch); // Fetch API key when component mounts
     }
-  };
-
-  useEffect(() => {
-      if (!myClient || !callId) return;
-  
-      console.log('Initializing call...');
-      const call = myClient.call('livestream', callId);
-  
-      call.join({
-        create: false,
-        data: {
-          settings_override: {
-            audio: {
-              mic_default_on: false,
-              access_request_enabled: false,
-              default_device: 'speaker',
-            },
-            video: {
-              camera_default_on: false,
-              access_request_enabled: false,
-              target_resolution: {
-                width: 1920,
-                height: 1080,
-                bitrate: 3000000,
-              },
-            },
-          },
-        },
-      })
-        .then(() => {
-          console.log('Call joined successfully');
-          setMyCall(call);
-        })
-        .catch(error => {
-          setStreamError(true);
-          console.error('Failed to join the call:', error);
-        });
-  
-      return () => {
-        console.log('Cleaning up call...');
-        call
-          .leave()
-          .then(() => console.log('Call left successfully'))
-          .catch(() => console.error('Failed to leave the call'));
-          socket.disconnect();
-        setMyCall(undefined);
-      };
-    }, [myClient, callId]);
+  }, []);
 
   const closeStream = () => {
     navigation.goBack();
@@ -560,19 +473,6 @@ const VideoScreen = ({route}) => {
                 </Text>
               </TouchableOpacity>
               <View style={{flex: 1}}></View>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: calculatedFontSize / 2.5,
-                  marginRight: '2%',
-                  textShadowColor: '#000', // Shadow color
-                  textShadowOffset: {width: 1, height: 1}, // Shadow offset
-                  textShadowRadius: 3, // Shadow blur
-                  elevation: 5,
-                }}>
-                {/* Live: {watchers} */}
-                {/* Live: 38 */}
-              </Text>
               <TouchableOpacity
                 style={{
                   backgroundColor: 'red',
@@ -610,99 +510,12 @@ const VideoScreen = ({route}) => {
                 flex: 2,
                 marginBottom: 10,
               }}>
-              <MaskedView
-                style={{flex: 1}}
-                maskElement={
-                  <LinearGradient
-                    style={{flex: 1}}
-                    colors={['transparent', 'white', 'white', 'white']}
-                  />
-                }>
-                <FlatList
-                  showsVerticalScrollIndicator={false}
-                  ref={scrollViewRef}
-                  data={curComments}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({item}) => {
-                    const profilePictureFilename = item.userProfilePicture
-                      .split('/')
-                      .pop();
-                    const hasProfilePicture =
-                      profilePictureFilename !== 'null' &&
-                      profilePictureFilename !== '';
-                    const profilePictureURL = `${baseURL}/profilePicture/thumbnail/${profilePictureFilename}`;
-                    return (
-                      <Pressable
-                        style={{
-                          flex: 1,
-                        }}>
-                        <View
-                          style={{
-                            width: '90%',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            marginBottom: '2%',
-                          }}>
-                          {hasProfilePicture && (
-                            <Image
-                              source={{uri: profilePictureURL}}
-                              style={{
-                                width: '12%',
-                                height: '80%',
-                                borderRadius: 20,
-                                marginRight: '4%',
-                                marginTop: '1%',
-                              }}
-                            />
-                          )}
-                          {!hasProfilePicture && (
-                            <View style={{marginRight: '4%'}}>
-                              <Icon
-                                name="person-circle-outline"
-                                size={30}
-                                color="white"
-                              />
-                            </View>
-                          )}
-                          <View>
-                            <Text
-                              style={{
-                                color: 'white',
-                                fontSize: calculatedFontSize / 3,
-                                textShadowColor: '#000', // Shadow color
-                                textShadowOffset: {width: 1, height: 1}, // Shadow offset
-                                textShadowRadius: 3, // Shadow blur
-                                elevation: 5,
-                              }}>
-                              {item.userUsername}
-                            </Text>
-                            <Text
-                              style={{
-                                color: 'white',
-                                fontSize: calculatedFontSize / 3,
-                                fontWeight: 'bold',
-                                textShadowColor: '#000', // Shadow color
-                                textShadowOffset: {width: 1, height: 1}, // Shadow offset
-                                textShadowRadius: 3, // Shadow blur
-                                elevation: 5,
-                                flexWrap: 'wrap',
-                              }}>
-                              {item.comment}
-                            </Text>
-                          </View>
-                        </View>
-                      </Pressable>
-                    );
-                  }}
-                  contentContainerStyle={{
-                    flexGrow: 1,
-                    flexDirection: 'column',
-                    justifyContent: 'flex-end',
-                  }}
-                />
-              </MaskedView>
+              <CommentSection
+                comments={curComments}
+                scrollViewRef={scrollViewRef}
+              />
             </View>
-            <KeyboardAvoidingView 
+            <KeyboardAvoidingView
               behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
               keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset for iOS if needed
             >
@@ -775,7 +588,7 @@ const VideoScreen = ({route}) => {
             <View
               style={{
                 marginHorizontal: 10,
-                flex:0.3
+                flex: 0.3,
               }}>
               {isTimerRunning && (
                 <View
@@ -790,7 +603,7 @@ const VideoScreen = ({route}) => {
                         item: bidItem,
                       })
                     }
-                    style={{maxWidth: '60%', marginLeft: 10, marginTop:10}}>
+                    style={{maxWidth: '60%', marginLeft: 10, marginTop: 10}}>
                     <Text
                       style={{
                         fontSize: calculatedFontSize / 2.9,

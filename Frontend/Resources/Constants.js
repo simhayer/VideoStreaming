@@ -66,6 +66,7 @@ export const apiEndpoints = {
   markListingAsInactive: '/auth/markListingAsInactive',
   editListingQuantity: '/auth/editListingQuantity',
   updateOrderForRetriedPayment: '/auth/updateOrderForRetriedPayment',
+  getStreamApiKey: '/auth/getStreamApiKey',
   // Add more API endpoints as needed
 };
 

@@ -77,11 +77,17 @@ const ContactUs = React.lazy(() =>
   import('../Screens/Controls/Other/ContactUs'),
 );
 
+//admin screens
+const AdminDashboard = React.lazy(() =>
+  import('../Screens/Admin/AdminDashboard'),
+);
+
 const Stack = createNativeStackNavigator();
 
 const LoggedInStack = () => {
   const {userData} = useSelector(state => state.auth);
   const isSeller = userData?.user?.isSeller;
+  const isAdmin = userData?.user?.isAdmin;
 
   useEffect(() => {
     if (isSeller) {
@@ -170,6 +176,9 @@ const LoggedInStack = () => {
             component={EditListingQuantity}
           />
         </>
+      )}
+      {isAdmin && (
+        <Stack.Screen name="AdminDashboard" component={AdminDashboard} />
       )}
     </Stack.Navigator>
   );
