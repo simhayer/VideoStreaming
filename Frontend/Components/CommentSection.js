@@ -1,13 +1,19 @@
 import MaskedView from '@react-native-masked-view/masked-view';
-import {Dimensions, FlatList, Image, Pressable, Text, View} from 'react-native';
+import {Dimensions, FlatList, Pressable, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {baseURL} from '../../Resources/Constants';
 import FastImage from 'react-native-fast-image';
+import {baseURL} from '../Resources/Constants';
+import {useEffect} from 'react';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 const CommentSection = ({comments, scrollViewRef}) => {
+  useEffect(() => {
+    // Scroll to bottom whenever comments change
+    scrollViewRef.current?.scrollToEnd({animated: true});
+  }, [comments]);
+
   return (
     <MaskedView
       style={{flex: 1}}

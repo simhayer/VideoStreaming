@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import {
   ActivityIndicator,
   Dimensions,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {
@@ -26,6 +26,7 @@ export default function ReportSeller({route}) {
   const navigation = useNavigation();
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
+  const [description, setDescription] = useState('');
 
   const {userData} = useSelector(state => state.auth);
 
@@ -60,6 +61,8 @@ export default function ReportSeller({route}) {
     navigation.navigate('Home');
   };
 
+  const inputRef = useRef(null);
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View style={{flexDirection: 'row', alignItems: 'center', padding: 4}}>
@@ -76,6 +79,7 @@ export default function ReportSeller({route}) {
         <TextInput
           ref={inputRef}
           value={description}
+          onChangeText={setDescription}
           style={{
             width: '90%',
             borderWidth: 1,

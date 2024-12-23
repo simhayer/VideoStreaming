@@ -1,6 +1,7 @@
 import axios from 'axios';
-import {apiEndpoints, baseURL} from '../../Resources/Constants';
-import {setApiKey} from '../../Redux/Features/NonPersistSlice';
+import {apiEndpoints, baseURL} from '../Resources/Constants';
+//import {apiEndpoints, baseURL} from '../../Resources/Constants';
+import {setApiKey} from '../Redux/Features/NonPersistSlice';
 
 const fetchApiKey = async dispatch => {
   try {

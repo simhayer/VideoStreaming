@@ -6,9 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  Image,
   TextInput,
-  Pressable,
   Keyboard,
   TouchableWithoutFeedback,
   ActivityIndicator,
@@ -29,8 +27,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import {FlatList} from 'react-native-gesture-handler';
 import DropDownPicker from 'react-native-dropdown-picker';
-import MaskedView from '@react-native-masked-view/masked-view';
-import LinearGradient from 'react-native-linear-gradient';
 import {
   StreamCall,
   StreamVideo,
@@ -45,7 +41,7 @@ import Animated, {
 import {fetchProducts} from '../../Redux/Features/ProductsSlice';
 import FastImage from 'react-native-fast-image';
 import inCallManager from 'react-native-incall-manager';
-import CommentSection from '../StreamViewer/CommentSection';
+import CommentSection from '../../Components/CommentSection';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;

@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,8 +6,6 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  TextInput,
-  KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
   SafeAreaView,
@@ -24,14 +22,18 @@ import {
 } from '../../Resources/Constants';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
-import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 import axios from 'axios';
 import {StreamVideo} from '@stream-io/video-react-native-sdk';
-import {useStreamClient} from './StreamClientSetup';
-import fetchApiKey from './FetchApiKey';
 import CustomLivestreamPlayer from './CustomLivestreamPlayer';
 import useStreamCall from './UseStreamCall';
-import CommentSection from './CommentSection';
+import ControlsBottomSheet from './BottomSheets/ControlsBottomSheet';
+import CannotBidBottomSheet from './BottomSheets/CannotBidBottomSheet';
+import CustomBidBottomSheet from './BottomSheets/CustomBidBottomSheet';
+import ShippingAndTaxesBottomSheet from './BottomSheets/ShippingAndTaxesBottomSheet';
+import CommentSection from '../../Components/CommentSection';
+import CommentInput from '../../Components/CommentInput';
+import {useStreamClient} from '../../Components/StreamClientSetup';
+import fetchApiKey from '../../Components/FetchApiKey';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -154,7 +156,6 @@ const VideoScreen = ({route}) => {
       socket.emit('comment', commentData);
       setComment(''); // Clear the input after sending the comment
       Keyboard.dismiss();
-      //setCurComments([...curComments, commentData]); // Add the comment to the comments list
     }
   };
 
@@ -219,22 +220,9 @@ const VideoScreen = ({route}) => {
     setCurBid(startBid);
   };
 
-  useEffect(() => {
-    // Scroll to bottom whenever comments change
-    scrollViewRef.current?.scrollToEnd({animated: true});
-  }, [curComments]);
-
   const [isBidBottomSheetVisible, setIsBidBottomSheetVisible] = useState(false);
 
   const bidBottomSheetRef = useRef(null);
-
-  const handleSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-    if (index === 0) {
-      console.log('Closing bottom sheet');
-      setIsBidBottomSheetVisible(false);
-    }
-  }, []);
 
   const showBidBottomSheet = () => {
     checkPaymentandAddressExist(userEmail);
@@ -246,24 +234,6 @@ const VideoScreen = ({route}) => {
   };
 
   const cannotBidBottomSheetRef = useRef(null);
-
-  const handleCannotBidSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-    if (index === 0) {
-      console.log('Closing bottom sheet');
-      //todo:get this function to work
-      setIsCannotBidBottomSheetVisible(false);
-    }
-  }, []);
-
-  const snapPoints = useMemo(() => ['1%', '30%'], []);
-
-  const [viewHeightPercentage, setViewHeightPercentage] = useState('15%');
-
-  const cannotBidSnapPoints = useMemo(
-    () => ['1%', viewHeightPercentage],
-    [viewHeightPercentage],
-  );
 
   const checkPaymentandAddressExist = async email => {
     console.log('Checking payment and address exist');
@@ -320,47 +290,9 @@ const VideoScreen = ({route}) => {
 
   const shippingAndTaxesBottomSheetRef = useRef(null);
 
-  const shippingAndTaxesSnapPoints = useMemo(() => ['1%', '35%'], []);
-
-  const handleShippingAndTaxesSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-    if (index === 0) {
-      console.log('Closing bottom sheet');
-
-      setShippingAndTaxesBottomSheetVisible(false);
-    }
-  }, []);
-
   const showShippingAndTaxesBottomSheet = () => {
     setShippingAndTaxesBottomSheetVisible(true);
     shippingAndTaxesBottomSheetRef.current?.expand();
-  };
-
-  const handleContolsSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-    if (index === 0) {
-      console.log('Closing bottom sheet');
-      //todo:get this function to work
-      setControlsBottomSheetVisible(false);
-    }
-  }, []);
-
-  const onBlockUser = async () => {
-    console.log('Blocking user:', username);
-    const payload = {
-      blockedUsername: username,
-      username: userUsername,
-    };
-
-    const response = await axios
-      .post(baseURL + apiEndpoints.addUserToBlocked, payload)
-      .catch(error => {
-        console.error('Error blocking user:', error);
-        return;
-      });
-
-    console.log('Response:', response.data);
-    navigation.navigate('Home');
   };
 
   if (streamError) {
@@ -416,10 +348,6 @@ const VideoScreen = ({route}) => {
     bidBottomSheetRef.current?.close();
     controlsBottomSheetRef.current?.close();
     shippingAndTaxesBottomSheetRef.current?.close();
-  };
-
-  const closeControls = () => {
-    controlsBottomSheetRef.current?.close();
   };
 
   return (
@@ -515,76 +443,12 @@ const VideoScreen = ({route}) => {
                 scrollViewRef={scrollViewRef}
               />
             </View>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-              keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust offset for iOS if needed
-            >
-              <View
-                style={{
-                  width: '100%',
-                  justifyContent: 'space-between',
-                  minHeight: 50,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    width: '80%',
-                    marginLeft: '4%',
-                    borderWidth: 1,
-                    borderColor: 'white',
-                    width: '70%',
-                    marginLeft: '4%',
-                    borderRadius: 25,
-                    justifyContent: 'center',
-                    paddingLeft: '6%',
-                    paddingRight: '4%',
-                    elevation: 3,
-                    shadowColor: '#000', // Shadow for iOS
-                    shadowOpacity: 0.1,
-                    shadowRadius: 5,
-                    shadowOffset: {width: 0, height: 2},
-                  }}>
-                  <TextInput
-                    style={{
-                      borderRadius: 5,
-                      paddingHorizontal: '2%',
-                      color: 'white',
-                      width: '100%',
-                      fontSize: calculatedFontSize / 2.7,
-                      padding: 5,
-                    }}
-                    placeholder="Add a comment..."
-                    placeholderTextColor="#ccc"
-                    value={comment}
-                    onChangeText={handleCommentChange}
-                    returnKeyType="send"
-                    enterKeyHint="send"
-                    onSubmitEditing={handleSendComment}
-                    autoComplete="off"
-                    selectionColor={appPink}
-                    clearButtonMode="while-editing"
-                    keyboardAppearance="light"
-                  />
-                  <TouchableOpacity
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                    onPress={handleSendComment}>
-                    <Icon name="arrow-up-circle" size={35} color="white" />
-                  </TouchableOpacity>
-                </View>
-                <View style={{marginRight: 10}}>
-                  <TouchableOpacity
-                    style={{padding: 5}}
-                    onPress={onControlsPressed}>
-                    <Icon name="ellipsis-horizontal" size={35} color="white" />
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </KeyboardAvoidingView>
+            <CommentInput
+              comment={comment}
+              handleCommentChange={handleCommentChange}
+              handleSendComment={handleSendComment}
+              onControlsPressed={onControlsPressed}
+            />
             <View
               style={{
                 marginHorizontal: 10,
@@ -761,350 +625,46 @@ const VideoScreen = ({route}) => {
         </TouchableWithoutFeedback>
       </SafeAreaView>
       {isCannotBidBottomSheetVisible && (
-        <BottomSheet
-          ref={cannotBidBottomSheetRef}
-          snapPoints={cannotBidSnapPoints}
-          index={isCannotBidBottomSheetVisible ? 1 : -1}
-          onChange={handleCannotBidSheetChanges}>
-          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-            <View
-              style={{
-                alignItems: 'center',
-                marginHorizontal: '4%',
-                marginTop: 10,
-              }}
-              onLayout={event => {
-                const {height} = event.nativeEvent.layout;
-                if (height === 0) return;
-                setViewHeightPercentage(
-                  `${((height + 50) / screenHeight) * 100}%`,
-                );
-              }}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                  fontSize: calculatedFontSize / 2.8,
-                }}>
-                For placing a bid, you need to add payment and shipping
-                information
-              </Text>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontSize: calculatedFontSize / 3,
-                }}>
-                You will not be charged until your bid is accepted. All bids
-                placed are final.
-              </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('AddPaymentOrShipping')}
-                style={{
-                  paddingVertical: '2%',
-                  width: '100%',
-                  backgroundColor: appPink,
-                  borderRadius: 40,
-                  marginTop: '6%',
-                  justifyContent: 'center',
-                }}>
-                <Text
-                  style={{
-                    color: 'white',
-                    textAlign: 'center',
-                    fontSize: calculatedFontSize / 2.2,
-                    fontWeight: 'bold',
-                  }}>
-                  Add Info
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </BottomSheetView>
-        </BottomSheet>
+        <CannotBidBottomSheet
+          cannotBidBottomSheetRef={cannotBidBottomSheetRef}
+          isCannotBidBottomSheetVisible={isCannotBidBottomSheetVisible}
+          setIsCannotBidBottomSheetVisible={setIsCannotBidBottomSheetVisible}
+        />
       )}
       {isBidBottomSheetVisible && (
-        <BottomSheet
-          ref={bidBottomSheetRef}
-          snapPoints={snapPoints}
-          index={isBidBottomSheetVisible ? 1 : -1}
-          onChange={handleSheetChanges}>
-          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-            <View style={{flexDirection: 'column', marginTop: 2}}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Text
-                  style={{
-                    fontSize: calculatedFontSize / 2,
-                  }}>
-                  Current Bid:{'     '}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: calculatedFontSize / 1.4,
-                  }}>
-                  ${curBid}
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  minHeight: 40,
-                }}>
-                <Text
-                  style={{
-                    fontSize: calculatedFontSize / 1.4,
-                  }}>
-                  ${' '}
-                </Text>
-                <TextInput
-                  placeholder="Enter Bid"
-                  keyboardType="numeric"
-                  maxLength={5}
-                  textAlign="center"
-                  value={userBid}
-                  onChangeText={text => {
-                    const numericValue = text.replace(/[^0-9]/g, '');
-                    setUserBid(numericValue);
-                  }}
-                  style={{
-                    width: '30%',
-                    borderBottomWidth: 1,
-                    textAlign: 'center',
-                    fontSize: calculatedFontSize / 2.5,
-                    minHeight: 50,
-                  }}
-                  autoComplete="off"
-                  autoCapitalize="none"
-                  placeholderTextColor={'gray'}
-                  autoCorrect={false}
-                  returnKeyType="done"
-                  selectionColor={appPink}
-                  clearButtonMode="while-editing"
-                  keyboardAppearance="light"
-                />
-                <TouchableOpacity
-                  onPress={handleSendCustomBid}
-                  disabled={userBid <= curBid}
-                  style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginLeft: '10%',
-                    marginTop: '2%',
-                    opacity: userBid <= curBid ? 0.5 : 1,
-                  }}>
-                  <Icon
-                    name="arrow-up-circle"
-                    size={40}
-                    color={userBid <= curBid ? 'gray' : '#f542a4'}
-                  />
-                </TouchableOpacity>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <Text
-                  style={{
-                    color: 'red',
-                    marginTop: '5%',
-                  }}>
-                  Time Left: {timeLeft} s
-                </Text>
-              </View>
-            </View>
-          </BottomSheetView>
-        </BottomSheet>
+        <CustomBidBottomSheet
+          bidBottomSheetRef={bidBottomSheetRef}
+          isBidBottomSheetVisible={isBidBottomSheetVisible}
+          setIsBidBottomSheetVisible={setIsBidBottomSheetVisible}
+          curBid={curBid}
+          userBid={userBid}
+          setUserBid={setUserBid}
+          handleSendCustomBid={handleSendCustomBid}
+          timeLeft={timeLeft}
+        />
       )}
       {controlsBottomSheetVisible && (
-        <BottomSheet
-          ref={controlsBottomSheetRef}
-          snapPoints={controlsSnapPoints}
-          index={controlsBottomSheetVisible ? 1 : -1}
-          onChange={handleContolsSheetChanges}>
-          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginHorizontal: '3%',
-                marginTop: 10,
-              }}>
-              <View style={{width: 30}} />
-              <TouchableOpacity
-                style={{
-                  padding: 1,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  paddingRight: 20,
-                  justifyContent: 'center',
-                }}
-                onPress={() =>
-                  navigation.navigate('ViewProfile', {username: username})
-                }>
-                <Image
-                  source={{uri: profilePictureURL}}
-                  style={styles.profilePicture}
-                />
-
-                <Text
-                  style={{
-                    color: 'black',
-                    fontSize: calculatedFontSize / 2.5,
-                    fontWeight: 'bold',
-                    marginLeft: 10,
-                  }}>
-                  {username}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                  borderRadius: 30,
-                  padding: 5,
-                  alignItems: 'center',
-                }}
-                onPress={closeControls}>
-                <Icon name="chevron-down" size={22} color="white" />
-              </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                height: 1,
-                backgroundColor: 'rgba(0,0,0,0.1)',
-                marginVertical: 8,
-                marginHorizontal: 10,
-              }}
-            />
-            <TouchableOpacity
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginTop: 10,
-              }}
-              onPress={() =>
-                navigation.navigate('ViewProfile', {username: username})
-              }>
-              <View style={styles.controlsIconStyle}>
-                <Icon name="person-circle-outline" size={25} color="white" />
-              </View>
-              <Text style={styles.controlsTextStyle}>View Profile</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginTop: 10,
-              }}
-              onPress={onBlockUser}>
-              <View style={styles.controlsIconStyle}>
-                <Icon name="ban" size={25} color="white" />
-              </View>
-              <Text style={styles.controlsTextStyle}>Block</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginTop: 10,
-              }}
-              onPress={() =>
-                navigation.navigate('ReportSellerOptions', {
-                  sellerUsername: username,
-                })
-              }>
-              <View
-                style={{
-                  backgroundColor: 'grey',
-                  borderRadius: 30,
-                  padding: 7,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginLeft: '5%',
-                  paddingBottom: 9,
-                  paddingHorizontal: 9,
-                }}>
-                <Icon name="warning" size={25} color="white" />
-              </View>
-              <Text style={styles.controlsTextStyle}>Report seller</Text>
-            </TouchableOpacity>
-          </BottomSheetView>
-        </BottomSheet>
+        <ControlsBottomSheet
+          controlsBottomSheetRef={controlsBottomSheetRef}
+          controlsBottomSheetVisible={controlsBottomSheetVisible}
+          controlsSnapPoints={controlsSnapPoints}
+          profilePictureURL={profilePictureURL}
+          username={username}
+          setControlsBottomSheetVisible={setControlsBottomSheetVisible}
+        />
       )}
       {shippingAndTaxesBottomSheetVisible && (
-        <BottomSheet
-          ref={shippingAndTaxesBottomSheetRef}
-          snapPoints={shippingAndTaxesSnapPoints}
-          index={shippingAndTaxesBottomSheetVisible ? 1 : -1}
-          onChange={handleShippingAndTaxesSheetChanges}>
-          <BottomSheetView style={{flexDirection: 'column', flex: 1}}>
-            {/* <Text style={{fontSize: calculatedFontSize / 2.4}}>
-              Shipping and Taxes
-            </Text> */}
-
-            <View
-              style={{
-                marginHorizontal: '5%',
-                marginTop: 20,
-              }}>
-              <Text
-                style={{
-                  fontSize: calculatedFontSize / 2.4,
-                  color: colors.black,
-                  marginTop: 5,
-                  fontWeight: 'bold',
-                }}>
-                Shipping
-              </Text>
-              {isTimerRunning && (
-                <Text
-                  style={{
-                    fontSize: calculatedFontSize / 2.7,
-                    color: colors.black,
-                    marginTop: 5,
-                  }}>
-                  🇨🇦 Shipping fee for this item : $ {bidItem?.shippingFee}
-                </Text>
-              )}
-              <Text
-                style={{
-                  fontSize: calculatedFontSize / 2.9,
-                  color: colors.black,
-                  marginTop: 10,
-                }}>
-                Shipping fee is not included in the bid price. Items bought from
-                the same seller in the same session will be bundled together to
-                get a minimum shipping fee
-              </Text>
-            </View>
-
-            <View
-              style={{
-                marginHorizontal: '5%',
-                marginTop: 20,
-              }}>
-              <Text
-                style={{
-                  fontSize: calculatedFontSize / 2.4,
-                  color: colors.black,
-                  fontWeight: 'bold',
-                }}>
-                Taxes
-              </Text>
-              <Text
-                style={{
-                  fontSize: calculatedFontSize / 2.9,
-                  color: colors.black,
-                  marginTop: 5,
-                }}>
-                Standard sales tax will be applied to the total order amount
-              </Text>
-            </View>
-          </BottomSheetView>
-        </BottomSheet>
+        <ShippingAndTaxesBottomSheet
+          shippingAndTaxesBottomSheetRef={shippingAndTaxesBottomSheetRef}
+          shippingAndTaxesBottomSheetVisible={
+            shippingAndTaxesBottomSheetVisible
+          }
+          setShippingAndTaxesBottomSheetVisible={
+            setShippingAndTaxesBottomSheetVisible
+          }
+          bidItem={bidItem}
+          isTimerRunning={isTimerRunning}
+        />
       )}
     </SafeAreaView>
   );
@@ -1149,37 +709,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     zIndex: 0,
-  },
-  commentBox: {
-    flexDirection: 'row',
-    opacity: 0.8,
-    height: '100%',
-    minHeight: 50,
-    width: '80%',
-    marginRight: '10%',
-    marginLeft: '4%',
-  },
-  input: {
-    height: '100%',
-    minHeight: 50,
-    borderRadius: 5,
-    paddingHorizontal: '2%',
-    color: 'white',
-    width: '100%',
-  },
-  controlsTextStyle: {
-    marginLeft: '5%',
-    fontSize: calculatedFontSize / 2.1,
-    color: 'black',
-    fontWeight: '700',
-  },
-  controlsIconStyle: {
-    backgroundColor: 'grey',
-    borderRadius: 30,
-    padding: 9,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: '5%',
   },
 });
 
