@@ -133,7 +133,7 @@ const VideoScreen = ({route}) => {
     if (!apiKey) {
       fetchApiKey(dispatch); // Fetch API key when component mounts
     }
-  }, []);
+  }, [dispatch]);
 
   const closeStream = () => {
     navigation.goBack();
@@ -275,8 +275,6 @@ const VideoScreen = ({route}) => {
     useState(false);
 
   const controlsBottomSheetRef = useRef(null);
-
-  const controlsSnapPoints = useMemo(() => ['1%', '50%'], []);
 
   const onControlsPressed = () => {
     setControlsBottomSheetVisible(true);
@@ -647,7 +645,6 @@ const VideoScreen = ({route}) => {
         <ControlsBottomSheet
           controlsBottomSheetRef={controlsBottomSheetRef}
           controlsBottomSheetVisible={controlsBottomSheetVisible}
-          controlsSnapPoints={controlsSnapPoints}
           profilePictureURL={profilePictureURL}
           username={username}
           setControlsBottomSheetVisible={setControlsBottomSheetVisible}

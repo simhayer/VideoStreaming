@@ -12,14 +12,13 @@ import {apiEndpoints, baseURL} from '../../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
-import {useCallback} from 'react';
+import {useCallback, useMemo} from 'react';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
 const ControlsBottomSheet = ({
   controlsBottomSheetRef,
-  controlsSnapPoints,
   controlsBottomSheetVisible,
   profilePictureURL,
   username,
@@ -28,6 +27,8 @@ const ControlsBottomSheet = ({
   const {userData} = useSelector(state => state.auth);
 
   const userUsername = userData?.user?.username;
+
+  const controlsSnapPoints = useMemo(() => ['1%', '50%'], []);
 
   const navigation = useNavigation();
 
