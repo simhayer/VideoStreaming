@@ -76,6 +76,9 @@ const ReportSeller = React.lazy(() =>
 const ContactUs = React.lazy(() =>
   import('../Screens/Controls/Other/ContactUs'),
 );
+const DeleteAccount = React.lazy(() =>
+  import('../Screens/Authentication/DeleteAccount'),
+);
 
 //admin screens
 const AdminDashboard = React.lazy(() =>
@@ -146,6 +149,7 @@ const LoggedInStack = () => {
       />
       <Stack.Screen name="ReportSeller" component={ReportSeller} />
       <Stack.Screen name="ContactUs" component={ContactUs} />
+      <Stack.Screen name="DeleteAccount" component={DeleteAccount} />
       {/* Conditionally load the SellerOrders screen */}
       {isSeller && (
         <>

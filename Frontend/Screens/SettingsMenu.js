@@ -49,19 +49,7 @@ export default function AddPaymentMethod() {
   };
 
   const onDeleteAccountClick = async () => {
-    console.log('Email from redux, ', userEmail);
-    const deleteParams = {
-      email: userEmail,
-    };
-
-    try {
-      setLoading(true);
-      dispatch(deleteUser(deleteParams));
-    } catch (error) {
-      console.log('Error deleting account, ', error.response.data);
-    } finally {
-      setLoading(false);
-    }
+    navigation.navigate('DeleteAccount');
   };
 
   const renderSettingOption = (iconName, label, onPress) => (

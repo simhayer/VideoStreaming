@@ -58,6 +58,9 @@ const ReportSeller = React.lazy(() =>
 const ContactUs = React.lazy(() =>
   import('../Screens/Controls/Other/ContactUs'),
 );
+const DeleteAccount = React.lazy(() =>
+  import('../Screens/Authentication/DeleteAccount'),
+);
 
 //admin screens
 const AdminDashboard = React.lazy(() =>
@@ -129,6 +132,7 @@ const LoggedInStackSeller = () => {
       <Stack.Screen name="ReportSeller" component={ReportSellerOptions} />
       <Stack.Screen name="ReportSellerOptions" component={ReportSeller} />
       <Stack.Screen name="ContactUs" component={ContactUs} />
+      <Stack.Screen name="DeleteAccount" component={DeleteAccount} />
 
       {isAdmin && (
         <Stack.Screen name="AdminDashboard" component={AdminDashboard} />
