@@ -24,7 +24,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import {StreamVideo} from '@stream-io/video-react-native-sdk';
-import CustomLivestreamPlayer from './CustomLivestreamPlayer';
+import CustomLivestreamPlayer from '../../Components/CustomLivestreamPlayer';
 import useStreamCall from './UseStreamCall';
 import ControlsBottomSheet from './BottomSheets/ControlsBottomSheet';
 import CannotBidBottomSheet from './BottomSheets/CannotBidBottomSheet';
@@ -32,8 +32,9 @@ import CustomBidBottomSheet from './BottomSheets/CustomBidBottomSheet';
 import ShippingAndTaxesBottomSheet from './BottomSheets/ShippingAndTaxesBottomSheet';
 import CommentSection from '../../Components/CommentSection';
 import CommentInput from '../../Components/CommentInput';
-import {useStreamClient} from '../../Components/StreamClientSetup';
+//import {useStreamClient} from '../../Components/StreamClientSetup';
 import fetchApiKey from '../../Components/FetchApiKey';
+import {useStreamClient} from './StreamClientSetup';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -78,10 +79,11 @@ const VideoScreen = ({route}) => {
   const [curBidWinner, setCurBidWinner] = useState('');
   const [showWinner, setShowWinner] = useState(false);
 
+  const [streamError, setStreamError] = useState(false);
+  const [callEnded, setCallEnded] = useState(false);
+
   const myClient = useStreamClient();
   const myCall = useStreamCall(myClient, broadcastId, setStreamError);
-  const [streamError, setStreamError] = useState(false);
-
   const apiKey = useSelector(state => state.NonPersistSlice.apiKey);
 
   useEffect(() => {
@@ -293,13 +295,45 @@ const VideoScreen = ({route}) => {
     shippingAndTaxesBottomSheetRef.current?.expand();
   };
 
-  if (streamError) {
+  const endCall = () => {
+    console.log('in end call');
+    if (userData.user.isAdmin) {
+      console.log('in end call 2');
+      myCall.endCall();
+    }
+  };
+
+  useEffect(() => {
+    if (!myClient) {
+      return;
+    }
+    // Subscribe to the 'call.ended' event
+    const unsubscribeEnded = myClient.on('call.ended', event => {
+      if (event.type === 'call.ended') {
+        setCallEnded(true);
+        console.log(`Call ended: ${event.call_cid}`);
+      }
+    });
+
+    return () => {
+      unsubscribeEnded();
+    };
+  }, [myClient]);
+
+  if (streamError || callEnded) {
     return (
       <SafeAreaView
         style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{fontSize: calculatedFontSize / 2.4}}>
-          Something went wrong, please try again later
-        </Text>
+        {callEnded ? (
+          <Text style={{fontSize: calculatedFontSize / 2.4}}>
+            This stream has ended
+          </Text>
+        ) : (
+          <Text style={{fontSize: calculatedFontSize / 2.4}}>
+            Something went wrong, please try again later
+          </Text>
+        )}
+
         <TouchableOpacity
           onPress={() => navigation.navigate('Home')}
           style={{
@@ -648,6 +682,7 @@ const VideoScreen = ({route}) => {
           profilePictureURL={profilePictureURL}
           username={username}
           setControlsBottomSheetVisible={setControlsBottomSheetVisible}
+          endCall={endCall}
         />
       )}
       {shippingAndTaxesBottomSheetVisible && (

@@ -74,6 +74,7 @@ const GetStreamSDK = ({route}) => {
 
   const [myClient, setMyClient] = useState(null);
   const [myCall, setMyCall] = useState(null);
+  const [callEnded, setCallEnded] = useState(false);
 
   const [isSocketReady, setIsSocketReady] = useState(false);
 
@@ -383,6 +384,23 @@ const GetStreamSDK = ({route}) => {
       console.log('items:', items);
     }
   }, []);
+
+  useEffect(() => {
+    if (!myClient) {
+      return;
+    }
+    // Subscribe to the 'call.ended' event
+    const unsubscribeEnded = myClient.on('call.ended', event => {
+      if (event.type === 'call.ended') {
+        setCallEnded(true);
+        console.log(`Call ended: ${event.call_cid}`);
+      }
+    });
+
+    return () => {
+      unsubscribeEnded();
+    };
+  }, [myClient]);
 
   if (streamError) {
     return (

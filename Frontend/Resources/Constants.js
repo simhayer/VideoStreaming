@@ -67,6 +67,7 @@ export const apiEndpoints = {
   editListingQuantity: '/auth/editListingQuantity',
   updateOrderForRetriedPayment: '/auth/updateOrderForRetriedPayment',
   getStreamApiKey: '/auth/getStreamApiKey',
+  createStreamUserForAdmin: '/auth/createStreamUserForAdmin',
   // Add more API endpoints as needed
 };
 

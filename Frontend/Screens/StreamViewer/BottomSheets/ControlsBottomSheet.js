@@ -23,10 +23,12 @@ const ControlsBottomSheet = ({
   profilePictureURL,
   username,
   setControlsBottomSheetVisible,
+  endCall,
 }) => {
   const {userData} = useSelector(state => state.auth);
-
   const userUsername = userData?.user?.username;
+
+  const isAdmin = userData?.user?.isAdmin;
 
   const controlsSnapPoints = useMemo(() => ['1%', '50%'], []);
 
@@ -177,6 +179,30 @@ const ControlsBottomSheet = ({
           </View>
           <Text style={styles.controlsTextStyle}>Report seller</Text>
         </TouchableOpacity>
+        {isAdmin && (
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginTop: 10,
+            }}
+            onPress={() => endCall()}>
+            <View
+              style={{
+                backgroundColor: 'grey',
+                borderRadius: 30,
+                padding: 7,
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginLeft: '5%',
+                paddingBottom: 9,
+                paddingHorizontal: 9,
+              }}>
+              <Icon name="warning" size={25} color="white" />
+            </View>
+            <Text style={styles.controlsTextStyle}>End stream</Text>
+          </TouchableOpacity>
+        )}
       </BottomSheetView>
     </BottomSheet>
   );
