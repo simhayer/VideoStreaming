@@ -17,11 +17,14 @@ import {
   appPink,
   baseURL,
   colors,
+  productTypes,
 } from '../../Resources/Constants';
 import axios from 'axios';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Ionicons';
+import TopTabs from '../../Components/TopTabs';
+//import productTypes from '../../Resources/Constants';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -40,6 +43,19 @@ const ListListings = () => {
   const [search, setSearch] = useState('');
   const [hasSearched, setHasSearched] = useState(false);
   const [searchInput, setSearchInput] = useState('');
+
+  //const tabs = productTypes;
+  const tabs = ['All', ...productTypes];
+  const [selectedTab, setSelectedTab] = useState('All');
+
+  const selectedTabChanged = item => {
+    console.log('tab changed', item);
+    setRefreshing(true);
+    setPage(1);
+    setCanFetchMore(true);
+    showList(1, search, item, true);
+    setTimeout(() => setRefreshing(false), 1000);
+  };
 
   const handleSearchChange = value => {
     setSearchInput(value);
@@ -63,13 +79,13 @@ const ListListings = () => {
       console.log('Search input is empty');
       setPage(1);
       setCanFetchMore(true);
-      showList(1, '', true);
+      showList(1, '', selectedTab, true);
     }
 
     if (search.trim() !== '') {
       setPage(1);
       setCanFetchMore(true);
-      showList(1, search, true);
+      showList(1, search, selectedTab, true);
     }
   }, [search]);
 
@@ -77,7 +93,7 @@ const ListListings = () => {
     setRefreshing(true);
     setPage(1);
     setCanFetchMore(true);
-    showList(1, search, true);
+    showList(1, search, selectedTab, true);
     setTimeout(() => setRefreshing(false), 1000);
   }, []);
 
@@ -107,6 +123,7 @@ const ListListings = () => {
   const showList = async (
     newPage = 1,
     searchValue = search,
+    type = selectedTab,
     overrideCanFecth = false,
   ) => {
     if (!overrideCanFecth && !canFetchMore) return;
@@ -126,7 +143,7 @@ const ListListings = () => {
     try {
       const response = await axios.post(
         baseURL + apiEndpoints.getAllListingsByPage,
-        {page: newPage, limit: 10, search: searchValue},
+        {page: newPage, limit: 10, search: searchValue, type},
         {
           timeout: 7000,
           signal: controller.signal,
@@ -297,7 +314,6 @@ const ListListings = () => {
           shadowOffset: {width: 0, height: 2},
           shadowOpacity: 0.1,
           shadowRadius: 4,
-          marginBottom: 20,
         }}>
         <Icon name="search" size={24} color="grey" />
         <TextInput
@@ -325,6 +341,15 @@ const ListListings = () => {
             color={searchInput == '' ? 'grey' : 'black'}
           />
         </TouchableOpacity>
+      </View>
+
+      <View style={{marginVertical: 10}}>
+        <TopTabs
+          tabs={tabs}
+          selectedTab={selectedTab}
+          setSelectedTab={setSelectedTab}
+          selectedTabChanged={selectedTabChanged}
+        />
       </View>
       {loading ? (
         renderSkeleton()

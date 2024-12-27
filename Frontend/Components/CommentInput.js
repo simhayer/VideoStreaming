@@ -38,7 +38,6 @@ const CommentInput = ({
             borderWidth: 1,
             borderColor: 'white',
             width: '70%',
-            marginLeft: '4%',
             borderRadius: 25,
             justifyContent: 'center',
             paddingLeft: '6%',

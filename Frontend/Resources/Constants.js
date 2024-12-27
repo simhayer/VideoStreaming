@@ -105,6 +105,7 @@ export const stripePublishableKey =
 export const productTypes = [
   'Clothing',
   'Sneakers & Footwear',
+  'Sports Cards',
   'Electronics',
   'Accessories',
   'Video Games',
