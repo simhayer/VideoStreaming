@@ -335,7 +335,7 @@ const VideoScreen = ({route}) => {
         )}
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('Streams')}
           style={{
             backgroundColor: appPink,
             borderRadius: 40,

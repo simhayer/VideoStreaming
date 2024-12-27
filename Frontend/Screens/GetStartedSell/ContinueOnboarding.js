@@ -65,7 +65,7 @@ const ContinueOnboarding = () => {
     <SafeAreaView style={styles.container(colors.background)}>
       {/* Back Button */}
       <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate('Streams')}
         style={styles.backButton}>
         <Icon name="chevron-back" size={35} color="black" />
       </TouchableOpacity>

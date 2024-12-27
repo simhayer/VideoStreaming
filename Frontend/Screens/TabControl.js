@@ -30,8 +30,8 @@ const TabControl = ({route}) => {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
-          if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home-outline';
+          if (route.name === 'Streams') {
+            iconName = focused ? 'aperture' : 'aperture-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
           } else if (route.name === 'Stream') {
@@ -67,7 +67,7 @@ const TabControl = ({route}) => {
         },
         headerShown: false, // Hide header for a cleaner tab view
       })}>
-      <Tab.Screen name="Home" component={ViewerTab} />
+      <Tab.Screen name="Streams" component={ViewerTab} />
       <Tab.Screen name="Shop" component={ListListings} />
       {isOnboardingStarted ? (
         <Tab.Screen name="Sell" component={SellTab} />

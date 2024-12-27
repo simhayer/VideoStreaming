@@ -415,7 +415,7 @@ const GetStreamSDK = ({route}) => {
           Something went wrong, please try again later
         </Text>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('Streams')}
           style={{
             backgroundColor: appPink,
             borderRadius: 40,

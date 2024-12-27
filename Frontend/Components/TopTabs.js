@@ -36,7 +36,7 @@ const TopTabs = ({tabs, selectedTab, setSelectedTab, selectedTabChanged}) => {
             <Text
               style={{
                 color: selectedTab === item ? 'black' : 'grey',
-                fontWeight: 'bold',
+                fontWeight: '600',
                 fontSize: calculatedFontSize / 2.7,
               }}>
               {item}

@@ -160,7 +160,7 @@ const Profile = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('Streams')}
           activeOpacity={0.8}>
           <View style={{alignItems: 'center'}}>
             <Icon name="cart-outline" size={30} color="black" />

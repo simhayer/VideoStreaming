@@ -24,7 +24,6 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TopTabs from '../../Components/TopTabs';
-//import productTypes from '../../Resources/Constants';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -265,7 +264,8 @@ const ListListings = () => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            margin: 10,
+            marginHorizontal: 10,
+            marginBottom: 40,
           }}>
           <View style={{width: '48%', aspectRatio: 1, borderRadius: 7}} />
           <View style={{width: '48%', aspectRatio: 1, borderRadius: 7}} />

@@ -103,12 +103,17 @@ export const stripePublishableKey =
   'pk_live_51PqQlpD4UkX571U3cMfKXqOoy0R3C2Ko7886zA2NgGu2X9rCDyiwxhfYJds7lV6JTkBGkJOfF5VF8CJ0VBbhgYrv00ujP1Q17h';
 
 export const productTypes = [
-  'Clothing',
   'Sneakers & Footwear',
   'Sports Cards',
+  'Gaming Cards',
+  "Men's Clothing",
+  "Women's Clothing",
+  'Toys & Hobbies',
+  'Jewelry',
   'Electronics',
   'Accessories',
   'Video Games',
+  'Kids/Babies',
   'Other',
 ];
 

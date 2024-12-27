@@ -22,7 +22,7 @@ const GetStartedSell = () => {
       <View style={{alignItems: 'flex-end'}}>
         <TouchableOpacity
           style={{margin: 12}}
-          onPress={() => navigation.navigate('Home')}>
+          onPress={() => navigation.navigate('Streams')}>
           <Icon name="close" size={35} color="black" />
         </TouchableOpacity>
       </View>

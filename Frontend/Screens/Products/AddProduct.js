@@ -45,11 +45,16 @@ const AddProduct = () => {
   const [size, setSize] = useState('');
 
   const showSizeOption = useMemo(() => {
-    return type === 'Clothing' || type === 'Sneakers & Footwear';
+    return (
+      type === "Men's Clothing" ||
+      type === "Women's Clothing" ||
+      type === 'Sneakers & Footwear'
+    );
   }, [type]);
 
   const sizeOptions = useMemo(() => {
-    if (type === 'Clothing') return clothingSizeOptions;
+    if (type === "Men's Clothing") return clothingSizeOptions;
+    if (type === "Women's Clothing") return clothingSizeOptions;
     if (type === 'Sneakers & Footwear') return shoeSizeOptions;
     return [];
   }, [type]);

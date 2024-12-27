@@ -49,7 +49,7 @@ const ControlsBottomSheet = ({
       });
 
     console.log('Response:', response.data);
-    navigation.navigate('Home');
+    navigation.navigate('Streams');
   };
 
   const closeControls = () => {

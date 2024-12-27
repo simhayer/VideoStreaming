@@ -58,7 +58,7 @@ export default function ReportSeller({route}) {
       setLoading(false);
     }, 1000);
 
-    navigation.navigate('Home');
+    navigation.navigate('Streams');
   };
 
   const inputRef = useRef(null);

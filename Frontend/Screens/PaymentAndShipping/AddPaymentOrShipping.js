@@ -62,115 +62,113 @@ export default function AddPaymentOrShipping() {
   );
 
   return (
-      <SafeAreaView
-        style={{flex: 1, backgroundColor: colors.background, paddingTop: 20}}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="chevron-back" size={35} color="black" />
-        </TouchableOpacity>
-        <View
+    <SafeAreaView
+      style={{flex: 1, backgroundColor: colors.background, paddingTop: 20}}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon name="chevron-back" size={35} color="black" />
+      </TouchableOpacity>
+      <View
+        style={{
+          alignItems: 'center',
+          marginTop: '5%',
+          marginHorizontal: '5%',
+        }}>
+        <Text
           style={{
+            color: 'black',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            fontSize: calculatedFontSize / 2.8,
+          }}>
+          We need the following information to process for you to start bidding
+        </Text>
+        <Text style={{fontSize: calculatedFontSize / 2.9, textAlign: 'center'}}>
+          You won't be charged untill you purchase an item
+        </Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('AddPaymentMethod');
+          }}
+          style={{
+            marginTop: '10%',
+            borderTopWidth: 1,
+            borderBottomWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            width: '100%',
+            flexDirection: 'row',
+            paddingVertical: '4%',
+            justifyContent: 'space-between',
             alignItems: 'center',
-            marginTop: '5%',
-            marginHorizontal: '5%',
+          }}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Icon name="card-outline" size={30} color="black" />
+            <Text
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                marginLeft: '10%',
+                fontSize: calculatedFontSize / 2.7,
+              }}>
+              Payment
+            </Text>
+          </View>
+          <Icon
+            name="checkmark-circle"
+            size={30}
+            color={paymentMethodExist ? 'green' : 'grey'}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('AddAddress', {address});
+          }}
+          style={{
+            borderBottomWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            width: '100%',
+            flexDirection: 'row',
+            paddingVertical: '4%',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Icon name="home-outline" size={30} color="black" />
+            <Text
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                marginLeft: '10%',
+                fontSize: calculatedFontSize / 2.7,
+              }}>
+              Shipping
+            </Text>
+          </View>
+          <Icon
+            name="checkmark-circle"
+            size={30}
+            color={addressExist ? 'green' : 'grey'}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Streams')}
+          style={{
+            marginTop: '10%',
+            paddingVertical: '4%',
+            backgroundColor: appPink,
+            borderRadius: 40,
+            paddingHorizontal: '10%',
           }}>
           <Text
             style={{
-              color: 'black',
-              fontWeight: 'bold',
+              color: 'white',
               textAlign: 'center',
-              fontSize: calculatedFontSize / 2.8,
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2.7,
             }}>
-            We need the following information to process for you to start
-            bidding
+            Done
           </Text>
-          <Text
-            style={{fontSize: calculatedFontSize / 2.9, textAlign: 'center'}}>
-            You won't be charged untill you purchase an item
-          </Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('AddPaymentMethod');
-            }}
-            style={{
-              marginTop: '10%',
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              width: '100%',
-              flexDirection: 'row',
-              paddingVertical: '4%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="card-outline" size={30} color="black" />
-              <Text
-                style={{
-                  color: 'black',
-                  fontWeight: 'bold',
-                  marginLeft: '10%',
-                  fontSize: calculatedFontSize / 2.7,
-                }}>
-                Payment
-              </Text>
-            </View>
-            <Icon
-              name="checkmark-circle"
-              size={30}
-              color={paymentMethodExist ? 'green' : 'grey'}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('AddAddress', {address});
-            }}
-            style={{
-              borderBottomWidth: 1,
-              borderColor: 'rgba(0,0,0,0.2)',
-              width: '100%',
-              flexDirection: 'row',
-              paddingVertical: '4%',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Icon name="home-outline" size={30} color="black" />
-              <Text
-                style={{
-                  color: 'black',
-                  fontWeight: 'bold',
-                  marginLeft: '10%',
-                  fontSize: calculatedFontSize / 2.7,
-                }}>
-                Shipping
-              </Text>
-            </View>
-            <Icon
-              name="checkmark-circle"
-              size={30}
-              color={addressExist ? 'green' : 'grey'}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}
-            style={{
-              marginTop: '10%',
-              paddingVertical: '4%',
-              backgroundColor: appPink,
-              borderRadius: 40,
-              paddingHorizontal: '10%',
-            }}>
-            <Text
-              style={{
-                color: 'white',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                fontSize: calculatedFontSize / 2.7,
-              }}>
-              Done
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
