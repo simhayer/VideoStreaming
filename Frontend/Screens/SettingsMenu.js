@@ -112,7 +112,6 @@ export default function AddPaymentMethod() {
           renderSettingOption('lock-closed-outline', 'Admin Controls', () =>
             navigation.navigate('AdminDashboard'),
           )}
-
         {renderSettingOption('person-circle-outline', 'Profile', () =>
           navigation.navigate('EditProfile'),
         )}

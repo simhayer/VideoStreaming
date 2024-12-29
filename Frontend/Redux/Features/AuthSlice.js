@@ -206,6 +206,33 @@ export const updateUserAddress = createAsyncThunk(
   },
 );
 
+export const updateInterestedCategories = createAsyncThunk(
+  'auth/updateInterestedCategories',
+  async (params, thunkApi) => {
+    try {
+      console.log('in updating categories');
+      const response = await axios.post(
+        baseURL + apiEndpoints.updateUserInterestedCategories,
+        params,
+      );
+      //console.log('Update interested categories response:', response.data);
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return thunkApi.rejectWithValue({
+          message: 'Update interested categories  failed',
+          status: error.response.status,
+          data: error.response.data,
+        });
+      } else {
+        return thunkApi.rejectWithValue({
+          message: 'Update interested categories  failed',
+        });
+      }
+    }
+  },
+);
+
 export const uploadProfilePicture = createAsyncThunk(
   'auth/uploadProfilePicture',
   async (params, {dispatch, rejectWithValue}) => {
@@ -476,6 +503,36 @@ const authSlice = createSlice({
       }
     });
     builder.addCase(updateUserAddress.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.errorMessage = action.payload.message;
+    });
+
+    //update Interested Categories
+    builder.addCase(updateInterestedCategories.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateInterestedCategories.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+
+      console.log(
+        'Setting interested Categories ',
+        action.payload.user.interestedCategories,
+      );
+
+      if (
+        action.payload &&
+        action.payload.user &&
+        action.payload.user.interestedCategories
+      ) {
+        state.userData.user.interestedCategories =
+          action.payload.user.interestedCategories;
+      } else {
+        state.userData.user.interestedCategories = [];
+      }
+    });
+    builder.addCase(updateInterestedCategories.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.errorMessage = action.payload.message;

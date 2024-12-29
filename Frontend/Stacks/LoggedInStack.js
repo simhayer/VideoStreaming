@@ -15,6 +15,7 @@ import GetStreamViewerSDK from '../Screens/StreamViewer/GetStreamViewerSDK';
 import ListListings from '../Screens/Listing/ListListings';
 import ViewListingBuyer from '../Screens/Listing/ViewListingBuyer';
 import Checkout from '../Screens/Listing/Checkout';
+import SelectCategories from '../Screens/Products/SelectCategories';
 
 // Lazily load the group of onboarding-related screens
 const SellerOrdersNew = lazy(() => import('../Screens/Orders/SellerOrdersNew'));
@@ -150,6 +151,7 @@ const LoggedInStack = () => {
       <Stack.Screen name="ReportSeller" component={ReportSeller} />
       <Stack.Screen name="ContactUs" component={ContactUs} />
       <Stack.Screen name="DeleteAccount" component={DeleteAccount} />
+      <Stack.Screen name="SelectCategories" component={SelectCategories} />
       {/* Conditionally load the SellerOrders screen */}
       {isSeller && (
         <>

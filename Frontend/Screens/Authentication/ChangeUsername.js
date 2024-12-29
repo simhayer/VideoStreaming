@@ -7,10 +7,11 @@ import {
   Dimensions,
   SafeAreaView,
   ActivityIndicator,
+  BackHandler,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
-import {updateUsername} from '../../Redux/Features/AuthSlice';
+import {logout, updateUsername} from '../../Redux/Features/AuthSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink, colors, errorRed} from '../../Resources/Constants';
 
@@ -26,6 +27,27 @@ const ChangeUsername = ({route}) => {
 
   const screenHeight = Dimensions.get('window').height;
   const calculatedFontSize = screenHeight * 0.05;
+
+  const handleBackPress = () => {
+    if (navigation.canGoBack()) {
+      // Go back safely
+      navigation.goBack();
+    } else {
+      //console.log('In log out');
+      dispatch(logout()); // Log the user out
+    }
+    return true; // Prevent default behavior
+  };
+
+  useEffect(() => {
+    // Add back press listener
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      handleBackPress,
+    );
+
+    return () => backHandler.remove(); // Clean up listener
+  }, []);
 
   const onNextClick = () => {
     if (username.length === 0) {

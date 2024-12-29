@@ -32,6 +32,9 @@ import ViewListingBuyer from '../Screens/Listing/ViewListingBuyer';
 import EditListingQuantity from '../Screens/Listing/EditListingQuantity';
 import Checkout from '../Screens/Listing/Checkout';
 
+import SelectCategories from '../Screens/Products/SelectCategories';
+import UsernameCreate from '../Screens/Authentication/UsernameCreate';
+
 //Actually lazy load the screens
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
 import {useSelector} from 'react-redux';
@@ -71,71 +74,122 @@ const Stack = createNativeStackNavigator();
 
 const LoggedInStackSeller = () => {
   const {userData} = useSelector(state => state.auth);
+
+  if (!userData || !userData?.user) {
+    return null;
+  }
   const isAdmin = userData?.user?.isAdmin;
+  const email = userData.user.email;
+
+  //check if username is set
+  const username = userData.user.username;
+  const usernameNotPresent = !username || username.includes('user21');
+
+  //check if interested categories is chooses
+  const interestedCategories = userData.user.interestedCategories;
+  const interestedCategoriesNotPresent =
+    !interestedCategories || interestedCategories?.length === 0;
+
+  const isSetupIncomplete =
+    usernameNotPresent || interestedCategoriesNotPresent;
+  //const navigatorKey = isSetupIncomplete ? 'setupFlow' : 'mainFlow';
 
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="TabControl" component={TabControl} />
-      <Stack.Screen name="EditProfile" component={EditProfile} />
-      <Stack.Screen name="Orders" component={Orders} />
-      <Stack.Screen name="ViewOrderBuyer" component={ViewOrderBuyer} />
-      <Stack.Screen name="ManageProducts" component={ManageProducts} />
-      <Stack.Screen name="AddProduct" component={AddProduct} />
-      <Stack.Screen name="ViewProduct" component={ViewProduct} />
-      <Stack.Screen name="ManageListings" component={ManageListings} />
-      <Stack.Screen
-        name="SelectProductForListing"
-        component={SelectProductForListing}
-      />
-      <Stack.Screen name="SubmitListing" component={SubmitListing} />
-      <Stack.Screen name="ViewListingSeller" component={ViewListingSeller} />
-      <Stack.Screen name="ListListings" component={ListListings} />
-      <Stack.Screen name="ViewListingBuyer" component={ViewListingBuyer} />
-      <Stack.Screen
-        name="EditListingQuantity"
-        component={EditListingQuantity}
-      />
-      <Stack.Screen name="Checkout" component={Checkout} />
-      <Stack.Screen
-        name="AddPaymentOrShipping"
-        component={AddPaymentOrShipping}
-      />
-      <Stack.Screen name="AddPaymentMethod" component={AddPaymentMethod} />
-      <Stack.Screen name="AddAddress" component={AddAddress} />
-      <Stack.Screen name="SettingsMenu" component={SettingsMenu} />
-      <Stack.Screen name="ChangeUsername" component={ChangeUsername} />
-      <Stack.Screen name="GetStartedSell" component={GetStartedSell} />
-      <Stack.Screen
-        name="GetStartedSellRulesWithContinue"
-        component={GetStartedSellRulesWithContinue}
-      />
-      <Stack.Screen
-        name="GetStartedSellRules"
-        component={GetStartedSellRules}
-      />
-      <Stack.Screen name="ContinueOnboarding" component={ContinueOnboarding} />
-      <Stack.Screen name="GetStreamViewerSDK" component={GetStreamViewerSDK} />
-      <Stack.Screen
-        name="ScheduledStreamViewer"
-        component={ScheduledStreamViewer}
-      />
+      {isSetupIncomplete ? (
+        // Setup Flow Screens
+        <>
+          {usernameNotPresent && (
+            <Stack.Screen
+              name="CreateUsername"
+              component={UsernameCreate}
+              initialParams={{email}}
+            />
+          )}
+          {interestedCategoriesNotPresent && (
+            <Stack.Screen
+              name="SelectCategories"
+              component={SelectCategories}
+            />
+          )}
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="TabControl" component={TabControl} />
+          <Stack.Screen name="EditProfile" component={EditProfile} />
+          <Stack.Screen name="Orders" component={Orders} />
+          <Stack.Screen name="ViewOrderBuyer" component={ViewOrderBuyer} />
+          <Stack.Screen name="ManageProducts" component={ManageProducts} />
+          <Stack.Screen name="AddProduct" component={AddProduct} />
+          <Stack.Screen name="ViewProduct" component={ViewProduct} />
+          <Stack.Screen name="ManageListings" component={ManageListings} />
+          <Stack.Screen
+            name="SelectProductForListing"
+            component={SelectProductForListing}
+          />
+          <Stack.Screen name="SubmitListing" component={SubmitListing} />
+          <Stack.Screen
+            name="ViewListingSeller"
+            component={ViewListingSeller}
+          />
+          <Stack.Screen name="ListListings" component={ListListings} />
+          <Stack.Screen name="ViewListingBuyer" component={ViewListingBuyer} />
+          <Stack.Screen
+            name="EditListingQuantity"
+            component={EditListingQuantity}
+          />
+          <Stack.Screen name="Checkout" component={Checkout} />
+          <Stack.Screen
+            name="AddPaymentOrShipping"
+            component={AddPaymentOrShipping}
+          />
+          <Stack.Screen name="AddPaymentMethod" component={AddPaymentMethod} />
+          <Stack.Screen name="AddAddress" component={AddAddress} />
+          <Stack.Screen name="SettingsMenu" component={SettingsMenu} />
+          <Stack.Screen name="ChangeUsername" component={ChangeUsername} />
+          <Stack.Screen name="GetStartedSell" component={GetStartedSell} />
+          <Stack.Screen
+            name="GetStartedSellRulesWithContinue"
+            component={GetStartedSellRulesWithContinue}
+          />
+          <Stack.Screen
+            name="GetStartedSellRules"
+            component={GetStartedSellRules}
+          />
+          <Stack.Screen
+            name="ContinueOnboarding"
+            component={ContinueOnboarding}
+          />
+          <Stack.Screen
+            name="GetStreamViewerSDK"
+            component={GetStreamViewerSDK}
+          />
+          <Stack.Screen
+            name="ScheduledStreamViewer"
+            component={ScheduledStreamViewer}
+          />
 
-      <Stack.Screen name="SellerOrdersNew" component={SellerOrdersNew} />
-      <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
-      <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />
-      <Stack.Screen name="SelectProducts" component={SelectProducts} />
-      <Stack.Screen name="SelectThumbnail" component={SelectThumbnail} />
-      <Stack.Screen name="SetScheduleTime" component={SetScheduleTime} />
-      <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />
-      <Stack.Screen name="EnterOrderTracking" component={EnterOrderTracking} />
-      <Stack.Screen name="ViewProfile" component={ViewProfile} />
-      <Stack.Screen name="ReportSeller" component={ReportSellerOptions} />
-      <Stack.Screen name="ReportSellerOptions" component={ReportSeller} />
-      <Stack.Screen name="ContactUs" component={ContactUs} />
-      <Stack.Screen name="DeleteAccount" component={DeleteAccount} />
+          <Stack.Screen name="SellerOrdersNew" component={SellerOrdersNew} />
+          <Stack.Screen name="ViewOrderSeller" component={ViewOrderSeller} />
+          <Stack.Screen name="EnterStreamTitle" component={EnterStreamTitle} />
+          <Stack.Screen name="SelectProducts" component={SelectProducts} />
+          <Stack.Screen name="SelectThumbnail" component={SelectThumbnail} />
+          <Stack.Screen name="SetScheduleTime" component={SetScheduleTime} />
+          <Stack.Screen name="GetStreamSDK" component={GetStreamSDK} />
+          <Stack.Screen
+            name="EnterOrderTracking"
+            component={EnterOrderTracking}
+          />
+          <Stack.Screen name="ViewProfile" component={ViewProfile} />
+          <Stack.Screen name="ReportSeller" component={ReportSellerOptions} />
+          <Stack.Screen name="ReportSellerOptions" component={ReportSeller} />
+          <Stack.Screen name="ContactUs" component={ContactUs} />
+          <Stack.Screen name="DeleteAccount" component={DeleteAccount} />
 
-      {isAdmin && (
-        <Stack.Screen name="AdminDashboard" component={AdminDashboard} />
+          {isAdmin && (
+            <Stack.Screen name="AdminDashboard" component={AdminDashboard} />
+          )}
+        </>
       )}
     </Stack.Navigator>
   );

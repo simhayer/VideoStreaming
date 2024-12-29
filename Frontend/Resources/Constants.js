@@ -68,6 +68,7 @@ export const apiEndpoints = {
   updateOrderForRetriedPayment: '/auth/updateOrderForRetriedPayment',
   getStreamApiKey: '/auth/getStreamApiKey',
   createStreamUserForAdmin: '/auth/createStreamUserForAdmin',
+  updateUserInterestedCategories: '/auth/updateUserInterestedCategories',
   // Add more API endpoints as needed
 };
 
@@ -115,6 +116,69 @@ export const productTypes = [
   'Video Games',
   'Kids/Babies',
   'Other',
+];
+
+export const productTypesMap = [
+  {
+    id: '1',
+    name: 'Sneakers & Footwear',
+    image: require('./CategoryImages/SneakersFootwear.png'),
+  },
+  {
+    id: '2',
+    name: 'Sports Cards',
+    image: require('./CategoryImages/SportsCards.png'),
+  },
+  {
+    id: '3',
+    name: 'Gaming Cards',
+    image: require('./CategoryImages/GamingCards.png'),
+  },
+  {
+    id: '4',
+    name: "Men's Clothing",
+    image: require('./CategoryImages/MensClothing.png'),
+  },
+  {
+    id: '5',
+    name: "Women's Clothing",
+    image: require('./CategoryImages/WomensClothing.png'),
+  },
+  {
+    id: '6',
+    name: 'Toys & Hobbies',
+    image: require('./CategoryImages/ToysHobbies.png'),
+  },
+  {
+    id: '7',
+    name: 'Jewelry',
+    image: require('./CategoryImages/Jewelry.png'),
+  },
+  {
+    id: '8',
+    name: 'Electronics',
+    image: require('./CategoryImages/Electronics.png'),
+  },
+  {
+    id: '9',
+    name: 'Accessories',
+    image: require('./CategoryImages/Accessories.png'),
+  },
+  {
+    id: '10',
+    name: 'Video Games',
+    image: require('./CategoryImages/VideoGames.png'),
+  },
+  {
+    id: '11',
+    name: 'Kids/Babies',
+    image: require('./CategoryImages/BabyKids.png'),
+  },
+  {
+    id: '12',
+    name: 'Other',
+    image: require('./CategoryImages/SneakersFootwear.png'),
+  },
 ];
 
 export const shoeSizeOptions = [

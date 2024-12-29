@@ -24,6 +24,7 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TopTabs from '../../Components/TopTabs';
+import {useSelector} from 'react-redux';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -43,8 +44,11 @@ const ListListings = () => {
   const [hasSearched, setHasSearched] = useState(false);
   const [searchInput, setSearchInput] = useState('');
 
-  //const tabs = productTypes;
-  const tabs = ['All', ...productTypes];
+  const {userData, isLoading} = useSelector(state => state.auth);
+  const interestedCategories = userData?.user?.interestedCategories;
+
+  const tabs = [...new Set(['All', ...interestedCategories, ...productTypes])];
+
   const [selectedTab, setSelectedTab] = useState('All');
 
   const selectedTabChanged = item => {

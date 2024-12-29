@@ -6,7 +6,6 @@ import SellTab from './SellTab';
 import GetStartedSell from './GetStartedSell/GetStartedSell';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink} from '../Resources/Constants';
-import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import ListListings from './Listing/ListListings';
 
