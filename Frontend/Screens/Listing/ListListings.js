@@ -146,7 +146,13 @@ const ListListings = () => {
     try {
       const response = await axios.post(
         baseURL + apiEndpoints.getAllListingsByPage,
-        {page: newPage, limit: 10, search: searchValue, type},
+        {
+          page: newPage,
+          limit: 10,
+          search: searchValue,
+          type,
+          interestedTypes: interestedCategories,
+        },
         {
           timeout: 7000,
           signal: controller.signal,
