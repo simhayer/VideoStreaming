@@ -186,13 +186,13 @@ const ListListings = () => {
     }
   };
 
-  const handleViewListing = (item, profilePictureURL) => {
+  const handleViewListing = item => {
     navigation.navigate('ViewListingBuyer', {
       listing: item,
     });
   };
 
-  const ListingItem = React.memo(({item, profilePictureURL}) => {
+  const ListingItem = React.memo(({item}) => {
     if (item.product == null) return null;
     const [imageLoaded, setImageLoaded] = useState(false);
     const thumbnailUri = `${baseURL}/${item.product.imageUrl}`;
@@ -211,9 +211,7 @@ const ListListings = () => {
             flex: 1,
             borderRadius: 7,
           }}
-          onPress={() =>
-            handleViewListing(item, profilePictureURL, navigation)
-          }>
+          onPress={() => handleViewListing(item)}>
           <FastImage
             source={
               imageLoaded
