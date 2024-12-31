@@ -495,7 +495,7 @@ const VideoScreen = ({route}) => {
                   }}>
                   <TouchableOpacity
                     onPress={() =>
-                      navigation.navigate('ViewProduct', {
+                      navigation.navigate('ViewProductBuyer', {
                         item: bidItem,
                       })
                     }

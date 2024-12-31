@@ -21,9 +21,11 @@ import SelectThumbnail from '../Screens/Stream/SelectThumbnail';
 import SetScheduleTime from '../Screens/Stream/SetScheduleTime';
 import ManageProducts from '../Screens/Products/ManageProducts';
 import AddProduct from '../Screens/Products/AddProduct';
-import ViewProduct from '../Screens/Products/ViewProduct';
+import ViewProductSeller from '../Screens/Products/ViewProductSeller';
+import ViewProductBuyer from '../Screens/Products/ViewProductBuyer';
 import ViewOrderBuyer from '../Screens/Orders/ViewOrderBuyer';
 import ManageListings from '../Screens/Listing/ManageListings';
+import ListListingsForAProduct from '../Screens/Listing/ListListingsForAProduct';
 import SelectProductForListing from '../Screens/Listing/SelectProductForListing';
 import SubmitListing from '../Screens/Listing/SubmitListing';
 import ViewListingSeller from '../Screens/Listing/ViewListingSeller';
@@ -121,8 +123,16 @@ const LoggedInStackSeller = () => {
           <Stack.Screen name="ViewOrderBuyer" component={ViewOrderBuyer} />
           <Stack.Screen name="ManageProducts" component={ManageProducts} />
           <Stack.Screen name="AddProduct" component={AddProduct} />
-          <Stack.Screen name="ViewProduct" component={ViewProduct} />
+          <Stack.Screen
+            name="ViewProductSeller"
+            component={ViewProductSeller}
+          />
+          <Stack.Screen name="ViewProductBuyer" component={ViewProductBuyer} />
           <Stack.Screen name="ManageListings" component={ManageListings} />
+          <Stack.Screen
+            name="ListListingsForAProduct"
+            component={ListListingsForAProduct}
+          />
           <Stack.Screen
             name="SelectProductForListing"
             component={SelectProductForListing}

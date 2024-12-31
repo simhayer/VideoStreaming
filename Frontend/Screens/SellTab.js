@@ -210,7 +210,7 @@ const StartStreamTab = () => {
             activeOpacity={0.8}>
             <View style={{alignItems: 'center'}}>
               <Icon name="cube-outline" size={30} color="black" />
-              <Text style={styles.buttonText}>Manage Products</Text>
+              <Text style={styles.buttonText}>Products</Text>
             </View>
           </TouchableOpacity>
 
@@ -239,7 +239,7 @@ const StartStreamTab = () => {
             activeOpacity={0.8}>
             <View style={{alignItems: 'center'}}>
               <Icon name="cart-outline" size={30} color="black" />
-              <Text style={styles.buttonText}>Orders (Selling)</Text>
+              <Text style={styles.buttonText}>Orders</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -248,7 +248,7 @@ const StartStreamTab = () => {
             activeOpacity={0.8}>
             <View style={{alignItems: 'center'}}>
               <Icon name="cash-outline" size={30} color="black" />
-              <Text style={styles.buttonText}>Payments Dashboard</Text>
+              <Text style={styles.buttonText}>Payments</Text>
             </View>
           </TouchableOpacity>
         </View>

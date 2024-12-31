@@ -30,12 +30,18 @@ const ManageProducts = React.lazy(() =>
   import('./../Screens/Products/ManageProducts'),
 );
 const AddProduct = React.lazy(() => import('./../Screens/Products/AddProduct'));
-const ViewProduct = React.lazy(() =>
-  import('./../Screens/Products/ViewProduct'),
+const ViewProductSeller = React.lazy(() =>
+  import('./../Screens/Products/ViewProductSeller'),
+);
+const ViewProductBuyer = React.lazy(() =>
+  import('./../Screens/Products/ViewProductBuyer'),
 );
 
 const ManageListings = React.lazy(() =>
   import('./../Screens/Listing/ManageListings'),
+);
+const ListListingsForAProduct = React.lazy(() =>
+  import('./../Screens/Listing/ListListingsForAProduct'),
 );
 const SelectProductForListing = React.lazy(() =>
   import('./../Screens/Listing/SelectProductForListing'),
@@ -100,11 +106,12 @@ const LoggedInStack = () => {
       import('../Screens/Stream/EnterStreamTitle');
       import('../Screens/Stream/SelectProducts');
       import('../Screens/Products/AddProduct');
-      import('../Screens/Products/ViewProduct');
+      import('../Screens/Products/ViewProductSeller');
       import('../Screens/Stream/SellerOrdersNew');
       import('../Screens/Stream/SelectThumbnail');
       import('../Screens/Stream/SetScheduleTime');
       import('../Screens/Listing/ManageListings');
+      import('../Screens/Listing/ListListingsForAProduct');
       import('../Screens/Listing/SelectProductForListing');
       import('../Screens/Listings/SubmitListing');
       import('../Screens/Listings/ViewListingSeller');
@@ -120,7 +127,7 @@ const LoggedInStack = () => {
       <Stack.Screen name="Orders" component={Orders} />
       <Stack.Screen name="ManageProducts" component={ManageProducts} />
       <Stack.Screen name="AddProduct" component={AddProduct} />
-      <Stack.Screen name="ViewProduct" component={ViewProduct} />
+      <Stack.Screen name="ViewProductBuyer" component={ViewProductBuyer} />
       <Stack.Screen name="ViewListingBuyer" component={ViewListingBuyer} />
       <Stack.Screen name="ListListings" component={ListListings} />
       <Stack.Screen name="Checkout" component={Checkout} />
@@ -169,6 +176,10 @@ const LoggedInStack = () => {
           />
           <Stack.Screen name="ManageListings" component={ManageListings} />
           <Stack.Screen
+            name="ListListingsForAProduct"
+            component={ListListingsForAProduct}
+          />
+          <Stack.Screen
             name="SelectProductForListing"
             component={SelectProductForListing}
           />
@@ -180,6 +191,10 @@ const LoggedInStack = () => {
           <Stack.Screen
             name="EditListingQuantity"
             component={EditListingQuantity}
+          />
+          <Stack.Screen
+            name="ViewProductSeller"
+            component={ViewProductSeller}
           />
         </>
       )}

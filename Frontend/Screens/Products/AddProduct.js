@@ -294,7 +294,6 @@ const AddProduct = () => {
                 selectionColor={appPink}
                 inputMode="text"
                 onSubmitEditing={onNameNextClick}
-                clearButtonMode="while-editing"
                 keyboardAppearance="light"
                 onFocus={closeBottomSheet}
               />

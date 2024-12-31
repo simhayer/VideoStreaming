@@ -9,7 +9,6 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
-  TextInput,
 } from 'react-native';
 import {
   apiEndpoints,
@@ -42,6 +41,7 @@ const ViewListingSeller = ({route}) => {
   const itemImageUrl = `${baseURL}/${product.imageUrl}`;
 
   const [markActiveLoading, setMarkActiveLoading] = useState(false);
+  const [deleteListingLoading, setDeleteListingLoading] = useState(false);
 
   const onMarkAsInactive = async () => {
     //setLoading(true);
@@ -67,6 +67,33 @@ const ViewListingSeller = ({route}) => {
     } finally {
       //setLoading(false);
       setMarkActiveLoading(false);
+    }
+  };
+
+  const onDeleteListing = async () => {
+    //setLoading(true);
+    setDeleteListingLoading(true);
+
+    try {
+      const payload = {
+        email: userEmail,
+        listingIds: [listing._id],
+      };
+
+      const response = await axios
+        .post(baseURL + apiEndpoints.deleteListings, payload)
+        .catch(error => {
+          console.error('Error submitting listing:', error);
+        });
+
+      if (response?.status === 200) {
+        navigation.goBack();
+      }
+    } catch (error) {
+      console.error('Error submitting listing:', error);
+    } finally {
+      //setLoading(false);
+      setDeleteListingLoading(false);
     }
   };
 
@@ -253,7 +280,7 @@ const ViewListingSeller = ({route}) => {
                   shadowOffset: {width: 0, height: 2},
                   shadowOpacity: 0.2,
                   shadowRadius: 4, // Subtle shadow for elevation
-                  marginBottom: 40,
+                  marginBottom: 10,
                 }}
                 activeOpacity={0.8}>
                 <Text
@@ -263,6 +290,41 @@ const ViewListingSeller = ({route}) => {
                     fontWeight: 'bold',
                   }}>
                   Mark as {listing.status === 'Active' ? 'Inactive' : 'Active'}
+                </Text>
+              </TouchableOpacity>
+            )}
+            {deleteListingLoading ? (
+              <View
+                style={{
+                  alignItems: 'center',
+                  marginTop: 40,
+                }}>
+                <ActivityIndicator size="medium" color={appPink} />
+              </View>
+            ) : (
+              <TouchableOpacity
+                onPress={onDeleteListing}
+                style={{
+                  backgroundColor: appPink,
+                  borderRadius: 30,
+                  paddingVertical: 14,
+                  alignItems: 'center',
+                  width: '80%',
+                  marginTop: 40,
+                  shadowColor: '#000',
+                  shadowOffset: {width: 0, height: 2},
+                  shadowOpacity: 0.2,
+                  shadowRadius: 4, // Subtle shadow for elevation
+                  marginBottom: 40,
+                }}
+                activeOpacity={0.8}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: calculatedFontSize / 2.2,
+                    fontWeight: 'bold',
+                  }}>
+                  Delete Listing
                 </Text>
               </TouchableOpacity>
             )}

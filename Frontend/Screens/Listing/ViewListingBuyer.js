@@ -57,7 +57,13 @@ const ViewListingBuyer = ({route}) => {
           paddingBottom: 20, // Add padding for proper scroll behavior
         }}>
         {/* Back Button */}
-        <View style={{marginBottom: 10}}>
+        <View
+          style={{
+            marginBottom: 10,
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={{
@@ -66,6 +72,24 @@ const ViewListingBuyer = ({route}) => {
             }}>
             <Icon name="chevron-back" size={35} color="black" />
           </TouchableOpacity>
+          <View
+            style={{
+              borderWidth: 1,
+              padding: 3,
+              borderRadius: 5,
+              borderColor: '#4CAF50',
+              backgroundColor: 'rgba(76, 175, 80, 0.1)',
+              marginRight: 10,
+            }}>
+            <Text
+              style={{
+                color: 'green',
+                fontWeight: '600',
+                fontSize: calculatedFontSize / 3.1,
+              }}>
+              Verified Seller
+            </Text>
+          </View>
         </View>
 
         {/* Image Section */}
@@ -102,8 +126,8 @@ const ViewListingBuyer = ({route}) => {
           <Text
             style={{
               color: 'black',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2,
+              fontWeight: '700',
+              fontSize: calculatedFontSize / 2.1,
               marginBottom: 10,
             }}>
             {name}
@@ -116,12 +140,12 @@ const ViewListingBuyer = ({route}) => {
               }}>
               {outOfStock ? (
                 <Text
-                  style={{color: errorRed, fontSize: calculatedFontSize / 2.6}}>
+                  style={{color: errorRed, fontSize: calculatedFontSize / 2.7}}>
                   Out of stock
                 </Text>
               ) : (
                 <Text
-                  style={{color: errorRed, fontSize: calculatedFontSize / 2.6}}>
+                  style={{color: errorRed, fontSize: calculatedFontSize / 2.7}}>
                   Only {listing.quantity} left in stock !
                 </Text>
               )}
@@ -170,8 +194,8 @@ const ViewListingBuyer = ({route}) => {
               <Text
                 style={{
                   color: 'black',
-                  fontSize: calculatedFontSize / 2,
-                  fontWeight: 'bold',
+                  fontSize: calculatedFontSize / 1.8,
+                  fontWeight: '600',
                 }}>
                 $
               </Text>
@@ -179,8 +203,8 @@ const ViewListingBuyer = ({route}) => {
                 style={{
                   color: 'black',
                   fontSize: calculatedFontSize / 1.6,
-                  fontWeight: 'bold',
-                  marginLeft: 5,
+                  fontWeight: '600',
+                  marginLeft: 1,
                 }}>
                 {listing.price}
               </Text>
@@ -192,7 +216,6 @@ const ViewListingBuyer = ({route}) => {
                 backgroundColor: outOfStock ? 'grey' : appPink,
                 borderRadius: 30,
                 paddingVertical: 12,
-                paddingHorizontal: 20,
                 alignSelf: 'center',
                 shadowColor: '#000',
                 shadowOffset: {width: 0, height: 2},
@@ -200,6 +223,8 @@ const ViewListingBuyer = ({route}) => {
                 shadowRadius: 5,
                 elevation: 3,
                 marginTop: 15,
+                marginBottom: 10,
+                width: '80%',
               }}>
               <Text
                 style={{
@@ -249,8 +274,8 @@ const ViewListingBuyer = ({route}) => {
                 <Text
                   style={{
                     color: 'black',
-                    fontSize: calculatedFontSize / 1.8,
-                    fontWeight: 'bold',
+                    fontSize: calculatedFontSize / 2,
+                    fontWeight: '600',
                     marginLeft: 20,
                   }}>
                   {sellerUsername}

@@ -7,6 +7,7 @@ import {
   View,
   TextInput,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import {appPink, baseURL, colors} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -111,22 +112,14 @@ const ManageProducts = () => {
     return (
       <TouchableOpacity
         activeOpacity={0.8}
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          borderRadius: 12,
-          borderWidth: isSelected ? 2 : 1,
-          borderColor: isSelected ? '#4CAF50' : 'rgba(0, 0, 0, 0.1)',
-          backgroundColor: isSelected ? 'rgba(76, 175, 80, 0.1)' : 'white',
-          marginVertical: 6,
-          padding: 12,
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 2,
-        }}
-        onPress={() => navigation.navigate('ViewProduct', {item})}>
+        style={[
+          styles.productItem,
+          {
+            borderColor: isSelected ? '#4CAF50' : 'rgba(0, 0, 0, 0.1)',
+            backgroundColor: isSelected ? 'rgba(76, 175, 80, 0.1)' : 'white',
+          },
+        ]}
+        onPress={() => navigation.navigate('ViewProductSeller', {item})}>
         <FastImage
           source={{uri: item.localImagePath}}
           style={{width: 80, height: 80, borderRadius: 8}}
@@ -134,10 +127,67 @@ const ManageProducts = () => {
           defaultSource={require('../../Resources/StreamListThumbnailBlur.png')}
         />
         <View style={{flex: 1, marginHorizontal: 12}}>
-          <Text style={{fontWeight: '600', fontSize: 16}} numberOfLines={1}>
+          <Text
+            style={{
+              fontWeight: '600',
+              fontSize: calculatedFontSize / 2.8,
+              color: 'black',
+            }}
+            numberOfLines={1}>
             {item.name}
           </Text>
-          <Text style={{color: 'gray', marginTop: 4}}>{item.size}</Text>
+          <Text
+            style={{
+              color: 'gray',
+              marginTop: 4,
+              fontSize: calculatedFontSize / 2.9,
+            }}>
+            {item.size}
+          </Text>
+
+          {item.listed ? (
+            <View
+              style={{
+                borderWidth: 1,
+                padding: 2,
+                alignSelf: 'flex-start',
+                borderRadius: 5,
+                borderColor: '#4CAF50',
+                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                marginTop: 4,
+                paddingHorizontal: '4%',
+              }}>
+              <Text
+                style={{
+                  color: 'green',
+                  fontWeight: '500',
+                  fontSize: calculatedFontSize / 3.1,
+                }}>
+                LISTED
+              </Text>
+            </View>
+          ) : (
+            <View
+              style={{
+                borderWidth: 1,
+                padding: 2,
+                alignSelf: 'flex-start',
+                borderRadius: 5,
+                borderColor: '#FF5722',
+                backgroundColor: 'rgba(255, 87, 34, 0.1)',
+                marginTop: 4,
+                paddingHorizontal: '4%',
+              }}>
+              <Text
+                style={{
+                  color: 'gray',
+                  fontWeight: '500',
+                  fontSize: calculatedFontSize / 3.1,
+                }}>
+                NOT LISTED
+              </Text>
+            </View>
+          )}
         </View>
         <TouchableOpacity onPress={() => toggleSelectItem(item)}>
           <Icon
@@ -199,24 +249,7 @@ const ManageProducts = () => {
       </View>
 
       {/* Search Bar */}
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.1)',
-          borderRadius: 12,
-          paddingHorizontal: 10,
-          marginBottom: 4,
-          backgroundColor: '#f9f9f9', // Subtle background for better visibility
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 2,
-          height: 50,
-          width: '100%',
-        }}>
+      <View style={styles.searchBar}>
         <Icon name="search" size={24} color="gray" />
         <TextInput
           value={inputValue}
@@ -272,6 +305,16 @@ const ManageProducts = () => {
               </TouchableOpacity>
             </View>
 
+            <Text
+              style={{
+                color: 'black',
+                fontSize: calculatedFontSize / 3.1,
+                alignSelf: 'center',
+                marginBottom: 5,
+              }}>
+              These products will available to sell when you go live.
+            </Text>
+
             {/* Product List */}
             <FlatList
               showsVerticalScrollIndicator={false}
@@ -300,17 +343,7 @@ const ManageProducts = () => {
       <View style={{width: '100%', alignItems: 'center', marginBottom: 20}}>
         <TouchableOpacity
           onPress={() => navigation.navigate('AddProduct')}
-          style={{
-            backgroundColor: appPink,
-            borderRadius: 30,
-            paddingVertical: 12,
-            paddingHorizontal: 32,
-            shadowColor: '#000',
-            shadowOffset: {width: 0, height: 2},
-            shadowOpacity: 0.2,
-            shadowRadius: 5,
-            elevation: 3,
-          }}>
+          style={styles.addButton}>
           <Text
             style={{
               color: 'white',
@@ -325,5 +358,49 @@ const ManageProducts = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.1)',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    marginBottom: 4,
+    backgroundColor: '#f9f9f9', // Subtle background for better visibility
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    height: 50,
+    width: '100%',
+  },
+  productItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 12,
+    marginVertical: 6,
+    padding: 12,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    borderWidth: 1,
+  },
+  addButton: {
+    backgroundColor: appPink,
+    borderRadius: 30,
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 3,
+  },
+});
 
 export default ManageProducts;
