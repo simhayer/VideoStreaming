@@ -82,7 +82,12 @@ export default function AddPaymentOrShipping() {
           }}>
           We need the following information to process for you to start bidding
         </Text>
-        <Text style={{fontSize: calculatedFontSize / 2.9, textAlign: 'center'}}>
+        <Text
+          style={{
+            fontSize: calculatedFontSize / 2.9,
+            textAlign: 'center',
+            color: 'black',
+          }}>
           You won't be charged untill you purchase an item
         </Text>
         <TouchableOpacity

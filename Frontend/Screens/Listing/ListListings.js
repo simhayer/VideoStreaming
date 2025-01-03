@@ -25,6 +25,7 @@ import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TopTabs from '../../Components/TopTabs';
 import {useSelector} from 'react-redux';
+import commonStyles from '../../Resources/styles';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -195,7 +196,7 @@ const ListListings = () => {
   const ListingItem = React.memo(({item}) => {
     if (item.product == null) return null;
     const [imageLoaded, setImageLoaded] = useState(false);
-    const thumbnailUri = `${baseURL}/${item.product.imageUrl}`;
+    const thumbnailUri = `${baseURL}/${item.product.imageUrls[0]}`;
 
     return (
       <View
@@ -308,21 +309,10 @@ const ListListings = () => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginHorizontal: 10,
-          marginTop: 16,
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.2)',
-          borderRadius: 12,
-          paddingHorizontal: 10,
-          backgroundColor: 'white',
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-        }}>
+        style={[
+          commonStyles.searchBar,
+          {marginHorizontal: 10, marginTop: 16, width: '95%'},
+        ]}>
         <Icon name="search" size={24} color="grey" />
         <TextInput
           style={{

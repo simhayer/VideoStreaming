@@ -16,6 +16,7 @@ import {
 } from '../../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import commonStyles from '../../../Resources/styles';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
@@ -83,16 +84,7 @@ const ForgetPassword = () => {
           value={email}
           onChangeText={setEmail}
           placeholder={'Email'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 20,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}

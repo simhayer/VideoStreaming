@@ -11,6 +11,7 @@ import {appPink, colors} from '../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ListBroadcasts from './StreamViewer/ListBroadcasts';
 import ListScheduledStreams from './ScheduleStream/ListScheduledStreams';
+import commonStyles from '../Resources/styles';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -53,21 +54,10 @@ const ViewerTab = () => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
       <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginHorizontal: 10,
-          marginTop: 16,
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.2)',
-          borderRadius: 12,
-          paddingHorizontal: 10,
-          backgroundColor: 'white',
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-        }}>
+        style={[
+          commonStyles.searchBar,
+          {marginHorizontal: 10, marginTop: 16, width: '95%'},
+        ]}>
         <Icon name="search" size={24} color="grey" />
         <TextInput
           style={{

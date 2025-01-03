@@ -36,9 +36,7 @@ const SubmitListing = ({route}) => {
   const userEmail = userData?.user?.email;
   const [loading, setLoading] = useState(false);
 
-  const itemImageFilename = product.imageUrl.split('\\').pop();
-  const imageUrl = `${baseURL}/${itemImageFilename}`;
-  const itemImageUrl = `${baseURL}/${product.imageUrl}`;
+  const itemImageUrl = `${baseURL}/${product.imageUrls[0]}`;
 
   const onSubmit = async () => {
     setLoading(true);
@@ -103,6 +101,7 @@ const SubmitListing = ({route}) => {
             fontSize: 16,
             marginLeft: 10,
             paddingVertical: 10,
+            color: 'black',
           }}
           autoComplete="off"
           autoCapitalize="none"

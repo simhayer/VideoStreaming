@@ -82,24 +82,12 @@ const SelectProducts = ({route}) => {
       }}>
       <View
         style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
           width: '100%',
           marginTop: 10,
         }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="chevron-back" size={35} color="black" />
         </TouchableOpacity>
-        <Text
-          style={{
-            color: 'black',
-            fontWeight: 'bold',
-            fontSize: calculatedFontSize / 2,
-            textAlign: 'center',
-            flex: 1,
-          }}></Text>
-        <View style={{width: 35}} />
       </View>
       <Text
         style={{
@@ -122,8 +110,9 @@ const SelectProducts = ({route}) => {
         }}>
         <Text
           style={{
-            fontSize: calculatedFontSize / 2.7,
+            fontSize: calculatedFontSize / 2.9,
             marginRight: 5,
+            color: 'black',
           }}>
           {selectedItems.length}/10 items selected
         </Text>
@@ -136,7 +125,12 @@ const SelectProducts = ({route}) => {
             justifyContent: 'flex-end',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: calculatedFontSize / 2.7, marginRight: 5}}>
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2.7,
+              marginRight: 5,
+              color: 'black',
+            }}>
             Select all
           </Text>
           <Icon
@@ -177,7 +171,7 @@ const SelectProducts = ({route}) => {
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => {
-              if (!item.imageUrl) return null;
+              if (!item.imageUrls[0]) return null;
               const isSelected = selectedItems.includes(item._id);
               return (
                 <TouchableOpacity
@@ -192,7 +186,7 @@ const SelectProducts = ({route}) => {
                   }}
                   onPress={() => toggleSelectItem(item)}>
                   <FastImage
-                    source={{uri: item.localImagePath}}
+                    source={{uri: item.localImagePaths[0]}}
                     style={{
                       width: 45,
                       height: 45,
@@ -209,10 +203,15 @@ const SelectProducts = ({route}) => {
                         textAlign: 'left',
                         flexWrap: 'wrap',
                         fontSize: calculatedFontSize / 2.7,
+                        color: 'black',
                       }}>
                       {item.name}
                     </Text>
-                    <Text style={{fontSize: calculatedFontSize / 2.9}}>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 2.9,
+                        color: 'grey',
+                      }}>
                       {item.size}
                     </Text>
                   </View>

@@ -20,6 +20,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import axios from 'axios';
+import ProductImageCarousel from '../../Components/ProductImageCarousel';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -36,9 +37,9 @@ const ViewListingSeller = ({route}) => {
   const userEmail = userData?.user?.email;
   const [loading, setLoading] = useState(false);
 
-  const itemImageFilename = product.imageUrl.split('\\').pop();
-  const imageUrl = `${baseURL}/${itemImageFilename}`;
-  const itemImageUrl = `${baseURL}/${product.imageUrl}`;
+  const itemImageUrls = product.imageUrls.map(
+    imageUrl => `${baseURL}/${imageUrl}`,
+  );
 
   const [markActiveLoading, setMarkActiveLoading] = useState(false);
   const [deleteListingLoading, setDeleteListingLoading] = useState(false);
@@ -165,15 +166,7 @@ const ViewListingSeller = ({route}) => {
                 padding: 10,
                 marginBottom: 20,
               }}>
-              <FastImage
-                source={{uri: itemImageUrl}}
-                style={{
-                  width: '30%',
-                  height: '100%',
-                  borderRadius: 7,
-                }}
-                resizeMode={FastImage.resizeMode.contain}
-              />
+              <ProductImageCarousel images={itemImageUrls} />
               <View style={{marginLeft: 16, flex: 1}}>
                 <Text
                   style={{

@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   Dimensions,
@@ -17,6 +16,7 @@ import {
 } from '../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import commonStyles from '../../Resources/styles';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -111,16 +111,7 @@ const SignUp = () => {
           value={fullname}
           onChangeText={setFullname}
           placeholder={'Full Name'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 10,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}
@@ -140,16 +131,7 @@ const SignUp = () => {
           value={email}
           onChangeText={setEmail}
           placeholder={'Email'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 10,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}
@@ -168,16 +150,7 @@ const SignUp = () => {
           value={password}
           onChangeText={setPassword}
           placeholder={'Password'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 10,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}
@@ -237,17 +210,5 @@ const SignUp = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    width: '100%',
-    borderBottomWidth: 1,
-    borderColor: 'black',
-    fontSize: calculatedFontSize / 2.3,
-    paddingBottom: '0%',
-    marginBottom: '5%',
-    height: 40,
-  },
-});
 
 export default SignUp;

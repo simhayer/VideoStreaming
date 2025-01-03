@@ -192,8 +192,10 @@ const Orders = () => {
               </View>
             )}
             renderItem={({item}) => {
-              if (!item.product.imageUrl) return null;
-              const itemImageFilename = item.product.imageUrl.split('\\').pop();
+              if (!item.product.imageUrls[0]) return null;
+              const itemImageFilename = item.product.imageUrls[0]
+                .split('\\')
+                .pop();
               const itemImageUrl = `${baseURL}/${itemImageFilename}`;
 
               return (

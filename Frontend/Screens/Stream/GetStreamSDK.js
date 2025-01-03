@@ -724,7 +724,7 @@ const GetStreamSDK = ({route}) => {
                               }}
                               onPress={() => handleItemPress(item)}>
                               <FastImage
-                                source={{uri: item.localImagePath}}
+                                source={{uri: item.localImagePaths[0]}}
                                 style={{
                                   width: 45,
                                   height: 45,

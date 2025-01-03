@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   View,
   TouchableWithoutFeedback,
+  StyleSheet,
 } from 'react-native';
 import {
   appPink,
@@ -26,9 +27,16 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
-import {FlatList} from 'react-native-gesture-handler';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import ImageResizer from 'react-native-image-resizer';
 import {addProduct} from '../../Redux/Features/ProductsSlice';
+import {
+  clearAddProductImages,
+  setAddProductImage,
+} from '../../Redux/Features/AddProductImagesSlice';
+import FastImage from 'react-native-fast-image';
+import {divide} from 'lodash';
+import BottomButton from '../../Components/BottomButton';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -68,56 +76,13 @@ const AddProduct = () => {
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleImageSelection = () => {
-    Keyboard.dismiss();
-    const options = {
-      mediaType: 'photo',
-      quality: 1,
-    };
+  const images = useSelector(state => state.addProductImages.images);
 
-    const optionsArray = [
-      {
-        text: 'Take Photo',
-        onPress: async () => {
-          const hasPermission = await requestCameraPermission();
-          if (hasPermission) {
-            launchCamera(options, handleImageResponse);
-          } else {
-            Alert.alert('Camera Permission', 'Permission denied');
-          }
-        },
-      },
-      {
-        text: 'Choose from Library',
-        onPress: () => launchImageLibrary(options, handleImageResponse),
-      },
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-    ];
+  useEffect(() => {
+    dispatch(clearAddProductImages());
+  }, []);
 
-    Alert.alert('Select Image Source', 'Choose an option', optionsArray);
-  };
-
-  const handleImageResponse = response => {
-    if (response.didCancel) {
-      console.log('User cancelled image picker');
-    } else if (response.error) {
-      console.log('ImagePicker Error: ', response.error);
-    } else {
-      const uri = response?.assets[0].uri;
-
-      ImageResizer.createResizedImage(uri, 800, 600, 'JPEG', 80)
-        .then(resizedImage => {
-          setSelectedImage(resizedImage.uri); // Set the resized image URI
-        })
-        .catch(err => {
-          console.log('Image Resizing Error: ', err);
-        });
-    }
-  };
-
+  // Request Camera Permission
   const requestCameraPermission = async () => {
     try {
       if (Platform.OS === 'android') {
@@ -140,12 +105,110 @@ const AddProduct = () => {
     }
   };
 
+  const updateImage = (index, newImage) => {
+    //add product to the first available slot
+    for (let i = 0; i < images.length; i++) {
+      if (images[i] === null) {
+        dispatch(setAddProductImage({index: i, image: newImage}));
+        return;
+      }
+    }
+    //dispatch(setAddProductImage({index, image: newImage}));
+  };
+
+  // Handle Image Selection for each slot
+  const handleImageSelection = index => {
+    Keyboard.dismiss();
+    console.log(images[index]);
+    if (images[index] !== null) {
+      navigation.navigate('EditImage', {
+        index: index,
+      });
+      return;
+    }
+    const options = {
+      mediaType: 'photo',
+      quality: 1,
+    };
+
+    const optionsArray = [
+      {
+        text: 'Take Photo',
+        onPress: async () => {
+          const hasPermission = await requestCameraPermission();
+          if (hasPermission) {
+            launchCamera(options, response =>
+              handleImageResponse(response, index),
+            );
+          } else {
+            Alert.alert('Camera Permission', 'Permission denied');
+          }
+        },
+      },
+      {
+        text: 'Choose from Library',
+        onPress: () =>
+          launchImageLibrary(options, response =>
+            handleImageResponse(response, index),
+          ),
+      },
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+    ];
+
+    Alert.alert('Select Image Source', 'Choose an option', optionsArray);
+  };
+
+  // Handle Image Response for each slot
+  const handleImageResponse = (response, index) => {
+    if (response.didCancel) {
+      console.log('User cancelled image picker');
+    } else if (response.error) {
+      console.log('ImagePicker Error: ', response.error);
+    } else {
+      const uri = response?.assets[0]?.uri;
+
+      ImageResizer.createResizedImage(uri, 800, 600, 'JPEG', 80)
+        .then(resizedImage => {
+          updateImage(index, resizedImage.uri);
+        })
+        .catch(err => {
+          console.log('Image Resizing Error: ', err);
+        });
+    }
+  };
+
   // Define the addProduct function to send the POST request
   const handleAddProduct = () => {
     if (!itemName) {
+      setIsError(true);
       setErrorMessage('Please provide a product name.');
       return;
     }
+    if (!type) {
+      setIsError(true);
+      setErrorMessage('Please provide a product type.');
+      return;
+    }
+    if (showSizeOption && !size) {
+      setIsError(true);
+      setErrorMessage('Please provide a size.');
+      return;
+    }
+    if (!shippingFee) {
+      setIsError(true);
+      setErrorMessage('Please provide a shipping fee.');
+      return;
+    }
+    if (images.every(image => image === null)) {
+      setIsError(true);
+      setErrorMessage('Please provide at least one image.');
+      return;
+    }
+
+    setIsError(false);
 
     const formData = new FormData();
     formData.append('email', userEmail);
@@ -154,13 +217,15 @@ const AddProduct = () => {
     formData.append('type', type);
     formData.append('shippingFee', shippingFee);
 
-    if (selectedImage) {
-      formData.append('productImage', {
-        uri: selectedImage,
-        type: 'image/jpeg',
-        name: 'productImage.jpg',
-      });
-    }
+    images.forEach((image, index) => {
+      if (image) {
+        formData.append('productImage', {
+          uri: image,
+          type: 'image/jpeg',
+          name: `productImage${index}.jpg`,
+        });
+      }
+    });
 
     setLoading(true);
     dispatch(addProduct(formData))
@@ -255,37 +320,34 @@ const AddProduct = () => {
             </Text>
             <View style={{width: 35}} />
           </View>
-          <View style={{alignItems: 'center', marginTop: 10, flex: 1}}>
+          <ScrollView style={{marginTop: 30, flex: 1, marginBottom: 20}}>
             {isError && (
-              <View>
+              <View style={{alignItems: 'center'}}>
                 <Text
                   style={{fontSize: calculatedFontSize / 2.7, color: errorRed}}>
                   {errorMessage}
                 </Text>
               </View>
             )}
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Icon name="reader-outline" size={30} color="black" />
+            <Text style={styles.headerText}>Name</Text>
+
+            <View style={{alignItems: 'center'}}>
               <TextInput
                 ref={nameRef}
                 value={itemName}
                 onChangeText={setItemName}
                 placeholder={'Product Name'}
                 style={{
-                  width: '70%',
-                  borderBottomWidth: 1,
+                  width: '80%',
+                  borderWidth: 1,
+                  borderRadius: 10,
                   borderColor: 'black',
-                  fontSize: calculatedFontSize / 2.5,
-                  marginTop: 10,
-                  marginBottom: 15,
+                  fontSize: calculatedFontSize / 2.7,
+                  marginVertical: 10,
                   paddingVertical: 10,
                   paddingHorizontal: 5,
-                  marginLeft: 20,
+                  color: 'black',
+                  textAlignVertical: 'top',
                 }}
                 placeholderTextColor={'gray'}
                 returnKeyType="next"
@@ -296,35 +358,21 @@ const AddProduct = () => {
                 onSubmitEditing={onNameNextClick}
                 keyboardAppearance="light"
                 onFocus={closeBottomSheet}
+                numberOfLines={2}
+                multiline={true}
               />
-              <View style={{width: 30}} />
             </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Icon name="albums-outline" size={30} color="black" />
+            <View style={styles.divider} />
+            <Text style={styles.headerText}>Type</Text>
+
+            <View style={{alignItems: 'center'}}>
               <TouchableOpacity
-                style={{
-                  borderWidth: 1,
-                  borderColor: 'rgba(0,0,0,0.2)',
-                  width: '70%',
-                  flexDirection: 'row',
-                  paddingVertical: '2%',
-                  paddingHorizontal: '4%',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  borderRadius: 40,
-                  marginLeft: 20,
-                }}
+                style={styles.typeButtonContainer}
                 onPress={handleProductTypeSelect}>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <Text
                     style={{
                       color: 'black',
-                      marginLeft: 10,
                       fontSize: calculatedFontSize / 2.9,
                     }}>
                     {type ? type : 'Product type'}
@@ -332,36 +380,20 @@ const AddProduct = () => {
                 </View>
                 <Icon name="chevron-down" size={30} color="black" />
               </TouchableOpacity>
-              <View style={{width: 30}} />
             </View>
+            <View style={styles.divider} />
             {showSizeOption && (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginTop: '3%',
-                  justifyContent: 'space-between',
-                }}>
-                <Icon name="filter-outline" size={30} color="black" />
+              <View style={{alignItems: 'center'}}>
+                <View style={{width: '100%'}}>
+                  <Text style={styles.headerText}>Size</Text>
+                </View>
                 <TouchableOpacity
-                  style={{
-                    borderWidth: 1,
-                    borderColor: 'rgba(0,0,0,0.2)',
-                    width: '70%',
-                    flexDirection: 'row',
-                    paddingVertical: '2%',
-                    paddingHorizontal: '4%',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    borderRadius: 40,
-                    marginLeft: 20,
-                  }}
+                  style={styles.typeButtonContainer}
                   onPress={handleClothingSizeSelect}>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Text
                       style={{
                         color: 'black',
-                        marginLeft: 10,
                         fontSize: calculatedFontSize / 2.9,
                       }}>
                       {size ? size : 'Size'}
@@ -369,130 +401,96 @@ const AddProduct = () => {
                   </View>
                   <Icon name="chevron-down" size={30} color="black" />
                 </TouchableOpacity>
-                <View style={{width: 30}} />
+                <View style={styles.divider} />
               </View>
             )}
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Icon name="bag-outline" size={30} color="black" />
-              <Text
+            <Text style={styles.headerText}>Shipping Fee</Text>
+
+            <View style={{alignItems: 'center'}}>
+              <View
                 style={{
-                  fontSize: calculatedFontSize / 2.2,
-                  marginLeft: 20,
-                  color: 'grey',
-                }}>
-                $
-              </Text>
-              <TextInput
-                value={shippingFee}
-                onChangeText={setShippingFee}
-                placeholder={'Shipping Fee'}
-                style={{
-                  width: '66%',
-                  borderBottomWidth: 1,
-                  borderColor: 'black',
-                  fontSize: calculatedFontSize / 2.5,
-                  marginTop: 10,
-                  marginBottom: 15,
-                  paddingVertical: 10,
-                  paddingHorizontal: 5,
-                  marginLeft: 10,
-                }}
-                autoComplete="off"
-                autoCapitalize="none"
-                placeholderTextColor={'gray'}
-                autoCorrect={false}
-                returnKeyType="next"
-                maxLength={5}
-                selectionColor={appPink}
-                inputMode="numeric"
-                clearButtonMode="while-editing"
-                keyboardAppearance="light"
-                keyboardType="numeric"
-                onFocus={closeBottomSheet}
-              />
-              <View style={{width: 30}} />
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginTop: 15,
-                justifyContent: 'space-between',
-              }}>
-              <Icon name="image-outline" size={30} color="black" />
-              <TouchableOpacity
-                style={{
-                  borderWidth: 1,
-                  borderColor: 'rgba(0,0,0,0.2)',
-                  width: '70%',
                   flexDirection: 'row',
-                  paddingVertical: '2%',
-                  paddingHorizontal: '4%',
-                  justifyContent: 'space-between',
                   alignItems: 'center',
-                  borderRadius: 40,
-                  marginLeft: 20,
-                }}
-                onPress={handleImageSelection}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <Text
-                    style={{
-                      color: 'black',
-                      marginLeft: '10%',
-                      fontSize: calculatedFontSize / 2.9,
-                    }}>
-                    Add image
-                  </Text>
-                </View>
-                <Icon name="chevron-down" size={30} color="black" />
-              </TouchableOpacity>
-              <View style={{width: 30}} />
-            </View>
-            <View
-              style={{
-                flex: 1,
-                width: '65%',
-                justifyContent: 'center',
-                marginTop: '4%',
-              }}>
-              {selectedImage && (
-                <Image
-                  source={{uri: selectedImage}}
-                  style={{flex: 1, resizeMode: 'contain'}}
-                />
-              )}
-            </View>
-            <View style={{height: 'auto', marginBottom: 20}}>
-              {loading ? (
-                <ActivityIndicator size="large" color={appPink} />
-              ) : (
-                <TouchableOpacity
-                  onPress={handleAddProduct}
+                  justifyContent: 'space-between',
+                }}>
+                <Text
                   style={{
-                    backgroundColor: appPink,
-                    borderRadius: 40,
-                    paddingVertical: '4%',
-                    marginHorizontal: '10%',
-                    marginTop: 20,
+                    fontSize: calculatedFontSize / 2.2,
+                    color: 'grey',
                   }}>
-                  <Text
-                    style={{
-                      color: 'white',
-                      textAlign: 'center',
-                      fontWeight: 'bold',
-                      paddingHorizontal: '15%',
-                    }}>
-                    Add
-                  </Text>
-                </TouchableOpacity>
-              )}
+                  $
+                </Text>
+                <TextInput
+                  value={shippingFee}
+                  onChangeText={setShippingFee}
+                  placeholder={'Shipping Fee'}
+                  style={{
+                    width: '66%',
+                    borderBottomWidth: 1,
+                    borderColor: 'black',
+                    fontSize: calculatedFontSize / 2.5,
+                    marginTop: 10,
+                    marginBottom: 15,
+                    paddingVertical: 10,
+                    paddingHorizontal: 5,
+                    marginLeft: 10,
+                    color: 'black',
+                  }}
+                  autoComplete="off"
+                  autoCapitalize="none"
+                  placeholderTextColor={'gray'}
+                  autoCorrect={false}
+                  returnKeyType="next"
+                  maxLength={5}
+                  selectionColor={appPink}
+                  inputMode="numeric"
+                  clearButtonMode="while-editing"
+                  keyboardAppearance="light"
+                  keyboardType="numeric"
+                  onFocus={closeBottomSheet}
+                />
+              </View>
             </View>
-          </View>
+            <View style={styles.divider} />
+
+            <Text style={styles.headerText}>Photos</Text>
+
+            <View style={{alignItems: 'center'}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  width: '80%',
+                  justifyContent: 'space-between',
+                  marginTop: 20,
+                }}>
+                {images.map((image, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    style={styles.imageContainer}
+                    onPress={() => handleImageSelection(index)}>
+                    {image ? (
+                      <FastImage
+                        source={{uri: image}}
+                        style={styles.image}
+                        resizeMode="cover"
+                      />
+                    ) : (
+                      <Icon
+                        name="add-circle-outline"
+                        size={25}
+                        color="rgba(0,0,0,0.4)"
+                      />
+                    )}
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+          </ScrollView>
+          <BottomButton
+            loading={loading}
+            text="Add"
+            onPress={handleAddProduct}
+          />
         </View>
       </TouchableWithoutFeedback>
       {isBidBottomSheetVisible && (
@@ -500,6 +498,11 @@ const AddProduct = () => {
           ref={bidBottomSheetRef}
           snapPoints={snapPoints}
           index={isBidBottomSheetVisible ? 1 : -1}
+          backgroundStyle={{
+            borderWidth: 1,
+            borderColor: 'rgba(0,0,0,0.2)',
+            elevation: 10,
+          }}
           onChange={handleSheetChanges}>
           <BottomSheetView style={{flex: 1, marginLeft: 30}}>
             <FlatList
@@ -514,7 +517,11 @@ const AddProduct = () => {
                       padding: 12,
                     }}
                     onPress={() => handleItemPress(item)}>
-                    <Text style={{fontSize: calculatedFontSize / 2.5}}>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 2.5,
+                        color: 'black',
+                      }}>
                       {item}
                     </Text>
                   </TouchableOpacity>
@@ -530,5 +537,57 @@ const AddProduct = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    width: '80%',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  headerText: {
+    fontSize: calculatedFontSize / 2.7,
+    color: 'black',
+    marginLeft: '10%',
+  },
+  divider: {
+    width: '90%',
+    borderBottomWidth: 1,
+    borderColor: 'rgba(0,0,0,0.2)',
+    marginVertical: 20,
+    alignSelf: 'center',
+  },
+  typeButtonContainer: {
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.2)',
+    width: '70%',
+    flexDirection: 'row',
+    paddingVertical: '2%',
+    paddingHorizontal: '4%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 40,
+  },
+  imageContainer: {
+    aspectRatio: 1,
+    borderWidth: 1,
+    flex: 1,
+    marginRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+    borderColor: 'rgba(0,0,0,0.3)',
+  },
+  addText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'gray',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 5,
+  },
+});
 
 export default AddProduct;

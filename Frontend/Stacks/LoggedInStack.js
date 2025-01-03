@@ -55,6 +55,7 @@ const ViewListingSeller = React.lazy(() =>
 const EditListingQuantity = React.lazy(() =>
   import('./../Screens/Listing/EditListingQuantity'),
 );
+const EditImage = React.lazy(() => import('../Components/EditImage'));
 
 //Actually lazy load the screens
 //const GetStreamSDK = lazy(() => import('../Screens/Stream/GetStreamSDK'));
@@ -116,6 +117,7 @@ const LoggedInStack = () => {
       import('../Screens/Listings/SubmitListing');
       import('../Screens/Listings/ViewListingSeller');
       import('../Screens/Listings/EditListingQuantity');
+      import('../Components/EditImage');
     }
   }, [isSeller]);
 
@@ -196,6 +198,7 @@ const LoggedInStack = () => {
             name="ViewProductSeller"
             component={ViewProductSeller}
           />
+          <Stack.Screen name="EditImage" component={EditImage} />
         </>
       )}
       {isAdmin && (

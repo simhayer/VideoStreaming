@@ -37,6 +37,8 @@ import Checkout from '../Screens/Listing/Checkout';
 import SelectCategories from '../Screens/Products/SelectCategories';
 import UsernameCreate from '../Screens/Authentication/UsernameCreate';
 
+import EditImage from '../Components/EditImage';
+
 //Actually lazy load the screens
 import GetStreamSDK from '../Screens/Stream/GetStreamSDK';
 import {useSelector} from 'react-redux';
@@ -195,6 +197,7 @@ const LoggedInStackSeller = () => {
           <Stack.Screen name="ReportSellerOptions" component={ReportSeller} />
           <Stack.Screen name="ContactUs" component={ContactUs} />
           <Stack.Screen name="DeleteAccount" component={DeleteAccount} />
+          <Stack.Screen name="EditImage" component={EditImage} />
 
           {isAdmin && (
             <Stack.Screen name="AdminDashboard" component={AdminDashboard} />

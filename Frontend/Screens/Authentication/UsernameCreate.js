@@ -13,6 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {updateUsername} from '../../Redux/Features/AuthSlice';
 import {appPink, colors, errorRed} from '../../Resources/Constants';
+import commonStyles from '../../Resources/styles';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -65,12 +66,22 @@ const UsernameCreate = ({route}) => {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
-      <View style={{alignItems: 'center', marginTop: '12%'}}>
+      <View style={{alignItems: 'center', marginTop: 30}}>
         <View style={{width: '85%'}}>
-          <Text style={{fontSize: calculatedFontSize / 2, fontWeight: 'bold'}}>
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2,
+              fontWeight: 'bold',
+              color: 'black',
+            }}>
             Create a username
           </Text>
-          <Text style={{fontSize: calculatedFontSize / 2.7, marginTop: '2%'}}>
+          <Text
+            style={{
+              fontSize: calculatedFontSize / 2.7,
+              marginTop: 10,
+              color: 'black',
+            }}>
             You can always change it later
           </Text>
           <TextInput
@@ -78,16 +89,10 @@ const UsernameCreate = ({route}) => {
             value={username}
             onChangeText={setUsername}
             placeholder={'Username'}
-            style={{
-              width: '100%',
-              borderBottomWidth: 1,
-              borderColor: 'black',
-              fontSize: calculatedFontSize / 2.5,
-              marginTop: 20,
-              marginBottom: 5,
-              paddingVertical: 10,
-              paddingHorizontal: 5,
-            }}
+            style={[
+              commonStyles.authInput,
+              {fontSize: calculatedFontSize / 2.5},
+            ]}
             autoComplete="off"
             autoCapitalize="none"
             placeholderTextColor={'gray'}

@@ -21,6 +21,8 @@ import {useNavigation} from '@react-navigation/native';
 import FastImage from 'react-native-fast-image';
 import {debounce} from 'lodash';
 import axios from 'axios';
+import commonStyles from '../../Resources/styles';
+import BottomButton from '../../Components/BottomButton';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -176,7 +178,13 @@ const ManageListings = () => {
           defaultSource={require('../../Resources/StreamListThumbnailBlur.png')}
         />
         <View style={{flex: 1, marginHorizontal: 12}}>
-          <Text style={{fontWeight: '600', fontSize: 16}} numberOfLines={1}>
+          <Text
+            style={{
+              fontWeight: '600',
+              fontSize: calculatedFontSize / 2.6,
+              color: 'black',
+            }}
+            numberOfLines={1}>
             {item.product.name}
           </Text>
           <Text style={{color: 'gray', marginTop: 4}}>{item.product.size}</Text>
@@ -231,24 +239,7 @@ const ManageListings = () => {
       </View>
 
       {/* Search Bar */}
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.1)',
-          borderRadius: 12,
-          paddingHorizontal: 10,
-          marginBottom: 4,
-          backgroundColor: '#f9f9f9', // Subtle background for better visibility
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 2,
-          height: 50,
-          width: '100%',
-        }}>
+      <View style={commonStyles.searchBar}>
         <Icon name="search" size={24} color="gray" />
         <TextInput
           value={inputValue}
@@ -324,7 +315,7 @@ const ManageListings = () => {
                 justifyContent: 'flex-end',
                 alignItems: 'center',
               }}>
-              <Text style={{fontSize: calculatedFontSize / 2.7}}>
+              <Text style={{fontSize: calculatedFontSize / 2.7, color: 'gray'}}>
                 Select all
               </Text>
               <TouchableOpacity onPress={toggleSelectAll} style={{padding: 5}}>
@@ -337,6 +328,18 @@ const ManageListings = () => {
                 />
               </TouchableOpacity>
             </View>
+
+            {selectedStatus === 'Active' && (
+              <Text
+                style={{
+                  color: 'black',
+                  fontSize: calculatedFontSize / 3.1,
+                  alignSelf: 'center',
+                  marginBottom: 5,
+                }}>
+                These products are listed on the marketplace.
+              </Text>
+            )}
 
             {/* Product List */}
             <FlatList
@@ -362,31 +365,13 @@ const ManageListings = () => {
         )}
       </View>
 
-      {/* Add Product Button */}
-      <View style={{width: '100%', alignItems: 'center', marginBottom: 20}}>
-        <TouchableOpacity
+      {/* Add Listing Button */}
+      <View style={{width: '100%'}}>
+        <BottomButton
+          loading={false}
+          text="Add Listing"
           onPress={() => navigation.navigate('SelectProductForListing')}
-          style={{
-            backgroundColor: appPink,
-            borderRadius: 30,
-            paddingVertical: 12,
-            paddingHorizontal: 32,
-            shadowColor: '#000',
-            shadowOffset: {width: 0, height: 2},
-            shadowOpacity: 0.2,
-            shadowRadius: 5,
-            elevation: 3,
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              textAlign: 'center',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.5,
-            }}>
-            Add Listing
-          </Text>
-        </TouchableOpacity>
+        />
       </View>
     </SafeAreaView>
   );

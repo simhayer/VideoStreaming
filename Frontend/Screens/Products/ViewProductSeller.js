@@ -13,11 +13,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import {deleteProducts} from '../../Redux/Features/ProductsSlice';
+import ProductImageCarousel from '../../Components/ProductImageCarousel';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
 
-const ViewProduct = ({route}) => {
+const ViewProductSeller = ({route}) => {
   const {item} = route.params;
 
   const {name, size, type, shippingFee} = item;
@@ -54,11 +55,7 @@ const ViewProduct = ({route}) => {
 
       {/* Image Section */}
       <View style={styles.imageBackground}>
-        <FastImage
-          source={{uri: item.localImagePath}}
-          style={{flex: 1, width: '100%'}}
-          resizeMode={FastImage.resizeMode.contain}
-        />
+        <ProductImageCarousel images={item.localImagePaths} />
       </View>
 
       {/* Details Section */}
@@ -191,4 +188,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ViewProduct;
+export default ViewProductSeller;

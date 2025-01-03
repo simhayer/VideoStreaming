@@ -29,7 +29,7 @@ const EnterStreamTitle = ({route}) => {
       return;
     }
 
-    if(type === 'stream'){
+    if (type === 'stream') {
       navigation.navigate('SelectThumbnail', {title, type});
       return;
     }
@@ -89,6 +89,7 @@ const EnterStreamTitle = ({route}) => {
             paddingVertical: 10,
             paddingHorizontal: 5,
             borderRadius: 8,
+            color: 'black',
           }}
           placeholderTextColor={'gray'}
           returnKeyType="next"

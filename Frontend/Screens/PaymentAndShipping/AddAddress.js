@@ -87,6 +87,7 @@ export default function AddAddress({route}) {
               textAlign: 'center',
               marginHorizontal: '4%',
               fontSize: calculatedFontSize / 2.9,
+              color: 'black',
             }}>
             Shipping address added here will be used for shipping products. Only
             one shipping address can be added at a time.
@@ -101,7 +102,7 @@ export default function AddAddress({route}) {
                   fontSize: calculatedFontSize / 2.9,
                   color: 'black',
                   marginLeft: 10,
-                  fontWeight:'600'
+                  fontWeight: '600',
                 }}>
                 Current shipping address
               </Text>

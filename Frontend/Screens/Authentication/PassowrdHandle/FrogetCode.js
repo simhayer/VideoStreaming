@@ -16,6 +16,7 @@ import {
 } from '../../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import commonStyles from '../../../Resources/styles';
 
 const ForgetCode = ({route}) => {
   const [code, setCode] = useState('');
@@ -85,16 +86,7 @@ const ForgetCode = ({route}) => {
           value={code}
           onChangeText={setCode}
           placeholder={'Code'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 20,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}
@@ -132,7 +124,7 @@ const ForgetCode = ({route}) => {
                   fontSize: calculatedFontSize / 2.2,
                   fontWeight: 'bold',
                 }}>
-                Send Email
+                Next
               </Text>
             </TouchableOpacity>
           )}

@@ -14,6 +14,7 @@ import {useDispatch} from 'react-redux';
 import {logout, updateUsername} from '../../Redux/Features/AuthSlice';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {appPink, colors, errorRed} from '../../Resources/Constants';
+import commonStyles from '../../Resources/styles';
 
 const ChangeUsername = ({route}) => {
   const {email} = route.params;
@@ -92,7 +93,12 @@ const ChangeUsername = ({route}) => {
         <Icon name="chevron-back" size={35} color="black" />
       </TouchableOpacity>
       <View style={{marginHorizontal: '7%'}}>
-        <Text style={{fontSize: calculatedFontSize / 2, fontWeight: 'bold'}}>
+        <Text
+          style={{
+            fontSize: calculatedFontSize / 2,
+            fontWeight: 'bold',
+            color: 'black',
+          }}>
           Change username
         </Text>
         <TextInput
@@ -100,16 +106,7 @@ const ChangeUsername = ({route}) => {
           value={username}
           onChangeText={setUsername}
           placeholder={'Username'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 20,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}

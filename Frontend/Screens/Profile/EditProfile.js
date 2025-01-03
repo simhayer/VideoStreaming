@@ -123,35 +123,48 @@ const EditProfile = () => {
         </TouchableOpacity>
       </View>
       <View style={{margin: 20}}>
-        <Text style={{fontWeight: 'bold', fontSize: calculatedFontSize / 2.7}}>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            fontSize: calculatedFontSize / 2.7,
+            color: 'black',
+          }}>
           Username
         </Text>
         <TouchableOpacity
           style={styles.fieldContainer}
           onPress={() => navigation.navigate('ChangeUsername', {email})}>
-          <Text style={{fontSize: calculatedFontSize / 2.7}}>{username}</Text>
+          <Text style={{fontSize: calculatedFontSize / 2.7, color: 'black'}}>
+            {username}
+          </Text>
         </TouchableOpacity>
         <Text
           style={{
             fontWeight: 'bold',
             marginTop: 10,
             fontSize: calculatedFontSize / 2.7,
+            color: 'black',
           }}>
           Email
         </Text>
         <View style={styles.fieldContainer}>
-          <Text style={{fontSize: calculatedFontSize / 2.7}}>{email}</Text>
+          <Text style={{fontSize: calculatedFontSize / 2.7, color: 'black'}}>
+            {email}
+          </Text>
         </View>
         <Text
           style={{
             fontWeight: 'bold',
             marginTop: 10,
             fontSize: calculatedFontSize / 2.7,
+            color: 'black',
           }}>
           Full Name
         </Text>
         <View style={styles.fieldContainer}>
-          <Text style={{fontSize: calculatedFontSize / 2.7}}>{fullname}</Text>
+          <Text style={{fontSize: calculatedFontSize / 2.7, color: 'black'}}>
+            {fullname}
+          </Text>
         </View>
       </View>
     </SafeAreaView>

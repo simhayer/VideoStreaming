@@ -35,9 +35,9 @@ export const fetchOrdersSeller = createAsyncThunk(
           response.data.orders.map(async statusGroup => {
             const updatedOrders = await Promise.all(
               statusGroup.orders.map(async order => {
-                if (order.product && order.product.imageUrl) {
+                if (order.product && order.product.imageUrls[0]) {
                   const localImage = await saveImageLocally(
-                    order.product.imageUrl,
+                    order.product.imageUrls[0],
                   );
                   order.product.localImagePath = `file://${localImage}`;
                 }

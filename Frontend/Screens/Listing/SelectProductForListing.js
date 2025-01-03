@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FastImage from 'react-native-fast-image';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchProducts} from '../../Redux/Features/ProductsSlice';
+import BottomButton from '../../Components/BottomButton';
 
 const SelectProductForListing = ({route}) => {
   const navigation = useNavigation();
@@ -138,7 +139,7 @@ const SelectProductForListing = ({route}) => {
                   }}
                   onPress={() => toggleSelectItem(item)}>
                   <FastImage
-                    source={{uri: item.localImagePath}}
+                    source={{uri: item.localImagePaths[0]}}
                     style={{
                       width: 45,
                       height: 45,
@@ -155,10 +156,15 @@ const SelectProductForListing = ({route}) => {
                         textAlign: 'left',
                         flexWrap: 'wrap',
                         fontSize: calculatedFontSize / 2.7,
+                        color: 'black',
                       }}>
                       {item.name}
                     </Text>
-                    <Text style={{fontSize: calculatedFontSize / 2.9}}>
+                    <Text
+                      style={{
+                        fontSize: calculatedFontSize / 2.9,
+                        color: 'grey',
+                      }}>
                       {item.size}
                     </Text>
                   </View>
@@ -171,31 +177,9 @@ const SelectProductForListing = ({route}) => {
           />
         )}
       </View>
-      <TouchableOpacity
-        onPress={onNextClick}
-        style={{
-          backgroundColor: appPink,
-          borderRadius: 30,
-          paddingVertical: 14,
-          alignItems: 'center',
-          width: '80%',
-          marginTop: 40,
-          shadowColor: '#000',
-          shadowOffset: {width: 0, height: 2},
-          shadowOpacity: 0.2,
-          shadowRadius: 4, // Subtle shadow for elevation
-          marginBottom: 40,
-        }}
-        activeOpacity={0.8}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: calculatedFontSize / 2.2,
-            fontWeight: 'bold',
-          }}>
-          Next
-        </Text>
-      </TouchableOpacity>
+      <View style={{width: '100%'}}>
+        <BottomButton loading={false} text="Next" onPress={onNextClick} />
+      </View>
     </SafeAreaView>
   );
 };

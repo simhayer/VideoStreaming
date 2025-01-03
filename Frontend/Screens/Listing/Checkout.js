@@ -33,8 +33,8 @@ const Checkout = ({route}) => {
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
   const navigation = useNavigation();
 
-  const price = parseFloat((listing.price).toFixed(2));
-  const shipping = parseFloat((product.shippingFee).toFixed(2));
+  const price = parseFloat(listing.price.toFixed(2));
+  const shipping = parseFloat(product.shippingFee.toFixed(2));
   const tax = parseFloat((price * 0.13).toFixed(2));
   const subTotal = parseFloat((price + shipping + tax).toFixed(2));
 
@@ -45,9 +45,7 @@ const Checkout = ({route}) => {
   const [showPriceDetails, setShowPriceDetails] = useState(false);
   const [paymentId, setPaymentId] = useState('');
 
-  const itemImageFilename = product.imageUrl.split('\\').pop();
-  const imageUrl = `${baseURL}/${itemImageFilename}`;
-  const itemImageUrl = `${baseURL}/${product.imageUrl}`;
+  const itemImageUrl = `${baseURL}/${product.imageUrls[0]}`;
   const [showAddressError, setShowAddressError] = useState(false);
 
   const fetchPaymentSheetParams = async () => {

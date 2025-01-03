@@ -207,7 +207,7 @@ const SellerOrders = () => {
             )}
             renderItem={({item}) => {
               if (!item.product) return null;
-              const itemImageUrl = `${baseURL}/${item.product.imageUrl
+              const itemImageUrl = `${baseURL}/${item.product.imageUrls[0]
                 .split('\\')
                 .pop()}`;
               return (

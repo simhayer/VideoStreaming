@@ -41,7 +41,7 @@ const ViewOrderBuyer = ({route}) => {
   const [loading, setLoading] = useState(false);
   const hasShippingDetails = order.shippingCompany && order.trackingNumber;
 
-  const itemImageFilename = order.product.imageUrl.split('\\').pop();
+  const itemImageFilename = order.product.imageUrls[0].split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
 
   const formattedDate = new Date(order.orderDate).toISOString().split('T')[0];

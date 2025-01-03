@@ -34,10 +34,14 @@ export const fetchProducts = createAsyncThunk(
       if (response.status === 200) {
         const products = await Promise.all(
           response.data.products.map(async product => {
-            if (!product.imageUrl) return product; // Skip if no image URL
-            const localImage = await saveImageLocally(product.imageUrl);
-            const localImagePath = `file://${localImage}`;
-            return {...product, localImagePath}; // Add local path to product
+            if (!product.imageUrls) return product; // Skip if no image URLs
+            const localImagePaths = await Promise.all(
+              product.imageUrls.map(async imageUrl => {
+                const localImage = await saveImageLocally(imageUrl);
+                return `file://${localImage}`;
+              }),
+            );
+            return {...product, localImagePaths}; // Add local paths to product
           }),
         );
 
@@ -63,10 +67,15 @@ export const addProduct = createAsyncThunk(
       );
 
       const product = response.data.product;
-      const localImage = await saveImageLocally(product.imageUrl);
-      const localImagePath = `file://${localImage}`;
 
-      return {...product, localImagePath};
+      const localImages = await Promise.all(
+        product.imageUrls.map(async imageUrl => {
+          const localImage = await saveImageLocally(imageUrl);
+          return `file://${localImage}`;
+        }),
+      );
+
+      return {...product, localImagePaths: localImages};
     } catch (error) {
       return rejectWithValue(error.message);
     }

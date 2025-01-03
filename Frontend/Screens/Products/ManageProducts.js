@@ -20,6 +20,8 @@ import {
   deleteProducts,
   fetchProducts,
 } from '../../Redux/Features/ProductsSlice';
+import commonStyles from '../../Resources/styles';
+import BottomButton from '../../Components/BottomButton';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -73,6 +75,10 @@ const ManageProducts = () => {
     });
   };
 
+  const onAddProduct = () => {
+    navigation.navigate('AddProduct');
+  };
+
   const handleDonePress = () => {
     if (selectedItems.length === 0) {
       console.log('No products to delete');
@@ -107,7 +113,6 @@ const ManageProducts = () => {
 
   const ProductItem = React.memo(({item}) => {
     const isSelected = selectedItems.includes(item._id);
-    const itemImageUrl = `${baseURL}/${item.imageUrl}`;
 
     return (
       <TouchableOpacity
@@ -121,7 +126,7 @@ const ManageProducts = () => {
         ]}
         onPress={() => navigation.navigate('ViewProductSeller', {item})}>
         <FastImage
-          source={{uri: item.localImagePath}}
+          source={{uri: item.localImagePaths[0]}}
           style={{width: 80, height: 80, borderRadius: 8}}
           resizeMode={FastImage.resizeMode.cover}
           defaultSource={require('../../Resources/StreamListThumbnailBlur.png')}
@@ -249,7 +254,7 @@ const ManageProducts = () => {
       </View>
 
       {/* Search Bar */}
-      <View style={styles.searchBar}>
+      <View style={commonStyles.searchBar}>
         <Icon name="search" size={24} color="gray" />
         <TextInput
           value={inputValue}
@@ -291,7 +296,7 @@ const ManageProducts = () => {
                 justifyContent: 'flex-end',
                 alignItems: 'center',
               }}>
-              <Text style={{fontSize: calculatedFontSize / 2.7}}>
+              <Text style={{fontSize: calculatedFontSize / 2.7, color: 'gray'}}>
                 Select all
               </Text>
               <TouchableOpacity onPress={toggleSelectAll} style={{padding: 5}}>
@@ -339,44 +344,18 @@ const ManageProducts = () => {
         )}
       </View>
 
-      {/* Add Product Button */}
-      <View style={{width: '100%', alignItems: 'center', marginBottom: 20}}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('AddProduct')}
-          style={styles.addButton}>
-          <Text
-            style={{
-              color: 'white',
-              textAlign: 'center',
-              fontWeight: 'bold',
-              fontSize: calculatedFontSize / 2.5,
-            }}>
-            Add Product
-          </Text>
-        </TouchableOpacity>
+      <View style={{width: '100%'}}>
+        <BottomButton
+          loading={false}
+          text="Add Product"
+          onPress={onAddProduct}
+        />
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.1)',
-    borderRadius: 12,
-    paddingHorizontal: 10,
-    marginBottom: 4,
-    backgroundColor: '#f9f9f9', // Subtle background for better visibility
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-    height: 50,
-    width: '100%',
-  },
   productItem: {
     flexDirection: 'row',
     alignItems: 'center',

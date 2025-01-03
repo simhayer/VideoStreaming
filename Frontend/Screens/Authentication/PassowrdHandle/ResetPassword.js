@@ -16,6 +16,7 @@ import {
 } from '../../../Resources/Constants';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import commonStyles from '../../../Resources/styles';
 
 const ResetPassword = ({route}) => {
   const [password, setPassword] = useState('');
@@ -97,16 +98,7 @@ const ResetPassword = ({route}) => {
           value={password}
           onChangeText={setPassword}
           placeholder={'Password'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 10,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}
@@ -126,16 +118,7 @@ const ResetPassword = ({route}) => {
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           placeholder={'Password'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 10,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}

@@ -34,7 +34,7 @@ const ViewOrderSeller = ({route}) => {
   const userEmail = userData?.user?.email;
   const [loading, setLoading] = useState(false);
 
-  const itemImageFilename = order.product.imageUrl.split('\\').pop();
+  const itemImageFilename = order.product.imageUrls[0].split('\\').pop();
   const imageUrl = `${baseURL}/${itemImageFilename}`;
   const hasShippingDetails = order.shippingCompany && order.trackingNumber;
   const [orderStatus, setOrderStatus] = useState(order.status);

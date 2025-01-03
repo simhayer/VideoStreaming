@@ -113,7 +113,11 @@ export default function AddPaymentMethod() {
             Add payment method
           </Text>
           <Text
-            style={{fontSize: calculatedFontSize / 2.7, textAlign: 'center'}}>
+            style={{
+              fontSize: calculatedFontSize / 2.7,
+              textAlign: 'center',
+              color: 'black',
+            }}>
             You won't be charged untill you purchase an item
           </Text>
           <TouchableOpacity

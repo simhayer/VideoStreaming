@@ -12,6 +12,7 @@ import {appPink, errorRed, colors} from '../../Resources/Constants';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {login} from '../../Redux/Features/AuthSlice';
+import commonStyles from '../../Resources/styles';
 
 const screenHeight = Dimensions.get('window').height;
 const calculatedFontSize = screenHeight * 0.05;
@@ -98,16 +99,7 @@ const Login = () => {
           value={email}
           onChangeText={setEmail}
           placeholder={'Email'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 10,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}
@@ -126,16 +118,7 @@ const Login = () => {
           value={password}
           onChangeText={setPassword}
           placeholder={'Password'}
-          style={{
-            width: '100%',
-            borderBottomWidth: 1,
-            borderColor: 'black',
-            fontSize: calculatedFontSize / 2.5,
-            marginTop: 10,
-            marginBottom: 5,
-            paddingVertical: 10,
-            paddingHorizontal: 5,
-          }}
+          style={[commonStyles.authInput, {fontSize: calculatedFontSize / 2.5}]}
           autoComplete="off"
           autoCapitalize="none"
           placeholderTextColor={'gray'}

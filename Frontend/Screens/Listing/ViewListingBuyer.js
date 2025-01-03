@@ -13,6 +13,7 @@ import {useSelector} from 'react-redux';
 import FastImage from 'react-native-fast-image';
 import {ScrollView} from 'react-native-gesture-handler';
 import ImageViewing from 'react-native-image-viewing';
+import ProductImageCarousel from '../../Components/ProductImageCarousel';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -22,7 +23,9 @@ const ViewListingBuyer = ({route}) => {
   product = listing.product;
 
   const {name, size, type, shippingFee} = product;
-  const itemImageUrl = `${baseURL}/${product.imageUrl}`;
+  const itemImageUrls = product.imageUrls.map(
+    imageUrl => `${baseURL}/${imageUrl}`,
+  );
 
   const sellerUsername = listing.user.username;
   const profilePictureFilename = listing.user.profilePicture.split('/').pop();
@@ -112,11 +115,7 @@ const ViewListingBuyer = ({route}) => {
                 padding: 20,
                 aspectRatio: 1.5,
               }}>
-              <FastImage
-                source={{uri: itemImageUrl}}
-                style={{width: '100%', height: '100%'}}
-                resizeMode={FastImage.resizeMode.contain}
-              />
+              <ProductImageCarousel images={itemImageUrls} />
             </View>
           </TouchableOpacity>
         </View>
@@ -287,7 +286,7 @@ const ViewListingBuyer = ({route}) => {
 
         {/* Image Viewer Modal */}
         <ImageViewing
-          images={[{uri: itemImageUrl}]}
+          images={[{uri: itemImageUrls[0]}]}
           imageIndex={0}
           backgroundColor="transparent"
           visible={isImageViewerVisible}

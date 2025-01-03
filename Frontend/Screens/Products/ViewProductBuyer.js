@@ -10,8 +10,8 @@ import {
 import {colors} from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
-import FastImage from 'react-native-fast-image';
 import {deleteProducts} from '../../Redux/Features/ProductsSlice';
+import ProductImageCarousel from '../../Components/ProductImageCarousel';
 
 const {height: screenHeight} = Dimensions.get('window');
 const calculatedFontSize = screenHeight * 0.05;
@@ -77,11 +77,7 @@ const ViewProduct = ({route}) => {
           padding: 20,
           marginHorizontal: 10,
         }}>
-        <FastImage
-          source={{uri: item.localImagePath}}
-          style={{flex: 1, width: '100%'}}
-          resizeMode={FastImage.resizeMode.contain}
-        />
+        <ProductImageCarousel images={item.localImagePaths} />
       </View>
 
       {/* Details Section */}
