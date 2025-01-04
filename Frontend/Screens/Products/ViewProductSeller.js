@@ -125,12 +125,18 @@ const ViewProductSeller = ({route}) => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
 
-      {/* List Button */}
-      {/* <TouchableOpacity onPress={handleListProduct} style={styles.button}>
-        <Text style={styles.buttonText}>List item</Text>
-      </TouchableOpacity> */}
+        <Text
+          style={{
+            fontWeight: '600',
+            color: 'black',
+            fontSize: calculatedFontSize / 2.8,
+            marginTop: 10,
+            marginHorizontal: '5%',
+          }}>
+          Listings are the products that are currently available for sale.
+        </Text>
+      </View>
 
       {/* Delete Button */}
       <TouchableOpacity onPress={handleDeleteItem} style={styles.button}>

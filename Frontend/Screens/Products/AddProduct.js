@@ -461,6 +461,25 @@ const AddProduct = () => {
                   ))}
                 </View>
               </View>
+
+              {/* <View style={styles.divider} /> */}
+
+              <View
+                style={{
+                  alignItems: 'center',
+                  marginTop: 30,
+                  marginHorizontal: '5%',
+                }}>
+                <Text
+                  style={{
+                    fontWeight: '600',
+                    color: 'black',
+                    fontSize: calculatedFontSize / 2.9,
+                  }}>
+                  Product will be added to your inventory, you can list it to
+                  the marketplace once it is added.
+                </Text>
+              </View>
             </View>
           </TouchableWithoutFeedback>
         </ScrollView>
