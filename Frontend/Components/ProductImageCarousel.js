@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {View, Dimensions, StyleSheet} from 'react-native';
+import {View, Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import FastImage from 'react-native-fast-image';
 
-const ProductImageCarousel = ({images}) => {
+const ProductImageCarousel = ({images, onImagePress}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const width = Dimensions.get('window').width;
 
@@ -31,13 +31,23 @@ const ProductImageCarousel = ({images}) => {
         width={width}
         data={images} // Array of image URLs
         onSnapToItem={index => setActiveIndex(index)} // Track active slide
-        renderItem={({item}) => (
-          <FastImage
-            source={{uri: item}}
-            style={styles.image}
-            resizeMode={FastImage.resizeMode.contain}
-          />
-        )}
+        renderItem={({item}) =>
+          !onImagePress ? (
+            <FastImage
+              source={{uri: item}}
+              style={styles.image}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+          ) : (
+            <TouchableOpacity onPress={() => onImagePress(activeIndex)}>
+              <FastImage
+                source={{uri: item}}
+                style={styles.image}
+                resizeMode={FastImage.resizeMode.contain}
+              />
+            </TouchableOpacity>
+          )
+        }
       />
 
       {/* Pagination Dots */}

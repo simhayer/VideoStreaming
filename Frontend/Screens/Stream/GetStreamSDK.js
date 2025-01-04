@@ -706,8 +706,8 @@ const GetStreamSDK = ({route}) => {
                         showsVerticalScrollIndicator={false}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({item}) => {
-                          if (!item.imageUrl) return null;
-                          const itemImageUrl = `${baseURL}/${item.imageUrl}`;
+                          if (!item.imageUrls[0]) return null;
+                          const itemImageUrl = `${baseURL}/${item.imageUrls[0]}`;
                           const isSelected = item._id === selectedItem?._id;
                           return (
                             <TouchableOpacity

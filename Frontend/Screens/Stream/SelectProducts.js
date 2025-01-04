@@ -1,8 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   Dimensions,
   SafeAreaView,
@@ -18,7 +17,6 @@ import {fetchProducts} from '../../Redux/Features/ProductsSlice';
 
 const SelectProducts = ({route}) => {
   const {title, type} = route.params;
-  //const [title, setTitle] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -30,7 +28,6 @@ const SelectProducts = ({route}) => {
   const {items, reduxLoading} = useSelector(state => state.products);
 
   const {userData} = useSelector(state => state.auth);
-
   const userEmail = userData?.user?.email;
 
   const [selectedItems, setSelectedItems] = useState([]);

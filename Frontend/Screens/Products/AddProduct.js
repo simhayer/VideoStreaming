@@ -296,203 +296,180 @@ const AddProduct = () => {
   return (
     <SafeAreaView
       style={{flex: 1, paddingTop: 10, backgroundColor: colors.background}}>
-      <TouchableWithoutFeedback onPress={screenTap} style={{flex: 1}}>
-        <View style={{flex: 1}}>
-          <View
+      <View style={{flex: 1}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: 4,
+          }}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon name="chevron-back" size={35} color="black" />
+          </TouchableOpacity>
+          <Text
             style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginTop: 4,
+              color: 'black',
+              fontWeight: 'bold',
+              fontSize: calculatedFontSize / 2,
+              textAlign: 'center',
+              flex: 1,
             }}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Icon name="chevron-back" size={35} color="black" />
-            </TouchableOpacity>
-            <Text
-              style={{
-                color: 'black',
-                fontWeight: 'bold',
-                fontSize: calculatedFontSize / 2,
-                textAlign: 'center',
-                flex: 1,
-              }}>
-              Add Product
-            </Text>
-            <View style={{width: 35}} />
-          </View>
-          <ScrollView style={{marginTop: 30, flex: 1, marginBottom: 20}}>
-            {isError && (
-              <View style={{alignItems: 'center'}}>
-                <Text
-                  style={{fontSize: calculatedFontSize / 2.7, color: errorRed}}>
-                  {errorMessage}
-                </Text>
-              </View>
-            )}
-            <Text style={styles.headerText}>Name</Text>
-
-            <View style={{alignItems: 'center'}}>
-              <TextInput
-                ref={nameRef}
-                value={itemName}
-                onChangeText={setItemName}
-                placeholder={'Product Name'}
-                style={{
-                  width: '80%',
-                  borderWidth: 1,
-                  borderRadius: 10,
-                  borderColor: 'black',
-                  fontSize: calculatedFontSize / 2.7,
-                  marginVertical: 10,
-                  paddingVertical: 10,
-                  paddingHorizontal: 5,
-                  color: 'black',
-                  textAlignVertical: 'top',
-                }}
-                placeholderTextColor={'gray'}
-                returnKeyType="next"
-                textContentType="name"
-                maxLength={50}
-                selectionColor={appPink}
-                inputMode="text"
-                onSubmitEditing={onNameNextClick}
-                keyboardAppearance="light"
-                onFocus={closeBottomSheet}
-                numberOfLines={2}
-                multiline={true}
-              />
-            </View>
-            <View style={styles.divider} />
-            <Text style={styles.headerText}>Type</Text>
-
-            <View style={{alignItems: 'center'}}>
-              <TouchableOpacity
-                style={styles.typeButtonContainer}
-                onPress={handleProductTypeSelect}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            Add Product
+          </Text>
+          <View style={{width: 35}} />
+        </View>
+        <ScrollView style={{marginTop: 30, flex: 1, marginBottom: 20}}>
+          <TouchableWithoutFeedback onPress={screenTap} style={{flex: 1}}>
+            <View style={{flex: 1}}>
+              {isError && (
+                <View style={{alignItems: 'center'}}>
                   <Text
                     style={{
-                      color: 'black',
-                      fontSize: calculatedFontSize / 2.9,
+                      fontSize: calculatedFontSize / 2.7,
+                      color: errorRed,
                     }}>
-                    {type ? type : 'Product type'}
+                    {errorMessage}
                   </Text>
                 </View>
-                <Icon name="chevron-down" size={30} color="black" />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.divider} />
-            {showSizeOption && (
+              )}
+              <Text style={styles.headerText}>Name</Text>
+
               <View style={{alignItems: 'center'}}>
-                <View style={{width: '100%'}}>
-                  <Text style={styles.headerText}>Size</Text>
-                </View>
+                <TextInput
+                  ref={nameRef}
+                  value={itemName}
+                  onChangeText={setItemName}
+                  placeholder={'Product Name'}
+                  style={styles.input}
+                  placeholderTextColor={'gray'}
+                  returnKeyType="next"
+                  textContentType="name"
+                  maxLength={50}
+                  selectionColor={appPink}
+                  inputMode="text"
+                  onSubmitEditing={onNameNextClick}
+                  keyboardAppearance="light"
+                  onFocus={closeBottomSheet}
+                  numberOfLines={2}
+                  multiline={true}
+                />
+              </View>
+              <View style={styles.divider} />
+              <Text style={styles.headerText}>Type</Text>
+
+              <View style={{alignItems: 'center'}}>
                 <TouchableOpacity
                   style={styles.typeButtonContainer}
-                  onPress={handleClothingSizeSelect}>
+                  onPress={handleProductTypeSelect}>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Text
                       style={{
                         color: 'black',
                         fontSize: calculatedFontSize / 2.9,
                       }}>
-                      {size ? size : 'Size'}
+                      {type ? type : 'Product type'}
                     </Text>
                   </View>
                   <Icon name="chevron-down" size={30} color="black" />
                 </TouchableOpacity>
-                <View style={styles.divider} />
               </View>
-            )}
-            <Text style={styles.headerText}>Shipping Fee</Text>
-
-            <View style={{alignItems: 'center'}}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}>
-                <Text
-                  style={{
-                    fontSize: calculatedFontSize / 2.2,
-                    color: 'grey',
-                  }}>
-                  $
-                </Text>
-                <TextInput
-                  value={shippingFee}
-                  onChangeText={setShippingFee}
-                  placeholder={'Shipping Fee'}
-                  style={{
-                    width: '66%',
-                    borderBottomWidth: 1,
-                    borderColor: 'black',
-                    fontSize: calculatedFontSize / 2.5,
-                    marginTop: 10,
-                    marginBottom: 15,
-                    paddingVertical: 10,
-                    paddingHorizontal: 5,
-                    marginLeft: 10,
-                    color: 'black',
-                  }}
-                  autoComplete="off"
-                  autoCapitalize="none"
-                  placeholderTextColor={'gray'}
-                  autoCorrect={false}
-                  returnKeyType="next"
-                  maxLength={5}
-                  selectionColor={appPink}
-                  inputMode="numeric"
-                  clearButtonMode="while-editing"
-                  keyboardAppearance="light"
-                  keyboardType="numeric"
-                  onFocus={closeBottomSheet}
-                />
-              </View>
-            </View>
-            <View style={styles.divider} />
-
-            <Text style={styles.headerText}>Photos</Text>
-
-            <View style={{alignItems: 'center'}}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: '80%',
-                  justifyContent: 'space-between',
-                  marginTop: 20,
-                }}>
-                {images.map((image, index) => (
+              <View style={styles.divider} />
+              {showSizeOption && (
+                <View style={{alignItems: 'center'}}>
+                  <View style={{width: '100%'}}>
+                    <Text style={styles.headerText}>Size</Text>
+                  </View>
                   <TouchableOpacity
-                    key={index}
-                    style={styles.imageContainer}
-                    onPress={() => handleImageSelection(index)}>
-                    {image ? (
-                      <FastImage
-                        source={{uri: image}}
-                        style={styles.image}
-                        resizeMode="cover"
-                      />
-                    ) : (
-                      <Icon
-                        name="add-circle-outline"
-                        size={25}
-                        color="rgba(0,0,0,0.4)"
-                      />
-                    )}
+                    style={styles.typeButtonContainer}
+                    onPress={handleClothingSizeSelect}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <Text
+                        style={{
+                          color: 'black',
+                          fontSize: calculatedFontSize / 2.9,
+                        }}>
+                        {size ? size : 'Size'}
+                      </Text>
+                    </View>
+                    <Icon name="chevron-down" size={30} color="black" />
                   </TouchableOpacity>
-                ))}
+                  <View style={styles.divider} />
+                </View>
+              )}
+              <Text style={styles.headerText}>Shipping Fee</Text>
+
+              <View style={{alignItems: 'center'}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: calculatedFontSize / 2.2,
+                      color: 'grey',
+                    }}>
+                    $
+                  </Text>
+                  <TextInput
+                    value={shippingFee}
+                    onChangeText={setShippingFee}
+                    placeholder={'Shipping Fee'}
+                    style={styles.shippingInput}
+                    placeholderTextColor={'gray'}
+                    returnKeyType="next"
+                    maxLength={5}
+                    selectionColor={appPink}
+                    inputMode="numeric"
+                    clearButtonMode="while-editing"
+                    keyboardAppearance="light"
+                    keyboardType="numeric"
+                    onFocus={closeBottomSheet}
+                  />
+                </View>
+              </View>
+              <View style={styles.divider} />
+
+              <Text style={styles.headerText}>Photos</Text>
+
+              <View style={{alignItems: 'center'}}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    width: '80%',
+                    justifyContent: 'space-between',
+                    marginTop: 20,
+                  }}>
+                  {images.map((image, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      style={styles.imageContainer}
+                      onPress={() => handleImageSelection(index)}>
+                      {image ? (
+                        <FastImage
+                          source={{uri: image}}
+                          style={styles.image}
+                          resizeMode="cover"
+                        />
+                      ) : (
+                        <Icon
+                          name="add-circle-outline"
+                          size={25}
+                          color="rgba(0,0,0,0.4)"
+                        />
+                      )}
+                    </TouchableOpacity>
+                  ))}
+                </View>
               </View>
             </View>
-          </ScrollView>
-          <BottomButton
-            loading={loading}
-            text="Add"
-            onPress={handleAddProduct}
-          />
-        </View>
-      </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
+        </ScrollView>
+        <BottomButton loading={loading} text="Add" onPress={handleAddProduct} />
+      </View>
+
       {isBidBottomSheetVisible && (
         <BottomSheet
           ref={bidBottomSheetRef}
@@ -549,24 +526,52 @@ const styles = StyleSheet.create({
     fontSize: calculatedFontSize / 2.7,
     color: 'black',
     marginLeft: '10%',
+    fontWeight: '600',
   },
   divider: {
     width: '90%',
     borderBottomWidth: 1,
-    borderColor: 'rgba(0,0,0,0.2)',
+    borderColor: 'rgba(0,0,0,0.1)',
     marginVertical: 20,
     alignSelf: 'center',
+  },
+  input: {
+    width: '80%',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'rgba(0,0,0,0.2)',
+    fontSize: calculatedFontSize / 2.7,
+    marginVertical: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    color: 'black',
+    textAlignVertical: 'top',
+    minHeight: (calculatedFontSize / 2.7) * 3,
+    maxHeight: (calculatedFontSize / 2.7) * 5,
+  },
+  shippingInput: {
+    width: '70%',
+    borderBottomWidth: 1,
+    borderColor: 'black',
+    fontSize: calculatedFontSize / 2.5,
+    marginTop: 10,
+    marginBottom: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    marginLeft: 10,
+    color: 'black',
   },
   typeButtonContainer: {
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.2)',
-    width: '70%',
+    width: '80%',
     flexDirection: 'row',
     paddingVertical: '2%',
     paddingHorizontal: '4%',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 40,
+    marginVertical: 10,
   },
   imageContainer: {
     aspectRatio: 1,

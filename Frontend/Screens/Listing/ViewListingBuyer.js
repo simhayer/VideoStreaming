@@ -35,17 +35,20 @@ const ViewListingBuyer = ({route}) => {
   const outOfStock = listing.quantity <= 0;
 
   const [isImageViewerVisible, setImageViewerVisible] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
 
-  //console.log('Route params:', route.params);
   const navigation = useNavigation();
 
   const {userData} = useSelector(state => state.auth);
   const userEmail = userData?.user?.email;
 
   const handleBuyNow = async () => {
-    //checkPaymentandAddressExist(userEmail);
-
     navigation.navigate('Checkout', {listing});
+  };
+
+  const onImagePress = index => {
+    setImageIndex(index);
+    setImageViewerVisible(true);
   };
 
   return (
@@ -115,7 +118,10 @@ const ViewListingBuyer = ({route}) => {
                 padding: 20,
                 aspectRatio: 1.5,
               }}>
-              <ProductImageCarousel images={itemImageUrls} />
+              <ProductImageCarousel
+                images={itemImageUrls}
+                onImagePress={onImagePress}
+              />
             </View>
           </TouchableOpacity>
         </View>
@@ -286,8 +292,8 @@ const ViewListingBuyer = ({route}) => {
 
         {/* Image Viewer Modal */}
         <ImageViewing
-          images={[{uri: itemImageUrls[0]}]}
-          imageIndex={0}
+          images={itemImageUrls.map(imageUrl => ({uri: imageUrl}))}
+          imageIndex={imageIndex}
           backgroundColor="transparent"
           visible={isImageViewerVisible}
           onRequestClose={() => setImageViewerVisible(false)}
