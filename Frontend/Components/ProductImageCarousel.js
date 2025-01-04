@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
-import {View, Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {
+  View,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  PanResponder,
+} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import FastImage from 'react-native-fast-image';
 
@@ -23,8 +29,21 @@ const ProductImageCarousel = ({images, onImagePress}) => {
     );
   };
 
+  const isSwiping = useRef(false); // Track swiping state
+
+  // Gesture handler to track swipe gestures
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderGrant: () => {
+      isSwiping.current = true; // Set swiping to true when a swipe starts
+    },
+    onPanResponderRelease: () => {
+      setTimeout(() => (isSwiping.current = false), 100); // Reset after swipe ends
+    },
+  });
+
   return (
-    <View style={styles.container}>
+    <View style={styles.container} {...panResponder.panHandlers}>
       {/* Carousel */}
       <Carousel
         loop
@@ -39,7 +58,13 @@ const ProductImageCarousel = ({images, onImagePress}) => {
               resizeMode={FastImage.resizeMode.contain}
             />
           ) : (
-            <TouchableOpacity onPress={() => onImagePress(activeIndex)}>
+            <TouchableOpacity
+              onPress={() => {
+                if (!isSwiping.current) {
+                  // Prevent onPress if swipe is detected
+                  onImagePress(activeIndex);
+                }
+              }}>
               <FastImage
                 source={{uri: item}}
                 style={styles.image}
