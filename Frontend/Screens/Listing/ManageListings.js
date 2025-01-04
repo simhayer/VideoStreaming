@@ -148,7 +148,7 @@ const ManageListings = () => {
 
   const ProductItem = React.memo(({item}) => {
     const isSelected = selectedItems.includes(item._id);
-    const itemImageUrl = `${baseURL}/${item.product.imageUrl}`;
+    const itemImageUrl = `${baseURL}/${item.product.imageUrls[0]}`;
 
     return (
       <TouchableOpacity

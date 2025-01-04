@@ -219,7 +219,7 @@ const AddProduct = () => {
 
     images.forEach((image, index) => {
       if (image) {
-        formData.append('productImage', {
+        formData.append('productImages', {
           uri: image,
           type: 'image/jpeg',
           name: `productImage${index}.jpg`,

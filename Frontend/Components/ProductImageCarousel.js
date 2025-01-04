@@ -12,6 +12,7 @@ import FastImage from 'react-native-fast-image';
 const ProductImageCarousel = ({images, onImagePress}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const width = Dimensions.get('window').width;
+  const isScrolling = useRef(false); // Track scrolling state
 
   const renderDots = () => {
     return (
@@ -29,27 +30,18 @@ const ProductImageCarousel = ({images, onImagePress}) => {
     );
   };
 
-  const isSwiping = useRef(false); // Track swiping state
-
-  // Gesture handler to track swipe gestures
-  const panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderGrant: () => {
-      isSwiping.current = true; // Set swiping to true when a swipe starts
-    },
-    onPanResponderRelease: () => {
-      setTimeout(() => (isSwiping.current = false), 100); // Reset after swipe ends
-    },
-  });
-
   return (
-    <View style={styles.container} {...panResponder.panHandlers}>
+    <View style={styles.container}>
       {/* Carousel */}
       <Carousel
         loop
         width={width}
         data={images} // Array of image URLs
         onSnapToItem={index => setActiveIndex(index)} // Track active slide
+        onScrollBeginDrag={() => (isScrolling.current = true)} // Start scroll
+        onScrollEndDrag={() =>
+          setTimeout(() => (isScrolling.current = false), 200)
+        } // End scroll with slight delay for momentum
         renderItem={({item}) =>
           !onImagePress ? (
             <FastImage
@@ -60,8 +52,8 @@ const ProductImageCarousel = ({images, onImagePress}) => {
           ) : (
             <TouchableOpacity
               onPress={() => {
-                if (!isSwiping.current) {
-                  // Prevent onPress if swipe is detected
+                if (!isScrolling.current) {
+                  // Trigger press event only if not scrolling
                   onImagePress(activeIndex);
                 }
               }}>

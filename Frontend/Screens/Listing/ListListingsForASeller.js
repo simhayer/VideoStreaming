@@ -83,7 +83,6 @@ const ListListingsForASeller = ({username}) => {
 
   const ListingItem = React.memo(({item, profilePictureURL}) => {
     const [imageLoaded, setImageLoaded] = useState(false);
-    const profilePictureFilename = item.user.profilePicture.split('/').pop();
     const thumbnailUri = `${baseURL}/${item.product.imageUrls[0]}`;
 
     return (

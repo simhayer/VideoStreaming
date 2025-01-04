@@ -1,4 +1,10 @@
-import {Dimensions, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {appPink} from '../Resources/Constants';
 
 const {height: screenHeight} = Dimensions.get('window');
@@ -14,7 +20,9 @@ const BottomButton = ({loading, text, onPress}) => {
         paddingTop: 10,
       }}>
       {loading ? (
-        <ActivityIndicator size="large" color={appPink} />
+        <View style={{paddingVertical: 8, marginTop: 10, marginBottom: 20}}>
+          <ActivityIndicator size="large" color={appPink} />
+        </View>
       ) : (
         <TouchableOpacity
           onPress={onPress}
