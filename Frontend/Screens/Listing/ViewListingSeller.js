@@ -18,7 +18,6 @@ import {
 } from '../../Resources/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useSelector} from 'react-redux';
-import FastImage from 'react-native-fast-image';
 import axios from 'axios';
 import ProductImageCarousel from '../../Components/ProductImageCarousel';
 

@@ -100,30 +100,26 @@ const ViewListingBuyer = ({route}) => {
 
         {/* Image Section */}
         <View style={{marginHorizontal: 10}}>
-          <TouchableOpacity
-            onPress={() => setImageViewerVisible(true)} // Open the image viewer
-          >
-            <View
-              style={{
-                borderWidth: 1,
-                width: '100%',
-                borderColor: 'rgba(0, 0, 0, 0.1)',
-                borderRadius: 12,
-                marginBottom: 12,
-                shadowColor: '#000',
-                shadowOffset: {width: 0, height: 2},
-                shadowOpacity: 0.1,
-                shadowRadius: 4,
-                overflow: 'hidden',
-                padding: 20,
-                aspectRatio: 1.5,
-              }}>
-              <ProductImageCarousel
-                images={itemImageUrls}
-                onImagePress={onImagePress}
-              />
-            </View>
-          </TouchableOpacity>
+          <View
+            style={{
+              borderWidth: 1,
+              width: '100%',
+              borderColor: 'rgba(0, 0, 0, 0.1)',
+              borderRadius: 12,
+              marginBottom: 12,
+              shadowColor: '#000',
+              shadowOffset: {width: 0, height: 2},
+              shadowOpacity: 0.1,
+              shadowRadius: 4,
+              overflow: 'hidden',
+              padding: 20,
+              aspectRatio: 1.5,
+            }}>
+            <ProductImageCarousel
+              images={itemImageUrls}
+              onImagePress={onImagePress}
+            />
+          </View>
         </View>
 
         {/* Details Section */}

@@ -344,14 +344,11 @@ const AddProduct = () => {
                   style={styles.input}
                   placeholderTextColor={'gray'}
                   returnKeyType="next"
-                  textContentType="name"
                   maxLength={50}
                   selectionColor={appPink}
-                  inputMode="text"
                   onSubmitEditing={onNameNextClick}
                   keyboardAppearance="light"
                   onFocus={closeBottomSheet}
-                  numberOfLines={2}
                   multiline={true}
                 />
               </View>
